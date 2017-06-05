@@ -40,5 +40,9 @@ $(document).ready(function() {
 		}
 
 	});
+	
+	$(function () {
+	    scrollTo(($(document).width() - $(window).width()) / 2, 0);
+	});
 
 });
