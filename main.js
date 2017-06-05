@@ -27,7 +27,7 @@ $(document).ready(function() {
 			$(this).closest('.square').animate({
 				backgroundColor : '#109e54'
 			}, 1000, function() {
-				console.log('animation done')
+				// Do nothing after animation
 			});
 
 		} else {
@@ -35,7 +35,7 @@ $(document).ready(function() {
 			$(this).closest('.square').animate({
 				backgroundColor : '#d85c4a'
 			}, 1000, function() {
-				console.log('animation done')
+				// Do nothing after animation
 			});
 		}
 
