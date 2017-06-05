@@ -152,6 +152,7 @@ p.content{
 	font-size: 1.6vh;
 	 -webkit-margin-before: 0px;
     -webkit-margin-after: 1em;
+    cursor: pointer;
 }
 
 .numbers{
@@ -161,7 +162,7 @@ p.content{
 
 .article-vote {
 
-    font-size: small;
+    font-size: 2.3vh;
     font-weight: 600;
      cursor: pointer;
 }
