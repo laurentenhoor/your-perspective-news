@@ -117,17 +117,13 @@ p.title {
 
 .logo {
 	display: block;
-	max-width: 35%;
+	max-width: 38%;
 	max-height: 11%;
-	/* max-width:80px;
-  	max-height:25px; */
 	width: auto;
 	height: auto;
 	position: absolute;
 	bottom: 10px;
 	right: 10px;
-	-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-	filter: grayscale(100%);
 }
 
 p.content {
