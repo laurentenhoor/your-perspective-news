@@ -16,6 +16,7 @@ $(document).ready(function() {
 
 		$(this).find('.content-front').toggle();
 		$(this).find('.content-back').toggle();
+		jwplayer().play();
 
 	})
 
