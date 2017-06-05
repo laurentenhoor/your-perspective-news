@@ -1,5 +1,4 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:400,900);
-	/* <-- Just for the demo, Yes I like pretty fonts... */
 	
 html {
 	-webkit-touch-callout: none; /* iOS Safari */
@@ -7,8 +6,7 @@ html {
 	-khtml-user-select: none; /* Konqueror HTML */
 	-moz-user-select: none; /* Firefox */
 	-ms-user-select: none; /* Internet Explorer/Edge */
-	user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome and Opera */
+	user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
 }
 
 .container {
@@ -57,13 +55,6 @@ li {
 	padding: 0;
 }
 
-/*  For responsive images */
-.content .rs {
-	width: auto;
-	height: auto;
-	max-height: 90%;
-	max-width: 100%;
-}
 /*  For responsive images as background */
 .bg {
 	background-position: center center;
@@ -92,12 +83,6 @@ li {
 		url('http://cfvod.kaltura.com/p/1467261/sp/146726100/thumbnail/entry_id/1_qbdhur2d/version/100011/width/641/height/397');
 }
 
-/*  following just for the demo */
-.shadowed {
-	-webkit-filter: drop-shadow(5px 5px 5px #222);
-	filter: drop-shadow(5px 5px 5px #222);
-}
-
 body {
 	font-size: 20px;
 	font-family: 'Lato', verdana, sans-serif;
@@ -123,8 +108,9 @@ p.title {
 	height: auto;
 	position: absolute;
 	bottom: 10px;
-	right: 10px;
+	right: 10px;`
 }
+
 
 p.content {
 	margin: 0;
@@ -143,11 +129,6 @@ p.content {
 	cursor: pointer;
 }
 
-.numbers {
-	font-weight: 900;
-	font-size: 60px;
-}
-
 .article-vote {
 	font-size: 2.3vh;
 	font-weight: 600;
@@ -164,35 +145,4 @@ p.content {
 	position: absolute;
 	bottom: 5px;
 	left: 10px;
-}
-
-#bottom {
-	clear: both;
-	margin: 0 1.66%;
-	width: 89.68%;
-	padding: 3.5%;
-	background-color: #1E1E1E;
-	color: #fff;
-}
-
-#bottom p {
-	text-align: center;
-	line-height: 2em;
-}
-
-#bottom a {
-	color: #000;
-	text-decoration: none;
-	border: 1px solid #000;
-	padding: 10px 20px 12px;
-	line-height: 70px;
-	background: #ccc;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-}
-
-#bottom a:hover {
-	background: #ECECEC;
-	border: 1px solid #fff;
 }
