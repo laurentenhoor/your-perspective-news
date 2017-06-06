@@ -1,7 +1,5 @@
 $(document).ready(function() {
 	
-	
-
 	$(window).on('resize', function() {
 
 		var height = $(window).height() - (20 + 34);
@@ -21,6 +19,21 @@ $(document).ready(function() {
 
 	})
 
+	
+	function checkForFinish() {
+		if ($('.voted').length > 8) {
+			$('.popup').show();
+			$('#opinion-field').focus();
+			$('#opinion-field').select();
+			
+		}
+	}
+	
+	$('.popup-btn').on('click', function() {
+		$('.popup').hide();
+		location.reload();
+	});
+	
 	// Click on vote buttons
 	$('.btn-vote').on('click', function() {
 
@@ -29,17 +42,23 @@ $(document).ready(function() {
 			$(this).closest('.square').animate({
 				backgroundColor : '#109e54'
 			}, 1000, function() {
-				// Do nothing after animation
-			});
+				checkForFinish();
+			}).addClass('voted');
 
 		} else {
 
 			$(this).closest('.square').animate({
 				backgroundColor : '#d85c4a'
 			}, 1000, function() {
-				// Do nothing after animation
-			});
+				checkForFinish();
+			}).addClass('voted');
 		}
+		
+		
+		
+		
+		
+		
 
 	});
 

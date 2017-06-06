@@ -9,6 +9,40 @@ html {
 	user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
 }
 
+.popup-btn {
+	background-color: #ececec;
+    border: none;
+    color: #7169a3;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 700;
+    font-size: 3vh;
+}
+
+.popup {
+    
+    
+    display: none;
+    border: 6px solid #ececec;
+    padding: 2em;
+    text-align: center;
+    background: #7169a3;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    z-index: 1000;
+    
+        font-weight: 700;
+    font-size: 4vh;
+  
+	
+}
+
+
 .container {
 	width: 80%;
 }
@@ -168,3 +202,5 @@ p.content {
     height:0px;
     overflow:hidden;
 }	
+
+
