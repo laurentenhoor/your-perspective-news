@@ -13,6 +13,23 @@ html {
 	width: 80%;
 }
 
+img.header-logo {
+	width: 28px;
+    position: relative;
+    top: 7px;
+    
+}
+
+.header-title {
+    color: #a8a2d0;;
+    font-weight: 600;
+    text-transform: uppercase;
+    top: -6px;
+    position: relative;
+    font-size: 0.8em;
+    opacity:0.4;
+}
+
 .square {
 	opacity: 0.75;
 	float: left;

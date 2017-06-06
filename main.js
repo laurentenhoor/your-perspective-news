@@ -1,8 +1,10 @@
 $(document).ready(function() {
+	
+	
 
 	$(window).on('resize', function() {
 
-		var height = $(window).height() - 20;
+		var height = $(window).height() - (20 + 34);
 		//	var width = $(window).width();
 
 		$('.container').css('width', height);
@@ -40,9 +42,10 @@ $(document).ready(function() {
 		}
 
 	});
-	
-	$(function () {
-	    scrollTo(($(document).width() - $(window).width()) / 2, 0);
-	});
 
+	 setTimeout(function() {
+		 window.scrollTo(($(document).width() - $(window).width()) / 2, 0);
+		 console.log('scrollTo()')
+	    }, 100);
+	
 });
