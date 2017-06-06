@@ -22,8 +22,7 @@ html {
 }
 
 .popup {
-    
-    
+        
     display: none;
     border: 6px solid #ececec;
     padding: 2em;
@@ -36,7 +35,7 @@ html {
     -webkit-transform: translate(-50%,-50%);
     z-index: 1000;
     
-        font-weight: 700;
+    font-weight: 700;
     font-size: 4vh;
   
 	
