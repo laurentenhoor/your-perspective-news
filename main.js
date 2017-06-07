@@ -59,10 +59,20 @@ $(document).ready(function() {
 		
 
 	});
+	
+	// first load all content - then hide it here (so, preloading content)
+	$('.content-back').hide(); 
 
 	 setTimeout(function() {
 		 window.scrollTo(($(document).width() - $(window).width()) / 2, 0);
 		 console.log('scrollTo()')
 	    }, 100);
+	 
+	 
+	 $(".read-btn").modalVideo();
+	
 	
 });
+
+
+
