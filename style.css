@@ -57,13 +57,16 @@ img.header-logo {
 }
 
 .header-title {
-    color: #a8a2d0;;
+	color: #7169a3;
     font-weight: 600;
     text-transform: uppercase;
     top: -6px;
     position: relative;
     font-size: 0.8em;
-    opacity:0.4;
+    opacity: 0.6;
+    
+    font-family:"Open Sans";
+    font-weight:600;
 }
 
 .square {
@@ -180,7 +183,7 @@ p.content {
 	-webkit-margin-after: 1em;
 	cursor: pointer;
 	
-	font-family: 'Open Sans';
+	font-family: 'Open Sans', sans-serif;
 	
 }
 
@@ -212,44 +215,3 @@ p.content {
 	left: 10px;
 }
 
-
-
-.bmd-modalButton {
-  display: block;
-  margin: 15px auto;
-  padding: 5px 15px;
-}
-
-.close-button {
-  overflow: hidden;
-}
-
-.bmd-modalContent {
-  box-shadow: none;
-  background-color: transparent;
-  border: 0;
-}
-  
-.bmd-modalContent .close {
-  font-size: 30px;
-  line-height: 30px;
-  padding: 7px 4px 7px 13px;
-  text-shadow: none;
-  opacity: .7;
-  color:#fff;
-}
-
-.bmd-modalContent .close span {
-  display: block;
-}
-
-.bmd-modalContent .close:hover,
-.bmd-modalContent .close:focus {
-  opacity: 1;
-  outline: none;
-}
-
-.bmd-modalContent iframe {
-  display: block;
-  margin: 0 auto;
-}
