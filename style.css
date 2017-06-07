@@ -37,10 +37,9 @@ html {
     
     font-weight: 700;
     font-size: 4vh;
-  
-	
+  	text-align: left;
+  		
 }
-
 
 .container {
 	width: 80%;
@@ -50,6 +49,7 @@ img.header-logo {
 	width: 28px;
     position: relative;
     top: 7px;
+    margin-right: 4px;
     
 }
 

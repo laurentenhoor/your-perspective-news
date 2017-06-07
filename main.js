@@ -21,6 +21,7 @@ $(document).ready(function() {
 
 	
 	function checkForFinish() {
+
 		if ($('.voted').length > 8) {
 			$('.popup').show();
 			$('#opinion-field').focus();
@@ -42,22 +43,19 @@ $(document).ready(function() {
 			$(this).closest('.square').animate({
 				backgroundColor : '#109e54'
 			}, 1000, function() {
+				$(this).addClass('voted');
 				checkForFinish();
-			}).addClass('voted');
+			});
 
 		} else {
 
 			$(this).closest('.square').animate({
 				backgroundColor : '#d85c4a'
 			}, 1000, function() {
+				$(this).addClass('voted');
 				checkForFinish();
-			}).addClass('voted');
+			});
 		}
-		
-		
-		
-		
-		
 		
 
 	});
