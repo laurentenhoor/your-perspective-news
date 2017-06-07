@@ -35,6 +35,11 @@ $(document).ready(function() {
 		location.reload();
 	});
 	
+	$( ".read-btn" ).click(function( event ) {
+		  $(this).closest('.square').click();
+		  // Do something
+		});
+	
 	// Click on vote buttons
 	$('.btn-vote').on('click', function() {
 
@@ -69,7 +74,7 @@ $(document).ready(function() {
 	    }, 100);
 	 
 	 
-	 $(".read-btn").modalVideo();
+//	 $(".read-btn").modalVideo();
 	
 	
 });
