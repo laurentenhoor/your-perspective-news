@@ -67,7 +67,7 @@ img.header-logo {
 }
 
 .header-title {
-	color: #7d78a2;
+	color: #7169a3;
     font-weight: 600;
     text-transform: uppercase;
     top: -6px;
@@ -208,14 +208,8 @@ p.content {
 	right: 10px;
 }
 
-
-.btn-vote .fa {
-	
-	font-size:2.6vh !important;
-}
-
 .article-vote {
-	font-size: 1.5vh;  
+	font-size: 2.3vh;
 	font-weight: 600;
 	cursor: pointer;
 }
@@ -224,12 +218,11 @@ p.content {
 	position: absolute;
 	right: 10px;
 	bottom: 5px;
-	/* text-align: right; */
 }
 
 .btn-disagree {
 	position: absolute;
 	bottom: 5px;
 	left: 10px;
-	/*text-align: left; */
 }
+

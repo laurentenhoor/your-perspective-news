@@ -3,11 +3,7 @@ $(document).ready(function() {
 	$(window).on('resize', function() {
 
 		var height = $(window).height() - (20 + 34);
-		var width = $(window).width() - 20;
-		
-		if (width < height) {
-//			height = width;
-		}
+		//	var width = $(window).width();
 
 		$('.container').css('width', height);
 		$('.container').css('height', height);
@@ -76,6 +72,10 @@ $(document).ready(function() {
 		 window.scrollTo(($(document).width() - $(window).width()) / 2, 0);
 		 console.log('scrollTo()')
 	    }, 100);
+	 
+	 
+//	 $(".read-btn").modalVideo();
+	
 	
 });
 
