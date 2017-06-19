@@ -12,23 +12,23 @@ angular.module('myApp.view2', ['ngRoute'])
 .controller('View2Ctrl', ['$scope', function($scope) {
 	$scope.newsItems = [{
 		title : 'Het klimaat akkoord',
-		articleUrl : '',
+		articleUrl : '//www.nos.nl',
 		imgUrl : '',
-		logoUrl : '',
+		logoUrl : 'assets/logos/europa_nu.png',
 		summaryText : '',
 		type : 'Read'
 	}, {
 		title : '0.3',
 		articleUrl : '',
 		imgUrl : '',
-		logoUrl : '',
+		logoUrl : 'assets/logos/nos.png',
 		summaryText : '',
 		type : 'Read'
 	}, {
 		title : '',
 		articleUrl : '',
 		imgUrl : '',
-		logoUrl : '',
+		logoUrl : 'assets/logos/europa_nu.png',
 		summaryText : '',
 		type : 'Read'
 	}];
