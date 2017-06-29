@@ -1,18 +1,22 @@
-<div class="square" ng-repeat="item in newsItems">
+<div squares class="square" ng-repeat="item in newsItems">
+	<div class="bg" ng-style="{'background-image': 'url({{item.imgUrl}})'}"></div>
 	<div class="content content-front">
 		<div class="table">
 			<div class="table-cell">
-				<p class="title" style="font-size: 4vh;">{{ item.title }}</p>
+				<p class="title">{{ item.title }}</p>
 				<img class="logo" src="{{item.logoUrl}}">
 			</div>
 		</div>
 	</div>
+	
 	<div class="content content-back">
 		<div class="table">
 			<div class="table-cell">
 			
-				<a href="{{ item.articleUrl }}" 
-					target="_self" class="read-btn"><i class="fa fa-book" aria-hidden="true"></i> Lees</a>
+				<a href="{{ item.articleUrl }}" target="_self" class="read-btn">
+					<span class="case" data-ng-if="item.type == 'text' "><i class="fa fa-book" aria-hidden="true"></i> Lees</span>
+					<span class="case" data-ng-if="item.type == 'video' "><i class="fa fa-play-circle" aria-hidden="true"></i> Kijk</span>
+				</a>
 				
 				<p class="article">{{ item.summaryText }}</p>
 
