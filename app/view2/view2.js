@@ -13,6 +13,8 @@ angular.module('myApp.view2', ['ngRoute'])
 
 .controller('View2Ctrl', ['$scope', function($scope) {
 	
+	$scope.title = 'VS stapt uit klimaatakkoord';
+	
 	$scope.newsItems = [{
 		title : 'Het klimaat akkoord',
 		type : 'text',
@@ -21,12 +23,12 @@ angular.module('myApp.view2', ['ngRoute'])
 		logoUrl : 'assets/logos/europa_nu.png',
 		summaryText : 'Wat is er eigenlijk door wie afgesproken in het klimaatakkoord? Lees deze samenvatting en je bent helemaal up-to-date!'
 	}, {
-		title : '0,3 °C',
+		title : '0,3°C',
 		type : 'text',
 		articleUrl : 'http://nos.nl/artikel/2176295-0-3-graden-warmer-door-klimaatbesluit-vs.html',
 		imgUrl : '',
 		logoUrl : 'assets/logos/nos.png',
-		summaryText : 'Volgens de VN-klimaat organisatie WMO warmt de aarde 0,3 &deg;C extra op door het vertrek van de VS. Ofwel, de consequenties zijn huge'
+		summaryText : 'Volgens de VN-klimaat organisatie WMO warmt de aarde 0,3°C extra op door het vertrek van de VS. Ofwel, de consequenties zijn huge'
 	}, {
 		title : 'Vijf feiten',
 		type : 'text',

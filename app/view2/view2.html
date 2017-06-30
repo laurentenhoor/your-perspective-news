@@ -1,15 +1,19 @@
-<div squares class="square" ng-repeat="item in newsItems">
+<div class="header-title">
+{{ title }}
+</div>
+  
+<div class="square" ng-repeat="item in newsItems" ng-click="hideShow=(hideShow ? false : true)">
 	<div class="bg" ng-style="{'background-image': 'url({{item.imgUrl}})'}"></div>
-	<div class="content content-front">
+	<div class="content content-front" ng-if="!hideShow">
 		<div class="table">
 			<div class="table-cell">
 				<p class="title">{{ item.title }}</p>
-				<img class="logo" src="{{item.logoUrl}}">
+				<img class="logo" ng-src="{{ item.logoUrl }}">
 			</div>
 		</div>
 	</div>
 	
-	<div class="content content-back">
+	<div class="content content-back" ng-if="hideShow">
 		<div class="table">
 			<div class="table-cell">
 			

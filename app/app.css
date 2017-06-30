@@ -93,7 +93,8 @@ body {
 }
 
 img.header-logo {
-	width: 28px;
+	/* width: 28px; */
+	width: 10vw;
     position: relative;
     top: 7px;
     margin-right: 3px;
@@ -106,7 +107,8 @@ img.header-logo {
     text-transform: uppercase;
     top: -6px;
     position: relative;
-    font-size: 0.8em;
+    /* font-size: 0.8em; */
+    font-size: 4vw;
     opacity: 0.6;
     
     font-family:"Open Sans";
@@ -117,12 +119,17 @@ img.header-logo {
 	opacity: 0.75;
 	float: left;
 	position: relative;
-	width: 30%;
-	padding-bottom: 30%; /* = width for a 1:1 aspect ratio */
-	margin: 1.66%;
+	/* width: 30%; */
+	/* padding-bottom: 30%; = width for a 1:1 aspect ratio */
+	/* margin: 1.66%; */
 	/* background-color: darkslateblue; */
-	background-color:#3d448b;
+	/* background-color:#3d448b; */
+	background-color: rgb(96, 128, 167);
 	overflow: hidden;
+	
+	width: 32.8%;
+    padding-bottom: 43%;
+    margin: 0.25%;
 }
 
 .content {
@@ -172,19 +179,19 @@ p.title {
 	cursor: pointer;
 	margin: 0;
 	padding: 0;
-	text-align: left;
+	text-align: center;
 	font-weight: 900;
-	font-size: 4.5vw;
+	font-size: 5vw;
 }
 
 .logo {
 	display: block;
 	max-width: 43%;
-	max-height: 11%;
+	max-height: 8%;
 	width: auto;
 	height: auto;
 	position: absolute;
-	bottom: 10px;
+	bottom: 7px;
 	right: 10px;`
 }
 
@@ -200,7 +207,7 @@ p.content {
 .article {
 	text-align: left;
 	overflow: hidden;
-	font-size: 1.6vw;
+	font-size: 2vw;
 	-webkit-margin-before: 0px;
 	-webkit-margin-after: 1em;
 	cursor: pointer;
@@ -221,7 +228,6 @@ p.content {
 
 
 .btn-vote .fa {
-	
 	font-size:2.6vw !important;
 }
 
