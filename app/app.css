@@ -16,6 +16,11 @@ html {
 	box-sizing: initial !important;
 }
 
+.menu-view-switch {
+	float:right;
+	padding-right:4vw;
+}
+
 /* .lity-iframe-container {
   padding-top: 80vw; 4:3 ratio
 } */
