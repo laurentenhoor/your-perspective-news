@@ -14,6 +14,7 @@
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link rel="stylesheet" href="app.css">
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+
 </head>
 <body>
   
@@ -22,10 +23,10 @@
 	  <img class="company-logo" src="assets/logos/newnews_newcolors.png"/> 
 	  <span class="company-logo-title">newnews</span>
   </div>
-  
-  <ul class="menu">
-    <li><a href="#!/view1">view1</a></li>
-    <li><a href="#!/view2">view2</a></li>
+
+  <ul ng-controller="MenuCtrl" class="menu">
+  	<li ng-hide="isActive('/home')"><a href="#!/home">&#8612; nieuwsoverzicht</a></li>
+  	<li ng-show="isActive('/home')"><a href="#!/topic">VS stapt uit klimaatakkoord</a></li>
   </ul>
 
   <!--[if lt IE 7]>
@@ -34,18 +35,19 @@
 
   <div ng-view></div>
 
-  <div>Angular seed app: v<span app-version></span></div>
-
+  <div>Newnews app: v<span app-version></span></div>
+  
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="app.js"></script>
-  <script src="view1/view1.js"></script>
-  <script src="view2/view2.js"></script>
+  <script src="home/home.js"></script>
+  <script src="topic/topic.js"></script>
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>
+
 </body>
 </html>

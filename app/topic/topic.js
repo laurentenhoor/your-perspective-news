@@ -1,18 +1,18 @@
 'use strict';
 
-angular.module('myApp.view2', ['ngRoute'])
+angular.module('myApp.topic', ['ngRoute'])
 
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view2', {
-    templateUrl: 'view2/view2.html',
-    controller: 'View2Ctrl'
+  $routeProvider.when('/topic', {
+    templateUrl: 'topic/topic.html',
+    controller: 'TopicCtrl'
   });
 }])
 
 
-.controller('View2Ctrl', ['$scope', function($scope) {
-	
+.controller('TopicCtrl', ['$scope', '$location', function($scope, $location) {
+
 	$scope.title = 'VS stapt uit klimaatakkoord';
 	
 	$scope.newsItems = [{
