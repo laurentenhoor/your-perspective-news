@@ -2,6 +2,9 @@
 
 @import url(http://fonts.googleapis.com/css?family=Lato:400,900);
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,500');
+
+@import url('https://fonts.googleapis.com/css?family=Lato|Montserrat|Open+Sans|Oswald|Raleway');
+
 	
 html {
 	-webkit-touch-callout: none; /* iOS Safari */
@@ -26,22 +29,20 @@ body {
 	font-family: 'Lato', verdana, sans-serif;
 	color: #fff;
 	text-align: center;
-	background: #ECECEC;
+	/* background: #ECECEC; */
+	background: #f9f9f9;
 }
 
 .menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
-}
-
-.menu:before {
-  content: "[";
-}
-
-.menu:after {
-  content: "]";
+    list-style: none;
+/*     border-bottom: 0.08em solid #3d448b;
+    border-top: 0.08em solid #ef4a48; */
+    margin-bottom: 2em;
+    padding: 0.5em 0 0.5em;
+    background: white;
+    color: #3d448b;
+    font-family: "Montserrat";
+    font-size: 4vw;
 }
 
 .menu > li {
@@ -49,7 +50,6 @@ body {
 }
 
 .menu > li + li:before {
-  content: "|";
   padding-right: 0.3em;
 }
 
@@ -92,13 +92,26 @@ body {
 	margin: 0 auto;
 }
 
-img.header-logo {
+img.company-logo {
 	/* width: 28px; */
-	width: 10vw;
-    position: relative;
-    top: 7px;
-    margin-right: 3px;
+	width: 9vw;
     
+}
+
+.company-logo-title{
+	
+	top: 1vw;
+    font-size: 3.7vw;
+    position: relative;
+    /* color:#ba573e; */
+    color:#ef4a48;
+    
+    font-family: "Montserrat";
+}
+
+.company-logo-container {
+	text-align:left;
+	margin:1em;
 }
 
 .header-title {
@@ -123,8 +136,8 @@ img.header-logo {
 	/* padding-bottom: 30%; = width for a 1:1 aspect ratio */
 	/* margin: 1.66%; */
 	/* background-color: darkslateblue; */
-	/* background-color:#3d448b; */
-	background-color: rgb(96, 128, 167);
+	background-color:#3d448b;
+	/* background-color: rgb(96, 128, 167); */
 	overflow: hidden;
 	
 	width: 32.8%;
