@@ -27,6 +27,7 @@
 
   <ul ng-controller="MenuCtrl" class="menu">
   	<li ng-hide="isActive('/home')"><a href="#!/home">&#8612; nieuwsoverzicht</a></li>
+  	<li ng-show="isActive('/home')"><a href="#!/home">nieuwsoverzicht</a></li>
   	
   	<span class="menu-view-switch">
   		<i class="fa fa-th" aria-hidden="true"></i>

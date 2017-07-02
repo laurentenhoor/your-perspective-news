@@ -11,7 +11,7 @@ angular.module('myApp', [
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
 
-  $routeProvider.otherwise({redirectTo: '/topic'});
+  $routeProvider.otherwise({redirectTo: '/home'});
 }])
 
 .controller('MenuCtrl', ['$scope', '$location', function($scope, $location) {

@@ -1,3 +1,66 @@
-<ul>
-	<a ng-repeat="item in newsItems" href="#!/topic/{{item.id}}" class="header-title"><li>{{ item.title }}</li></a>
-</ul>
+<a ng-repeat="item in newsItems" href="#!/topic/{{item.id}}">
+	<table class="news-item-container">
+	  <tr>
+	    <th class="news-item-photo" ng-style="{'background-image': 'url({{item.imgUrl}})'}">
+	    </th>
+	    
+	    <th class="news-item-text">
+	    	<div class="news-item-header">{{ item.title }}</div>
+			<div class="news-item-summary">{{ item.summaryText }}</div>
+			<div class="news-item-logos">
+				<img ng-repeat="logoUrl in item.logoUrls" ng-src="{{ logoUrl }}" class="news-item-img">
+			</div>
+	    </th>
+	  </tr>
+	 </table>
+</a>
+
+
+<style>
+
+.news-item-img {
+	border: 0;
+    max-width: 5vw;
+    max-height: 2vw;
+    margin: 0vw 1.5vw;
+    margin-top: -0.3vw;
+}
+
+.news-item-header {
+	font-size: 3.5vw;
+	margin-bottom:1vw;
+	font-family: "Roboto";
+}
+
+.news-item-summary {
+	font-size: 2vw;
+	margin-bottom:2vw;
+	font-family: 'Open Sans';
+	font-weight: 300;
+}
+
+.news-item-container {
+	margin:2vw;
+	margin-bottom:5vw;
+}
+
+.news-item-photo {
+	width:25%;    
+	background-size: cover;
+    background-position: 50%;
+}
+
+
+.news-item-text {
+	text-align: left;
+    padding-left: 2vw;
+    width: 71%;
+}
+
+.news-item-logos {
+	background-color: #0d2873;
+	opacity:0.75;
+	height: 4vw;
+}
+
+</style>
