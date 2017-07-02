@@ -11,7 +11,7 @@ angular.module('myApp', [
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
 
-  $routeProvider.otherwise({redirectTo: '/home'});
+  $routeProvider.otherwise({redirectTo: '/topic'});
 }])
 
 .controller('MenuCtrl', ['$scope', '$location', function($scope, $location) {
@@ -20,4 +20,4 @@ angular.module('myApp', [
 	    return viewLocation === $location.path();
 	};;
 	
-}]);	
+}]);

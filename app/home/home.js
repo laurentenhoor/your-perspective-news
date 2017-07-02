@@ -9,6 +9,15 @@ angular.module('myApp.home', ['ngRoute'])
   });
 }])
 
-.controller('HomeCtrl', [function() {
+.controller('HomeCtrl', ['$scope', function($scope) {
+	
+	$scope.newsItems = [{
+		id : 1,
+		title: 'VS stapt uit klimaatakkoord'
+	}, {
+		id : 2,
+		title: 'Asha gaat naar Madeira'
+	}];
+	
 
 }]);
