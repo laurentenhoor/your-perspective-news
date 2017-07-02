@@ -1,6 +1,7 @@
 /* app css stylesheet */
 
-@import url(http://fonts.googleapis.com/css?family=Lato:400,900);
+@import url(http://fonts.googleapis.com/css?family=Lato:400,500,600,900);
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,600);
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,500');
 
 @import url('https://fonts.googleapis.com/css?family=Lato|Montserrat|Open+Sans|Oswald|Raleway|Roboto');
@@ -84,12 +85,12 @@ img.company-logo {
 
 .company-logo-title{
 	
-	top: 1vw;
+	top: 0.7vw;
     font-size: 5vw;
     position: relative;
     /* color:#ba573e; */
     color:#ef4a48;
-    
+    font-weight:100;
     font-family: "Montserrat", verdana, sans-serif;;
 }
 

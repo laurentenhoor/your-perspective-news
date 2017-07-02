@@ -6,8 +6,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>newnews</title>
-  <meta name="description" content="">
+  <title>Accapulco</title>
+  <meta name="description" content="Revealing all perspectives on everything, starting with your daily news.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
@@ -22,7 +22,9 @@
   <div class="company-logo-container">
 	  <!-- <img class="" src="assets/logos/newnews_newcolors_small.png"/> -->
 	  <img class="company-logo" src="assets/logos/newnews_newcolors.png"/> 
-	  <span class="company-logo-title">newnews</span>
+	  <div style="display:inline-table;"><span class="company-logo-title"><b>Acca</b>pulco</span>
+	  <br><span class="company-mission">all perspectives</span>
+	  </div>
   </div>
 
   <ul ng-controller="MenuCtrl" class="menu">
@@ -34,6 +36,20 @@
   		<i class="fa fa-bars" aria-hidden="true"></i>
   	</span>
   	
+  	<style>
+  	b {
+  		font-weight:600;
+  	}
+  	.company-mission {
+	  	font-size: 1.7vw;
+	  	opacity: 0.9;
+	    position: absolute;
+	    margin-top: -1.1vw;
+	    margin-left: 0.2vw;
+	    font-family: "roboto";
+  	}
+  	</style>
+  	
   </ul>
 
   <!--[if lt IE 7]>
@@ -42,7 +58,7 @@
 
   <div ng-view></div>
 
-  <div><br>Newnews app: v<span app-version></span></div>
+  <div><br>newnews app: v<span app-version></span></div>
   
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
