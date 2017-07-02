@@ -15,7 +15,7 @@ angular.module('myApp.home', ['ngRoute'])
 		id : 1,
 		title: 'VS stapt uit klimaatakkoord',
 		category: 'buitenland',
-		summaryText : 'The classic cache problem. Unless told otherwise (by the webserver) the browser is going to cache assets based on the files name. So when it sees the same script/style/image with the same name it will 304 and serve the cached version.',
+		summaryText : 'President Donald Trump haalt de Verenigde Staten definitief uit het klimaatakkoord van Parijs. Volgens Trump is het akkoord \'een slechte deal\' voor de Amerikaanse burgers en \'niet eerlijk\' voor Amerika. Ook zou het miljoenen banen gaan kosten. Trump zegt vier jaar de tijd te zullen nemen om zich terug te trekken.',
 		imgUrl: 'http://static1.persgroep.net/volkskrant/image/b4aa7e95-4f6c-4d5a-9746-911858b73046?width=664&height=374',
 		logoUrls : ['assets/logos/europa_nu.png','assets/logos/nos.png','assets/logos/business_insider.png','assets/logos/volkskrant.png','assets/logos/nrc.png','assets/logos/bbc.png','assets/logos/dumpert.png','assets/logos/fox_news.png','assets/logos/elsevier.png']
 	}];
