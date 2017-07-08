@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>allpers</title>
-  <meta name="description" content="Reveals all perspectives on everything, starting with your daily news.">
+  <meta name="description" content="The news for a changing world. Revealing all perspectives.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
@@ -15,13 +15,14 @@
   <link rel="stylesheet" href="app.css">
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
   <link rel="icon" href="assets/logos/newnews_newcolors.png">
+  
 </head>
 <body>
   
   <div class="company-logo-container">
 	  <!-- <img class="" src="assets/logos/newnews_newcolors_small.png"/> -->
 	  <img class="company-logo" src="assets/logos/newnews_newcolors.png"/> 
-	  <div style="display:inline-table;"><span class="company-logo-title">all<b>pers</b></span>
+	  <div class="company-text"><span class="company-logo-title">all<b>pers<span class="pectives">pectives</span></b><br><span class="company-strategy">The news for a changing world.</span></span>
 	  
 	  </div>
   </div>
@@ -39,6 +40,52 @@
   	b {
   		font-weight:600;
   	}
+  	.pectives {
+		color: #7d78a2;
+    	font-weight: 100;
+    	opacity:0.2;
+    	display:none;
+  	}
+  	
+	.company-strategy {
+	    font-family: "Roboto";
+	    font-size: 2.2vw;
+	    margin-top: -4px;
+	    display: table;
+	    color: #3d448b;
+	}
+
+	img.company-logo {
+		/* width: 28px; */
+		width: 9.5vw;
+		float:left;
+    
+	}
+	
+	.company-text {
+		float:left;
+		margin-left:1.3vw;
+		margin-top:2px;
+	}
+	
+	.company-logo-title{
+		
+		top: 0.7vw;
+	    font-size: 4.3vw;
+	    float:left;
+	    /* color:#ba573e; */
+	    color:#ef4a48;
+	    font-weight:100;
+	    font-family: "Montserrat", verdana, sans-serif;;
+	}
+	
+	.company-logo-container {
+		text-align:left;
+		margin:4.5vw;
+		display:table;
+	}
+		
+	
   	</style>
   	
   </ul>
@@ -49,7 +96,7 @@
 
   <div ng-view></div>
 
-  <div><br>newnews v<span app-version></span></div>
+  <div><br>all<b>pers</b> v<span app-version></span></div>
   
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
