@@ -1,7 +1,7 @@
 <div class="header-title">
 {{ title }}
 </div>
-  
+ 
 <div class="square" ng-repeat="item in newsItems" ng-click="hideShow=(hideShow ? false : true)">
 	<div class="bg" ng-style="{'background-image': 'url({{item.imgUrl}})'}"></div>
 	<div class="content content-front" ng-if="!hideShow">
@@ -36,8 +36,6 @@
 
 
 <style>
-
-
 
 .container {
 	width: 80%;

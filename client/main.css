@@ -77,24 +77,3 @@ li {
 }
 
 
-img.company-logo {
-	/* width: 28px; */
-	width: 9vw;
-    
-}
-
-.company-logo-title{
-	
-	top: 0.7vw;
-    font-size: 5vw;
-    position: relative;
-    /* color:#ba573e; */
-    color:#ef4a48;
-    font-weight:100;
-    font-family: "Montserrat", verdana, sans-serif;;
-}
-
-.company-logo-container {
-	text-align:left;
-	margin:4.5vw;
-}

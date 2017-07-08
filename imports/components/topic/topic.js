@@ -1,12 +1,19 @@
 'use strict';
 
-angular.module('myApp.topic', ['ngRoute'])
+import angular from 'angular';
+import angularMeteor from 'angular-meteor';
+import ngRoute from 'angular-route';
+import template from './topic.html';
+
+export default angular.module('allpers.topic', [angularMeteor, ngRoute])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/topic', {
-    templateUrl: 'topic/topic.html',
-    controller: 'TopicCtrl'
-  });
+	
+	$routeProvider.when('/topic', {
+		templateUrl: 'imports/components/topic/topic.html',
+		controller: 'TopicCtrl'
+	});
+  
 }])
 
 .controller('TopicCtrl', ['$scope', '$location', function($scope, $location) {
