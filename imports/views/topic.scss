@@ -1,0 +1,148 @@
+.container {
+	width: 80%;
+	margin: 0 auto;
+}
+
+
+.header-title {
+	color: #7d78a2;
+    /* font-weight: 600; */
+    text-transform: uppercase;
+    top: -14px;
+    position: relative;
+    /* font-size: 0.8em; */
+    font-size: 4vw;
+    opacity: 0.6;
+    
+    font-family:"Open Sans", verdana, sans-serif;;
+ 
+}
+
+.square {
+	opacity: 0.75;
+	float: left;
+	position: relative;
+	color:white;
+	/* width: 30%; */
+	/* padding-bottom: 30%; = width for a 1:1 aspect ratio */
+	/* margin: 1.66%; */
+	/* background-color: darkslateblue; */
+	/* background-color: #2f3f90; */
+	
+	/* background-color: rgb(96, 128, 167); */
+	background-color:#0d2873;
+	overflow: hidden;
+	
+	width: 32.8%;
+    padding-bottom: 35%;
+    margin: 0.25%;
+}
+
+.content {
+	position: absolute;
+	height: 90%; /* = 100% - 2*5% padding */
+	width: 90%; /* = 100% - 2*5% padding */
+	padding: 5%;
+}
+
+.table {
+	display: table;
+	width: 100%;
+	height: 100%;
+}
+
+.table-cell {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+/*  For responsive images as background */
+.bg {
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	/* you change this to "contain" if you don't want the images to be cropped */
+	color: #fff;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	opacity: 0.4;
+}
+
+p.title {
+	cursor: pointer;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	font-weight: 900;
+	font-size: 5vw;
+	color:white;
+	font-family:"Lato", verdana, sans-serif;;
+}
+
+.logo {
+	display: block;
+	max-width: 43%;
+	max-height: 8%;
+	width: auto;
+	height: auto;
+	position: absolute;
+	bottom: 7px;
+	right: 10px;
+}
+
+
+p.content {
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	font-weight: 900;
+	font-size: 15px;
+}
+
+.article {
+	text-align: left;
+	overflow: hidden;
+	font-size: 2.2vw;
+	-webkit-margin-before: 0px;
+	-webkit-margin-after: 1em;
+	cursor: pointer;
+	color:white;
+	font-family: 'Open Sans', verdana, sans-serif;;
+	
+}
+
+
+.read-btn {
+	font-size: 2.3vw;
+	font-weight: 600;
+	cursor: pointer;
+	position: absolute;
+	top: 8px;
+	right: 10px;
+}
+
+
+.btn-vote .fa {
+	font-size:2.6vw !important;
+}
+
+.article-vote {
+	font-size: 1.5vw;  
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.btn-agree {
+	position: absolute;
+	right: 10px;
+	bottom: 5px;
+	/* text-align: right; */
+}
+
+.btn-disagree {
+	position: absolute;
+	bottom: 5px;
+	left: 10px;
+	/*text-align: left; */
+}

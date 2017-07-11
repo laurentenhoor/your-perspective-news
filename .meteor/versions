@@ -12,6 +12,7 @@ boilerplate-generator@1.1.1
 caching-compiler@1.1.9
 callback-hook@1.0.10
 check@1.2.5
+cwaring:modernizr@3.0.0_1
 ddp@1.2.5
 ddp-client@1.3.4
 ddp-common@1.2.8
@@ -26,6 +27,8 @@ ecmascript-runtime-server@0.4.1
 ejson@1.0.13
 es5-shim@4.6.15
 fastclick@1.0.13
+fortawesome:fontawesome@4.7.0
+fourseven:scss@4.5.4
 geojson-utils@1.0.10
 hot-code-push@1.0.4
 html-tools@1.0.11

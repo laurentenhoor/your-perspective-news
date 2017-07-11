@@ -3,14 +3,15 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import ngRoute from 'angular-route';
-import template from './home.html';
+import template from '../views/home.html';
+
 
 export default angular.module('allpers.home', [angularMeteor, ngRoute])
 
 .config(['$routeProvider', function($routeProvider) {
 	
 	$routeProvider.when('/home', {
-		templateUrl: 'imports/components/home/home.html',
+		templateUrl: 'imports/views/home.html',
 		controller: 'HomeCtrl'
 	});
   

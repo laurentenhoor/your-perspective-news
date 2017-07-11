@@ -3,8 +3,8 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import ngRoute from 'angular-route';
-import homeComponent from '../imports/components/home/home';
-import topicComponent from '../imports/components/topic/topic';
+import homeComponent from '../imports/controllers/home';
+import topicComponent from '../imports/controllers/topic';
 import template from './main.html';
 
 // Declare app level module which depends on views, and components

@@ -3,14 +3,14 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import ngRoute from 'angular-route';
-import template from './topic.html';
+import template from '../views/topic.html';
 
 export default angular.module('allpers.topic', [angularMeteor, ngRoute])
 
 .config(['$routeProvider', function($routeProvider) {
 	
 	$routeProvider.when('/topic', {
-		templateUrl: 'imports/components/topic/topic.html',
+		templateUrl: 'imports/views/topic.html',
 		controller: 'TopicCtrl'
 	});
   
