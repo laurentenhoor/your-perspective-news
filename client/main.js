@@ -1,6 +1,6 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
-import ngRoute from 'angular-route';
+import angularRoute from 'angular-route';
 
 import allpersMenu from '../imports/components/menu/menu';
 import allpersOverview from '../imports/components/overview/overview';
@@ -12,7 +12,7 @@ import template from './main.html';
 angular.module('allpers', [
                            
 	angularMeteor,
-	ngRoute,
+	angularRoute,
 	
 	allpersMenu.name,
 	allpersOverview.name,
@@ -32,6 +32,6 @@ angular.module('allpers', [
 	    when('/topic', {
 	      template: '<allpers-topic></allpers-topic>'
 	    }).
-	    otherwise('/topic');
+	    otherwise('/overview');
 	
 }]);
