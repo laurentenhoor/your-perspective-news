@@ -1,31 +1,37 @@
-'use strict';
-
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import ngRoute from 'angular-route';
-import homeComponent from '../imports/controllers/home';
-import topicComponent from '../imports/controllers/topic';
+
+import allpersMenu from '../imports/components/menu/menu';
+import allpersOverview from '../imports/components/overview/overview';
+import allpersTopic from '../imports/components/topic/topic';
+import allpersChat from '../imports/components/chat/chat';
+
 import template from './main.html';
 
-// Declare app level module which depends on views, and components
 angular.module('allpers', [
+                           
 	angularMeteor,
 	ngRoute,
-	homeComponent.name,
-	topicComponent.name
+	
+	allpersMenu.name,
+	allpersOverview.name,
+	allpersTopic.name,
+	allpersChat.name
+	
 ])
 
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   
 	$locationProvider.hashPrefix('!');
-	$routeProvider.otherwise({redirectTo: '/home'});
 	
-}])
-
-.controller('MenuCtrl', ['$scope', '$location', function($scope, $location) {
-	
-	$scope.isActive = function(viewLocation) {
-	    return viewLocation === $location.path();
-	};;
+	$routeProvider.
+	    when('/overview', {
+	      template: '<allpers-overview></allpers-overview>'
+	    }).
+	    when('/topic', {
+	      template: '<allpers-topic></allpers-topic>'
+	    }).
+	    otherwise('/topic');
 	
 }]);
