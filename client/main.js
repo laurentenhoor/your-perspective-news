@@ -9,6 +9,9 @@ import allpersChat from '../imports/components/chat/chat';
 
 import template from './main.html';
 
+import ngSidebarJs from 'angular-sidebarjs';
+import 'sidebarjs/dist/sidebarjs.css';
+
 angular.module('allpers', [
                            
 	angularMeteor,
@@ -17,7 +20,9 @@ angular.module('allpers', [
 	allpersMenu.name,
 	allpersOverview.name,
 	allpersTopic.name,
-	allpersChat.name
+	allpersChat.name,
+	
+	ngSidebarJs
 	
 ])
 
