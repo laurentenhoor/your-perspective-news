@@ -26,12 +26,12 @@ angular.module('allpers', [
 	$locationProvider.hashPrefix('!');
 	
 	$routeProvider.
-	    when('/overview', {
+	    when('/news', {
 	      template: '<allpers-overview></allpers-overview>'
 	    }).
 	    when('/topic', {
 	      template: '<allpers-topic></allpers-topic>'
 	    }).
-	    otherwise('/overview');
+	    otherwise('/news');
 	
 }]);
