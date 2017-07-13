@@ -4,6 +4,8 @@ import template from './menu.html';
 
 class MenuCtrl {
 	
+  static $inject = ['$scope', '$location'];
+	
   constructor($scope, $location) {
 	  
 	  $scope.isActive = function(viewLocation) {
