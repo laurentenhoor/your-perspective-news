@@ -2,20 +2,23 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import template from './chat.html';
 
+import ngSidebarJs from 'angular-sidebarjs';
+import './sidebarjs-custom.css';//original file in: node_modules/sidebarjs/dist/sidebarjs.css;
+
 class ChatCtrl {
   constructor() {
     this.tasks = [{
-      text: 'This is task 1'
+      text: 'Hello'
     }, {
-      text: 'This is task 2'
+      text: 'Hi'
     }, {
-      text: 'This is task 3'
+      text: 'How are you?'
     }];
   }
 }
  
 export default angular.module('allpers.chat', [
-  angularMeteor
+  angularMeteor, ngSidebarJs
 ])
   .component('allpersChat', {
     templateUrl : template,
