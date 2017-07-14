@@ -7,3 +7,4 @@ tmp
 .idea
 *.lnk
 .deploy
+.project
