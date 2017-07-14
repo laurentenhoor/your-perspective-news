@@ -1,3 +1,4 @@
+aldeed:simple-schema@1.5.3
 allow-deny@1.0.5
 angular-templates@1.0.9
 autopublish@1.0.7
@@ -40,6 +41,8 @@ launch-screen@1.1.1
 less@2.7.9
 livedata@1.0.18
 logging@1.1.17
+matb33:collection-hooks@0.8.4
+mdg:validation-error@0.2.0
 meteor@1.6.1
 meteor-base@1.1.0
 minifier-css@1.2.16

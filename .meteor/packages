@@ -22,3 +22,5 @@ pbastowski:angular-babel
 fortawesome:fontawesome
 cwaring:modernizr
 less
+aldeed:simple-schema
+matb33:collection-hooks

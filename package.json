@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "angular": "^1.6.5",
+    "angular-chat": "^1.0.9",
     "angular-meteor": "^1.3.12",
     "angular-route": "^1.6.5",
     "angular-sidebarjs": "^2.2.0",
