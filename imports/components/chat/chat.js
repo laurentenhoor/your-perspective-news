@@ -7,7 +7,7 @@ import './sidebarjs-custom.css';//original file in: node_modules/sidebarjs/dist/
 
 class ChatCtrl {
   constructor() {
-    this.chat = [{
+    this.chats = [{
       text: 'Great article, however very biased to.. '
     }, {
       text: 'What about.. '
