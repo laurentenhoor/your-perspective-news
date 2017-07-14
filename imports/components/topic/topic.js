@@ -53,7 +53,7 @@ class TopicCtrl {
 			itemid : 1,
 			title : 'Macron',
 			type : 'video',
-			articleUrl : 'https://www.youtube.com/watch?v=4XDWtU1Zojw',
+			articleUrl : 'https://www.youtube.com/embed/4XDWtU1Zojw',
 			imgUrl : 'http://cfvod.kaltura.com/p/1467261/sp/146726100/thumbnail/entry_id/1_qbdhur2d/version/100011/width/641/height/397',
 			logoUrl : 'assets/logos/bbc.png',
 			summaryText : 'Deze reactie van de kersverse president Macron ging viral, met inmiddels al 13 miljoen views!'

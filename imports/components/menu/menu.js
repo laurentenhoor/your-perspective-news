@@ -4,8 +4,6 @@ import template from './menu.html';
 
 class MenuCtrl {
 	
-  static $inject = ['$scope', '$location'];
-	
   constructor($scope, $location) {
 	  
 	  $scope.isActive = function(viewLocation) {
@@ -21,5 +19,5 @@ export default angular.module('menu', [
 ])
   .component('allpersMenu', {
     templateUrl : template,
-    controller: MenuCtrl
+    controller: ['$scope', '$location', MenuCtrl]
   });
