@@ -1,0 +1,45 @@
+<sidebarjs class="sidebarjs--is-visible">
+
+<div class="company-logo-container">
+
+	<!-- <img class="company-logo" src="assets/logos/newnews_newcolors.png"/>  -->
+	<i class="fa fa-comments company-logo" aria-hidden="true"></i>
+	<div class="company-text">
+		<span class="company-logo-title">your<b>pers</b><br> <span
+			class="company-strategy">The open source opinion.</span></span>
+	</div>
+</div>
+
+
+<div class="add-perspective">
+	<div class="yourpers-instructions">Voeg een perspectief toe.</div>
+	<form ng-submit="$ctrl.sendMessage()">
+		<input ng-model="$ctrl.newTitle" class="post-input-text"
+			autofocus="true" placeholder="Titel" /> <input
+			ng-model="$ctrl.newUrl" class="post-input-url" placeholder="Url" />
+		<input type="submit" class="post-input-button" value="Toevoegen">
+	</form>
+
+</div>
+
+<div class="post-message-container">
+	<div class="post-message" ng-repeat="post in $ctrl.posts"
+		ng-init="id=post._id">
+
+
+		<div class="voting">
+			<div ng-click="$ctrl.upVote(id)" class="arrow-up"></div>
+			<div>{{post.score}}</div>
+			<div ng-click="$ctrl.downVote(id)" class="arrow-down"></div>
+		</div>
+
+		<a href="//{{post.url}}" target="_self">
+			<div class="post-details">
+				<div class="post-title">{{post.title}}</div>
+				<div class="post-url">{{post.url}}</div>
+			</div>
+		</a>
+	</div>
+</div>
+
+</sidebarjs>

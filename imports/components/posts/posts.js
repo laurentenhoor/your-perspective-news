@@ -1,14 +1,14 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
-import template from './chat.html';
+import template from './posts.html';
 
 import ngSidebarJs from 'angular-sidebarjs';
 import './sidebarjs-custom.css';// original file in: node_modules/sidebarjs/dist/sidebarjs.css;
-import './chat.less';
+import './posts.less';
 
-import { Chat } from '../../api/chat.js';
+import { Posts } from '../../api/posts.js';
 
-class ChatCtrl {
+class PostCtrl {
 
 	constructor($scope, $http) {
 
@@ -22,29 +22,39 @@ class ChatCtrl {
 		});
 
 		this.helpers({
-			chats() {
-				return Chat.find({}, {sort: {createdAt: -1}, limit: 10}).fetch().reverse();
+			posts() {
+				return Posts.find({}, {sort: {score: -1}, limit: 20}).fetch()//.reverse();
 			}
 		})
+	}
+	
+	upVote(id) {
+		Posts.update(id, {$inc : { score: 1}});
+	}
+	downVote(id) {
+		Posts.update(id, {$inc : { score: -1}});
 	}
 
 	sendMessage() {
 		
-		Chat.insert({
+		Posts.insert({
 			username: ip,
-			message: this.newMessage
+			title: this.newTitle,
+			url : this.newUrl,
+			score: 0
 		});
 
 		// Clear form
-		this.newMessage = '';
+		this.newTitle = '';
+		this.newUrl = '';
 	}
 
 }
 
-export default angular.module('allpers.chat', [
+export default angular.module('allpers.post', [
 	angularMeteor, ngSidebarJs
 	])
-	.component('allpersChat', {
+	.component('allpersPost', {
 		templateUrl : template,
-		controller: ['$scope', '$http', ChatCtrl]
+		controller: ['$scope', '$http', PostCtrl]
 	});

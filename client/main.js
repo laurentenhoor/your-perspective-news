@@ -5,7 +5,7 @@ import angularRoute from 'angular-route';
 import allpersMenu from '../imports/components/menu/menu';
 import allpersOverview from '../imports/components/overview/overview';
 import allpersTopic from '../imports/components/topic/topic';
-import allpersChat from '../imports/components/chat/chat';
+import allpersPosts from '../imports/components/posts/posts';
 
 import template from './main.html';
 
@@ -18,7 +18,7 @@ angular.module('allpers', [
 	allpersMenu.name,
 	allpersOverview.name,
 	allpersTopic.name,
-	allpersChat.name
+	allpersPosts.name
 	
 ])
 

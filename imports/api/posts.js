@@ -1,8 +1,8 @@
 import { Mongo } from 'meteor/mongo';
 
-export const Chat = new Mongo.Collection('chat');
+export const Posts = new Mongo.Collection('posts');
 
-Chat.before.insert(function (userId, doc) {
+Posts.before.insert(function (userId, doc) {
 
 	if(Meteor.isServer) {
 		//Format the document

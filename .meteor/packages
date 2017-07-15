@@ -24,3 +24,4 @@ less@2.7.9
 aldeed:simple-schema
 matb33:collection-hooks
 autopublish
+johnantoni:meteor-normalize
