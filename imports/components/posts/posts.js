@@ -3,8 +3,11 @@ import angularMeteor from 'angular-meteor';
 import template from './posts.html';
 
 import ngSidebarJs from 'angular-sidebarjs';
+
 import './sidebarjs-custom.css';// original file in: node_modules/sidebarjs/dist/sidebarjs.css;
 import './posts.less';
+
+import ngAnimate from 'angular-animate';
 
 import { Posts } from '../../api/posts.js';
 
@@ -52,7 +55,7 @@ class PostCtrl {
 }
 
 export default angular.module('allpers.post', [
-	angularMeteor, ngSidebarJs
+	angularMeteor, ngSidebarJs, ngAnimate
 	])
 	.component('allpersPost', {
 		templateUrl : template,

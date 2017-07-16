@@ -5,9 +5,19 @@ import template from './overview.html';
 
 class OverviewCtrl {
 
-	constructor() {
+	constructor($http, $scope) {
 		
-		this.newsItems = [{
+//		var api_key = '563a32a41b2d4dffac31abd93c983604';
+//		var api_url = 'https://newsapi.org/v1/articles?source=the-next-web&sortBy=latest&apiKey=';
+//		
+//		$http.get(api_url+api_key).then(function(response) {
+//			
+//			console.log(response.data.articles);
+//			$scope.newsItems = response.data.articles;
+//			
+//		});
+				
+		$scope.newsItems = [{
 			id : 1,
 			title: 'VS stapt uit klimaatakkoord',
 			category: 'buitenland',
@@ -24,5 +34,5 @@ export default angular.module('allpers.overview', [
 ])
   .component('allpersOverview', {
     templateUrl : template,
-    controller: OverviewCtrl
+    controller: ['$http', '$scope', OverviewCtrl]
   });
