@@ -7,8 +7,6 @@ import ngSidebarJs from 'angular-sidebarjs';
 import './sidebarjs-custom.css';// original file in: node_modules/sidebarjs/dist/sidebarjs.css;
 import './posts.less';
 
-import ngAnimate from 'angular-animate';
-
 import { Posts } from '../../api/posts.js';
 
 class PostCtrl {
@@ -29,7 +27,10 @@ class PostCtrl {
 				return Posts.find({}, {sort: {score: -1}, limit: 20}).fetch()//.reverse();
 			}
 		})
+		
 	}
+	
+	
 	
 	upVote(id) {
 		Posts.update(id, {$inc : { score: 1}});
@@ -55,7 +56,7 @@ class PostCtrl {
 }
 
 export default angular.module('allpers.post', [
-	angularMeteor, ngSidebarJs, ngAnimate
+	angularMeteor, ngSidebarJs
 	])
 	.component('allpersPost', {
 		templateUrl : template,
