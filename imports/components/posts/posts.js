@@ -30,8 +30,6 @@ class PostCtrl {
 		
 	}
 	
-	
-	
 	upVote(id) {
 		Posts.update(id, {$inc : { score: 1}});
 	}
