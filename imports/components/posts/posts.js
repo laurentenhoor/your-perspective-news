@@ -1,3 +1,5 @@
+ "use strict"
+
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import template from './posts.html';
@@ -21,6 +23,7 @@ class PostCtrl {
 		$http.get("http://freegeoip.net/json/").then(function(response) {
 			console.log(response.data.ip);
 			this.ip = response.data.ip;
+			console.log(this.ip)
 		});
 
 		this.helpers({
@@ -40,12 +43,16 @@ class PostCtrl {
 
 	post() {
 		
+		console.log(this.ip);
+		
 		Posts.insert({
 			title: this.newTitle,
 			url : this.newUrl,
 			score: 0,
 			owner: Meteor.userId(),
-		    username: Meteor.user().username
+		    email: Meteor.user() ? Meteor.user().emails[0].address : 'null',
+		    ip: this.ip,
+		    username: this.ip
 		});
 
 		// Clear form
