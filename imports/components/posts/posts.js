@@ -51,15 +51,17 @@ class PostCtrl {
 		Posts.insert({
 			title: this.newTitle,
 			url : this.newUrl,
+			substantiation: this.newSubstantiation,
 			score: 0,
 			owner: Meteor.userId(),
 			email: Meteor.user() ? Meteor.user().emails[0].address : 'null',
-					ip: ip
+			ip: ip
 		});
 
 		// Clear form
 		this.newTitle = '';
 		this.newUrl = '';
+		this.newSubstantiation = '';
 	}
 
 }

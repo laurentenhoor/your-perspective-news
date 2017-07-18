@@ -16,7 +16,7 @@
 	<form ng-submit="$ctrl.post()" name=addPost>
 		<input ng-model="$ctrl.newTitle" class="post-input-text" autofocus="true" placeholder="Titel" required/>
 		<input type="url" ng-model="$ctrl.newUrl" class="post-input-url" placeholder="url" required/>
-		<input ng-model="$ctrl.newPerspective" class="post-input-text" autofocus="true" placeholder="Waarom verruimt dit onze blik?"/>
+		<input ng-model="$ctrl.newSubstantiation" class="post-input-text" autofocus="true" placeholder="Waarom verruimt dit onze blik?"/>
 		<input type="submit" class="post-input-button" value="Toevoegen" ng-disabled="addPost.$invalid"/>
 	</form>
 </div>
