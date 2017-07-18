@@ -6,6 +6,7 @@ import allpersMenu from '../imports/components/menu/menu';
 import allpersOverview from '../imports/components/overview/overview';
 import allpersTopic from '../imports/components/topic/topic';
 import allpersPosts from '../imports/components/posts/posts';
+import allpersFeedback from '../imports/components/feedback/feedback';
 
 import '../imports/startup/accounts-config.js';
 
@@ -21,6 +22,7 @@ angular.module('allpers', [
 	allpersOverview.name,
 	allpersTopic.name,
 	allpersPosts.name,
+	allpersFeedback.name,
 	
 	'accounts.ui'
 	
