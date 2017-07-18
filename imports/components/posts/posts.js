@@ -8,6 +8,7 @@ import './sidebarjs-custom.css';// original file in: node_modules/sidebarjs/dist
 import './posts.less';
 
 import { Posts } from '../../api/posts.js';
+import { Meteor } from 'meteor/meteor';
 
 class PostCtrl {
 
@@ -37,13 +38,14 @@ class PostCtrl {
 		Posts.update(id, {$inc : { score: -1}});
 	}
 
-	sendMessage() {
+	post() {
 		
 		Posts.insert({
-			username: ip,
 			title: this.newTitle,
 			url : this.newUrl,
-			score: 0
+			score: 0,
+			owner: Meteor.userId(),
+		    username: Meteor.user().username
 		});
 
 		// Clear form
