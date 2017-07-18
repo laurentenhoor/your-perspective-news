@@ -46,8 +46,6 @@ class PostCtrl {
 
 	post() {
 
-		console.log(ip);
-
 		Posts.insert({
 			title: this.newTitle,
 			url : this.newUrl,
