@@ -1,4 +1,4 @@
- "use strict"
+"use strict"
 
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
@@ -28,29 +28,33 @@ class PostCtrl {
 		this.helpers({
 			posts() {
 				return Posts.find({}, {sort: {score: -1}, limit: 20}).fetch()//.reverse();
+			},
+			currentUser() {
+				return Meteor.user();
 			}
 		})
-		
+
 	}
-	
+
 	upVote(id) {
 		Posts.update(id, {$inc : { score: 1}});
 	}
+
 	downVote(id) {
 		Posts.update(id, {$inc : { score: -1}});
 	}
 
 	post() {
-		
+
 		console.log(ip);
-		
+
 		Posts.insert({
 			title: this.newTitle,
 			url : this.newUrl,
 			score: 0,
 			owner: Meteor.userId(),
-		    email: Meteor.user() ? Meteor.user().emails[0].address : 'null',
-		    ip: ip
+			email: Meteor.user() ? Meteor.user().emails[0].address : 'null',
+					ip: ip
 		});
 
 		// Clear form
