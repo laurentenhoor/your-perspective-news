@@ -15,14 +15,14 @@
 	<div class="yourpers-instructions">Voeg jouw perspectief toe.</div>
 	<form ng-submit="$ctrl.post()" name=addPost>
 		<input ng-model="$ctrl.newTitle" class="post-input-text" autofocus="true" placeholder="Titel" required/>
-		<input type="url" ng-model="$ctrl.newUrl" class="post-input-url" placeholder="url" required/>
-		<input ng-model="$ctrl.newSubstantiation" class="post-input-text" autofocus="true" placeholder="Waarom verruimt dit onze blik?"/>
-		<input type="submit" class="post-input-button" value="Toevoegen" ng-disabled="addPost.$invalid"/>
+		<input type="url" ng-model="$ctrl.newUrl" class="post-input-url" placeholder="url" required http-prefix/>
+		<input ng-model="$ctrl.newSubstantiation" class="post-input-text" autofocus="true" placeholder="Waarom gaat dit onze blik verruimen?"/>
+		<input type="submit" class="post-input-button" value="Toevoegen" />
 	</form>
 </div>
 
 <div class="add-perspective" ng-if="!$ctrl.currentUser">
-	<div class="yourpers-instructions"><login-buttons class="left"></login-buttons>  om jouw perspectief te delen.</div>
+	<div class="yourpers-instructions"><login-buttons class="left"></login-buttons> om jouw perspectief te delen.</div>
 	
 </div>
 
