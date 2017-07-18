@@ -11,6 +11,10 @@ class FeedbackCtrl {
 	  
   }
   
+  openFeedback() {
+	  alert('Feedback input form will be placed here...');
+  }
+  
 }
  
 export default angular.module('allpers.feedback', [
