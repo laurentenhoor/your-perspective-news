@@ -23,7 +23,6 @@ class PostCtrl {
 		$http.get("http://freegeoip.net/json/").then(function(response) {
 			console.log(response.data.ip);
 			this.ip = response.data.ip;
-			console.log(this.ip)
 		});
 
 		this.helpers({
@@ -43,7 +42,7 @@ class PostCtrl {
 
 	post() {
 		
-		console.log(this.ip);
+		console.log(ip);
 		
 		Posts.insert({
 			title: this.newTitle,
@@ -51,8 +50,7 @@ class PostCtrl {
 			score: 0,
 			owner: Meteor.userId(),
 		    email: Meteor.user() ? Meteor.user().emails[0].address : 'null',
-		    ip: this.ip,
-		    username: this.ip
+		    ip: ip
 		});
 
 		// Clear form
