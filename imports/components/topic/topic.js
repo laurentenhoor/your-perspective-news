@@ -1,14 +1,24 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
+import { Meteor } from 'meteor/meteor';
+
 import template from './topic.html';
 
 class TopicCtrl {
 
-	constructor() {
+	constructor($scope) {
+		
+		$scope.viewModel(this);
 
 		this.title = 'VS stapt uit klimaatakkoord';
 
+		this.helpers({
+			currentUser() {
+				return Meteor.user();
+			}
+		});
+		
 		this.newsItems = [{
 			itemid : 1,
 			title : 'Het klimaat akkoord',
@@ -93,7 +103,7 @@ angularMeteor
 ])
 .component('allpersTopic', {
 	templateUrl : template,
-	controller: TopicCtrl
+	controller: ['$scope', TopicCtrl]
 });
 
 
