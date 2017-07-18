@@ -10,12 +10,21 @@
 
 </head>
 
+
 <body ng-app='allpers'>
 
-	<allpers-menu></allpers-menu>
-
-	<div ng-view></div>
-
-	<allpers-post></allpers-post>
+	<div class="desktopHide"> 
+		
+		<allpers-menu></allpers-menu>
+		<div ng-view></div>
+		<allpers-post></allpers-post>
+	
+	</div>
+	
+	<div class="desktopShow"><br>Please visit allpers from a mobile device...</div>
 	
 </body>
+
+
+
+

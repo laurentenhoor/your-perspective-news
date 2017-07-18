@@ -6,17 +6,35 @@
 @import "../imports/components/overview/overview.less";
 @import "../imports/components/topic/topic.less";
 
+
+.desktopHide { display: none;}
+   /* Smartphone Portrait and Landscape */
+   @media only screen
+   and (min-device-width : 320px)
+   and (max-device-width : 480px){  
+   	.desktopHide { display: inline;}
+   }
+   
+   
+.desktopShow { display: inline;}
+   /* Smartphone Portrait and Landscape */
+   @media only screen
+   and (min-device-width : 320px)
+   and (max-device-width : 480px){  
+   	.desktopShow { display: none;}
+   }
+
+
 [sidebarjs-container] {
 	background:#f9f9f9 !important;
 }
 
-
 login-buttons.right {
-		margin-top:0.4vw;
-    		font-size: 3vw;
-	    display: inline;
-	    float: right;
-	    margin-right: 5vw;
+	margin-top:0.4vw;
+	font-size: 3vw;
+    display: inline;
+    float: right;
+    margin-right: 5vw;
 }
 
 #login-name-link {
