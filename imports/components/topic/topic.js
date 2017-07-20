@@ -47,7 +47,7 @@ class TopicCtrl {
 			itemid : 1,
 			title : 'Trump doctrine',
 			type : 'text',
-			articleUrl : 'https://www.businessinsider.nl/factcheck-5-beweringen-van-donald-trump-het-klimaatakkoord-van-parijs/',
+			articleUrl : 'http://www.volkskrant.nl/buitenland/vs-stappen-uit-klimaatakkoord-parijs-duitsland-en-frankrijk-willen-niet-heronderhandelen~a4498499/',
 			imgUrl : 'http://static1.persgroep.net/volkskrant/image/b4aa7e95-4f6c-4d5a-9746-911858b73046?width=664&height=374',
 			logoUrl : 'assets/logos/volkskrant.png',
 			summaryText : 'Waarom het terugtrekken uit het klimaatakkoord niet op zichzelf staat en we meer kunnen verwachten.'
