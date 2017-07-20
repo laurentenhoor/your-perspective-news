@@ -11,27 +11,11 @@ class LoaderCtrl {
 		$rootScope.stateIsLoading = true;
 
 		$rootScope.$on( "$routeChangeStart", function(event, next, current) {
-			console.log('$routeChangeStart');
-//			alert('start')
 			$rootScope.stateIsLoading = true;
 		});
 
 		$rootScope.$on( "$routeChangeSuccess", function(event, next, current) {
-			console.log('$routeChangeSuccess');
-//			alert('success')
 			$rootScope.stateIsLoading = false;
-		});
-
-		$rootScope.$on('$locationChangeStart',function(evt, absNewUrl, absOldUrl) {
-			console.log('start', evt, absNewUrl, absOldUrl);
-			$rootScope.stateIsLoading = false;
-
-		});
-
-		$rootScope.$on('$locationChangeSuccess',function(evt, absNewUrl, absOldUrl) {
-			console.log('success', evt, absNewUrl, absOldUrl);
-			$rootScope.stateIsLoading = false;
-
 		});
 
 		// Hide the loader after back-button-press on mobile devices
@@ -46,7 +30,6 @@ class LoaderCtrl {
 		}
 
 	}
-
 
 
 }
