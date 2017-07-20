@@ -7,6 +7,7 @@ import allpersOverview from '../imports/components/overview/overview';
 import allpersTopic from '../imports/components/topic/topic';
 import allpersPosts from '../imports/components/posts/posts';
 import allpersFeedback from '../imports/components/feedback/feedback';
+import allpersLoader from '../imports/components/loader/loader';
 
 import '../imports/startup/accounts-config.js';
 
@@ -23,6 +24,7 @@ angular.module('allpers', [
 	allpersTopic.name,
 	allpersPosts.name,
 	allpersFeedback.name,
+	allpersLoader.name,
 	
 	'accounts.ui'
 	
@@ -40,5 +42,21 @@ angular.module('allpers', [
 	      template: '<allpers-topic></allpers-topic>'
 	    }).
 	    otherwise('/news');
+	
+}])
+
+.controller(['$scope', function($scope){
+	
+	$scope.isViewLoading = false;
+	$scope.$on('$routeChangeStart', function() {
+	  $scope.isViewLoading = true;
+	  console.log('loading')
+	});
+	$scope.$on('$routeChangeSuccess', function() {
+	  $scope.isViewLoading = false;
+	});
+	$scope.$on('$routeChangeError', function() {
+	  $scope.isViewLoading = false;
+	});
 	
 }]);

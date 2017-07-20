@@ -1,31 +1,36 @@
 <head>
-	
-	<title>allpers</title>
-	
-	<meta name="description"
-		content="The news for a changing world. Revealing all perspectives.">
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-	<link rel="icon" href="assets/logos/newnews_newcolors.png">
-	
+
+<title>allpers</title>
+
+<meta name="description"
+	content="The news for a changing world. Revealing all perspectives.">
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="icon" href="assets/logos/newnews_newcolors.png">
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/loaders.css/0.1.2/loaders.min.css" />
+
 </head>
 
 
 <body ng-app='allpers'>
+
+	<div class="mobileShow">
 	
-	<div class="mobileShow"> 
-		
+		<allpers-loader></allpers-loader>
+
 		<allpers-menu></allpers-menu>
 		<div ng-view></div>
 		<allpers-post></allpers-post>
-		
+
 		<allpers-feedback></allpers-feedback>
-		
-    </div>
-	
-	<div class="desktopShow">
-		<br>
-		Please visit allpers from a mobile device...
+
 	</div>
-	
+
+	<div class="desktopShow">
+		<br> Please visit allpers from a mobile device...
+	</div>
+
 </body>
