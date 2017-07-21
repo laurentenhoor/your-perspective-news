@@ -19,33 +19,21 @@ class LoaderCtrl {
 		});
 
 		// Hide the loader after back-button-press (or returning to the browser) on mobile devices
-		// https://stackoverflow.com/questions/34270818/how-can-i-hide-a-loading-overlay-when-user-returns-to-page-via-back-button
-		if ("onpagehide" in window) {
-			
-			function hideAllLoaders() {
-				$rootScope.stateIsLoading = false;
-				$scope.$apply();
-				
-				// do we need an interval?
-				/*setTimeout(function(){ 
-					$rootScope.stateIsLoading = false;
-					$scope.$apply(); 
-				}, 20);*/
-				
-			}
-			
-			// event for returning via back button
-			window.addEventListener("pageshow", function() {
-				hideAllLoaders();
-			}, false);
-			
-			// event for returning to the browser
-			window.addEventListener("focus", function() {
-				hideAllLoaders();
-			}, false);
-			
+		function hideAllLoaders() {
+			$rootScope.stateIsLoading = false;
+			$scope.$apply();
 		}
-
+		
+		// event for returning via back button
+		window.addEventListener("pageshow", function() {
+			hideAllLoaders();
+		}, false);
+		
+		// event for returning to the browser
+		window.addEventListener("focus", function() {
+			hideAllLoaders();
+		}, false);
+		
 	}
 
 }
