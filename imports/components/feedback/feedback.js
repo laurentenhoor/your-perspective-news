@@ -36,7 +36,7 @@ class FeedbackCtrl {
 					ip: $rootScope.ip,
 					feedback: feedback
 				}, function() {
-					alert('Bedankt voor jouw reactie!');
+					alert('Bedankt voor je reactie!');
 				});
 			
 			}, function () {

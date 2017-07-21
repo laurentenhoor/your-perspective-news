@@ -5,7 +5,22 @@
 
 @import "../imports/style/bootstrap.less";
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
-
+.modal-backdrop.in {
+    filter: alpha(opacity=50);
+    opacity: .2;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #0d2873;
+    opacity: 0.8;
+    border-color: #0d2873;
+}
+.btn-warning {
+    color: #fff;
+    background-color: #0d2873;
+    opacity: 0.2;
+    border-color: #0d2873;
+}
 
 .mobileShow { display: none;}
    /* Smartphone Portrait and Landscape */
@@ -57,6 +72,7 @@ login-buttons.right {
 html * {max-height:1000000px;}
 
 html {
+	
 	-webkit-touch-callout: none; /* iOS Safari */
 	-webkit-user-select: none; /* Safari */
 	-khtml-user-select: none; /* Konqueror HTML */
@@ -69,7 +85,7 @@ html {
 }
 
 body {
-	font-family: 'Open Sans', verdana, sans-serif;
+	
 	/* color: #fff; */
 	color: #3d448b;
 	text-align: center;
