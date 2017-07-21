@@ -1,16 +1,13 @@
 export default angular.module('allpers.modal', [])
-.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
-	  var $ctrl = this;
-	  $ctrl.items = items;
-	  $ctrl.selected = {
-	    item: $ctrl.items[0]
-	  };
+.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance) {
 
-	  $ctrl.ok = function () {
-	    $uibModalInstance.close($ctrl.selected.item);
-	  };
+	var $ctrl = this;
 
-	  $ctrl.cancel = function () {
-	    $uibModalInstance.dismiss('cancel');
-	  };
+	$ctrl.ok = function () {
+		$uibModalInstance.close($ctrl.feedback);
+	};
+
+	$ctrl.cancel = function () {
+		$uibModalInstance.dismiss('cancel');
+	};
 });

@@ -2,6 +2,7 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
 import template from './overview.html';
+import style from './overview.less';
 
 class OverviewCtrl {
 

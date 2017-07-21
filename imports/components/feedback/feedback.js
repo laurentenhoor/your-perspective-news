@@ -2,42 +2,43 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import angularBootstrap from 'angular-ui-bootstrap';
 
-import modalCtrl from './modal.js';
-
 import template from './feedback.html';
 import style from './feedback.less';
 
+import modalTemplate from './modal.html';
+import modalCtrl from './modal.js';
+
+import { Feedback } from '../../api/feedback.js';
+import { Meteor } from 'meteor/meteor';
+
 class FeedbackCtrl {
 	
-	constructor($scope, $document, $uibModal) {
+	constructor($rootScope, $scope, $document, $uibModal) {
 
 		var $ctrl = this;
-		
-		$ctrl.items = ['item1', 'item2', 'item3'];
 
-		$ctrl.animationsEnabled = false;
-
-		$ctrl.open = function (size, parentSelector) {
+		$ctrl.open = function () {
 	
-			var parentElem = parentSelector ? angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
 			var modalInstance = $uibModal.open({
-				animation: $ctrl.animationsEnabled,
-				ariaLabelledBy: 'modal-title',
-				ariaDescribedBy: 'modal-body',
-				templateUrl: 'myModalContent.html',
+				animation: false,
+				templateUrl: modalTemplate,
 				controller: 'ModalInstanceCtrl',
-				controllerAs: '$ctrl',
-				size: size,
-				appendTo: parentElem,
-				resolve: {
-					items: function () {
-						return $ctrl.items;
-					}
-				}
+				controllerAs: '$ctrl'
 			});
 
-			modalInstance.result.then(function (selectedItem) {
-				$ctrl.selected = selectedItem;
+			// At clicking the Send button receive the feedback here...
+			modalInstance.result.then(function (feedback) {
+				
+				// Create new feedback entry in db
+				Feedback.insert({
+					owner: Meteor.userId(),
+					email: Meteor.user() ? Meteor.user().emails[0].address : 'null',
+					ip: $rootScope.ip,
+					feedback: feedback
+				}, function() {
+					alert('Bedankt voor jouw reactie!');
+				});
+			
 			}, function () {
 				console.log('Modal dismissed at: ' + new Date());
 			});
@@ -54,5 +55,5 @@ export default angular.module('allpers.feedback', [
 
 	.component('allpersFeedback', {
 		templateUrl : template,
-		controller: ['$scope', '$document', '$uibModal', FeedbackCtrl]
+		controller: ['$rootScope', '$scope', '$document', '$uibModal', FeedbackCtrl]
 	});

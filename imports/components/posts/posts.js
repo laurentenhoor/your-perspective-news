@@ -14,15 +14,15 @@ import { Meteor } from 'meteor/meteor';
 
 class PostCtrl {
 
-	constructor($scope, $http) {
+	constructor($rootScope, $scope, $http) {
 
 		$scope.viewModel(this);
 
-		this.ip = 'anonymous';
+		$rootScope.ip = 'anonymous';
 
 		$http.get("http://freegeoip.net/json/").then(function(response) {
 			console.log(response.data.ip);
-			this.ip = response.data.ip;
+			$rootScope.ip = response.data.ip;
 		});
 
 		this.helpers({
@@ -53,7 +53,7 @@ class PostCtrl {
 			score: 0,
 			owner: Meteor.userId(),
 			email: Meteor.user() ? Meteor.user().emails[0].address : 'null',
-			ip: ip
+			ip: $rootScope.ip
 		});
 
 		// Clear form
@@ -69,7 +69,7 @@ export default angular.module('allpers.post', [
 	])
 	.component('allpersPost', {
 		templateUrl : template,
-		controller: ['$scope', '$http', PostCtrl]
+		controller: ['$rootScope', '$scope', '$http', PostCtrl]
 	})
 	.directive('httpPrefix', function() {
 	    return {

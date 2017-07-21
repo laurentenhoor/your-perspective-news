@@ -4,6 +4,7 @@ import angularMeteor from 'angular-meteor';
 import { Meteor } from 'meteor/meteor';
 
 import template from './topic.html';
+import style from './topic.less';
 
 class TopicCtrl {
 
