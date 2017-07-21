@@ -43,20 +43,4 @@ angular.module('allpers', [
 	    }).
 	    otherwise('/news');
 	
-}])
-
-.controller(['$scope', function($scope){
-	
-	$scope.isViewLoading = false;
-	$scope.$on('$routeChangeStart', function() {
-	  $scope.isViewLoading = true;
-	  console.log('loading')
-	});
-	$scope.$on('$routeChangeSuccess', function() {
-	  $scope.isViewLoading = false;
-	});
-	$scope.$on('$routeChangeError', function() {
-	  $scope.isViewLoading = false;
-	});
-	
 }]);
