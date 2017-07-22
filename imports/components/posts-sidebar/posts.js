@@ -64,10 +64,10 @@ class PostCtrl {
 
 }
 
-export default angular.module('allpers.post', [
+export default angular.module('allpers.post.sidebar', [
 	angularMeteor, ngSidebarJs
 	])
-	.component('allpersPost', {
+	.component('allpersPostSidebar', {
 		templateUrl : template,
 		controller: ['$rootScope', '$scope', '$http', PostCtrl]
 	})

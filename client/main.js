@@ -6,6 +6,7 @@ import allpersMenu from '../imports/components/menu/menu';
 import allpersOverview from '../imports/components/overview/overview';
 import allpersTopic from '../imports/components/topic/topic';
 import allpersPosts from '../imports/components/posts/posts';
+import allpersPostsSidebar from '../imports/components/posts-sidebar/posts';
 import allpersFeedback from '../imports/components/feedback/feedback';
 import allpersLoader from '../imports/components/loader/loader';
 
@@ -23,6 +24,7 @@ angular.module('allpers', [
 	allpersOverview.name,
 	allpersTopic.name,
 	allpersPosts.name,
+	allpersPostsSidebar.name,
 	allpersFeedback.name,
 	allpersLoader.name,
 	
@@ -41,7 +43,7 @@ angular.module('allpers', [
 	    when('/topic', {
 	      template: '<allpers-topic></allpers-topic>'
 	    }).
-	    when('/topic', {
+	    when('/post', {
 		      template: '<allpers-post></allpers-post>'
 	    }).
 	    otherwise('/news');

@@ -4,6 +4,8 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import template from './posts.html';
 
+import angularSanitize from 'angular-sanitize';
+
 import './posts.less';
 
 import { Posts } from '../../api/posts.js';
@@ -33,7 +35,8 @@ class PostCtrl {
 			
 		});
 		
-		this.url = 'http://www.elsevierweekblad.nl/opinie/opinie/2017/06/opzeggen-klimaatverdrag-zou-best-verstandig-besluit-zijn-van-trump-509384/'
+		this.url = 'https://www.dumpert.nl/embed/7151309/d6dce568/?autoplay=1';
+			
 		this.urlChange();
 			
 		this.newsItems = [
@@ -42,7 +45,7 @@ class PostCtrl {
 			{articleUrl : 'https://www.businessinsider.nl/factcheck-5-beweringen-van-donald-trump-het-klimaatakkoord-van-parijs/'}, 
 			{articleUrl : 'http://www.volkskrant.nl/buitenland/vs-stappen-uit-klimaatakkoord-parijs-duitsland-en-frankrijk-willen-niet-heronderhandelen~a4498499/'}, 
 			{articleUrl : 'https://www.nrc.nl/nieuws/2017/06/02/harde-kritiek-op-trumps-exit-parijs-akkoord-a1561483/'}, 
-			{articleUrl : 'https://www.youtube.com/embed/4XDWtU1Zojw'}, 
+			{articleUrl : 'https://www.youtube.com/video/4XDWtU1Zojw'}, 
 			{articleUrl : 'https://www.dumpert.nl/embed/7151309/d6dce568/?autoplay=1'}, 
 			{articleUrl : 'http://www.foxnews.com/opinion/2017/06/01/trump-pulls-out-paris-climate-deal-and-does-something-right-and-brave.html'}, 
 			{articleUrl : 'http://www.elsevierweekblad.nl/opinie/opinie/2017/06/opzeggen-klimaatverdrag-zou-best-verstandig-besluit-zijn-van-trump-509384/'}
@@ -83,14 +86,13 @@ class PostCtrl {
 			console.log('getMetaData()')
 			console.log(result);
 			
-			this.imageUrl = result['og:image'];
+			this.imageUrl = result['twitter:image:src:'] || result['og:image'];
 			this.logoUrl = result.logos.clearbit || result.logos.icon;
-			this.description = (result['twitter:description'] || result['og:description'] || result['Description']).replace(/<\/?[^>]+(>|$)/g, "");
-			this.title = (result['gwa_contentTitle'] || result['twitter:title'] || result['og:title'] || result['Title']).replace(/<\/?[^>]+(>|$)/g, "");
-			this.publisher = result['og:site_name'];
+			this.description = (result['twitter:description'] || result['og:description'] || result['Description'])//.replace(/<\/?[^>]+(>|$)/g, "");
+			this.title = (result['gwa_contentTitle'] || result['twitter:title'] || result['og:title'] || result['Title'])//.replace(/<\/?[^>]+(>|$)/g, "");
+			this.publisher = result['og:site_name'] || result['application-name'];
 			this.postMetaDataAvailable = true;
 			console.log(this.imageUrl)
-			$rootScope.stateIsLoading = false;
 
 		});
 		
@@ -114,7 +116,7 @@ class PostCtrl {
 			score: 0,
 			owner: Meteor.userId(),
 			email: Meteor.user() ? Meteor.user().emails[0].address : 'null',
-			ip: $rootScope.ip
+			ip: ''
 		});
 
 		// Clear form
@@ -123,13 +125,10 @@ class PostCtrl {
 		this.newSubstantiation = '';
 	}
 	
-	
-	
-
 }
 
 export default angular.module('allpers.post', [
-	angularMeteor
+	angularMeteor, angularSanitize
 	])
 	.component('allpersPost', {
 		templateUrl : template,

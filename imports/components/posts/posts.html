@@ -7,25 +7,31 @@
 		
 		<!-- <input ng-model="$ctrl.newTitle" class="post-input-text" autofocus="true" placeholder="Titel" required name="newTitle"/>
 		<div class="invalid-message" ng-if="addPost.newTitle.$dirty && addPost.newTitle.$invalid">Voer een titel in.</div> -->
-		
-	
+
+
 		<div class="post-edit-container" ng-if="$ctrl.postMetaDataAvailable">
-		<div class="post-edit-image" ng-style="{'background-image':'url(' + $ctrl.imageUrl + ')'}">
-			
-			<div class="post-edit-publisher" type="text" name="text" name="publisher">{{ $ctrl.publisher }}</div>
-			<div class="post-edit-title">{{ $ctrl.title }}</div>
-			
-			
-			
+			<a href="{{$ctrl.url}}">
+				<div class="post-edit-image"
+					ng-style="{'background-image':'url(' + $ctrl.imageUrl + ')'}">
+
+					<div ng-bind-html="$ctrl.publisher" class="post-edit-publisher"
+						type="text" name="text" name="publisher"></div>
+					<div ng-bind-html="$ctrl.title" class="post-edit-title"></div>
+
+				</div>
+				
+				<div class="post-edit-footer">
+					<div class="post-edit-logo"
+						ng-style="{'background-image': 'url('+$ctrl.logoUrl+')'}"></div>
+					<div ng-bind-html="$ctrl.description" class="post-edit-description"></div>
+				</div>
+
+			</a> 
+			<input ng-model="$ctrl.newSubstantiation" class="post-input-text"
+				autofocus="true" placeholder="Waarom gaat dit onze blik verruimen?" />
+			<!-- <input type="submit" class="post-input-button" value="Toevoegen" ng-disabled="addPost.$invalid"/> -->
 		</div>
-		<div class="post-edit-footer">
-				<div class="post-edit-logo" ng-style="{'background-image': 'url('+$ctrl.logoUrl+')'}"></div>
-				<div class="post-edit-description">{{ $ctrl.description }}</div>
-			</div>
-		<input ng-model="$ctrl.newSubstantiation" class="post-input-text" autofocus="true" placeholder="Waarom gaat dit onze blik verruimen?"/>
-		<!-- <input type="submit" class="post-input-button" value="Toevoegen" ng-disabled="addPost.$invalid"/> -->
-		</div>
-		
+
 	</form>
 </div>
 
