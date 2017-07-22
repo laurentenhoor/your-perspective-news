@@ -2,12 +2,8 @@
 	
 	<form ng-submit="" name=addPost novalidate>
 		
-		<input type="url" ng-model="$ctrl.url" ng-change="$ctrl.urlChange()" class="post-input-url" placeholder="Plak hier een url naar een nieuw verfrissend perspectief..." required name="newUrl" http-prefix select-on-click />
-		<!-- <div class="invalid-message" ng-if="addPost.newUrl.$dirty && addPost.newUrl.$invalid">Voer een geldige url in.</div> -->
-		
-		<!-- <input ng-model="$ctrl.newTitle" class="post-input-text" autofocus="true" placeholder="Titel" required name="newTitle"/>
-		<div class="invalid-message" ng-if="addPost.newTitle.$dirty && addPost.newTitle.$invalid">Voer een titel in.</div> -->
-
+		<input type="url" ng-model="$ctrl.url" ng-change="$ctrl.urlChange()" class="post-input-url" placeholder="Plak hier een url naar een verfrissend perspectief..." required name="newUrl" http-prefix select-on-click />
+	
 		<div class="post-edit-container" ng-if="$ctrl.postMetaDataAvailable">
 			<a href="{{$ctrl.url}}">
 				<div class="post-edit-image"

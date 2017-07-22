@@ -12,11 +12,11 @@ import { Posts } from '../../api/posts.js';
 import { Meteor } from 'meteor/meteor';
 
 class PostCtrl {
-
+	
 	constructor($rootScope, $scope, $reactive, $http) {
 
 		$reactive(this).attach($scope);
-//		$scope.viewModel(this);
+		$scope.viewModel(this);
 
 		$rootScope.ip = 'anonymous';
 
@@ -35,60 +35,53 @@ class PostCtrl {
 			
 		});
 		
-//		this.url = 'https://www.nrc.nl/nieuws/2017/06/02/harde-kritiek-op-trumps-exit-parijs-akkoord-a1561483/';
+		function isValid(url) {
 			
-		this.urlChange();
-			
-		this.newsItems = [
-			{articleUrl : 'https://www.europa-nu.nl/id/vjmhg41ub7pp/klimaatconferentie_parijs_2015_cop21'}, 
-			{articleUrl : 'http://nos.nl/artikel/2176295-0-3-graden-warmer-door-klimaatbesluit-vs.html'}, 
-			{articleUrl : 'https://www.businessinsider.nl/factcheck-5-beweringen-van-donald-trump-het-klimaatakkoord-van-parijs/'}, 
-			{articleUrl : 'http://www.volkskrant.nl/buitenland/vs-stappen-uit-klimaatakkoord-parijs-duitsland-en-frankrijk-willen-niet-heronderhandelen~a4498499/'}, 
-			{articleUrl : 'https://www.nrc.nl/nieuws/2017/06/02/harde-kritiek-op-trumps-exit-parijs-akkoord-a1561483/'}, 
-			{articleUrl : 'https://www.youtube.com/video/4XDWtU1Zojw'}, 
-			{articleUrl : 'https://www.dumpert.nl/embed/7151309/d6dce568/?autoplay=1'}, 
-			{articleUrl : 'http://www.foxnews.com/opinion/2017/06/01/trump-pulls-out-paris-climate-deal-and-does-something-right-and-brave.html'}, 
-			{articleUrl : 'http://www.elsevierweekblad.nl/opinie/opinie/2017/06/opzeggen-klimaatverdrag-zou-best-verstandig-besluit-zijn-van-trump-509384/'},
-			{articleUrl : 'https://decorrespondent.nl/5205/dit-zijn-de-stalkers-gluiperds-en-snelle-jongens-die-je-de-hele-dag-achtervolgen/253467885-c22fdbeb'}
-		];
-
-	}
-	
-	isValid(url) {
-		
-	    var urlregex = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
-	    return urlregex.test(url);
-	    
-	}
-	
-	urlChange() {
-	
-		this.postMetaDataAvailable = false;
-		this.imageUrl = '';
-		this.logoUrl = '';
-		this.description = '';
-		this.title = '';
-		this.publisher = '';
-		
-		if (!this.isValid(this.url)) {
-			return;
+		    var urlregex = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
+		    return urlregex.test(url);
+		    
 		}
 		
-		this.call('getMetaData', this.url, function(error, result) {
+		this.urlChange = function() {
 			
-			if(error) {
+			console.log(this.$rootScope)
+			
+			this.postMetaDataAvailable = false;
+			this.imageUrl = '';
+			this.logoUrl = '';
+			this.description = '';
+			this.title = '';
+			this.publisher = '';
+			
+			if (!isValid(this.url)) {
 				return;
 			}
+			$rootScope.stateIsLoading = true;
 			
-			this.imageUrl = result['og:image'] || result['twitter:image'] || result['twitter:image:src'];
-			this.logoUrl = result.logos.clearbit || result.logos.icon;
-			this.description = (result['twitter:description'] || result['og:description'] || result['Description'])//.replace(/<\/?[^>]+(>|$)/g, "");
-			this.title = (result['gwa_contentTitle'] || result['twitter:title'] || result['og:title'] || result['Title'])//.replace(/<\/?[^>]+(>|$)/g, "");
-			this.publisher = result['og:site_name'] || result['application-name'];
-			this.postMetaDataAvailable = true;
-
-		});
+			this.call('getMetaData', this.url, function(error, result) {
+				
+				$scope.$apply(function() {
+					$rootScope.stateIsLoading = false;
+				});
+				
+				if(error) {
+					return;
+				}
+				
+				this.imageUrl = result['og:image'] || result['twitter:image'] || result['twitter:image:src'];
+				this.logoUrl = result.logos.clearbit || result.logos.icon;
+				this.description = (result['twitter:description'] || result['og:description'] || result['Description'])//.replace(/<\/?[^>]+(>|$)/g, "");
+				this.title = (result['gwa_contentTitle'] || result['twitter:title'] || result['og:title'] || result['Title'])//.replace(/<\/?[^>]+(>|$)/g, "");
+				this.publisher = result['og:site_name'] || result['application-name'];
+				this.postMetaDataAvailable = true;
+				
+				$rootScope.stateIsLoading = false;
+				
+			});
+			
+		}
 		
+
 	}
 
 
