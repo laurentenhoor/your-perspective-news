@@ -35,7 +35,7 @@ class PostCtrl {
 			
 		});
 		
-		this.url = 'https://www.nrc.nl/nieuws/2017/06/02/harde-kritiek-op-trumps-exit-parijs-akkoord-a1561483/';
+//		this.url = 'https://www.nrc.nl/nieuws/2017/06/02/harde-kritiek-op-trumps-exit-parijs-akkoord-a1561483/';
 			
 		this.urlChange();
 			
