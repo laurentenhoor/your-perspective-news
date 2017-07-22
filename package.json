@@ -13,6 +13,9 @@
     "babel-runtime": "^6.23.0",
     "bcrypt": "^1.0.2",
     "client": "0.0.1",
-    "meteor-node-stubs": "~0.2.4"
+    "metaget": "^1.0.3",
+    "meteor-node-stubs": "~0.2.4",
+    "url-parse": "^1.1.9",
+    "website-logo": "^1.0.0"
   }
 }
