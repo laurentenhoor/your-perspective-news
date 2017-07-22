@@ -41,6 +41,9 @@ angular.module('allpers', [
 	    when('/topic', {
 	      template: '<allpers-topic></allpers-topic>'
 	    }).
+	    when('/topic', {
+		      template: '<allpers-post></allpers-post>'
+	    }).
 	    otherwise('/news');
 	
 }]);

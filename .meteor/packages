@@ -27,3 +27,4 @@ autopublish
 accounts-password
 dotansimha:accounts-ui-angular
 http
+practicalmeteor:mocha

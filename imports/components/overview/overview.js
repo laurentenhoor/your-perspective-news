@@ -18,7 +18,7 @@ class OverviewCtrl {
 //			
 //		});
 				
-		$scope.newsItems = [{
+		this.newsItems = [{
 			id : 1,
 			title: 'VS stapt uit klimaatakkoord',
 			category: 'buitenland',

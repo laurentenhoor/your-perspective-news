@@ -1,35 +1,36 @@
-<sidebarjs class="">
-
-<div class="company-logo-container">
-
-	<!-- <img class="company-logo" src="assets/logos/newnews_newcolors.png"/>  -->
-	<i class="fa fa-comments company-logo" aria-hidden="true"></i>
-	<div class="company-text">
-		<span class="company-logo-title">your<b>pers</b><br> <span
-			class="company-strategy">The open source opinion.</span></span>
-	</div>
-</div>
-
-
-<div class="add-perspective" ng-if="$ctrl.currentUser">
-	<div class="yourpers-instructions">Voeg jouw perspectief toe.</div>
+<div class="add-perspective" ng-if="$ctrl.currentUser" 	>
+	
 	<form ng-submit="$ctrl.post()" name=addPost novalidate>
 		
-		<input ng-model="$ctrl.newTitle" class="post-input-text" autofocus="true" placeholder="Titel" required name="newTitle"/>
-		<div class="invalid-message" ng-if="addPost.newTitle.$dirty && addPost.newTitle.$invalid">Voer een titel in.</div>
+		<input type="url" ng-model="$ctrl.url" ng-change="$ctrl.urlChange()" class="post-input-url" placeholder="Deel hier een nieuw perspectief" required name="newUrl" http-prefix select-on-click />
+		<!-- <div class="invalid-message" ng-if="addPost.newUrl.$dirty && addPost.newUrl.$invalid">Voer een geldige url in.</div> -->
 		
-		<input type="url" ng-model="$ctrl.newUrl" class="post-input-url" placeholder="url" required name="newUrl" http-prefix/>
-		<div class="invalid-message" ng-if="addPost.newUrl.$dirty && addPost.newUrl.$invalid">Voer een geldige url in.</div>
+		<!-- <input ng-model="$ctrl.newTitle" class="post-input-text" autofocus="true" placeholder="Titel" required name="newTitle"/>
+		<div class="invalid-message" ng-if="addPost.newTitle.$dirty && addPost.newTitle.$invalid">Voer een titel in.</div> -->
 		
+	
+		<div class="post-edit-container" ng-if="$ctrl.postMetaDataAvailable">
+		<div class="post-edit-image" ng-style="{'background-image':'url(' + $ctrl.imageUrl + ')'}">
+			
+			<div class="post-edit-publisher" type="text" name="text" name="publisher">{{ $ctrl.publisher }}</div>
+			<div class="post-edit-title">{{ $ctrl.title }}</div>
+			
+			
+			
+		</div>
+		<div class="post-edit-footer">
+				<div class="post-edit-logo" ng-style="{'background-image': 'url('+$ctrl.logoUrl+')'}"></div>
+				<div class="post-edit-description">{{ $ctrl.description }}</div>
+			</div>
 		<input ng-model="$ctrl.newSubstantiation" class="post-input-text" autofocus="true" placeholder="Waarom gaat dit onze blik verruimen?"/>
+		<!-- <input type="submit" class="post-input-button" value="Toevoegen" ng-disabled="addPost.$invalid"/> -->
+		</div>
 		
-		<input type="submit" class="post-input-button" value="Toevoegen" ng-disabled="addPost.$invalid"/>
 	</form>
 </div>
 
 <div class="add-perspective" ng-if="!$ctrl.currentUser">
 	<div class="yourpers-instructions"><login-buttons class="left"></login-buttons> om jouw perspectief te delen.</div>
-	
 </div>
 
 <div class="post-message-container">
@@ -51,5 +52,3 @@
 		</a>
 	</div>
 </div>
-
-</sidebarjs>
