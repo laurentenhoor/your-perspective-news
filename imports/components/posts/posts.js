@@ -48,7 +48,8 @@ class PostCtrl {
 			{articleUrl : 'https://www.youtube.com/video/4XDWtU1Zojw'}, 
 			{articleUrl : 'https://www.dumpert.nl/embed/7151309/d6dce568/?autoplay=1'}, 
 			{articleUrl : 'http://www.foxnews.com/opinion/2017/06/01/trump-pulls-out-paris-climate-deal-and-does-something-right-and-brave.html'}, 
-			{articleUrl : 'http://www.elsevierweekblad.nl/opinie/opinie/2017/06/opzeggen-klimaatverdrag-zou-best-verstandig-besluit-zijn-van-trump-509384/'}
+			{articleUrl : 'http://www.elsevierweekblad.nl/opinie/opinie/2017/06/opzeggen-klimaatverdrag-zou-best-verstandig-besluit-zijn-van-trump-509384/'},
+			{articleUrl : 'https://decorrespondent.nl/5205/dit-zijn-de-stalkers-gluiperds-en-snelle-jongens-die-je-de-hele-dag-achtervolgen/253467885-c22fdbeb'}
 		];
 
 	}
@@ -83,7 +84,7 @@ class PostCtrl {
 			console.log('getMetaData()')
 			console.log(result);
 			
-			this.imageUrl = result['twitter:image:src:'] || result['og:image'];
+			this.imageUrl = result['og:image'] || result['twitter:image'] || result['twitter:image:src'];
 			this.logoUrl = result.logos.clearbit || result.logos.icon;
 			this.description = (result['twitter:description'] || result['og:description'] || result['Description'])//.replace(/<\/?[^>]+(>|$)/g, "");
 			this.title = (result['gwa_contentTitle'] || result['twitter:title'] || result['og:title'] || result['Title'])//.replace(/<\/?[^>]+(>|$)/g, "");
