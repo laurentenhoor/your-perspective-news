@@ -18,7 +18,6 @@ Meteor.startup(() => {
 function getBaseUrl(url) {
 
 	var parsedUrl = new URL(url);
-	console.log(parsedUrl)
 	return parsedUrl.hostname;
 	
 }
@@ -44,20 +43,14 @@ function validateClearbit(url, callback) {
 function fetchLogo(url, callback) {
 
 	getLogo( url, function( error, images ) {
-
 		callback(error, images);
-
-	})
+	});
 	
 }
 
 function fetchMetaData(url, callback) {
 	
 	metaGet.fetch(url, function (err, meta_response) {
-		
-		console.log(err);
-		console.log(meta_response);
-		
 		callback(false, meta_response);
 	});
 	
@@ -87,8 +80,6 @@ Meteor.methods({
 
 		var validateClearbitSync = Meteor.wrapAsync(validateClearbit);
 		metaData.logos.clearbit = validateClearbitSync(url);
-
-		console.log(metaData.logos);
 
 		return metaData;
 

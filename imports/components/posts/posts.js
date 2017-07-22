@@ -70,7 +70,6 @@ class PostCtrl {
 		this.title = '';
 		this.publisher = '';
 		
-		console.log(this.url)
 		if (!this.isValid(this.url)) {
 			return;
 		}
@@ -81,16 +80,12 @@ class PostCtrl {
 				return;
 			}
 			
-			console.log('getMetaData()')
-			console.log(result);
-			
 			this.imageUrl = result['og:image'] || result['twitter:image'] || result['twitter:image:src'];
 			this.logoUrl = result.logos.clearbit || result.logos.icon;
 			this.description = (result['twitter:description'] || result['og:description'] || result['Description'])//.replace(/<\/?[^>]+(>|$)/g, "");
 			this.title = (result['gwa_contentTitle'] || result['twitter:title'] || result['og:title'] || result['Title'])//.replace(/<\/?[^>]+(>|$)/g, "");
 			this.publisher = result['og:site_name'] || result['application-name'];
 			this.postMetaDataAvailable = true;
-			console.log(this.imageUrl)
 
 		});
 		
