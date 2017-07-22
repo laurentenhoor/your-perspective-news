@@ -1,8 +1,8 @@
-<div class="add-perspective" ng-if="$ctrl.currentUser" 	>
+<div class="add-perspective">
 	
 	<form ng-submit="$ctrl.post()" name=addPost novalidate>
 		
-		<input type="url" ng-model="$ctrl.url" ng-change="$ctrl.urlChange()" class="post-input-url" placeholder="Deel hier een nieuw perspectief" required name="newUrl" http-prefix select-on-click />
+		<input type="url" ng-model="$ctrl.url" ng-change="$ctrl.urlChange()" class="post-input-url" placeholder="Plak hier een nieuw verfrissend perspectief" required name="newUrl" http-prefix select-on-click />
 		<!-- <div class="invalid-message" ng-if="addPost.newUrl.$dirty && addPost.newUrl.$invalid">Voer een geldige url in.</div> -->
 		
 		<!-- <input ng-model="$ctrl.newTitle" class="post-input-text" autofocus="true" placeholder="Titel" required name="newTitle"/>
@@ -35,9 +35,9 @@
 	</form>
 </div>
 
-<div class="add-perspective" ng-if="!$ctrl.currentUser">
+<!-- <div class="add-perspective" ng-if="!$ctrl.currentUser">
 	<div class="yourpers-instructions"><login-buttons class="left"></login-buttons> om jouw perspectief te delen.</div>
-</div>
+</div> -->
 
 <!-- <div class="post-message-container">
 	<div class="post-message" ng-repeat="post in $ctrl.posts"

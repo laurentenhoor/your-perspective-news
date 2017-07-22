@@ -51,7 +51,6 @@ class PostCtrl {
 			{articleUrl : 'http://www.elsevierweekblad.nl/opinie/opinie/2017/06/opzeggen-klimaatverdrag-zou-best-verstandig-besluit-zijn-van-trump-509384/'}
 		];
 
-
 	}
 	
 	isValid(url) {
