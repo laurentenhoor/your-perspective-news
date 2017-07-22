@@ -8,12 +8,12 @@ import style from './topic.less';
 
 class TopicCtrl {
 
-	constructor($scope) {
+	constructor($rootScope, $scope) {
 		
 		$scope.viewModel(this);
 
 		this.title = 'VS stapt uit klimaatakkoord';
-
+		
 		this.helpers({
 			currentUser() {
 				return Meteor.user();
@@ -104,7 +104,7 @@ angularMeteor
 ])
 .component('allpersTopic', {
 	templateUrl : template,
-	controller: ['$scope', TopicCtrl]
+	controller: ['$rootScope', '$scope', TopicCtrl]
 });
 
 

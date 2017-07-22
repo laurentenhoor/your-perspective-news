@@ -24,7 +24,7 @@ class PostCtrl {
 			console.log(response.data.ip);
 			$rootScope.ip = response.data.ip;
 		});
-
+		
 		this.helpers({
 			posts() {
 				return Posts.find({}, {sort: {score: -1}, limit: 20}).fetch()//.reverse();
