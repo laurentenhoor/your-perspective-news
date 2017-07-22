@@ -12,7 +12,7 @@
 		<div class="post-edit-container" ng-if="$ctrl.postMetaDataAvailable">
 			<a href="{{$ctrl.url}}">
 				<div class="post-edit-image"
-					ng-style="{'background-image':'url(' + $ctrl.imageUrl + ')'}">
+					ng-style="{'background-image':'url(\'' + $ctrl.imageUrl + '\')'}">
 
 					<div ng-bind-html="$ctrl.publisher" class="post-edit-publisher"
 						type="text" name="text" name="publisher"></div>
@@ -22,7 +22,7 @@
 				
 				<div class="post-edit-footer">
 					<div class="post-edit-logo"
-						ng-style="{'background-image': 'url('+$ctrl.logoUrl+')'}"></div>
+						ng-style="{'background-image': 'url(\'' + $ctrl.imageUrl + '\')'}"></div>
 					<div ng-bind-html="$ctrl.description" class="post-edit-description"></div>
 				</div>
 

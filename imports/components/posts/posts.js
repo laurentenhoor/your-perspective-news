@@ -35,7 +35,7 @@ class PostCtrl {
 			
 		});
 		
-		this.url = 'https://www.dumpert.nl/embed/7151309/d6dce568/?autoplay=1';
+		this.url = 'https://www.nrc.nl/nieuws/2017/06/02/harde-kritiek-op-trumps-exit-parijs-akkoord-a1561483/';
 			
 		this.urlChange();
 			
@@ -52,8 +52,6 @@ class PostCtrl {
 		];
 
 
-		
-		
 	}
 	
 	isValid(url) {
