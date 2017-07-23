@@ -16,7 +16,7 @@ import template from './main.html';
 
 
 angular.module('allpers', [
-                           
+	
 	angularMeteor,
 	angularRoute,
 	
