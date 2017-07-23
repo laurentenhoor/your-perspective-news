@@ -1,6 +1,8 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
+import allpersPostsSidebar from '../posts-sidebar/posts-sidebar';
+
 import { Meteor } from 'meteor/meteor';
 
 import template from './topic.html';
@@ -100,7 +102,7 @@ class TopicCtrl {
 
 
 export default angular.module('allpers.topic', [
-angularMeteor
+angularMeteor, allpersPostsSidebar.name
 ])
 .component('allpersTopic', {
 	templateUrl : template,

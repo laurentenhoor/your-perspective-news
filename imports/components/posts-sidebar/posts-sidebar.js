@@ -2,12 +2,11 @@
 
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
-import template from './posts.html';
-
 import ngSidebarJs from 'angular-sidebarjs';
+import ngSidbarJsStyle from './sidebarjs-custom.css';// original file in: node_modules/sidebarjs/dist/sidebarjs.css;
 
-import './sidebarjs-custom.css';// original file in: node_modules/sidebarjs/dist/sidebarjs.css;
-import './posts.less';
+import template from './posts-sidebar.html';
+import style from './posts-sidebar.less';
 
 import { Posts } from '../../api/posts.js';
 import { Meteor } from 'meteor/meteor';
@@ -64,10 +63,10 @@ class PostCtrl {
 
 }
 
-export default angular.module('allpers.post.sidebar', [
+export default angular.module('allpers.posts.sidebar', [
 	angularMeteor, ngSidebarJs
 	])
-	.component('allpersPostSidebar', {
+	.component('allpersPostsSidebar', {
 		templateUrl : template,
 		controller: ['$rootScope', '$scope', '$http', PostCtrl]
 	})

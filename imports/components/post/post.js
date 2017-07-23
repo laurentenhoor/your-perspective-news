@@ -1,12 +1,11 @@
-//"use strict"
+"use strict"
 
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
-import template from './posts.html';
-
 import angularSanitize from 'angular-sanitize';
 
-import './posts.less';
+import template from './post.html';
+import style from './post.less';
 
 import { Posts } from '../../api/posts.js';
 import { Meteor } from 'meteor/meteor';
@@ -25,9 +24,6 @@ class PostCtrl {
 			$rootScope.ip = response.data.ip;
 		});
 		
-//		this.url = 'http://nos.nl/artikel/2176295-0-3-graden-warmer-door-klimaatbesluit-vs.html';
-		
-		
 		this.helpers({
 			posts() {
 				return Posts.find({}, {sort: {score: -1}, limit: 20}).fetch()//.reverse();
@@ -45,9 +41,9 @@ class PostCtrl {
 		    
 		}
 		
+//		this.url = 'http://nos.nl/artikel/2176295-0-3-graden-warmer-door-klimaatbesluit-vs.html';
+		
 		this.urlChange = function() {
-			
-			console.log($rootScope)
 			
 			this.postMetaDataAvailable = false;
 			this.imageUrl = '';
