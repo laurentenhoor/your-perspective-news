@@ -25,6 +25,10 @@ class PostCtrl {
 			$rootScope.ip = response.data.ip;
 		});
 		
+		this.url = 'http://nos.nl/artikel/2176295-0-3-graden-warmer-door-klimaatbesluit-vs.html';
+		
+		
+		
 		this.helpers({
 			posts() {
 				return Posts.find({}, {sort: {score: -1}, limit: 20}).fetch()//.reverse();
@@ -79,8 +83,10 @@ class PostCtrl {
 				
 			});
 			
+		
 		}
 		
+		this.urlChange();
 
 	}
 
