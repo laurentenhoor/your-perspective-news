@@ -6,7 +6,7 @@
 	
 		<div class="post-edit-container" ng-if="$ctrl.postMetaDataAvailable">
 			<a href="{{$ctrl.url}}">
-				<div class="post-edit-image"
+				<div class="post-edit-image" ng-if="$ctrl.imageUrl"
 					ng-style="{'background-image':'url(\'' + $ctrl.imageUrl + '\')'}">
 
 					<div ng-bind-html="$ctrl.publisher" class="post-edit-publisher"

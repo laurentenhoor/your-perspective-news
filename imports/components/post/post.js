@@ -57,7 +57,7 @@ class PostCtrl {
 			}
 			$rootScope.stateIsLoading = true;
 			
-			this.call('getMetaData', this.url, function(error, result) {
+			this.call('getUrlMetadata', this.url, function(error, result) {
 				
 				$scope.$apply(function() {
 					$rootScope.stateIsLoading = false;
@@ -67,9 +67,11 @@ class PostCtrl {
 					return;
 				}
 				
+				console.log(result);
+				
 				this.imageUrl = result['og:image'] || result['twitter:image'] || result['twitter:image:src'];
 				this.logoUrl = result.logos.clearbit || result.logos.icon;
-				this.description = (result['twitter:description'] || result['og:description'] || result['Description'])//.replace(/<\/?[^>]+(>|$)/g, "");
+				this.description = (result['twitter:description'] || result['og:description'] || result['Description'] || result['description'])//.replace(/<\/?[^>]+(>|$)/g, "");
 				this.title = (result['gwa_contentTitle'] || result['twitter:title'] || result['og:title'] || result['Title'])//.replace(/<\/?[^>]+(>|$)/g, "");
 				this.publisher = result['og:site_name'] || result['application-name'];
 				this.postMetaDataAvailable = true;
