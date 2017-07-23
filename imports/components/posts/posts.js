@@ -16,7 +16,7 @@ class PostCtrl {
 	constructor($rootScope, $scope, $reactive, $http) {
 
 		$reactive(this).attach($scope);
-		$scope.viewModel(this);
+//		$scope.viewModel(this);
 
 		$rootScope.ip = 'anonymous';
 
@@ -44,7 +44,7 @@ class PostCtrl {
 		
 		this.urlChange = function() {
 			
-			console.log(this.$rootScope)
+			console.log($rootScope)
 			
 			this.postMetaDataAvailable = false;
 			this.imageUrl = '';
