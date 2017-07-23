@@ -5,7 +5,7 @@ import getLogo from 'website-logo';
 Meteor.methods({
 
 	getUrlMetadata(url) {
-
+		
 		if (!isValid(url)) {
 			return;
 		}
