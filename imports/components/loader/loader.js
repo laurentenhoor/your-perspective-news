@@ -51,7 +51,11 @@ export default angular.module('allpers.loader', [
 			restrict: 'A',
 			link: function(scope, elem) {
 				elem.bind('click', function(e) {
-					$rootScope.stateIsLoading = true;  
+					
+					$rootScope.$apply(function() {
+						$rootScope.stateIsLoading = true;
+					});
+					
 				});
 			}
 		};
