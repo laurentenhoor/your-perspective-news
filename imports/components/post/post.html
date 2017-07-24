@@ -10,7 +10,7 @@
 				autofocus="true" placeholder="Waarom gaat dit onze blik verruimen?" required />
 			
 			<input type="submit" class="post-input-button" value="Toevoegen" ng-disabled="addPost.$invalid"/>
-			<a href="{{$ctrl.url}}">
+
 				<div class="post-edit-image" ng-if="$ctrl.imageUrl"
 					ng-style="{'background-image':'url(\'' + $ctrl.imageUrl + '\')'}">
 
@@ -26,8 +26,6 @@
 					<div ng-bind-html="$ctrl.description" class="post-edit-description"></div>
 				</div>
 
-			</a> 
-			
 		</div>
 
 	</form>
