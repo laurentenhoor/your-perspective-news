@@ -54,10 +54,8 @@ class PostCtrl {
 			this.title = '';
 			this.publisher = '';	
 			this.userMessage = '';
-			console.log('clear form')
 		}
 		
-//		this.url = 'http://www.elsevierweekblad.nl/nederland/achtergrond/2017/07/twee-jongens-doodsteken-nick-bood-16-525841/';
 		
 		this.urlChange = function() {
 			
@@ -107,25 +105,22 @@ class PostCtrl {
 				description : this.description,
 				publisher : this.publisher,
 				logoUrl : this.logoUrl,
-//				rawMetadata : this.rawMetadata,
+				rawMetadata : JSON.stringify(this.rawMetadata),
 				score: 0,
 				owner: Meteor.userId(),
 				email: Meteor.user() ? Meteor.user().emails[0].address : 'null',
 						ip: $rootScope.ip
 			}, function(error, _id){
 				
+				console.log('error: ' + error);
+				console.log('_id: ' + _id);
+
+				$rootScope.$apply(function() {
+					$rootScope.stateIsLoading = false;
+				});
+				
 				$scope.$ctrl.clearForm();
 				$scope.$ctrl.url = '';
-				
-				// or try function(error, result) and still get nothing 
-				// console.log('result: ' + result);
-				console.log('error: ' + error);
-				console.log('_id: ' + _id); //this._id doesn't work either
-
-//				this.clearForm();
-//				$scope.$apply();
-				$rootScope.stateIsLoading = false;
-				$rootScope.$apply();
 
 			});
 
@@ -141,7 +136,9 @@ class PostCtrl {
 		}
 		
 		this.urlChange();
+		
 //		$rootScope.stateIsLoading = true;
+//		this.url = 'http://www.elsevierweekblad.nl/nederland/achtergrond/2017/07/twee-jongens-doodsteken-nick-bood-16-525841/';
 		
 	}
 }
