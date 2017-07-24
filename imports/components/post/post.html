@@ -49,27 +49,28 @@
 					<div class="post-view-message" ng-bind="post.userMessage"></div>
 					
 				</div>
-			
-			<a href="{{post.url}}">
-			
-				<!-- <img src="{{post.imageUrl}}" style="width:20vw; height:20vw;"/> -->
+	
 				<div class="post-edit-image" ng-if="post.imageUrl"
 					ng-style="{'background-image':'url(\'' + post.imageUrl + '\')'}">
 					<!-- ng-style="{'background-image':'url({{post.imageUrl}})'}"> -->
 
-					<div ng-bind-html="post.publisher" class="post-edit-publisher"
-						type="text" name="text" name="publisher"></div>
-					<div ng-bind-html="post.title" class="post-edit-title"></div>
-
+					
+						<div ng-bind-html="post.publisher" class="post-edit-publisher"
+							type="text" name="text" name="publisher"></div>
+					<a ext-link href="{{post.url}}" target="_self" >	
+						<div ng-bind-html="post.title" class="post-edit-title"></div>
+					</a> 	
 				</div>
-				
+			
 				<div class="post-edit-footer">
-					<div class="post-edit-logo"
-						ng-style="{'background-image': 'url(\'' + post.logoUrl + '\')'}"></div>
-					<div ng-bind-html="post.description" class="post-edit-description"></div>
+					<a ext-link href="{{post.url}}" target="_self" >
+						<div class="post-edit-logo"
+							ng-style="{'background-image': 'url(\'' + post.logoUrl + '\')'}"></div>
+						<div ng-bind-html="post.description" class="post-edit-description"></div>
+					</a> 			
 				</div>
 
-			</a> 			
+			
 			
 		</div>
 

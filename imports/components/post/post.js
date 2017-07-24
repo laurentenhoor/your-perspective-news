@@ -57,7 +57,7 @@ class PostCtrl {
 			console.log('clear form')
 		}
 		
-//		this.url = 'http://nos.nl/artikel/2176295-0-3-graden-warmer-door-klimaatbesluit-vs.html';
+//		this.url = 'http://www.elsevierweekblad.nl/nederland/achtergrond/2017/07/twee-jongens-doodsteken-nick-bood-16-525841/';
 		
 		this.urlChange = function() {
 			
@@ -141,6 +141,8 @@ class PostCtrl {
 		}
 		
 		this.urlChange();
+//		$rootScope.stateIsLoading = true;
+		
 	}
 }
 

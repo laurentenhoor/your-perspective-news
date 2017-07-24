@@ -19,12 +19,13 @@ angular.module('allpers', [
 	angularMeteor,
 	angularRoute,
 	
+	allpersLoader.name,
 	allpersMenu.name,
 	allpersOverview.name,
 	allpersTopic.name,
 	allpersPosts.name,
 	allpersFeedback.name,
-	allpersLoader.name,
+	
 	
 	'accounts.ui'
 	
