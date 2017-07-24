@@ -21,7 +21,7 @@ angular.module('allpers', [
 	
 	allpersMenu.name,
 	allpersOverview.name,
-//	allpersTopic.name,
+	allpersTopic.name,
 	allpersPosts.name,
 	allpersFeedback.name,
 	allpersLoader.name,

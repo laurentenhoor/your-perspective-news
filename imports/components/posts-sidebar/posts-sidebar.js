@@ -6,7 +6,7 @@ import ngSidebarJs from 'angular-sidebarjs';
 import ngSidbarJsStyle from './sidebarjs-custom.css';// original file in: node_modules/sidebarjs/dist/sidebarjs.css;
 
 import template from './posts-sidebar.html';
-import style from './posts-sidebar.less';
+//import style from './posts-sidebar.less';
 
 import { Posts } from '../../api/posts.js';
 import { Meteor } from 'meteor/meteor';
