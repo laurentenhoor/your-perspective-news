@@ -1,9 +1,41 @@
+
+.voting {
+	float:right;
+	margin-top: 0.2vw;
+	position:absolute;
+	right:2vw;	
+	z-index:1;
+}
+.post-view-message-container{
+	
+	display:inline-block;
+	width:100%;
+	color:grey;
+	
+}
+.post-score{
+	text-align:center;
+}
+.post-view-message{
+	
+	float:left;
+	padding:3vw;
+	padding-bottom: 1vw;
+	
+}
+
 .post-edit-container {
 	height:40vw;
     
     font-family: "Montserrat";
     text-align:left;
-   
+   	display:inline-block;
+   	
+   	
+    border-top: 0.1em solid #ffffff;
+    border-radius: 6vw 0vw;
+    background: #efefef;
+   	
 }
 
 a, a:visited, a:hover, a:active {
@@ -13,6 +45,7 @@ a, a:visited, a:hover, a:active {
 
 
 .post-edit-image {
+
 	background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -39,6 +72,9 @@ a, a:visited, a:hover, a:active {
 }
 
 .post-edit-footer {
+	
+	display:inline-block;
+	margin-bottom: 4vw;
 	
 }
 
@@ -117,8 +153,9 @@ input {
   border-left: 3vw solid transparent;
   border-right: 3vw solid transparent;
   
-  border-bottom: 3vw solid #3d448b;
-  margin:1vw;
+//  border-bottom: 3vw solid #3d448b;
+
+  border-bottom: 3vw solid grey;
 }
 
 .arrow-down {
@@ -127,8 +164,9 @@ input {
   border-left: 3vw solid transparent;
   border-right: 3vw solid transparent;
   
-  border-top: 3vw solid #3d448b;
-  margin:1vw;
+//  border-top: 3vw solid #3d448b;
+  border-top: 3vw solid rgba(255, 255, 255, 0.52);
+
 }
 
 input {
@@ -142,24 +180,26 @@ input {
 	
 }
 
-.voting {
-	float:left;	
-}
 
  .post-input-text {
 
 }
 
 .post-input-button {
-	background-color:#3d448b;
-	color:white;
-	width:77vw;	
+    margin-left: 3vw;
+    width: 94vw;
+    margin-right: 3vw;
+	
+	background-color: rgba(160, 160, 160, 0.15);
+    color: grey;
+    
 	font-size:2.5vw;
 	margin-top:2.5vw;
 }
 
 .post-input-button:disabled {
-	background-color:#cccdda;
+//	background-color:#cccdda;
+	display:none;
 }
 
 .post-message-container {

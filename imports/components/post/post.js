@@ -26,7 +26,7 @@ class PostCtrl {
 		
 		this.helpers({
 			posts() {
-				return Posts.find({}, {sort: {score: -1}, limit: 20}).fetch()//.reverse();
+				return Posts.find({}, {sort: {createdAt: -1}, limit: 10}).fetch()//.reverse();
 			},
 			currentUser() {
 				return Meteor.user();
@@ -41,16 +41,27 @@ class PostCtrl {
 		    
 		}
 		
-//		this.url = 'http://nos.nl/artikel/2176295-0-3-graden-warmer-door-klimaatbesluit-vs.html';
+		function clearForm() {
+			this.clearForm();
+		}
 		
-		this.urlChange = function() {
-			
+		
+		this.clearForm = function() {
 			this.postMetaDataAvailable = false;
 			this.imageUrl = '';
 			this.logoUrl = '';
 			this.description = '';
 			this.title = '';
-			this.publisher = '';
+			this.publisher = '';	
+			this.userMessage = '';
+			console.log('clear form')
+		}
+		
+//		this.url = 'http://nos.nl/artikel/2176295-0-3-graden-warmer-door-klimaatbesluit-vs.html';
+		
+		this.urlChange = function() {
+			
+			this.clearForm();
 			
 			if (!isValid(this.url)) {
 				return;
@@ -75,6 +86,7 @@ class PostCtrl {
 				this.title = (result['gwa_contentTitle'] || result['twitter:title'] || result['og:title'] || result['Title'])//.replace(/<\/?[^>]+(>|$)/g, "");
 				this.publisher = result['og:site_name'] || result['application-name'];
 				this.postMetaDataAvailable = true;
+				this.rawMetadata = result;
 				
 				$rootScope.stateIsLoading = false;
 				
@@ -83,37 +95,53 @@ class PostCtrl {
 		
 		}
 		
+		this.post = function() {
+			
+			$rootScope.stateIsLoading = true;
+			
+			Posts.insert({
+				title: this.title,
+				url : this.url,
+				imageUrl : this.imageUrl,
+				userMessage: this.userMessage,
+				description : this.description,
+				publisher : this.publisher,
+				logoUrl : this.logoUrl,
+//				rawMetadata : this.rawMetadata,
+				score: 0,
+				owner: Meteor.userId(),
+				email: Meteor.user() ? Meteor.user().emails[0].address : 'null',
+						ip: $rootScope.ip
+			}, function(error, _id){
+				
+				$scope.$ctrl.clearForm();
+				$scope.$ctrl.url = '';
+				
+				// or try function(error, result) and still get nothing 
+				// console.log('result: ' + result);
+				console.log('error: ' + error);
+				console.log('_id: ' + _id); //this._id doesn't work either
+
+//				this.clearForm();
+//				$scope.$apply();
+				$rootScope.stateIsLoading = false;
+				$rootScope.$apply();
+
+			});
+
+		}
+		
+		this.upVote = function(id) {
+			console.log('upVote')
+			Posts.update(id, {$inc : { score: 1}});
+		}
+
+		this.downVote = function(id) {
+			Posts.update(id, {$inc : { score: -1}});
+		}
+		
 		this.urlChange();
-
 	}
-
-
-	upVote(id) {
-		Posts.update(id, {$inc : { score: 1}});
-	}
-
-	downVote(id) {
-		Posts.update(id, {$inc : { score: -1}});
-	}
-
-	post() {
-
-		Posts.insert({
-			title: this.newTitle,
-			url : this.newUrl,
-			substantiation: this.newSubstantiation,
-			score: 0,
-			owner: Meteor.userId(),
-			email: Meteor.user() ? Meteor.user().emails[0].address : 'null',
-			ip: ''
-		});
-
-		// Clear form
-		this.newTitle = '';
-		this.newUrl = '';
-		this.newSubstantiation = '';
-	}
-	
 }
 
 export default angular.module('allpers.post', [

@@ -1,8 +1,8 @@
 <div class="add-perspective">
 	
-	<form ng-submit="" name=addPost novalidate>
+	<form ng-submit="$ctrl.post()" name=addPost novalidate>
 		
-		<input type="url" ng-model="$ctrl.url" ng-change="$ctrl.urlChange()" class="post-input-url" placeholder="Plak hier een url naar een verfrissend perspectief..." required name="newUrl" http-prefix select-on-click />
+		<input type="url" ng-model="$ctrl.url" ng-change="$ctrl.urlChange()" class="post-input-url" placeholder="Plak hier een url naar een verfrissend perspectief..." required name="newUrl" http-prefix select-on-click/>
 	
 		<div class="post-edit-container" ng-if="$ctrl.postMetaDataAvailable">
 			<a href="{{$ctrl.url}}">
@@ -22,34 +22,55 @@
 				</div>
 
 			</a> 
-			<input ng-model="$ctrl.newSubstantiation" class=""
-				autofocus="true" placeholder="Waarom gaat dit onze blik verruimen?" />
-			<!-- <input type="submit" class="post-input-button" value="Toevoegen" ng-disabled="addPost.$invalid"/> -->
+			
+			<input ng-model="$ctrl.userMessage" class=""
+				autofocus="true" placeholder="Waarom gaat dit onze blik verruimen?" required />
+			
+			<input type="submit" class="post-input-button" value="Toevoegen" ng-disabled="addPost.$invalid"/>
+			
 		</div>
 
 	</form>
 </div>
 
-<!-- <div class="add-perspective" ng-if="!$ctrl.currentUser">
-	<div class="yourpers-instructions"><login-buttons class="left"></login-buttons> om jouw perspectief te delen.</div>
-</div> -->
+<div class="view-posts">
 
-<!-- <div class="post-message-container">
-	<div class="post-message" ng-repeat="post in $ctrl.posts"
-		ng-init="id=post._id" ng-animate="'animate'">
+		<div ng-repeat="post in $ctrl.posts" class="post-edit-container">
+			
+			
+				<div class="post-view-message-container">
+				
+					
+					<div class="voting" ng-init="id=post._id" >
+						<div ng-click="$ctrl.upVote(id)" class="arrow-up"></div>
+						<div class="post-score">{{post.score}}</div>
+						<div ng-click="$ctrl.downVote(id)" class="arrow-down"></div>
+					</div>
+					<div class="post-view-message" ng-bind="post.userMessage"></div>
+					
+				</div>
+			
+			<a href="{{post.url}}">
+			
+				<!-- <img src="{{post.imageUrl}}" style="width:20vw; height:20vw;"/> -->
+				<div class="post-edit-image" ng-if="post.imageUrl"
+					ng-style="{'background-image':'url(\'' + post.imageUrl + '\')'}">
+					<!-- ng-style="{'background-image':'url({{post.imageUrl}})'}"> -->
 
+					<div ng-bind-html="post.publisher" class="post-edit-publisher"
+						type="text" name="text" name="publisher"></div>
+					<div ng-bind-html="post.title" class="post-edit-title"></div>
 
-		<div class="voting">
-			<div ng-click="$ctrl.upVote(id)" class="arrow-up"></div>
-			<div>{{post.score}}</div>
-			<div ng-click="$ctrl.downVote(id)" class="arrow-down"></div>
+				</div>
+				
+				<div class="post-edit-footer">
+					<div class="post-edit-logo"
+						ng-style="{'background-image': 'url(\'' + post.logoUrl + '\')'}"></div>
+					<div ng-bind-html="post.description" class="post-edit-description"></div>
+				</div>
+
+			</a> 			
+			
 		</div>
 
-		<a href="{{post.url}}" target="_self">
-			<div class="post-details">
-				<div class="post-title">{{post.title}}</div>
-				<div class="post-url">{{post.url}}</div>
-			</div>
-		</a>
-	</div>
-</div> -->
+</div>

@@ -21,7 +21,7 @@ angular.module('allpers', [
 	
 	allpersMenu.name,
 	allpersOverview.name,
-	allpersTopic.name,
+//	allpersTopic.name,
 	allpersPosts.name,
 	allpersFeedback.name,
 	allpersLoader.name,
@@ -30,20 +30,23 @@ angular.module('allpers', [
 	
 ])
 
-.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+.config(['$locationProvider', '$routeProvider', '$httpProvider', function($locationProvider, $routeProvider, $httpProvider) {
   
 	$locationProvider.hashPrefix('!');
 	
 	$routeProvider.
-	    when('/news', {
+	    when('/overview', {
 	      template: '<allpers-overview></allpers-overview>'
 	    }).
 	    when('/topic', {
 	      template: '<allpers-topic></allpers-topic>'
 	    }).
-	    when('/post', {
+	    when('/news', {
 		      template: '<allpers-post></allpers-post>'
 	    }).
 	    otherwise('/news');
+	
+	$httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
 	
 }]);
