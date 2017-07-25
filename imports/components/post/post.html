@@ -2,12 +2,12 @@
 	
 	<form ng-submit="$ctrl.post()" name=addPost novalidate>
 		
-		<input type="url" ng-model="$ctrl.url" ng-change="$ctrl.urlChange()" class="post-input-url" placeholder="Plak hier een url naar een verfrissend perspectief..." required name="newUrl" http-prefix select-on-click/>
+		<input type="url" ng-model="$ctrl.url" ng-change="$ctrl.urlChange()" class="post-input-url shimmer" placeholder="Plak hier een url naar een verfrissend perspectief..." required name="newUrl" http-prefix select-on-click/>
 	
 		<input ng-show="$ctrl.postMetaDataAvailable" ng-model="$ctrl.userMessage" class=""
 			autofocus="true" placeholder="Waarom gaat dit onze blik verruimen?" required />
 			
-		<input type="submit" class="post-input-button" value="Toevoegen" ng-disabled="addPost.$invalid"/>
+		<input type="submit" class="post-input-button" value="Toevoegen" ng-disabled="addPost.$invalid" />
 
 
 		<div class="post-edit-container" ng-if="$ctrl.postMetaDataAvailable">
