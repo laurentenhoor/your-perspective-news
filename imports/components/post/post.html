@@ -39,7 +39,6 @@
 			
 			
 				<div class="post-view-message-container">
-				
 					
 					<div class="voting" ng-init="id=post._id" >
 						<div ng-click="$ctrl.upVote(id)" class="arrow-up"></div>
@@ -47,7 +46,6 @@
 						<div ng-click="$ctrl.downVote(id)" class="arrow-down"></div>
 					</div>
 					<div class="post-view-message" ng-bind="post.userMessage"></div>
-					
 				</div>
 	
 				<div class="post-edit-image" ng-if="post.imageUrl"
@@ -69,6 +67,13 @@
 						<div ng-bind-html="post.description" class="post-edit-description"></div>
 					</a> 			
 				</div>
+				<div class="post-view-controls">
+						<!-- <div class="button-request-perspective"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></div> -->
+						<div class="button-request-perspective"><i class="fa fa-cube" aria-hidden="true"></i> Verbreed dit artikel.</div>
+						
+					
+				</div>
+				
 
 			
 			

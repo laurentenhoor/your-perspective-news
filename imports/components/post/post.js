@@ -127,7 +127,7 @@ class PostCtrl {
 		}
 		
 		this.upVote = function(id) {
-			console.log('upVote')
+
 			Posts.update(id, {$inc : { score: 1}});
 		}
 
