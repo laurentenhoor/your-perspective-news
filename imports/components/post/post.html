@@ -35,12 +35,12 @@
 
 <div class="view-posts">
 
-		<div ng-repeat="post in $ctrl.posts" class="post-edit-container post-view-container">
+		<div ng-repeat="post in $ctrl.posts" class="post-edit-container post-view-container" ng-init="id=post._id">
 			
 			
 				<div class="post-view-message-container">
 					
-					<div class="voting" ng-init="id=post._id" >
+					<div class="voting" >
 						<div ng-click="$ctrl.upVote(id)" class="arrow-up"></div>
 						<div class="post-score">{{post.score}}</div>
 						<div ng-click="$ctrl.downVote(id)" class="arrow-down"></div>
@@ -69,7 +69,7 @@
 				</div>
 				<div class="post-view-controls">
 						<!-- <div class="button-request-perspective"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></div> -->
-						<div class="button-request-perspective"><i class="fa fa-cube" aria-hidden="true"></i> Verbreed dit artikel.</div>
+						<div class="button-request-perspective" ng-click="$ctrl.article(id)"><i class="fa fa-cube" aria-hidden="true"></i> Verbreed dit artikel.</div>
 						
 					
 				</div>

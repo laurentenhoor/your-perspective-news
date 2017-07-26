@@ -135,6 +135,10 @@ class PostCtrl {
 			Posts.update(id, {$inc : { score: -1}});
 		}
 		
+		this.article = function() {
+			alert("Hier kun je straks bronnen toevoegen en reageren.");
+		}
+		
 		this.urlChange();
 		
 //		$rootScope.stateIsLoading = true;
