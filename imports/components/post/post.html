@@ -67,10 +67,10 @@
 						<div ng-bind-html="post.description" class="post-edit-description"></div>
 					</a> 			
 				</div>
-				<div class="post-view-controls">
-						<!-- <div class="button-request-perspective"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></div> -->
-						<div class="button-request-perspective" ng-click="$ctrl.article(id)"><i class="fa fa-cube" aria-hidden="true"></i> Verbreed dit artikel.</div>
-						
+				<div class="post-view-controls" ng-click="$ctrl.article(id)">
+						<div class="button-request-perspective"><i class="fa fa-cube" aria-hidden="true"></i> Verbreed dit artikel.</div>
+						<div class="post-view-status">0 <i class="fa fa-paperclip" aria-hidden="true"></i>  0 <i class="fa fa-comments-o" aria-hidden="true"></i>
+						  0 <i class="fa fa-cubes" aria-hidden="true"></i></div>
 					
 				</div>
 				
