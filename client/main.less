@@ -4,6 +4,10 @@
 @import url("https://fonts.googleapis.com/css?family=Lato|Montserrat|Open+Sans|Oswald|Raleway|Roboto");
 
 @import "../imports/style/bootstrap.less";
+
+@import "../imports/style/variables.less";
+
+
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 .modal-backdrop.in {
     filter: alpha(opacity=50);
@@ -133,9 +137,10 @@ a {
     background: #f35b20;
     
 //    border-top: 0.08em solid #f35b20;
-    border-top: 0.08em solid rgba(243, 91, 32, 0.4);
+    border-top: 0.08em solid fade(@brand-color, 40%);
+    //rgba(243, 91, 32, 0.4);
     background: white;
-    color: #f35b20;
+    color: @brand-color;
 
     
 }
@@ -179,7 +184,7 @@ b {
     display: table;
     color: #3d448b;
     
-    color: #f35b20;
+    color: @brand-color;
     padding-left: 5.3vw;
     margin-top: -1.1vw;
 }
