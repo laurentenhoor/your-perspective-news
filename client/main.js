@@ -8,6 +8,7 @@ import allpersTopic from '../imports/components/topic/topic';
 import allpersPosts from '../imports/components/post/post';
 import allpersFeedback from '../imports/components/feedback/feedback';
 import allpersLoader from '../imports/components/loader/loader';
+import allpersItem from '../imports/components/item/item';
 
 import '../imports/startup/accounts-config.js';
 
@@ -25,6 +26,7 @@ angular.module('allpers', [
 	allpersTopic.name,
 	allpersPosts.name,
 	allpersFeedback.name,
+	allpersItem.name,
 	
 	
 	'accounts.ui'
@@ -44,6 +46,9 @@ angular.module('allpers', [
 	    }).
 	    when('/news', {
 		      template: '<allpers-post></allpers-post>'
+	    }).
+	    when('/item/:id', {
+	    		template: '<allpers-item></allpers-item>'
 	    }).
 	    otherwise('/news');
 	

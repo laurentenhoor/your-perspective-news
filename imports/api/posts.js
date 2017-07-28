@@ -10,3 +10,9 @@ Posts.before.insert(function (userId, doc) {
 		doc.updatedAt = Date.now();
 	}
 });
+
+if(Meteor.isServer) {
+    Meteor.publish('posts', function(){
+        return Posts.find({});
+    });
+}
