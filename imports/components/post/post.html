@@ -45,7 +45,9 @@
 						<div class="post-score">{{post.score}}</div>
 						<div ng-click="$ctrl.downVote(id)" class="arrow-down"></div>
 					</div>
-					<div class="post-view-message" ng-bind="post.userMessage"></div>
+					<a href="#!/item/{{id}}">
+						<div class="post-view-message" ng-bind="post.userMessage"></div>
+					</a>
 				</div>
 	
 				<div class="post-edit-image" ng-if="post.imageUrl"
