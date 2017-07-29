@@ -14,9 +14,10 @@
 <ul class="menu">
 	<li ng-hide="isActive('/news')"><a href="#!/news">&#8612;
 			nieuwsoverzicht</a></li>
-	<li ng-show="isActive('/news')"><a href="">nieuwsoverzicht</a></li>
+			
+	<li ng-show="isActive('/news')"><a href="">nieuwsoverzicht</a> </li>
 	
-	<login-buttons class="right" ng-if="isActive('/news')"></login-buttons>
+	<login-buttons class="right"></login-buttons>
 	
 	<span ng-if="isActive('/topic')" class="menu-view-switch" sidebarjs-toggle> 
 		<!-- <i class="fa fa-th" aria-hidden="true"></i>
