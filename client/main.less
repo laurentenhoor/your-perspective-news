@@ -8,6 +8,15 @@
 @import "../imports/style/bootstrap.less";
 
 
+.red {
+	color: @brand-color;
+}
+
+.logo-desktop {
+	width:5vw;
+	margin-top: -0.5vw;
+}	
+
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 .modal-backdrop.in {
     filter: alpha(opacity=50);
@@ -35,7 +44,11 @@
    }
    
    
-.desktopShow { display: inline;}
+.desktopShow { 
+	display: inline;
+    text-shadow: 0.08vw 0.08vw #ffffff;
+    color: rgba(56, 56, 56, 0.8);
+}
    /* Smartphone Portrait and Landscape */
    @media only screen
    and (min-device-width : 320px)
@@ -171,6 +184,7 @@ b {
 	font-weight: 600;
 }
 
+
 .pectives {
 	color: #7d78a2;
 	font-weight: 100;
@@ -196,7 +210,7 @@ b {
     font-size: 8.9vw;
     color: #debf62;
     text-shadow: 0.3vw 0.3vw #3d448b;
-    filter: sepia() saturate(7%) hue-rotate(195deg);
+    //filter: sepia() saturate(7%) hue-rotate(195deg);
 }
 
 .company-text {
