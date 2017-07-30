@@ -4,11 +4,13 @@ import template from './menu.html';
 
 class MenuCtrl {
 	
-  constructor($scope, $location) {
+  constructor($scope, $location, $window) {
 	  
 	  $scope.isActive = function(viewLocation) {
 	    return viewLocation === $location.path();
-	  };		
+	  };	
+	  
+	  $scope.window = $window;
 	  
   }
   
@@ -19,5 +21,5 @@ export default angular.module('menu', [
 ])
   .component('allpersMenu', {
     templateUrl : template,
-    controller: ['$scope', '$location', MenuCtrl]
+    controller: ['$scope', '$location', '$window', MenuCtrl]
   });

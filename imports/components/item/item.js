@@ -11,7 +11,7 @@ import { Meteor } from 'meteor/meteor';
 
 class ItemCtrl {
 
-	constructor($rootScope, $scope, $reactive, $http, $routeParams) {
+	constructor($rootScope, $scope, $reactive, $http, $routeParams, $window) {
 
 		$reactive(this).attach($scope);
 	
@@ -26,6 +26,8 @@ class ItemCtrl {
 
 
 		});
+		
+		$window.scrollTo(0, 0);
 
 	}
 }
@@ -35,5 +37,5 @@ export default angular.module('allpers.item', [
 	])
 	.component('allpersItem', {
 		templateUrl : template,
-		controller: ['$rootScope', '$scope', '$reactive', '$http', '$routeParams', ItemCtrl]
+		controller: ['$rootScope', '$scope', '$reactive', '$http', '$routeParams', '$window', ItemCtrl]
 	});

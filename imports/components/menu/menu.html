@@ -11,8 +11,9 @@
 </a>
 
 <ul class="menu">
-	<li ng-hide="isActive('/nieuws')"><a href="#!/nieuws">&#8612;
-			nieuwsoverzicht</a></li>
+	<li ng-hide="isActive('/nieuws')" ng-click="window.history.back()">
+		<a href="">&#8612; terug</a>
+	</li>
 			
 	<li ng-show="isActive('/nieuws')"><a href="">nieuwsoverzicht</a> </li>
 	
