@@ -44,13 +44,13 @@ angular.module('allpers', [
 	    when('/topic', {
 	      template: '<allpers-topic></allpers-topic>'
 	    }).
-	    when('/news', {
+	    when('/nieuws', {
 		      template: '<allpers-post></allpers-post>'
 	    }).
 	    when('/item/:id', {
 	    		template: '<allpers-item></allpers-item>'
 	    }).
-	    otherwise('/news');
+	    otherwise('/nieuws');
 	
 	$httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
