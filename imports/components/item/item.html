@@ -1,36 +1,64 @@
 
 <div class="post-edit-container post-view-container">
-<div class="post-view-message-container">
+	<div class="post-view-message-container">
 
-	<div class="voting">
-		<div ng-click="$ctrl.upVote(id)" class="arrow-up"></div>
-		<div class="post-score">{{$ctrl.post.score}}</div>
-		<div ng-click="$ctrl.downVote(id)" class="arrow-down"></div>
+		<div class="voting">
+			<div ng-click="$ctrl.upVote(id)" class="arrow-up"></div>
+			<div class="post-score">{{$ctrl.post.score}}</div>
+			<div ng-click="$ctrl.downVote(id)" class="arrow-down"></div>
+		</div>
+		<div class="post-view-message" ng-bind="$ctrl.post.userMessage"></div>
 	</div>
-	<div class="post-view-message" ng-bind="$ctrl.post.userMessage"></div>
-</div>
 
-<div class="post-edit-image" ng-if="$ctrl.post.imageUrl"
-	ng-style="{'background-image':'url(\'' + $ctrl.post.imageUrl + '\')'}">
+	<div class="post-edit-image" ng-if="$ctrl.post.imageUrl"
+		ng-style="{'background-image':'url(\'' + $ctrl.post.imageUrl + '\')'}">
 
-	<div ng-bind-html="$ctrl.post.publisher" class="post-edit-publisher"
-		type="text" name="text" name="publisher"></div>
-	<a ext-link href="{{$ctrl.post.url}}" target="_self">
-		<div ng-bind-html="$ctrl.post.title" class="post-edit-title"></div>
-	</a>
-</div>
+		<div ng-bind-html="$ctrl.post.publisher" class="post-edit-publisher"
+			type="text" name="text" name="publisher"></div>
+		<a ext-link href="{{$ctrl.post.url}}" target="_self">
+			<div ng-bind-html="$ctrl.post.title" class="post-edit-title"></div>
+		</a>
+	</div>
 
-<div class="post-edit-footer">
-	<a ext-link href="{{$ctrl.post.url}}" target="_self">
-		<div class="post-edit-logo"
-			ng-style="{'background-image': 'url(\'' + $ctrl.post.logoUrl + '\')'}"></div>
-		<div ng-bind-html="$ctrl.post.description" class="post-edit-description"></div>
-	</a>
-</div>
+	<div class="post-edit-footer">
+		<a ext-link href="{{$ctrl.post.url}}" target="_self">
+			<div class="post-edit-logo"
+				ng-style="{'background-image': 'url(\'' + $ctrl.post.logoUrl + '\')'}"></div>
+			<div ng-bind-html="$ctrl.post.description"
+				class="post-edit-description"></div>
+		</a>
+	</div>
 
-
-<img src="thread.png" style="width:100%;margin-top:3vw;"/>
-
+	<!-- <img src="thread.png" style="width:100%;margin-top:3vw;"/> -->
 
 </div>
 
+
+<div class="comment-container">
+	
+	<a href="">Reageer op dit artikel</a>
+		
+		<form ng-submit="$ctrl.newComment(comment);showDetails=false;" name=newComment novalidate >
+			<input type="text" ng-model="comment.newChildComment"></input>
+			<input class="post-input-button" type="submit" value="Opslaan"></input>
+		</form>
+		
+		
+	<div ng-repeat="comment in $ctrl.comments" class="comment">
+		
+		<b>{{comment.comment}} </b> -
+		
+		<a href="" ng-click="showDetails = ! showDetails">Reageer op deze opmerking</a>
+		
+		<form ng-submit="$ctrl.newComment(comment);showDetails=false;" name=newComment novalidate ng-show="showDetails">
+			<input type="text" ng-model="comment.newChildComment"></input>
+			<input class="post-input-button" type="submit" value="Opslaan"></input>
+		</form>
+		
+		<div ng-repeat="childComment in comment.children">
+			>>  {{childComment.comment}}
+		</div>
+		
+	</div>
+	
+</div>
