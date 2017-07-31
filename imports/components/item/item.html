@@ -36,9 +36,9 @@
 
 <div class="comment-container">
 	
-	<a href="">Reageer op dit artikel</a>
+	<a href="" style="padding-left:3vw;">Reageer op dit artikel</a>
 		
-		<form ng-submit="$ctrl.newComment(comment);showDetails=false;" name=newComment novalidate >
+		<form style="margin-top:2vw;" ng-submit="$ctrl.newComment(comment);showDetails=false;" name=newComment novalidate >
 			<input type="text" ng-model="comment.newChildComment"></input>
 			<input class="post-input-button" type="submit" value="Opslaan"></input>
 		</form>
@@ -46,18 +46,21 @@
 		
 	<div ng-repeat="comment in $ctrl.comments" class="comment">
 		
+		<div style="padding-left:3vw">
 		<b>{{comment.comment}} </b> -
 		
 		<a href="" ng-click="showDetails = ! showDetails">Reageer op deze opmerking</a>
+		</div>
+
 		
-		<form ng-submit="$ctrl.newComment(comment);showDetails=false;" name=newComment novalidate ng-show="showDetails">
+		<div ng-repeat="childComment in comment.children" style="padding-left:6vw;margin-top:2vw;">
+			>>  {{childComment.comment}}
+		</div>
+		
+		<form style="margin-top:2vw;" ng-submit="$ctrl.newComment(comment);showDetails=false;" name=newComment novalidate ng-show="showDetails">
 			<input type="text" ng-model="comment.newChildComment"></input>
 			<input class="post-input-button" type="submit" value="Opslaan"></input>
 		</form>
-		
-		<div ng-repeat="childComment in comment.children">
-			>>  {{childComment.comment}}
-		</div>
 		
 	</div>
 	
