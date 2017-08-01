@@ -53,7 +53,7 @@
 				<div class="arrow-up-comment"></div><div class="comment-voting-score"> 0 </div><div class="arrow-down-comment"></div>
 			</div>
 
-			<form name="newComment" novalidate style="margin-top:2vw;" ng-submit="$ctrl.newComment(comment);showDetails=false;" ng-show="showDetails">
+			<form name="newComment" novalidate style="margin-top:2vw;" ng-submit="$ctrl.newComment(comment);showDetails=false;" ng-if="showDetails">
 				<textarea class="comment-input" ng-model="comment.newChildComment" required autofocus></textarea>
 				<input class="comment-input-button" type="submit" value="Reageer" ng-disabled="newComment.$invalid"></input>
 			</form>
