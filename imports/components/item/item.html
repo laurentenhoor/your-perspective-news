@@ -53,9 +53,9 @@
 				<div class="arrow-up-comment"></div><div class="comment-voting-score"> 0 </div><div class="arrow-down-comment"></div>
 			</div>
 
-			<form style="margin-top:2vw;" ng-submit="$ctrl.newComment(comment);showDetails=false;" name=newComment novalidate ng-show="showDetails">
-				<textarea class="comment-input" ng-model="comment.newChildComment"></textarea>
-				<input class="comment-input-button" type="submit" value="Opslaan"></input>
+			<form name="newComment" novalidate style="margin-top:2vw;" ng-submit="$ctrl.newComment(comment);showDetails=false;" ng-show="showDetails">
+				<textarea class="comment-input" ng-model="comment.newChildComment" required></textarea>
+				<input class="comment-input-button" type="submit" value="Reageer" ng-disabled="newComment.$invalid"></input>
 			</form>
 
 		</div>
@@ -78,9 +78,9 @@
 	</div>
 	
 		
-	<form ng-if="showRootInput" style="margin-top:2vw;" ng-submit="$ctrl.newComment(comment);showDetails=false;" name=newComment novalidate >
-		<textarea class="comment-input root" ng-model="comment.newChildComment"></textarea>
-		<input class="post-input-button" type="submit" value="Opslaan"></input>
+	<form name="newComment" novalidate ng-if="showRootInput" style="margin-top:2vw;" ng-submit="$ctrl.newComment(comment);showDetails=false;">
+		<textarea class="comment-input root" ng-model="comment.newChildComment" required></textarea>
+		<input class="comment-input-button root" type="submit" value="Reageer" ng-disabled="newComment.$invalid"></input>
 	</form>
 			
 	<div class="comment-tree" ng-repeat="comment in $ctrl.comments" ng-include="'comment_renderer.html'">
