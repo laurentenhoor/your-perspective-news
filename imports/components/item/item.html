@@ -37,8 +37,6 @@
 
 <script type="text/ng-template"  id="comment_renderer.html">
 	
-	<div class="comment-tree">
-
 	<div class="comment-content-container">
 		
 		<div class="comment-content-header">
@@ -62,9 +60,11 @@
 
 		</div>
 
-	</div>
-
-		<div ng-init="showDetails=false" ng-repeat="comment in comment.children" ng-include="'comment_renderer.html'"></div>
+	
+		<div class="comment-tree">
+			<div ng-init="showDetails=false" ng-repeat="comment in comment.children" ng-include="'comment_renderer.html'">
+			</div>
+		</div>	
 
     </div>
 
@@ -83,7 +83,7 @@
 		<input class="post-input-button" type="submit" value="Opslaan"></input>
 	</form>
 			
-	<div ng-repeat="comment in $ctrl.comments" ng-include="'comment_renderer.html'">
+	<div class="comment-tree" ng-repeat="comment in $ctrl.comments" ng-include="'comment_renderer.html'">
 	
 	</div>
 
