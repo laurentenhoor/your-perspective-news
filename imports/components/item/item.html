@@ -54,7 +54,7 @@
 			</div>
 
 			<form name="newComment" novalidate style="margin-top:2vw;" ng-submit="$ctrl.newComment(comment);showDetails=false;" ng-show="showDetails">
-				<textarea class="comment-input" ng-model="comment.newChildComment" required></textarea>
+				<textarea class="comment-input" ng-model="comment.newChildComment" required autofocus></textarea>
 				<input class="comment-input-button" type="submit" value="Reageer" ng-disabled="newComment.$invalid"></input>
 			</form>
 
@@ -79,7 +79,7 @@
 	
 		
 	<form name="newComment" novalidate ng-if="showRootInput" style="margin-top:2vw;" ng-submit="$ctrl.newComment(comment);showDetails=false;">
-		<textarea class="comment-input root" ng-model="comment.newChildComment" required></textarea>
+		<textarea class="comment-input root" ng-model="comment.newChildComment" required autofocus></textarea>
 		<input class="comment-input-button root" type="submit" value="Reageer" ng-disabled="newComment.$invalid"></input>
 	</form>
 			
