@@ -79,7 +79,7 @@
 	
 		
 	<form ng-if="showRootInput" style="margin-top:2vw;" ng-submit="$ctrl.newComment(comment);showDetails=false;" name=newComment novalidate >
-		<textarea class="comment-input" ng-model="comment.newChildComment"></textarea>
+		<textarea class="comment-input root" ng-model="comment.newChildComment"></textarea>
 		<input class="post-input-button" type="submit" value="Opslaan"></input>
 	</form>
 			
