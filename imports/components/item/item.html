@@ -73,9 +73,9 @@
 
 <div class="comment-container">
 	
-	<a href="" style="padding-left:3vw;">Reageer op dit artikel</a>
+	<a href="" ng-init="showRootInput=false" ng-click="showRootInput = ! showRootInput" style="padding-right:3vw;">Reageer op dit artikel <i class="fa fa-reply" aria-hidden="true"></i></a>
 		
-	<form style="margin-top:2vw;" ng-submit="$ctrl.newComment(comment);showDetails=false;" name=newComment novalidate >
+	<form ng-if="showRootInput" style="margin-top:2vw;" ng-submit="$ctrl.newComment(comment);showDetails=false;" name=newComment novalidate >
 		<textarea class="comment-input" ng-model="comment.newChildComment"></textarea>
 		<input class="post-input-button" type="submit" value="Opslaan"></input>
 	</form>
