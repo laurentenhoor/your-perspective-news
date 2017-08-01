@@ -1,4 +1,5 @@
 
+
 <div class="post-edit-container post-view-container">
 	<div class="post-view-message-container">
 
@@ -34,34 +35,31 @@
 </div>
 
 
+<script type="text/ng-template"  id="comment_renderer.html">
+
+    <b>{{comment.comment}}</b> - <a href="" ng-click="showDetails = ! showDetails">Reageer</a>
+
+	<form style="margin-top:2vw;" ng-submit="$ctrl.newComment(comment);showDetails=false;" name=newComment novalidate ng-if="showDetails">
+		<input type="text" ng-model="comment.newChildComment" autofocus="true"></input>
+		<input class="post-input-button" type="submit" value="Opslaan"></input>
+	</form>
+	
+    <ul>
+        <li ng-init="showDetails=false" ng-repeat="comment in comment.children" ng-include="'comment_renderer.html'"></li>
+    </ul>
+
+</script>
+
+
 <div class="comment-container">
 	
 	<a href="" style="padding-left:3vw;">Reageer op dit artikel</a>
 		
-		<form style="margin-top:2vw;" ng-submit="$ctrl.newComment(comment);showDetails=false;" name=newComment novalidate >
-			<input type="text" ng-model="comment.newChildComment"></input>
-			<input class="post-input-button" type="submit" value="Opslaan"></input>
-		</form>
-		
-		
-	<div ng-repeat="comment in $ctrl.comments" class="comment">
-		
-		<div style="padding-left:3vw">
-		<b>{{comment.comment}} </b> -
-		
-		<a href="" ng-click="showDetails = ! showDetails">Reageer op deze opmerking</a>
-		</div>
+	<form style="margin-top:2vw;" ng-submit="$ctrl.newComment(comment);showDetails=false;" name=newComment novalidate >
+		<input type="text" ng-model="comment.newChildComment"></input>
+		<input class="post-input-button" type="submit" value="Opslaan"></input>
+	</form>
+			
+	<li ng-repeat="comment in $ctrl.comments" ng-include="'comment_renderer.html'"></li>
 
-		
-		<div ng-repeat="childComment in comment.children" style="padding-left:6vw;margin-top:2vw;">
-			>>  {{childComment.comment}}
-		</div>
-		
-		<form style="margin-top:2vw;" ng-submit="$ctrl.newComment(comment);showDetails=false;" name=newComment novalidate ng-show="showDetails">
-			<input type="text" ng-model="comment.newChildComment"></input>
-			<input class="post-input-button" type="submit" value="Opslaan"></input>
-		</form>
-		
-	</div>
-	
 </div>
