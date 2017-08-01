@@ -1,7 +1,7 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
-import allpersPostsSidebar from '../posts-sidebar/posts-sidebar';
+import yourpersPostsSidebar from '../posts-sidebar/posts-sidebar';
 
 import { Meteor } from 'meteor/meteor';
 
@@ -101,10 +101,10 @@ class TopicCtrl {
 }
 
 
-export default angular.module('allpers.topic', [
-angularMeteor, allpersPostsSidebar.name
+export default angular.module('yourpers.topic', [
+angularMeteor, yourpersPostsSidebar.name
 ])
-.component('allpersTopic', {
+.component('yourpersTopic', {
 	templateUrl : template,
 	controller: ['$rootScope', '$scope', TopicCtrl]
 });

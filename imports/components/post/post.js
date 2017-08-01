@@ -147,10 +147,10 @@ class PostCtrl {
 	}
 }
 
-export default angular.module('allpers.post', [
+export default angular.module('yourpers.post', [
 	angularMeteor, angularSanitize
 	])
-	.component('allpersPost', {
+	.component('yourpersPost', {
 		templateUrl : template,
 		controller: ['$rootScope', '$scope', '$reactive', '$http', PostCtrl]
 	})

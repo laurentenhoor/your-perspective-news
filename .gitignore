@@ -1,6 +1,7 @@
 logs/*
 !.gitkeep
 node_modules/
+!node_modules/website-logo/
 bower_components/
 tmp
 .DS_Store

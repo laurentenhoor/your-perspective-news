@@ -19,7 +19,7 @@ class MenuCtrl {
 export default angular.module('menu', [
   angularMeteor
 ])
-  .component('allpersMenu', {
+  .component('yourpersMenu', {
     templateUrl : template,
     controller: ['$scope', '$location', '$window', MenuCtrl]
   });

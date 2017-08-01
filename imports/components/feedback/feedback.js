@@ -49,11 +49,11 @@ class FeedbackCtrl {
 
 }
 
-export default angular.module('allpers.feedback', [
+export default angular.module('yourpers.feedback', [
 	angularMeteor, angularBootstrap, modalCtrl.name,
 	])
 
-	.component('allpersFeedback', {
+	.component('yourpersFeedback', {
 		templateUrl : template,
 		controller: ['$rootScope', '$scope', '$document', '$uibModal', FeedbackCtrl]
 	});

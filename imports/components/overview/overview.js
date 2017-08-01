@@ -30,10 +30,10 @@ class OverviewCtrl {
 	}
 }
 
-export default angular.module('allpers.overview', [
+export default angular.module('yourpers.overview', [
   angularMeteor
 ])
-  .component('allpersOverview', {
+  .component('yourpersOverview', {
     templateUrl : template,
     controller: ['$http', '$scope', OverviewCtrl]
   });

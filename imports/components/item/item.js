@@ -96,10 +96,10 @@ class ItemCtrl {
 	}
 }
 
-export default angular.module('allpers.item', [
+export default angular.module('yourpers.item', [
 	angularMeteor
 	])
-	.component('allpersItem', {
+	.component('yourpersItem', {
 		templateUrl : template,
 		controller: ['$rootScope', '$scope', '$reactive', '$http', '$routeParams', '$window', ItemCtrl]
 	});

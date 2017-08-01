@@ -38,10 +38,10 @@ class LoaderCtrl {
 
 }
 
-export default angular.module('allpers.loader', [
+export default angular.module('yourpers.loader', [
 	angularMeteor
 	])
-	.component('allpersLoader', {
+	.component('yourpersLoader', {
 		templateUrl : template,
 		controller: ['$rootScope', '$scope', '$location', LoaderCtrl]
 	})

@@ -2,31 +2,31 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import angularRoute from 'angular-route';
 
-import allpersMenu from '../imports/components/menu/menu';
-import allpersOverview from '../imports/components/overview/overview';
-import allpersTopic from '../imports/components/topic/topic';
-import allpersPosts from '../imports/components/post/post';
-import allpersFeedback from '../imports/components/feedback/feedback';
-import allpersLoader from '../imports/components/loader/loader';
-import allpersItem from '../imports/components/item/item';
+import yourpersMenu from '../imports/components/menu/menu';
+import yourpersOverview from '../imports/components/overview/overview';
+import yourpersTopic from '../imports/components/topic/topic';
+import yourpersPosts from '../imports/components/post/post';
+import yourpersFeedback from '../imports/components/feedback/feedback';
+import yourpersLoader from '../imports/components/loader/loader';
+import yourpersItem from '../imports/components/item/item';
 
 import '../imports/startup/accounts-config.js';
 
 import template from './main.html';
 
 
-angular.module('allpers', [
+angular.module('yourpers', [
 	
 	angularMeteor,
 	angularRoute,
 	
-	allpersLoader.name,
-	allpersMenu.name,
-	allpersOverview.name,
-	allpersTopic.name,
-	allpersPosts.name,
-	allpersFeedback.name,
-	allpersItem.name,
+	yourpersLoader.name,
+	yourpersMenu.name,
+	yourpersOverview.name,
+	yourpersTopic.name,
+	yourpersPosts.name,
+	yourpersFeedback.name,
+	yourpersItem.name,
 	
 	
 	'accounts.ui'
@@ -39,16 +39,16 @@ angular.module('allpers', [
 	
 	$routeProvider.
 	    when('/overview', {
-	      template: '<allpers-overview></allpers-overview>'
+	      template: '<yourpers-overview></yourpers-overview>'
 	    }).
 	    when('/topic', {
-	      template: '<allpers-topic></allpers-topic>'
+	      template: '<yourpers-topic></yourpers-topic>'
 	    }).
 	    when('/nieuws', {
-		      template: '<allpers-post></allpers-post>'
+		      template: '<yourpers-post></yourpers-post>'
 	    }).
 	    when('/item/:id', {
-	    		template: '<allpers-item></allpers-item>'
+	    		template: '<yourpers-item></yourpers-item>'
 	    }).
 	    otherwise('/nieuws');
 	
