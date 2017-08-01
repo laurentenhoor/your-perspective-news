@@ -55,7 +55,7 @@
 				<div class="arrow-up-comment"></div><div class="comment-voting-score"> 0 </div><div class="arrow-down-comment"></div>
 			</div>
 
-			<form style="margin-top:2vw;" ng-submit="$ctrl.newComment(comment);showDetails=false;" name=newComment novalidate ng-if="showDetails">
+			<form style="margin-top:2vw;" ng-submit="$ctrl.newComment(comment);showDetails=false;" name=newComment novalidate ng-show="showDetails">
 				<textarea class="comment-input" ng-model="comment.newChildComment"></textarea>
 				<input class="comment-input-button" type="submit" value="Opslaan"></input>
 			</form>
