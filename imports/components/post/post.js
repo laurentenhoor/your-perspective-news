@@ -34,7 +34,7 @@ class PostCtrl {
 		
 		this.helpers({
 			posts() {
-				return Posts.find({}, {sort: {createdAt: -1}, limit: 10}).fetch()//.reverse();
+				return Posts.find({}, {sort: {score: -1}, limit: 30}).fetch()//.reverse();
 			},
 			currentUser() {
 				return Meteor.user();
