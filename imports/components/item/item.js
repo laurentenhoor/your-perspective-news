@@ -17,9 +17,11 @@ class ItemCtrl {
 	constructor($rootScope, $scope, $reactive, $http, $routeParams, $window) {
 
 		$reactive(this).attach($scope);
-
+	
+		$rootScope.stateIsLoading = true;
 		Meteor.subscribe('votes', function() {
 			$scope.dataAvailable = true;
+			$rootScope.stateIsLoading = false;
 			$scope.$apply();
 		});	
 		

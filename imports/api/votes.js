@@ -16,9 +16,3 @@ if(Meteor.isServer) {
         return Votes.find({ownerId: Meteor.userId()});
     });
 }
-
-if(Meteor.isClient) {
-//	Meteor.subscribe('votes', function() {
-//		
-//	});
-}
