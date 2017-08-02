@@ -40,10 +40,10 @@
 			
 				<div class="post-view-message-container">
 					
-					<div class="voting" >
-						<div ng-click="$ctrl.vote(id,1)" class="arrow-up"></div>
+					<div class="voting" ng-init="voteValue=$ctrl.voteValue(id)" >
+						<div ng-click="$ctrl.vote(id,1)" class="arrow-up" ng-class="{true: 'upvoted', false: ''}[voteValue==1]"></div>
 						<div class="post-score">{{post.score}}</div>
-						<div ng-click="$ctrl.vote(id,-1)" class="arrow-down"></div>
+						<div ng-click="$ctrl.vote(id,-1)" class="arrow-down" ng-class="{true: 'downvoted', false: ''}[voteValue==-1]"></div>
 					</div>
 					<a href="#!/item/{{id}}">
 						<div class="post-view-message" ng-bind="post.userMessage"></div>

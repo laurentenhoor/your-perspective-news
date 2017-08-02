@@ -23,7 +23,6 @@ cwaring:modernizr
 less@2.7.9
 aldeed:simple-schema
 matb33:collection-hooks
-autopublish
 accounts-password
 dotansimha:accounts-ui-angular
 http

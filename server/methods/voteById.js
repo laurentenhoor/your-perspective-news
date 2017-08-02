@@ -9,7 +9,7 @@ Meteor.methods({
 			throw new Meteor.Error('not-logged-in', "Please login first");
 		}
 		
-		// robustness if someone adjusts the javascript
+		// robustness for adjusting the javascript value
 		if (voteValue > 0) {
 			voteValue = 1;
 		} else {
@@ -17,14 +17,16 @@ Meteor.methods({
 		}
 
 		// check if a vote already exists for this user and article
-		var vote = Votes.findOne({articleId : id, owner: Meteor.userId()});
+		var vote = Votes.findOne({articleId : id, ownerId: Meteor.userId()});
+		console.log(voteValue)
+		console.log(vote)
 		
 		if (!vote) {
 			
 			Votes.insert({
-				owner: Meteor.userId(),
-				email: Meteor.user() ? Meteor.user().emails[0].address : 'null',
-				type: 'article',
+				ownerId: Meteor.userId(),
+				ownerName: Meteor.user().username,
+//				email: Meteor.user() ? Meteor.user().emails[0].address : 'null',
 				value: voteValue,
 				articleId : id
 			});

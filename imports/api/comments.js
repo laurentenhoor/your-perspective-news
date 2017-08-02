@@ -16,3 +16,7 @@ if(Meteor.isServer) {
         return Comments.find({});
     });
 }
+
+if(Meteor.isClient) {
+	Meteor.subscribe('comments');
+}

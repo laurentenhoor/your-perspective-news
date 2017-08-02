@@ -1,12 +1,10 @@
-
-
 <div class="post-edit-container post-view-container">
 	<div class="post-view-message-container">
 
 		<div class="voting">
-			<div ng-click="$ctrl.vote($ctrl.post._id, 1)" class="arrow-up"></div>
-			<div class="post-score">{{$ctrl.post.score}}</div>
-			<div ng-click="$ctrl.vote($ctrl.post._id, -1)" class="arrow-down"></div>
+			<div ng-click="$ctrl.vote($ctrl.post._id,1);" class="arrow-up" ng-class="{true: 'upvoted', false: ''}[$ctrl.voteValue($ctrl.post._id)==1]"></div>
+			<div class="post-score">{{$ctrl.post.score}} </div>
+			<div ng-click="$ctrl.vote($ctrl.post._id,-1);" class="arrow-down" ng-class="{true: 'downvoted', false: ''}[$ctrl.voteValue($ctrl.post._id)==-1]"></div>
 		</div>
 		<div class="post-view-message" ng-bind="$ctrl.post.userMessage"></div>
 	</div>
@@ -40,7 +38,7 @@
 	<div class="comment-content-container">
 		
 		<div class="comment-content-header">
-			<b>anoniem</b>
+			<b>{{comment.ownerName || 'anoniem'}} </b>
 		</div>
 		<div class="comment-content-text">	
 			{{comment.comment}}
@@ -78,9 +76,9 @@
 	</div>
 	
 		
-	<form name="newComment" novalidate ng-if="showRootInput" style="margin-top:2vw;" ng-submit="$ctrl.newComment(comment);showDetails=false;">
+	<form name="newCommentRoot" novalidate ng-show="showRootInput" style="margin-top:2vw;" ng-submit="showRootInput=false;$ctrl.newComment(comment);">
 		<textarea class="comment-input root" ng-model="comment.newChildComment" required autofocus></textarea>
-		<input class="comment-input-button root" type="submit" value="Reageer" ng-disabled="newComment.$invalid"></input>
+		<input class="comment-input-button root" type="submit" value="Reageer" ng-disabled="newCommentRoot.$invalid"></input>
 	</form>
 			
 	<div class="comment-tree" ng-repeat="comment in $ctrl.comments" ng-include="'comment_renderer.html'">

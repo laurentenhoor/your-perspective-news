@@ -35,6 +35,15 @@ class PostCtrl {
 			
 		});
 		
+		this.voteValue = function(id) {
+			console.log(id);
+			if (vote = Votes.findOne({articleId : id})) {
+				return vote.value;
+			}
+			return 0;
+			
+		}
+		
 		function isValid(url) {
 			
 		    var urlregex = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
@@ -108,9 +117,10 @@ class PostCtrl {
 				logoUrl : this.logoUrl,
 				rawMetadata : JSON.stringify(this.rawMetadata),
 				score: 0,
-				owner: Meteor.userId(),
-				email: Meteor.user() ? Meteor.user().emails[0].address : 'null',
-						ip: $rootScope.ip
+				ownerId: Meteor.userId(),
+				ownerName: Meteor.user().username,
+//				email: Meteor.user() ? Meteor.user().emails[0].address : 'null',
+				ip: $rootScope.ip
 			}, function(error, _id){
 				
 				console.log('error: ' + error);

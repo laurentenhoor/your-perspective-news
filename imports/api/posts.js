@@ -16,3 +16,7 @@ if(Meteor.isServer) {
         return Posts.find({});
     });
 }
+
+if(Meteor.isClient) {
+	Meteor.subscribe('posts');
+}

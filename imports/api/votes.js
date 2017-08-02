@@ -13,6 +13,10 @@ Votes.before.insert(function (userId, doc) {
 
 if(Meteor.isServer) {
     Meteor.publish('votes', function(){
-        return Votes.find({owner: Meteor.userId()});
+        return Votes.find({ownerId: Meteor.userId()});
     });
+}
+
+if(Meteor.isClient) {
+	Meteor.subscribe('votes');
 }

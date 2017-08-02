@@ -8,6 +8,7 @@ import style from '../post/post.less';
 import style2 from './item.less';
 
 import { Posts } from '../../api/posts.js';
+import { Votes } from '../../api/votes.js';
 import { Comments } from '../../api/comments.js';
 import { Meteor } from 'meteor/meteor';
 
@@ -53,9 +54,7 @@ class ItemCtrl {
 	
 		this.helpers({
 			post() {
-				var post =Posts.findOne({_id: $routeParams.id});
-				console.log(post);
-				return post;
+				return Posts.findOne({_id: $routeParams.id});
 			},
 			comments() {
 				var comments = Comments.find({parentItemId: $routeParams.id})
@@ -77,6 +76,8 @@ class ItemCtrl {
 			Comments.insert({
 				parentItemId : $routeParams.id,
 				parentCommentId : comment._id,
+				ownerId : Meteor.userId(),
+				ownerName : Meteor.user().username,
 				comment : comment.newChildComment,
 				score: 0
 				
@@ -92,12 +93,19 @@ class ItemCtrl {
 		}
 		
 		this.vote = function(id, voteValue) {
-			
 			if (!Meteor.userId()) {
 				$('#login-sign-in-link').click();
 				return;
 			}
 			this.call('voteById', id, voteValue); 
+			
+		}
+		
+		this.voteValue = function(id) {
+		
+			if (vote = Votes.findOne({articleId : id}))
+				return vote.value;
+			return 0;
 			
 		}
 		
