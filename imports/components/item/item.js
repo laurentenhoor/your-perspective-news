@@ -18,12 +18,11 @@ class ItemCtrl {
 
 		$reactive(this).attach($scope);
 	
-		$rootScope.stateIsLoading = true;
 		Meteor.subscribe('votes', function() {
 			$scope.dataAvailable = true;
-			$rootScope.stateIsLoading = false;
 			$scope.$apply();
-		});	
+		});
+//		console.log($routeParams.id);	
 		
 		function buildHierarchy(arry) {
 

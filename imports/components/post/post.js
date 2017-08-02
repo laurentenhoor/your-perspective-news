@@ -20,10 +20,8 @@ class PostCtrl {
 		$reactive(this).attach($scope);
 //		$scope.viewModel(this);
 		
-		$rootScope.stateIsLoading = true;
 		Meteor.subscribe('votes', function() {
 			$scope.dataAvailable = true;
-			$rootScope.stateIsLoading = false;
 			$scope.$apply();
 		});
 
