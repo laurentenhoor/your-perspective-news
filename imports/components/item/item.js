@@ -91,6 +91,16 @@ class ItemCtrl {
 			});
 		}
 		
+		this.vote = function(id, voteValue) {
+			
+			if (!Meteor.userId()) {
+				$('#login-sign-in-link').click();
+				return;
+			}
+			this.call('voteById', id, voteValue); 
+			
+		}
+		
 		$window.scrollTo(0, 0);
 
 	}

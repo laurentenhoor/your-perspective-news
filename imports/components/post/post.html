@@ -41,9 +41,9 @@
 				<div class="post-view-message-container">
 					
 					<div class="voting" >
-						<div ng-click="$ctrl.upVote(id)" class="arrow-up"></div>
+						<div ng-click="$ctrl.vote(id,1)" class="arrow-up"></div>
 						<div class="post-score">{{post.score}}</div>
-						<div ng-click="$ctrl.downVote(id)" class="arrow-down"></div>
+						<div ng-click="$ctrl.vote(id,-1)" class="arrow-down"></div>
 					</div>
 					<a href="#!/item/{{id}}">
 						<div class="post-view-message" ng-bind="post.userMessage"></div>
@@ -69,7 +69,9 @@
 						<div ng-bind-html="post.description" class="post-edit-description"></div>
 					</a> 			
 				</div>
+				
 				<div class="post-view-controls"> 
+				
 				<a href="#!/item/{{id}}">
 						<div class="button-request-perspective"><i class="fa fa-cube" aria-hidden="true"></i> Verbreed dit artikel.</div>
 						<div class="post-view-status">
@@ -80,9 +82,7 @@
 					
 				</a>
 				</div>
-				
 
-			
 			
 		</div>
 

@@ -8,6 +8,7 @@ import template from './post.html';
 import style from './post.less';
 
 import { Posts } from '../../api/posts.js';
+import { Votes } from '../../api/votes.js';
 import { Meteor } from 'meteor/meteor';
 
 class PostCtrl {
@@ -126,15 +127,16 @@ class PostCtrl {
 
 		}
 		
-		this.upVote = function(id) {
-
-			Posts.update(id, {$inc : { score: 1}});
-		}
-
-		this.downVote = function(id) {
-			Posts.update(id, {$inc : { score: -1}});
-		}
+		this.vote = function(id, voteValue) {
 		
+			if (!Meteor.userId()) {
+				$('#login-sign-in-link').click();
+				return;
+			}
+			this.call('voteById', id, voteValue); 
+			
+		}
+
 		this.article = function() {
 			alert("Hier kun je straks bronnen toevoegen en reageren.");
 		}
