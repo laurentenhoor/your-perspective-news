@@ -31,8 +31,9 @@ class FeedbackCtrl {
 				
 				// Create new feedback entry in db
 				Feedback.insert({
-					owner: Meteor.userId(),
-					email: Meteor.user() ? Meteor.user().emails[0].address : 'null',
+					ownerId: Meteor.userId(),
+					ownerName : Meteor.user().username,
+//					email: Meteor.user() ? Meteor.user().emails[0].address : 'null',
 					ip: $rootScope.ip,
 					feedback: feedback
 				}, function() {

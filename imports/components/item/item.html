@@ -82,9 +82,9 @@
 	</div>
 
 
-	<form name="newCommentRoot" novalidate ng-show="showRootInput"
+	<form name="newCommentRoot" novalidate
 		style="margin-top: 2vw;"
-		ng-submit="showRootInput=false;$ctrl.newComment(comment);">
+		ng-submit="showRootInput=false;$ctrl.newComment(comment);" ng-if="showRootInput">
 		<textarea class="comment-input root"
 			ng-model="comment.newChildComment" required autofocus></textarea>
 		<input class="comment-input-button root" type="submit" value="Reageer"
