@@ -4,12 +4,14 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import angularSanitize from 'angular-sanitize';
 
+import { Meteor } from 'meteor/meteor';
+import { Votes } from '../../api/votes.js';
+import { Posts } from '../../api/posts.js';
+
 import template from './post.html';
 import style from './post.less';
 
-import { Posts } from '../../api/posts.js';
-import { Votes } from '../../api/votes.js';
-import { Meteor } from 'meteor/meteor';
+
 
 class PostCtrl {
 	
@@ -17,6 +19,13 @@ class PostCtrl {
 
 		$reactive(this).attach($scope);
 //		$scope.viewModel(this);
+		
+		$rootScope.stateIsLoading = true;
+		Meteor.subscribe('votes', function() {
+			$scope.dataAvailable = true;
+			$rootScope.stateIsLoading = false;
+			$scope.$apply();
+		});
 
 		$rootScope.ip = 'anonymous';
 
@@ -35,10 +44,12 @@ class PostCtrl {
 			
 		});
 		
+		
 		this.voteValue = function(id) {
-			console.log(id);
+			
 			if (vote = Votes.findOne({articleId : id})) {
 				return vote.value;
+				
 			}
 			return 0;
 			
@@ -152,6 +163,7 @@ class PostCtrl {
 		}
 		
 		this.urlChange();
+		
 		
 //		$rootScope.stateIsLoading = true;
 //		this.url = 'http://www.elsevierweekblad.nl/nederland/achtergrond/2017/07/twee-jongens-doodsteken-nick-bood-16-525841/';

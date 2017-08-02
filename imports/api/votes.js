@@ -18,5 +18,7 @@ if(Meteor.isServer) {
 }
 
 if(Meteor.isClient) {
-	Meteor.subscribe('votes');
+//	Meteor.subscribe('votes', function() {
+//		
+//	});
 }

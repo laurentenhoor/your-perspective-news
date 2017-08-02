@@ -33,7 +33,7 @@
 	</form>
 </div>
 
-<div class="view-posts">
+<div class="view-posts" ng-if="dataAvailable">
 
 		<div ng-repeat="post in $ctrl.posts" class="post-edit-container post-view-container" ng-init="id=post._id">
 			

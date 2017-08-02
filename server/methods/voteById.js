@@ -18,8 +18,6 @@ Meteor.methods({
 
 		// check if a vote already exists for this user and article
 		var vote = Votes.findOne({articleId : id, ownerId: Meteor.userId()});
-		console.log(voteValue)
-		console.log(vote)
 		
 		if (!vote) {
 			

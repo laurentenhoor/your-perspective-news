@@ -17,8 +17,11 @@ class ItemCtrl {
 	constructor($rootScope, $scope, $reactive, $http, $routeParams, $window) {
 
 		$reactive(this).attach($scope);
-	
-		console.log($routeParams.id);	
+
+		Meteor.subscribe('votes', function() {
+			$scope.dataAvailable = true;
+			$scope.$apply();
+		});	
 		
 		function buildHierarchy(arry) {
 
