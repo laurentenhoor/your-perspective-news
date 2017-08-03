@@ -40,7 +40,10 @@ class ItemCtrl {
 		    // function to recursively build the tree
 		    var findChildren = function(parent) {
 		        if (children[parent._id]) {
-		            parent.children = children[parent._id];
+		        		// add children to parent and sort on score
+		            parent.children = children[parent._id].sort(function(a, b){
+		            		return (b.score - a.score);
+		            });
 		            for (var i = 0, len = parent.children.length; i < len; ++i) {
 		                findChildren(parent.children[i]);
 		            }
@@ -62,11 +65,10 @@ class ItemCtrl {
 			},
 			comments() {
 				var comments = Comments.find({parentItemId: $routeParams.id})
-				console.log(comments.fetch());
 				
 				var roots = buildHierarchy(comments.fetch());
-				console.log(roots);
-				
+//				console.log(roots);
+			
 				return roots;
 			}
 
@@ -97,6 +99,7 @@ class ItemCtrl {
 		}
 		
 		this.vote = function(id, voteValue) {
+			
 			if (!Meteor.userId()) {
 				$('#login-sign-in-link').click();
 				return;
@@ -106,7 +109,7 @@ class ItemCtrl {
 		}
 		
 		this.voteValue = function(id) {
-		
+
 			if (vote = Votes.findOne({articleId : id}))
 				return vote.value;
 			return 0;

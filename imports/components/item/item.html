@@ -51,7 +51,9 @@
 			
 			<div class="comment-content-voting">	
 				<a href="" ng-click="showDetails = ! showDetails">Reageer <i class="fa fa-reply" aria-hidden="true"></i></a>	
-				<div class="arrow-up-comment"></div><div class="comment-voting-score"> 0 </div><div class="arrow-down-comment"></div>
+				<div class="arrow-up-comment" ng-click="$ctrl.vote(comment._id,1);" ng-class="{true: 'upvoted', false: ''}[$ctrl.voteValue(comment._id)==1]"></div>
+				<div class="comment-voting-score">{{comment.score}}</div>
+				<div class="arrow-down-comment" ng-click="$ctrl.vote(comment._id,-1);" ng-class="{true: 'downvoted', false: ''}[$ctrl.voteValue(comment._id)==-1]"></div>
 			</div>
 
 			<form name="newComment" novalidate style="margin-top:2vw;" ng-submit="$ctrl.newComment(comment);showDetails=false;" ng-if="showDetails">

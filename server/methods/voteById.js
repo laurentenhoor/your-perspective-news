@@ -1,5 +1,6 @@
 import { Votes } from '../../imports/api/votes.js';
 import { Posts } from '../../imports/api/posts.js';
+import { Comments } from '../../imports/api/comments.js';
 
 Meteor.methods({
 
@@ -28,13 +29,18 @@ Meteor.methods({
 				value: voteValue,
 				articleId : id
 			});
+			
 			Posts.update(id, {$inc : { score: voteValue}});
+			Comments.update(id, {$inc : {score: voteValue}});
 			
 		} else {
 			
 			if (vote.value != voteValue) {
+				
 				Votes.update(vote._id, {$set: {value: voteValue}});
+				
 				Posts.update(id, {$inc : {score: 2*voteValue}});
+				Comments.update(id, {$inc : {score: 2*voteValue}});
 			}
 			
 		}
