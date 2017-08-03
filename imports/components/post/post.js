@@ -23,10 +23,6 @@ class PostCtrl {
 		$reactive(this).attach($scope);
 //		$scope.viewModel(this);
 		
-		console.log(moment())
-		
-		
-		
 		Meteor.subscribe('votes', function() {
 			$scope.dataAvailable = true;
 			$scope.$apply();
@@ -56,10 +52,8 @@ class PostCtrl {
 			
 		});
 		
-		
+		moment.locale('nl');
 		this.getTimeTag = function(date) {
-			console.log(date)
-			moment.locale('nl');
 			return moment(date).fromNow()
 		}
 		
@@ -194,8 +188,6 @@ class PostCtrl {
 	    $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
 	        if($location.hash()) $anchorScroll();  
 	      });
-		
-		
 		
 //		$rootScope.stateIsLoading = true;
 //		this.url = 'http://www.elsevierweekblad.nl/nederland/achtergrond/2017/07/twee-jongens-doodsteken-nick-bood-16-525841/';
