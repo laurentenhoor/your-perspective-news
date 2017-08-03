@@ -35,7 +35,7 @@
 
 <div class="view-posts">
 
-		<div ng-repeat="post in $ctrl.posts" class="post-edit-container post-view-container" ng-init="id=post._id">
+		<div ng-repeat="post in $ctrl.posts" id="{{post._id}}" class="post-edit-container post-view-container" ng-init="id=post._id">
 			
 			
 				<div class="post-view-message-container">

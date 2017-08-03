@@ -168,6 +168,12 @@ class PostCtrl {
 		
 		this.urlChange();
 		
+
+	    $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
+	        if($location.hash()) $anchorScroll();  
+	      });
+		
+		
 		
 //		$rootScope.stateIsLoading = true;
 //		this.url = 'http://www.elsevierweekblad.nl/nederland/achtergrond/2017/07/twee-jongens-doodsteken-nick-bood-16-525841/';
