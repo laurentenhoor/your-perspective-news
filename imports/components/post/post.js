@@ -43,7 +43,7 @@ class PostCtrl {
 				console.log(d.getTime())
 				
 //				Posts.find({}, {sort: {score: -1}, limit: 30}).fetch()//.reverse();
-				var newestPosts = Posts.find({createdAt: {$gt: d.getTime()}}, {}).fetch()//.reverse();
+				var newestPosts = Posts.find({createdAt: {$gt: d.getTime()}}, {sort: {score: -1}}).fetch()//.reverse();
 				var otherPosts = Posts.find({createdAt: {$lt: d.getTime()}},  {sort: {score: -1}}).fetch()//.reverse();
 				
 				return newestPosts.concat(otherPosts)
