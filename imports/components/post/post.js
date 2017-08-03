@@ -34,7 +34,19 @@ class PostCtrl {
 		
 		this.helpers({
 			posts() {
-				return Posts.find({}, {sort: {score: -1}, limit: 30}).fetch()//.reverse();
+				
+				var d = new Date();
+				console.log(d)
+				d.setDate(d.getDate() - 3);
+				console.log(d)
+				
+				console.log(d.getTime())
+				
+//				Posts.find({}, {sort: {score: -1}, limit: 30}).fetch()//.reverse();
+				var newestPosts = Posts.find({createdAt: {$gt: d.getTime()}}, {}).fetch()//.reverse();
+				var otherPosts = Posts.find({createdAt: {$lt: d.getTime()}},  {sort: {score: -1}}).fetch()//.reverse();
+				
+				return newestPosts.concat(otherPosts)
 			},
 			currentUser() {
 				return Meteor.user();
