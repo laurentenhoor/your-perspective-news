@@ -7,10 +7,10 @@ import angularSanitize from 'angular-sanitize';
 import { Meteor } from 'meteor/meteor';
 import { Votes } from '../../api/votes.js';
 import { Posts } from '../../api/posts.js';
+import { Comments } from '../../api/comments.js';
 
 import template from './post.html';
 import style from './post.less';
-
 
 
 class PostCtrl {
@@ -153,6 +153,12 @@ class PostCtrl {
 				return;
 			}
 			this.call('voteById', id, voteValue); 
+			
+		}
+		
+		this.commentCount = function(articleId) {
+			
+			return Comments.find({parentItemId : articleId}).count();
 			
 		}
 

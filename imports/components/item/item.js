@@ -55,6 +55,11 @@ class ItemCtrl {
 		        findChildren(roots[i]);
 		    }
 
+		    // sort root on score
+		    roots.sort(function(a,b) {
+		    		return b.score - a.score;
+		    })
+		    
 		    return roots;
 		}
 
