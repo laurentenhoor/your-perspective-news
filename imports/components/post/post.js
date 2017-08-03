@@ -4,6 +4,9 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import angularSanitize from 'angular-sanitize';
 
+import moment from 'moment';
+import 'moment/locale/nl'
+
 import { Meteor } from 'meteor/meteor';
 import { Votes } from '../../api/votes.js';
 import { Posts } from '../../api/posts.js';
@@ -20,6 +23,10 @@ class PostCtrl {
 		$reactive(this).attach($scope);
 //		$scope.viewModel(this);
 		
+		console.log(moment())
+		
+		
+		
 		Meteor.subscribe('votes', function() {
 			$scope.dataAvailable = true;
 			$scope.$apply();
@@ -35,18 +42,13 @@ class PostCtrl {
 		this.helpers({
 			posts() {
 				
-				var d = new Date();
-				console.log(d)
-				d.setDate(d.getDate() - 3);
-				console.log(d)
+//				var d = new Date();
+//				d.setDate(d.getDate() - 3);
+//				var newestPosts = Posts.find({createdAt: {$gt: d.getTime()}}, {sort: {score: -1}}).fetch()//.reverse();
+//				var otherPosts = Posts.find({createdAt: {$lt: d.getTime()}},  {sort: {score: -1}}).fetch()//.reverse();
+//				return newestPosts.concat(otherPosts)
 				
-				console.log(d.getTime())
-				
-//				Posts.find({}, {sort: {score: -1}, limit: 30}).fetch()//.reverse();
-				var newestPosts = Posts.find({createdAt: {$gt: d.getTime()}}, {sort: {score: -1}}).fetch()//.reverse();
-				var otherPosts = Posts.find({createdAt: {$lt: d.getTime()}},  {sort: {score: -1}}).fetch()//.reverse();
-				
-				return newestPosts.concat(otherPosts)
+				return Posts.find({}, {sort: {createdAt: -1}, limit: 30}).fetch()//.reverse();
 			},
 			currentUser() {
 				return Meteor.user();
@@ -54,6 +56,12 @@ class PostCtrl {
 			
 		});
 		
+		
+		this.getTimeTag = function(date) {
+			console.log(date)
+			moment.locale('nl');
+			return moment(date).fromNow()
+		}
 		
 		this.voteValue = function(id) {
 			

@@ -47,6 +47,8 @@
 					</div>
 					<a href="#!/item/{{id}}">
 						<div class="post-view-message" ng-bind="post.userMessage"></div>
+						<div class="post-time-elapsed">{{ $ctrl.getTimeTag(post.createdAt) }}</div>
+						
 					</a>
 				</div>
 	
