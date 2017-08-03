@@ -15,7 +15,7 @@ import style from './post.less';
 
 class PostCtrl {
 	
-	constructor($rootScope, $scope, $reactive, $http) {
+	constructor($rootScope, $scope, $reactive, $http, $location, $anchorScroll) {
 
 		$reactive(this).attach($scope);
 //		$scope.viewModel(this);
@@ -149,6 +149,8 @@ class PostCtrl {
 
 				$rootScope.$apply(function() {
 					$rootScope.stateIsLoading = false;
+					$location.hash(_id)
+					$anchorScroll();
 				});
 				
 				$scope.$ctrl.clearForm();
@@ -198,7 +200,7 @@ export default angular.module('yourpers.post', [
 	])
 	.component('yourpersPost', {
 		templateUrl : template,
-		controller: ['$rootScope', '$scope', '$reactive', '$http', PostCtrl]
+		controller: ['$rootScope', '$scope', '$reactive', '$http', '$location', '$anchorScroll', PostCtrl]
 	})
 	.directive('httpPrefix', function() {
 	    return {
