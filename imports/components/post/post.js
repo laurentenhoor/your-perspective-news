@@ -141,7 +141,7 @@ class PostCtrl {
 				rawMetadata : JSON.stringify(this.rawMetadata),
 				score: 0,
 				ownerId: Meteor.userId(),
-				ownerName: Meteor.user().username,
+				ownerName: Meteor.user() ? Meteor.user().username : null,
 //				email: Meteor.user() ? Meteor.user().emails[0].address : 'null',
 				ip: $rootScope.ip
 			}, function(error, _id){
