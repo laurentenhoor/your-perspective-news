@@ -53,11 +53,19 @@ export default angular.module('yourpers.loader', [
 				elem.bind('click', function(e) {
 					
 					e.preventDefault();
-					$location.hash($(e.srcElement.parentElement).data('id'))
+					e.stopPropagation();
 					
 					$rootScope.$apply(function() {
 						$rootScope.stateIsLoading = true;
 					});
+					
+					var idHash = $(e.srcElement.parentElement).data('id');
+					
+					if (history.replaceState) {
+						history.replaceState(null, null, '#!/nieuws#' + $(e.srcElement.parentElement).data('id'));	
+					} else {
+						$location.hash(idHash);
+					}
 					
 					$window.location.href = e.srcElement.parentElement.href;
 					
