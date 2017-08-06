@@ -231,13 +231,11 @@ export default angular.module('yourpers.post', [
 		return function(scope, element, attrs) {
 			if (scope.$last){
 				
-				console.log($location)
-				
 				$timeout(function() {
 					
 					$anchorScroll();
-					
 					$timeout(function() {
+						
 						$location.hash('!');//dummy hash to make sure that the page goes back to the top after manually refreshing.							//						
 					});
 					
