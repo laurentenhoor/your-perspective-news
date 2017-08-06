@@ -28,7 +28,6 @@ angular.module('yourpers', [
 	yourpersFeedback.name,
 	yourpersItem.name,
 	
-	
 	'accounts.ui'
 	
 ])

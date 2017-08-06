@@ -27,7 +27,6 @@
 						ng-style="{'background-image': 'url(\'' + $ctrl.logoUrl + '\')'}"></div>
 					<div ng-bind-html="$ctrl.description" class="post-edit-description"></div>
 				</div>
-		
 		</div>
 
 	</form>
@@ -35,15 +34,18 @@
 
 <div class="view-posts">
 
-		<div ng-repeat="post in $ctrl.posts" id="{{post._id}}" class="post-edit-container post-view-container" ng-init="id=post._id">
+		<div ng-repeat="post in $ctrl.posts" id="{{post._id}}" anchorscroll-after-load
+			class="post-edit-container post-view-container" ng-init="id=post._id">
 			
 			
 				<div class="post-view-message-container">
 					
 					<div class="voting" ng-init="voteValue=$ctrl.voteValue(id)" ng-if="dataAvailable">
-						<div ng-click="$ctrl.vote(id,1)" class="arrow-up" ng-class="{true: 'upvoted', false: ''}[voteValue==1]"></div>
+						<div ng-click="$ctrl.vote(id,1)" class="arrow-up" 
+							ng-class="{true: 'upvoted', false: ''}[voteValue==1]"></div>
 						<div class="post-score">{{post.score}}</div>
-						<div ng-click="$ctrl.vote(id,-1)" class="arrow-down" ng-class="{true: 'downvoted', false: ''}[voteValue==-1]"></div>
+						<div ng-click="$ctrl.vote(id,-1)" class="arrow-down" 
+							ng-class="{true: 'downvoted', false: ''}[voteValue==-1]"></div>
 					</div>
 					<a href="#!/item/{{id}}">
 						<div class="post-view-message" ng-bind="post.userMessage"></div>
@@ -59,13 +61,13 @@
 					
 						<div ng-bind-html="post.publisher" class="post-edit-publisher"
 							type="text" name="text" name="publisher"></div>
-					<a ext-link href="{{post.url}}" target="_self" >	
+					<a ext-link href="{{post.url}}" data-id="{{post._id}}" target="_self" >	
 						<div ng-bind-html="post.title" class="post-edit-title"></div>
 					</a> 	
 				</div>
 			
 				<div class="post-edit-footer">
-					<a ext-link href="{{post.url}}" target="_self" >
+					<a ext-link href="{{post.url}}" data-id="{{post._id}}" target="_self" >
 						<div class="post-edit-logo"
 							ng-style="{'background-image': 'url(\'' + post.logoUrl + '\')'}"></div>
 						<div ng-bind-html="post.description" class="post-edit-description"></div>

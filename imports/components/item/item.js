@@ -18,12 +18,21 @@ class ItemCtrl {
 
 		$reactive(this).attach($scope);
 		
+		
+		
 		$rootScope.activeItem = $routeParams.id;
 	
 		Meteor.subscribe('votes', function() {
 			$scope.dataAvailable = true;
 			$scope.$apply();
 		});
+		
+		Meteor.subscribe('posts', function() {
+			post = Posts.findOne({_id: $routeParams.id});
+			console.log(post)
+			$scope.header = 'Jouwpers -  '+post.title;
+		});
+		
 //		console.log($routeParams.id);	
 		
 		function buildHierarchy(arry) {

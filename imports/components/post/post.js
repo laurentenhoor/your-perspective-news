@@ -18,16 +18,17 @@ import style from './post.less';
 
 class PostCtrl {
 	
-	constructor($rootScope, $scope, $reactive, $http, $location, $anchorScroll) {
+	constructor($rootScope, $scope, $reactive, $http, $location, $anchorScroll, $timeout) {
 
 		$reactive(this).attach($scope);
 //		$scope.viewModel(this);
+		
 		
 		Meteor.subscribe('votes', function() {
 			$scope.dataAvailable = true;
 			$scope.$apply();
 		});
-
+		
 		$rootScope.ip = 'anonymous';
 
 		$http.get("http://freegeoip.net/json/").then(function(response) {
@@ -183,12 +184,11 @@ class PostCtrl {
 		}
 		
 		this.urlChange();
-		
 
-	    $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
-	        if($location.hash()) $anchorScroll();  
-	      });
-		
+//	    $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
+//	        if($location.hash()) $anchorScroll();  
+//	      });
+	    
 //		$rootScope.stateIsLoading = true;
 //		this.url = 'http://www.elsevierweekblad.nl/nederland/achtergrond/2017/07/twee-jongens-doodsteken-nick-bood-16-525841/';
 		
@@ -200,7 +200,7 @@ export default angular.module('yourpers.post', [
 	])
 	.component('yourpersPost', {
 		templateUrl : template,
-		controller: ['$rootScope', '$scope', '$reactive', '$http', '$location', '$anchorScroll', PostCtrl]
+		controller: ['$rootScope', '$scope', '$reactive', '$http', '$location', '$anchorScroll', '$timeout', PostCtrl]
 	})
 	.directive('httpPrefix', function() {
 	    return {
@@ -234,4 +234,12 @@ export default angular.module('yourpers.post', [
 	            });
 	        }
 	    };
-	}]);;
+	}]).directive('anchorscrollAfterLoad', ['$anchorScroll', '$timeout', function($anchorScroll, $timeout) {
+		return function(scope, element, attrs) {
+			if (scope.$last){
+				$timeout(function() {
+					$anchorScroll();
+				});
+			}
+		};
+	}]);

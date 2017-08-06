@@ -46,15 +46,20 @@ export default angular.module('yourpers.loader', [
 		controller: ['$rootScope', '$scope', '$location', LoaderCtrl]
 	})
 
-	.directive('extLink', ['$rootScope', function($rootScope) {
+	.directive('extLink', ['$rootScope', '$location', '$window', function($rootScope, $location, $window) {
 		return {
 			restrict: 'A',
 			link: function(scope, elem) {
 				elem.bind('click', function(e) {
 					
+					e.preventDefault();
+					$location.hash($(e.srcElement.parentElement).data('id'))
+					
 					$rootScope.$apply(function() {
 						$rootScope.stateIsLoading = true;
 					});
+					
+					$window.location.href = e.srcElement.parentElement.href;
 					
 				});
 			}
