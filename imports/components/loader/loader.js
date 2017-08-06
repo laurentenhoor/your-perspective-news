@@ -46,7 +46,7 @@ export default angular.module('yourpers.loader', [
 		controller: ['$rootScope', '$scope', '$location', LoaderCtrl]
 	})
 
-	.directive('extLink', ['$rootScope', '$location', '$window', function($rootScope, $location, $window) {
+	.directive('extLink', ['$rootScope', '$location', '$window', '$anchorScroll', function($rootScope, $location, $window, $anchorScroll) {
 		return {
 			restrict: 'A',
 			link: function(scope, elem) {
@@ -60,14 +60,16 @@ export default angular.module('yourpers.loader', [
 					});
 					
 					var idHash = $(e.srcElement.parentElement).data('id');
+
+					$location.hash(idHash);
+					$anchorScroll();
 					
-					if (history.replaceState) {
-						history.replaceState(null, null, '#!/nieuws#' + $(e.srcElement.parentElement).data('id'));	
-					} else {
-						$location.hash(idHash);
-					}
+					$location.replace();
 					
+					$window.history.pushState(null, 'any', $location.absUrl());
+				
 					$window.location.href = e.srcElement.parentElement.href;
+
 					
 				});
 			}

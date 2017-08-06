@@ -32,7 +32,7 @@ angular.module('yourpers', [
 	
 ])
 
-.config(['$locationProvider', '$routeProvider', '$httpProvider', function($locationProvider, $routeProvider, $httpProvider) {
+.config(['$locationProvider', '$routeProvider', '$httpProvider', '$provide', function($locationProvider, $routeProvider, $httpProvider, $provide) {
   
 	$locationProvider.hashPrefix('!');
 	
@@ -53,5 +53,19 @@ angular.module('yourpers', [
 	
 	$httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    
+    $locationProvider.html5Mode({ enabled: true, requireBase: false, rewriteLinks: false });
+    
+//    $provide.decorator('$browser', ['$delegate', function($delegate) {
+//        var originalUrl = $delegate.url;
+//        $delegate.url = function() {
+//            var result = originalUrl.apply(this, arguments);
+//            if (result && result.replace) {
+//                result = result.replace(/%23/g, '#');
+//            }
+//            return result;
+//        };
+//        return $delegate;
+//    }]);
     
 }]);
