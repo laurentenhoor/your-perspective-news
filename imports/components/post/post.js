@@ -234,11 +234,12 @@ export default angular.module('yourpers.post', [
 	            });
 	        }
 	    };
-	}]).directive('anchorscrollAfterLoad', ['$anchorScroll', '$timeout', function($anchorScroll, $timeout) {
+	}]).directive('anchorscrollAfterLoad', ['$anchorScroll', '$timeout','$location', function($anchorScroll, $timeout, $location) {
 		return function(scope, element, attrs) {
 			if (scope.$last){
 				$timeout(function() {
 					$anchorScroll();
+					$location.hash('!');//dummy hash to make sure that the page goes back to the top after manually refreshing.
 				});
 			}
 		};
