@@ -238,8 +238,8 @@ export default angular.module('yourpers.post', [
 					$anchorScroll();
 					
 					$timeout(function() {
-						$location.hash('#');//dummy hash to make sure that the page goes back to the top after manually refreshing.							//						
-					})
+						$location.hash('!');//dummy hash to make sure that the page goes back to the top after manually refreshing.							//						
+					});
 					
 				});
 			}
