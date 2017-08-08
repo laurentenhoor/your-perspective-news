@@ -18,8 +18,6 @@ class ItemCtrl {
 
 		$reactive(this).attach($scope);
 		
-		
-		
 		$rootScope.activeItem = $routeParams.id;
 	
 		Meteor.subscribe('votes', function() {
