@@ -7,7 +7,6 @@
 
 @import "../imports/style/bootstrap.less";
 
-
 .red {
 	color: @brand-color;
 	//color: rgba(0, 0, 0, 0.7);
@@ -88,10 +87,25 @@ login-buttons.right {
 }
 #login-buttons .login-link-and-dropdown-list {
     position: relative;
+    
+    border : none;
+}
+
+.login-button {
+	background: @brand-color !important;
+	border:none !important;
 }
 
 
+
 html * {max-height:1000000px;}
+
+html, body {
+   -webkit-overflow-scrolling : touch !important;
+    overflow: auto !important;
+    height: 100% !important;
+}
+
 
 html {
 	

@@ -49,7 +49,7 @@ class ItemCtrl {
 		    // function to recursively build the tree
 		    var findChildren = function(parent) {
 		        if (children[parent._id]) {
-		        		// add children to parent and sort on score
+		        		// add children to parent and sort by voting score
 		            parent.children = children[parent._id].sort(function(a, b){
 		            		return (b.score - a.score);
 		            });
@@ -64,7 +64,7 @@ class ItemCtrl {
 		        findChildren(roots[i]);
 		    }
 
-		    // sort root on score
+		    // sort root by voting score
 		    roots.sort(function(a,b) {
 		    		return b.score - a.score;
 		    })
