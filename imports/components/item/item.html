@@ -88,11 +88,11 @@
 			style="padding-right: 3vw;">Reageer op dit artikel <i
 			class="fa fa-reply" aria-hidden="true"></i></a>
 	</div>
-
+	
 
 	<form name="newCommentRoot" novalidate
 		style="margin-top: 2vw;"
-		ng-submit="$ctrl.newComment(comment);showRootInput=false;" ng-show="showRootInput">
+		ng-submit="$ctrl.newComment(comment);showRootInput=false;" ng-if="showRootInput">
 		<textarea class="comment-input root"
 			ng-model="comment.newChildComment" required autofocus></textarea>
 		<input class="comment-input-button root" type="submit" value="Reageer"
@@ -102,7 +102,7 @@
 	
 	<form name="newPers" novalidate
 		style="margin-top: 2vw;"
-		ng-submit="$ctrl.newPers(pers);showRootInputPers=false;" ng-show="showRootInputPers">
+		ng-submit="$ctrl.newPers(pers);showRootInputPers=false;" ng-if="showRootInputPers">
 		<input http-prefix select-on-click class="pers-input root shimmer"
 			ng-model="pers.url" required autofocus placeholder="Plak hier een url naar een verfrissend perspectief"></input>
 		<input class="comment-input-button root" type="submit" value="Toevoegen"

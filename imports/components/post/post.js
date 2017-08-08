@@ -27,6 +27,7 @@ class PostCtrl {
 		Meteor.subscribe('votes', function() {
 			$scope.dataAvailable = true;
 			$scope.$apply();
+			
 		});
 		
 		$rootScope.ip = 'anonymous';
@@ -34,6 +35,7 @@ class PostCtrl {
 		$http.get("http://freegeoip.net/json/").then(function(response) {
 			console.log(response.data.ip);
 			$rootScope.ip = response.data.ip;
+			
 		});
 		
 		this.helpers({
@@ -184,6 +186,13 @@ class PostCtrl {
 		}
 		
 		this.urlChange();
+		
+		
+//		$timeout(function() {
+//			$rootScope.stateIsLoading = true;
+//		},1000)
+		
+		
 		 
 	}
 }
