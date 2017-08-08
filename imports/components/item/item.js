@@ -97,7 +97,7 @@ class ItemCtrl {
 				parentItemId : $routeParams.id,
 				parentCommentId : comment._id,
 				ownerId : Meteor.userId(),
-				ownerName : Meteor.user().username,
+				ownerName : Meteor.user()? Meteor.user().username : null,
 				comment : comment.newChildComment,
 				score: 0
 				
