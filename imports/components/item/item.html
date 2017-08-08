@@ -78,7 +78,7 @@
 
 	<div class="comment-add-comment-button">
 		<a href="" ng-init="showRootInput=false"
-			ng-click="showRootInput = ! showRootInput"
+			ng-click="showRootInput = ! showRootInput;"
 			style="padding-right: 3vw;">Reageer op dit artikel <i
 			class="fa fa-reply" aria-hidden="true"></i></a>
 	</div>
@@ -86,7 +86,7 @@
 
 	<form name="newCommentRoot" novalidate
 		style="margin-top: 2vw;"
-		ng-submit="showRootInput=false;$ctrl.newComment(comment);" ng-if="showRootInput">
+		ng-submit="$ctrl.newComment(comment);showRootInput=false;" ng-show="showRootInput">
 		<textarea class="comment-input root"
 			ng-model="comment.newChildComment" required autofocus></textarea>
 		<input class="comment-input-button root" type="submit" value="Reageer"
