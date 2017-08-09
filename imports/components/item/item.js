@@ -2,6 +2,7 @@
 
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
+import angularSanitize from 'angular-sanitize';
 
 import template from './item.html';
 import style from '../post/post.less';
@@ -136,7 +137,7 @@ class ItemCtrl {
 }
 
 export default angular.module('yourpers.item', [
-	angularMeteor
+	angularMeteor, angularSanitize
 	])
 	.component('yourpersItem', {
 		templateUrl : template,

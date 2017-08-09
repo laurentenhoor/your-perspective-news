@@ -43,7 +43,7 @@
 		<div class="comment-content-header">
 			<b>{{comment.ownerName || 'anoniem'}} </b>
 		</div>
-		<div class="comment-content-text" ng-bind-html="comment.comment | linky">	
+		<div class="comment-content-text" ng-bind-html="comment.comment |  linky:'_self':{class: 'a-extern'}">	
 		</div>
 
  		<div class="comment-content-footer">
