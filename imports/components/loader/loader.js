@@ -74,19 +74,4 @@ export default angular.module('yourpers.loader', [
 				});
 			}
 		};
-	}])
-	
-	.directive('extLinkLight', ['$rootScope', '$location', '$window', '$anchorScroll', function($rootScope, $location, $window, $anchorScroll) {
-		return {
-			restrict: 'A',
-			link: function(scope, elem) {
-				elem.bind('click', function(e) {
-					
-					$rootScope.$apply(function() {
-						$rootScope.stateIsLoading = true;
-					});
-					
-				});
-			}
-		};
 	}]);
