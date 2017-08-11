@@ -16,7 +16,8 @@
     "client": "0.0.1",
     "metaget": "^1.0.3",
     "meteor-node-stubs": "~0.2.4",
+    "moment": "^2.18.1",
     "url-parse": "^1.1.9",
-    "website-logo": "^1.0.0"
+    "website-logo": "1.0.0"
   }
 }
