@@ -53,7 +53,7 @@
 						
 					</a>
 				</div>
-	
+				
 				<div class="post-edit-image" ng-if="post.imageUrl"
 					ng-style="{'background-image':'url(\'' + post.imageUrl + '\')'}">
 					<!-- ng-style="{'background-image':'url({{post.imageUrl}})'}"> -->
@@ -61,13 +61,13 @@
 					
 						<div ng-bind-html="post.publisher" class="post-edit-publisher"
 							type="text" name="text" name="publisher"></div>
-					<a ext-link href="{{post.url}}" data-id="{{post._id}}" target="_self" >	
+					<a href="#!/item/{{id}}">
 						<div ng-bind-html="post.title" class="post-edit-title"></div>
 					</a> 	
 				</div>
-			
+				
 				<div class="post-edit-footer">
-					<a ext-link href="{{post.url}}" data-id="{{post._id}}" target="_self" >
+					<a href="#!/item/{{id}}">
 						<div class="post-edit-logo"
 							ng-style="{'background-image': 'url(\'' + post.logoUrl + '\')'}"></div>
 						<div ng-bind-html="post.description" class="post-edit-description"></div>
@@ -80,8 +80,9 @@
 						
 						<div class="button-request-perspective"><i class="fa fa-cube" aria-hidden="true"></i>Verbreed</div> 
 						<div class="button-request-perspective"><i class="fa fa-comment-o" aria-hidden="true"></i>Reageer</div>
+						<a ext-link href="{{post.url}}" data-id="{{post._id}}" target="_self"><div class="button-request-perspective"><i class="fa fa-paperclip" aria-hidden="true"></i>Lees</div></a>  
 						<div class="post-view-status">
-						<!-- 0 <i class="fa fa-paperclip" aria-hidden="true"></i>   -->
+						
 						{{$ctrl.commentCount(id) || 0}} <i class="fa fa-comments-o" aria-hidden="true"></i>
 						0 <i class="fa fa-cubes" aria-hidden="true"></i>
 						</div>
