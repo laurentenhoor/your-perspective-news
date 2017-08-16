@@ -56,16 +56,16 @@ angular.module('yourpers', [
     
 //    $locationProvider.html5Mode({ enabled: true, requireBase: false, rewriteLinks: false });
     
-//    $provide.decorator('$browser', ['$delegate', function($delegate) {
-//        var originalUrl = $delegate.url;
-//        $delegate.url = function() {
-//            var result = originalUrl.apply(this, arguments);
-//            if (result && result.replace) {
-//                result = result.replace(/%23/g, '#');
-//            }
-//            return result;
-//        };
-//        return $delegate;
-//    }]);
+    $provide.decorator('$browser', ['$delegate', function($delegate) {
+        var originalUrl = $delegate.url;
+        $delegate.url = function() {
+            var result = originalUrl.apply(this, arguments);
+            if (result && result.replace) {
+                result = result.replace(/%23/g, '#');
+            }
+            return result;
+        };
+        return $delegate;
+    }]);
     
 }]);
