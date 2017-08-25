@@ -38,6 +38,10 @@ then
 
     SERVER_USER="root"
     SERVER_HOST="185.135.159.62"
+    SERVER_PASS="b]]M4ISuixph7/64y8"
+    
+    SERVER_INIT_SCRIPT="yourpers_init_forever.conf"
+    
     SERVER_APP_ROOT_PATH="/opt"
     SERVER_APP_DIR_NAME="yourpers"
     SERVER_MONGO_HOST="localhost"
@@ -76,17 +80,19 @@ echo "Deploy process of app $APP_NAME to $SERVER_HOST started"
 echo ""
 
 # build + bundle
-meteor npm install --production
-meteor build $LOCAL_BUNDLE_DIR --architecture $LOCAL_ARCHITECTURE --allow-superuser
+#meteor npm install --production
+#meteor build $LOCAL_BUNDLE_DIR --architecture $LOCAL_ARCHITECTURE --allow-superuser
+
+ssh-keygen -R ${SERVER_HOST}
 
 # copy to server
-sshpass -p b]]M4ISuixph7/64y8 scp ${LOCAL_BUNDLE_DIR}${APP_NAME}.tar.gz ${SERVER_USER}@${SERVER_HOST}:${SERVER_APP_ROOT_PATH} -o StrictHostKeyChecking=no
+sshpass -p ${SERVER_PASS} scp ${LOCAL_BUNDLE_DIR}${APP_NAME}.tar.gz ${SERVER_USER}@${SERVER_HOST}:${SERVER_APP_ROOT_PATH} -o StrictHostKeyChecking=no
 
 # copy to server
-sshpass -p b]]M4ISuixph7/64y8 scp yourpers_init_forever.conf ${SERVER_USER}@${SERVER_HOST}:/etc/init -o StrictHostKeyChecking=no
+sshpass -p ${SERVER_PASS} scp ${SERVER_INIT_SCRIPT} ${SERVER_USER}@${SERVER_HOST}:/etc/init -o StrictHostKeyChecking=no
 
 # ssh
-sshpass -p b]]M4ISuixph7/64y8 ssh ${SERVER_USER}@${SERVER_HOST} -o StrictHostKeyChecking=no "
+sshpass -p ${SERVER_PASS} ssh ${SERVER_USER}@${SERVER_HOST} -o StrictHostKeyChecking=no "
 
 # do db backup
 cd ${SERVER_APP_ROOT_PATH};
