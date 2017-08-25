@@ -76,10 +76,8 @@ echo "Deploy process of app $APP_NAME to $SERVER_HOST started"
 echo ""
 
 # build + bundle
-#meteor npm install --production
-#meteor build $LOCAL_BUNDLE_DIR --architecture $LOCAL_ARCHITECTURE --allow-superuser
-
-ssh-keygen -R ${SERVER_HOST}
+meteor npm install --production
+meteor build $LOCAL_BUNDLE_DIR --architecture $LOCAL_ARCHITECTURE --allow-superuser
 
 # copy to server
 sshpass -p b]]M4ISuixph7/64y8 scp ${LOCAL_BUNDLE_DIR}${APP_NAME}.tar.gz ${SERVER_USER}@${SERVER_HOST}:${SERVER_APP_ROOT_PATH} -o StrictHostKeyChecking=no
