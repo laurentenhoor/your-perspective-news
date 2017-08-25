@@ -6,7 +6,7 @@ tmp
 .DS_Store
 .idea
 *.lnk
-.deploy
+.deploy/bundle
 .project
 .settings
 .classpath
