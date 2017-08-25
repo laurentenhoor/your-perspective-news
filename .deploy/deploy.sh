@@ -82,13 +82,13 @@ echo ""
 ssh-keygen -R ${SERVER_HOST}
 
 # copy to server
-sshpass -p b]]M4ISuixph7/64y8 scp ${LOCAL_BUNDLE_DIR}${APP_NAME}.tar.gz ${SERVER_USER}@${SERVER_HOST}:${SERVER_APP_ROOT_PATH}
+sshpass -p b]]M4ISuixph7/64y8 scp ${LOCAL_BUNDLE_DIR}${APP_NAME}.tar.gz ${SERVER_USER}@${SERVER_HOST}:${SERVER_APP_ROOT_PATH} -o StrictHostKeyChecking=no
 
 # copy to server
-sshpass -p b]]M4ISuixph7/64y8 scp yourpers_init_forever.conf ${SERVER_USER}@${SERVER_HOST}:/etc/init
+sshpass -p b]]M4ISuixph7/64y8 scp yourpers_init_forever.conf ${SERVER_USER}@${SERVER_HOST}:/etc/init -o StrictHostKeyChecking=no
 
 # ssh
-sshpass -p b]]M4ISuixph7/64y8 ssh ${SERVER_USER}@${SERVER_HOST} "
+sshpass -p b]]M4ISuixph7/64y8 ssh ${SERVER_USER}@${SERVER_HOST} -o StrictHostKeyChecking=no "
 
 # do db backup
 cd ${SERVER_APP_ROOT_PATH};
