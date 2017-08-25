@@ -76,8 +76,8 @@ echo "Deploy process of app $APP_NAME to $SERVER_HOST started"
 echo ""
 
 # build + bundle
-meteor npm install --production
-meteor build $LOCAL_BUNDLE_DIR --architecture $LOCAL_ARCHITECTURE --allow-superuser
+#meteor npm install --production
+#meteor build $LOCAL_BUNDLE_DIR --architecture $LOCAL_ARCHITECTURE --allow-superuser
 
 ssh-keygen -R ${SERVER_HOST}
 
