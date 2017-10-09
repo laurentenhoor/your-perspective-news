@@ -8,7 +8,7 @@ import ngSidbarJsStyle from './sidebarjs-custom.css';// original file in: node_m
 import template from './posts-sidebar.html';
 //import style from './posts-sidebar.less';
 
-import { Posts } from '../../api/posts.js';
+import { Posts } from '../../../api/posts.js';
 import { Meteor } from 'meteor/meteor';
 
 class PostCtrl {

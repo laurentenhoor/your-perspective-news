@@ -3,12 +3,14 @@ import angularMeteor from 'angular-meteor';
 import angularRoute from 'angular-route';
 
 import yourpersMenu from '../imports/components/menu/menu';
-import yourpersOverview from '../imports/components/overview/overview';
-import yourpersTopic from '../imports/components/topic/topic';
 import yourpersPosts from '../imports/components/post/post';
 import yourpersFeedback from '../imports/components/feedback/feedback';
 import yourpersLoader from '../imports/components/loader/loader';
 import yourpersItem from '../imports/components/item/item';
+
+// Deprecated
+import yourpersOverview from '../imports/components/deprecated/overview/overview';
+import yourpersTopic from '../imports/components/deprecated/topic/topic';
 
 import '../imports/startup/accounts-config.js';
 
@@ -22,11 +24,13 @@ angular.module('yourpers', [
 	
 	yourpersLoader.name,
 	yourpersMenu.name,
-	yourpersOverview.name,
-	yourpersTopic.name,
 	yourpersPosts.name,
 	yourpersFeedback.name,
 	yourpersItem.name,
+	
+	// Deprecated
+	yourpersOverview.name,
+	yourpersTopic.name,
 	
 	'accounts.ui'
 	
@@ -37,18 +41,21 @@ angular.module('yourpers', [
 	$locationProvider.hashPrefix('!');
 	
 	$routeProvider.
-	    when('/overview', {
-	      template: '<yourpers-overview></yourpers-overview>'
-	    }).
-	    when('/topic', {
-	      template: '<yourpers-topic></yourpers-topic>'
-	    }).
 	    when('/nieuws', {
 		      template: '<yourpers-post></yourpers-post>'
 	    }).
 	    when('/item/:id', {
 	    		template: '<yourpers-item></yourpers-item>'
 	    }).
+	    
+	    // Deprecated
+	    when('/overview', {
+		      template: '<yourpers-overview></yourpers-overview>'
+	    }).
+	    when('/topic', {
+	      template: '<yourpers-topic></yourpers-topic>'
+	    }).
+	    
 	    otherwise('/nieuws');
 	
 	$httpProvider.defaults.useXDomain = true;

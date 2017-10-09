@@ -123,7 +123,7 @@ class ItemCtrl {
 			
 		}
 		
-		this.voteValue = function(id) {
+		this.getVoteValue = function(id) {
 
 			if (vote = Votes.findOne({articleId : id}))
 				return vote.value;

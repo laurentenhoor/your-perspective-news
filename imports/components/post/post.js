@@ -193,7 +193,6 @@ class PostCtrl {
 //		},1000)
 		
 		
-		 
 	}
 }
 
