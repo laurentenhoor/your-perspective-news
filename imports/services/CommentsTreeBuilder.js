@@ -1,7 +1,7 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
-class CommentSortingService {
+class CommentsTreeBuilder {
 
 	constructor() {
 
@@ -107,7 +107,7 @@ function sortCommentsTreeByVotes(commentsTree) {
 
 
 //create a module
-export default angular.module('yourpers.CommentSortingService', [
+export default angular.module('yourpers.CommentsTreeBuilder', [
 	angularMeteor
 	])
-	.service("CommentSortingService", CommentSortingService);
+	.service('CommentsTreeBuilder', CommentsTreeBuilder);

@@ -13,11 +13,11 @@ import { Votes } from '../../api/votes.js';
 import { Comments } from '../../api/comments.js';
 import { Meteor } from 'meteor/meteor';
 
-import { name as CommentSortingService } from '../../services/comments.js';
+import { name as CommentsTreeBuilder } from '../../services/CommentsTreeBuilder.js';
 
 class ItemCtrl {
 
-	constructor($rootScope, $scope, $reactive, $http, $routeParams, $window, CommentSortingService) {
+	constructor($rootScope, $scope, $reactive, $http, $routeParams, $window, CommentsTreeBuilder) {
 
 		$reactive(this).attach($scope);
 		
@@ -44,7 +44,7 @@ class ItemCtrl {
 			comments() {
 				var comments = Comments.find({parentItemId: $routeParams.id})
 				
-				var roots = CommentSortingService.getCommentsTree(comments.fetch());
+				var roots = CommentsTreeBuilder.getCommentsTree(comments.fetch());
 //				console.log(roots);
 			
 				return roots;
@@ -100,9 +100,9 @@ class ItemCtrl {
 }
 
 export default angular.module('yourpers.item', [
-	angularMeteor, angularSanitize, CommentSortingService
+	angularMeteor, angularSanitize, CommentsTreeBuilder
 	])
 	.component('yourpersItem', {
 		templateUrl : template,
-		controller: ['$rootScope', '$scope', '$reactive', '$http', '$routeParams', '$window', 'CommentSortingService', ItemCtrl]
+		controller: ['$rootScope', '$scope', '$reactive', '$http', '$routeParams', '$window', 'CommentsTreeBuilder', ItemCtrl]
 	});
