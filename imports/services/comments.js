@@ -2,94 +2,112 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
 class CommentSortingService {
-	
-  constructor() {
-    
-  }
-    
-  buildCommentHierarchy(unsortedComments) {
-	  
-	    var topLevelComments = findTopLevelComments(unsortedComments);
-	    var repliesPerCommentId = findRepliesPerCommentId(unsortedComments);
 
-	    // enumerate through to handle the case where there are multiple topLevelComments
-	    for (var i = 0, amountOfComments = topLevelComments.length; i < amountOfComments; ++i) {
-	    		recursivelyAddRepliesToSelectedTopLevelComment(topLevelComments[i], repliesPerCommentId);
-	    }
+	constructor() {
 
-	    // sort root by voting score
-	    topLevelComments.sort(function(a,b) {
-	    		return b.score - a.score;
-	    })
-	    
-	    return topLevelComments;
+	}
+
+	getCommentsTree(unsortedComments) {
+
+		var rootComments = findRootComments(unsortedComments);
+		var childrenPerComment = findAllChildrenPerComment(unsortedComments);
+
+		var commentsTree = buildCommentsTree(rootComments, childrenPerComment);
+		
+		var sortedCommentsTree = sortCommentsTreeByVotes(commentsTree);
+		
+		return sortedCommentsTree;
+		
 	}
 }
 
 
+function findRootComments(unsortedComments) {
 
-function findTopLevelComments(unsortedComments) {
+	var rootComments = [];
+	// find the top level nodes and hash the childrenPerComment based on parent
+	for (var i = 0, amountOfComments = unsortedComments.length; i < amountOfComments; ++i) {
 
-	  	var topLevelComments = [];
-	    // find the top level nodes and hash the repliesPerCommentId based on parent
-	    for (var i = 0, amountOfComments = unsortedComments.length; i < amountOfComments; ++i) {
-	    	
-	    	var selectedComment = unsortedComments[i];
-	    	 
-	      	if (!unsortedComments[i].parentCommentId) {
-	      		topLevelComments.push(selectedComment);
-	      		
-	      	} 
+		var selectedComment = unsortedComments[i];
 
-	    }
-	    return topLevelComments;
+		if (!selectedComment.parentCommentId) {
+			rootComments.push(selectedComment);
+
+		} 
+
+	}
+	return rootComments;
 }
 
 
-function findRepliesPerCommentId(unsortedComments) {
-	  
-	  	var repliesPerCommentId = {};
-	  	
-	    // find the top level nodes and hash the repliesPerCommentId based on parent
-	    for (var i = 0, amountOfComments = unsortedComments.length; i < amountOfComments; ++i) {
-	    	
-	    	var selectedComment = unsortedComments[i];
-	    	
-	      	if (unsortedComments[i].parentCommentId) {
-	      		
-	      		if (!repliesPerCommentId[selectedComment.parentCommentId]) {
-      			repliesPerCommentId[selectedComment.parentCommentId] = [];	
-      		}
-      		repliesPerCommentId[selectedComment.parentCommentId].push(selectedComment);
-	      		
-	      	} 
+function findAllChildrenPerComment(unsortedComments) {
 
-	    }
-	    return repliesPerCommentId;
-	  
+	var childrenPerComment = {};
+
+	// find the top level nodes and hash the childrenPerComment based on parent
+	for (var i = 0, amountOfComments = unsortedComments.length; i < amountOfComments; ++i) {
+
+		var selectedComment = unsortedComments[i];
+
+		if (selectedComment.parentCommentId) {
+
+			if (!childrenPerComment[selectedComment.parentCommentId]) {
+				childrenPerComment[selectedComment.parentCommentId] = [];	
+			}
+			childrenPerComment[selectedComment.parentCommentId].push(selectedComment);
+
+		} 
+
+	}
+	return childrenPerComment;
+
+}
+
+
+function buildCommentsTree(rootComments, childrenPerComment) {
+
+	var commentsTree = rootComments;
+
+	// enumerate through to handle the case where there are multiple rootComments
+	for (var i = 0, amountOfComments = rootComments.length; i < amountOfComments; ++i) {
+		recursivelyAddChildrenToSelectedRootComment(commentsTree[i], childrenPerComment);
+	}
+
+	return commentsTree;
+
 }
 
 
 //function to recursively build the tree
-function recursivelyAddRepliesToSelectedTopLevelComment(selectedTopLevelComment, repliesPerCommentId) {
- 
-	if (repliesPerCommentId[selectedTopLevelComment._id]) {
- 	
- 	// add repliesPerCommentId to selectedTopLevelComment and sort by voting score
-     selectedTopLevelComment.children = repliesPerCommentId[selectedTopLevelComment._id].sort(function(a, b){
-     		return (b.score - a.score);
-     });
-     
-     for (var i = 0, amountOfComments = selectedTopLevelComment.children.length; i < amountOfComments; ++i) {
-    	 	recursivelyAddRepliesToSelectedTopLevelComment(selectedTopLevelComment.children[i], repliesPerCommentId);
-     }
-     
- }
-};
+function recursivelyAddChildrenToSelectedRootComment(selectedRootComment, childrenPerComment) {
 
-// create a module
-export default angular.module('yourpers.selectedCommentSortingService', [
-    angularMeteor
-])
+	if (childrenPerComment[selectedRootComment._id]) {
 
-.service("CommentSortingService", CommentSortingService);
+		// add childrenPerComment to selectedRootComment and sort by voting score
+		selectedRootComment.children = sortCommentsTreeByVotes(childrenPerComment[selectedRootComment._id]);
+
+		for (var i = 0, amountOfComments = selectedRootComment.children.length; i < amountOfComments; ++i) {
+			recursivelyAddChildrenToSelectedRootComment(selectedRootComment.children[i], childrenPerComment);
+		}
+
+	}
+}
+
+
+function sortCommentsTreeByVotes(commentsTree) {
+	
+	// sort root by voting score
+	commentsTree.sort(function(a,b) {
+		return b.score - a.score;
+	})
+	
+	return commentsTree;
+	
+}
+
+
+//create a module
+export default angular.module('yourpers.CommentSortingService', [
+	angularMeteor
+	])
+	.service("CommentSortingService", CommentSortingService);

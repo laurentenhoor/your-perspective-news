@@ -44,7 +44,7 @@ class ItemCtrl {
 			comments() {
 				var comments = Comments.find({parentItemId: $routeParams.id})
 				
-				var roots = CommentSortingService.buildCommentHierarchy(comments.fetch());
+				var roots = CommentSortingService.getCommentsTree(comments.fetch());
 //				console.log(roots);
 			
 				return roots;
