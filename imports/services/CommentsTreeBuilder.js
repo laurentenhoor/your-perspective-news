@@ -13,11 +13,9 @@ class CommentsTreeBuilder {
 		var childrenPerComment = findAllChildrenPerComment(unsortedComments);
 
 		var commentsTree = buildCommentsTree(rootComments, childrenPerComment);
-		
-		var sortedCommentsTree = sortCommentsTreeByVotes(commentsTree);
-		
-		return sortedCommentsTree;
-		
+
+		return commentsTree;
+
 	}
 }
 
@@ -36,6 +34,9 @@ function findRootComments(unsortedComments) {
 		} 
 
 	}
+
+	rootComments = sortCommentsArrayByVotes(rootComments);
+
 	return rootComments;
 }
 
@@ -84,7 +85,7 @@ function recursivelyAddChildrenToSelectedRootComment(selectedRootComment, childr
 	if (childrenPerComment[selectedRootComment._id]) {
 
 		// add childrenPerComment to selectedRootComment and sort by voting score
-		selectedRootComment.children = sortCommentsTreeByVotes(childrenPerComment[selectedRootComment._id]);
+		selectedRootComment.children = sortCommentsArrayByVotes(childrenPerComment[selectedRootComment._id]);
 
 		for (var i = 0, amountOfComments = selectedRootComment.children.length; i < amountOfComments; ++i) {
 			recursivelyAddChildrenToSelectedRootComment(selectedRootComment.children[i], childrenPerComment);
@@ -94,15 +95,15 @@ function recursivelyAddChildrenToSelectedRootComment(selectedRootComment, childr
 }
 
 
-function sortCommentsTreeByVotes(commentsTree) {
-	
+function sortCommentsArrayByVotes(commentsArray) {
+
 	// sort root by voting score
-	commentsTree.sort(function(a,b) {
+	commentsArray.sort(function(a,b) {
 		return b.score - a.score;
-	})
-	
-	return commentsTree;
-	
+	});
+
+	return commentsArray;
+
 }
 
 
