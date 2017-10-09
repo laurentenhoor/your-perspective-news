@@ -13,9 +13,11 @@ import { Votes } from '../../api/votes.js';
 import { Comments } from '../../api/comments.js';
 import { Meteor } from 'meteor/meteor';
 
+import { name as CommentSortingService } from '../../services/comments.js';
+
 class ItemCtrl {
 
-	constructor($rootScope, $scope, $reactive, $http, $routeParams, $window) {
+	constructor($rootScope, $scope, $reactive, $http, $routeParams, $window, CommentSortingService) {
 
 		$reactive(this).attach($scope);
 		
@@ -33,45 +35,6 @@ class ItemCtrl {
 		});
 		
 //		console.log($routeParams.id);	
-		
-		function buildHierarchy(arry) {
-
-		    var roots = [], children = {};
-
-		    // find the top level nodes and hash the children based on parent
-		    for (var i = 0, len = arry.length; i < len; ++i) {
-		        var item = arry[i],
-		            p = item.parentCommentId,
-		            target = !p ? roots : (children[p] || (children[p] = []));
-
-		        target.push(item);
-		    }
-
-		    // function to recursively build the tree
-		    var findChildren = function(parent) {
-		        if (children[parent._id]) {
-		        		// add children to parent and sort by voting score
-		            parent.children = children[parent._id].sort(function(a, b){
-		            		return (b.score - a.score);
-		            });
-		            for (var i = 0, len = parent.children.length; i < len; ++i) {
-		                findChildren(parent.children[i]);
-		            }
-		        }
-		    };
-
-		    // enumerate through to handle the case where there are multiple roots
-		    for (var i = 0, len = roots.length; i < len; ++i) {
-		        findChildren(roots[i]);
-		    }
-
-		    // sort root by voting score
-		    roots.sort(function(a,b) {
-		    		return b.score - a.score;
-		    })
-		    
-		    return roots;
-		}
 
 	
 		this.helpers({
@@ -81,7 +44,7 @@ class ItemCtrl {
 			comments() {
 				var comments = Comments.find({parentItemId: $routeParams.id})
 				
-				var roots = buildHierarchy(comments.fetch());
+				var roots = CommentSortingService.buildCommentHierarchy(comments.fetch());
 //				console.log(roots);
 			
 				return roots;
@@ -137,9 +100,9 @@ class ItemCtrl {
 }
 
 export default angular.module('yourpers.item', [
-	angularMeteor, angularSanitize
+	angularMeteor, angularSanitize, CommentSortingService
 	])
 	.component('yourpersItem', {
 		templateUrl : template,
-		controller: ['$rootScope', '$scope', '$reactive', '$http', '$routeParams', '$window', ItemCtrl]
+		controller: ['$rootScope', '$scope', '$reactive', '$http', '$routeParams', '$window', 'CommentSortingService', ItemCtrl]
 	});
