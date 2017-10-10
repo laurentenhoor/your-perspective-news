@@ -5,15 +5,15 @@ import angularMeteor from 'angular-meteor';
 import angularSanitize from 'angular-sanitize';
 
 import template from './item.html';
-import style from '../post/post.less';
-import style2 from './item.less';
+import style from './item.less';
+import { name as CommentsTreeBuilder } from './services/CommentsTreeBuilder.js';
+
+import { Meteor } from 'meteor/meteor';
 
 import { Posts } from '../../api/posts.js';
 import { Votes } from '../../api/votes.js';
 import { Comments } from '../../api/comments.js';
-import { Meteor } from 'meteor/meteor';
 
-import { name as CommentsTreeBuilder } from '../../services/CommentsTreeBuilder.js';
 
 class ItemCtrl {
 
@@ -31,7 +31,6 @@ class ItemCtrl {
 		Meteor.subscribe('posts', function() {
 			post = Posts.findOne({_id: $routeParams.id});
 			console.log(post)
-			$scope.header = 'Jouwpers -  '+post.title;
 		});
 		
 //		console.log($routeParams.id);	

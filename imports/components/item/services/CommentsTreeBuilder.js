@@ -85,7 +85,8 @@ function recursivelyAddChildrenToSelectedRootComment(selectedRootComment, childr
 	if (childrenPerComment[selectedRootComment._id]) {
 
 		// add childrenPerComment to selectedRootComment and sort by voting score
-		selectedRootComment.children = sortCommentsArrayByVotes(childrenPerComment[selectedRootComment._id]);
+		selectedRootComment.children = childrenPerComment[selectedRootComment._id];
+		selectedRootComment.children = sortCommentsArrayByVotes(selectedRootComment.children);
 
 		for (var i = 0, amountOfComments = selectedRootComment.children.length; i < amountOfComments; ++i) {
 			recursivelyAddChildrenToSelectedRootComment(selectedRootComment.children[i], childrenPerComment);
@@ -108,7 +109,7 @@ function sortCommentsArrayByVotes(commentsArray) {
 
 
 //create a module
-export default angular.module('yourpers.CommentsTreeBuilder', [
+export default angular.module('CommentsTreeBuilder', [
 	angularMeteor
 	])
 	.service('CommentsTreeBuilder', CommentsTreeBuilder);
