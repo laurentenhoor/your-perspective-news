@@ -1,6 +1,7 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
+
 class CommentsTreeBuilder {
 
 	constructor() {
@@ -9,7 +10,7 @@ class CommentsTreeBuilder {
 
 	getCommentsTree(unsortedComments) {
 
-		var rootComments = findRootComments(unsortedComments);
+		var rootComments = findRootCommentsAndSortByVotes(unsortedComments);
 		var childrenPerComment = findAllChildrenPerComment(unsortedComments);
 
 		var commentsTree = buildCommentsTree(rootComments, childrenPerComment);
@@ -20,7 +21,7 @@ class CommentsTreeBuilder {
 }
 
 
-function findRootComments(unsortedComments) {
+function findRootCommentsAndSortByVotes(unsortedComments) {
 
 	var rootComments = [];
 	// find the top level nodes and hash the childrenPerComment based on parent
@@ -69,7 +70,6 @@ function buildCommentsTree(rootComments, childrenPerComment) {
 
 	var commentsTree = rootComments;
 
-	// enumerate through to handle the case where there are multiple rootComments
 	for (var i = 0, amountOfComments = rootComments.length; i < amountOfComments; ++i) {
 		recursivelyAddChildrenToSelectedRootComment(commentsTree[i], childrenPerComment);
 	}
@@ -79,12 +79,10 @@ function buildCommentsTree(rootComments, childrenPerComment) {
 }
 
 
-//function to recursively build the tree
 function recursivelyAddChildrenToSelectedRootComment(selectedRootComment, childrenPerComment) {
 
 	if (childrenPerComment[selectedRootComment._id]) {
 
-		// add childrenPerComment to selectedRootComment and sort by voting score
 		selectedRootComment.children = childrenPerComment[selectedRootComment._id];
 		selectedRootComment.children = sortCommentsArrayByVotes(selectedRootComment.children);
 
@@ -107,9 +105,8 @@ function sortCommentsArrayByVotes(commentsArray) {
 
 }
 
+var name = "CommentsTreeBuilder";
 
-//create a module
-export default angular.module('CommentsTreeBuilder', [
+export default angular.module(name, [
 	angularMeteor
-	])
-	.service('CommentsTreeBuilder', CommentsTreeBuilder);
+	]).service(name, CommentsTreeBuilder);

@@ -2,15 +2,15 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import angularRoute from 'angular-route';
 
-import yourpersMenu from '../imports/components/menu/menu';
-import yourpersPosts from '../imports/components/post/post';
-import yourpersFeedback from '../imports/components/feedback/feedback';
-import yourpersLoader from '../imports/components/loader/loader';
-import yourpersItem from '../imports/components/item/item';
+import {name as yourpersMenu} from '../imports/components/menu/menu';
+import {name as yourpersPosts} from '../imports/components/post/post';
+import {name as yourpersFeedback} from '../imports/components/feedback/feedback';
+import {name as yourpersLoader} from '../imports/components/loader/loader';
+import {name as yourpersItem} from '../imports/components/item/item';
 
 // Deprecated
-import yourpersOverview from '../imports/components/deprecated/overview/overview';
-import yourpersTopic from '../imports/components/deprecated/topic/topic';
+import {name as yourpersOverview} from '../imports/components/deprecated/overview/overview';
+import {name as yourpersTopic} from '../imports/components/deprecated/topic/topic';
 
 import '../imports/startup/accounts-config.js';
 
@@ -22,15 +22,15 @@ angular.module('yourpers', [
 	angularMeteor,
 	angularRoute,
 	
-	yourpersLoader.name,
-	yourpersMenu.name,
-	yourpersPosts.name,
-	yourpersFeedback.name,
-	yourpersItem.name,
+	yourpersLoader,
+	yourpersMenu,
+	yourpersPosts,
+	yourpersFeedback,
+	yourpersItem,
 	
 	// Deprecated
-	yourpersOverview.name,
-	yourpersTopic.name,
+	yourpersOverview,
+	yourpersTopic,
 	
 	'accounts.ui'
 	
