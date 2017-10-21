@@ -86,13 +86,13 @@ meteor build $LOCAL_BUNDLE_DIR --architecture $LOCAL_ARCHITECTURE --allow-superu
 ssh-keygen -R ${SERVER_HOST}
 
 # copy to server
-sshpass -p ${SERVER_PASS} scp ${LOCAL_BUNDLE_DIR}${APP_NAME}.tar.gz ${SERVER_USER}@${SERVER_HOST}:${SERVER_APP_ROOT_PATH} -o StrictHostKeyChecking=no
+sshpass -p ${SERVER_PASS} scp -o StrictHostKeyChecking=no ${LOCAL_BUNDLE_DIR}${APP_NAME}.tar.gz ${SERVER_USER}@${SERVER_HOST}:${SERVER_APP_ROOT_PATH} 
 
 # copy to server
-sshpass -p ${SERVER_PASS} scp ${SERVER_INIT_SCRIPT} ${SERVER_USER}@${SERVER_HOST}:/etc/init -o StrictHostKeyChecking=no
+sshpass -p ${SERVER_PASS} scp -o StrictHostKeyChecking=no ${SERVER_INIT_SCRIPT} ${SERVER_USER}@${SERVER_HOST}:/etc/init 
 
 # ssh
-sshpass -p ${SERVER_PASS} ssh ${SERVER_USER}@${SERVER_HOST} -o StrictHostKeyChecking=no "
+sshpass -p ${SERVER_PASS} ssh -o StrictHostKeyChecking=no ${SERVER_USER}@${SERVER_HOST} "
 
 # do db backup
 cd ${SERVER_APP_ROOT_PATH};
@@ -125,7 +125,7 @@ cd ${SERVER_APP_ROOT_PATH}/${SERVER_APP_DIR_NAME};
 export MONGO_URL=mongodb://${SERVER_MONGO_HOST}:${SERVER_MONGO_PORT}/${SERVER_MONGO_DBNAME};
 export PORT=$SERVER_PORT;
 export ROOT_URL=$SERVER_ROOT_URL;
-forever start --uid '${APP_NAME}' -a main.js;
+forever start --uid '${APP_NAME}' -a ./main.js;
 
 # end;
 echo 'If no error, ${APP_NAME} deployed and running on:';
