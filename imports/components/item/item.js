@@ -100,7 +100,9 @@ class ItemCtrl {
 }
 
 export default angular.module('yourpers.item', [
-	angularMeteor, angularSanitize, CommentsTreeBuilder
+	angularMeteor, 
+	angularSanitize, 
+	CommentsTreeBuilder
 	])
 	.component('yourpersItem', {
 		templateUrl : template,
