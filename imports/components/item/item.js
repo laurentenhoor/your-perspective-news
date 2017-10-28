@@ -16,7 +16,6 @@ import { Comments } from '../../api/comments.js';
 import {name as CommentsTreeBuilder} from './services/CommentsTreeBuilder.js';
 
 
-
 class ItemCtrl {
 
 	constructor($rootScope, $scope, $reactive, $http, $routeParams, $window, CommentsTreeBuilder) {
@@ -101,7 +100,9 @@ class ItemCtrl {
 }
 
 export default angular.module('yourpers.item', [
-	angularMeteor, angularSanitize, CommentsTreeBuilder
+	angularMeteor, 
+	angularSanitize, 
+	CommentsTreeBuilder
 	])
 	.component('yourpersItem', {
 		templateUrl : template,

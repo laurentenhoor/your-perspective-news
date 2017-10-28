@@ -14,8 +14,6 @@ import {name as yourpersTopic} from '../imports/components/deprecated/topic/topi
 
 import '../imports/startup/accounts-config.js';
 
-import template from './main.html';
-
 
 angular.module('yourpers', [
 	
