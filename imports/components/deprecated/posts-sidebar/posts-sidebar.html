@@ -1,0 +1,55 @@
+<sidebarjs class="">
+
+<div class="company-logo-container">
+
+	<!-- <img class="company-logo" src="assets/logos/newnews_newcolors.png"/>  -->
+	<i class="fa fa-comments company-logo" aria-hidden="true"></i>
+	<div class="company-text">
+		<span class="company-logo-title">your<b>pers</b><br> <span
+			class="company-strategy">The open source opinion.</span></span>
+	</div>
+</div>
+
+
+<div class="add-perspective" ng-if="$ctrl.currentUser">
+	<div class="yourpers-instructions">Voeg jouw perspectief toe.</div>
+	<form ng-submit="$ctrl.post()" name=addPost novalidate>
+		
+		<input ng-model="$ctrl.newTitle" class="post-input-text" autofocus="true" placeholder="Titel" required name="newTitle"/>
+		<div class="invalid-message" ng-if="addPost.newTitle.$dirty && addPost.newTitle.$invalid">Voer een titel in.</div>
+		
+		<input type="url" ng-model="$ctrl.newUrl" class="post-input-url" placeholder="url" required name="newUrl" http-prefix/>
+		<div class="invalid-message" ng-if="addPost.newUrl.$dirty && addPost.newUrl.$invalid">Voer een geldige url in.</div>
+		
+		<input ng-model="$ctrl.newSubstantiation" class="post-input-text" autofocus="true" placeholder="Waarom gaat dit onze blik verruimen?"/>
+		
+		<input type="submit" class="post-input-button" value="Toevoegen" ng-disabled="addPost.$invalid"/>
+	</form>
+</div>
+
+<div class="add-perspective" ng-if="!$ctrl.currentUser">
+	<div class="yourpers-instructions"><login-buttons class="left"></login-buttons> om jouw perspectief te delen.</div>
+	
+</div>
+
+<div class="post-message-container">
+	<div class="post-message" ng-repeat="post in $ctrl.posts"
+		ng-init="id=post._id" ng-animate="'animate'">
+
+
+		<div class="voting">
+			<div ng-click="$ctrl.upVote(id)" class="arrow-up"></div>
+			<div>{{post.score}}</div>
+			<div ng-click="$ctrl.downVote(id)" class="arrow-down"></div>
+		</div>
+
+		<a href="{{post.url}}" target="_self">
+			<div class="post-details">
+				<div class="post-title">{{post.title}}</div>
+				<div class="post-url">{{post.url}}</div>
+			</div>
+		</a>
+	</div>
+</div>
+
+</sidebarjs>

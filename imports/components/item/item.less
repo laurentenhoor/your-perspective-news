@@ -1,0 +1,182 @@
+@import "../../style/variables.less";
+
+.comment-container {
+	margin-bottom: 40vw;
+	text-align:right;
+	font-size: 3vw;
+	font-family: "Helvetica";
+	margin-right: 3vw;
+}
+
+.a-extern:active, .a-extern:visited, .a-extern:hover, .a-extern:link {
+	text-decoration: underline;
+	font-size: 2.8vw;
+	opacity: 0.65;
+}
+
+.comment-add-comment-button {
+	margin-top: -3vw;
+	margin-right: -3vw;
+    background: #efefef;
+    padding: 1.7vw 0vw;
+    border-bottom: 0.1em solid #e4e4e4;
+    font-family: "Montserrat";
+    
+}
+
+.comment-add-pers-button {
+	float: left;
+	background: #efefef;
+	margin-left: 3vw;
+    padding: 1.7vw 0vw;
+    
+    font-family: "Montserrat";
+    
+}
+
+
+
+.comment-content-container{
+	font-size:3vw;
+	text-align:left;
+	margin-bottom: 0vw;
+    margin-top: 3vw;
+}
+
+.comment-content-header{
+	margin-bottom:1vw;
+	color:darkgrey;
+}
+
+.comment {
+	margin-bottom:3vw;
+
+}
+
+.comment-input-container {
+	height: 10vw;
+	width:100%;
+	
+
+}
+.comment-input {
+	border: 1px solid #efefed;
+	height:5em;
+	width: 100%;
+	
+}
+
+.pers-input {
+	border: 1px solid #efefed;
+	//height:5em;
+	width: 100%;
+	width: 94vw;
+	margin-left:3vw;
+	
+}
+
+.comment-input-button {
+	//display:none;
+	background-color: @button-color;
+	color:white;
+	margin-bottom: 4vw;
+	font-size:2.5vw;
+	margin-top:2.5vw;
+    border-radius: 0.7vw;
+}
+.comment-input-button:disabled {
+	background-color: rgba(160, 160, 160, 0.15);
+    color: grey;
+ }
+
+.comment-input.root {
+	width: 94vw;
+	margin-left:3vw;
+	
+}
+.comment-input-button.root {
+	width: 94vw;
+	margin-left:3vw;
+}
+
+.comment-content-text {
+    margin-bottom: 2vw;
+    color: rgba(29, 29, 29, 0.8);
+    font-size: 3.5vw;
+	
+	overflow: hidden;
+    overflow-wrap: break-word;
+ 
+}
+
+
+
+.comment-content-footer {
+	margin-right: 3vw;
+	font-size:2.8vw;
+	width:100%;
+	font-family: "Montserrat";
+}
+
+.comment-content-voting {
+	color:darkgrey;
+	text-align: right;
+}
+
+
+
+.comment-voting-score {
+	
+	margin:1vw;
+	display:inline-block;
+	text-align:center;
+	width:3vw;
+
+}
+
+.comment-tree {
+	padding-left:3vw;
+	border-left: 1.5px solid rgba(160, 160, 160, 0.4);
+}
+
+
+.arrow-up-comment {
+
+  width: 0; 
+  height: 0; 
+  border-left: 3vw solid transparent;
+  border-right: 3vw solid transparent;
+
+  border-bottom: 3vw solid grey;
+    
+    
+    display:inline-block;
+    
+   margin-bottom: 1vw;
+   margin-left: 3vw;
+}
+
+.arrow-down-comment {
+  width: 0; 
+  height: 0; 
+  border-left: 3vw solid transparent;
+  border-right: 3vw solid transparent;
+
+border-top: 3vw solid grey;
+    
+    
+    
+    display:inline-block;
+    
+    margin-bottom: -1vw;
+
+}
+
+.upvoted {
+	border-bottom: 3vw solid rgba(218, 39, 44, 0.92);
+}
+
+.downvoted {
+	//border-top: 3vw solid rgba(218, 39, 44, 0.77);
+	border-top: 3vw solid rgba(39, 86, 218, 0.77);
+}

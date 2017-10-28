@@ -1,0 +1,16 @@
+<a ng-repeat="item in $ctrl.newsItems" href="#!/topic">
+	<table class="news-item-container">
+	  <tr>
+	    <th class="news-item-photo" ng-style="{'background-image': 'url({{item.imgUrl}})'}">
+	    </th>
+	    
+	    <th class="news-item-text">
+	    	<div class="news-item-header">{{ item.title }}</div>
+			<div class="news-item-summary">{{ item.summaryText }}</div>
+			<div class="news-item-logos">
+				<img ng-repeat="logoUrl in item.logoUrls" ng-src="{{ logoUrl }}" class="news-item-img">
+			</div>
+	    </th>
+	  </tr>
+	 </table>
+</a>

@@ -1,0 +1,31 @@
+<head>
+
+	<title>Jouwpers - Nieuwsoverzicht</title>
+	<meta name="description"
+		content="Jouw perspectief op het nieuws.">
+	
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, user-scalable=no">
+	<link rel="icon" href="assets/logos/newnews_bw.png">
+	
+</head>
+
+<body ng-app="yourpers">
+
+	<div class="mobileShow">
+	
+		<yourpers-loader></yourpers-loader>
+
+		<yourpers-menu></yourpers-menu>
+		
+		<div ng-view></div>
+
+		<yourpers-feedback></yourpers-feedback>
+
+	</div>
+
+	<div class="desktopShow">
+		<br><img class="logo-desktop" src="assets/logos/newnews_bw.png"/> Bezoek <span class="red">jouw<b>pers</b></span> via een smartphone of tablet.
+	</div>
+	
+</body>
