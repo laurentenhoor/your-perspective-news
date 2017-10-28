@@ -10,3 +10,4 @@ tmp
 .project
 .settings
 .classpath
+.tern-project

@@ -36,7 +36,8 @@ angular.module('yourpers', [
 	
 ])
 
-.config(['$locationProvider', '$routeProvider', '$httpProvider', '$provide', function($locationProvider, $routeProvider, $httpProvider, $provide) {
+.config(['$locationProvider', '$routeProvider', '$httpProvider', '$provide', function(
+		$locationProvider, $routeProvider, $httpProvider, $provide) {
   
 	$locationProvider.hashPrefix('!');
 	
