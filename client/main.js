@@ -8,6 +8,8 @@ import {name as yourpersFeedback} from '../imports/components/feedback/feedback'
 import {name as yourpersLoader} from '../imports/components/loader/loader';
 import {name as yourpersItem} from '../imports/components/item/item';
 
+import {name as yourpersBundle} from '../imports/components/bundle/bundle';
+
 // Deprecated
 import {name as yourpersOverview} from '../imports/components/deprecated/overview/overview';
 import {name as yourpersTopic} from '../imports/components/deprecated/topic/topic';
@@ -25,6 +27,8 @@ angular.module('yourpers', [
 	yourpersPosts,
 	yourpersFeedback,
 	yourpersItem,
+	
+	yourpersBundle,
 	
 	// Deprecated
 	yourpersOverview,
@@ -46,6 +50,9 @@ angular.module('yourpers', [
 	    when('/item/:id', {
 	    		template: '<yourpers-item></yourpers-item>'
 	    }).
+		    when('/bundle', {
+	    		template: '<yourpers-bundle></yourpers-bundle>'
+	    }).
 	    
 	    // Deprecated
 	    when('/overview', {
@@ -55,7 +62,7 @@ angular.module('yourpers', [
 	      template: '<yourpers-topic></yourpers-topic>'
 	    }).
 	    
-	    otherwise('/nieuws');
+	    otherwise('/bundle');
 	
 	$httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
