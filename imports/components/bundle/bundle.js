@@ -54,7 +54,7 @@ class BundleCtrl {
 			logoUrl: 'https://logo.clearbit.com/www.elsevierweekblad.nl',
 			title: "Opzeggen klimaatverdrag is best verstandig besluit",
 			description: "Dat de Amerikaanse president Donald Trump uit het klimaatakkoord van Parijs stapt, is een verstandig besluit zijn – misschien wel de eerste verstandige bes - Kennis, Opinie",
-			url: "https://www.businessinsider.nl/factcheck-5-beweringen-van-donald-trump-het-klimaatakkoord-van-parijs/",
+			url: "http://www.elsevierweekblad.nl/opinie/opinie/2017/06/opzeggen-klimaatverdrag-zou-best-verstandig-besluit-zijn-van-trump-509384/",
 			publisher: 'Elsevier Weekblad',
 			imageUrl: 'http://cdn.prod.elseone.nl/uploads/2017/06/ANP-51680916-2048x1220.jpg'
 		}]
