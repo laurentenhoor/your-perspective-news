@@ -62,7 +62,7 @@ angular.module('yourpers', [
 	      template: '<yourpers-topic></yourpers-topic>'
 	    }).
 	    
-	    otherwise('/bundle');
+	    otherwise('/nieuws');
 	
 	$httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
