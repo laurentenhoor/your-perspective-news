@@ -38,8 +38,10 @@ angular.module('yourpers', [
 	
 ])
 
-.config(['$locationProvider', '$routeProvider', '$httpProvider', '$provide', function(
-		$locationProvider, $routeProvider, $httpProvider, $provide) {
+.config(['$locationProvider', '$routeProvider', '$httpProvider', '$provide', '$sceDelegateProvider', function(
+		$locationProvider, $routeProvider, $httpProvider, $provide, $sceDelegateProvider) {
+	
+	$sceDelegateProvider.resourceUrlWhitelist(['**']);
   
 	$locationProvider.hashPrefix('!');
 	

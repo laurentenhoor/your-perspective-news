@@ -1,6 +1,7 @@
 .bundle-category {
 
-	margin: 4vh 0;
+	margin-top: 5vw;
+	margin-bottom: 5vw;
 	padding: 2vw;
 	background:rgba(10,10,10,0.02);
 	text-align:left;
@@ -9,14 +10,44 @@
 	border-bottom: 0.1em solid #e2e2e2;
     border-top: 0.1em solid white;
     
+    border-left-color: #d8d8d8;
+    
     font-size: 2.8vw;
 
     font-family: "Montserrat";
 
 }
 
+
+.selected {
+  -webkit-filter: grayscale(0%);
+  -webkit-transition: .15s ease-in-out;
+  -moz-filter: grayscale(0%);
+  -moz-transition: .15s ease-in-out;
+  -o-filter: grayscale(0%);
+  -o-transition: .15s ease-in-out; 
+} 
+
+.deselected {
+	opacity:0.8;
+	
+	-webkit-filter: grayscale(100%);
+  -webkit-transition: .15s ease-in-out;
+  -moz-filter: grayscale(100%);
+  -moz-transition: .15s ease-in-out;
+  -o-filter: grayscale(100%);
+  -o-transition: .15s ease-in-out;
+}
+
 .description {
-	    padding: 1.5vw 0;
+	padding-top: 2vw;
+	word-wrap:break-word;
+}
+
+.title {
+	font-weight: 900;
+    font-size: 3vw;
+    margin-top: 2vw;
 }
 
 .article-slider {
@@ -26,61 +57,23 @@
 
 
 h4 {
-	font-family:"Open Sans";
-	font-size:3vw;
-	margin-top:0;
-	font-weight:200;
+    font-family: "Montserrat";
+    font-size: 3vw;
+    margin-top: 0;
+    font-weight: 100;
+    color: #928e8e;
 }
 
 h3 {
-	font-family:"Open Sans";
-//	font-weight: 100;
-}
-
-
-.cat1 {
-	h4{
-//		color:#E2711D;
-	}
-//	border-left-color: #E2711D;
-//	border-image: linear-gradient(to top, #536976, #BBD2C5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-    border-image: linear-gradient(to bottom, #bbd2c5, #536976, #292e49) 1 100%;
-    border-image: linear-gradient(to top, #fc5c7d, #6a82fb) 1 100%;
-    border-image: linear-gradient(to bottom, rgba(10, 10, 10, 0.02), #11998e) 1 100%;
-    border-image: linear-gradient(to bottom, #bdc3c7, #2c3e50) 1 100%;
-
-}
-
-.cat2 {
-	border-left-color: #DA272C;
-	border-image: linear-gradient(to top, #3e5151, #decba4) 1 100%;
-	border-image: linear-gradient(to bottom, #f59699, #b20a2c) 1 100%;
-	border-image : linear-gradient(to bottom, #e52d27, #b31217) 1 100%;
-	    border-image: linear-gradient(to bottom, #e0e0e0, #dcdcdc) 1 100%;
-}
-
-.cat3 {
-
-	border-left-color: #FF9505;
 	
-	border-image: linear-gradient(to bottom, rgba(54, 209, 220, 0.2), #5b86e5) 1 100%;
+font-weight: 900;
+    font-family: "Montserrat";
+    font-size: 5vw;
 }
 
-.cat4 {
-	border-left-color: #FFB627;
-	border-image: linear-gradient(to bottom, rgba(10, 10, 10, 0.02), #11998e) 1 100%;
-	border-image: linear-gradient(to top, rgba(115, 9, 154, 0.68), rgba(203, 180, 212, 0.35)) 1 100%;
 
-}
 
-.cat5 {
-	border-left-color: #FFC971;
-	
-	border-image: linear-gradient(to top, #f2994a, rgba(242, 201, 76, 0.46)) 1 100%;
-}
-
-.anti {
+.carousel-article {
 	width:30vw;
 	height:50vw;
 	
@@ -89,6 +82,8 @@ h3 {
     
     position:relative;
     display:inline-block;
+    
+    margin-right:1.5vw;
     
 }
 
@@ -105,37 +100,6 @@ h3 {
     
 }
 
-
-.pro1 {
-	
-	 background-image: url('https://nos.nl/data/image/2017/06/02/390267/xxl.jpg')
-}
-
-.pro2 {
-	
-	 background-image: url('739260475b008ad88fb5090632ee47e0caf20233-400x255.jpg')
-}
-
-.pro3 {
-	
-	 background-image: url('https://static0.persgroep.net/volkskrant/image/f50a559f-ad8c-49f2-a32d-8657312c25f6?width=700')
-}
-
-.pro4 {
-	background-image: url('https://images.nrc.nl/3xdswAvTyDuBNeAXCe6y8w3ZCck=/1200x627/smart/filters:no_upscale()/s3/static.nrc.nl/wp-content/uploads/2017/06/5809284a-2e2d-4791-8461-cc590545ff35.jpg');
-}
-
-.anti1 {
-	
-	 background-image: url('//a57.foxnews.com/media2.foxnews.com/BrightCove/694940094001/2017/06/01/0/0/694940094001_5456104729001_5456049982001-vs.jpg?ve=1')
-}
-
-
-
-.anti2 {
-	
-	 background-image: url('http://cdn.prod.elseone.nl/uploads/2017/06/ANP-51680916-2048x1220.jpg?')
-}
 
 .add-img {
     width: 18vw;

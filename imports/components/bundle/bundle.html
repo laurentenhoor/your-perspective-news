@@ -1,102 +1,83 @@
-<h3 class="" style="text-align:left;margin-left:3vw;color:rgba(0, 0, 0, 0.7);font-weight:200;">Trump stapt uit klimaatakkoord</h3>
+<h3 class="" style="text-align:left;margin-left:3vw;color:rgba(0, 0, 0, 0.7);">Trump stapt uit klimaatakkoord</h3>
 
 
-<div class="bundle-category cat2">
+<div class="bundle-category">
 	
 	<h4>Algemene berichtgeving</h4>
 
-<div class="article-slider">
-	<div class="anti pro1">
-	
-		<img class=anti-img src="https://logo.clearbit.com/nos.nl">
-	
-	</div>
-	
-	<div class="anti pro2">
-	
-		<img class=anti-img src="https://logo.clearbit.com/www.businessinsider.nl">
-	
-	</div>
-	
-	<div class="anti pro3">
-	
-		<img class=anti-img src="https://logo.clearbit.com/www.volkskrant.nl">
-	
-	</div>
-	
-	
-	
-	<div class="anti pro4">
-	
-		<img class=anti-img src="https://logo.clearbit.com/www.nrc.nl">
-	
-	</div>
-	
-	
-<div class="anti-video pro5">
-		<iframe width="100%" height="100%" src="https://www.youtube.com/embed/4XDWtU1Zojw"></iframe>
+	<div class="article-slider">
 		
-	
-	</div>
-
-<img class="add-img" src="https://cdn3.iconfinder.com/data/icons/glyph/227/Button-Add-3-128.png">
-	
+		<div ng-repeat="article in $ctrl.proArticles" ng-click="$ctrl.clickPro(article)" class="selected selected carousel-article"
+		ng-class="$ctrl.activeProArticle == undefined ? 'selected': ($ctrl.activeProArticle == article ? 'selected' : 'deselected')"
+		style="background-image:url({{article.imageUrl}})">
+		
+			<img ng-if="article.logoUrl" class=anti-img src="{{article.logoUrl}}">
+			
+		</div>
+		
+		<div class="anti-video">
+				<iframe ng-src="https://www.youtube.com/embed/4XDWtU1Zojw" width="100%" height="100%" frameborder="0" allowfullscreen my-directive ></iframe>
+		</div>
 		
 		
-
-</div>
-	<div class="description">
-	Volgens de VN-klimaat organisatie WMO warmt de aarde 0,3 °C extra op door het vertrek van de VS.    
-						Ofwel, de consequenties zijn huge</div>
-
 	
+	<img class="add-img" src="https://cdn3.iconfinder.com/data/icons/glyph/227/Button-Add-3-128.png">
+	
+	</div>
+	
+	<div ng-if="$ctrl.proTitle" class="title" ng-bind="$ctrl.proTitle"></div>
+	<div ng-if="$ctrl.proDescription" class="description" ng-bind="$ctrl.proDescription"></div>
 </div>
 
 
 
-
-<div class="bundle-category cat2">
+<div class="bundle-category">
 	<h4>Tegengeluiden</h4>
 	
 	<div class="article-slider">
-		<div class="anti anti1">
-		
-			<img class=anti-img src="https://logo.clearbit.com/www.foxnews.com">
-		
+	
+		<div ng-repeat="article in $ctrl.conArticles" ng-click="$ctrl.clickCon(article)" class="selected selected carousel-article"
+			ng-class="$ctrl.activeConArticle == undefined ? 'selected': ($ctrl.activeConArticle == article ? 'selected' : 'deselected')"
+			style="background-image:url({{article.imageUrl}})">
+			
+				<img ng-if="article.logoUrl" class=anti-img src="{{article.logoUrl}}">
+			
 		</div>
-		<div class="anti anti2">
-			<img class=anti-img src="https://logo.clearbit.com/www.elsevierweekblad.nl">
-		
-		</div>
+	
 		<img class="add-img" src="https://cdn3.iconfinder.com/data/icons/glyph/227/Button-Add-3-128.png">
 	
-		
-		
 	</div>
+	
+		<div ng-if="$ctrl.conTitle" class="title" ng-bind="$ctrl.conTitle"></div>
+		<div ng-if="$ctrl.conDescription" class="description" ng-bind="$ctrl.conDescription"></div>
+		
 
 </div>
 
-<div class="bundle-category cat2">
+<div class="bundle-category">
 	<h4>Achtergrond</h4>
 	
 	<div style="display:inline-block;">
+		
+		<a href="https://www.europa-nu.nl/id/vjmhg41ub7pp/klimaatconferentie_parijs_2015_cop21">
 		<div class="facts-logo-1" >
 		
 		</div>
 		<div class="facts-text-1 description">
 		Klimaatconferentie COP21 in Parijs eind 2015 zorgde voor een akkoord dat de opwarming van de aarde moet beperken.
 		</div>
+		</a>
 	
 	</div>
 
 
 </div>
 
-<div class="bundle-category cat2">
+<div class="bundle-category">
 	<h4>Satire</h4>
 	
 	<div class="anti-video" style="display:inline-block;">
-	<iframe src="https://www.dumpert.nl/embed/7151309/d6dce568/?autoplay=1" width="100%" height="100%" class="dumpertembed" frameborder="0" allowfullscreen></iframe>
+	<iframe src="https://www.dumpert.nl/embed/7151309/d6dce568/?autoplay=1" width="100%" height="100%" class="dumpertembed" frameborder="0" allowfullscreen my-directive ></iframe>
 	</div>
 
 <img class="add-img" src="https://cdn3.iconfinder.com/data/icons/glyph/227/Button-Add-3-128.png">
@@ -106,7 +87,7 @@
 
 
 
-<div class="bundle-category cat2">
+<div class="bundle-category">
 	<h4>Discussie</h4>
 		<input type="text"/>
 </div>
