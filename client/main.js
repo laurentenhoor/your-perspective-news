@@ -1,7 +1,6 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import angularRoute from 'angular-route';
-import angularAnimate from 'angular-animate';
 
 import {name as yourpersMenu} from '../imports/components/menu/menu';
 import {name as yourpersPosts} from '../imports/components/post/post';
@@ -22,7 +21,6 @@ angular.module('yourpers', [
 	
 	angularMeteor,
 	angularRoute,
-	angularAnimate,
 	
 	yourpersLoader,
 	yourpersMenu,

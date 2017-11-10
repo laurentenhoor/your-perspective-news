@@ -26,12 +26,20 @@ class LoaderCtrl {
 		
 		// event for returning via back button
 		window.addEventListener("pageshow", function() {
-			hideAllLoaders();
+			
+			$rootScope.apply(function() {
+				hideAllLoaders();	
+			})
+			
 		}, false);
 		
 		// event for returning to the browser
 		window.addEventListener("focus", function() {
-			hideAllLoaders();
+			
+			$rootScope.apply(function() {
+				hideAllLoaders();
+			})
+			
 		}, false);
 		
 	}
