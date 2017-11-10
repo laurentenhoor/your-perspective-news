@@ -96,7 +96,7 @@ class BundleCtrl {
 		}
 		
 		$ctrl.clickCon($ctrl.conArticles[0]);
-		$ctrl.clickPro($ctrl.conArticles[0]);
+		$ctrl.clickPro($ctrl.proArticles[0]);
 		
 		
 	}
