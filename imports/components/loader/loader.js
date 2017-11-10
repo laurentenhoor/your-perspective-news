@@ -20,25 +20,30 @@ class LoaderCtrl {
 
 		// Hide the loader after back-button-press (or returning to the browser) on mobile devices
 		function hideAllLoaders() {
+	
 			$rootScope.stateIsLoading = false;
-			$scope.$apply();
+			$scope.$apply(function() {});
+
 		}
 		
 		// event for returning via back button
 		window.addEventListener("pageshow", function() {
-			
-			$rootScope.apply(function() {
+
 				hideAllLoaders();	
-			})
+			
+		}, false);
+		
+		// event for returning via back button
+		window.addEventListener("onpageshow", function() {
+
+				hideAllLoaders();	
 			
 		}, false);
 		
 		// event for returning to the browser
 		window.addEventListener("focus", function() {
 			
-			$rootScope.apply(function() {
 				hideAllLoaders();
-			})
 			
 		}, false);
 		

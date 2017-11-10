@@ -66,7 +66,7 @@ class BundleCtrl {
 			console.log(article);
 			
 			if ($ctrl.activeProArticle == article) {
-				$rootScope.stateIsLoading = true;
+//				$rootScope.stateIsLoading = true;
 				$window.location.href = article.url;
 			}
 			
@@ -83,7 +83,7 @@ class BundleCtrl {
 			console.log(article);
 			
 			if ($ctrl.activeConArticle == article) {
-				$rootScope.stateIsLoading = true;
+//				$rootScope.stateIsLoading = true;
 				$window.location.href = article.url;
 			}
 			
