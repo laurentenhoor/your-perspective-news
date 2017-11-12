@@ -44,7 +44,7 @@ class BulletinCtrl {
 		},{
 			logoUrl: 'https://logo.clearbit.com/youtube.com',
 			 title : "France's President Macron calls on the world to \"make our planet great again\" - BBC News",
-			 videoUrl : "https://www.youtube.com/embed/4XDWtU1Zojw?&theme=dark&autohide=2&modestbranding=0&fs=0&showinfo=0&rel=0",
+			 videoUrl : "https://www.youtube.com/embed/4XDWtU1Zojw?&theme=dark&autohide=2&modestbranding=0&fs=0&showinfo=0&rel=0&playsinline=1",
 			 description : "",
 			publisher: 'Youtube'
 		}]
@@ -64,6 +64,24 @@ class BulletinCtrl {
 			 description : "By withdrawing from the Paris climate agreement, President Trump is defying the left, the media, his children, and many world leaders.",
 			imageUrl: '//a57.foxnews.com/media2.foxnews.com/BrightCove/694940094001/2017/06/01/0/0/694940094001_5456104729001_5456049982001-vs.jpg?ve=1',
 			publisher: 'FOX News'
+		}]
+		
+		
+		$ctrl.humArticles = [{
+			logoUrl: 'https://botw-pd.s3.amazonaws.com/styles/logo-original-577x577/s3/062013/dumpert_0.png?itok=EWtSnwGw',
+			 title : "De gevolgen van het Trump beleid komen wel heel snel...",
+			 url : "",
+			 description : "",
+			imageUrl: '',
+			videoUrl: 'https://www.dumpert.nl/embed/7151309/d6dce568/?rel=0&autoplay=0&setfullscreen=1&allowfullscreen=1',
+			publisher: 'Dumpert'
+		},{
+			logoUrl: 'https://logo.clearbit.com/9gag.com',
+			title: "Ondertussen in China...",
+			description: "",
+			url: "https://9gag.com/gag/aM8gKYX",
+			publisher: '9gag',
+			imageUrl: 'https://img-9gag-fun.9cache.com/photo/aM8gKYX_700b.jpg'
 		}]
 		
 		
@@ -105,12 +123,35 @@ class BulletinCtrl {
 			
 		}
 		
+		$ctrl.clickHum= function(article) {
+			
+			console.log(article);
+			
+			if ($ctrl.activeHumArticle == article) {
+//				$rootScope.stateIsLoading = true;
+//				$window.location.href = article.url;
+			}
+			
+			$ctrl.humTitle = article.title;
+			$ctrl.humDescription = article.description;
+			$ctrl.humPublisher = article.publisher;
+			$ctrl.humUrl = article.url;
+			$ctrl.humImageUrl = article.imageUrl;
+			$ctrl.activeHumArticle = article;
+			$ctrl.humVideoUrl = article.videoUrl || null;
+			
+		}		
+		
+		
 		$ctrl.clickCon($ctrl.conArticles[0]);
 		$ctrl.clickPro($ctrl.proArticles[0]);
+		$ctrl.clickHum($ctrl.humArticles[0]);
 		
 		
 	}
+
 	
+
 	
 }
 

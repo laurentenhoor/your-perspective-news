@@ -1,6 +1,3 @@
-
-
-
 <div class="bulletin-items-container">
 
 
@@ -9,57 +6,87 @@
 		<div class="bulletin-item-header">Algemene berichtgeving</div>
 
 
-	<div class="bulletin-item">
-		<div class="bulletin-item-image" onclick="console.log('click via -image onclick()')"
-			style="background-image: url({{$ctrl.proImageUrl}})">
+		<div class="bulletin-item">
+			<div class="bulletin-item-image"
+				onclick="console.log('click via -image onclick()')"
+				style="background-image: url({{$ctrl.proImageUrl}})">
 
-			<iframe ng-if="$ctrl.proVideoUrl" src="{{$ctrl.proVideoUrl}}" width="100%" height="60%" frameborder="0" allowfullscreen
-			style="bottom:16%;position: absolute; left: 0px;"></iframe>
+				<iframe ng-if="$ctrl.proVideoUrl" src="{{$ctrl.proVideoUrl}}"
+					width="100%" height="60%" frameborder="0" allowfullscreen
+					style="bottom: 16%; position: absolute; left: 0px;"></iframe>
 
-			<div class="bulletin-item-title">{{$ctrl.proTitle}}</div>
-			<div class="gradient-overlay"></div>
+				<div class="bulletin-item-title">{{$ctrl.proTitle}}</div>
+				<div class="gradient-overlay"></div>
 
-		</div>
-		<div class="bulletin-sources">
-			<div class="bulletin-source" ng-repeat="article in $ctrl.proArticles"
-			ng-click="$ctrl.clickPro(article)"
-			style="background-image:url({{article.logoUrl}})">
-			
-			
 			</div>
-			
-			
-		</div>
-		
+			<div class="bulletin-sources">
+				<div class="bulletin-source"
+					ng-repeat="article in $ctrl.proArticles"
+					ng-click="$ctrl.clickPro(article)"
+					style="background-image: url({{article.logoUrl}})"></div>
 
+
+			</div>
+
+
+		</div>
 	</div>
-	</div>
-	
-	
+
+
 	<div class="bulletin-item-container">
 
 		<div class="bulletin-item-header">Andere blik</div>
 
 
-	<div class="bulletin-item">
-		<div class="bulletin-item-image"
-			style="background-image: url({{$ctrl.conImageUrl}})">
+		<div class="bulletin-item">
+			<div class="bulletin-item-image"
+				style="background-image: url({{$ctrl.conImageUrl}})">
 
-			<div class="bulletin-item-title">{{$ctrl.conTitle}}</div>
-			<div class="gradient-overlay"></div>
+				<div class="bulletin-item-title">{{$ctrl.conTitle}}</div>
+				<div class="gradient-overlay"></div>
 
-		</div>
-		<div class="bulletin-sources">
-			<div class="bulletin-source" ng-repeat="article in $ctrl.conArticles"
-			ng-click="$ctrl.clickCon(article)"
-			style="background-image:url({{article.logoUrl}})">
-			
 			</div>
-			
-		</div>
-		
+			<div class="bulletin-sources">
+				<div class="bulletin-source"
+					ng-repeat="article in $ctrl.conArticles"
+					ng-click="$ctrl.clickCon(article)"
+					style="background-image: url({{article.logoUrl}})"></div>
 
+			</div>
+
+
+		</div>
 	</div>
+
+
+	<div class="bulletin-item-container">
+
+		<div class="bulletin-item-header">Satire</div>
+
+
+		<div class="bulletin-item">
+			<div class="bulletin-item-image"
+				style="background-image: url({{$ctrl.humImageUrl}}); background-size: contain !important; background-repeat: no-repeat;">
+
+				<iframe ng-if="$ctrl.humVideoUrl" src="{{$ctrl.humVideoUrl}}"
+					width="100%" height="60%" frameborder="0" allowfullscreen
+					style="bottom: 16%; position: absolute; left: 0px;"></iframe>
+
+				<div class="bulletin-item-title">{{$ctrl.humTitle}}</div>
+				<div class="gradient-overlay"></div>
+
+			</div>
+			<div class="bulletin-sources">
+				<div class="bulletin-source"
+					ng-repeat="article in $ctrl.humArticles"
+					ng-click="$ctrl.clickHum(article)"
+					style="background-image: url({{article.logoUrl}})"></div>
+
+
+			</div>
+
+
+		</div>
 	</div>
 
 
@@ -85,7 +112,8 @@
 
 		<div class="anti-video">
 			<iframe ng-src="https://www.youtube.com/embed/4XDWtU1Zojw"
-				width="100%" height="100%" frameborder="0" allowfullscreen style="opacity:0.5"></iframe>
+				width="100%" height="100%" frameborder="0" allowfullscreen
+				style="opacity: 0.5"></iframe>
 		</div>
 
 
