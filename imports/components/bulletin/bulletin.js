@@ -87,7 +87,6 @@ class BulletinCtrl {
 		
 		$ctrl.clickPro = function(article) {
 			
-			console.log(article);
 			
 			if ($ctrl.activeProArticle == article) {
 //				$rootScope.stateIsLoading = true;
@@ -100,14 +99,12 @@ class BulletinCtrl {
 			$ctrl.proUrl = article.url;
 			$ctrl.proImageUrl = article.imageUrl;
 			$ctrl.proVideoUrl = article.videoUrl || null;
-			console.log($ctrl.proVideoUrl)
+			
 			$ctrl.activeProArticle = article;
 			
 		}
 		
 		$ctrl.clickCon= function(article) {
-			
-			console.log(article);
 			
 			if ($ctrl.activeConArticle == article) {
 //				$rootScope.stateIsLoading = true;
@@ -124,8 +121,6 @@ class BulletinCtrl {
 		}
 		
 		$ctrl.clickHum= function(article) {
-			
-			console.log(article);
 			
 			if ($ctrl.activeHumArticle == article) {
 //				$rootScope.stateIsLoading = true;
