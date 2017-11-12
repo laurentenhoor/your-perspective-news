@@ -41,6 +41,12 @@ class BulletinCtrl {
 			 description : "Het gaat om een schatting van de VN-klimaatorganisatie WMO.",
 			imageUrl: 'https://nos.nl/data/image/2017/06/02/390267/xxl.jpg',
 			publisher: 'NOS'
+		},{
+			logoUrl: 'https://logo.clearbit.com/youtube.com',
+			 title : "France's President Macron calls on the world to \"make our planet great again\" - BBC News",
+			 videoUrl : "https://www.youtube.com/embed/4XDWtU1Zojw",
+			 description : "",
+			publisher: 'Youtube'
 		}]
 		
 		
@@ -67,7 +73,7 @@ class BulletinCtrl {
 			
 			if ($ctrl.activeProArticle == article) {
 //				$rootScope.stateIsLoading = true;
-				$window.location.href = article.url;
+//				$window.location.href = article.url;
 			}
 			
 			$ctrl.proTitle = article.title;
@@ -75,6 +81,8 @@ class BulletinCtrl {
 			$ctrl.proPublisher = article.publisher;
 			$ctrl.proUrl = article.url;
 			$ctrl.proImageUrl = article.imageUrl;
+			$ctrl.proVideoUrl = article.videoUrl || null;
+			console.log($ctrl.proVideoUrl)
 			$ctrl.activeProArticle = article;
 			
 		}
@@ -85,7 +93,7 @@ class BulletinCtrl {
 			
 			if ($ctrl.activeConArticle == article) {
 //				$rootScope.stateIsLoading = true;
-				$window.location.href = article.url;
+//				$window.location.href = article.url;
 			}
 			
 			$ctrl.conTitle = article.title;
@@ -115,4 +123,6 @@ export default angular.module('yourpers.bulletin', [
 	.component('yourpersBulletin', {
 		templateUrl : template,
 		controller: ['$rootScope', '$scope', '$reactive', '$window', BulletinCtrl]
-	});
+	}).config(function ($sceProvider) {
+	    $sceProvider.enabled(false);
+	});;
