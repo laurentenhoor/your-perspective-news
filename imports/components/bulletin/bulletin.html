@@ -10,15 +10,16 @@
 
 
 	<div class="bulletin-item">
-		<div class="bulletin-item-image"
-			style="background-image: url({{$ctrl.proArticles[1].imageUrl}})">
+		<div class="bulletin-item-image" onclick="console.log('click via -image onclick()')"
+			style="background-image: url({{$ctrl.proImageUrl}})">
 
-			<div class="bulletin-item-title">{{$ctrl.proArticles[1].title}}</div>
+			<div class="bulletin-item-title">{{$ctrl.proTitle}}</div>
 			<div class="gradient-overlay"></div>
 
 		</div>
 		<div class="bulletin-sources">
 			<div class="bulletin-source" ng-repeat="article in $ctrl.proArticles"
+			ng-click="$ctrl.clickPro(article)"
 			style="background-image:url({{article.logoUrl}})">
 			
 			</div>
@@ -39,14 +40,15 @@
 
 	<div class="bulletin-item">
 		<div class="bulletin-item-image"
-			style="background-image: url({{$ctrl.conArticles[0].imageUrl}})">
+			style="background-image: url({{$ctrl.conImageUrl}})">
 
-			<div class="bulletin-item-title">{{$ctrl.conArticles[0].title}}</div>
+			<div class="bulletin-item-title">{{$ctrl.conTitle}}</div>
 			<div class="gradient-overlay"></div>
 
 		</div>
 		<div class="bulletin-sources">
 			<div class="bulletin-source" ng-repeat="article in $ctrl.conArticles"
+			ng-click="$ctrl.clickCon(article)"
 			style="background-image:url({{article.logoUrl}})">
 			
 			</div>

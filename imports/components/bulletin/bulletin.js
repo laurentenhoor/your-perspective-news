@@ -5,7 +5,7 @@ import template from './bulletin.html';
 import style from './bulletin.less';
 
 
-class BundleCtrl {
+class BulletinCtrl {
 	
 	constructor($rootScope, $scope, $reactive, $window) {
 		
@@ -14,19 +14,19 @@ class BundleCtrl {
 		
 		
 		$ctrl.proArticles = [{
-			logoUrl: 'https://logo.clearbit.com/www.volkskrant.nl',
-			title: "Trumps klimaatbesluit bevestigt zijn doctrine: Amerika tegen de rest",
-			description: "De bijna tweehonderd landen die zich hebben verenigd in de strijd tegen de opwarming van de aarde moeten het voorlopig doen zonder Amerika. President Donald Trump joeg donderdag de kogel door de kerk en trekt de VS terug uit het akkoord van Parijs.",
-			publisher: 'De Volkskrant',
-			url: "https://www.volkskrant.nl/buitenland/vs-stappen-uit-klimaatakkoord-parijs-duitsland-en-frankrijk-willen-niet-heronderhandelen~a4498499/",
-			imageUrl: 'https://static0.persgroep.net/volkskrant/image/f50a559f-ad8c-49f2-a32d-8657312c25f6?width=700'
-		},{
 			logoUrl: 'https://logo.clearbit.com/www.nrc.nl',
 			title: "Harde kritiek op Trumps exit Parijs-akkoord",
 			description: "Regeringsleiders en invloedrijke CEO’s uit het bedrijfsleven reageren zeer teleurgesteld op de beslissing van president Trump om te stoppen met het klimaatakkoord van Parijs.",
 			publisher: 'NRC',
 			url: "https://www.nrc.nl/nieuws/2017/06/02/harde-kritiek-op-trumps-exit-parijs-akkoord-a1561483",
 			imageUrl: 'https://images.nrc.nl/3xdswAvTyDuBNeAXCe6y8w3ZCck=/1200x627/smart/filters:no_upscale\\(\\)/s3/static.nrc.nl/wp-content/uploads/2017/06/5809284a-2e2d-4791-8461-cc590545ff35.jpg'
+		},{
+			logoUrl: 'https://logo.clearbit.com/www.volkskrant.nl',
+			title: "Trumps klimaatbesluit bevestigt zijn doctrine: Amerika tegen de rest",
+			description: "De bijna tweehonderd landen die zich hebben verenigd in de strijd tegen de opwarming van de aarde moeten het voorlopig doen zonder Amerika. President Donald Trump joeg donderdag de kogel door de kerk en trekt de VS terug uit het akkoord van Parijs.",
+			publisher: 'De Volkskrant',
+			url: "https://www.volkskrant.nl/buitenland/vs-stappen-uit-klimaatakkoord-parijs-duitsland-en-frankrijk-willen-niet-heronderhandelen~a4498499/",
+			imageUrl: 'https://static0.persgroep.net/volkskrant/image/f50a559f-ad8c-49f2-a32d-8657312c25f6?width=700'
 		},{
 			logoUrl: 'https://logo.clearbit.com/www.businessinsider.nl',
 			title: "Factcheck: 5 beweringen van Donald Trump over het klimaatakkoord van Parijs",
@@ -74,6 +74,7 @@ class BundleCtrl {
 			$ctrl.proDescription = article.description;
 			$ctrl.proPublisher = article.publisher;
 			$ctrl.proUrl = article.url;
+			$ctrl.proImageUrl = article.imageUrl;
 			$ctrl.activeProArticle = article;
 			
 		}
@@ -91,6 +92,7 @@ class BundleCtrl {
 			$ctrl.conDescription = article.description;
 			$ctrl.conPublisher = article.publisher;
 			$ctrl.conUrl = article.url;
+			$ctrl.conImageUrl = article.imageUrl;
 			$ctrl.activeConArticle = article;
 			
 		}
@@ -112,16 +114,5 @@ export default angular.module('yourpers.bulletin', [
 	])
 	.component('yourpersBulletin', {
 		templateUrl : template,
-		controller: ['$rootScope', '$scope', '$reactive', '$window', BundleCtrl]
-	}).directive('myDirective', function(){
-
-		  return {
-		    link : function(scope, element, attributes){
-		    		
-		      element.contents().find('html').bind('click', function () {
-		           alert("hello");
-		       });
-		    }
-		  };
-
-		});
+		controller: ['$rootScope', '$scope', '$reactive', '$window', BulletinCtrl]
+	});
