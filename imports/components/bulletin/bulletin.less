@@ -14,20 +14,53 @@
     
 }
 
+.bulletin-item-description {
+    color: #3c3c3c;
+    z-index: 1;
+    font-size: 3vw;
+    position: absolute;
+    bottom: 0;
+    text-align: left;
+    line-height: 1;
+    background: #e2e2e2db;
+    padding: 3vw;
+    font-family: "Open sans";
+	}
+	
+.bulletin-item-title-container {
+	
+	position: absolute;
+	top: 0;
+	
+	    font-family: "Montserrat";
+
+    text-align: left;
+    margin: 3vw;
+    line-height: 1;
+    
+	
+	}
 	
 .bulletin-item-title {
 	color: white;
     font-size: 5vw;
     font-weight: 900;
-    font-family: "Montserrat";
-    top: 0;
-    position: absolute;
-    z-index: 9999;
-    line-height: 1;
-    text-align: left;
-    margin: 3vw;
+   
     
-	}	
+	}
+
+
+	
+.bulletin-item-publisher {
+	color: white;
+    font-size: 3vw;
+    margin-top:3vw;
+    font-style:italic;
+    font-weight: 100;
+    opacity:0.8;
+
+    
+	}		
 
 .bulletin-item-header {
 	
@@ -83,9 +116,23 @@
 	margin-bottom:-1vw;
 	
 // 	filter: saturate(30%);
+
+    filter: grayscale(100%);
+    opacity: 0.6;
 	
 	
 	}
+
+.bulletin-source-selected {
+	filter:grayscale(0%);
+	opacity:1;
+	   
+	content: "";
+    
+//     border-bottom: 1vw solid grey;
+	}
+
+
 
 // .bulletin-item:before {
 //     content: '';

@@ -8,21 +8,31 @@
 
 		<div class="bulletin-item">
 			<div class="bulletin-item-image"
-				onclick="console.log('click via -image onclick()')"
 				style="background-image: url({{$ctrl.proImageUrl}})">
 
 				<iframe ng-if="$ctrl.proVideoUrl" src="{{$ctrl.proVideoUrl}}"
 					width="100%" height="60%" frameborder="0" allowfullscreen
 					style="bottom: 16%; position: absolute; left: 0px;"></iframe>
 
-				<div class="bulletin-item-title">{{$ctrl.proTitle}}</div>
+
 				<div class="gradient-overlay"></div>
+				
+				
+				<div class="bulletin-item-title-container">
+					<div class="bulletin-item-title">{{$ctrl.proTitle}}</div>
+					<div class="bulletin-item-publisher">{{$ctrl.proPublisher}}</div>
+				</div>
+				
+
+				
+				<div ng-if="$ctrl.proDescription" class="bulletin-item-description">{{$ctrl.proDescription}}</div>
 
 			</div>
 			<div class="bulletin-sources">
 				<div class="bulletin-source"
 					ng-repeat="article in $ctrl.proArticles"
-					ng-click="$ctrl.clickPro(article)"
+					ng-click="$ctrl.clickPro(article)" 
+					ng-class="(article == $ctrl.activeProArticle) ? 'bulletin-source-selected':''"
 					style="background-image: url({{article.logoUrl}})"></div>
 
 
@@ -42,14 +52,22 @@
 			<div class="bulletin-item-image"
 				style="background-image: url({{$ctrl.conImageUrl}})">
 
-				<div class="bulletin-item-title">{{$ctrl.conTitle}}</div>
 				<div class="gradient-overlay"></div>
+								
+				<div class="bulletin-item-title-container">
+					<div class="bulletin-item-title">{{$ctrl.conTitle}}</div>
+					<div class="bulletin-item-publisher">{{$ctrl.conPublisher}}</div>
+				</div>
+				
+				
+				<div ng-if="$ctrl.conDescription" class="bulletin-item-description">{{$ctrl.conDescription}}</div>
 
 			</div>
 			<div class="bulletin-sources">
 				<div class="bulletin-source"
 					ng-repeat="article in $ctrl.conArticles"
 					ng-click="$ctrl.clickCon(article)"
+					ng-class="(article == $ctrl.activeConArticle) ? 'bulletin-source-selected':''"
 					style="background-image: url({{article.logoUrl}})"></div>
 
 			</div>
@@ -72,14 +90,21 @@
 					width="100%" height="60%" frameborder="0" allowfullscreen
 					style="bottom: 16%; position: absolute; left: 0px;"></iframe>
 
-				<div class="bulletin-item-title">{{$ctrl.humTitle}}</div>
 				<div class="gradient-overlay"></div>
+				
+				<div class="bulletin-item-title-container">
+					<div class="bulletin-item-title">{{$ctrl.humTitle}}</div>
+					<div class="bulletin-item-publisher">{{$ctrl.humPublisher}}</div>
+				</div>
+				
+				<div ng-if="$ctrl.humDescription" class="bulletin-item-description">{{$ctrl.humDescription}}</div>
 
 			</div>
 			<div class="bulletin-sources">
 				<div class="bulletin-source"
 					ng-repeat="article in $ctrl.humArticles"
-					ng-click="$ctrl.clickHum(article)"
+					ng-click="$ctrl.clickHum(article)" 
+					ng-class="(article == $ctrl.activeHumArticle) ? 'bulletin-source-selected':''"
 					style="background-image: url({{article.logoUrl}})"></div>
 
 
@@ -89,46 +114,5 @@
 		</div>
 	</div>
 
-
-</div>
-
-
-<div class="bundle-category">
-
-	<h4>Algemene berichtgeving</h4>
-
-	<div class="article-slider">
-
-		<div ng-repeat="article in $ctrl.proArticles"
-			ng-click="$ctrl.clickPro(article)"
-			class="selected selected carousel-article"
-			ng-class="$ctrl.activeProArticle == article ? 'selected' : 'deselected'"
-			style="background-image: url({{article.imageUrl}})">
-
-			<img ng-show="article.logoUrl" class=anti-img
-				src="{{article.logoUrl}}">
-
-		</div>
-
-		<div class="anti-video">
-			<iframe ng-src="https://www.youtube.com/embed/4XDWtU1Zojw"
-				width="100%" height="100%" frameborder="0" allowfullscreen
-				style="opacity: 0.5"></iframe>
-		</div>
-
-
-
-		<img class="add-img"
-			src="https://cdn3.iconfinder.com/data/icons/glyph/227/Button-Add-3-128.png">
-
-	</div>
-
-	<a href="{{$ctrl.proUrl}}">
-		<div ng-show="$ctrl.proTitle" class="title" ng-bind="$ctrl.proTitle"></div>
-		<div ng-show="$ctrl.proDescription" class="description"
-			ng-bind="$ctrl.proDescription"></div>
-		<div ng-show="$ctrl.proPublisher" class="publisher"
-			ng-bind="$ctrl.proPublisher"></div>
-	</a>
 
 </div>
