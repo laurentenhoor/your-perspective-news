@@ -44,7 +44,7 @@ class BulletinCtrl {
 		},{
 			logoUrl: 'https://logo.clearbit.com/youtube.com',
 			 title : "France's President Macron calls on the world to \"make our planet great again\" - BBC News",
-			 videoUrl : "https://www.youtube.com/embed/4XDWtU1Zojw",
+			 videoUrl : "https://www.youtube.com/embed/4XDWtU1Zojw?theme=dark&autohide=2&modestbranding=1&fs=0&showinfo=0&rel=0",
 			 description : "",
 			publisher: 'Youtube'
 		}]
