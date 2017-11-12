@@ -44,7 +44,7 @@ class BulletinCtrl {
 		},{
 			logoUrl: 'https://logo.clearbit.com/youtube.com',
 			 title : "France's President Macron calls on the world to \"make our planet great again\" - BBC News",
-			 videoUrl : "https://www.youtube.com/embed/4XDWtU1Zojw?theme=dark&autohide=2&modestbranding=1&fs=0&showinfo=0&rel=0",
+			 videoUrl : "https://www.youtube.com/embed/4XDWtU1Zojw?&theme=dark&autohide=2&modestbranding=0&fs=0&showinfo=0&rel=0",
 			 description : "",
 			publisher: 'Youtube'
 		}]
@@ -115,14 +115,10 @@ class BulletinCtrl {
 }
 
 
-
-
 export default angular.module('yourpers.bulletin', [
 	angularMeteor,
 	])
 	.component('yourpersBulletin', {
 		templateUrl : template,
 		controller: ['$rootScope', '$scope', '$reactive', '$window', BulletinCtrl]
-	}).config(function ($sceProvider) {
-	    $sceProvider.enabled(false);
-	});;
+	});
