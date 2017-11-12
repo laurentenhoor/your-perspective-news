@@ -9,6 +9,7 @@ import {name as yourpersLoader} from '../imports/components/loader/loader';
 import {name as yourpersItem} from '../imports/components/item/item';
 
 import {name as yourpersBundle} from '../imports/components/bundle/bundle';
+import {name as yourpersBulletin} from '../imports/components/bulletin/bulletin';
 
 // Deprecated
 import {name as yourpersOverview} from '../imports/components/deprecated/overview/overview';
@@ -29,6 +30,7 @@ angular.module('yourpers', [
 	yourpersItem,
 	
 	yourpersBundle,
+	yourpersBulletin,
 	
 	// Deprecated
 	yourpersOverview,
@@ -54,6 +56,9 @@ angular.module('yourpers', [
 	    }).
 		    when('/bundle', {
 	    		template: '<yourpers-bundle></yourpers-bundle>'
+	    }).
+		    when('/bulletin', {
+	    		template: '<yourpers-bulletin></yourpers-bulletin>'
 	    }).
 	    
 	    // Deprecated

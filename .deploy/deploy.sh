@@ -96,7 +96,7 @@ sshpass -p ${SERVER_PASS} ssh -o StrictHostKeyChecking=no ${SERVER_USER}@${SERVE
 
 # do db backup
 cd ${SERVER_APP_ROOT_PATH};
-mongodump;
+mongodump --db ${SERVER_MONGO_DBNAME};
 echo 'Databases have been backed-up';
 
 # stop the app;

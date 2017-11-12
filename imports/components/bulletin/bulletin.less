@@ -1,0 +1,277 @@
+.bulletin-items-container {
+	padding-left:2vw;
+	padding-right:2vw;
+	white-space:nowrap;
+	overflow-x: scroll;
+	padding-bottom:3vw;
+}
+
+.bulletin-item-container {
+    
+    margin: 1vw;	
+    display:inline-block;
+    width:77vw;
+    
+}
+
+	
+.bulletin-item-title {
+	color: white;
+    font-size: 7vw;
+    font-weight: 900;
+    font-family: "Montserrat";
+    top: 0;
+    position: absolute;
+    z-index: 9999;
+    line-height: 1;
+    text-align: left;
+    margin: 3vw;
+    
+	}	
+
+.bulletin-item-header {
+	
+	text-align:left;
+	color:darkgrey;
+	
+	font-family:"Open Sans";
+	font-weight:100;
+	font-size:3.5vw;
+	
+	margin: 1vw 3vw;
+	
+	
+	}
+
+
+.bulletin-item-image {
+	
+	height:94vw;
+	
+	background-size: cover;
+	background-position: center;
+	
+	}
+
+.bulletin-sources {
+	white-space: nowrap;
+    overflow-x: scroll;
+    
+    width: 100%;
+    background-color: white;
+    
+    text-align:right;
+	
+}
+
+.bulletin-source {
+	
+	display:inline-block;
+	
+	height:9vw;
+	width:9vw;
+	
+	background-size:cover;
+	
+	margin-right:3vw;
+	margin-bottom:-1vw;
+	
+// 	filter: saturate(30%);
+	
+	
+	}
+
+.bulletin-item:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /* background-image: linear-gradient(to bottom left, rgba(0, 0, 0, 0.2), #404040); */
+    opacity: .6;
+}
+
+.bulletin-item {
+	border-radius:1.5vw;
+	white-space:normal;
+	overflow-x:auto;
+	
+    
+
+    box-shadow: 0 0.5vw 2vw rgba(0, 0, 0, 0.6);	
+
+	width:100%;
+
+    
+    position:relative;
+    
+    opacity:0.9;
+    
+    background-color: rgba(0,0,0,.1);
+}
+
+
+.gradient-overlay {
+	position: absolute;
+    width: 100%;
+    height: 40%;
+    left: 0;
+    top: 0;
+    opacity:0.9;
+	background-image: linear-gradient(180deg,rgba(0,0,0,.7) 30%,transparent);
+	}
+
+
+.bundle-category {
+
+	margin-top: 5vw;
+	margin-bottom: 5vw;
+	padding: 2vw;
+	background:rgba(10,10,10,0.02);
+	text-align:left;
+	
+	border-left: 0.5em solid;
+	border-bottom: 0.1em solid #e2e2e2;
+    border-top: 0.1em solid white;
+    
+    border-left-color: #d8d8d8;
+    
+    font-size: 2.8vw;
+
+    font-family: "Montserrat";
+
+}
+
+
+.selected {
+//  -webkit-filter: grayscale(0%);
+  -webkit-transition: .15s ease-in-out;
+//  -moz-filter: grayscale(0%);
+  -moz-transition: .15s ease-in-out;
+//  -o-filter: grayscale(0%);
+  -o-transition: .15s ease-in-out; 
+} 
+
+.deselected {
+	opacity:0.7;
+	
+//	-webkit-filter: grayscale(100%);
+  -webkit-transition: .15s ease-in-out;
+//  -moz-filter: grayscale(100%);
+  -moz-transition: .15s ease-in-out;
+//  -o-filter: grayscale(100%);
+  -o-transition: .15s ease-in-out;
+}
+
+.description {
+	padding-top: 2vw;
+	word-wrap:break-word;
+}
+
+.publisher {
+	font-weight: 900;
+    font-size: 2.6vw;
+    margin-top: 2vw;
+    font-style: italic;
+    color: #928e8e;
+    font-family: "Open Sans";
+}
+
+.title {
+
+  transition: opacity 1s;
+  opacity: 1;
+
+	font-weight: 900;
+    font-size: 3.2vw;
+    margin-top: 2vw;
+}
+
+.article-slider {
+	white-space:nowrap;
+	overflow-x: scroll;
+}
+
+
+h4 {
+    font-family: "Montserrat";
+    font-size: 3vw;
+    margin-top: 0;
+    font-weight: 100;
+    color: #928e8e;
+}
+
+h3 {
+	
+font-weight: 900;
+    font-family: "Montserrat";
+    font-size: 5vw;
+}
+
+
+
+.carousel-article {
+	width:28vw;
+	height:50vw;
+	
+	background-size: cover;
+    background-position: top;
+    
+    position:relative;
+    display:inline-block;
+    
+    margin-right:1.5vw;
+    
+}
+
+.anti-video {
+	width:67vw;
+	height:50vw;
+	
+	
+	background-size: cover;
+    background-position: top;
+    
+    position:relative;
+    display:inline-block;
+    
+}
+
+
+.add-img {
+    width: 18vw;
+    opacity: 0.06;
+    top: 0;
+    margin-top: -10vw;
+    padding-left: 1vw;
+    padding-right: 5vw;
+    
+}
+    
+    
+.anti-img {
+	width: 10vw;
+	height: 10vw;
+	
+	position:absolute;
+	right:0;
+	bottom:0;
+}
+
+
+
+.facts-logo-1 {
+		width:15vw;
+		height:15vw;
+
+	    background-image: url(https://logo.clearbit.com/www.europa-nu.nl);
+	    background-size: contain;
+	    float:left;
+	    margin-right:3vw;
+}
+
+.facts-text-1 {
+	margin-left:3vw;
+	
+}
