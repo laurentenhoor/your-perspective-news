@@ -113,15 +113,4 @@ export default angular.module('yourpers.bundle', [
 	.component('yourpersBundle', {
 		templateUrl : template,
 		controller: ['$rootScope', '$scope', '$reactive', '$window', BundleCtrl]
-	}).directive('myDirective', function(){
-
-		  return {
-		    link : function(scope, element, attributes){
-		    		
-		      element.contents().find('html').bind('click', function () {
-		           alert("hello");
-		       });
-		    }
-		  };
-
-		});
+	});
