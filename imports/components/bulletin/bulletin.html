@@ -1,20 +1,22 @@
 <div class="bulletin-items-scroll-container">
 
 
-	<div class="bulletin-item-outer-container">
+	<div class="bulletin-item-outer-container"
+	ng-repeat="articleBlock in $ctrl.articleBlocks" 
+	ng-init="category=articleBlock.category;articles=articleBlock.articles">
 
-		<div class="bulletin-item-header">Algemene berichtgeving</div>
+		<div class="bulletin-item-header">{{category}}</div>
 
 
 		<div class="bulletin-item-image-and-details-container">
 
 			<div class="bulletin-item-image-container">
 			
-				<div class="bulletin-item-image" style="background-image: url({{$ctrl.proImageUrl}})">
+				<div class="bulletin-item-image" style="background-image: url({{$ctrl.selectedArticle[category].imageUrl}})">
 				</div>
 				
 
-				<iframe ng-if="$ctrl.proVideoUrl" src="{{$ctrl.proVideoUrl}}"
+				<iframe ng-if="$ctrl.selectedArticle[category].videoUrl" src="{{$ctrl.selectedArticle[category].videoUrl}}"
 					width="100%" height="60%" frameborder="0" allowfullscreen
 					style="bottom: 16%; position: absolute; left: 0px;"></iframe>
 
@@ -22,112 +24,20 @@
 				<div class="gradient-overlay"></div>
 
 				<div class="bulletin-item-title-container">
-					<div class="bulletin-item-title">{{$ctrl.proTitle}}</div>
-					<div class="bulletin-item-publisher">{{$ctrl.proPublisher}}</div>
+					<div class="bulletin-item-title">{{$ctrl.selectedArticle[category].title}}</div>
+					<div class="bulletin-item-publisher">{{$$ctrl.selectedArticle[category].publisher}}</div>
 				</div>
 
 			</div>
 
-			<div class="bulletin-item-description" ng-if="$ctrl.proDescription">
-				{{$ctrl.proDescription}}</div>
+			<div class="bulletin-item-description" ng-if="$ctrl.selectedArticle[category].description">
+				{{$ctrl.selectedArticle[category].description}}</div>
 
 			<div class="bulletin-sources">
 				<div class="bulletin-source"
-					ng-repeat="article in $ctrl.proArticles"
-					ng-click="$ctrl.clickPro(article)"
-					ng-class="(article == $ctrl.activeProArticle) ? 'bulletin-source-selected':''"
-					style="background-image: url({{article.logoUrl}})"></div>
-
-			</div>
-
-		</div>
-
-
-	</div>
-
-
-
-	<div class="bulletin-item-outer-container">
-
-		<div class="bulletin-item-header">Andere blik</div>
-
-
-		<div class="bulletin-item-image-and-details-container">
-
-			<div class="bulletin-item-image-container">
-			
-				<div class="bulletin-item-image" style="background-image: url({{$ctrl.conImageUrl}})">
-				</div>
-				
-
-				<iframe ng-if="$ctrl.conVideoUrl" src="{{$ctrl.conVideoUrl}}"
-					width="100%" height="60%" frameborder="0" allowfullscreen
-					style="bottom: 16%; position: absolute; left: 0px;"></iframe>
-
-
-				<div class="gradient-overlay"></div>
-
-				<div class="bulletin-item-title-container">
-					<div class="bulletin-item-title">{{$ctrl.conTitle}}</div>
-					<div class="bulletin-item-publisher">{{$ctrl.conPublisher}}</div>
-				</div>
-
-			</div>
-
-			<div class="bulletin-item-description" ng-if="$ctrl.conDescription">
-				{{$ctrl.conDescription}}</div>
-
-			<div class="bulletin-sources">
-				<div class="bulletin-source"
-					ng-repeat="article in $ctrl.conArticles"
-					ng-click="$ctrl.clickCon(article)"
-					ng-class="(article == $ctrl.activeConArticle) ? 'bulletin-source-selected':''"
-					style="background-image: url({{article.logoUrl}})"></div>
-
-			</div>
-
-		</div>
-
-
-	</div>
-	
-	
-	
-		<div class="bulletin-item-outer-container">
-
-		<div class="bulletin-item-header">Satire</div>
-
-
-		<div class="bulletin-item-image-and-details-container">
-
-			<div class="bulletin-item-image-container">
-			
-				<div class="bulletin-item-image" style="background-image: url({{$ctrl.humImageUrl}});background-size:contain !important;background-repeat:no-repeat;">
-				</div>
-				
-
-				<iframe ng-if="$ctrl.humVideoUrl" src="{{$ctrl.humVideoUrl}}"
-					width="100%" height="60%" frameborder="0" allowfullscreen
-					style="bottom: 16%; position: absolute; left: 0px;"></iframe>
-
-
-				<div class="gradient-overlay"></div>
-
-				<div class="bulletin-item-title-container">
-					<div class="bulletin-item-title">{{$ctrl.humTitle}}</div>
-					<div class="bulletin-item-publisher">{{$ctrl.humPublisher}}</div>
-				</div>
-
-			</div>
-
-			<div class="bulletin-item-description" ng-if="$ctrl.humDescription">
-				{{$ctrl.humDescription}}</div>
-
-			<div class="bulletin-sources">
-				<div class="bulletin-source"
-					ng-repeat="article in $ctrl.humArticles"
-					ng-click="$ctrl.clickHum(article)"
-					ng-class="(article == $ctrl.activeHumArticle) ? 'bulletin-source-selected':''"
+					ng-repeat="article in articles"
+					ng-click="$ctrl.clickArticle(category, article)"
+					ng-class="(article == $ctrl.selectedArticle[category]) ? 'bulletin-source-selected':''"
 					style="background-image: url({{article.logoUrl}})"></div>
 
 			</div>
