@@ -10,10 +10,12 @@
 
 			<div class="bulletin-item-image-container">
 			
-				<div class="bulletin-item-image" style="background-image: url({{$ctrl.selectedArticle[category].imageUrl}})">
+				<div class="bulletin-item-image" 
+				style="background-image: url({{$ctrl.selectedArticle[category].imageUrl}})">
 				</div>
 				
-				<iframe ng-if="$ctrl.selectedArticle[category].videoUrl" src="{{$ctrl.selectedArticle[category].videoUrl}}"
+				<iframe ng-if="$ctrl.selectedArticle[category].videoUrl" 
+				src="{{$ctrl.selectedArticle[category].videoUrl}}"
 					width="100%" height="60%" frameborder="0" allowfullscreen
 					style="bottom: 16%; position: absolute; left: 0px;"></iframe>
 
@@ -21,8 +23,12 @@
 				<div class="gradient-overlay"></div>
 
 				<div class="bulletin-item-title-container">
-					<div class="bulletin-item-title">{{$ctrl.selectedArticle[category].title}}</div>
-					<div class="bulletin-item-publisher">{{$$ctrl.selectedArticle[category].publisher}}</div>
+					<div class="bulletin-item-title">
+						{{$ctrl.selectedArticle[category].title}}
+					</div>
+					<div class="bulletin-item-publisher">
+						{{$$ctrl.selectedArticle[category].publisher}}
+					</div>
 				</div>
 
 			</div>
