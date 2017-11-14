@@ -2,7 +2,7 @@
 
 	<div class="bulletin-item-outer-container"
 	ng-repeat="articleBlock in $ctrl.articleBlocks" 
-	ng-init="category=articleBlock.category;articles=articleBlock.articles">
+	ng-init="category=articleBlock.category; articles=articleBlock.articles">
 
 		<div class="bulletin-item-header">{{category}}</div>
 
@@ -19,7 +19,6 @@
 					width="100%" height="60%" frameborder="0" allowfullscreen
 					style="bottom: 16%; position: absolute; left: 0px;"></iframe>
 
-
 				<div class="gradient-overlay"></div>
 
 				<div class="bulletin-item-title-container">
@@ -27,8 +26,12 @@
 						{{$ctrl.selectedArticle[category].title}}
 					</div>
 					<div class="bulletin-item-publisher">
-						{{$$ctrl.selectedArticle[category].publisher}}
+						{{$ctrl.selectedArticle[category].publisher}}
 					</div>
+				</div>
+				<div class="bulletin-item-action-menu">
+					<i class="material-icons">note_add</i>
+					<i class="material-icons">chat</i>
 				</div>
 
 			</div>
@@ -42,12 +45,10 @@
 					ng-click="$ctrl.clickArticle(category, article)"
 					ng-class="(article == $ctrl.selectedArticle[category]) ? 'bulletin-source-selected':''"
 					style="background-image: url({{article.logoUrl}})"></div>
-
 			</div>
 
 		</div>
 
 	</div>
-
 
 </div>
