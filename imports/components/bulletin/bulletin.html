@@ -29,10 +29,6 @@
 						{{$ctrl.selectedArticle[category].publisher}}
 					</div>
 				</div>
-				<div class="bulletin-item-action-menu">
-					<i class="material-icons">note_add</i>
-					<i class="material-icons">chat</i>
-				</div>
 
 			</div>
 
@@ -40,6 +36,11 @@
 				{{$ctrl.selectedArticle[category].description}}</div>
 
 			<div class="bulletin-sources">
+				<div class="bulletin-item-action-menu">
+					<i class="material-icons">note_add</i>
+					<!-- <i class="material-icons">chat</i> -->
+				</div>
+			
 				<div class="bulletin-source"
 					ng-repeat="article in articles"
 					ng-click="$ctrl.clickArticle(category, article)"
