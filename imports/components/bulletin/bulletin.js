@@ -87,7 +87,6 @@ class BulletinCtrl {
 				imageUrl: 'https://img-9gag-fun.9cache.com/photo/aM8gKYX_700b.jpg'
 			}]
 		}];
-	
 		
 		$ctrl.selectedArticle = {};
 		
@@ -101,7 +100,6 @@ class BulletinCtrl {
 		
 	}
 
-	
 }
 
 
