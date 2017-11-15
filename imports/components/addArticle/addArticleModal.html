@@ -1,0 +1,17 @@
+
+<div class="modal-header">
+	<h2 class="modal-title" id="modal-title">
+		Wijzig artikel<br>
+		<small>Laat ons weten wat je denkt.</small>
+	</h2>
+</div>
+<div class="modal-body" id="modal-body">
+	<div class="form-group">
+		<textarea ng-model="$ctrl.article" class="form-control" rows="5"
+			id="comment"></textarea>
+	</div>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Annuleren</button>
+	<button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">Versturen</button>
+</div>

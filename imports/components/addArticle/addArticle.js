@@ -3,7 +3,7 @@ import angularMeteor from 'angular-meteor';
 import angularBootstrap from 'angular-ui-bootstrap';
 
 import modalTemplate from './addArticleModal.html';
-import modalCtrl from './addArticleModal.js';
+import {name as modalCtrl} from './addArticleModal.js';
 
 import template from './addArticle.html';
 import style from './addArticle.less';
@@ -11,18 +11,36 @@ import style from './addArticle.less';
 
 class AddArticleCtrl {
 	
-	constructor($rootScope, $scope, $reactive, $window, $uibModal) {
+	constructor($scope, $reactive, $uibModal, $attrs) {
 		
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
-	
+		
+		console.log($attrs.data)
+		
+		var data = null;
+		
+		$ctrl.$onInit = function() {
+			articleData = $ctrl.data;			
+		}
+		
 		$ctrl.open = function () {
+			
+			if (!articleData) {
+				console.error('Tried to open the modal before data was loaded.')
+				return;
+			}
+			
+			console.log(articleData)
 			
 			var modalInstance = $uibModal.open({
 				animation: false,
 				templateUrl: modalTemplate,
-				controller: 'ModalInstanceCtrl',
-				controllerAs: '$ctrl'
+				controller: 'AddArticleModalCtrl',
+				controllerAs: '$ctrl',
+				resolve : {
+					article : function() {return articleData;}
+				}
 			});
 
 			modalInstance.result.then(function (feedback) {
@@ -33,18 +51,18 @@ class AddArticleCtrl {
 
 		}
 		
-	
-	}
-
-	
+	}	
 }
-
 
 export default angular.module('yourpers.addArticle', [
 	angularMeteor,
-	angularBootstrap
+	angularBootstrap,
+	modalCtrl
 	])
 	.component('yourpersAddArticle', {
 		templateUrl : template,
-		controller: ['$rootScope', '$scope', '$reactive', '$window','$uibModal', AddArticleCtrl]
+		controller: ['$scope', '$reactive', '$uibModal','$attrs', AddArticleCtrl],
+		bindings: {
+			data : '<'
+		}
 	});

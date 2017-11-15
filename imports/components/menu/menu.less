@@ -148,3 +148,25 @@ login-buttons.right {
 	background: @button-color !important;
 	border:none !important;
 }
+
+.accounts-dialog {
+	border:0;
+	border-radius:0.8vw;
+	    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+    z-index:999999;
+	
+	
+	}
+
+.accounts-dialog:after{
+	z-index:9;
+	content:"";
+	opacity:0.2;
+	    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+	}
