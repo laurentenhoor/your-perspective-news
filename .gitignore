@@ -1,0 +1,5 @@
+.meteor
+node_modules
+.jsdtscope
+.settings
+.deploy/bundle
