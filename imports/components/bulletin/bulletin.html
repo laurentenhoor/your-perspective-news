@@ -36,10 +36,7 @@
 				{{$ctrl.selectedArticle[category].description}}</div>
 
 			<div class="bulletin-sources">
-				<div class="bulletin-item-action-menu">
-					<i class="material-icons">note_add</i>
-					<!-- <i class="material-icons">chat</i> -->
-				</div>
+				<yourpers-add-article class="add-article-from-bulletin-item"></yourpers-add-article>
 			
 				<div class="bulletin-source"
 					ng-repeat="article in articles"

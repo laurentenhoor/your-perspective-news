@@ -1,6 +1,10 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
+
 import template from './menu.html';
+import style from './menu.less';
+
+import {name as yourpersAddArticle} from '../addArticle/addArticle';
 
 class MenuCtrl {
 	
@@ -17,7 +21,8 @@ class MenuCtrl {
 }
  
 export default angular.module('menu', [
-  angularMeteor
+  angularMeteor,
+  yourpersAddArticle
 ])
   .component('yourpersMenu', {
     templateUrl : template,

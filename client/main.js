@@ -3,19 +3,21 @@ import angularMeteor from 'angular-meteor';
 import angularRoute from 'angular-route';
 
 import {name as yourpersMenu} from '../imports/components/menu/menu';
-import {name as yourpersPosts} from '../imports/components/post/post';
 import {name as yourpersFeedback} from '../imports/components/feedback/feedback';
-import {name as yourpersLoader} from '../imports/components/loader/loader';
-import {name as yourpersItem} from '../imports/components/item/item';
-
-import {name as yourpersBundle} from '../imports/components/bundle/bundle';
 import {name as yourpersBulletin} from '../imports/components/bulletin/bulletin';
 
+import '../imports/startup/accounts-config.js';
+
 // Deprecated
+import {name as yourpersPosts} from '../imports/components/post/post';
+import {name as yourpersLoader} from '../imports/components/loader/loader';
+import {name as yourpersItem} from '../imports/components/item/item';
+import {name as yourpersBundle} from '../imports/components/bundle/bundle';
+
+// Deeply Deprecated
 import {name as yourpersOverview} from '../imports/components/deprecated/overview/overview';
 import {name as yourpersTopic} from '../imports/components/deprecated/topic/topic';
 
-import '../imports/startup/accounts-config.js';
 
 
 angular.module('yourpers', [
@@ -25,14 +27,15 @@ angular.module('yourpers', [
 	
 	yourpersLoader,
 	yourpersMenu,
-	yourpersPosts,
-	yourpersFeedback,
-	yourpersItem,
-	
-	yourpersBundle,
 	yourpersBulletin,
 	
 	// Deprecated
+	yourpersPosts,
+	yourpersFeedback,
+	yourpersItem,
+	yourpersBundle,
+	
+	// Deeply Deprecated
 	yourpersOverview,
 	yourpersTopic,
 	
