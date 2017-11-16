@@ -20,7 +20,7 @@ class FeedbackCtrl {
 		$ctrl.open = function () {
 	
 			var modalInstance = $uibModal.open({
-				animation: false,
+				animation: true,
 				templateUrl: modalTemplate,
 				controller: 'ModalInstanceCtrl',
 				controllerAs: '$ctrl'

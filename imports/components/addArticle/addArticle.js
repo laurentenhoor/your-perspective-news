@@ -36,7 +36,7 @@ class AddArticleCtrl {
 			console.log($ctrl.articleData)
 			
 			var modalInstance = $uibModal.open({
-				animation: false,
+				animation: true,
 				templateUrl: modalTemplate,
 				controller: 'AddArticleModalCtrl',
 				controllerAs: '$ctrl',
