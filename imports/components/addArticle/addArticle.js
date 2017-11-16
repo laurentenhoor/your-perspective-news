@@ -30,7 +30,7 @@ class AddArticleCtrl {
 			
 			if (!$ctrl.articleData) {
 				console.error('Tried to open the modal before data was loaded.')
-				return;
+//				return;
 			}
 			
 			console.log($ctrl.articleData)
