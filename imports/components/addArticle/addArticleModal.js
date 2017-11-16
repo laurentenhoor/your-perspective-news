@@ -18,14 +18,14 @@ class AddArticleModalCtrl {
 		if (!$ctrl.articleData) {
 			
 			$ctrl.headerText = 'Maak een nieuw(s) item.';
-			$ctrl.headerSubText = 'Plak een url naar een artikel.';		
+			$ctrl.headerSubText = 'Plaats een onderwerp dat nog niet door ons wordt besproken.';		
 			
 			$ctrl.category = 'Algemene berichtgeving';
 			
 		} else if ('category' in $ctrl.articleData) {
 			
 			$ctrl.headerText = 'Voeg een bron toe.';
-			$ctrl.headerSubText = 'Plak een url naar een artikel.';
+			$ctrl.headerSubText = 'Verbreed, verdiep of ontwricht ons perspectief op dit onderwerp met een interessant artikel.';
 			
 			
 			$ctrl.category =  $ctrl.articleData.category;
