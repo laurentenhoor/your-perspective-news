@@ -14,6 +14,19 @@ class AddArticleModalCtrl {
 		$reactive($ctrl).attach($scope);
 		
 		$ctrl.articleData = articleData;
+		$ctrl.urlDataIsLoaded = false;
+		
+		
+//		$ctrl.logoUrl = 'https://logo.clearbit.com/www.nrc.nl'
+//		$ctrl.title = "Harde kritiek op Trumps exit Parijs-akkoord"
+//		$ctrl.description = "Regeringsleiders en invloedrijke CEO’s uit het bedrijfsleven reageren zeer teleurgesteld op de beslissing van president Trump om te stoppen met het klimaatakkoord van Parijs."
+//		$ctrl.publisher ='NRC'
+//		$ctrl.url = "https://www.nrc.nl/nieuws/2017/06/02/harde-kritiek-op-trumps-exit-parijs-akkoord-a1561483"
+//		$ctrl.imageUrl = 'https://images.nrc.nl/3xdswAvTyDuBNeAXCe6y8w3ZCck=/1200x627/smart/filters:no_upscale\\(\\)/s3/static.nrc.nl/wp-content/uploads/2017/06/5809284a-2e2d-4791-8461-cc590545ff35.jpg'
+//		
+//		$ctrl.urlDataIsLoaded = true;
+		
+		
 		
 		if (!$ctrl.articleData) {
 			
@@ -65,6 +78,8 @@ class AddArticleModalCtrl {
 				if(error) {
 					return;
 				}
+				
+				$ctrl.urlDataIsLoaded = true;
 				
 				console.log(result);
 				
