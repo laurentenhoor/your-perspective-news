@@ -28,11 +28,6 @@ class AddArticleCtrl {
 		
 		$ctrl.open = function () {
 			
-			if (!$ctrl.articleData) {
-				console.error('Tried to open the modal before data was loaded.')
-//				return;
-			}
-			
 			console.log($ctrl.articleData)
 			
 			var modalInstance = $uibModal.open({
