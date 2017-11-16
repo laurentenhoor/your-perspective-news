@@ -45,11 +45,11 @@ class AddArticleCtrl {
 				}
 			});
 
-//			modalInstance.result.then(function (feedback) {
-//				console.log('do something with: '+feedback);
-//			}, function () {
-//				console.log('Modal dismissed at: ' + new Date());
-//			});
+			modalInstance.result.then(function (feedback) {
+				console.log('do something with: '+feedback);
+			}, function () {
+				console.log('Modal dismissed at: ' + new Date());
+			});
 
 		}
 		
