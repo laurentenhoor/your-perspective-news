@@ -7,8 +7,16 @@
 </div>
 <div class="modal-body" id="modal-body">
 	<div class="form-group">
-		<textarea ng-model="$ctrl.articleData.category" class="form-control" rows="5"
-			id="comment"></textarea>
+		
+		<select class="form-control" ng-model="$ctrl.category">
+		  <option value="Algemene berichtgeving">Algemene berichtgeving</option>
+		  <option value="Andere kijk">Andere kijk</option>
+		  <option value="Entertainment">Entertainment</option>
+		</select>
+
+		<textarea ng-model="$ctrl.url" 
+		ng-change="$ctrl.urlChange()" class="form-control" rows="2" id="url"></textarea>
+		
 	</div>
 </div>
 <div class="modal-footer">

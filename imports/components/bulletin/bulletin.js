@@ -69,7 +69,7 @@ class BulletinCtrl {
 				publisher: 'FOX News'
 			}]
 		}, {
-			category: 'Satire',
+			category: 'Entertainment',
 			articles : [{
 				logoUrl: 'https://botw-pd.s3.amazonaws.com/styles/logo-original-577x577/s3/062013/dumpert_0.png?itok=EWtSnwGw',
 				 title : "De gevolgen van het Trump beleid komen wel heel snel...",
