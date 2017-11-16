@@ -1,4 +1,6 @@
 @import "../../style/variables.less";
+@import "../../style/accounts_login.less";
+
 
 .company-strategy {
     font-family: "Montserrat";
@@ -114,59 +116,3 @@ b {
 	display: none;
 }
 
-
-
-
-login-buttons.right {
-	margin-top:0.5vw;
-	font-size: 3vw;
-    display: inline;
-    float: right;
-    margin-right: 3vw;
-}
-
-#login-name-link {
-	font-size:2.5vw;
-}
-
-#login-dropdown-list {
-    position: fixed;
-    top: 25%;
-    left: 50%;
-    margin-left:-140px;
-    margin-top: -100px;
-    width: 280px;
-    font-family:"Montserrat" !important;
-}
-#login-buttons .login-link-and-dropdown-list {
-    position: relative;
-    
-    border : none;
-}
-
-.login-button {
-	background: @button-color !important;
-	border:none !important;
-}
-
-.accounts-dialog {
-	border:0;
-	border-radius:0.8vw;
-	    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
-    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
-    z-index:999999;
-	
-	
-	}
-
-.accounts-dialog:after{
-	z-index:9;
-	content:"";
-	opacity:0.2;
-	    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: #000;
-	}
