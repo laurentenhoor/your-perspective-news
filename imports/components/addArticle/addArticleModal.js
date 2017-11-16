@@ -15,7 +15,6 @@ class AddArticleModalCtrl {
 		
 		$ctrl.articleData = articleData;
 		
-		
 		if (!$ctrl.articleData) {
 			
 			$ctrl.headerText = 'Maak een nieuw(s) item.';
@@ -23,15 +22,11 @@ class AddArticleModalCtrl {
 			
 		} else if ('category' in $ctrl.articleData) {
 			
-			$ctrl.headerText = 'Voeg een perspectief toe.';
+			$ctrl.headerText = 'Voeg een bron toe.';
 			$ctrl.headerSubText = 'Plak een url naar een artikel.';
 			
 		} 
 		
-		console.log('Modal data')
-		console.log($ctrl.articleData)
-		
-
 		$ctrl.ok = function () {
 			$uibModalInstance.close($ctrl.feedback);
 		};

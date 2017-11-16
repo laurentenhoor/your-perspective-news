@@ -24,6 +24,7 @@ less@2.7.11
 aldeed:simple-schema
 matb33:collection-hooks
 accounts-password@1.5.0
-dotansimha:accounts-ui-angular
 http@1.3.0
 practicalmeteor:mocha
+accounts-ui
+dotansimha:accounts-ui-angular
