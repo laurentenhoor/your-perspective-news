@@ -18,7 +18,7 @@ class AddArticleModalCtrl {
 		if (!$ctrl.articleData) {
 			
 			$ctrl.headerText = 'Maak een nieuw(s) item.';
-			$ctrl.headerSubText = 'Plaats een onderwerp dat nog niet door ons wordt besproken.';		
+			$ctrl.headerSubText = 'Plaats een onderwerp dat nog niet door ons wordt	 besproken.';		
 			
 			$ctrl.category = 'Algemene berichtgeving';
 			
