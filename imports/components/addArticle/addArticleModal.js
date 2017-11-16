@@ -8,15 +8,15 @@ import angularBootstrap from 'angular-ui-bootstrap';
 
 class AddArticleModalCtrl {
 	
-	constructor($scope, $reactive, $uibModalInstance, article) {
+	constructor($scope, $reactive, $uibModalInstance, articleData) {
 		
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
 		
-		$ctrl.article = article;
+		$ctrl.articleData = articleData;
 		
 		console.log('Modal data')
-		console.log($ctrl.article.description)
+		console.log($ctrl.articleData)
 		
 
 		$ctrl.ok = function () {
@@ -36,4 +36,4 @@ class AddArticleModalCtrl {
 export default angular.module('yourpers.addArticleModalCtrl', [
 	angularMeteor,
 	angularBootstrap
-]).controller('AddArticleModalCtrl', ['$scope', '$reactive', '$uibModalInstance','article', AddArticleModalCtrl])
+]).controller('AddArticleModalCtrl', ['$scope', '$reactive', '$uibModalInstance','articleData', AddArticleModalCtrl])

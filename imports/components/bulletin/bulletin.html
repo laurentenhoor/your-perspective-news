@@ -32,13 +32,14 @@
 
 			</div>
 
+
 			<div class="bulletin-item-description" ng-if="$ctrl.selectedArticle[category].description">
 				{{$ctrl.selectedArticle[category].description}}</div>
 
 			<div class="bulletin-sources">
 				
-				<yourpers-add-article data="category"
-				class="add-article-from-bulletin-item">
+				<yourpers-add-article data="articleBlock"
+					class="add-article-from-bulletin-item">
 				</yourpers-add-article>
 			
 				<div class="bulletin-source"

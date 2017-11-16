@@ -11,27 +11,29 @@ import style from './addArticle.less';
 
 class AddArticleCtrl {
 	
-	constructor($scope, $reactive, $uibModal, $attrs) {
+	constructor($scope, $reactive, $uibModal) {
 		
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
 		
-		console.log($attrs.data)
+		$ctrl.articleData = null;
 		
-		var data = null;
-		
-		$ctrl.$onInit = function() {
-			articleData = $ctrl.data;			
+		$ctrl.$onChanges = function(changes) {
+		// Explaination: https://medium.com/front-end-hacking/angularjs-component-binding-types-my-experiences-10f354d4660
+			if (changes.data) {
+				$ctrl.articleData = angular.copy($ctrl.data);	
+				console.log($ctrl.articleData)
+			}
 		}
 		
 		$ctrl.open = function () {
 			
-			if (!articleData) {
+			if (!$ctrl.articleData) {
 				console.error('Tried to open the modal before data was loaded.')
 				return;
 			}
 			
-			console.log(articleData)
+			console.log($ctrl.articleData)
 			
 			var modalInstance = $uibModal.open({
 				animation: false,
@@ -39,15 +41,15 @@ class AddArticleCtrl {
 				controller: 'AddArticleModalCtrl',
 				controllerAs: '$ctrl',
 				resolve : {
-					article : function() {return articleData;}
+					articleData : function() {return $ctrl.articleData}
 				}
 			});
 
-			modalInstance.result.then(function (feedback) {
-				console.log('do something')
-			}, function () {
-				console.log('Modal dismissed at: ' + new Date());
-			});
+//			modalInstance.result.then(function (feedback) {
+//				console.log('do something with: '+feedback);
+//			}, function () {
+//				console.log('Modal dismissed at: ' + new Date());
+//			});
 
 		}
 		
@@ -61,7 +63,7 @@ export default angular.module('yourpers.addArticle', [
 	])
 	.component('yourpersAddArticle', {
 		templateUrl : template,
-		controller: ['$scope', '$reactive', '$uibModal','$attrs', AddArticleCtrl],
+		controller: ['$scope', '$reactive', '$uibModal', AddArticleCtrl],
 		bindings: {
 			data : '<'
 		}
