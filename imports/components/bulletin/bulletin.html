@@ -1,8 +1,8 @@
 <div class="bulletin-items-scroll-container">
 
 	<div class="bulletin-item-outer-container"
-	ng-repeat="articleBlock in $ctrl.articleBlocks" 
-	ng-init="category=articleBlock.category; articles=articleBlock.articles">
+	ng-repeat="newsItem in $ctrl.newsItems" 
+	ng-init="category=newsItem.category; articles=newsItem.articles">
 
 		<div class="bulletin-item-header">{{category}}</div>
 
@@ -38,7 +38,7 @@
 
 			<div class="bulletin-sources">
 				
-				<yourpers-add-article data="articleBlock"
+				<yourpers-add-article data="newsItem"
 					class="add-article-from-bulletin-item">
 				</yourpers-add-article>
 			
