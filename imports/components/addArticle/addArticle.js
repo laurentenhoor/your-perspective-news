@@ -11,7 +11,7 @@ import style from './addArticle.less';
 
 class AddArticleCtrl {
 	
-	constructor($scope, $reactive, $uibModal) {
+	constructor($rootScope, $scope, $reactive, $uibModal) {
 		
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
@@ -58,7 +58,7 @@ export default angular.module('yourpers.addArticle', [
 	])
 	.component('yourpersAddArticle', {
 		templateUrl : template,
-		controller: ['$scope', '$reactive', '$uibModal', AddArticleCtrl],
+		controller: ['$rootScope', '$scope', '$reactive', '$uibModal', AddArticleCtrl],
 		bindings: {
 			data : '<'
 		}
