@@ -27,7 +27,6 @@ class AddArticleModalCtrl {
 //		$ctrl.urlDataIsLoaded = true;
 		
 		
-		
 		if (!$ctrl.articleData) {
 			
 			$ctrl.headerText = 'Maak een nieuw(s) item.';
@@ -38,7 +37,7 @@ class AddArticleModalCtrl {
 		} else if ('category' in $ctrl.articleData) {
 			
 			$ctrl.headerText = 'Voeg een bron toe.';
-			$ctrl.headerSubText = 'Verbreed, verdiep of ontwricht ons perspectief op dit onderwerp met een interessant artikel.';
+			$ctrl.headerSubText = 'Verbreed, verdiep of ontwricht dit perspectief met een interessant artikel.';
 			
 			
 			$ctrl.category =  $ctrl.articleData.category;
