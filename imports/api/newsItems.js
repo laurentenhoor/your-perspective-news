@@ -15,6 +15,10 @@ if(Meteor.isServer) {
     Meteor.publish('newsItems', function(){
         return NewsItems.find({});
     });
+    
+    
+    
+    
 }
 
 if(Meteor.isClient) {
