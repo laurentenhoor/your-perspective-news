@@ -99,6 +99,19 @@ class AddArticleModalCtrl {
 		
 		
 		$ctrl.ok = function () {
+			
+			Meteor.call('addArticle', null, $ctrl.category, {
+				imageUrl: $ctrl.imageUrl,
+				logoUrl: $ctrl.logoUrl,
+				description: $ctrl.description,
+				title: $ctrl.title,
+				publisher: $ctrl.publisher,
+				videoUrl : $ctrl.videoUrl,
+				
+//				rawMetadata: $ctrl.rawMetadata,
+				
+			});
+			
 			$uibModalInstance.close($ctrl.feedback);
 		};
 

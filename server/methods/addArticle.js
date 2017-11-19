@@ -5,6 +5,7 @@ Meteor.methods({
 	
 	addArticle(topicId, category, article) {
 		
+		console.log('back-end method addArticleId() called')
 		console.log(topicId);
 		console.log(category);
 		console.log(article);
