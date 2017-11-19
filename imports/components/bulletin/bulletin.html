@@ -1,8 +1,9 @@
-<div class="bulletin-items-scroll-container">
+<div class="bulletin-items-scroll-container"
+	ng-repeat="topic in $ctrl.topics" ng-init="topic.selectedArticle = {}">
 
 	<div class="bulletin-item-outer-container"
-	ng-repeat="newsItem in $ctrl.newsItems" 
-	ng-init="category=newsItem.category; articles=newsItem.articles">
+	ng-repeat="newsItem in topic.articlesByCategory" 
+	ng-init="category=newsItem.category; articles=newsItem.articles; topic.selectedArticle[category]=articles[0]">
 
 		<div class="bulletin-item-header">{{category}}</div>
 
@@ -11,11 +12,11 @@
 			<div class="bulletin-item-image-container">
 			
 				<div class="bulletin-item-image" 
-				style="background-image: url({{$ctrl.selectedArticle[category].imageUrl}})">
+				style="background-image: url({{topic.selectedArticle[category].imageUrl}})">
 				</div>
 				
-				<iframe ng-if="$ctrl.selectedArticle[category].videoUrl" 
-				src="{{$ctrl.selectedArticle[category].videoUrl}}"
+				<iframe ng-if="topic.selectedArticle[category].videoUrl" 
+				src="{{topic.selectedArticle[category].videoUrl}}"
 					width="100%" height="60%" frameborder="0" allowfullscreen
 					style="bottom: 16%; position: absolute; left: 0px;"></iframe>
 
@@ -23,29 +24,29 @@
 
 				<div class="bulletin-item-title-container">
 					<div class="bulletin-item-title">
-						{{$ctrl.selectedArticle[category].title}}
+						{{topic.selectedArticle[category].title}}
 					</div>
 					<div class="bulletin-item-publisher">
-						{{$ctrl.selectedArticle[category].publisher}}
+						{{topic.selectedArticle[category].publisher}}
 					</div>
 				</div>
 
 			</div>
 
 
-			<div class="bulletin-item-description" ng-if="$ctrl.selectedArticle[category].description">
-				{{$ctrl.selectedArticle[category].description}}</div>
+			<div class="bulletin-item-description" ng-if="topic.selectedArticle[category].description">
+				{{topic.selectedArticle[category].description}}</div>
 
 			<div class="bulletin-sources">
 				
-				<yourpers-add-article data="newsItem"
-					class="add-article-from-bulletin-item">
+				<yourpers-add-article topic-id="topic._id" data="newsItem"
+					class="add-article-from-bulletin-item" ng-click="$ctrl.click(topic._id)">
 				</yourpers-add-article>
 			
 				<div class="bulletin-source"
 					ng-repeat="article in articles"
-					ng-click="$ctrl.clickArticle(category, article)"
-					ng-class="(article == $ctrl.selectedArticle[category]) ? 'bulletin-source-selected':''"
+					ng-click="$ctrl.clickArticle(topic, category, article)"
+					ng-class="(article == topic.selectedArticle[category]) ? 'bulletin-source-selected':''"
 					style="background-image: url({{article.logoUrl}})"></div>
 			</div>
 

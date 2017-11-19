@@ -6,31 +6,27 @@ import {name as yourpersAddArticle} from '../addArticle/addArticle';
 import template from './bulletin.html';
 import style from './bulletin.less';
 
-import { NewsItems } from '../../api/topics.js';
+import { Topics } from '../../api/topics.js';
 
 class BulletinCtrl {
-	
+
 	constructor($rootScope, $scope, $reactive, $window) {
-		
+
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
-		
-		$ctrl.call('getNewsItems', function(error, newsItems) {
-			
-			$ctrl.newsItems = newsItems;
-			
-			angular.forEach($ctrl.newsItems, function(articleBlock, i){
-				$ctrl.clickArticle(articleBlock.category, articleBlock.articles[0])
-			}); 
+
+		$ctrl.helpers({
+
+			topics() {
+				return Topics.find({})
+			}
 			
 		});
 		
-		$ctrl.selectedArticle = {};
-		
-		$ctrl.clickArticle = function(category, article) {
-			$ctrl.selectedArticle[category] = article;
+		$ctrl.clickArticle = function(topic, category, article) {
+			topic.selectedArticle[category] = article;
 		}
-		
+
 	}
 
 }

@@ -20,9 +20,9 @@ class AddArticleCtrl {
 		
 		$ctrl.$onChanges = function(changes) {
 		// Explaination: https://medium.com/front-end-hacking/angularjs-component-binding-types-my-experiences-10f354d4660
-			if (changes.data) {
+			if (changes.data && $ctrl.data) {
 				$ctrl.articleData = angular.copy($ctrl.data);	
-				console.log($ctrl.articleData)
+				$ctrl.articleData.topicId = angular.copy($ctrl.topicId);
 			}
 		}
 		
@@ -60,6 +60,7 @@ export default angular.module('yourpers.addArticle', [
 		templateUrl : template,
 		controller: ['$rootScope', '$scope', '$reactive', '$uibModal', AddArticleCtrl],
 		bindings: {
-			data : '<'
+			data : '<',
+			topicId : '<'
 		}
 	});
