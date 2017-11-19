@@ -6,14 +6,14 @@ import {name as yourpersAddArticle} from '../addArticle/addArticle';
 import template from './bulletin.html';
 import style from './bulletin.less';
 
-import { NewsItems } from '../../api/newsItems.js';
+import { NewsItems } from '../../api/topics.js';
 
 class BulletinCtrl {
 	
 	constructor($rootScope, $scope, $reactive, $window) {
 		
 		var $ctrl = this;
-		$reactive($ctrl).attach($scope);	
+		$reactive($ctrl).attach($scope);
 		
 		$ctrl.call('getNewsItems', function(error, newsItems) {
 			

@@ -1,31 +1,36 @@
 import { Topics } from '../../imports/api/topics.js';
 import { Articles } from '../../imports/api/articles.js';
 
-import { Random } from 'meteor/random';
-
 Meteor.methods({
 	
-	upsertArticle(topicId, category, article) {
+	addArticle(topicId, category, article) {
 		
-		article._id = Random.id();
-
-		//TODO: add validation of article
+		console.log(topicId);
+		console.log(category);
+		console.log(article);
+		
 		var articleId = Articles.insert(article);
+		article._id = articleId;
 		
-		if (!topicId || !topicExists(topicId)) {
-			createTopic()
+		if (!topicId) {
+			topicId = createTopic(category, article)
+			console.log('new topic created with id: ' + topicId);
+		} else if (!topicExists(topicId)) {
+			console.error('topicId does not exist in database');
 		} else {
-			addArticleToNewsItem()
+			addArticleToTopic(topicId, category, article)
+			console.log('new article added to topic: ' + topicId);
 		}
 		
 	}
 });
 
-Meteor.call('upsertArticle', 'L2MCBj2YyfWD4orXm', 'Algemene berichtgeving', {testTitle:'testTitle'});
+//Meteor.call('addArticle', 'MvzcpYhB8p42cvxAm', 'Entertainment', {testTitle:'testTitle'});
+//Meteor.call('addArticle', null, 'Entertainment', {testTitle:'testTitle'});
 
 function createTopic(category, article) {
 	
-	Topics.insert({
+	topicId = Topics.insert({
 		articlesByCategory: [{
 			category : category,
 			articles : [article]
@@ -33,18 +38,13 @@ function createTopic(category, article) {
 		
 	});
 	
-};
-
-function addArticleToNewsItem(topicId, category, article) {
-	
-	addArticleToTopic(topicId, category, article);
+	return topicId;
 	
 };
 
 
 function addArticleToTopic(topicId, category, article) {
 
-	
 	console.log('category exists? ' + categoryExists(topicId, category))
 	
 	if (categoryExists(topicId, category)) {
@@ -54,8 +54,6 @@ function addArticleToTopic(topicId, category, article) {
 	}
 	
 };
-
-
 
 function topicExists(topicId) {
 	
@@ -87,7 +85,6 @@ function createCategoryAndAddArticle(topicId, category, article) {
 		console.log(error);
 	});
 	
-	
 }
 
 function addArticleToExistingCategory(topicId, category, article) {
@@ -101,23 +98,3 @@ function addArticleToExistingCategory(topicId, category, article) {
 		console.log(error);
 	});
 }
-
-function updateNewsItem(topicId, category, articleId) {
-	
-	topic = Topics.findOne({_id : topicId});
-	
-	console.log(topic);
-	console.log(topic.categories)
-	console.log(category)
-	console.log(topic.categories == category)
-	
-	if (topic.categories.indexOf(category) > -1) {
-		console.log('category found in current topic');
-//		Topics.update({_id : topicId}, {$push : });
-	} else {
-		console.log('category NOT found in current topic');
-	}
-	
-};
-
-//updateNewsItem('kPdF9c8tdnM7Waq7L', 'Algemene berichtgeving', 'kZKnhePAbt9FMgFJK');
