@@ -51,7 +51,7 @@ angular.module('yourpers', [
 	$locationProvider.hashPrefix('!');
 	
 	$routeProvider.
-	    when('/nieuws', {
+	    when('/tijdslijn', {
 		      template: '<yourpers-post></yourpers-post>'
 	    }).
 	    when('/item/:id', {
@@ -60,7 +60,7 @@ angular.module('yourpers', [
 		    when('/bundle', {
 	    		template: '<yourpers-bundle></yourpers-bundle>'
 	    }).
-		    when('/bulletin', {
+		    when('/nieuws', {
 	    		template: '<yourpers-bulletin></yourpers-bulletin>'
 	    }).
 	    
@@ -77,7 +77,7 @@ angular.module('yourpers', [
 	$httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
     
-//    $locationProvider.html5Mode({ enabled: true, requireBase: false, rewriteLinks: false });
+    $locationProvider.html5Mode({ enabled: true, requireBase: false, rewriteLinks: false });
     
     $provide.decorator('$browser', ['$delegate', function($delegate) {
         var originalUrl = $delegate.url;
