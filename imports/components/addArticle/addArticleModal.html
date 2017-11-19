@@ -58,5 +58,5 @@ ng-if="$ctrl.urlDataIsLoaded">
 
 <div class="modal-footer">
 	<button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Annuleren</button>
-	<button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">Plaatsen</button>
+	<button ng-if="$ctrl.urlDataIsLoaded" class="btn btn-primary" type="button" ng-click="$ctrl.ok()">Plaatsen</button>
 </div>

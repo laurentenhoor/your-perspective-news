@@ -9,9 +9,11 @@ Meteor.methods({
 		console.log(topicId);
 		console.log(category);
 		console.log(article);
-		
+			
 		var articleId = Articles.insert(article);
 		article._id = articleId;
+		article.createdAt = Date.now();
+		article.updatedAt = Date.now();
 		
 		if (!topicId) {
 			topicId = createTopic(category, article)
@@ -26,18 +28,10 @@ Meteor.methods({
 	}
 });
 
-//Meteor.call('addArticle', 'MvzcpYhB8p42cvxAm', 'Entertainment', {testTitle:'testTitle'});
-//Meteor.call('addArticle', null, 'Entertainment', {testTitle:'testTitle'});
-
 function createTopic(category, article) {
 	
-	topicId = Topics.insert({
-		articlesByCategory: [{
-			category : category,
-			articles : [article]
-		}]
-		
-	});
+	topicId = Topics.insert({});
+	createCategoryAndAddArticle(topicId, category, article)
 	
 	return topicId;
 	
@@ -70,23 +64,48 @@ function categoryExists(topicId, category) {
 	
 	topic = Topics.find({
 		_id : topicId,
-		'articlesByCategory.category': category
+		'articlesByCategory.category': category,
 	})
 	
 	return topic.count()>0;
 }
 
+
 function createCategoryAndAddArticle(topicId, category, article) {
 
+	// hard coded priorities
+	switch (category) {
+		case 'Algemene berichtgeving':
+			sortingOrder = 1;	
+			break;
+		case 'Andere kijk':
+			sortingOrder = 2;
+			break;
+		case 'Entertainment':
+			sortingOrder = 3;
+			break;
+		default:
+			sortingOrder = 4;
+			break;
+			
+	}
+	
+	
 	Topics.update({
 		_id : topicId
 	},{ 
-		$push: { "articlesByCategory": {category: category, articles: [article]}}
+		$push: { "articlesByCategory": {
+			category: category, 
+			articles: [article], 
+			sortingOrder : sortingOrder
+		}}
 	}, function(error) {
 		console.log(error);
 	});
 	
 }
+
+
 
 function addArticleToExistingCategory(topicId, category, article) {
 	

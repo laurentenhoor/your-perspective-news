@@ -18,7 +18,7 @@ class BulletinCtrl {
 		$ctrl.helpers({
 
 			topics() {
-				return Topics.find({})
+				return Topics.find({}).fetch();
 			}
 			
 		});

@@ -1,9 +1,9 @@
 <div class="bulletin-items-scroll-container"
-	ng-repeat="topic in $ctrl.topics" ng-init="topic.selectedArticle = {}">
+	ng-repeat="topic in $ctrl.topics | orderBy:'-createdAt'" ng-init="topic.selectedArticle = {}">
 
 	<div class="bulletin-item-outer-container"
-	ng-repeat="newsItem in topic.articlesByCategory" 
-	ng-init="category=newsItem.category; articles=newsItem.articles; topic.selectedArticle[category]=articles[0]">
+	ng-repeat="newsItem in topic.articlesByCategory | orderBy:'sortingOrder'" 
+	ng-init="category=newsItem.category; articles=newsItem.articles; topic.selectedArticle[category]=articles[articles.length-1]">
 
 		<div class="bulletin-item-header">{{category}}</div>
 
@@ -44,7 +44,7 @@
 				</yourpers-add-article>
 			
 				<div class="bulletin-source"
-					ng-repeat="article in articles"
+					ng-repeat="article in articles | orderBy:'-createdAt'"
 					ng-click="$ctrl.clickArticle(topic, category, article)"
 					ng-class="(article == topic.selectedArticle[category]) ? 'bulletin-source-selected':''"
 					style="background-image: url({{article.logoUrl}})"></div>
