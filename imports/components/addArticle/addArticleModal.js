@@ -86,13 +86,23 @@ class AddArticleModalCtrl {
 
 				console.log(result);
 
-				$ctrl.imageUrl = result['og:image'] || result['twitter:image'] || result['twitter:image:src'];
+				
 				$ctrl.logoUrl = result.logos.clearbit || result.logos.icon;
 				$ctrl.description = (result['twitter:description'] || result['og:description'] || result['Description'] || result['description'])// .replace(/<\/?[^>]+(>|$)/g,
 				// "");
 				$ctrl.title = (result['gwa_contentTitle'] || result['twitter:title'] || result['og:title'] || result['Title'])// .replace(/<\/?[^>]+(>|$)/g,
 				// "");
 				$ctrl.publisher = result['og:site_name'] || result['application-name'];
+				
+				$ctrl.videoUrl = result['twitter:player'];
+				
+				$ctrl.imageUrl = result['og:image'] || result['twitter:image'] || result['twitter:image:src'];
+				
+				if (result['twitter:player']) {
+					$ctrl.imageUrl = null;
+					$ctrl.videoUrl = $ctrl.videoUrl + '&theme=dark&autohide=2&modestbranding=0&fs=1&showinfo=0&rel=0&playsinline=1';
+				}
+				
 				$ctrl.postMetaDataAvailable = true;
 				$ctrl.rawMetadata = result;
 
@@ -107,13 +117,14 @@ class AddArticleModalCtrl {
 		$ctrl.ok = function () {
 
 			var article = {
+					
+					videoUrl : $ctrl.videoUrl,
 					imageUrl: $ctrl.imageUrl,
 					logoUrl: $ctrl.logoUrl,
 					description: $ctrl.description,
 					title: $ctrl.title,
 					publisher: $ctrl.publisher,
-					videoUrl : $ctrl.videoUrl,
-
+				
 //					rawMetadata: $ctrl.rawMetadata,
 
 			}
