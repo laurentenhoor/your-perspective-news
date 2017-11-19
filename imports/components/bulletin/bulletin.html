@@ -3,7 +3,9 @@
 
 	<div class="bulletin-item-outer-container"
 	ng-repeat="newsItem in topic.articlesByCategory | orderBy:'sortingOrder'" 
-	ng-init="category=newsItem.category; articles=newsItem.articles; topic.selectedArticle[category]=articles[articles.length-1]">
+	ng-init="category=newsItem.category; articles=newsItem.articles; topic.selectedArticle[category]=articles[articles.length-1]"
+	ng-show="articles.length>0"
+	>
 
 		<div class="bulletin-item-header">{{category}}</div>
 
@@ -11,6 +13,10 @@
 
 			<div class="bulletin-item-image-container">
 			
+				<div class="remove-icon" ng-click="$ctrl.remove(topic, topic.selectedArticle[category])">
+					<i class="material-icons">delete</i>
+				</div>			
+				
 				<div class="bulletin-item-image" 
 				style="background-image: url({{topic.selectedArticle[category].imageUrl}})">
 				</div>
