@@ -92,7 +92,7 @@ class AddArticleModalCtrl {
 				// "");
 				$ctrl.title = (result['gwa_contentTitle'] || result['twitter:title'] || result['og:title'] || result['Title'])// .replace(/<\/?[^>]+(>|$)/g,
 				// "");
-				$ctrl.publisher = result['og:site_name'] || result['application-name'];
+				$ctrl.publisher = result['og:site_name'] || result['application-name'] || result['app-name'];
 				
 				$ctrl.videoUrl = result['twitter:player'];
 				
@@ -100,6 +100,7 @@ class AddArticleModalCtrl {
 				
 				if (result['twitter:player']) {
 					$ctrl.imageUrl = null;
+					$ctrl.url = null;
 					$ctrl.videoUrl = $ctrl.videoUrl + '&theme=dark&autohide=2&modestbranding=0&fs=1&showinfo=0&rel=0&playsinline=1';
 				}
 				
@@ -124,11 +125,14 @@ class AddArticleModalCtrl {
 					description: $ctrl.description,
 					title: $ctrl.title,
 					publisher: $ctrl.publisher,
+					url : $ctrl.url,
 				
 //					rawMetadata: $ctrl.rawMetadata,
 
 			}
 
+			console.log(article)
+			
 			if (articleData) {
 				Meteor.call('addArticle', articleData.topicId, $ctrl.category, article);
 			} else {

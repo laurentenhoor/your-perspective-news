@@ -28,20 +28,24 @@
 
 				<div class="gradient-overlay"></div>
 
-				<div class="bulletin-item-title-container">
-					<div class="bulletin-item-title">
-						{{topic.selectedArticle[category].title}}
+				<a ng-href="{{topic.selectedArticle[category].url}}" target="_self">
+					<div class="bulletin-item-title-container">
+						<div class="bulletin-item-title">
+							{{topic.selectedArticle[category].title}}
+						</div>
+						<div class="bulletin-item-publisher">
+							{{topic.selectedArticle[category].publisher}}
+						</div>
 					</div>
-					<div class="bulletin-item-publisher">
-						{{topic.selectedArticle[category].publisher}}
-					</div>
-				</div>
+				</a>
 
 			</div>
 
 
-			<div class="bulletin-item-description" ng-if="topic.selectedArticle[category].description">
-				{{topic.selectedArticle[category].description}}</div>
+			<a ng-href="{{topic.selectedArticle[category].url}}" target="_self">
+				<div class="bulletin-item-description" ng-if="topic.selectedArticle[category].description">
+					{{topic.selectedArticle[category].description}}</div>
+			</a>
 
 			<div class="bulletin-sources">
 				
