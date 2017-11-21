@@ -25,12 +25,12 @@ Meteor.methods({
 	
 });
 
-var topicId = 'o5yaFgyad68RfF9nf';
-
-var topic = Topics.find({_id: topicId}, {fields: {'articlesByCategory.articles': 1}}).fetch();
-	
-console.log('counter: ')
-//console.log(topic.count())
-//console.log(topic[0].articlesByCategory.articles.length)
-console.log(topic[0].articlesByCategory)
+//var topicId = 'o5yaFgyad68RfF9nf';
+//
+//var topic = Topics.find({_id: topicId}, {fields: {'articlesByCategory.articles': 1}}).fetch();
+//	
+//console.log('counter: ')
+////console.log(topic.count())
+////console.log(topic[0].articlesByCategory.articles.length)
+//console.log(topic[0].articlesByCategory)
 
