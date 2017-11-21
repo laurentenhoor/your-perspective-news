@@ -1,6 +1,6 @@
 <a href="/">
 	<div class="company-logo-container">
-		<img class="company-logo" src="assets/logos/newnews_bw.png" />
+		<img class="company-logo" src="/assets/logos/newnews_bw_simplified.png" />
 		<div class="company-text">
 			<span class="company-logo-title">jouw<b>pers<span
 					class="pectives">pectives</span></b><br>
@@ -14,11 +14,11 @@
 
 
 <ul class="menu">
-	<li ng-hide="isActive('/nieuws')">
-		<a href="#!/nieuws#{{$root.activeItem}}">&#8612; terug</a>
+	<li ng-hide="isActive('/nieuws') || isActive('/tijdslijn')">
+		<a href="/tijdslijn#{{$root.activeItem}}/">&#8612; terug</a>
 	</li>
 			
-	<li ng-show="isActive('/nieuws')"><a href="">nieuwsoverzicht</a> </li>
+	<li ng-show="isActive('/nieuws') || isActive('/tijdslijn')"><a href="">nieuwsoverzicht</a> </li>
 	
 	<login-buttons class="right"></login-buttons>
 	

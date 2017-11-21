@@ -47,7 +47,7 @@
 						<div ng-click="$ctrl.vote(id,-1)" class="arrow-down" 
 							ng-class="{true: 'downvoted', false: ''}[voteValue==-1]"></div>
 					</div>
-					<a href="#!/item/{{id}}">
+					<a href="/item/{{id}}">
 						<div class="post-view-message" ng-bind="post.userMessage"></div>
 						<div class="post-time-elapsed">{{ $ctrl.getTimeTag(post.createdAt) }}</div>
 						
@@ -76,7 +76,7 @@
 				
 				<div class="post-view-controls"> 
 				
-				<a href="#!/item/{{id}}">
+				<a href="/item/{{id}}">
 						
 						<div class="button-request-perspective"><i class="fa fa-cube" aria-hidden="true"></i>Verbreed</div> 
 						<div class="button-request-perspective"><i class="fa fa-comment-o" aria-hidden="true"></i>Reageer</div>

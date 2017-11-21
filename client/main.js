@@ -48,7 +48,7 @@ angular.module('yourpers', [
 	
 	$sceDelegateProvider.resourceUrlWhitelist(['**']);
   
-	$locationProvider.hashPrefix('!');
+//	$locationProvider.hashPrefix('!');
 	
 	$routeProvider.
 	    when('/tijdslijn', {
