@@ -101,7 +101,7 @@ class AddArticleModalCtrl {
 				if (result['twitter:player']) {
 					$ctrl.imageUrl = null;
 					$ctrl.url = null;
-					$ctrl.videoUrl = $ctrl.videoUrl + '&theme=dark&autohide=2&modestbranding=0&fs=1&showinfo=0&rel=0&playsinline=1';
+					$ctrl.videoUrl = $ctrl.videoUrl + '?&theme=dark&autohide=2&modestbranding=0&fs=1&showinfo=0&rel=0&playsinline=1';
 				}
 				
 				$ctrl.postMetaDataAvailable = true;
