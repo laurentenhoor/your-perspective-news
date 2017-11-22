@@ -4,8 +4,7 @@
 	<div class="bulletin-item-outer-container"
 	ng-repeat="newsItem in topic.articlesByCategory | orderBy:'sortingOrder'" 
 	ng-init="category=newsItem.category; articles=newsItem.articles; topic.selectedArticle[category]=articles[articles.length-1]"
-	ng-show="articles.length>0"
-	>
+	ng-show="articles.length>0">
 
 		<div class="bulletin-item-header">{{category}}</div>
 
