@@ -59,6 +59,18 @@
 	
 	}
 
+
+.bulletin-item-image:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(to bottom left, rgba(0, 0, 0, 0.2), #404040);
+    opacity: 0.5;
+}
+
 .bulletin-item-image {
 	
 	background-size: cover;
@@ -216,4 +228,6 @@
     bottom: 3vw;
     right: 3vw;
     color: white;
+    
+    z-index: 1;
 	}
