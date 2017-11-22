@@ -85,7 +85,6 @@ class AddArticleModalCtrl {
 				$ctrl.urlDataIsLoaded = true;
 
 				console.log(result);
-
 				
 				$ctrl.logoUrl = result.logos.clearbit || result.logos.icon;
 				$ctrl.description = (result['twitter:description'] || result['og:description'] || result['Description'] || result['description'])// .replace(/<\/?[^>]+(>|$)/g,
