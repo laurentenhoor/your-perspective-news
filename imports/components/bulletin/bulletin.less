@@ -226,8 +226,54 @@
 .remove-icon {
     position: absolute;
     bottom: 3vw;
-    right: 3vw;
+    left: 3vw;
     color: white;
     
     z-index: 1;
 	}
+
+	
+.bulletin-voting {
+	position:absolute;
+	right:3vw;
+	bottom: 3vw;
+	z-index:1;
+}
+
+.bulletin-vote-score {
+	color:white;
+	text-align:center;
+}
+
+.bulletin-arrow-up {
+  width: 0; 
+  height: 0; 
+  border-left: 3vw solid transparent;
+  border-right: 3vw solid transparent;
+  
+//  border-bottom: 3vw solid #3d448b;
+
+  border-bottom: 3vw solid white;
+    margin:1vw;
+}
+
+.bulletin-arrow-down {
+  width: 0; 
+  height: 0; 
+  border-left: 3vw solid transparent;
+  border-right: 3vw solid transparent;
+  
+//  border-top: 3vw solid #3d448b;
+  border-top: 3vw solid white;
+    margin:1vw;
+
+}
+
+.bulletin-upvoted {
+	border-bottom: 3vw solid rgba(218, 39, 44, 0.92);
+}
+
+.bulletin-downvoted {
+	//border-top: 3vw solid rgba(218, 39, 44, 0.77);
+	border-top: 3vw solid rgba(39, 86, 218, 0.77);
+}
