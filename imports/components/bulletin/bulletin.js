@@ -23,6 +23,14 @@ class BulletinCtrl {
 			
 		});
 		
+		$ctrl.vote = function(id, voteUpOrDown) {
+			
+			console.log(id);
+			console.log(voteUpOrDown);
+			
+			
+		}
+		
 		$ctrl.clickArticle = function(topic, category, article) {
 			topic.selectedArticle[category] = article;
 		}

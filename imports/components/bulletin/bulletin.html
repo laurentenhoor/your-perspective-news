@@ -17,7 +17,7 @@
 				</div>
 				
 				<div class="bulletin-voting" ng-init="voteValue=$ctrl.voteValue(id)" ng-if="true">
-					<div ng-click="$ctrl.vote(id,1)" class="bulletin-arrow-up" 
+					<div ng-click="$ctrl.vote(topic.selectedArticle[category],1)" class="bulletin-arrow-up" 
 						ng-class="{true: 'bulletin-upvoted', false: ''}[voteValue==1]"></div>
 					<div class="bulletin-vote-score">{{post.score || 0}}</div>
 					<div ng-click="$ctrl.vote(id,-1)" class="bulletin-arrow-down" 
