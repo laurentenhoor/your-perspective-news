@@ -1,5 +1,7 @@
 import { Votes } from '../../imports/api/votes.js';
 import { Posts } from '../../imports/api/posts.js';
+import { Topics } from '../../imports/api/topics.js';
+
 import { Comments } from '../../imports/api/comments.js';
 
 Meteor.methods({
@@ -19,6 +21,8 @@ Meteor.methods({
 
 		// check if a vote already exists for this user and article
 		var vote = Votes.findOne({articleId : id, ownerId: Meteor.userId()});
+		console.log(vote);
+		
 		
 		if (!vote) {
 			
@@ -33,6 +37,11 @@ Meteor.methods({
 			Posts.update(id, {$inc : { score: voteValue}});
 			Comments.update(id, {$inc : {score: voteValue}});
 			
+			Topics.upsert({
+				'articlesByCategory.articles._id' : id
+			}, {$inc : {score: 2*voteValue}});
+			
+			
 		} else {
 			
 			if (vote.value != voteValue) {
@@ -41,6 +50,14 @@ Meteor.methods({
 				
 				Posts.update(id, {$inc : {score: 2*voteValue}});
 				Comments.update(id, {$inc : {score: 2*voteValue}});
+				
+				Topics.upsert({
+					'articlesByCategory.articles._id' : id
+				}, {$inc : {'articlesByCategory.$.articles.score': 2*voteValue}}, function( error, result) { 
+				    if ( error ) console.log ( error ); //info about what went wrong
+				    if ( result ) console.log ( result ); //the _id of new object if successful
+				  });
+				
 			}
 			
 		}

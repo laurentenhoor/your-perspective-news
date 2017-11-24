@@ -96,7 +96,7 @@ function createCategoryAndAddArticle(topicId, category, article) {
 	},{ 
 		$push: { "articlesByCategory": {
 			category: category, 
-			articles: [article], 
+			articleIds: [article._id], 
 			sortingOrder : sortingOrder
 		}}
 	}, function(error) {
@@ -113,7 +113,7 @@ function addArticleToExistingCategory(topicId, category, article) {
 		_id : topicId,
 		'articlesByCategory.category': category
 	},{ 
-		$push: { "articlesByCategory.$.articles": article}
+		$push: { "articlesByCategory.$.articleIds": article._id}
 	}, function(error) {
 		console.log(error);
 	});

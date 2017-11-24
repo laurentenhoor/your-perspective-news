@@ -76,5 +76,44 @@ Meteor.methods({
 			}]
 		}];
 
+	}, 
+	
+	getTopics() {
+		return [{
+		    "_id" : "QWmJgmfx5mcmvSfoS",
+		    "createdAt" : 1511505802795.0,
+		    "updatedAt" : 1511505802795.0,
+		    "articlesByCategory" : [ 
+		        {
+		            "category" : "Algemene berichtgeving",
+		            "articles" : [ 
+		                {
+		                    "imageUrl" : "https://media.nu.nl/m/dzdxxrya5q21_wd1280.jpg/syrische-strijder-loopt-vrij-rond-in-nederland-.jpg",
+		                    "logoUrl" : "https://logo.clearbit.com/www.nu.nl",
+		                    "description" : "Een Syrische IS-strijder zou met valse papieren in Nederland verblijven en heeft in september een bijeenkomst in De Balie in Amsterdam bezocht. Dat meldt de Volkskrant. ",
+		                    "title" : "'Syrische IS-strijder loopt vrij rond in Nederland' ",
+		                    "publisher" : "NU",
+		                    "url" : "https://www.nu.nl/binnenland/5020676/syrische-strijder-loopt-vrij-rond-in-nederland-.html",
+		                    "_id" : "tRie4fWcCJtWxZrn8",
+		                    "createdAt" : 1511505802795.0,
+		                    "updatedAt" : 1511505802795.0
+		                }, 
+		                {
+		                    "imageUrl" : "https://static1.persgroep.net/volkskrant/image/c358b946-243f-43df-b2a9-9aa664326de2?width=700",
+		                    "logoUrl" : "https://logo.clearbit.com/www.volkskrant.nl",
+		                    "description" : "Een Syrische IS-strijder blijkt met valse papieren in Nederland te verblijven en heeft in september een bijeenkomst in De Balie in Amsterdam bezocht. De 31-jarige man werd daar opgemerkt door activisten van het burgercollectief Raqqa is Being Slaughtered Silently, die aanwezig waren omdat een film over hun werk werd getoond. Zij herkenden de man, die uit dezelfde regio in Syrië komt en meevocht met IS.",
+		                    "title" : "Syrische IS-strijder loopt vrij rond in Nederland en bezocht bijeenkomst in De Balie",
+		                    "publisher" : "De Volkskrant",
+		                    "url" : "https://www.volkskrant.nl/buitenland/syrische-is-strijder-loopt-vrij-rond-in-nederland-en-bezocht-bijeenkomst-in-de-balie~a4541252/",
+		                    "_id" : "rSJhxsBzt7cvFH87Q",
+		                    "createdAt" : 1511509315810.0,
+		                    "updatedAt" : 1511509315810.0
+		                }
+		            ],
+		            "sortingOrder" : 1
+		        }
+		    ],
+		    "score" : 12
+		}]
 	}
 });

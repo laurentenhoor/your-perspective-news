@@ -3,9 +3,12 @@
 
 	<div class="bulletin-item-outer-container"
 	ng-repeat="newsItem in topic.articlesByCategory | orderBy:'sortingOrder'" 
-	ng-init="category=newsItem.category; articles=newsItem.articles; topic.selectedArticle[category]=articles[articles.length-1]"
-	ng-show="articles.length>0">
-
+	ng-init="category=newsItem.category; 
+	articles=newsItem.articles; 
+	articleIds=newsItem.articleIds; 
+	topic.selectedArticle[category]=$ctrl.getArticleById(articleIds[articleIds.length-1])"
+	>
+	
 		<div class="bulletin-item-header">{{category}}</div>
 
 		<div class="bulletin-item-image-and-details-container">
@@ -16,11 +19,11 @@
 					<i class="material-icons">delete</i>
 				</div>
 				
-				<div class="bulletin-voting" ng-init="voteValue=$ctrl.voteValue(id)" ng-if="true">
+				<div class="bulletin-voting" ng-init="voteValue=$ctrl.getUserVoteByArticleId(topic.selectedArticle[category]._id)" ng-if="true">
 					<div ng-click="$ctrl.vote(topic.selectedArticle[category],1)" class="bulletin-arrow-up" 
 						ng-class="{true: 'bulletin-upvoted', false: ''}[voteValue==1]"></div>
-					<div class="bulletin-vote-score">{{post.score || 0}}</div>
-					<div ng-click="$ctrl.vote(id,-1)" class="bulletin-arrow-down" 
+					<div class="bulletin-vote-score">{{topic.selectedArticle[category].score || 0}}</div>
+					<div ng-click="$ctrl.vote(topic.selectedArticle[category],-1)" class="bulletin-arrow-down" 
 						ng-class="{true: 'bulletin-downvoted', false: ''}[voteValue==-1]"></div>
 				</div>					
 				
@@ -48,11 +51,10 @@
 						
 					</div>
 				</a>
-				
 		
 
 			</div>
-
+			
 			<a ng-href="{{topic.selectedArticle[category].url}}" target="_self">
 				<div class="bulletin-item-description" ng-if="topic.selectedArticle[category].description">
 					{{topic.selectedArticle[category].description}}</div>
@@ -65,10 +67,12 @@
 				</yourpers-add-article>
 			
 				<div class="bulletin-source"
-					ng-repeat="article in articles | orderBy:'-createdAt'"
+					ng-repeat="articleId in articleIds | orderBy:'-createdAt'"
+					ng-init="article=$ctrl.getArticleById(articleId)"
 					ng-click="$ctrl.clickArticle(topic, category, article)"
 					ng-class="(article == topic.selectedArticle[category]) ? 'bulletin-source-selected':''"
-					style="background-image: url({{article.logoUrl}})"></div>
+					style="background-image: url({{article.logoUrl}})">
+				</div>
 			</div>
 
 		</div>
