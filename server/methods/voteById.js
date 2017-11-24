@@ -1,6 +1,6 @@
 import { Votes } from '../../imports/api/votes.js';
 import { Posts } from '../../imports/api/posts.js';
-import { Topics } from '../../imports/api/topics.js';
+import { Articles } from '../../imports/api/articles.js';
 
 import { Comments } from '../../imports/api/comments.js';
 
@@ -34,12 +34,9 @@ Meteor.methods({
 				articleId : id
 			});
 			
+			Articles.update(id, {$inc : {score: voteValue}});
 			Posts.update(id, {$inc : { score: voteValue}});
 			Comments.update(id, {$inc : {score: voteValue}});
-			
-			Topics.upsert({
-				'articlesByCategory.articles._id' : id
-			}, {$inc : {score: 2*voteValue}});
 			
 			
 		} else {
@@ -48,15 +45,9 @@ Meteor.methods({
 				
 				Votes.update(vote._id, {$set: {value: voteValue}});
 				
+				Articles.update(id, {$inc : {score: 2*voteValue}});
 				Posts.update(id, {$inc : {score: 2*voteValue}});
 				Comments.update(id, {$inc : {score: 2*voteValue}});
-				
-				Topics.upsert({
-					'articlesByCategory.articles._id' : id
-				}, {$inc : {'articlesByCategory.$.articles.score': 2*voteValue}}, function( error, result) { 
-				    if ( error ) console.log ( error ); //info about what went wrong
-				    if ( result ) console.log ( result ); //the _id of new object if successful
-				  });
 				
 			}
 			

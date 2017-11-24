@@ -19,21 +19,22 @@ class BulletinCtrl {
 		
 		Meteor.subscribe('topicsAndArticles', {
 			onReady: function(){				
-
-				$ctrl.getArticleById = function(id) {
-
-					console.log('getArticle by id: ' + id)
-					var article = Articles.findOne({_id : id});
-					console.log(article)
-					return article;
-					
-				}
-				
 				
 				$ctrl.helpers({
 
 					topics() {
 						return Topics.find({}).fetch();
+					},
+					
+					votes(articleId) {
+						if (vote = Votes.findOne({articleId : articleId})) {
+							
+							console.log(vote);
+							return vote.value;
+							
+						}
+						console.log(0);
+						return 0;
 					}
 					
 				});		
@@ -42,6 +43,23 @@ class BulletinCtrl {
 			}
 			
 		});
+		
+		$ctrl.getArticleById = function(id) {
+
+			console.log('getArticle by id: ' + id)
+			var article = Articles.findOne({_id : id});
+			console.log(article)
+			return article;
+			
+		}
+		
+		$ctrl.getArticlesByIds = function(ids) {
+			
+			var articles = Articles.find({"_id": { "$in": ids }});
+			return articles.fetch();
+			
+		}
+		
 		
 		$ctrl.print = function(text, identifier) {
 			console.log('print: ' + identifier);
@@ -74,7 +92,6 @@ class BulletinCtrl {
 			console.log(0);
 			return 0;
 		}
-		
 		
 		
 		$ctrl.clickArticle = function(topic, category, article) {

@@ -4,9 +4,8 @@
 	<div class="bulletin-item-outer-container"
 	ng-repeat="newsItem in topic.articlesByCategory | orderBy:'sortingOrder'" 
 	ng-init="category=newsItem.category; 
-	articles=newsItem.articles; 
-	articleIds=newsItem.articleIds; 
-	selectedArticle = $ctrl.getArticleById(articleIds[0]);
+	articles=$ctrl.getArticlesByIds(newsItem.articleIds);
+	selectedArticle = articles[0];
 	topic.selectedArticle[category]=selectedArticle"
 	>
 	
@@ -20,7 +19,7 @@
 					<i class="material-icons">delete</i>
 				</div>
 				
-				<div class="bulletin-voting" ng-init="voteValue=$ctrl.getUserVoteByArticleId(topic.selectedArticle[category]._id)" ng-if="true">
+				<div class="bulletin-voting" ng-init="voteValue=''" ng-if="true">
 					<div ng-click="$ctrl.vote(topic.selectedArticle[category],1)" class="bulletin-arrow-up" 
 						ng-class="{true: 'bulletin-upvoted', false: ''}[voteValue==1]"></div>
 					<div class="bulletin-vote-score">{{topic.selectedArticle[category].score || 0}}</div>
@@ -44,7 +43,7 @@
 						
 						<div class="bulletin-item-publisher">
 							{{topic.selectedArticle[category].publisher}}
-							
+							{{$ctrl.votes}}
 						</div>
 						
 						<div class="bulletin-item-title">
@@ -53,7 +52,6 @@
 							
 					</div>
 				</a>
-		
 
 			</div>
 			
@@ -67,10 +65,9 @@
 				<yourpers-add-article topic-id="topic._id" data="newsItem"
 					class="add-article-from-bulletin-item" ng-click="$ctrl.click(topic._id)">
 				</yourpers-add-article>
-			
+				
 				<div class="bulletin-source"
-					ng-repeat="articleId in articleIds | orderBy:'-createdAt'"
-					ng-init="article=$ctrl.getArticleById(articleId)"
+					ng-repeat="article in articles | orderBy:'-createdAt'"
 					ng-click="$ctrl.clickArticle(topic, category, article)"
 					ng-class="(article._id == topic.selectedArticle[category]._id) ? 'bulletin-source-selected':''"
 					style="background-image: url({{article.logoUrl}})">
