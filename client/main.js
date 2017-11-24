@@ -19,7 +19,6 @@ import {name as yourpersOverview} from '../imports/components/deprecated/overvie
 import {name as yourpersTopic} from '../imports/components/deprecated/topic/topic';
 
 
-
 angular.module('yourpers', [
 	
 	angularMeteor,

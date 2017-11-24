@@ -6,7 +6,8 @@
 	ng-init="category=newsItem.category; 
 	articles=newsItem.articles; 
 	articleIds=newsItem.articleIds; 
-	topic.selectedArticle[category]=$ctrl.getArticleById(articleIds[articleIds.length-1])"
+	selectedArticle = $ctrl.getArticleById(articleIds[0]);
+	topic.selectedArticle[category]=selectedArticle"
 	>
 	
 		<div class="bulletin-item-header">{{category}}</div>
@@ -43,12 +44,13 @@
 						
 						<div class="bulletin-item-publisher">
 							{{topic.selectedArticle[category].publisher}}
+							
 						</div>
 						
 						<div class="bulletin-item-title">
 							{{topic.selectedArticle[category].title}}
 						</div>
-						
+							
 					</div>
 				</a>
 		
@@ -70,8 +72,9 @@
 					ng-repeat="articleId in articleIds | orderBy:'-createdAt'"
 					ng-init="article=$ctrl.getArticleById(articleId)"
 					ng-click="$ctrl.clickArticle(topic, category, article)"
-					ng-class="(article == topic.selectedArticle[category]) ? 'bulletin-source-selected':''"
+					ng-class="(article._id == topic.selectedArticle[category]._id) ? 'bulletin-source-selected':''"
 					style="background-image: url({{article.logoUrl}})">
+					
 				</div>
 			</div>
 

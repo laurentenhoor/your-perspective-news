@@ -2,6 +2,8 @@ import { Mongo } from 'meteor/mongo';
 
 export const Topics = new Mongo.Collection('topics');
 
+import { Articles } from './articles.js';
+
 Topics.before.insert(function (userId, doc) {
 
 	if(Meteor.isServer) {
@@ -11,11 +13,19 @@ Topics.before.insert(function (userId, doc) {
 	}
 });
 
+
+
 if(Meteor.isServer) {
     Meteor.publish('topics', function(){
         return Topics.find({});
     });
     
+    Meteor.publish("topicsAndArticles", function () {
+    	  return [
+    	    Topics.find({}),
+    	    Articles.find({})
+    	  ];
+    	});   
 }
 
 if(Meteor.isClient) {

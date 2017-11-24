@@ -16,33 +16,38 @@ class BulletinCtrl {
 
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
-
-//		$ctrl.call('getTopics', function(error, result) {
-//			$ctrl.topics = result;
-//			console.log(result);
-//		});
 		
-		$ctrl.helpers({
+		Meteor.subscribe('topicsAndArticles', {
+			onReady: function(){				
 
-			topics() {
-				return Topics.find({}).fetch();
-			},
-			
-//			getArticleById(id) {
-//				console.log('getArticle by id: ' + id)
-//				return Articles.find({_id:id}).fetch();
-//			}
+				$ctrl.getArticleById = function(id) {
+
+					console.log('getArticle by id: ' + id)
+					var article = Articles.findOne({_id : id});
+					console.log(article)
+					return article;
+					
+				}
+				
+				
+				$ctrl.helpers({
+
+					topics() {
+						return Topics.find({}).fetch();
+					}
+					
+				});		
+
+				
+			}
 			
 		});
 		
-		$ctrl.getArticleById = function(id) {
-
-			console.log('getArticle by id: ' + id)
-			var article = Articles.findOne({_id : id});
-			console.log(article)
-			return article;
-			
+		$ctrl.print = function(text, identifier) {
+			console.log('print: ' + identifier);
+			console.log(text);
 		}
+
 		
 		$ctrl.vote = function(article, voteUpOrDown) {
 			
