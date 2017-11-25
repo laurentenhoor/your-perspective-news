@@ -8,7 +8,9 @@ class LoaderCtrl {
 
 	constructor($rootScope, $scope, $location) {
 
-		$rootScope.stateIsLoading = true;
+		$rootScope.initializedDatabase = false;
+		
+		var pageLoadCounter = 0;
 
 		$rootScope.$on( "$routeChangeStart", function(event, next, current) {
 			console.log('$routeChangeStart');
@@ -22,16 +24,21 @@ class LoaderCtrl {
 
 		// Hide the loader after back-button-press (or returning to the browser) on mobile devices
 		function hideAllLoaders() {
-	
-			$rootScope.stateIsLoading = false;
-			$scope.$apply(function() {});
+			
+			if (!$rootScope.initializedDatabase) {
+				return;
+			}
+			
+			$scope.$apply(function() {
+				$rootScope.stateIsLoading = false;
+			});
 
 		}
 		
 		// event for returning via back button
 		window.addEventListener("pageshow", function() {
 				console.log('pageshow');
-//				hideAllLoaders();	
+				hideAllLoaders();	
 			
 		}, false);
 		

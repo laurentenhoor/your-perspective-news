@@ -62,6 +62,7 @@ class BulletinCtrl {
 				
 				$scope.$apply(function() {
 					$rootScope.stateIsLoading = false;
+					$rootScope.initializedDatabase = true;
 				});
 				
 				
