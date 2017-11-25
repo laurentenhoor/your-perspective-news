@@ -271,45 +271,44 @@
 }
 
 
-@keyframes bouceUp {
-	0% {
-	    -webkit-transform: translateY(0);
-	    transform: translateY(0);
-	}
-	15% {
-	    -webkit-transform: translateY(-6px);
-	    transform: translateY(-6px);
-	}
-	95% {
-	    -webkit-transform: translateY(0);
-	    transform: translateY(0);
-	}
-	100% {
-	    -webkit-transform: translateY(0);
-	    transform: translateY(0);
-	    }
+.keyframes(@name; @arguments) {
+	@-moz-keyframes @name { @arguments(); }
+	@-webkit-keyframes @name { @arguments(); }
+	@keyframes @name { @arguments(); }
 }
 
-
-.make-keyframes(@name) {
-  @keyframes @name {
-    // content
-  }
-  @-webkit-keyframes @name {
-    // content
-  }
+.animation(@arguments) {
+	-webkit-animation: @arguments;
+	-moz-animation: @arguments;
+	animation: @arguments;
 }
-
-
 
 .bulletin-upvoted {
+	
 	border-bottom: 3vw solid rgba(218, 39, 44, 0.92);
-	    animation: bounceUp .4s ease-out 0s 1 normal;
-	 -webkit-animation: bounceUp .4s ease-out 0s 1 normal;
+	 
+	 .keyframes(bounceUp;{
+			0% {transform: translateY(0);}
+			15% {transform: translateY(-6px);}
+			95% {transform: translateY(0);}
+			100% {transform: translateY(0);}
+		});
+
+	.animation(bounceUp .4s ease-out 0s 1 normal)
+
 }
 
 .bulletin-downvoted {
-	//border-top: 3vw solid rgba(218, 39, 44, 0.77);
+
 	border-top: 3vw solid rgba(39, 86, 218, 0.77);
-	animation: bounceUp .4s ease-out 0s 1 normal;
+
+	.keyframes(bounceDown;{
+		0% {transform: translateY(0);}
+		15% {transform: translateY(6px);}
+		95% {transform: translateY(0);}
+		100% {transform: translateY(0);}
+	});
+
+	.animation(bounceDown .4s ease-out 0s 1 normal;)
+	
 }
