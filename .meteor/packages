@@ -28,3 +28,4 @@ practicalmeteor:mocha
 accounts-ui
 dotansimha:accounts-ui-angular
 less
+percolate:migrations
