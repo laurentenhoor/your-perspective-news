@@ -10,8 +10,9 @@
 	$ctrl.selectedArticleId = selectedArticle._id;
 	selectedArticleId = selectedArticle._id;
 	$ctrl.loadedArticles= $ctrl.loadedArticles.concat(newsItem.articleIds);
-	
-	">
+	"
+	ng-show="articles.length>0"
+	>
 	
 		<div class="bulletin-item-header">{{category}}</div>
 

@@ -10,10 +10,12 @@ Meteor.methods({
 		
 		Topics.update({
 			_id: topicId,
-			'articlesByCategory.articles._id' : articleId
-			}, {$pull: {'articlesByCategory.$.articles': {'_id': articleId}}
+			'articlesByCategory.articleIds' : articleId
+			}, {$pull: {'articlesByCategory.$.articleIds': articleId}
 		});
 		
+		var topic = Topics.aggregate({$project: { count: { $size:"$articlesByCategory.articleIds" }}})
+		console.log(topic);
 		var topic = Topics.find({_id: topicId,
 				'articlesByCategory.articles._id' : articleId})
 				
@@ -21,16 +23,4 @@ Meteor.methods({
 		
 	}
 	
-	
-	
 });
-
-//var topicId = 'o5yaFgyad68RfF9nf';
-//
-//var topic = Topics.find({_id: topicId}, {fields: {'articlesByCategory.articles': 1}}).fetch();
-//	
-//console.log('counter: ')
-////console.log(topic.count())
-////console.log(topic[0].articlesByCategory.articles.length)
-//console.log(topic[0].articlesByCategory)
-

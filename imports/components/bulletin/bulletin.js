@@ -28,11 +28,14 @@ class BulletinCtrl {
 
 					'topics':function() {
 						console.log('topics helper');
+						console.log($ctrl.loadedArticles)
 						return Topics.find({}).fetch();
 					},
 					'votes':function() {
 						console.log('vote helper');
-						var votes = Votes.find({articleId: { "$in": $ctrl.loadedArticles }}).fetch();
+						var votes = Votes.find({
+							articleId: { "$in": $ctrl.getReactively('loadedArticles') }
+						}).fetch();
 						
 						angular.forEach(votes, function(vote, i) {
 							$ctrl.userVoteMap[vote.articleId] = vote.value;
@@ -40,43 +43,27 @@ class BulletinCtrl {
 					},
 					'articles':function() {
 						console.log('articles helper');
-						var articles = Articles.find({_id: { "$in": $ctrl.loadedArticles }}).fetch();
+						var articles = Articles.find({
+							_id: { "$in": $ctrl.getReactively('loadedArticles') }
+						}).fetch();
 						
 						angular.forEach(articles, function(article, i) {
 							$ctrl.articlesScoreMap[article._id] = article.score;
 						});
 					}
 					
-				});		
-
+				});
 				
 			}
 			
 		});
-		
-		$ctrl.getArticleById = function(id) {
 
-			console.log('getArticle by id: ' + id)
-			var article = Articles.findOne({_id : id});
-			console.log(article)
-			return article;
-			
-		}
-		
 		$ctrl.getArticlesByIds = function(ids) {
-			
 			var articles = Articles.find({"_id": { "$in": ids }});
 			return articles.fetch();
-			
-		}
-		
-		
-		$ctrl.print = function(text, identifier) {
-			console.log('print: ' + identifier);
-			console.log(text);
 		}
 
-		
+
 		$ctrl.vote = function(article, voteUpOrDown) {
 			
 			console.log(article);
@@ -90,19 +77,7 @@ class BulletinCtrl {
 			$ctrl.call('voteById', article._id, voteUpOrDown); 
 			
 		}
-		
-//		$ctrl.getUserVoteByArticleId = function(articleId) {
-//			
-//			if (vote = Votes.findOne({articleId : articleId})) {
-//				
-//				console.log(vote);
-//				return vote.value;
-//				
-//			}
-//			console.log(0);
-//			return 0;
-//		}
-		
+
 		
 		$ctrl.clickArticle = function(topic, category, article) {
 			topic.selectedArticle[category] = article;
@@ -114,7 +89,6 @@ class BulletinCtrl {
 			console.log(topic._id);
 			
 			Meteor.call('removeArticle', topic._id, article._id)
-			
 			
 		}
 
