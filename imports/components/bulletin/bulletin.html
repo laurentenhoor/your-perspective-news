@@ -72,7 +72,7 @@
 				</yourpers-add-article>
 				
 				<div class="bulletin-source"
-					ng-repeat="article in articles | orderBy:'-score'"
+					ng-repeat="article in articles | orderBy:'score'"
 					ng-click="$ctrl.clickArticle(topic, category, article)"
 					ng-class="(article._id == topic.selectedArticle[category]._id) ? 'bulletin-source-selected':''"
 					style="background-image: url({{article.logoUrl}})">
