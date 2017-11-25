@@ -62,6 +62,35 @@ class BulletinCtrl {
 			var articles = Articles.find({"_id": { "$in": ids }});
 			return articles.fetch();
 		}
+		
+		$ctrl.getArticleWithHighestScore = function(articles) {
+			
+			console.log('getArticleIdWithHighestScore')
+			console.log(articles)
+			
+			var highestScore = null;
+			var highestId = null;
+			
+			angular.forEach(articles, function(article, i) {
+				
+				console.log(article)
+				
+				if (article.score > highestScore || !highestScore) {
+					
+					console.log('higher score found');
+					highestScore = article.score;
+					highestId = article._id;
+					highestArticle = article;
+				}
+				
+			});
+			
+			console.log('highest ID: ' + highestId)
+			
+			return highestArticle;
+			
+			
+		};
 
 
 		$ctrl.vote = function(article, voteUpOrDown) {

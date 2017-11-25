@@ -115,7 +115,8 @@
     display: flex;
     min-width: 0;
     min-height: 0;
-    overflow: hidden;
+    max-height: 42vw;
+    overflow-y: scroll;
    
 }
 
@@ -249,23 +250,23 @@
 .bulletin-arrow-up {
   width: 0; 
   height: 0; 
-  border-left: 3vw solid transparent;
-  border-right: 3vw solid transparent;
+  border-left: 3.2vw solid transparent;
+  border-right: 3.2vw solid transparent;
   
 //  border-bottom: 3vw solid #3d448b;
 
-  border-bottom: 3vw solid white;
+  border-bottom: 3.7vw solid white;
     margin:1vw;
 }
 
 .bulletin-arrow-down {
   width: 0; 
   height: 0; 
-  border-left: 3vw solid transparent;
-  border-right: 3vw solid transparent;
+  border-left: 3.2vw solid transparent;
+  border-right: 3.2vw solid transparent;
   
 //  border-top: 3vw solid #3d448b;
-  border-top: 3vw solid white;
+  border-top: 3.7vw solid white;
     margin:1vw;
 
 }
@@ -285,11 +286,11 @@
 
 .bulletin-upvoted {
 	
-	border-bottom: 3vw solid rgba(218, 39, 44, 0.92);
+	border-bottom: 3.7vw solid rgba(218, 39, 44, 0.92);
 	 
 	 .keyframes(bounceUp;{
 			0% {transform: translateY(0);}
-			15% {transform: translateY(-6px);}
+			15% {transform: translateY(-2vw);}
 			95% {transform: translateY(0);}
 			100% {transform: translateY(0);}
 		});
@@ -300,11 +301,11 @@
 
 .bulletin-downvoted {
 
-	border-top: 3vw solid rgba(39, 86, 218, 0.77);
+	border-top: 3.7vw solid rgba(39, 86, 218, 0.77);
 
 	.keyframes(bounceDown;{
 		0% {transform: translateY(0);}
-		15% {transform: translateY(6px);}
+		15% {transform: translateY(2vw);}
 		95% {transform: translateY(0);}
 		100% {transform: translateY(0);}
 	});
