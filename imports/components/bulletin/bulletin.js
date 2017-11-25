@@ -26,7 +26,6 @@ class BulletinCtrl {
 
 					'topics':function() {
 						console.log('topics helper');
-						console.log($ctrl.loadedArticles)
 						return Topics.find({}).fetch();
 					},
 					'userVoteMap':function() {
@@ -66,32 +65,16 @@ class BulletinCtrl {
 		}
 		
 		$ctrl.getArticleWithHighestScore = function(articles) {
-			
-			console.log('getArticleIdWithHighestScore')
-			console.log(articles)
-			
 			var highestScore = null;
 			var highestId = null;
 			
 			angular.forEach(articles, function(article, i) {
-				
-				console.log(article)
-				
 				if (article.score > highestScore || !highestScore) {
-					
-					console.log('higher score found');
 					highestScore = article.score;
-					highestId = article._id;
 					highestArticle = article;
 				}
-				
 			});
-			
-			console.log('highest ID: ' + highestId)
-			
 			return highestArticle;
-			
-			
 		};
 
 
@@ -110,10 +93,7 @@ class BulletinCtrl {
 		}
 		
 		$ctrl.remove = function(topic, article) {
-			
-			console.log(article._id);
-			console.log(topic._id);
-			
+			console.log('removeArticle');console.log(article._id);console.log(topic._id);
 			Meteor.call('removeArticle', topic._id, article._id)
 			
 		}
