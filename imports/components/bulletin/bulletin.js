@@ -17,6 +17,8 @@ class BulletinCtrl {
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
 		
+		$rootScope.stateIsLoading = true;
+		
 		$ctrl.loadedArticles = [];
 		
 		Meteor.subscribe('topicsAndArticles', {
@@ -57,6 +59,12 @@ class BulletinCtrl {
 					}
 					
 				});
+				
+				$scope.$apply(function() {
+					$rootScope.stateIsLoading = false;
+				});
+				
+				
 				
 			}
 			
