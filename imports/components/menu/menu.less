@@ -51,7 +51,7 @@ float: left;
 	margin: 3.3vw 3vw;
 	display: table;
 	
-	.animation(fadeIn .4s ease-out 0s 1 normal)
+	.animation(fadeIn 0.4s ease-out 0s 1 normal)
 }
 
 .menu-view-switch {
@@ -122,7 +122,7 @@ b {
 }
 
 
-#login-dropdown-list::before{
+// #login-dropdown-list::before{
 // 	
 // 	content:"";
 // 	    position: fixed;
@@ -134,8 +134,25 @@ b {
 //     z-index: 1033;
 //     background-color: #000;
 //     opacity:0.4
+// 	
+// 	}
+
+
+#login-buttons {
 	
+		 .keyframes(fadeInLogin;{
+		0% {opacity: 0;}
+		80% {opacity: 0;}
+		100% {opacity: 1;}
+	}); 
+	
+	.animation(fadeInLogin 2s ease-out 0s 1 normal);
 	}
+
+.login-link-text {
+		.animation(fadeIn 0.4s ease-out 0s 1 normal);
+	}
+
 
 
 // #login-dropdown-list {
