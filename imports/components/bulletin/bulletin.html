@@ -6,8 +6,12 @@
 	ng-init="category=newsItem.category; 
 	articles=$ctrl.getArticlesByIds(newsItem.articleIds);
 	selectedArticle = articles[0];
-	topic.selectedArticle[category]=selectedArticle"
-	>
+	topic.selectedArticle[category]=selectedArticle;
+	$ctrl.selectedArticleId = selectedArticle._id;
+	selectedArticleId = selectedArticle._id;
+	$ctrl.loadedArticles= $ctrl.loadedArticles.concat(newsItem.articleIds);
+	
+	">
 	
 		<div class="bulletin-item-header">{{category}}</div>
 
@@ -19,13 +23,13 @@
 					<i class="material-icons">delete</i>
 				</div>
 				
-				<div class="bulletin-voting" ng-init="voteValue=''" ng-if="true">
+				<div class="bulletin-voting" ng-init="" ng-if="true">
 					<div ng-click="$ctrl.vote(topic.selectedArticle[category],1)" class="bulletin-arrow-up" 
-						ng-class="{true: 'bulletin-upvoted', false: ''}[voteValue==1]"></div>
-					<div class="bulletin-vote-score">{{topic.selectedArticle[category].score || 0}}</div>
+						ng-class="{true: 'bulletin-upvoted', false: ''}[$ctrl.userVoteMap[topic.selectedArticle[category]._id]==1]"></div>
+					<div class="bulletin-vote-score">{{$ctrl.articlesScoreMap[topic.selectedArticle[category]._id] || 0}}</div>
 					<div ng-click="$ctrl.vote(topic.selectedArticle[category],-1)" class="bulletin-arrow-down" 
-						ng-class="{true: 'bulletin-downvoted', false: ''}[voteValue==-1]"></div>
-				</div>					
+						ng-class="{true: 'bulletin-downvoted', false: ''}[$ctrl.userVoteMap[topic.selectedArticle[category]._id]==-1]"></div>
+				</div>
 				
 				<div class="bulletin-item-image" 
 				ng-style="{'background-image':'url(\'' + topic.selectedArticle[category].imageUrl + '\')'}">
@@ -43,11 +47,11 @@
 						
 						<div class="bulletin-item-publisher">
 							{{topic.selectedArticle[category].publisher}}
-							{{$ctrl.votes}}
 						</div>
 						
 						<div class="bulletin-item-title">
 							{{topic.selectedArticle[category].title}}
+							
 						</div>
 							
 					</div>

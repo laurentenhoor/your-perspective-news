@@ -17,24 +17,34 @@ class BulletinCtrl {
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
 		
+		$ctrl.loadedArticles = [];
+		$ctrl.userVoteMap = {};
+		$ctrl.articlesScoreMap = {};
+		
 		Meteor.subscribe('topicsAndArticles', {
-			onReady: function(){				
+			onReady: function(){
 				
 				$ctrl.helpers({
 
-					topics() {
+					'topics':function() {
+						console.log('topics helper');
 						return Topics.find({}).fetch();
 					},
-					
-					votes(articleId) {
-						if (vote = Votes.findOne({articleId : articleId})) {
-							
-							console.log(vote);
-							return vote.value;
-							
-						}
-						console.log(0);
-						return 0;
+					'votes':function() {
+						console.log('vote helper');
+						var votes = Votes.find({articleId: { "$in": $ctrl.loadedArticles }}).fetch();
+						
+						angular.forEach(votes, function(vote, i) {
+							$ctrl.userVoteMap[vote.articleId] = vote.value;
+						});
+					},
+					'articles':function() {
+						console.log('articles helper');
+						var articles = Articles.find({_id: { "$in": $ctrl.loadedArticles }}).fetch();
+						
+						angular.forEach(articles, function(article, i) {
+							$ctrl.articlesScoreMap[article._id] = article.score;
+						});
 					}
 					
 				});		
@@ -81,17 +91,17 @@ class BulletinCtrl {
 			
 		}
 		
-		$ctrl.getUserVoteByArticleId = function(articleId) {
-			
-			if (vote = Votes.findOne({articleId : articleId})) {
-				
-				console.log(vote);
-				return vote.value;
-				
-			}
-			console.log(0);
-			return 0;
-		}
+//		$ctrl.getUserVoteByArticleId = function(articleId) {
+//			
+//			if (vote = Votes.findOne({articleId : articleId})) {
+//				
+//				console.log(vote);
+//				return vote.value;
+//				
+//			}
+//			console.log(0);
+//			return 0;
+//		}
 		
 		
 		$ctrl.clickArticle = function(topic, category, article) {
