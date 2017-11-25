@@ -1,4 +1,5 @@
 import { Topics } from '../../imports/api/topics.js';
+import { Articles } from '../../imports/api/articles.js';
 
 if (Meteor.isServer) {
   Migrations.add({
@@ -33,10 +34,30 @@ if (Meteor.isServer) {
 	    		Topics.update({_id:topic._id}, topic);
 	    		
 	    	});
-	    	
+		
 	    }
 	  });
  
+  
+  Migrations.add({
+	    version: 3,
+	    name: 'Add 0 score to existing articles',
+	    up: function() {
+
+	    	_.forEach(Articles.find({}).fetch(), function(article){
+	    		if (!('score' in article)) {
+	    			article.score = 0;
+	    			Articles.update({_id: article._id}, article);
+	    			console.log('score updated')
+	    		} else {
+	    			console.log('score detected')
+	    			
+	    		}
+
+	    	})	    
+		
+	    }
+	  });
 
   Meteor.startup(function () {
     // code to run on server at startup

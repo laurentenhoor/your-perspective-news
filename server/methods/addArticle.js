@@ -12,6 +12,7 @@ Meteor.methods({
 			
 		var articleId = Articles.insert(article);
 		article._id = articleId;
+		article.score = 0;
 		article.createdAt = Date.now();
 		article.updatedAt = Date.now();
 		
