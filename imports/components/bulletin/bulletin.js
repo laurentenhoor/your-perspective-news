@@ -18,8 +18,6 @@ class BulletinCtrl {
 		$reactive($ctrl).attach($scope);
 		
 		$ctrl.loadedArticles = [];
-		$ctrl.userVoteMap = {};
-		$ctrl.articlesScoreMap = {};
 		
 		Meteor.subscribe('topicsAndArticles', {
 			onReady: function(){
@@ -31,25 +29,29 @@ class BulletinCtrl {
 						console.log($ctrl.loadedArticles)
 						return Topics.find({}).fetch();
 					},
-					'votes':function() {
-						console.log('vote helper');
+					'userVoteMap':function() {
+						console.log('userVoteMap helper');
 						var votes = Votes.find({
 							articleId: { "$in": $ctrl.getReactively('loadedArticles') }
 						}).fetch();
 						
+						var userVoteMap = {};
 						angular.forEach(votes, function(vote, i) {
-							$ctrl.userVoteMap[vote.articleId] = vote.value;
+							userVoteMap[vote.articleId] = vote.value;
 						});
+						return userVoteMap;
 					},
-					'articles':function() {
-						console.log('articles helper');
+					'articlesScoreMap':function() {
+						console.log('articlesScoreMap helper');
 						var articles = Articles.find({
 							_id: { "$in": $ctrl.getReactively('loadedArticles') }
 						}).fetch();
 						
+						var articlesScoreMap = {};
 						angular.forEach(articles, function(article, i) {
-							$ctrl.articlesScoreMap[article._id] = article.score;
+							articlesScoreMap[article._id] = article.score;
 						});
+						return articlesScoreMap;
 					}
 					
 				});
@@ -94,10 +96,6 @@ class BulletinCtrl {
 
 
 		$ctrl.vote = function(article, voteUpOrDown) {
-			
-			console.log(article);
-			console.log(article._id);
-			console.log(voteUpOrDown);
 
 			if (!Meteor.userId()) {
 				$('#login-sign-in-link').click();
@@ -107,7 +105,6 @@ class BulletinCtrl {
 			
 		}
 
-		
 		$ctrl.clickArticle = function(topic, category, article) {
 			topic.selectedArticle[category] = article;
 		}

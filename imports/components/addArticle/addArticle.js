@@ -42,6 +42,8 @@ class AddArticleCtrl {
 
 			modalInstance.result.then(function (feedback) {
 				console.log('do something with: '+feedback);
+				$rootScope.sortBy = 'createdAt';
+				
 			}, function () {
 				console.log('Modal dismissed at: ' + new Date());
 			});
