@@ -61,6 +61,6 @@ if (Meteor.isServer) {
 
   Meteor.startup(function () {
     // code to run on server at startup
-    Migrations.migrateTo(2);
+    Migrations.migrateTo('latest');
   });
 }
