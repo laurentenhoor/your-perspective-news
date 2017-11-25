@@ -11,10 +11,12 @@ class LoaderCtrl {
 		$rootScope.stateIsLoading = true;
 
 		$rootScope.$on( "$routeChangeStart", function(event, next, current) {
+			console.log('$routeChangeStart');
 			$rootScope.stateIsLoading = true;
 		});
 
 		$rootScope.$on( "$routeChangeSuccess", function(event, next, current) {
+			console.log('$routeChangeSuccess');
 			$rootScope.stateIsLoading = false;
 		});
 
@@ -28,21 +30,21 @@ class LoaderCtrl {
 		
 		// event for returning via back button
 		window.addEventListener("pageshow", function() {
-
-				hideAllLoaders();	
+				console.log('pageshow');
+//				hideAllLoaders();	
 			
 		}, false);
 		
 		// event for returning via back button
 		window.addEventListener("onpageshow", function() {
-
+				console.log('onpageshow');
 				hideAllLoaders();	
 			
 		}, false);
 		
 		// event for returning to the browser
 		window.addEventListener("focus", function() {
-			
+				console.log('focus');
 				hideAllLoaders();
 			
 		}, false);
