@@ -1,6 +1,6 @@
 @import "../../style/variables.less";
 @import "../../style/accounts_login.less";
-
+@import "../../style/load_animation.less";
 
 .company-strategy {
     font-family: "Montserrat";
@@ -45,10 +45,13 @@ float: left;
     font-weight: 400;
 }
 
+
 .company-logo-container {
 	text-align: left;
 	margin: 3.3vw 3vw;
 	display: table;
+	
+	.animation(fadeIn .4s ease-out 0s 1 normal)
 }
 
 .menu-view-switch {
@@ -80,6 +83,8 @@ a {
     background: rgba(243, 243, 243, 0.71);
     color: #5d5c5c;
     /* color: white; */
+    
+    .animation(fadeIn .4s ease-out 0s 1 normal)
     
 }
 

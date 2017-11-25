@@ -26,10 +26,12 @@ class BulletinCtrl {
 
 					'topics':function() {
 						console.log('topics helper');
+						
 						return Topics.find({}).fetch();
 					},
 					'userVoteMap':function() {
 						console.log('userVoteMap helper');
+						
 						var votes = Votes.find({
 							articleId: { "$in": $ctrl.getReactively('loadedArticles') }
 						}).fetch();
@@ -42,6 +44,7 @@ class BulletinCtrl {
 					},
 					'articlesScoreMap':function() {
 						console.log('articlesScoreMap helper');
+						
 						var articles = Articles.find({
 							_id: { "$in": $ctrl.getReactively('loadedArticles') }
 						}).fetch();
@@ -76,7 +79,6 @@ class BulletinCtrl {
 			});
 			return highestArticle;
 		};
-
 
 		$ctrl.vote = function(article, voteUpOrDown) {
 
