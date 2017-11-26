@@ -30,24 +30,21 @@ class ArticleModalCtrl {
 			$ctrl.headerText = 'Voeg een bron toe.';
 			$ctrl.headerSubText = 'Verbreed, verdiep of ontwricht dit onderwerp met een interessant artikel.';
 			
-		} else {
+		} else if (!$ctrl.topic) {
 			
 			$ctrl.headerText = 'Maak een nieuw(s) item.';
 			$ctrl.headerSubText = 'Plaats een onderwerp dat nog niet door ons wordt besproken.';		
 			
+		} else {
+
+			console.error('Could not succesfully load the modal: the requested inputs are not provided!');
+			
 		}
+
 		
 
 		$ctrl.clearForm = function() {
-
-			$ctrl.postMetaDataAvailable = false;
-			$ctrl.imageUrl = '';
-			$ctrl.logoUrl = '';
-			$ctrl.description = '';
-			$ctrl.title = '';
-			$ctrl.publisher = '';	
-			$ctrl.userMessage = '';
-
+			$ctrl.article = null;
 		}
 
 		$ctrl.urlChange = function() {
@@ -76,21 +73,21 @@ class ArticleModalCtrl {
 
 				console.log(result);
 				
-				$ctrl.logoUrl = result.logos.clearbit || result.logos.icon;
-				$ctrl.description = (result['twitter:description'] || result['og:description'] || result['Description'] || result['description'])// .replace(/<\/?[^>]+(>|$)/g,
+				$ctrl.article.logoUrl = result.logos.clearbit || result.logos.icon;
+				$ctrl.article.description = (result['twitter:description'] || result['og:description'] || result['Description'] || result['description'])// .replace(/<\/?[^>]+(>|$)/g,
 				// "");
-				$ctrl.title = (result['gwa_contentTitle'] || result['twitter:title'] || result['og:title'] || result['Title'])// .replace(/<\/?[^>]+(>|$)/g,
+				$ctrl.article.title = (result['gwa_contentTitle'] || result['twitter:title'] || result['og:title'] || result['Title'])// .replace(/<\/?[^>]+(>|$)/g,
 				// "");
-				$ctrl.publisher = result['og:site_name'] || result['application-name'] || result['app-name'];
+				$ctrl.article.publisher = result['og:site_name'] || result['application-name'] || result['app-name'];
 				
-				$ctrl.videoUrl = result['twitter:player'];
+				$ctrl.article.videoUrl = result['twitter:player'];
 				
-				$ctrl.imageUrl = result['og:image'] || result['twitter:image'] || result['twitter:image:src'];
+				$ctrl.article.imageUrl = result['og:image'] || result['twitter:image'] || result['twitter:image:src'];
 				
 				if (result['twitter:player']) {
-					$ctrl.imageUrl = null;
-					$ctrl.url = null;
-					$ctrl.videoUrl = $ctrl.videoUrl + '?&theme=dark&autohide=2&modestbranding=0&fs=1&showinfo=0&rel=0&playsinline=1';
+					$ctrl.article.imageUrl = null;
+					$ctrl.article.url = null;
+					$ctrl.article.videoUrl = $ctrl.videoUrl + '?&theme=dark&autohide=2&modestbranding=0&fs=1&showinfo=0&rel=0&playsinline=1';
 				}
 				
 				$ctrl.postMetaDataAvailable = true;
@@ -99,33 +96,22 @@ class ArticleModalCtrl {
 				$rootScope.stateIsLoading = false;
 
 			});
-
-
+		}
+		
+		$ctrl.remove = function(topicId, article) {
+			console.log('removeArticle');console.log(article._id);console.log(topicId);
+			Meteor.call('removeArticle', topicId, article._id)
+			$uibModalInstance.close();
 		}
 
-
 		$ctrl.ok = function () {
-
-			var article = {
-					
-					videoUrl : $ctrl.videoUrl,
-					imageUrl: $ctrl.imageUrl,
-					logoUrl: $ctrl.logoUrl,
-					description: $ctrl.description,
-					title: $ctrl.title,
-					publisher: $ctrl.publisher,
-					url : $ctrl.url,
-				
-//					rawMetadata: $ctrl.rawMetadata,
-
-			}
-
-			console.log(article)
+			
+			console.log($ctrl.article)
 			
 			if (articleData) {
-				Meteor.call('addArticle', articleData.topicId, $ctrl.category, article);
+				Meteor.call('addArticle', articleData.topicId, $ctrl.category, $ctrl.article);
 			} else {
-				Meteor.call('addArticle', null, $ctrl.category, article);
+				Meteor.call('addArticle', null, $ctrl.category, $ctrl.article);
 			}
 			$uibModalInstance.close($ctrl.feedback);
 

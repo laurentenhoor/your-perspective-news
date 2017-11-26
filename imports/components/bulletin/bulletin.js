@@ -102,12 +102,7 @@ class BulletinCtrl {
 		$ctrl.clickArticle = function(topic, category, article) {
 			topic.selectedArticle[category] = article;
 		}
-		
-		$ctrl.remove = function(topic, article) {
-			console.log('removeArticle');console.log(article._id);console.log(topic._id);
-			Meteor.call('removeArticle', topic._id, article._id)
-			
-		}
+	
 
 	}
 
