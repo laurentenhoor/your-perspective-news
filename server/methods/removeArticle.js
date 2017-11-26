@@ -15,6 +15,13 @@ Meteor.methods({
 		});
 		
 		
+		
+		
 	}
 	
 });
+
+
+var emptyCats = Topics.find({ 'articlesByCategory.articleIds': { $gt: [] } }).fetch()
+
+console.log(emptyCats);

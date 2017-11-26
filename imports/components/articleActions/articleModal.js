@@ -91,8 +91,10 @@ class ArticleModalCtrl {
 				if (result['twitter:player']) {
 					$ctrl.article.imageUrl = null;
 					$ctrl.article.url = null;
-					$ctrl.article.videoUrl = $ctrl.videoUrl + '?&theme=dark&autohide=2&modestbranding=0&fs=1&showinfo=0&rel=0&playsinline=1';
+					$ctrl.article.videoUrl = $ctrl.article.videoUrl + '?&theme=dark&autohide=2&modestbranding=0&fs=1&showinfo=0&rel=0&playsinline=1';
 				}
+				
+				console.log($ctrl.article.videoUrl);
 				
 				$ctrl.postMetaDataAvailable = true;
 				$ctrl.rawMetadata = result;

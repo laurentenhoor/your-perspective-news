@@ -1,7 +1,7 @@
 import { Topics } from '../../imports/api/topics.js';
 import { Articles } from '../../imports/api/articles.js';
 
-import { Random } from 'meteor/random'
+import { Random } from 'meteor/random';
 
 if (Meteor.isServer) {
   Migrations.add({
@@ -57,6 +57,29 @@ if (Meteor.isServer) {
 	    		}
 
 	    	})	    
+		
+	    }
+	  });
+  
+  
+  Migrations.add({
+	    version: 4,
+	    name: 'Add _id to all existing categories',
+	    up: function() {
+
+	    	_.forEach(Topics.find({}).fetch(), function(topic){
+	    		
+	    		_.forEach(topic.articlesByCategory, function(category, i) {
+	    			
+	    			if (!('_id' in category)) {
+	    				category._id = Random.id();
+	    			}
+	    			
+	    		})
+	    		
+	    		Topics.update({_id:topic._id}, topic);
+	    		
+	    	})
 		
 	    }
 	  });

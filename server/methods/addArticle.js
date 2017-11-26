@@ -1,6 +1,8 @@
 import { Topics } from '../../imports/api/topics.js';
 import { Articles } from '../../imports/api/articles.js';
 
+import { Random } from 'meteor/random';
+
 Meteor.methods({
 	
 	addArticle(topicId, category, article) {
@@ -102,6 +104,7 @@ function createCategoryAndAddArticle(topicId, category, article) {
 		_id : topicId
 	},{ 
 		$push: { "articlesByCategory": {
+			_id : Random.id(),
 			category: category, 
 			articleIds: [article._id], 
 			sortingOrder : sortingOrder
