@@ -14,12 +14,6 @@ Meteor.methods({
 			}, {$pull: {'articlesByCategory.$.articleIds': articleId}
 		});
 		
-		var topic = Topics.aggregate({$project: { count: { $size:"$articlesByCategory.articleIds" }}})
-		console.log(topic);
-		var topic = Topics.find({_id: topicId,
-				'articlesByCategory.articles._id' : articleId})
-				
-		console.log(topic.count())
 		
 	}
 	

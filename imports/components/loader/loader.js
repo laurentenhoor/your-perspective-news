@@ -90,7 +90,8 @@ export default angular.module('yourpers.loader', [
 					
 					$window.history.pushState(null, 'any', $location.absUrl());
 				
-					$window.location.href = e.srcElement.parentElement.href;
+					console.log(e.srcElement);
+//					$window.location.href = e.srcElement.parentElement.href;
 
 					
 				});

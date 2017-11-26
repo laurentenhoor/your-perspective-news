@@ -26,7 +26,13 @@ Meteor.methods({
 			console.log('new article added to topic: ' + topicId);
 		}
 		
+	},
+	
+	addArticleToCategory(topicId, category, article) {
+		addArticleToTopic(topicId, category, article);
 	}
+	
+	
 });
 
 function createTopic(category, article) {

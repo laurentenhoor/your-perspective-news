@@ -6,17 +6,16 @@
 <div class="modal-body" id="modal-body">
 	<div class="form-group">
 
-		<label ng-hide="$ctrl.article" for="url">Plak een url naar een artikel</label>
+		<label ng-hide="$ctrl.urlDataIsLoaded" for="url">Plak een url naar een artikel</label>
 		<textarea ng-model="$ctrl.article.url" ng-change="$ctrl.urlChange()" ng-blur="$ctrl.article"
-		ng-hide="$ctrl.article" 
+		ng-hide="$ctrl.urlDataIsLoaded" 
 			class="form-control" rows="3" id="url"></textarea>
 
 
 		<label for="category">Selecteer de categorie waarin dit artikel het best past</label>
 		<select id="category"
 			class="form-control" ng-model="$ctrl.category.category">
-			<option value="Algemene berichtgeving">Algemene
-				berichtgeving</option>
+			<option value="Algemene berichtgeving">Algemene berichtgeving</option>
 			<option value="Andere kijk">Andere kijk</option>
 			<option value="Entertainment">Entertainment</option>
 		</select>
@@ -25,7 +24,7 @@
 </div>
 
 <div class="bulletin-item-image-and-details-container" style="box-shadow:none;height:70vw;"
-ng-if="$ctrl.article">
+ng-if="$ctrl.urlDataIsLoaded">
 
 	<div class="bulletin-item-image-container">
 
@@ -58,13 +57,13 @@ ng-if="$ctrl.article">
 
 <div class="modal-footer">
 
-	<div ng-if="$ctrl.article" class="remove-icon" ng-click="$ctrl.remove($ctrl.topicId, $ctrl.article)">
+	<div ng-if="$ctrl.urlDataIsLoaded" class="remove-icon" ng-click="$ctrl.remove($ctrl.topicId, $ctrl.article)">
 		<i class="material-icons">delete</i>
 	</div>
 
 
 	<button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Annuleren</button>
-	<button ng-if="$ctrl.article" class="btn btn-primary" type="button" ng-click="$ctrl.ok()">
-		{{ $ctrl.article ? 'Opslaan' : 'Plaatsten'}}
+	<button ng-if="$ctrl.urlDataIsLoaded" class="btn btn-primary" type="button" ng-click="$ctrl.ok()">
+		Plaatsen
 	</button>
 </div>

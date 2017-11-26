@@ -17,23 +17,34 @@ class ArticleModalCtrl {
 		$ctrl.category = category;
 		$ctrl.article = article;
 		
-		$ctrl.urlDataIsLoaded = false;
-		
 		
 		if ($ctrl.article) {
 			
+			$ctrl.modus = 'edit';
+			
 			$ctrl.headerText = 'Wijzig deze bron.';
 			$ctrl.headerSubText = 'Verplaats of verwijder deze bron.';
+			$ctrl.urlDataIsLoaded = true;
+			
 
 		} else if ($ctrl.category) {
 
+			$ctrl.modus = 'add_source_to_topic';
+			
 			$ctrl.headerText = 'Voeg een bron toe.';
 			$ctrl.headerSubText = 'Verbreed, verdiep of ontwricht dit onderwerp met een interessant artikel.';
+			$ctrl.urlDataIsLoaded = false;
+			
 			
 		} else if (!$ctrl.topic) {
 			
+			$ctrl.modus = 'new_topic';
+			
+			$ctrl.category = {category: 'Algemene berichtgeving'};
 			$ctrl.headerText = 'Maak een nieuw(s) item.';
-			$ctrl.headerSubText = 'Plaats een onderwerp dat nog niet door ons wordt besproken.';		
+			$ctrl.headerSubText = 'Plaats een onderwerp dat nog niet door ons wordt besproken.';	
+			$ctrl.urlDataIsLoaded = false;
+			
 			
 		} else {
 
@@ -41,25 +52,18 @@ class ArticleModalCtrl {
 			
 		}
 
-		
-
-		$ctrl.clearForm = function() {
-			$ctrl.article = null;
-		}
-
 		$ctrl.urlChange = function() {
 
 			console.log('url input changed');
-			console.log($ctrl.url)
+			console.log($ctrl.article.url)
 
-			$ctrl.clearForm();
-
-			if (!isValid($ctrl.url)) {
+			
+			if (!isValid($ctrl.article.url)) {
 				return;
 			}
 			$rootScope.stateIsLoading = true;
 
-			$ctrl.call('getUrlMetadata', $ctrl.url, function(error, result) {
+			$ctrl.call('getUrlMetadata', $ctrl.article.url, function(error, result) {
 
 				$scope.$apply(function() {
 					$rootScope.stateIsLoading = false;
@@ -103,18 +107,33 @@ class ArticleModalCtrl {
 			Meteor.call('removeArticle', topicId, article._id)
 			$uibModalInstance.close();
 		}
+		
+		function getArticle() {
+			
+			
+			article = {
+					
+			}
+			
+		}
 
 		$ctrl.ok = function () {
 			
 			console.log($ctrl.article)
 			
-			if (articleData) {
-				Meteor.call('addArticle', articleData.topicId, $ctrl.category, $ctrl.article);
-			} else {
-				Meteor.call('addArticle', null, $ctrl.category, $ctrl.article);
+			switch ($ctrl.modus) {
+				case 'add_source_to_topic':
+					Meteor.call('addArticle', $ctrl.topicId, $ctrl.category.category, $ctrl.article);
+					break;
+				case 'new_topic':
+					Meteor.call('addArticle', null, $ctrl.category.category, $ctrl.article);
+					break;
+				case 'edit':
+					Meteor.call('removeArticle', $ctrl.topicId, $ctrl.article._id);
+					Meteor.call('addArticleToCategory', $ctrl.topicId, $ctrl.category.category, $ctrl.article);
+					break;
 			}
 			$uibModalInstance.close($ctrl.feedback);
-
 
 		};
 
@@ -123,6 +142,9 @@ class ArticleModalCtrl {
 		};
 
 		function isValid(url) {
+			
+			console.log('isValid()');
+			console.log(url);
 
 			var urlregex = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
 			return urlregex.test(url);
