@@ -44,9 +44,9 @@
 				<iframe ng-if="topic.selectedArticle[category].videoUrl" 
 				src="{{topic.selectedArticle[category].videoUrl}}"
 					width="100%" height="60%" frameborder="0" allowfullscreen
-					style="height: 100%; position: absolute; left: 0px; z-index:1;"></iframe>
+					style="bottom:0; top:0; height:100%; position: absolute;"></iframe>
 
-				<div class="gradient-overlay"></div>
+				<div ng-hide="topic.selectedArticle[category].videoUrl" class="gradient-overlay"></div>
 
 				<a href="{{topic.selectedArticle[category].url || '#'}}" target="_self"
 				ng-if="!topic.selectedArticle[category].videoUrl" >
