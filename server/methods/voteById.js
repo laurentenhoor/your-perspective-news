@@ -1,7 +1,6 @@
 import { Votes } from '../../imports/api/votes.js';
 import { Posts } from '../../imports/api/posts.js';
 import { Articles } from '../../imports/api/articles.js';
-
 import { Comments } from '../../imports/api/comments.js';
 
 Meteor.methods({

@@ -8,41 +8,32 @@ import angularBootstrap from 'angular-ui-bootstrap';
 
 class ArticleModalCtrl {
 
-	constructor($rootScope, $scope, $reactive, $uibModalInstance, articleData, isEditMode) {
+	constructor($rootScope, $scope, $reactive, $uibModalInstance, topicId, category, article) {
 
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
 
-		$ctrl.articleData = articleData;
-		$ctrl.isEditMode = isEditMode;
+		$ctrl.topicId = topicId;
+		$ctrl.category = category;
+		$ctrl.article = article;
 		
 		$ctrl.urlDataIsLoaded = false;
 		
-		console.log(isEditMode)
-		console.log(articleData)
 		
-		
-		if (!$ctrl.articleData) {
-
-			$ctrl.headerText = 'Maak een nieuw(s) item.';
-			$ctrl.headerSubText = 'Plaats een onderwerp dat nog niet door ons wordt besproken.';		
-
-			$ctrl.category = 'Algemene berichtgeving';
-
-		} else if ('category' in $ctrl.articleData) {
-
-			$ctrl.headerText = 'Voeg een bron toe.';
-			$ctrl.headerSubText = 'Verbreed, verdiep of ontwricht dit onderwerp met een interessant artikel.';
-
-			$ctrl.category =  $ctrl.articleData.category;
-		}
-		
-		if (isEditMode) {
+		if ($ctrl.article) {
 			
 			$ctrl.headerText = 'Wijzig deze bron.';
 			$ctrl.headerSubText = 'Verplaats of verwijder deze bron.';
 
-			$ctrl.category =  $ctrl.articleData.category;			
+		} else if ($ctrl.category) {
+
+			$ctrl.headerText = 'Voeg een bron toe.';
+			$ctrl.headerSubText = 'Verbreed, verdiep of ontwricht dit onderwerp met een interessant artikel.';
+			
+		} else {
+			
+			$ctrl.headerText = 'Maak een nieuw(s) item.';
+			$ctrl.headerSubText = 'Plaats een onderwerp dat nog niet door ons wordt besproken.';		
 			
 		}
 		
@@ -161,4 +152,8 @@ class ArticleModalCtrl {
 export default angular.module('yourpers.ArticleModalCtrl', [
 	angularMeteor,
 	angularBootstrap
-	]).controller('ArticleModalCtrl', ['$rootScope', '$scope', '$reactive', '$uibModalInstance','articleData', ArticleModalCtrl])
+	]).controller('ArticleModalCtrl', 
+			['$rootScope', '$scope', '$reactive', '$uibModalInstance',
+				'topicId', 'category', 'article', 
+				ArticleModalCtrl]
+	);

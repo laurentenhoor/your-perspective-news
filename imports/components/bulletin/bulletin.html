@@ -24,9 +24,11 @@
 					<i class="material-icons">delete</i>
 				</div> -->
 				
-				<yourpers-article-actions 
-					topic-id="topic._id" data="topic.selectedArticle[category]" 
-					is-edit-mode="true" class="remove-icon">
+				<yourpers-article-actions
+					topic-id="topic._id" 
+					category="newsItem" 
+					article="topic.selectedArticle[category]" 
+					class="remove-icon">
 				</yourpers-article-actions>
 				
 				
@@ -74,8 +76,10 @@
 
 			<div class="bulletin-sources">
 				
-				<yourpers-article-actions topic-id="topic._id" data="newsItem"
-					class="add-article-from-bulletin-item" ng-click="$ctrl.click(topic._id)">
+				<yourpers-article-actions 
+					topic-id="topic._id"
+					category="newsItem" 
+					class="add-article-from-bulletin-item">
 				</yourpers-article-actions>
 				
 				<div class="bulletin-source"

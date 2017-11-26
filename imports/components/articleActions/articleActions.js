@@ -16,22 +16,16 @@ class ArticleActionsCtrl {
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
 		
-		$ctrl.articleData = null;
-		$ctrl.isEditMode = false;
-		
 		$ctrl.$onChanges = function(changes) {
 		// Explaination: https://medium.com/front-end-hacking/angularjs-component-binding-types-my-experiences-10f354d4660
 			if (changes.data && $ctrl.data) {
-				$ctrl.articleData = angular.copy($ctrl.data);	
-				$ctrl.articleData.topicId = angular.copy($ctrl.topicId);
-				$ctrl.isEditMode = angular.copy($ctrl.isEditMode);
+				$ctrl.topicId = angular.copy($ctrl.topicId);
+				$ctrl.category = angular.copy($ctrl.category);	
+				$ctrl.article = angular.copy($ctrl.article);
 			}
 		}
 		
 		$ctrl.open = function () {
-			
-			console.log($ctrl.articleData);
-			console.log($ctrl.isEditMode);
 			
 			var modalInstance = $uibModal.open({
 				animation: true,
@@ -39,8 +33,9 @@ class ArticleActionsCtrl {
 				controller: 'ArticleModalCtrl',
 				controllerAs: '$ctrl',
 				resolve : {
-					articleData : function() {return $ctrl.articleData},
-					isEditMode : function() {return $ctrl.isEditMode}
+					topicId : function() {return $ctrl.topicId},
+					category : function() {return $ctrl.category},
+					article : function() {return $ctrl.article},
 				}
 			});
 
@@ -54,7 +49,7 @@ class ArticleActionsCtrl {
 
 		}
 		
-	}	
+	}		
 }
 
 export default angular.module('yourpers.articleActions', [
@@ -66,8 +61,8 @@ export default angular.module('yourpers.articleActions', [
 		templateUrl : template,
 		controller: ['$rootScope', '$scope', '$reactive', '$uibModal', ArticleActionsCtrl],
 		bindings: {
-			data : '<',
 			topicId : '<',
-			isEditMode : '<'
+			category : '<',
+			article : '<',
 		}
 	});
