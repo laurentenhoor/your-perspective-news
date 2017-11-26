@@ -1,36 +1,27 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
-import style from'./addArticleModal.less';
+import style from'./articleModal.less';
 
 import angularBootstrap from 'angular-ui-bootstrap';
 
 
-class AddArticleModalCtrl {
+class ArticleModalCtrl {
 
-	constructor($rootScope, $scope, $reactive, $uibModalInstance, articleData) {
+	constructor($rootScope, $scope, $reactive, $uibModalInstance, articleData, isEditMode) {
 
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
 
 		$ctrl.articleData = articleData;
+		$ctrl.isEditMode = isEditMode;
+		
 		$ctrl.urlDataIsLoaded = false;
-
-
-//		$ctrl.logoUrl = 'https://logo.clearbit.com/www.nrc.nl'
-//		$ctrl.title = "Harde kritiek op Trumps exit Parijs-akkoord"
-//		$ctrl.description = "Regeringsleiders en invloedrijke CEO’s uit het
-//		bedrijfsleven reageren zeer teleurgesteld op de beslissing van president
-//		Trump om te stoppen met het klimaatakkoord van Parijs."
-//		$ctrl.publisher ='NRC'
-//		$ctrl.url =
-//		"https://www.nrc.nl/nieuws/2017/06/02/harde-kritiek-op-trumps-exit-parijs-akkoord-a1561483"
-//		$ctrl.imageUrl =
-//		'https://images.nrc.nl/3xdswAvTyDuBNeAXCe6y8w3ZCck=/1200x627/smart/filters:no_upscale\\(\\)/s3/static.nrc.nl/wp-content/uploads/2017/06/5809284a-2e2d-4791-8461-cc590545ff35.jpg'
-
-//		$ctrl.urlDataIsLoaded = true;
-
-
+		
+		console.log(isEditMode)
+		console.log(articleData)
+		
+		
 		if (!$ctrl.articleData) {
 
 			$ctrl.headerText = 'Maak een nieuw(s) item.';
@@ -43,10 +34,18 @@ class AddArticleModalCtrl {
 			$ctrl.headerText = 'Voeg een bron toe.';
 			$ctrl.headerSubText = 'Verbreed, verdiep of ontwricht dit onderwerp met een interessant artikel.';
 
-
 			$ctrl.category =  $ctrl.articleData.category;
-
 		}
+		
+		if (isEditMode) {
+			
+			$ctrl.headerText = 'Wijzig deze bron.';
+			$ctrl.headerSubText = 'Verplaats of verwijder deze bron.';
+
+			$ctrl.category =  $ctrl.articleData.category;			
+			
+		}
+		
 
 		$ctrl.clearForm = function() {
 
@@ -159,7 +158,7 @@ class AddArticleModalCtrl {
 }
 
 
-export default angular.module('yourpers.addArticleModalCtrl', [
+export default angular.module('yourpers.ArticleModalCtrl', [
 	angularMeteor,
 	angularBootstrap
-	]).controller('AddArticleModalCtrl', ['$rootScope', '$scope', '$reactive', '$uibModalInstance','articleData', AddArticleModalCtrl])
+	]).controller('ArticleModalCtrl', ['$rootScope', '$scope', '$reactive', '$uibModalInstance','articleData', ArticleModalCtrl])

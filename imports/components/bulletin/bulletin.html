@@ -20,9 +20,15 @@
 
 			<div class="bulletin-item-image-container">
 			
-				<div class="remove-icon" ng-click="$ctrl.remove(topic, topic.selectedArticle[category])">
+				<!-- <div class="remove-icon" ng-click="$ctrl.remove(topic, topic.selectedArticle[category])">
 					<i class="material-icons">delete</i>
-				</div>
+				</div> -->
+				
+				<yourpers-article-actions 
+					topic-id="topic._id" data="topic.selectedArticle[category]" 
+					is-edit-mode="true" class="remove-icon">
+				</yourpers-article-actions>
+				
 				
 				<div class="bulletin-voting" ng-init="" ng-if="true">
 					<div ng-click="$ctrl.vote(topic.selectedArticle[category],1)" class="bulletin-arrow-up" 
@@ -33,8 +39,8 @@
 				</div>
 				
 				<div class="bulletin-item-image" 
-				ng-style="{'background-image':'url(\'' + topic.selectedArticle[category].imageUrl + '\')'}"
-				style="background-color:{{ topic.selectedArticle[category].videoUrl ? 'black' : 'white' }}">
+				ng-style="{'background-image':'url(\'' + (topic.selectedArticle[category].imageUrl) + '\')'}"
+				style="background-color:{{ topic.selectedArticle[category].videoUrl ? 'black' : 'rgb(78, 99, 152)' }}">
 				</div>
 				
 				<iframe ng-if="topic.selectedArticle[category].videoUrl" 
@@ -68,9 +74,9 @@
 
 			<div class="bulletin-sources">
 				
-				<yourpers-add-article topic-id="topic._id" data="newsItem"
+				<yourpers-article-actions topic-id="topic._id" data="newsItem"
 					class="add-article-from-bulletin-item" ng-click="$ctrl.click(topic._id)">
-				</yourpers-add-article>
+				</yourpers-article-actions>
 				
 				<div class="bulletin-source"
 					ng-repeat="article in articles | orderBy:'-score'"
