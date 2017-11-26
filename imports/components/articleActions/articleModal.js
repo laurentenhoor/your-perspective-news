@@ -20,7 +20,7 @@ class ArticleModalCtrl {
 		
 		if ($ctrl.article) {
 			
-			$ctrl.modus = 'edit';
+			$ctrl.mode = 'edit';
 			
 			$ctrl.headerText = 'Wijzig deze bron.';
 			$ctrl.headerSubText = 'Verplaats of verwijder deze bron.';
@@ -29,7 +29,7 @@ class ArticleModalCtrl {
 
 		} else if ($ctrl.category) {
 
-			$ctrl.modus = 'add_source_to_topic';
+			$ctrl.mode = 'add_source_to_topic';
 			
 			$ctrl.headerText = 'Voeg een bron toe.';
 			$ctrl.headerSubText = 'Verbreed, verdiep of ontwricht dit onderwerp met een interessant artikel.';
@@ -38,7 +38,7 @@ class ArticleModalCtrl {
 			
 		} else if (!$ctrl.topic) {
 			
-			$ctrl.modus = 'new_topic';
+			$ctrl.mode = 'new_topic';
 			
 			$ctrl.category = {category: 'Algemene berichtgeving'};
 			$ctrl.headerText = 'Maak een nieuw(s) item.';
@@ -92,6 +92,10 @@ class ArticleModalCtrl {
 					$ctrl.article.imageUrl = null;
 					$ctrl.article.url = null;
 					$ctrl.article.videoUrl = $ctrl.article.videoUrl + '?&theme=dark&autohide=2&modestbranding=0&fs=1&showinfo=0&rel=0&playsinline=1';
+					if ($ctrl.article.publisher == 'YouTube') {
+						$ctrl.article.logoUrl = 'https://logo.clearbit.com/www.youtube.com';
+						
+					}
 				}
 				
 				console.log($ctrl.article.videoUrl);
@@ -110,20 +114,11 @@ class ArticleModalCtrl {
 			$uibModalInstance.close();
 		}
 		
-		function getArticle() {
-			
-			
-			article = {
-					
-			}
-			
-		}
-
 		$ctrl.ok = function () {
 			
 			console.log($ctrl.article)
 			
-			switch ($ctrl.modus) {
+			switch ($ctrl.mode) {
 				case 'add_source_to_topic':
 					Meteor.call('addArticle', $ctrl.topicId, $ctrl.category.category, $ctrl.article);
 					break;
