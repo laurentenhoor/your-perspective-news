@@ -17,13 +17,14 @@ Topics.before.insert(function (userId, doc) {
 
 if(Meteor.isServer) {
     Meteor.publish('topics', function(){
-        return Topics.find({});
+        return Topics.find({}, {limit: 6, sort: {'createdAt':-1}});
     });
     
     Meteor.publish("topicsAndArticles", function () {
     	  return [
-    	    Topics.find({}),
-    	    Articles.find({})
+    	    Topics.find({}, {limit: 6, sort: {'createdAt':-1}}),
+//    	    Topics.find({}),
+    	    Articles.find({}),
     	  ];
     	});   
 }
