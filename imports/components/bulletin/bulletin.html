@@ -20,12 +20,20 @@
 
 			<div class="bulletin-item-image-container">
 				
-				<yourpers-article-actions
-					topic-id="topic._id" 
-					category="newsItem" 
-					article="topic.selectedArticle[category]" 
-					class="bulletin-edit-icon">
-				</yourpers-article-actions>
+				
+				<div class="bulletin-item-icons">
+					
+					<i class="material-icons comment-icon">insert_comment</i>
+					
+					<yourpers-article-actions
+						topic-id="topic._id" 
+						category="newsItem" 
+						article="topic.selectedArticle[category]" 
+						class="bulletin-edit-icon">
+					</yourpers-article-actions>
+					
+					
+				</div>
 				
 				
 				<div class="bulletin-voting" ng-init="" ng-if="true">
