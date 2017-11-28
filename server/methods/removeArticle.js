@@ -15,13 +15,30 @@ Meteor.methods({
 		});
 		
 		
+		var topic = Topics.findOne({
+			_id: topicId
+		});
 		
+		
+		var totalAmountOfArticles = 0;
+		var safeToDelete  = false;
+		
+		_.forEach(topic.articlesByCategory, function(category){
+			
+			console.log(category);
+			totalAmountOfArticles = totalAmountOfArticles + category.articleIds.length;
+			
+			if ('articleIds' in category) {
+				safeToDelete = true;
+			}
+		});
+
+		if (safeToDelete && (totalAmountOfArticles == 0)) {
+			Topics.remove({
+				_id: topicId
+			});
+		}
 		
 	}
 	
 });
-
-
-var emptyCats = Topics.find({ 'articlesByCategory.articleIds': { $gt: [] } }).fetch()
-
-console.log(emptyCats);

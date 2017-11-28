@@ -102,8 +102,8 @@ class BulletinCtrl {
 		$ctrl.clickArticle = function(topic, category, article) {
 			topic.selectedArticle[category] = article;
 		}
-	
-
+		
+		
 	}
 
 }
