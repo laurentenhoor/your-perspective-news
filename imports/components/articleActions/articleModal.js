@@ -89,7 +89,7 @@ class ArticleModalCtrl {
 				$ctrl.article.imageUrl = result['og:image'] || result['twitter:image'] || result['twitter:image:src'];
 				
 				if (result['twitter:player']) {
-					$ctrl.article.imageUrl = null;
+					$ctrl.article.imageUrl = result['twitter:image'];
 					$ctrl.article.url = null;
 					$ctrl.article.videoUrl = $ctrl.article.videoUrl + '?&theme=dark&autohide=2&modestbranding=0&fs=1&showinfo=0&rel=0&playsinline=1';
 					if ($ctrl.article.publisher == 'YouTube') {
