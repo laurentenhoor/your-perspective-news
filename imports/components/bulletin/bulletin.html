@@ -72,7 +72,7 @@
 
 				<a href="{{topic.selectedArticle[categoryName].url || ''}}" 
 					target="_self"
-					class="{{topic.selectedArticle[categoryName].videoUrl ? 'link-disabled' : ''}}"
+					ng-class="topic.selectedArticle[categoryName].videoUrl ? 'link-disabled' : ''"
 					ng-hide="topic.selectedArticle[categoryName].videoUrl">
 					
 					<div class="bulletin-item-title-container">
