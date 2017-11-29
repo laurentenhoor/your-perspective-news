@@ -18,41 +18,42 @@
 
 			<div class="bulletin-item-image-container">
 				
-				
-				<div class="bulletin-item-icons">
-					
-					<div class="">
-					<i class="material-icons comment-icon">insert_comment</i>
-					<i class="material-icons share-icon">share</i>
-					</div>
-					<yourpers-article-actions
-						topic-id="topic._id" 
-						category="categoryBlock" 
-						article="topic.selectedArticle[categoryName]" 
-						class="bulletin-edit-icon">
-					</yourpers-article-actions>
-					
-				</div>
-				
-				
-				<div class="bulletin-voting" 
-					ng-init="" 
-					ng-if="true">
-					
-					<div ng-click="$ctrl.vote(topic.selectedArticle[categoryName],1)" 
-						class="bulletin-arrow-up" 
-						ng-class="{true: 'bulletin-upvoted', false: ''}[$ctrl.userVoteMap[topic.selectedArticle[categoryName]._id]==1]">
+				<div class="bulletin-item-controls-container">
+					<div class="bulletin-item-icons">
+						
+						<div class="">
+						<i class="material-icons comment-icon">insert_comment</i>
+						<i class="material-icons share-icon">share</i>
+						</div>
+						<yourpers-article-actions
+							topic-id="topic._id" 
+							category="categoryBlock" 
+							article="topic.selectedArticle[categoryName]" 
+							class="bulletin-edit-icon">
+						</yourpers-article-actions>
+						
 					</div>
 					
-					<div class="bulletin-vote-score">
-						{{$ctrl.articlesScoreMap[topic.selectedArticle[categoryName]._id] || 0}}
-					</div>
 					
-					<div ng-click="$ctrl.vote(topic.selectedArticle[categoryName],-1)" 
-						class="bulletin-arrow-down" 
-						ng-class="{true: 'bulletin-downvoted', false: ''}[$ctrl.userVoteMap[topic.selectedArticle[categoryName]._id]==-1]">
+					<div class="bulletin-voting" 
+						ng-init="" 
+						ng-if="true">
+						
+						<div ng-click="$ctrl.vote(topic.selectedArticle[categoryName],1)" 
+							class="bulletin-arrow-up" 
+							ng-class="{true: 'bulletin-upvoted', false: ''}[$ctrl.userVoteMap[topic.selectedArticle[categoryName]._id]==1]">
+						</div>
+						
+						<div class="bulletin-vote-score">
+							{{$ctrl.articlesScoreMap[topic.selectedArticle[categoryName]._id] || 0}}
+						</div>
+						
+						<div ng-click="$ctrl.vote(topic.selectedArticle[categoryName],-1)" 
+							class="bulletin-arrow-down" 
+							ng-class="{true: 'bulletin-downvoted', false: ''}[$ctrl.userVoteMap[topic.selectedArticle[categoryName]._id]==-1]">
+						</div>
+						
 					</div>
-					
 				</div>
 				
 				<div class="bulletin-item-image" 
@@ -65,10 +66,6 @@
 					src="{{topic.selectedArticle[categoryName].videoUrl}}" 
 					allowfullscreen>
 				</iframe>
-
-				<div class="gradient-overlay"
-					ng-hide="topic.selectedArticle[categoryName].videoUrl"> 
-				</div>
 				
 				<div class="solid-overlay">
 				</div>
