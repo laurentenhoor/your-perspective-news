@@ -39,7 +39,8 @@ angular.module('yourpers', [
 	yourpersOverview,
 	yourpersTopic,
 	
-	'accounts.ui'
+	'accounts.ui',
+	
 	
 ])
 
@@ -47,9 +48,8 @@ angular.module('yourpers', [
 		$locationProvider, $routeProvider, $httpProvider, $provide, $sceDelegateProvider) {
 	
 	$sceDelegateProvider.resourceUrlWhitelist(['**']);
-  
-//	$locationProvider.hashPrefix('!');
-	
+
+
 	$routeProvider.
 	    when('/tijdslijn', {
 		      template: '<yourpers-post></yourpers-post>'

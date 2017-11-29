@@ -103,6 +103,12 @@ class BulletinCtrl {
 		}
 		
 		
+		
+		$ctrl.clickChat = function() {
+			console.log('clickChat');
+		}
+		
+		
 	}
 
 }
@@ -110,7 +116,7 @@ class BulletinCtrl {
 
 export default angular.module('yourpers.bulletin', [
 	angularMeteor,
-	yourpersArticleActions
+	yourpersArticleActions,
 	])
 	.component('yourpersBulletin', {
 		templateUrl : template,

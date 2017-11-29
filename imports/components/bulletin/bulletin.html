@@ -1,6 +1,8 @@
 <div class="bulletin-items-scroll-container"
 	ng-repeat="topic in $ctrl.topics | orderBy:'-createdAt'" 
 	ng-init="topic.selectedArticle = {}">
+	
+
 
 	<div class="bulletin-item-outer-container"
 		ng-repeat="categoryBlock in topic.articlesByCategory | orderBy:'sortingOrder'" 
@@ -22,7 +24,9 @@
 					<div class="bulletin-item-icons">
 						
 						<div class="">
-						<i class="material-icons comment-icon">insert_comment</i>
+						<i class="material-icons comment-icon"
+							ng-click="$ctrl.clickChat()">
+							insert_comment</i>
 						<i class="material-icons share-icon">share</i>
 						</div>
 						<yourpers-article-actions
@@ -33,7 +37,6 @@
 						</yourpers-article-actions>
 						
 					</div>
-					
 					
 					<div class="bulletin-voting" 
 						ng-init="" 
@@ -119,4 +122,20 @@
 
 	</div>
 	
+		
+	<div class="bulletin-item-outer-container">
+	
+		<div class="bulletin-item-header">Jouw perspectief</div>
+
+		<div class="bulletin-item-image-and-details-container" 
+			style="background-image: linear-gradient(to bottom right, #cb2d3e, #ef473a);">
+
+			<div class="bulletin-item-image-container">
+			</div>
+			
+		</div>
+			
+	</div>
+	
+		
 </div>
