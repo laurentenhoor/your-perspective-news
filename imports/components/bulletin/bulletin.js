@@ -64,9 +64,7 @@ class BulletinCtrl {
 					$rootScope.stateIsLoading = false;
 					$rootScope.initializedDatabase = true;
 				});
-				
-				
-				
+		
 			}
 			
 		});
@@ -79,6 +77,7 @@ class BulletinCtrl {
 		$ctrl.getArticleWithHighestScore = function(articles) {
 			var highestScore = null;
 			var highestId = null;
+			var highestArticle = null;
 			
 			angular.forEach(articles, function(article, i) {
 				if (article.score > highestScore || !highestScore) {
