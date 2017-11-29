@@ -50,6 +50,7 @@ function createTopic(category, article) {
 function addArticleToTopic(topicId, category, article) {
 
 	console.log('category exists? ' + categoryExists(topicId, category))
+	console.log(category);
 	
 	if (categoryExists(topicId, category)) {
 		addArticleToExistingCategory(topicId, category, article);
@@ -98,6 +99,13 @@ function createCategoryAndAddArticle(topicId, category, article) {
 			break;
 			
 	}
+	
+	console.log({
+			_id : Random.id(),
+			category: category, 
+			articleIds: [article._id], 
+			sortingOrder : sortingOrder
+		})
 	
 	
 	Topics.update({

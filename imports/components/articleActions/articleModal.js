@@ -14,9 +14,12 @@ class ArticleModalCtrl {
 		$reactive($ctrl).attach($scope);
 
 		$ctrl.topicId = topicId;
-		$ctrl.category = category;
+		$ctrl.category = category;		
 		$ctrl.article = article;
 		
+		if (category) {
+			$ctrl.newCategory = category.category;
+		}
 		
 		if ($ctrl.article) {
 			
@@ -108,9 +111,9 @@ class ArticleModalCtrl {
 			});
 		}
 		
-		$ctrl.remove = function(topicId, article) {
+		$ctrl.remove = function(topicId, categoryName, article) {
 			console.log('removeArticle');console.log(article._id);console.log(topicId);
-			Meteor.call('removeArticle', topicId, article._id)
+			Meteor.call('removeArticleFromCategory', topicId, categoryName, article._id)
 			$uibModalInstance.close();
 		}
 		
@@ -126,8 +129,9 @@ class ArticleModalCtrl {
 					Meteor.call('addArticle', null, $ctrl.category.category, $ctrl.article);
 					break;
 				case 'edit':
-					Meteor.call('removeArticle', $ctrl.topicId, $ctrl.article._id);
-					Meteor.call('addArticleToCategory', $ctrl.topicId, $ctrl.category.category, $ctrl.article);
+					console.log('edit');
+					Meteor.call('addArticleToCategory', $ctrl.topicId, $ctrl.newCategory, $ctrl.article);
+					Meteor.call('removeArticleFromCategory', $ctrl.topicId, $ctrl.category.category, $ctrl.article._id);
 					break;
 			}
 			$uibModalInstance.close($ctrl.feedback);

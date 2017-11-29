@@ -3,17 +3,19 @@ import { Articles } from '../../imports/api/articles.js';
 
 Meteor.methods({
 	
-	removeArticle(topicId, articleId) {
+	removeArticleFromCategory(topicId, categoryName, articleId) {
 		
-		console.log(topicId);
-		console.log(articleId);
+		console.log('removeArticle')
+		console.log('topicId: ' + topicId);
+		console.log('articleId: ' + articleId);
+		console.log('categoryName: ' + categoryName);
 		
 		Topics.update({
 			_id: topicId,
-			'articlesByCategory.articleIds' : articleId
+			'articlesByCategory.articleIds' : articleId,
+			'articlesByCategory.category' : categoryName,
 			}, {$pull: {'articlesByCategory.$.articleIds': articleId}
 		});
-		
 		
 		var topic = Topics.findOne({
 			_id: topicId

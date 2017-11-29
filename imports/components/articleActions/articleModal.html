@@ -14,7 +14,7 @@
 
 		<label for="category">Selecteer de categorie waarin dit artikel het best past</label>
 		<select id="category"
-			class="form-control" ng-model="$ctrl.category.category">
+			class="form-control" ng-model="$ctrl.newCategory">
 			<option value="Algemene berichtgeving">Algemene berichtgeving</option>
 			<option value="Andere kijk">Andere kijk</option>
 			<option value="Entertainment">Entertainment</option>
@@ -57,7 +57,10 @@ ng-if="$ctrl.urlDataIsLoaded">
 
 <div class="modal-footer">
 
-	<div ng-if="$ctrl.urlDataIsLoaded" class="remove-icon" ng-click="$ctrl.remove($ctrl.topicId, $ctrl.article)">
+	<div class="remove-icon"
+		ng-if="$ctrl.urlDataIsLoaded"  
+		ng-click="$ctrl.remove($ctrl.topicId, $ctrl.category.category, $ctrl.article)">
+		
 		<i class="material-icons">delete</i>
 	</div>
 
