@@ -1,18 +1,20 @@
-<div id="scroll-container" class="bulletin-items-scroll-container"
-	ng-repeat="topic in $ctrl.topics | orderBy:'-createdAt'" ng-init="topic.selectedArticle = {}">
+<div id="scroll-container" 
+	class="bulletin-items-scroll-container"
+	ng-repeat="topic in $ctrl.topics | orderBy:'-createdAt'" 
+	ng-init="topic.selectedArticle = {}">
 
 	<div class="bulletin-item-outer-container"
-	ng-repeat="newsItem in topic.articlesByCategory | orderBy:'sortingOrder'" 
-	ng-init="category=newsItem.category; 
-	articles=$ctrl.getArticlesByIds(newsItem.articleIds);
-	selectedArticle = $ctrl.getArticleWithHighestScore(articles);
-	topic.selectedArticle[category]=selectedArticle;
-	selectedArticleId = selectedArticle._id;
-	$ctrl.selectedArticleId = selectedArticle._id;
-	$ctrl.loadedArticles= $ctrl.loadedArticles.concat(newsItem.articleIds);
-	"
-	ng-show="articles.length>0"
-	>
+		ng-repeat="newsItem in topic.articlesByCategory | orderBy:'sortingOrder'" 
+		ng-show="articles.length>0"
+		ng-init="
+			category=newsItem.category; 
+			articles=$ctrl.getArticlesByIds(newsItem.articleIds);
+			selectedArticle = $ctrl.getArticleWithHighestScore(articles);
+			topic.selectedArticle[category]=selectedArticle;
+			selectedArticleId = selectedArticle._id;
+			$ctrl.selectedArticleId = selectedArticle._id;
+			$ctrl.loadedArticles= $ctrl.loadedArticles.concat(newsItem.articleIds);
+	">
 	
 		<div class="bulletin-item-header">{{category}}</div>
 
@@ -23,7 +25,7 @@
 				
 				<div class="bulletin-item-icons">
 					
-					<div class="comment-share-bundle">
+					<div class="">
 					<i class="material-icons comment-icon">insert_comment</i>
 					<i class="material-icons share-icon">share</i>
 					</div>
@@ -34,17 +36,27 @@
 						class="bulletin-edit-icon">
 					</yourpers-article-actions>
 					
-					
-					
 				</div>
 				
 				
-				<div class="bulletin-voting" ng-init="" ng-if="true">
-					<div ng-click="$ctrl.vote(topic.selectedArticle[category],1)" class="bulletin-arrow-up" 
-						ng-class="{true: 'bulletin-upvoted', false: ''}[$ctrl.userVoteMap[topic.selectedArticle[category]._id]==1]"></div>
-					<div class="bulletin-vote-score">{{$ctrl.articlesScoreMap[topic.selectedArticle[category]._id] || 0}}</div>
-					<div ng-click="$ctrl.vote(topic.selectedArticle[category],-1)" class="bulletin-arrow-down" 
-						ng-class="{true: 'bulletin-downvoted', false: ''}[$ctrl.userVoteMap[topic.selectedArticle[category]._id]==-1]"></div>
+				<div class="bulletin-voting" 
+					ng-init="" 
+					ng-if="true">
+					
+					<div ng-click="$ctrl.vote(topic.selectedArticle[category],1)" 
+						class="bulletin-arrow-up" 
+						ng-class="{true: 'bulletin-upvoted', false: ''}[$ctrl.userVoteMap[topic.selectedArticle[category]._id]==1]">
+					</div>
+					
+					<div class="bulletin-vote-score">
+						{{$ctrl.articlesScoreMap[topic.selectedArticle[category]._id] || 0}}
+					</div>
+					
+					<div ng-click="$ctrl.vote(topic.selectedArticle[category],-1)" 
+						class="bulletin-arrow-down" 
+						ng-class="{true: 'bulletin-downvoted', false: ''}[$ctrl.userVoteMap[topic.selectedArticle[category]._id]==-1]">
+					</div>
+					
 				</div>
 				
 				<div class="bulletin-item-image" 
@@ -53,16 +65,24 @@
 				</div>
 				
 				<iframe ng-if="topic.selectedArticle[category].videoUrl" 
-				src="{{topic.selectedArticle[category].videoUrl}}"
+					src="{{topic.selectedArticle[category].videoUrl}}"
 					width="100%" height="60%" frameborder="0" allowfullscreen
-					style="bottom:0; top:0; height:100%; position: absolute;"></iframe>
+					style="bottom:0; top:0; height:100%; position: absolute;">
+				</iframe>
 
-				<div ng-hide="topic.selectedArticle[category].videoUrl" class="gradient-overlay"></div>
-				<div ng-hide="" class="solid-overlay"></div>
+				<div class="gradient-overlay"
+					ng-hide="topic.selectedArticle[category].videoUrl"> 
+				</div>
+				
+				<div class="solid-overlay"
+					ng-hide="">
+				</div>
 
-				<a href="{{topic.selectedArticle[category].url || ''}}" target="_self"
-				class="{{topic.selectedArticle[category].videoUrl ? 'link-disabled' : ''}}"
-				ng-hide="topic.selectedArticle[category].videoUrl">
+				<a href="{{topic.selectedArticle[category].url || ''}}" 
+					target="_self"
+					class="{{topic.selectedArticle[category].videoUrl ? 'link-disabled' : ''}}"
+					ng-hide="topic.selectedArticle[category].videoUrl">
+					
 					<div class="bulletin-item-title-container">
 						
 						<div class="bulletin-item-publisher">
@@ -71,17 +91,18 @@
 							
 						<div class="bulletin-item-title">
 							{{topic.selectedArticle[category].title}}
-							
 						</div>
-							
+								
 					</div>
 				</a>
 
 			</div>
 			
-			<a href="{{topic.selectedArticle[category].url || ''}}" target="_self" 
+			<a href="{{topic.selectedArticle[category].url || ''}}" 
+				target="_self" 
 				class="{{topic.selectedArticle[category].videoUrl ? 'link-disabled' : ''}}">
-				<div class="bulletin-item-description" ng-if="topic.selectedArticle[category].description">
+				<div class="bulletin-item-description" 
+					ng-if="topic.selectedArticle[category].description">
 					{{topic.selectedArticle[category].description}}
 				</div>
 			</a>
@@ -105,5 +126,5 @@
 		</div>
 
 	</div>
-
+	
 </div>
