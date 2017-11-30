@@ -1,8 +1,8 @@
-<div class="comments-container" ng-click="$ctrl.click();">
+<div class="comments-container">
 
 	<div class="comments-add-comment-button">
-		<a href="" ng-init="showRootInput=false"
-			ng-click="showRootInput = ! showRootInput; showRootInputPers = false;"
+		<a href="" ng-init="$ctrl.showRootInput=false"
+			ng-click="$ctrl.showRootInput = ! $ctrl.showRootInput;"
 			style="padding-right: 3vw;">
 				Reageer <i class="fa fa-reply" aria-hidden="true"></i>
 		</a>
@@ -10,8 +10,8 @@
 	
 
 	<form name="newCommentRoot"
-		ng-if="showRootInput"
-		ng-submit="$ctrl.newComment(comment);showRootInput=false;"
+		ng-if="$ctrl.showRootInput"
+		ng-submit="$ctrl.newComment(comment);$ctrl.showRootInput=false;"
 		novalidate> 
 		
 		<textarea class="comments-input root"
@@ -23,11 +23,10 @@
 			type="submit" 
 			value="Reageer"
 			ng-disabled="newCommentRoot.$invalid"/>
-		
 	</form>
 
 
-	<div class="comment-tree" ng-repeat="comment in $ctrl.comments"
+	<div class="comments-tree" ng-repeat="comment in $ctrl.comments"
 		ng-include="$ctrl.commentsTreeTemplate"></div>
 
 </div>

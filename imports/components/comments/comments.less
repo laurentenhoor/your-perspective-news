@@ -1,3 +1,10 @@
+yourpers-comments {
+	height:100%;
+	width:100%;
+	font-family: "Montserrat";
+// 	color:#ffffff7d;
+}
+	
 .comments-container {
 	
 	height: 100%;
@@ -5,26 +12,98 @@
     
     padding:3vw;
     
-    div {
-    	margin-bottom:3vw;
-    	}
+    overflow-y:scroll;
     
+    background-image:linear-gradient(to right, #005c97, #363795);
+}
+.comments-container:active{
+	background-image:linear-gradient(to right, #005c97, #363795);	
+}
+
+
+.comments-container:hover{
+    background-image: linear-gradient(to bottom right, #cb2d3e, #ef473a);      
+	
 }
 
 .comments-add-comment-button {
-	
-    font-family: "Montserrat";
-    font-weight:600;
-    
-    color:white;
 
+	font-weight:600;
+	
+	color:white;
+}
+
+.comments-delete {
+	font-size: 3vw;
+    margin-right: 3vw;
 }
 
 .comments-input {
 	width:100%;
+	font-size:4vw;
+	font-width:600;
+	padding:3vw;
+	
 }
 
 
 .comments-input-button {
 	width:100%;
 }
+
+.comments-content-header {
+	color:#ffffff7d;
+	padding-bottom:1vw;
+	
+}
+
+.comments-content-text {
+	color:white;
+	font-size:4vw;	
+	font-weight: 500;
+	padding-bottom:2vw;
+}
+
+
+
+
+.comments-content-voting {
+	color:#ffffff7d;
+	padding-bottom:2vw;
+	
+}
+
+.comments-tree {
+	
+	padding-left:3vw;
+	border-left: 1vw solid #ffffff2e;
+	
+}
+
+.comments-arrow-up {
+	
+	width: 0; 
+	height: 0;
+	
+	border-left: 3vw solid transparent;
+	border-right: 3vw solid transparent;
+	border-bottom: 3vw solid #ffffff7d;
+	
+	display:inline-block;
+	
+	margin-bottom: 1vw;
+	margin-left: 3vw;
+	
+}
+.comments-arrow-down {
+	width: 0; 
+	height: 0; 
+	
+	border-left: 3vw solid transparent;
+	border-right: 3vw solid transparent;
+	border-top: 3vw solid #ffffff7d;
+	
+	display:inline-block;
+	
+	margin-bottom: -1vw;
+}	

@@ -65,9 +65,15 @@ class CommentsCtrl {
 			});
 			
 		}
+		
+		$ctrl.deleteComment = function(comment) {
+			Comments.remove({
+				_id : comment._id
+			});
+		}
 				
-		$ctrl.click = function() {
-			console.log($ctrl.topicId);
+		$ctrl.print = function(something) {
+			console.log(something);
 		}
 		
 		

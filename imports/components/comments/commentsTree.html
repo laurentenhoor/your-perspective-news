@@ -1,29 +1,36 @@
 <div class="comment-content-container">
 	
-	<div class="comment-content-header">
+	<div class="comments-content-header">
 		<b>{{comment.ownerName || 'anoniem'}}</b>
 	</div>
 
-	<div class="comment-content-text" 
+	<div class="comments-content-text" 
 		ng-bind-html="comment.comment |  linky:'_self':{class: 'a-extern'}">	
 	</div>
 
 		<div class="comment-content-footer">
 		
-		<div class="comment-content-voting">
+		<div class="comments-content-voting">
+			
+			<i class="comments-delete material-icons"
+				ng-click="$ctrl.deleteComment(comment)">
+				delete
+			</i>
 			
 			<a href="" ng-click="showDetails = ! showDetails">
 				Reageer <i class="fa fa-reply" aria-hidden="true"></i>
-			</a>	
+			</a>
 			
-			<div class="arrow-up-comment" 
+			
+			
+			<div class="comments-arrow-up hidden" 
 				ng-click="$ctrl.vote(comment._id,1);" 
 				ng-class="{true: 'upvoted', false: ''}[$ctrl.getVoteValue(comment._id)==1]">
 			</div>
 			
-			<div class="comment-voting-score">{{comment.score}}</div>
+			<div class="comment-voting-score hidden">{{comment.score}}</div>
 
-			<div class="arrow-down-comment" 
+			<div class="comments-arrow-down hidden" 
 				ng-click="$ctrl.vote(comment._id,-1);" 
 				ng-class="{true: 'downvoted', false: ''}[$ctrl.getVoteValue(comment._id)==-1]">
 			</div>
@@ -35,11 +42,11 @@
 			ng-submit="$ctrl.newComment(comment);showDetails=false;" 
 			novalidate>
 			
-			<textarea class="comment-input" 
+			<textarea class="comments-input" 
 				ng-model="comment.newChildComment" 
 				required autofocus></textarea>
 				
-			<input class="comment-input-button"
+			<input class="comments-input-button"
 				type="submit" 
 				value="Reageer" 
 				ng-disabled="newComment.$invalid"/>
@@ -48,10 +55,10 @@
 
 	</div>
 
-	<div class="comment-tree">
-		<div ng-init="showDetails=false" 
+	<div class="comments-tree">
+		<div ng-init="showDetails=false;"	
 			ng-repeat="comment in comment.children" 
-			ng-include="'commentsTreeRenderer.html'">
+			ng-include="$ctrl.commentsTreeTemplate">
 		</div>
 	</div>	
 
