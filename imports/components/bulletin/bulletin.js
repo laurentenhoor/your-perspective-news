@@ -7,9 +7,9 @@ import {name as yourpersComments} from '../comments/comments';
 import template from './bulletin.html';
 import style from './bulletin.less';
 
-import { Topics } from '../../api/topics.js';
-import { Articles } from '../../api/articles.js';
-import { Votes } from '../../api/votes.js';
+import { Topics } from '/imports/api/topics.js';
+import { Articles } from '/imports/api/articles.js';
+import { Votes } from '/imports/api/votes.js';
 
 class BulletinCtrl {
 
@@ -63,7 +63,7 @@ class BulletinCtrl {
 				
 				$scope.$apply(function() {
 					$rootScope.stateIsLoading = false;
-					$rootScope.initializedDatabase = true;
+					$rootScope.initializedDatabase = true; // used in loader
 				});
 		
 			}

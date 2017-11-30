@@ -2,14 +2,16 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import angularBootstrap from 'angular-ui-bootstrap';
 
+import { Meteor } from 'meteor/meteor';
+
+import { Feedback } from '/imports/api/feedback.js';
+
 import template from './feedback.html';
 import style from './feedback.less';
 
 import modalTemplate from './modal.html';
 import modalCtrl from './modal.js';
 
-import { Feedback } from '../../api/feedback.js';
-import { Meteor } from 'meteor/meteor';
 
 class FeedbackCtrl {
 	
@@ -33,7 +35,7 @@ class FeedbackCtrl {
 				Feedback.insert({
 					ownerId: Meteor.userId(),
 					ownerName : Meteor.user() ? Meteor.user().username : 'null',
-//					email: Meteor.user() ? Meteor.user().emails[0].address : 'null',
+					// email: Meteor.user() ? Meteor.user().emails[0].address : 'null',
 					ip: $rootScope.ip,
 					feedback: feedback
 				}, function() {
@@ -53,7 +55,6 @@ class FeedbackCtrl {
 export default angular.module('yourpers.feedback', [
 	angularMeteor, angularBootstrap, modalCtrl.name,
 	])
-
 	.component('yourpersFeedback', {
 		templateUrl : template,
 		controller: ['$rootScope', '$scope', '$document', '$uibModal', FeedbackCtrl]

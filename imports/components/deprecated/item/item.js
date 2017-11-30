@@ -1,5 +1,3 @@
-"use strict"
-
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import angularSanitize from 'angular-sanitize';

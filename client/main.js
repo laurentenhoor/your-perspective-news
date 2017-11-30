@@ -25,12 +25,12 @@ angular.module('yourpers', [
 	yourpersLoader,
 	yourpersMenu,
 	yourpersBulletin,
+	yourpersFeedback,
 	
 	'accounts.ui',
 	
 	// Deprecated
 	yourpersPosts,
-	yourpersFeedback,
 	yourpersItem,
 	yourpersBundle,
 	yourpersOverview,
