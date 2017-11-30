@@ -2,6 +2,7 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
 import {name as yourpersArticleActions} from '../articleActions/articleActions';
+import {name as yourpersComments} from '../comments/comments';
 
 import template from './bulletin.html';
 import style from './bulletin.less';
@@ -117,6 +118,7 @@ class BulletinCtrl {
 export default angular.module('yourpers.bulletin', [
 	angularMeteor,
 	yourpersArticleActions,
+	yourpersComments,
 	])
 	.component('yourpersBulletin', {
 		templateUrl : template,

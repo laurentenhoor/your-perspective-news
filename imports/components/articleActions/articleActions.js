@@ -26,7 +26,7 @@ class ArticleActionsCtrl {
 		}
 		
 		$ctrl.open = function () {
-			
+				
 			var modalInstance = $uibModal.open({
 				animation: true,
 				templateUrl: modalTemplate,
