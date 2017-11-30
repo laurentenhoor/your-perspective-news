@@ -8,9 +8,10 @@ import moment from 'moment';
 import 'moment/locale/nl'
 
 import { Meteor } from 'meteor/meteor';
-import { Votes } from '../../api/votes.js';
-import { Posts } from '../../api/posts.js';
-import { Comments } from '../../api/comments.js';
+
+import { Votes } from '/imports/api/votes.js';
+import { Posts } from '/imports/api/posts.js';
+import { Comments } from '/imports/api/comments.js';
 
 import template from './post.html';
 import style from './post.less';

@@ -9,9 +9,9 @@ import style from './item.less';
 
 import { Meteor } from 'meteor/meteor';
 
-import { Posts } from '../../api/posts.js';
-import { Votes } from '../../api/votes.js';
-import { Comments } from '../../api/comments.js';
+import { Posts } from '/imports/api/posts.js';
+import { Votes } from '/imports/api/votes.js';
+import { Comments } from '/imports/api/comments.js';
 
 import {name as CommentsTreeBuilder} from './services/CommentsTreeBuilder.js';
 
