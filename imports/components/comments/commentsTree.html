@@ -11,18 +11,23 @@
 	
 		<div class="comment-content-footer">
 		
+
 		<div class="comments-content-voting">
 			
-			<i class="comments-delete material-icons"
-				ng-if="$ctrl.userCommentsMap[comment._id]"
-				ng-click="$ctrl.deleteComment(comment)">
-				delete
-			</i>
+			<div class="comments-delete">
+				<i class=" material-icons"
+					ng-if="$ctrl.userCommentsMap[comment._id]"
+					ng-click="$ctrl.deleteComment(comment)">
+					delete
+				</i>
+			</div>
+			
 			
 			<a href="" ng-click="showDetails = ! showDetails">
 				Reageer <i class="fa fa-reply" aria-hidden="true"></i>
 			</a>
-			
+				
+		
 			<div class="comments-arrow-up" 
 				ng-click="$ctrl.vote(comment._id,1);"
 				ng-class="{true: 'comments-upvoted', false: ''}[$ctrl.userVoteMap[comment._id]==1]">
@@ -35,6 +40,9 @@
 				ng-class="{true: 'comments-downvoted', false: ''}[$ctrl.userVoteMap[comment._id]==-1]">
 			</div>
 			
+				
+		
+		
 		</div>
 
 		<form name="newComment" 
