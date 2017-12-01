@@ -52,7 +52,25 @@ class CommentsCtrl {
 						
 						console.log(userVoteMap);
 						return userVoteMap;
-					}
+					},
+					
+					'userCommentsMap' : function() {
+						
+						console.log('userComments helper for comments');
+						
+						var commentsByUser = Comments.find({
+							ownerId: Meteor.userId(),
+							_id: { "$in": $ctrl.getReactively('loadedComments') }
+						}).fetch();
+						
+						var userCommentsMap = {};
+						angular.forEach(commentsByUser, function(comment, i) {
+							userCommentsMap[comment._id] = true;
+						});
+						
+						console.log(userCommentsMap)
+						return userCommentsMap;
+					},
 
 				});
 		

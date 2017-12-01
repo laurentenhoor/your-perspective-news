@@ -75,13 +75,6 @@ yourpers-comments {
 	
 }
 
-.comments-tree {
-	
-	padding-left:3vw;
-	border-left: 1vw solid #ffffff2e;
-	
-}
-
 .keyframes(@name; @arguments) {
 	@-moz-keyframes @name { @arguments(); }
 	@-webkit-keyframes @name { @arguments(); }
@@ -154,6 +147,23 @@ yourpers-comments {
 	});
 
 	.animation(bounceDown .4s ease-out 0s 1 normal;)
+	
+	
+}
+
+
+.comments-tree {
+	
+	padding-left:3vw;
+	border-left: 1vw solid #ffffff2e;
+	
+	.keyframes(fadeIn;{
+		0% {opacity:0;}
+		100% {opacity: 1;}
+	});
+	
+	
+	.animation(fadeIn .4s ease-out 0s 1 normal;)
 	
 	
 }
