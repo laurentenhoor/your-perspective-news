@@ -1,4 +1,5 @@
 <div class="bulletin-items-scroll-container"
+	id="scroll-{{topic._id}}"
 	ng-repeat="topic in $ctrl.topics | orderBy:'-createdAt'" 
 	ng-init="topic.selectedArticle = {}">
 
@@ -23,7 +24,7 @@
 						
 						<div class="">
 						<i class="material-icons comment-icon"
-							ng-click="$ctrl.clickChat()">
+							ng-click="$ctrl.clickChat(topic._id)">
 							insert_comment</i>
 						<i class="material-icons share-icon">share</i>
 						</div>
@@ -121,7 +122,8 @@
 	</div>
 	
 	
-	<div class="bulletin-item-outer-container">
+	<div class="bulletin-item-outer-container"
+	 	id="discuss-{{topic._id}}">
 	
 		<div class="bulletin-item-header">Jouw perspectief</div>
 

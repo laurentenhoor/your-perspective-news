@@ -2,6 +2,7 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
 import {name as yourpersArticleActions} from '../articleActions/articleActions';
+import {name as SmoothScrollService} from '../../services/SmoothScrollService.js';
 import {name as yourpersComments} from '../comments/comments';
 
 import template from './bulletin.html';
@@ -13,7 +14,7 @@ import { Votes } from '/imports/api/votes.js';
 
 class BulletinCtrl {
 
-	constructor($rootScope, $scope, $reactive, $window) {
+	constructor($rootScope, $scope, $reactive, $window, $location, $anchorScrol, SmoothScrollService) {
 
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
@@ -105,8 +106,15 @@ class BulletinCtrl {
 		
 		
 		
-		$ctrl.clickChat = function() {
+		$ctrl.clickChat = function(topicId) {
 			console.log('clickChat');
+			
+			
+			
+			SmoothScrollService.scrollTo(topicId);
+			
+//			$anchorScroll('discuss-'+topicId);
+			
 		}
 		
 		
@@ -119,8 +127,9 @@ export default angular.module('yourpers.bulletin', [
 	angularMeteor,
 	yourpersArticleActions,
 	yourpersComments,
+	SmoothScrollService,
 	])
 	.component('yourpersBulletin', {
 		templateUrl : template,
-		controller: ['$rootScope', '$scope', '$reactive', '$window', BulletinCtrl]
+		controller: ['$rootScope', '$scope', '$reactive', '$window', '$location', '$anchorScroll', 'SmoothScrollService', BulletinCtrl]
 	});

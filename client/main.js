@@ -43,7 +43,6 @@ angular.module('yourpers', [
 	
 	$sceDelegateProvider.resourceUrlWhitelist(['**']);
 
-
 	$routeProvider.
 	    when('/nieuws', {
     		template: '<yourpers-bulletin></yourpers-bulletin>'
