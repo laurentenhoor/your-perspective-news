@@ -1,4 +1,5 @@
-<div class="comment-content-container">
+<div class="comment-content-container"
+	ng-init="$ctrl.loadedComments.push(comment._id);">
 	
 	<div class="comments-content-header">
 		<b>{{comment.ownerName || 'anoniem'}}</b>
@@ -21,16 +22,16 @@
 				Reageer <i class="fa fa-reply" aria-hidden="true"></i>
 			</a>
 			
-			<div class="comments-arrow-up hidden" 
+			<div class="comments-arrow-up" 
 				ng-click="$ctrl.vote(comment._id,1);" 
-				ng-class="{true: 'upvoted', false: ''}[$ctrl.getVoteValue(comment._id)==1]">
+				ng-class="{true: 'comments-upvoted', false: ''}[$ctrl.userVoteMap[comment._id]==1]">
 			</div>
 			
-			<div class="comment-voting-score hidden">{{comment.score}}</div>
+			<div class="comment-voting-score">{{comment.score}}</div>
 
-			<div class="comments-arrow-down hidden" 
+			<div class="comments-arrow-down" 
 				ng-click="$ctrl.vote(comment._id,-1);" 
-				ng-class="{true: 'downvoted', false: ''}[$ctrl.getVoteValue(comment._id)==-1]">
+				ng-class="{true: 'comments-downvoted', false: ''}[$ctrl.userVoteMap[comment._id]==-1]">
 			</div>
 
 		</div>
@@ -55,7 +56,7 @@
 
 	<div class="comments-tree">
 		<div ng-init="showDetails=false;"	
-			ng-repeat="comment in comment.children" 
+			ng-repeat="comment in comment.children"
 			ng-include="$ctrl.commentsTreeTemplate">
 		</div>
 	</div>	

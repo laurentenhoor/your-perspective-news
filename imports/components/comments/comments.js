@@ -7,7 +7,8 @@ import template from './comments.html';
 import style from './comments.less';
 import commentsTreeTemplate from './commentsTree.html';
 
-import { Comments } from '../../api/comments.js';
+import { Comments } from '/imports/api/comments.js';
+import { Votes } from '/imports/api/votes.js';
 
 
 class CommentsCtrl {
@@ -18,6 +19,8 @@ class CommentsCtrl {
 		$reactive($ctrl).attach($scope);
 		
 		$ctrl.commentsTreeTemplate = commentsTreeTemplate;
+		
+		$ctrl.loadedComments = [];
 		
 		Meteor.subscribe('comments', {
 			onReady: function(){
@@ -32,6 +35,23 @@ class CommentsCtrl {
 						console.log(roots);
 					
 						return roots;
+					},
+					
+					'userVoteMap' : function() {
+						
+						console.log('userVoteMap helper for comments');
+						
+						var votes = Votes.find({
+							articleId: { "$in": $ctrl.getReactively('loadedComments') }
+						}).fetch();
+						
+						var userVoteMap = {};
+						angular.forEach(votes, function(vote, i) {
+							userVoteMap[vote.articleId] = vote.value;
+						});
+						
+						console.log(userVoteMap);
+						return userVoteMap;
 					}
 
 				});
@@ -65,6 +85,17 @@ class CommentsCtrl {
 			});
 			
 		}
+		
+		$ctrl.vote = function(commentId, voteUpOrDown) {
+
+			if (!Meteor.userId()) {
+				$('#login-sign-in-link').click();
+				return;
+			}
+			$ctrl.call('voteById', commentId, voteUpOrDown); 
+			
+		}
+
 		
 		$ctrl.deleteComment = function(comment) {
 			Comments.remove({

@@ -33,7 +33,7 @@ class BulletinCtrl {
 						return Topics.find({}).fetch();
 					},
 					'userVoteMap':function() {
-						console.log('userVoteMap helper');
+						console.log('userVoteMap helper for articles');
 						
 						var votes = Votes.find({
 							articleId: { "$in": $ctrl.getReactively('loadedArticles') }
