@@ -24,9 +24,9 @@
 			value="Reageer"
 			ng-disabled="newCommentRoot.$invalid"/>
 	</form>
+	
 
-
-	<div class="comments-tree" ng-repeat="comment in $ctrl.comments"
+	<div class="comments-tree root" ng-repeat="comment in $ctrl.comments"
 		ng-include="$ctrl.commentsTreeTemplate"></div>
 
 </div>
