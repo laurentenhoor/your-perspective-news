@@ -27,40 +27,28 @@ class CommentsCtrl {
 		
 				$ctrl.helpers({
 					
+					
 					'comments' : function() {
+						console.log('fetch comments for topicId: '+ $ctrl.topicId);
+						
 						var comments = Comments.find({parentItemId: $ctrl.getReactively('topicId')})
-						console.log('fetch commments for topicId: '+ $ctrl.topicId); 
 						
 						var roots = CommentsTreeBuilder.getCommentsTree(comments.fetch());
 						console.log(roots);
 					
 						return roots;
 					},
-					
-					'userVoteMap' : function() {
-						
-						console.log('userVoteMap helper for comments');
-						
-						var votes = Votes.find({
-							articleId: { "$in": $ctrl.getReactively('loadedComments') }
-						}).fetch();
-						
-						var userVoteMap = {};
-						angular.forEach(votes, function(vote, i) {
-							userVoteMap[vote.articleId] = vote.value;
-						});
-						
-						console.log(userVoteMap);
-						return userVoteMap;
-					},
+	
 					
 					'userCommentsMap' : function() {
-						
 						console.log('userComments helper for comments');
+						
+						var commentIds = Comments.find({parentItemId: $ctrl.getReactively('topicId')})
+						.map(function (comment) { return comment._id; });
 						
 						var commentsByUser = Comments.find({
 							ownerId: Meteor.userId(),
-							_id: { "$in": $ctrl.getReactively('loadedComments') }
+							_id: { "$in": commentIds }
 						}).fetch();
 						
 						var userCommentsMap = {};
@@ -68,10 +56,30 @@ class CommentsCtrl {
 							userCommentsMap[comment._id] = true;
 						});
 						
-						console.log(userCommentsMap)
 						return userCommentsMap;
 					},
+					
+					
+					'userVoteMap' : function() {
+						console.log('userVoteMap helper for comments');
+						
+						var commentIds = Comments.find({parentItemId: $ctrl.getReactively('topicId')})
+						.map(function (comment) { return comment._id; });
+						
+						var votes = Votes.find({
+							articleId: { "$in": commentIds}
+						}).fetch();
+						
+						var userVoteMap = {};
+						angular.forEach(votes, function(vote, i) {
+							userVoteMap[vote.articleId] = vote.value;
+						});
+						
+						return userVoteMap;
+					},
 
+		
+					
 				});
 		
 			}
