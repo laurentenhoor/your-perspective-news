@@ -32,9 +32,7 @@ class CommentsCtrl {
 						console.log('fetch comments for topicId: '+ $ctrl.topicId);
 						
 						var comments = Comments.find({parentItemId: $ctrl.getReactively('topicId')})
-						
 						var roots = CommentsTreeBuilder.getCommentsTree(comments.fetch());
-						console.log(roots);
 					
 						return roots;
 					},
