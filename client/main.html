@@ -13,7 +13,7 @@
 	
 </head>
 
-<body ng-app="yourpers" ontouchstart="">
+<body ng-app="yourpers">
 
 	<div class="mobileShow">
 	
@@ -28,7 +28,13 @@
 	</div>
 
 	<div class="desktopShow">
-		<br><img class="logo-desktop" src="assets/logos/newnews_bw_simplified.png"/> Bezoek <span class="red">jouw<b>pers</b></span> via een smartphone of tablet.
+		<div class="desktop-title">
+			<img class="logo-desktop" src="assets/logos/newnews_bw_simplified.png"/> Bezoek <span class="red">jouw<b>pers</b></span> via een smartphone of tablet.
+		</div>
+		<iframe src="http://beta.jouwpers.nl/" sandbox="allow-same-origin allow-forms allow-scripts" seamless width="335" height="480"></iframe>
+		<div class="desktop-footer">
+			<h2>320<span> x 480</span> <span class="small">(iPhone)</span></h2>
+		</div>
 	</div>
 	
 </body>

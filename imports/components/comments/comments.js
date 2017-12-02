@@ -133,7 +133,6 @@ class CommentsCtrl {
 			console.log(something);
 		}
 		
-		
 	}
 
 }
