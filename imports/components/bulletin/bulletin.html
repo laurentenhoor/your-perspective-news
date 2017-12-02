@@ -95,14 +95,15 @@
 
 			</div>
 			
-			<a href="{{topic.selectedArticle[categoryName].url || ''}}" 
-				target="_self" 
-				class="{{topic.selectedArticle[categoryName].videoUrl ? 'link-disabled' : ''}}">
+<!-- 			<a href="{{topic.selectedArticle[categoryName].url || ''}}"  -->
+<!-- 				target="_self"  -->
+<!-- 				class="{{topic.selectedArticle[categoryName].videoUrl ? 'link-disabled' : ''}}"> -->
 				<div class="bulletin-item-description"
-					ng-if="topic.selectedArticle[categoryName].description">
+					ng-if="topic.selectedArticle[categoryName].description"
+					ng-click="toggle = !toggle" ng-class="{'auto-height' : toggle}">
 					{{topic.selectedArticle[categoryName].description}}
 				</div>
-			</a>
+<!-- 			</a> -->
 
 			<div class="bulletin-sources">
 				
