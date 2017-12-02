@@ -31,7 +31,7 @@ class BulletinCtrl {
 					'topics':function() {
 						console.log('topics helper');
 						
-						return Topics.find({}, {limit: 10}).fetch();
+						return Topics.find({}, {}).fetch();
 					},
 					'userVoteMap':function() {
 						console.log('userVoteMap helper for articles');
