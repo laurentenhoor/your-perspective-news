@@ -7,9 +7,13 @@
 	<div class="form-group">
 
 		<label ng-hide="$ctrl.urlDataIsLoaded" for="url">Plak een url naar een artikel</label>
-		<textarea ng-model="$ctrl.article.url" ng-change="$ctrl.urlChange()" ng-blur="$ctrl.article"
-		ng-hide="$ctrl.urlDataIsLoaded" 
-			class="form-control" rows="3" id="url"></textarea>
+		
+		<textarea id="url" 
+				ng-if="!$ctrl.urlDataIsLoaded"
+				ng-model="$ctrl.article.url" 
+				ng-change="$ctrl.urlChange()"   
+				class="form-control" 
+				rows="3"></textarea>
 
 
 		<label for="category">Selecteer de categorie waarin dit artikel het best past</label>
