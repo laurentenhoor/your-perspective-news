@@ -6,6 +6,7 @@ import {name as yourpersMenu} from '../imports/components/menu/menu';
 import {name as yourpersFeedback} from '../imports/components/feedback/feedback';
 import {name as yourpersBulletin} from '../imports/components/bulletin/bulletin';
 import {name as yourpersLoader} from '../imports/components/loader/loader';
+import {name as yourpersMobilePreview} from '../imports/components/mobilePreview/mobilePreview';
 
 import '../imports/startup/accounts-config.js';
 
@@ -58,6 +59,7 @@ angular.module('yourpers', [
 	yourpersMenu,
 	yourpersBulletin,
 	yourpersFeedback,
+	yourpersMobilePreview,
 	
 	'accounts.ui',
 	

@@ -1,23 +1,7 @@
 @import url("http://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,600,700,900");
-
-
-@import "../imports/style/variables.less";
-
-@import "../imports/style/bootstrap.less";
-
-.red {
-	color: @brand-color;
-	//color: rgba(0, 0, 0, 0.7);
-}
+@import "/imports/style/bootstrap.less";
 
 html * {max-height:1000000px;}
-
-html, body {
-   -webkit-overflow-scrolling : touch !important;
-    overflow: auto !important;
-    height: 100% !important;
-}
-
 
 html {
 	
@@ -28,8 +12,15 @@ html {
 	-ms-user-select: none; /* Internet Explorer/Edge */
 	user-select: none;
 	/* Non-prefixed version, currently supported by Chrome and Opera */
+	
 	box-sizing: initial !important;
 	
+}
+
+html, body {
+   -webkit-overflow-scrolling : touch !important;
+    overflow: auto !important;
+    height: 100% !important;
 }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
@@ -43,25 +34,4 @@ body {
     background: linear-gradient(to top, rgba(236, 233, 230, 0.36), #ffffff);
     font-size: 3vw;
     margin: 0px;
-
 }
-
-.logo-desktop {
-	width:4.5vw;
-	margin-top: -0.5vw;
-	
-}	
-
-.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
-.modal-backdrop.in {
-    filter: alpha(opacity=50);
-    opacity: .2;
-}
-
-[sidebarjs-container] {
-	background:#f9f9f9 !important;
-}
-
-
-
-
