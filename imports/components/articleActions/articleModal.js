@@ -87,6 +87,8 @@ class ArticleModalCtrl {
 				// "");
 				$ctrl.article.publisher = result['og:site_name'] || result['application-name'] || result['app-name'];
 				
+				$ctrl.article.publishedAt = result['article:published'];
+				
 				$ctrl.article.videoUrl = result['twitter:player'];
 				
 				$ctrl.article.imageUrl = result['og:image'] || result['twitter:image'] || result['twitter:image:src'];

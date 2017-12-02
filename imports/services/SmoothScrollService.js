@@ -1,7 +1,6 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
-
 class SmoothScrollService {
 
 	constructor() {
@@ -22,7 +21,7 @@ class SmoothScrollService {
 			return;
 		}
 		
-		var speed = Math.round(distance / 200);
+		var speed = Math.round(distance / 75);
 		if (speed >= 20) speed = 20;
 		var step = Math.round(distance / 25);
 		var leapX = stopX > startX ? startX + step : startX - step;
