@@ -17,6 +17,38 @@ import {name as yourpersOverview} from '../imports/components/deprecated/overvie
 import {name as yourpersTopic} from '../imports/components/deprecated/topic/topic';
 
 
+class MainCtrl {
+	
+	constructor($scope, $reactive, $window) {
+		
+		console.log('init MainCtrl');
+		
+		var $ctrl = this;
+		$reactive($ctrl).attach($scope);
+		
+		$ctrl.showMobile = false;
+		
+		angular.element($window).bind('resize', function(){
+			$scope.$apply(function() {
+				checkWindowSize();	
+			});
+		});
+		
+		function checkWindowSize() {
+			if ($window.innerWidth < 600) {
+				$ctrl.showMobile = true;
+			} else {
+				$ctrl.showMobile = false;
+			};
+		}
+		
+		checkWindowSize();
+	
+	}
+	
+}
+
+
 angular.module('yourpers', [
 	
 	angularMeteor,
@@ -37,6 +69,9 @@ angular.module('yourpers', [
 	yourpersTopic,
 	
 ])
+
+.controller('MainCtrl', ['$scope', '$reactive', '$window', MainCtrl])
+
 
 .config(['$locationProvider', '$routeProvider', '$httpProvider', '$provide', '$sceDelegateProvider', function(
 		$locationProvider, $routeProvider, $httpProvider, $provide, $sceDelegateProvider) {

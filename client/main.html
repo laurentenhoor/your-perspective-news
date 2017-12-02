@@ -1,6 +1,6 @@
 <head>
 
-	<title>jouwpers - nieuwsoverzicht</title>
+	<title>Jouwpers - Nieuwsoverzicht</title>
 	<meta name="description"
 		content="Jouw perspectief op het nieuws.">
 	
@@ -13,9 +13,9 @@
 	
 </head>
 
-<body ng-app="yourpers">
+<body ng-app="yourpers" ng-controller="MainCtrl as $ctrl">
 
-	<div class="mobileShow">
+	<div ng-if="$ctrl.showMobile" ng-cloak>
 	
 		<yourpers-loader></yourpers-loader>
 
@@ -27,14 +27,20 @@
 
 	</div>
 
-	<div class="desktopShow">
+	<div ng-if="!$ctrl.showMobile" ng-cloak>
+	
 		<div class="desktop-title">
-			<img class="logo-desktop" src="assets/logos/newnews_bw_simplified.png"/> Bezoek <span class="red">jouw<b>pers</b></span> via een smartphone of tablet.
+			<img class="logo-desktop" src="assets/logos/newnews_bw_simplified.png"/> 
+			Bezoek <span class="red">jouw<b>pers</b></span> via een smartphone of tablet.
 		</div>
-		<iframe src="http://beta.jouwpers.nl/" sandbox="allow-same-origin allow-forms allow-scripts" seamless width="335" height="480"></iframe>
+		
+		<iframe src="/" sandbox="allow-same-origin allow-forms allow-scripts" 
+		seamless width="414" height="736"></iframe>
+
 		<div class="desktop-footer">
-			<h2>320<span> x 480</span> <span class="small">(iPhone)</span></h2>
+			<h2>414<span> x 736</span> <span class="small">(iPhone 6 Plus)</span></h2>
 		</div>
+		
 	</div>
 	
 </body>

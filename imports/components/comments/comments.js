@@ -96,7 +96,7 @@ class CommentsCtrl {
 				ownerId : Meteor.userId(),
 				ownerName : Meteor.user() ? Meteor.user().username : null,
 				comment : comment.newChildComment,
-				score: 0
+				score: 0,
 				
 			}, function(error, _id){
 				
