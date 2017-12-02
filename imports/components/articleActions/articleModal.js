@@ -17,6 +17,8 @@ class ArticleModalCtrl {
 		$ctrl.category = category;		
 		$ctrl.article = article;
 		
+		
+		
 		if (category) {
 			$ctrl.newCategory = category.category;
 		}
@@ -43,7 +45,7 @@ class ArticleModalCtrl {
 			
 			$ctrl.mode = 'new_topic';
 			
-			$ctrl.category = {category: 'Algemene berichtgeving'};
+			$ctrl.newCategory = 'Algemene berichtgeving';
 			$ctrl.headerText = 'Maak een nieuw(s) item.';
 			$ctrl.headerSubText = 'Plaats een onderwerp dat nog niet door ons wordt besproken.';	
 			$ctrl.urlDataIsLoaded = false;
@@ -125,10 +127,10 @@ class ArticleModalCtrl {
 			
 			switch ($ctrl.mode) {
 				case 'add_source_to_topic':
-					Meteor.call('addArticle', $ctrl.topicId, $ctrl.category.category, $ctrl.article);
+					Meteor.call('addArticle', $ctrl.topicId, $ctrl.newCategory, $ctrl.article);
 					break;
 				case 'new_topic':
-					Meteor.call('addArticle', null, $ctrl.category.category, $ctrl.article);
+					Meteor.call('addArticle', null, $ctrl.newCategory, $ctrl.article);
 					break;
 				case 'edit':
 					console.log('edit');
