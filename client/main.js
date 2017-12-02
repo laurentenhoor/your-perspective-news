@@ -36,11 +36,15 @@ class MainCtrl {
 		});
 		
 		function checkWindowSize() {
+			
 			if ($window.innerWidth < 600) {
 				$ctrl.showMobile = true;
 			} else {
 				$ctrl.showMobile = false;
 			};
+			
+			console.log($window.innerWidth )
+			console.log($ctrl.showMobile)
 		}
 		
 		checkWindowSize();
