@@ -104,16 +104,10 @@ class BulletinCtrl {
 			topic.selectedArticle[category] = article;
 		}
 		
-		
-		
+	
 		$ctrl.clickChat = function(topicId) {
 			console.log('clickChat');
-			
-			
-			
-			SmoothScrollService.scrollTo(topicId);
-			
-//			$anchorScroll('discuss-'+topicId);
+			SmoothScrollService.horizontalScroll('discuss-'+topicId, 'scroll-'+topicId);
 			
 		}
 		

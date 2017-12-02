@@ -8,19 +8,43 @@ class SmoothScrollService {
 
 	}
 
-	scrollTo(topicId) {
+	horizontalScroll(targetId, scrollScopeId) {
 
         // This scrolling function 
         // is from http://www.itnewb.com/tutorial/Creating-the-Smooth-Scroll-Effect-with-JavaScript
 
-		var myElement = document.getElementById('discuss-'+topicId);
-		console.log(myElement);
+		var myElement = document.getElementById(targetId);
+		console.log(targetId);
 		var leftPos = myElement.offsetLeft;
 		console.log(leftPos);
-		var scrollElement = document.getElementById('scroll-'+topicId);
+		var scrollElement = document.getElementById(scrollScopeId);
 		console.log(scrollElement);
 		
-		scrollElement.scrollLeft = leftPos;
+//		scrollElement.scrollLeft = leftPos;
+		
+		
+      var startY = scrollElement.scrollLeft;
+      var stopY = myElement.offsetLeft;
+      var distance = stopY > startY ? stopY - startY : startY - stopY;
+      if (distance < 100) {
+          scrollTo(0, stopY); return;
+      }
+      var speed = Math.round(distance / 100);
+      if (speed >= 20) speed = 20;
+      var step = Math.round(distance / 25);
+      var leapY = stopY > startY ? startY + step : startY - step;
+      var timer = 0;
+      if (stopY > startY) {
+          for ( var i=startY; i<stopY; i+=step ) {
+              setTimeout("document.getElementById('"+scrollScopeId+"').scrollLeft = "+leapY, timer * speed);
+              leapY += step; if (leapY > stopY) leapY = stopY; timer++;
+          } return;
+      }
+      for ( var i=startY; i>stopY; i-=step ) {
+          setTimeout("document.getElementById("+scrollScopeId+").scrollLeft = "+leapY, timer * speed);
+          leapY -= step; if (leapY < stopY) leapY = stopY; timer++;
+      }	
+		
 		
 //        var startY = currentYPosition();
 //        var stopY = elmYPosition(eID);
