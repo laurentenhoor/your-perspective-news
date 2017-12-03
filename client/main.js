@@ -2,20 +2,20 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import angularRoute from 'angular-route';
 
-import {name as yourpersMenu} from '../imports/components/menu/menu';
-import {name as yourpersFeedback} from '../imports/components/feedback/feedback';
-import {name as yourpersBulletin} from '../imports/components/bulletin/bulletin';
-import {name as yourpersLoader} from '../imports/components/loader/loader';
-import {name as yourpersMobilePreview} from '../imports/components/mobilePreview/mobilePreview';
+import {name as yourpersMenu} from '/imports/components/menu/menu';
+import {name as yourpersFeedback} from '/imports/components/feedback/feedback';
+import {name as yourpersBulletin} from '/imports/components/bulletin/bulletin';
+import {name as yourpersLoader} from '/imports/components/loader/loader';
+import {name as yourpersMobilePreview} from '/imports/components/mobilePreview/mobilePreview';
 
-import '../imports/startup/accounts-config.js';
+import '/imports/startup/accounts-config.js';
 
 // Deprecated
-import {name as yourpersPosts} from '../imports/components/deprecated/post/post';
-import {name as yourpersItem} from '../imports/components/deprecated/item/item';
-import {name as yourpersBundle} from '../imports/components/deprecated/bundle/bundle';
-import {name as yourpersOverview} from '../imports/components/deprecated/overview/overview';
-import {name as yourpersTopic} from '../imports/components/deprecated/topic/topic';
+import {name as yourpersPosts} from '/imports/components/deprecated/post/post';
+import {name as yourpersItem} from '/imports/components/deprecated/item/item';
+import {name as yourpersBundle} from '/imports/components/deprecated/bundle/bundle';
+import {name as yourpersOverview} from '/imports/components/deprecated/overview/overview';
+import {name as yourpersTopic} from '/imports/components/deprecated/topic/topic';
 
 
 class MainCtrl {

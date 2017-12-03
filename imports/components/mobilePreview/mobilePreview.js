@@ -14,8 +14,6 @@ class MobilePreviewCtrl {
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
 		
-	
-		
 	}
 
 }
