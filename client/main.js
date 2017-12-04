@@ -38,17 +38,13 @@ class MainCtrl {
 		function checkWindowSize() {
 			
 			var windowSize = $window.innerWidth;
-			windowSize = document.body.parentNode.clientWidth;
 			
 			if (windowSize < 600) {
 				$ctrl.showMobile = true;
 			} else {
 				$ctrl.showMobile = false;
 			};
-			
-			console.log($window.innerWidth);
-			console.log(document.body.parentNode.clientWidth);
-			console.log($ctrl.showMobile);
+		
 		}
 		
 		checkWindowSize();
