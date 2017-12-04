@@ -20,7 +20,7 @@ import {name as yourpersTopic} from '/imports/components/deprecated/topic/topic'
 
 class MainCtrl {
 	
-	constructor($scope, $reactive, $window) {
+	constructor($scope, $reactive, $window, $document) {
 		
 		console.log('init MainCtrl');
 		
@@ -37,14 +37,18 @@ class MainCtrl {
 		
 		function checkWindowSize() {
 			
-			if ($window.innerWidth < 600) {
+			var windowSize = $window.innerWidth;
+			windowSize = document.body.parentNode.clientWidth;
+			
+			if (windowSize < 600) {
 				$ctrl.showMobile = true;
 			} else {
 				$ctrl.showMobile = false;
 			};
 			
-			console.log($window.innerWidth )
-			console.log($ctrl.showMobile)
+			console.log($window.innerWidth);
+			console.log(document.body.parentNode.clientWidth);
+			console.log($ctrl.showMobile);
 		}
 		
 		checkWindowSize();
