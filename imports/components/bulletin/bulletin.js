@@ -1,9 +1,13 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
+import moment from 'moment';
+import 'moment/locale/nl'
+
 import {name as yourpersArticleActions} from '../articleActions/articleActions';
 import {name as SmoothScrollService} from '../../services/SmoothScrollService.js';
 import {name as yourpersComments} from '../comments/comments';
+
 
 import template from './bulletin.html';
 import style from './bulletin.less';
@@ -70,6 +74,14 @@ class BulletinCtrl {
 			}
 			
 		});
+		
+		
+		moment.locale('nl');
+		$ctrl.getTimeTag = function(article) {
+			var date = article.publishedAt || article.createdAt;
+			return moment(date).fromNow()
+		}
+		
 
 		$ctrl.getArticlesByIds = function(ids) {
 			var articles = Articles.find({"_id": { "$in": ids }});
