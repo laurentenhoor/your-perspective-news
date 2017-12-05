@@ -82,16 +82,16 @@
 					
 					<div class="bulletin-item-title-container">
 						
+						<div class="bulletin-item-title">
+							{{topic.selectedArticle[categoryName].title}}
+						</div>
+						
 						<div class="bulletin-item-publisher">
 							{{topic.selectedArticle[categoryName].publisher}}
 						</div>
 						
 						<div class="bulletin-time-elapsed">
 							{{ $ctrl.getTimeTag(topic.selectedArticle[categoryName]) }}
-						</div>
-							
-						<div class="bulletin-item-title">
-							{{topic.selectedArticle[categoryName].title}}
 						</div>
 							
 					</div>

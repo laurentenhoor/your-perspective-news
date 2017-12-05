@@ -3,16 +3,19 @@
 	<div class="comments-content-header">
 		<b>{{comment.ownerName || 'anoniem'}}</b>
 	</div>
+	
+	<div class="comment-time-elapsed">
+		{{ $ctrl.getTimeTag(comment) }}
+	</div>
 
 	<div class="comments-content-text" 
 		ng-bind-html="comment.comment |  linky:'_self':{class: 'a-extern'}">	
 	</div>
 	
-		<div class="comment-content-footer">
-		
-
+	<div class="comment-content-footer">
+	
 		<div class="comments-content-voting">
-			
+					
 			<div class="comments-delete">
 				<i class=" material-icons"
 					ng-if="$ctrl.userCommentsMap[comment._id]"
@@ -38,9 +41,6 @@
 				ng-click="$ctrl.vote(comment._id,-1);" 
 				ng-class="{true: 'comments-downvoted', false: ''}[$ctrl.userVoteMap[comment._id]==-1]">
 			</div>
-			
-				
-		
 		
 		</div>
 

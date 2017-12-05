@@ -1,6 +1,9 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
+import moment from 'moment';
+import 'moment/locale/nl'
+
 import {name as CommentsTreeBuilder} from '../../services/CommentsTreeBuilder.js';
 
 import template from './comments.html';
@@ -82,8 +85,13 @@ class CommentsCtrl {
 		
 			}
 		});
-	
 		
+		moment.locale('nl');
+		$ctrl.getTimeTag = function(comment) {
+			var date = comment.updatedAt;
+			return moment(date).fromNow()
+		}
+	
 		$ctrl.newComment = function(comment) {
 			
 			console.log(comment.newChildComment);

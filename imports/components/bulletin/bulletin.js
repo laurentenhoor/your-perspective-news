@@ -78,8 +78,18 @@ class BulletinCtrl {
 		
 		moment.locale('nl');
 		$ctrl.getTimeTag = function(article) {
-			var date = article.publishedAt || article.createdAt;
+			
+			if (!article) {
+				return;
+			}
+			var date;
+			if (article.publishedAt) {
+				date = article.publishedAt; 
+			} else {
+				date = article.updatedAt; 
+			}
 			return moment(date).fromNow()
+			
 		}
 		
 
