@@ -1,22 +1,22 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
-import style from'./articleModal.less';
-
-import angularBootstrap from 'angular-ui-bootstrap';
-
+import style from'./articleMaterialModal.less';
 
 class ArticleModalCtrl {
 
-	constructor($rootScope, $scope, $reactive, $uibModalInstance, topicId, category, article) {
+	constructor($rootScope, $scope, $reactive, $mdDialog, topicId, category, article) {
 
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
-
+		
+		console.log('init ArticleModalCtrl Material Version');
+		
 		$ctrl.topicId = topicId;
 		$ctrl.category = category;		
 		$ctrl.article = article;
 		
+		console.log($ctrl.topicId);
 		
 		if (category) {
 			$ctrl.newCategory = category.category;
@@ -27,7 +27,7 @@ class ArticleModalCtrl {
 			$ctrl.mode = 'edit';
 			
 			$ctrl.headerText = 'Wijzig deze bron.';
-			$ctrl.headerSubText = 'Verplaats of verwijder deze bron.';
+			$ctrl.headerSubText = 'Verander de categorie of verwijder deze bron.';
 			$ctrl.urlDataIsLoaded = true;
 			
 
@@ -44,7 +44,7 @@ class ArticleModalCtrl {
 			
 			$ctrl.mode = 'new_topic';
 			
-			$ctrl.newCategory = 'Algemene berichtgeving';
+//			$ctrl.newCategory = 'Algemene berichtgeving';
 			$ctrl.headerText = 'Maak een nieuw(s) item.';
 			$ctrl.headerSubText = 'Plaats een onderwerp dat nog niet door ons wordt besproken.';	
 			$ctrl.urlDataIsLoaded = false;
@@ -56,6 +56,7 @@ class ArticleModalCtrl {
 			
 		}
 
+		
 		$ctrl.urlChange = function() {
 
 			console.log('url input changed');
@@ -68,12 +69,13 @@ class ArticleModalCtrl {
 			$rootScope.stateIsLoading = true;
 
 			$ctrl.call('getUrlMetadata', $ctrl.article.url, function(error, result) {
-
+				
 				$scope.$apply(function() {
 					$rootScope.stateIsLoading = false;
 				});
 
 				if(error) {
+					console.error(error);
 					return;
 				}
 
@@ -114,36 +116,17 @@ class ArticleModalCtrl {
 			});
 		}
 		
-		$ctrl.remove = function(topicId, categoryName, article) {
-			console.log('removeArticle');console.log(article._id);console.log(topicId);
-			Meteor.call('removeArticleFromCategory', topicId, categoryName, article._id)
-			$uibModalInstance.close();
-		}
 		
-		$ctrl.ok = function () {
+		function isValid(url) {
 			
-			console.log($ctrl.article)
-			
-			switch ($ctrl.mode) {
-				case 'add_source_to_topic':
-					Meteor.call('addArticle', $ctrl.topicId, $ctrl.newCategory, $ctrl.article);
-					break;
-				case 'new_topic':
-					Meteor.call('addArticle', null, $ctrl.newCategory, $ctrl.article);
-					break;
-				case 'edit':
-					console.log('edit');
-					Meteor.call('addArticleToCategory', $ctrl.topicId, $ctrl.newCategory, $ctrl.article);
-					Meteor.call('removeArticleFromCategory', $ctrl.topicId, $ctrl.category.category, $ctrl.article._id);
-					break;
-			}
-			$uibModalInstance.close($ctrl.feedback);
+			console.log('isValid()');
+			console.log(url);
 
-		};
+			var urlregex = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
+			return urlregex.test(url);
 
-		$ctrl.cancel = function () {
-			$uibModalInstance.dismiss('cancel');
-		};
+		}
+
 		
 		
 		$ctrl.searchTextChange = function(text) {
@@ -153,10 +136,15 @@ class ArticleModalCtrl {
 		$ctrl.selectedItemChange = function(item) {
 			console.log('Item changed to ' + JSON.stringify(item));
 		}
+
 		
+		$ctrl.cancel = function() {
+		      $mdDialog.cancel();
+
+		}
 		
 		$ctrl.loadAll = function() {
-			var map = ('aap, noot, mies').split(/, +/g).map( function (state){
+			var map = ('Algemene berichtgeving, Andere kijk, Entertainment').split(/, +/g).map( function (state){
 		        return {
 		            value: state.toLowerCase(),
 		            display: state
@@ -186,24 +174,11 @@ class ArticleModalCtrl {
 		      var results = query ? $ctrl.categories.filter( createFilterFor(query) ) : $ctrl.categories,
 		              deferred;
 		      
-		      
 		      console.log(results);
 		         
 		      return results;
 		          
 		 }
-		
-		
-		function isValid(url) {
-			
-			console.log('isValid()');
-			console.log(url);
-
-			var urlregex = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
-			return urlregex.test(url);
-
-		}
-
 
 	}
 
@@ -212,9 +187,8 @@ class ArticleModalCtrl {
 
 export default angular.module('yourpers.ArticleModalCtrl', [
 	angularMeteor,
-	angularBootstrap
 	]).controller('ArticleModalCtrl', 
-			['$rootScope', '$scope', '$reactive', '$uibModalInstance',
+			['$rootScope', '$scope', '$reactive', '$mdDialog',
 				'topicId', 'category', 'article', 
 				ArticleModalCtrl]
 	);

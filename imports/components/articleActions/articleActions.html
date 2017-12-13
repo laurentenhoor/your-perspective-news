@@ -1,8 +1,7 @@
-<div ng-if="!$ctrl.article" ng-click="$ctrl.open()">
+<div ng-if="!$ctrl.article" ng-click="$ctrl.open($event)">
 	<i class="material-icons">note_add</i>
 </div>
 
-<div ng-if="$ctrl.article" ng-click="$ctrl.open()">
+<div ng-if="$ctrl.article" ng-click="$ctrl.open($event)">
 	<i class="material-icons">edit</i>
 </div>
-

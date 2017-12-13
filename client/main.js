@@ -2,6 +2,9 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import angularRoute from 'angular-route';
 
+import angularMaterial from 'angular-material';
+import angularMaterialStyle from '/node_modules/angular-material/angular-material.css';
+
 import {name as yourpersMenu} from '/imports/components/menu/menu';
 import {name as yourpersFeedback} from '/imports/components/feedback/feedback';
 import {name as yourpersBulletin} from '/imports/components/bulletin/bulletin';
@@ -58,6 +61,7 @@ angular.module('yourpers', [
 	
 	angularMeteor,
 	angularRoute,
+	angularMaterial,
 	
 	yourpersLoader,
 	yourpersMenu,
@@ -77,7 +81,6 @@ angular.module('yourpers', [
 ])
 
 .controller('MainCtrl', ['$scope', '$reactive', '$window', MainCtrl])
-
 
 .config(['$locationProvider', '$routeProvider', '$httpProvider', '$provide', '$sceDelegateProvider', function(
 		$locationProvider, $routeProvider, $httpProvider, $provide, $sceDelegateProvider) {

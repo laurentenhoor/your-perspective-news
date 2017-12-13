@@ -15,22 +15,25 @@
 
 <body ng-app="yourpers" ng-controller="MainCtrl as $ctrl">
 
-	<div ng-if="$ctrl.showMobile" ng-cloak>
+	<div id="container">
 	
-		<yourpers-loader></yourpers-loader>
-
-		<yourpers-menu></yourpers-menu>
+		<div ng-if="$ctrl.showMobile" ng-cloak>
 		
-		<div ng-view></div>
-
-		<yourpers-feedback></yourpers-feedback>
-
-	</div>
-
-	<div ng-if="!$ctrl.showMobile" ng-cloak>
+			<yourpers-loader></yourpers-loader>
 	
-		<yourpers-mobile-preview></yourpers-mobile-preview>
-
-	</div>
+			<yourpers-menu></yourpers-menu>
+			
+			<div ng-view></div>
 	
+			<yourpers-feedback></yourpers-feedback>
+	
+		</div>
+	
+		<div ng-if="!$ctrl.showMobile" ng-cloak>
+		
+			<yourpers-mobile-preview></yourpers-mobile-preview>
+	
+		</div>
+	</div>
+	 
 </body>

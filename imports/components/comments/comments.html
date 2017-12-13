@@ -12,10 +12,11 @@
 		ng-if="$ctrl.showRootInput"
 		ng-submit="$ctrl.newComment(comment);$ctrl.showRootInput=false;"
 		novalidate> 
-		
+			
 		<textarea class="comments-input root"
 			ng-model="comment.newChildComment" 
-			required autofocus>
+			required
+			autofocus>
 		</textarea>
 		
 		<input class="comments-input-button root" 

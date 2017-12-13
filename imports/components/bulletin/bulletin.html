@@ -2,6 +2,21 @@
 	id="scroll-{{topic._id}}"
 	ng-repeat="topic in $ctrl.topics | orderBy:'-createdAt'" 
 	ng-init="topic.selectedArticle = {}">
+	
+	<div class="bulletin-item-outer-container"
+	 	id="discuss-{{topic._id}}">
+	
+		<div class="bulletin-item-header">Jouw perspectief</div>
+
+		<div class="bulletin-item-image-and-details-container bulletin-community">
+
+			<yourpers-comments 
+				topic-id="topic._id" >
+			</yourpers-comments>
+			
+		</div>
+			
+	</div>
 
 	<div class="bulletin-item-outer-container"
 		ng-repeat="categoryBlock in topic.articlesByCategory | orderBy:'sortingOrder'" 
@@ -129,21 +144,7 @@
 
 	</div>
 	
-	
-	<div class="bulletin-item-outer-container"
-	 	id="discuss-{{topic._id}}">
-	
-		<div class="bulletin-item-header">Jouw perspectief</div>
 
-		<div class="bulletin-item-image-and-details-container bulletin-community">
-
-			<yourpers-comments 
-				topic-id="topic._id" >
-			</yourpers-comments>
-			
-		</div>
-			
-	</div>
 	
 		
 </div>

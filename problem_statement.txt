@@ -1,0 +1,6 @@
+Potential problem statements for allpers:
+
+	We cannot find a multi-channel news/opinion integrator with an open and trusted character.
+	Online news distribution is too much personalized. We cannot find a perspective integrator: objectivity by rich subjectivity.
+	Online pulic opinion is not trustworthy and poluted by (rude) personal oneliner statements.
+	It is not possible to share and discuss multiple news items at once (cross-linking and comparison).

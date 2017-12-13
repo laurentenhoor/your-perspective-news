@@ -30,9 +30,8 @@ class CommentsCtrl {
 		
 				$ctrl.helpers({
 					
-					
 					'comments' : function() {
-						console.log('fetch comments for topicId: '+ $ctrl.topicId);
+//						console.log('fetch comments for topicId: '+ $ctrl.topicId);
 						
 						var comments = Comments.find({parentItemId: $ctrl.getReactively('topicId')})
 						var roots = CommentsTreeBuilder.getCommentsTree(comments.fetch());
@@ -42,7 +41,7 @@ class CommentsCtrl {
 	
 					
 					'userCommentsMap' : function() {
-						console.log('userComments helper for comments');
+//						console.log('userComments helper for comments');
 						
 						var commentIds = Comments.find({parentItemId: $ctrl.getReactively('topicId')})
 						.map(function (comment) { return comment._id; });
@@ -62,7 +61,7 @@ class CommentsCtrl {
 					
 					
 					'userVoteMap' : function() {
-						console.log('userVoteMap helper for comments');
+//						console.log('userVoteMap helper for comments');
 						
 						var commentIds = Comments.find({parentItemId: $ctrl.getReactively('topicId')})
 						.map(function (comment) { return comment._id; });

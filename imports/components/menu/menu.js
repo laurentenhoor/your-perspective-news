@@ -9,7 +9,7 @@ import {name as yourpersArticleActions} from '../articleActions/articleActions';
 class MenuCtrl {
 	
   constructor($scope, $location, $window) {
-	  
+	  	
 	  $scope.isActive = function(viewLocation) {
 	    return viewLocation === $location.path();
 	  };	
@@ -22,7 +22,7 @@ class MenuCtrl {
  
 export default angular.module('menu', [
   angularMeteor,
-  yourpersArticleActions
+  yourpersArticleActions,
 ])
   .component('yourpersMenu', {
     templateUrl : template,
