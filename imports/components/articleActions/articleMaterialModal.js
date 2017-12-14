@@ -178,6 +178,13 @@ class ArticleModalCtrl {
 		}	
 		
 		
+		$ctrl.remove = function(topicId, categoryName, article) {
+			console.log('removeArticle');console.log(article._id);console.log(topicId);
+			Meteor.call('removeArticleFromCategory', topicId, categoryName, article._id)
+			$mdDialog.destroy();
+		}
+		
+		
 		
 		$ctrl.loadAll = function() {
 			var map = ('Algemene berichtgeving, Andere kijk, Entertainment').split(/, +/g).map( function (state){
