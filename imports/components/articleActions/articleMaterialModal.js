@@ -5,7 +5,7 @@ import style from'./articleMaterialModal.less';
 
 class ArticleModalCtrl {
 
-	constructor($rootScope, $scope, $reactive, $mdDialog, topicId, category, article) {
+	constructor($rootScope, $scope, $reactive, $document, $mdDialog, topicId, category, article) {
 
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
@@ -117,6 +117,18 @@ class ArticleModalCtrl {
 			});
 		}
 		
+//		function blurAllInputs() {
+//			var inputs = $document[0].querySelectorAll('input');
+//		      
+//			  console.log(inputs);
+//			  
+//		      inputs.forEach(function(input) {
+//		        console.log(input.name + ': ' + input.value);
+//		        console.log(input);
+//		        input.blur();
+//		        
+//		      });
+//		}
 		
 		function isValid(url) {
 			
@@ -146,11 +158,11 @@ class ArticleModalCtrl {
 					Meteor.call('removeArticleFromCategory', $ctrl.topicId, $ctrl.category.category, $ctrl.article._id);
 					break;
 			}
-			$mdDialog.destroy();
+//			blurAllInputs();
+			$mdDialog.hide();
 
 		};
-		
-		
+	
 		$ctrl.searchTextChange = function(text) {
 		      console.log('Text changed to ' + text);
 		      $ctrl.modifiedCategory = text;
@@ -173,15 +185,16 @@ class ArticleModalCtrl {
 
 		
 		$ctrl.cancel = function() {
-		      $mdDialog.cancel();
-
+//			  blurAllInputs();
+		      $mdDialog.hide();
 		}	
 		
 		
 		$ctrl.remove = function(topicId, categoryName, article) {
 			console.log('removeArticle');console.log(article._id);console.log(topicId);
 			Meteor.call('removeArticleFromCategory', topicId, categoryName, article._id)
-			$mdDialog.destroy();
+//			blurAllInputs();
+			$mdDialog.hide();
 		}
 		
 		
@@ -231,7 +244,7 @@ class ArticleModalCtrl {
 export default angular.module('yourpers.ArticleModalCtrl', [
 	angularMeteor,
 	]).controller('ArticleModalCtrl', 
-			['$rootScope', '$scope', '$reactive', '$mdDialog',
+			['$rootScope', '$scope', '$reactive', '$document', '$mdDialog',
 				'topicId', 'category', 'article', 
 				ArticleModalCtrl]
 	);

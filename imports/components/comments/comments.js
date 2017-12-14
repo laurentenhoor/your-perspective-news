@@ -85,10 +85,28 @@ class CommentsCtrl {
 			}
 		});
 		
+		function blurAllInputs() {
+		var inputs = $document[0].querySelectorAll('input');
+	      
+		  console.log(inputs);
+		  
+	      inputs.forEach(function(input) {
+	        console.log(input.name + ': ' + input.value);
+	        console.log(input);
+	        input.blur();
+	        
+	      });
+	}
+		
 		moment.locale('nl');
 		$ctrl.getTimeTag = function(comment) {
 			var date = comment.updatedAt;
 			return moment(date).fromNow()
+		}
+		
+		$ctrl.focusOnThisElement = function(elementje) {
+			console.log('$ctrl.focusOnThisElement')
+			console.log(elementje)
 		}
 	
 		$ctrl.newComment = function(comment) {
@@ -114,6 +132,8 @@ class CommentsCtrl {
 				$scope.$apply();
 
 			});
+			
+			blurAllInputs();
 			
 		}
 		
