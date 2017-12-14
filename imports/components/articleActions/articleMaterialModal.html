@@ -12,9 +12,10 @@
         
           	<label>Plak een url naar een artikel</label>
           	
-          	<input ng-model="$ctrl.article.url"
-         		 ng-change="$ctrl.urlChange()"
-          		md-select-on-focus tabindex="-1">
+          	<input class="modal-item-url-input" 
+          		ng-model="$ctrl.article.url"
+         		ng-change="$ctrl.urlChange()"
+          		md-select-on-focus >
       		</input>
       		
       	<!-- 	<div class="hint">Klik op bovenstaande veld en houd daarna lang ingedrukt om een url te plakken.</div> -->
@@ -22,7 +23,7 @@
       	</md-input-container>
       
       	<md-autocomplete
-		    md-selected-item="$ctrl.newCategory"
+		    md-selected-item="$ctrl.selectedCategory"
 		    md-search-text-change="$ctrl.searchTextChange($ctrl.searchText)"
 		    md-search-text="$ctrl.searchText"
 		    md-selected-item-change="$ctrl.selectedItemChange(item)"
@@ -31,16 +32,16 @@
 		    md-min-length="0"
 		    md-floating-label="Selecteer een categorie"
 		    placeholder="Categorie"
-		    ng-focus="$ctrl.searchText=''"
-		    tabindex="-1">
+		    ng-focus="$ctrl.focusHandler()"
+		    >
 		    
 		  <md-item-template>
 		    <span md-highlight-text="$ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
 		  </md-item-template>
 		  
-		  <md-not-found>
-		    <a ng-click="$ctrl.newCategory($ctrl.searchText)">Nieuwe categorie '{{$ctrl.searchText}}'.</a>
-		  </md-not-found>
+<!-- 		  <md-not-found> -->
+<!-- 		    <a ng-click="$ctrl.newCategory($ctrl.searchText)">Maak categorie '{{$ctrl.searchText}}'.</a> -->
+<!-- 		  </md-not-found> -->
 		  
 <!-- 		  <div class="hint">Selecteer een categorie waarin dit artikel het best past.  -->
 <!-- 		  Voeg zelf een categorie toe als de juiste er niet tussenzit.</div> -->
@@ -98,7 +99,7 @@
       <md-button class="md-raised" ng-click="$ctrl.cancel()">
        Annuleren
       </md-button>
-      <md-button class="md-raised" ng-click="answer('useful')">
+      <md-button ng-if="$ctrl.urlDataIsLoaded" class="md-raised  md-primary" ng-click="$ctrl.ok()">
         Opslaan
       </md-button>
     </md-dialog-actions>

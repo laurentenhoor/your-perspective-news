@@ -19,7 +19,8 @@ class ArticleModalCtrl {
 		console.log($ctrl.topicId);
 		
 		if (category) {
-			$ctrl.newCategory = category.category;
+			$ctrl.initialCategory = category.category;
+			$ctrl.selectedCategory = category.category;
 		}
 		
 		if ($ctrl.article) {
@@ -44,7 +45,7 @@ class ArticleModalCtrl {
 			
 			$ctrl.mode = 'new_topic';
 			
-//			$ctrl.newCategory = 'Algemene berichtgeving';
+//			$ctrl.modifiedCategory = 'Algemene berichtgeving';
 			$ctrl.headerText = 'Maak een nieuw(s) item.';
 			$ctrl.headerSubText = 'Plaats een onderwerp dat nog niet door ons wordt besproken.';	
 			$ctrl.urlDataIsLoaded = false;
@@ -128,13 +129,47 @@ class ArticleModalCtrl {
 		}
 
 		
+		$ctrl.ok = function () {
+			
+			console.log($ctrl.article)
+			
+			switch ($ctrl.mode) {
+				case 'add_source_to_topic':
+					Meteor.call('addArticle', $ctrl.topicId, $ctrl.modifiedCategory, $ctrl.article);
+					break;
+				case 'new_topic':
+					Meteor.call('addArticle', null, $ctrl.modifiedCategory, $ctrl.article);
+					break;
+				case 'edit':
+					console.log('edit');
+					Meteor.call('addArticleToCategory', $ctrl.topicId, $ctrl.modifiedCategory, $ctrl.article);
+					Meteor.call('removeArticleFromCategory', $ctrl.topicId, $ctrl.category.category, $ctrl.article._id);
+					break;
+			}
+			$mdDialog.destroy();
+
+		};
+		
 		
 		$ctrl.searchTextChange = function(text) {
 		      console.log('Text changed to ' + text);
+		      $ctrl.modifiedCategory = text;
 	    }
 		
 		$ctrl.selectedItemChange = function(item) {
 			console.log('Item changed to ' + JSON.stringify(item));
+			if (item) {
+				$ctrl.searchTextChange(item.display);
+			}
+			
+		}
+		
+		$ctrl.focusHandler = function() {
+			
+			if ($ctrl.initialCategory == $ctrl.searchText) {
+				$ctrl.searchText = '';
+			}
+			
 		}
 
 		
@@ -142,6 +177,8 @@ class ArticleModalCtrl {
 		      $mdDialog.cancel();
 
 		}
+		
+		
 		
 		$ctrl.loadAll = function() {
 			var map = ('Algemene berichtgeving, Andere kijk, Entertainment').split(/, +/g).map( function (state){
