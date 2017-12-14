@@ -161,7 +161,6 @@ class ArticleModalCtrl {
 			if (item) {
 				$ctrl.searchTextChange(item.display);
 			}
-			
 		}
 		
 		$ctrl.focusHandler = function() {
@@ -176,7 +175,7 @@ class ArticleModalCtrl {
 		$ctrl.cancel = function() {
 		      $mdDialog.cancel();
 
-		}
+		}	
 		
 		
 		

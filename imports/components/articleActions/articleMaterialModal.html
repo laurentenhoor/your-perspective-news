@@ -15,7 +15,7 @@
           	<input class="modal-item-url-input" 
           		ng-model="$ctrl.article.url"
          		ng-change="$ctrl.urlChange()"
-          		md-select-on-focus >
+          		md-select-on-focus>
       		</input>
       		
       	<!-- 	<div class="hint">Klik op bovenstaande veld en houd daarna lang ingedrukt om een url te plakken.</div> -->
@@ -96,7 +96,7 @@
 		</div>
 
       <span flex></span>
-      <md-button class="md-raised" ng-click="$ctrl.cancel()">
+      <md-button class="md-raised" ng-click="$ctrl.cancel()" tabindex="0">
        Annuleren
       </md-button>
       <md-button ng-if="$ctrl.urlDataIsLoaded" class="md-raised  md-primary" ng-click="$ctrl.ok()">
