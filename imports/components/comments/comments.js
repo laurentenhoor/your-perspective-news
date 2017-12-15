@@ -106,11 +106,6 @@ class CommentsCtrl {
 			return moment(date).fromNow()
 		}
 
-		$ctrl.focusOnThisElement = function(elementje) {
-			console.log('$ctrl.focusOnThisElement')
-			console.log(elementje)
-		}
-
 		$ctrl.newComment = function(comment) {
 
 			console.log(comment.newChildComment);
