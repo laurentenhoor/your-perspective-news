@@ -6,20 +6,31 @@ var name = "autoFocus";
 export default angular.module(name, [
 	angularMeteor
 	]).directive(name, [
-		'$timeout', function($timeout) {
-			
+		'$document', '$timeout', function($document, $timeout) {
+
 			return function(scope, element, attrs) {
+
+				blurAllInputs($document);
+
+				console.log(element[0]);
 				
-				console.log('autoFocus Directive initiated');
-		    	
-		    	console.log(element);
-		    	console.log(scope);
-		    	console.log(attrs);
-		    	
-		    	$timeout(function() {
-		    		 element[0].focus();
-		    	 });
-				
+				$timeout(function() {
+					$timeout(function() {
+						element[0].focus();
+					});
+				});
+
 			}
 		}
-	]);
+		]);
+
+
+function blurAllInputs($document) {
+
+	var inputs = $document[0].querySelectorAll('input');
+
+	inputs.forEach(function(input) {
+		input.blur();
+	});
+
+}
