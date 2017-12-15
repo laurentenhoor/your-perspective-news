@@ -13,10 +13,12 @@ import commentsTreeTemplate from './commentsTree.html';
 import { Comments } from '/imports/api/comments.js';
 import { Votes } from '/imports/api/votes.js';
 
+import {name as AutoFocusDirective} from '/imports/directives/autoFocus.js';
+
 
 class CommentsCtrl {
 
-	constructor($rootScope, $scope, $reactive, CommentsTreeBuilder) {
+	constructor($rootScope, $scope, $document, $reactive, CommentsTreeBuilder) {
 
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
@@ -79,13 +81,13 @@ class CommentsCtrl {
 					},
 
 		
-					
 				});
 		
 			}
 		});
 		
-		function blurAllInputs() {
+		$ctrl.blurAllInputs = function() {
+			
 		var inputs = $document[0].querySelectorAll('input');
 	      
 		  console.log(inputs);
@@ -133,7 +135,7 @@ class CommentsCtrl {
 
 			});
 			
-			blurAllInputs();
+			$ctrl.blurAllInputs();
 			
 		}
 		
@@ -166,10 +168,11 @@ class CommentsCtrl {
 export default angular.module('yourpers.comments', [
 	angularMeteor,
 	CommentsTreeBuilder,
+	AutoFocusDirective,
 	])
 	.component('yourpersComments', {
 		templateUrl : template,
-		controller: ['$rootScope', '$scope', '$reactive', 'CommentsTreeBuilder', CommentsCtrl],
+		controller: ['$rootScope', '$scope', '$document', '$reactive', 'CommentsTreeBuilder', CommentsCtrl],
 		bindings: {
 			topicId : '<',
 		}

@@ -24,11 +24,9 @@
 				</i>
 			</div>
 			
-			
 			<a href="" ng-click="showDetails = ! showDetails">
 				Reageer <i class="fa fa-reply" aria-hidden="true"></i>
 			</a>
-				
 		
 			<div class="comments-arrow-up" 
 				ng-click="$ctrl.vote(comment._id,1);"
@@ -52,14 +50,13 @@
 			<textarea class="comments-input" 
 				ng-model="comment.newChildComment"
 				required
-				autofocus>
+				auto-focus>
 			</textarea>
 				
 			<input class="comments-input-button"
 				type="submit" 
 				value="Reageer" 
 				ng-disabled="newComment.$invalid"/>
-				
 		</form>
 
 	</div>
