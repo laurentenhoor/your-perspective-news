@@ -88,7 +88,7 @@
     
     	<div class="remove-icon"
 			ng-if="$ctrl.urlDataIsLoaded"  
-			ng-click="$ctrl.remove($ctrl.topicId, $ctrl.category.category, $ctrl.article)">
+			ng-click="$ctrl.showRemovalConfirmation($event)">
 		
 			<i class="material-icons">delete</i>
 		</div>

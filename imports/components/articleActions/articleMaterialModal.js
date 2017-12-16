@@ -144,6 +144,34 @@ class ArticleModalCtrl {
 		      $mdDialog.hide();
 		}	
 		
+
+		$ctrl.showRemovalConfirmation = function(ev) {
+		    // Appending dialog to document.body to cover sidenav in docs app
+		    var confirm = $mdDialog.confirm({
+                onComplete: function afterShowAnimation() {
+	                    var $dialog = angular.element(document.querySelector('md-dialog'));
+	                    var $actionsSection = $dialog.find('md-dialog-actions');
+	                    var $cancelButton = $actionsSection.children()[0];
+	                    var $confirmButton = $actionsSection.children()[1];
+	                    angular.element($confirmButton).addClass('md-raised');
+	                    angular.element($cancelButton).addClass('md-raised').removeClass('md-primary');
+                	}
+		    	})
+		          .title('Weet je het zeker?')
+		          .textContent('Dit artikel zal definitief worden verwijderd.')
+		          .ariaLabel('Verwijderen')
+		          .targetEvent(ev)
+		          .ok('Verwijderen')
+		          .cancel('Annuleren');
+
+		    $mdDialog.show(confirm).then(function() {
+		    	$ctrl.remove($ctrl.topicId, $ctrl.category.category, $ctrl.article);
+		    }, function() {
+		      	// do nothing.
+		    	console.log('canceled article removal');
+		    });
+		};
+
 		
 		$ctrl.remove = function(topicId, categoryName, article) {
 			console.log('removeArticle');console.log(article._id);console.log(topicId);
