@@ -18,7 +18,7 @@
 					
 			<div class="comments-delete">
 				<i class=" material-icons"
-					ng-if="$ctrl.userCommentsMap[comment._id]"
+					ng-show="$ctrl.userCommentsMap[comment._id]"
 					ng-click="$ctrl.deleteComment(comment)">
 					delete
 				</i>
@@ -49,8 +49,7 @@
 			
 			<textarea class="comments-input" 
 				ng-model="comment.newChildComment"
-				required
-				auto-focus>
+				required>
 			</textarea>
 				
 			<input class="comments-input-button"

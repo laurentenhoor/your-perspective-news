@@ -11,7 +11,6 @@ export default angular.module(name, [
 			return function(scope, element, attrs) {
 
 //				blurAllInputs($document); 
-				//Removed for fixing the input field bugs from the add_article window
 
 				console.log(element[0]);
 				
