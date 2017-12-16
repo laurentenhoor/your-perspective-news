@@ -6,11 +6,11 @@
     </md-toolbar>
 
     <md-dialog-content>
-      <div class="md-dialog-content md-inline-form" layout="column" ng-cloak>
+      <div class="md-dialog-content md-inline-form" layout="column">
      
-        <md-input-container class="md-block" ng-hide="$ctrl.urlDataIsLoaded">
+        <md-input-container class="md-block" ng-show="!$ctrl.urlDataIsLoaded">
         
-          	<label>Plak een url naar een artikel</label>
+          	<label ng-cloak>Plak een url naar een artikel</label>
           	
           	<input class="modal-item-url-input" 
           		ng-model="$ctrl.article.url"
