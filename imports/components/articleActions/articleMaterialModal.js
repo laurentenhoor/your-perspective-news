@@ -3,9 +3,11 @@ import angularMeteor from 'angular-meteor';
 
 import style from'./articleMaterialModal.less';
 
+import {name as UrlMetaData} from '/imports/services/UrlMetaData'
+
 class ArticleModalCtrl {
 
-	constructor($rootScope, $scope, $reactive, $document, $mdDialog, topicId, category, article) {
+	constructor($rootScope, $scope, $reactive, $document, $mdDialog, UrlMetaData, topicId, category, article) {
 
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
@@ -45,7 +47,6 @@ class ArticleModalCtrl {
 			
 			$ctrl.mode = 'new_topic';
 			
-//			$ctrl.modifiedCategory = 'Algemene berichtgeving';
 			$ctrl.headerText = 'Maak een nieuw(s) item.';
 			$ctrl.headerSubText = 'Plaats een onderwerp dat nog niet door ons wordt besproken.';	
 			$ctrl.urlDataIsLoaded = false;
@@ -60,79 +61,34 @@ class ArticleModalCtrl {
 		
 		$ctrl.urlChange = function() {
 
-			console.log('url input changed');
+			console.log('Url input changed to:');
 			console.log($ctrl.article.url)
 
-			
-			if (!isValid($ctrl.article.url)) {
+			if (!isValidUrl($ctrl.article.url)) {
 				return;
 			}
 			$rootScope.stateIsLoading = true;
 
 			$ctrl.call('getUrlMetadata', $ctrl.article.url, function(error, result) {
 				
-				$scope.$apply(function() {
-					$rootScope.stateIsLoading = false;
-				});
-
 				if(error) {
 					console.error(error);
 					return;
 				}
-
+				
+				$ctrl.article = UrlMetaData.createArticle($ctrl.article.url, result);
 				$ctrl.urlDataIsLoaded = true;
-
-				console.log(result);
 				
-				$ctrl.article.logoUrl = result.logos.clearbit || result.logos.icon;
-				$ctrl.article.description = (result['twitter:description'] || result['og:description'] || result['Description'] || result['description'])// .replace(/<\/?[^>]+(>|$)/g,
-				// "");
-				$ctrl.article.title = (result['gwa_contentTitle'] || result['twitter:title'] || result['og:title'] || result['Title'])// .replace(/<\/?[^>]+(>|$)/g,
-				// "");
-				$ctrl.article.publisher = result['og:site_name'] || result['application-name'] || result['app-name'];
+				$scope.$apply(function() {
+					$rootScope.stateIsLoading = false;
+				});
 				
-				$ctrl.article.publishedAt = result['article:published'];
-				
-				$ctrl.article.videoUrl = result['twitter:player'];
-				
-				$ctrl.article.imageUrl = result['og:image'] || result['twitter:image'] || result['twitter:image:src'];
-				
-				if (result['twitter:player']) {
-					$ctrl.article.imageUrl = result['twitter:image'];
-					$ctrl.article.url = null;
-					$ctrl.article.videoUrl = $ctrl.article.videoUrl + '?&theme=dark&autohide=2&modestbranding=0&fs=1&showinfo=0&rel=0&playsinline=1';
-					if ($ctrl.article.publisher == 'YouTube') {
-						$ctrl.article.logoUrl = 'https://logo.clearbit.com/www.youtube.com';
-						
-					}
-				}
-				
-				console.log($ctrl.article.videoUrl);
-				
-				$ctrl.postMetaDataAvailable = true;
-				$ctrl.rawMetadata = result;
-
-				$rootScope.stateIsLoading = false;
-
 			});
 		}
-		
-//		function blurAllInputs() {
-//			var inputs = $document[0].querySelectorAll('input');
-//		      
-//			  console.log(inputs);
-//			  
-//		      inputs.forEach(function(input) {
-//		        console.log(input.name + ': ' + input.value);
-//		        console.log(input);
-//		        input.blur();
-//		        
-//		      });
-//		}
-		
-		function isValid(url) {
+
+		function isValidUrl(url) {
 			
-			console.log('isValid()');
+			console.log('isValidUrl()');
 			console.log(url);
 
 			var urlregex = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
@@ -158,7 +114,6 @@ class ArticleModalCtrl {
 					Meteor.call('removeArticleFromCategory', $ctrl.topicId, $ctrl.category.category, $ctrl.article._id);
 					break;
 			}
-//			blurAllInputs();
 			$mdDialog.hide();
 
 		};
@@ -175,7 +130,7 @@ class ArticleModalCtrl {
 			}
 		}
 		
-		$ctrl.focusHandler = function() {
+		$ctrl.clearFieldAtFirstFocusOnly = function() {
 			
 			if ($ctrl.initialCategory == $ctrl.searchText) {
 				$ctrl.searchText = '';
@@ -185,7 +140,7 @@ class ArticleModalCtrl {
 
 		
 		$ctrl.cancel = function() {
-//			  blurAllInputs();
+			  console.log('mdDialog $ctrl.cancel()')
 		      $mdDialog.hide();
 		}	
 		
@@ -193,7 +148,6 @@ class ArticleModalCtrl {
 		$ctrl.remove = function(topicId, categoryName, article) {
 			console.log('removeArticle');console.log(article._id);console.log(topicId);
 			Meteor.call('removeArticleFromCategory', topicId, categoryName, article._id)
-//			blurAllInputs();
 			$mdDialog.hide();
 		}
 		
@@ -243,8 +197,9 @@ class ArticleModalCtrl {
 
 export default angular.module('yourpers.ArticleModalCtrl', [
 	angularMeteor,
+	UrlMetaData,
 	]).controller('ArticleModalCtrl', 
-			['$rootScope', '$scope', '$reactive', '$document', '$mdDialog',
+			['$rootScope', '$scope', '$reactive', '$document', '$mdDialog', 'UrlMetaData',
 				'topicId', 'category', 'article', 
 				ArticleModalCtrl]
 	);

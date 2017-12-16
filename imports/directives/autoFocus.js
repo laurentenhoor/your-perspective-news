@@ -10,7 +10,7 @@ export default angular.module(name, [
 
 			return function(scope, element, attrs) {
 
-				blurAllInputs($document);
+//				blurAllInputs($document);
 
 				console.log(element[0]);
 				
@@ -27,8 +27,10 @@ export default angular.module(name, [
 
 function blurAllInputs($document) {
 
+	console.log('blurAllInputs()');
+	
 	var inputs = $document[0].querySelectorAll('input');
-
+	
 	inputs.forEach(function(input) {
 		input.blur();
 	});

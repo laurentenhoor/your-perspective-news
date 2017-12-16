@@ -14,7 +14,7 @@ import style from './articleActions.less';
 
 class ArticleActionsCtrl {
 	
-	constructor($rootScope, $scope, $reactive, $uibModal, $mdDialog) {
+	constructor($rootScope, $scope, $document, $timeout, $reactive, $uibModal, $mdDialog) {
 		
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
@@ -30,25 +30,48 @@ class ArticleActionsCtrl {
 			
 		}
 		
+
+		$ctrl.blurAllInputs = function() {
+
+			var inputs = $document[0].querySelectorAll('input');
+
+			console.log(inputs);
+
+			inputs.forEach(function(input) {
+				console.log(input.name + ': ' + input.value);
+				console.log(input);
+				input.blur();
+
+			});
+		}
+
+		
 		$ctrl.open = function(ev) {
-		    $mdDialog.show({
-		      controller: 'ArticleModalCtrl as $ctrl',
-		      templateUrl: materialModalTemplate,
-		      parent: angular.element(document.body),
-		      targetEvent: ev,
-		      clickOutsideToClose:true,
-		      fullscreen: false,// Only for -xs, -sm breakpoints.
-		      locals : {
-					topicId : $ctrl.topicId,
-					category : $ctrl.category,
-					article : $ctrl.article,
-		      },
-		    })
-		    .then(function(answer) {
-//		      $scope.status = 'You said the information was "' + answer + '".';
-		    }, function() {
-//		      $scope.status = 'You cancelled the dialog.';
-		    });
+			
+			console.log("Start loading dialog window;")
+			
+			  $mdDialog.show({
+			      controller: 'ArticleModalCtrl as $ctrl',
+			      templateUrl: materialModalTemplate,
+			      parent: angular.element(document.body),
+			      targetEvent: ev,
+			      clickOutsideToClose:false,
+			      fullscreen: false,// Only for -xs, -sm breakpoints.
+			      locals : {
+						topicId : $ctrl.topicId,
+						category : $ctrl.category,
+						article : $ctrl.article,
+			      },
+			    })
+			    .then(function(answer) {
+			    	console.log('You answered the dialog.')
+//					      $scope.status = 'You said the information was "' + answer + '".';
+			    }, function() {
+			    	console.log('You cancelled the dialog.')
+//					      $scope.status = 'You cancelled the dialog.';
+			    })
+
+			
 		  };
 		
 //		$ctrl.open = function () {
@@ -83,11 +106,10 @@ export default angular.module('yourpers.articleActions', [
 	angularMeteor,
 	angularBootstrap,
 	materialModalCtrl,
-	
 	])
 	.component('yourpersArticleActions', {
 		templateUrl : template,
-		controller: ['$rootScope', '$scope', '$reactive', '$uibModal', '$mdDialog', ArticleActionsCtrl],
+		controller: ['$rootScope', '$scope', '$document', '$timeout', '$reactive', '$uibModal', '$mdDialog', ArticleActionsCtrl],
 		bindings: {
 			topicId : '<',
 			category : '<',

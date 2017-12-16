@@ -8,14 +8,13 @@
     <md-dialog-content>
       <div class="md-dialog-content md-inline-form" layout="column" ng-cloak>
      
-        <md-input-container class="md-block" ng-if="!$ctrl.urlDataIsLoaded">
+        <md-input-container class="md-block" ng-hide="$ctrl.urlDataIsLoaded">
         
           	<label>Plak een url naar een artikel</label>
           	
           	<input class="modal-item-url-input" 
           		ng-model="$ctrl.article.url"
-         		ng-change="$ctrl.urlChange()"
-          		md-select-on-focus>
+         		ng-change="$ctrl.urlChange()">
       		</input>
       		
       	<!-- 	<div class="hint">Klik op bovenstaande veld en houd daarna lang ingedrukt om een url te plakken.</div> -->
@@ -23,6 +22,7 @@
       	</md-input-container>
       
       	<md-autocomplete
+      		
 		    md-selected-item="$ctrl.selectedCategory"
 		    md-search-text-change="$ctrl.searchTextChange($ctrl.searchText)"
 		    md-search-text="$ctrl.searchText"
@@ -32,7 +32,7 @@
 		    md-min-length="0"
 		    md-floating-label="Selecteer een categorie"
 		    placeholder="Categorie"
-		    ng-focus="$ctrl.focusHandler()"
+		    ng-focus="$ctrl.clearFieldAtFirstFocusOnly()"
 		    >
 		    
 		  <md-item-template>
@@ -78,11 +78,9 @@
 					</div>
 			
 				</div>
-			
 <!-- 				<div class="bulletin-item-description" -->
 <!-- 					ng-if="$ctrl.article.description"> -->
 <!-- 					{{$ctrl.article.description}}</div> -->
-			
 			</div>
 		      
 
@@ -96,7 +94,7 @@
 		</div>
 
       <span flex></span>
-      <md-button class="md-raised" ng-click="$ctrl.cancel()" tabindex="0">
+      <md-button class="md-raised" ng-click="$ctrl.cancel()" tabindex="0" auto-focus>
        Annuleren
       </md-button>
       <md-button ng-if="$ctrl.urlDataIsLoaded" class="md-raised  md-primary" ng-click="$ctrl.ok()">
