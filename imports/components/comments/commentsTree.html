@@ -1,12 +1,17 @@
 <div class="comment-content-container">
 	
 	<div class="comments-content-header">
-		<b>{{comment.ownerName || 'anoniem'}}</b>
+		<b>
+			{{comment.ownerName || 'anoniem'}}
+		</b>
+		
+		<span class="comment-time-elapsed">
+			{{ $ctrl.getTimeTag(comment) }}
+		</span>
+		
 	</div>
 	
-	<div class="comment-time-elapsed">
-		{{ $ctrl.getTimeTag(comment) }}
-	</div>
+	
 
 	<div class="comments-content-text" 
 		ng-bind-html="comment.comment |  linky:'_self':{class: 'a-extern'}">	
