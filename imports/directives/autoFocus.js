@@ -10,9 +10,7 @@ export default angular.module(name, [
 
 			return function(scope, element, attrs) {
 
-//				blurAllInputs($document); 
-
-				console.log(element[0]);
+//				blurAllInputs($document);
 				
 				$timeout(function() {
 					$timeout(function() {
