@@ -4,8 +4,6 @@ import angularMeteor from 'angular-meteor';
 const name = 'displayNameFilter';
 
 function DisplayNameFilter(user) {
-
-	console.log(user);
 	
 	if (!user) {
 		return '';
