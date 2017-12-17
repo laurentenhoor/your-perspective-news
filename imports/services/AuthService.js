@@ -27,7 +27,7 @@ class AuthService {
 	                	}
 			    	})
 						.parent(angular.element(document.querySelector('#popupContainer')))
-						.clickOutsideToClose(true)
+						.clickOutsideToClose(false)
 						.title('Je bent niet ingelogd')
 						.textContent('Log eenvoudig in met LinkedIn. Een account aanmaken is niet nodig.')
 						.ariaLabel('Login met LinkedIn')

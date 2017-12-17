@@ -2,7 +2,7 @@
 
 	<div class="comments-add-comment-button">
 		<a href="" ng-init="$ctrl.showRootInput=false"
-			ng-click="$ctrl.showRootInput = ! $ctrl.showRootInput;"
+			ng-click="$ctrl.showRootInput = $ctrl.willShowCommentField($ctrl.showRootInput);"
 			style="padding-right: 3vw;">
 				Reageer <i class="fa fa-reply" aria-hidden="true"></i>
 		</a>

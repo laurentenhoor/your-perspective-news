@@ -10,6 +10,8 @@ import template from './comments.html';
 import style from './comments.less';
 import commentsTreeTemplate from './commentsTree.html';
 
+import {name as AuthService} from '/imports/services/AuthService';
+
 import { Comments } from '/imports/api/comments.js';
 import { Votes } from '/imports/api/votes.js';
 
@@ -18,7 +20,7 @@ import {name as AutoFocusDirective} from '/imports/directives/autoFocus.js';
 
 class CommentsCtrl {
 
-	constructor($rootScope, $scope, $document, $reactive, CommentsTreeBuilder) {
+	constructor($rootScope, $scope, $document, $reactive, CommentsTreeBuilder, AuthService) {
 
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
@@ -85,6 +87,22 @@ class CommentsCtrl {
 
 			}
 		});
+		
+		$ctrl.willShowCommentField = function(initialValue) {
+			
+			if (initialValue == false) {
+				
+				if(AuthService.isLoggedIn()) {
+					return true;
+				} else {
+					return false;
+				}
+				
+			} else {
+				return false;
+			}
+			
+		}
 
 		$ctrl.blurAllInputs = function() {
 
@@ -116,7 +134,7 @@ class CommentsCtrl {
 				parentItemId : $ctrl.topicId,
 				parentCommentId : comment._id,
 				ownerId : Meteor.userId(),
-				ownerName : Meteor.user() ? Meteor.user().username : null,
+				ownerName : Meteor.user() ? Meteor.user().profile.firstName : null,
 						comment : comment.newChildComment,
 						score: 0,
 
@@ -164,10 +182,11 @@ export default angular.module('yourpers.comments', [
 	angularMeteor,
 	CommentsTreeBuilder,
 	AutoFocusDirective,
+	AuthService,
 	])
 	.component('yourpersComments', {
 		templateUrl : template,
-		controller: ['$rootScope', '$scope', '$document', '$reactive', 'CommentsTreeBuilder', CommentsCtrl],
+		controller: ['$rootScope', '$scope', '$document', '$reactive', 'CommentsTreeBuilder', 'AuthService', CommentsCtrl],
 		bindings: {
 			topicId : '<',
 		}

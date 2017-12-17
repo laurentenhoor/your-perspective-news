@@ -22,7 +22,7 @@ class ArticleModalCtrl {
 		
 		if (category) {
 			$ctrl.initialCategory = category.category;
-			$ctrl.selectedCategory = category.category;
+//			$ctrl.selectedCategory = category.category;			
 		}
 		
 		if ($ctrl.article) {
