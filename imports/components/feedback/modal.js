@@ -1,25 +1,19 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
-class ModalInstanceCtrl {
+class FeedbackModalCtrl {
 	
-	constructor($scope, $uibModalInstance) {
+	constructor($scope) {
 		
 		var $ctrl = this;
 
-		$ctrl.ok = function () {
-			$uibModalInstance.close($ctrl.feedback);
-		};
-
-		$ctrl.cancel = function () {
-			$uibModalInstance.dismiss('cancel');
-		};
 	}
 	
 }
 
+const name = 'FeedbackModalCtrl'
 
-export default angular.module('allpers.modal', [
+export default angular.module(name, [
 	angularMeteor,
-]).controller('ModalInstanceCtrl', [
-	'$scope', '$uibModalInstance', ModalInstanceCtrl]);
+]).controller(name, [
+	'$scope', FeedbackModalCtrl]);

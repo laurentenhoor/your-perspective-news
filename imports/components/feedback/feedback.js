@@ -1,5 +1,6 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
+import angularMaterial from 'angular-material';
 
 import { Meteor } from 'meteor/meteor';
 
@@ -14,18 +15,34 @@ import modalCtrl from './modal.js';
 
 class FeedbackCtrl {
 	
-	constructor($rootScope, $scope, $document) {
+	constructor($rootScope, $scope, $document, $mdDialog) {
 
 		var $ctrl = this;
 
-		$ctrl.open = function () {
-	
-			var modalInstance = $uibModal.open({
-				animation: true,
-				templateUrl: modalTemplate,
-				controller: 'ModalInstanceCtrl',
-				controllerAs: '$ctrl'
-			});
+		$ctrl.open = function ($event) {
+
+			  $mdDialog.show({
+			      controller: 'FeedbackModalCtrl as $ctrl',
+			      templateUrl: modalTemplate,
+			      parent: angular.element(document.body),
+			      targetEvent: $event,
+			      clickOutsideToClose:false,
+			      fullscreen: false,// Only for -xs, -sm breakpoints.
+			    })
+			    .then(function(answer) {
+			    	console.log('You answered the feedback dialog.')
+//					      $scope.status = 'You said the information was "' + answer + '".';
+			    }, function() {
+			    	console.log('You cancelled the feedback dialog.')
+//					      $scope.status = 'You cancelled the dialog.';
+			    })
+			
+//			var modalInstance = $uibModal.open({
+//				animation: true,
+//				templateUrl: modalTemplate,
+//				controller: 'ModalInstanceCtrl',
+//				controllerAs: '$ctrl'
+//			});
 
 //			// At clicking the Send button receive the feedback here...
 //			modalInstance.result.then(function (feedback) {
@@ -53,9 +70,10 @@ class FeedbackCtrl {
 
 export default angular.module('yourpers.feedback', [
 	angularMeteor, 
+	angularMaterial,
 	modalCtrl.name,
 	])
 	.component('yourpersFeedback', {
 		templateUrl : template,
-		controller: ['$rootScope', '$scope', '$document', FeedbackCtrl]
+		controller: ['$rootScope', '$scope', '$document', '$mdDialog', FeedbackCtrl]
 	});
