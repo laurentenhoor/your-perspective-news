@@ -12,7 +12,6 @@ class AuthService {
 			isLoggedIn: isLoggedIn
 		}
 
-
 		function isLoggedIn() {
 
 			if (!Meteor.userId()) {
@@ -30,7 +29,7 @@ class AuthService {
 						.parent(angular.element(document.querySelector('#popupContainer')))
 						.clickOutsideToClose(true)
 						.title('Je bent niet ingelogd')
-						.textContent('Log eenvoudig in met LinkedIn, een account aanmaken is niet nodig.')
+						.textContent('Log eenvoudig in met LinkedIn. Een account aanmaken is niet nodig.')
 						.ariaLabel('Login met LinkedIn')
 						.ok('Login')
 						.cancel('Annuleren')
