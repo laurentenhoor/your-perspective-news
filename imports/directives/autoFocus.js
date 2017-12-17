@@ -11,7 +11,7 @@ export default angular.module(name, [
 			return function(scope, element, attrs) {
 
 //				blurAllInputs($document);
-				
+
 				$timeout(function() {
 					$timeout(function() {
 						element[0].focus();
@@ -26,9 +26,9 @@ export default angular.module(name, [
 function blurAllInputs($document) {
 
 	console.log('blurAllInputs()');
-	
+
 	var inputs = $document[0].querySelectorAll('input');
-	
+
 	inputs.forEach(function(input) {
 		input.blur();
 	});

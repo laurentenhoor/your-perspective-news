@@ -11,7 +11,7 @@ Meteor.startup(() => {
 
 	// code to run on server at startup
 
-	ServiceConfiguration.configurations.update(
+	ServiceConfiguration.configurations.upsert(
 			{ "service": "linkedin" },
 			{
 				$set: {
