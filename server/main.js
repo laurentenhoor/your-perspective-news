@@ -1,11 +1,26 @@
 import { Meteor } from 'meteor/meteor';
 import { HTTP } from 'meteor/http'
 
-import '../imports/api/posts.js';
-import '../imports/api/votes.js';
-import '../imports/api/feedback.js';
-import '../imports/api/comments.js';
+import '/imports/api/posts.js';
+import '/imports/api/votes.js';
+import '/imports/api/feedback.js';
+import '/imports/api/comments.js';
+
 
 Meteor.startup(() => {
+
 	// code to run on server at startup
+
+	ServiceConfiguration.configurations.update(
+			{ "service": "linkedin" },
+			{
+				$set: {
+					"clientId": "78akbyufxh1mh8",
+					"secret": "OREAQ0srwvcxTZ6W",
+					'requestPermissions': ['r_basicprofile', 'r_emailaddress'],
+				}
+			},
+			{ upsert: true }
+	);
+
 });

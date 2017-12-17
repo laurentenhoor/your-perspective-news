@@ -15,8 +15,9 @@ class AuthenticationCtrl {
     
     console.log('authentication init');
  
-    $reactive(this).attach($scope);
- 
+    var $ctrl = this;
+	$reactive($ctrl).attach($scope);
+	
     this.helpers({
       isLoggedIn() {
         return !!Meteor.userId();
@@ -25,6 +26,16 @@ class AuthenticationCtrl {
         return Meteor.user();
       }
     });
+  }
+  
+  login() {
+	  Meteor.loginWithLinkedIn({}, (err) => {
+		  if (err) {
+		    // handle error
+		  } else {
+		    // successful login!
+		  }
+		});
   }
  
   logout() {
@@ -38,6 +49,5 @@ export default angular.module(name, [
   DisplayNameFilter
 ]).component(name, {
   templateUrl: template,
-  controllerAs: name,
   controller: AuthenticationCtrl
 });

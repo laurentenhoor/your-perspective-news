@@ -27,4 +27,6 @@ http@1.3.0
 practicalmeteor:mocha
 less
 percolate:migrations
-dotansimha:accounts-ui-angular
+service-configuration
+base64
+pauli:accounts-linkedin

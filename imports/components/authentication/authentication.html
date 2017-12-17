@@ -1,6 +1,4 @@
-<div layout="row">
-  <md-button flex ui-sref="login" ng-hide="auth.isLoggedIn">Login</md-button>
-  <md-button flex ui-sref="register" ng-hide="auth.isLoggedIn">Sign up</md-button>
-  <md-button flex ng-click="auth.logout()" ng-show="auth.isLoggedIn">Logout</md-button>
-  <div ng-show="auth.isLoggedIn">{{ auth.currentUser | displayNameFilter }}</div>
+<div layout="row" style="font-size:2.5vw;margin-top:0.6vw;">
+  <u><div ng-hide="$ctrl.isLoggedIn" ng-click="$ctrl.login()">Login met LinkedIn</div></u>
+  <u><div ng-show="$ctrl.isLoggedIn" ng-click="$ctrl.logout()">{{ $ctrl.currentUser | displayNameFilter }} afmelden</div></u>
 </div>

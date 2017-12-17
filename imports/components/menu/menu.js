@@ -11,7 +11,7 @@ import {name as yourpersArticleActions} from '../articleActions/articleActions';
 class MenuCtrl {
 	
   constructor($scope, $location, $window) {
-	  	
+	  
 	  $scope.isActive = function(viewLocation) {
 	    return viewLocation === $location.path();
 	  };	
