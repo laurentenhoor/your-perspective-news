@@ -4,10 +4,11 @@ import angularMeteor from 'angular-meteor';
 import moment from 'moment';
 import 'moment/locale/nl'
 
-import {name as yourpersArticleActions} from '../articleActions/articleActions';
-import {name as SmoothScrollService} from '../../services/SmoothScrollService.js';
-import {name as yourpersComments} from '../comments/comments';
+import {name as yourpersArticleActions} from '/imports/components/articleActions/articleActions';
+import {name as SmoothScrollService} from '/imports/services/SmoothScrollService';
+import {name as yourpersComments} from '/imports/components/comments/comments';
 
+import {name as AuthService} from '/imports/services/AuthService'
 
 import template from './bulletin.html';
 import style from './bulletin.less';
@@ -18,7 +19,7 @@ import { Votes } from '/imports/api/votes.js';
 
 class BulletinCtrl {
 
-	constructor($rootScope, $scope, $reactive, $window, $location, $anchorScrol, SmoothScrollService) {
+	constructor($rootScope, $scope, $reactive, $window, $location, $anchorScrol, SmoothScrollService, AuthService) {
 
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
@@ -114,11 +115,9 @@ class BulletinCtrl {
 
 		$ctrl.vote = function(article, voteUpOrDown) {
 
-			if (!Meteor.userId()) {
-				$('#login-sign-in-link').click();
-				return;
-			}
-			$ctrl.call('voteById', article._id, voteUpOrDown); 
+			if (AuthService.isLoggedIn()) {
+				$ctrl.call('voteById', article._id, voteUpOrDown);
+			} 
 			
 		}
 
@@ -144,8 +143,9 @@ export default angular.module('yourpers.bulletin', [
 	yourpersArticleActions,
 	yourpersComments,
 	SmoothScrollService,
+	AuthService,
 	])
 	.component('yourpersBulletin', {
 		templateUrl : template,
-		controller: ['$rootScope', '$scope', '$reactive', '$window', '$location', '$anchorScroll', 'SmoothScrollService', BulletinCtrl]
+		controller: ['$rootScope', '$scope', '$reactive', '$window', '$location', '$anchorScroll', 'SmoothScrollService', 'AuthService', BulletinCtrl]
 	});

@@ -1,9 +1,5 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
-import angularBootstrap from 'angular-ui-bootstrap';
-
-//import modalTemplate from './articleModal.html';
-//import {name as modalCtrl} from './articleModal.js';
 
 import materialModalTemplate from './articleMaterialModal.html';
 import {name as materialModalCtrl} from './articleMaterialModal.js';
@@ -14,7 +10,7 @@ import style from './articleActions.less';
 
 class ArticleActionsCtrl {
 	
-	constructor($rootScope, $scope, $document, $timeout, $reactive, $uibModal, $mdDialog) {
+	constructor($rootScope, $scope, $document, $timeout, $reactive, $mdDialog) {
 		
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
@@ -26,7 +22,6 @@ class ArticleActionsCtrl {
 				$ctrl.category = angular.copy($ctrl.category);	
 				$ctrl.article = angular.copy($ctrl.article);
 			}
-			
 			
 		}
 		
@@ -74,42 +69,16 @@ class ArticleActionsCtrl {
 			
 		  };
 		
-//		$ctrl.open = function () {
-//				
-//			var modalInstance = $uibModal.open({
-//				animation: true,
-//				templateUrl: modalTemplate,
-//				controller: 'ArticleModalCtrl',
-//				controllerAs: '$ctrl',
-//				resolve : {
-//					topicId : function() {return $ctrl.topicId},
-//					category : function() {return $ctrl.category},
-//					article : function() {return $ctrl.article},
-//				}
-//			});
-//
-//			modalInstance.result.then(function (feedback) {
-//				console.log('do something with: '+feedback);
-//				$rootScope.sortBy = 'createdAt';
-//				
-//			}, function () {
-//				console.log('Modal dismissed at: ' + new Date());
-//			});
-//
-//		}
-
-		
 	}		
 }
 
 export default angular.module('yourpers.articleActions', [
 	angularMeteor,
-	angularBootstrap,
 	materialModalCtrl,
 	])
 	.component('yourpersArticleActions', {
 		templateUrl : template,
-		controller: ['$rootScope', '$scope', '$document', '$timeout', '$reactive', '$uibModal', '$mdDialog', ArticleActionsCtrl],
+		controller: ['$rootScope', '$scope', '$document', '$timeout', '$reactive', '$mdDialog', ArticleActionsCtrl],
 		bindings: {
 			topicId : '<',
 			category : '<',

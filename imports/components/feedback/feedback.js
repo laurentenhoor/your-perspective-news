@@ -1,6 +1,5 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
-import angularBootstrap from 'angular-ui-bootstrap';
 
 import { Meteor } from 'meteor/meteor';
 
@@ -15,7 +14,7 @@ import modalCtrl from './modal.js';
 
 class FeedbackCtrl {
 	
-	constructor($rootScope, $scope, $document, $uibModal) {
+	constructor($rootScope, $scope, $document) {
 
 		var $ctrl = this;
 
@@ -28,23 +27,23 @@ class FeedbackCtrl {
 				controllerAs: '$ctrl'
 			});
 
-			// At clicking the Send button receive the feedback here...
-			modalInstance.result.then(function (feedback) {
-				
-				// Create new feedback entry in db
-				Feedback.insert({
-					ownerId: Meteor.userId(),
-					ownerName : Meteor.user() ? Meteor.user().username : 'null',
-					// email: Meteor.user() ? Meteor.user().emails[0].address : 'null',
-					ip: $rootScope.ip,
-					feedback: feedback
-				}, function() {
-					alert('Bedankt voor je reactie!');
-				});
-			
-			}, function () {
-				console.log('Modal dismissed at: ' + new Date());
-			});
+//			// At clicking the Send button receive the feedback here...
+//			modalInstance.result.then(function (feedback) {
+//				
+//				// Create new feedback entry in db
+//				Feedback.insert({
+//					ownerId: Meteor.userId(),
+//					ownerName : Meteor.user() ? Meteor.user().username : 'null',
+//					// email: Meteor.user() ? Meteor.user().emails[0].address : 'null',
+//					ip: $rootScope.ip,
+//					feedback: feedback
+//				}, function() {
+//					alert('Bedankt voor je reactie!');
+//				});
+//			
+//			}, function () {
+//				console.log('Modal dismissed at: ' + new Date());
+//			});
 
 		}
 
@@ -53,9 +52,10 @@ class FeedbackCtrl {
 }
 
 export default angular.module('yourpers.feedback', [
-	angularMeteor, angularBootstrap, modalCtrl.name,
+	angularMeteor, 
+	modalCtrl.name,
 	])
 	.component('yourpersFeedback', {
 		templateUrl : template,
-		controller: ['$rootScope', '$scope', '$document', '$uibModal', FeedbackCtrl]
+		controller: ['$rootScope', '$scope', '$document', FeedbackCtrl]
 	});
