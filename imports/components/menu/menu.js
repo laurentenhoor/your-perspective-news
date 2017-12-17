@@ -4,6 +4,8 @@ import angularMeteor from 'angular-meteor';
 import template from './menu.html';
 import style from './menu.less';
 
+import {name as yourpersAuthentication} from '/imports/components/authentication/authentication';
+
 import {name as yourpersArticleActions} from '../articleActions/articleActions';
 
 class MenuCtrl {
@@ -23,6 +25,7 @@ class MenuCtrl {
 export default angular.module('menu', [
   angularMeteor,
   yourpersArticleActions,
+  yourpersAuthentication
 ])
   .component('yourpersMenu', {
     templateUrl : template,
