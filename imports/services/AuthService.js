@@ -36,7 +36,8 @@ class AuthService {
 				
 				
 				 $mdDialog.show(confirmModal).then(function() {
-					  Meteor.loginWithLinkedIn();	
+					  Meteor.loginWithLinkedIn({loginStyle:'redirect'});		
+					 return;
 				    }, function() {
 				    	console.log('canceled login modal');
 				    });

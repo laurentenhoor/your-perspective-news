@@ -1,4 +1,4 @@
 <div layout="row" style="font-size:2.5vw;margin-top:0.6vw;">
-  <u><div ng-hide="$ctrl.isLoggedIn" ng-click="$ctrl.login()">Login met LinkedIn</div></u>
+  <u><div id="login-sign-in-link" ng-hide="$ctrl.isLoggedIn" ng-click="$ctrl.login()">Login met LinkedIn</div></u>
   <u><div ng-show="$ctrl.isLoggedIn" ng-click="$ctrl.logout()">{{ $ctrl.currentUser | displayNameFilter }} afmelden</div></u>
 </div>
