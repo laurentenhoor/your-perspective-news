@@ -154,14 +154,11 @@ class CommentsCtrl {
 
 		$ctrl.vote = function(commentId, voteUpOrDown) {
 
-			if (!Meteor.userId()) {
-				$('#login-sign-in-link').click();
-				return;
+			if (AuthService.isLoggedIn()) {
+				$ctrl.call('voteById', commentId, voteUpOrDown); 
 			}
-			$ctrl.call('voteById', commentId, voteUpOrDown); 
-
+			
 		}
-
 
 		$ctrl.deleteComment = function(comment) {
 			Comments.remove({
