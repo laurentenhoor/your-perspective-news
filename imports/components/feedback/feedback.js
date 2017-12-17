@@ -29,38 +29,50 @@ class FeedbackCtrl {
 			      clickOutsideToClose:false,
 			      fullscreen: false,// Only for -xs, -sm breakpoints.
 			    })
-			    .then(function(answer) {
-			    	console.log('You answered the feedback dialog.')
-//					      $scope.status = 'You said the information was "' + answer + '".';
-			    }, function() {
-			    	console.log('You cancelled the feedback dialog.')
-//					      $scope.status = 'You cancelled the dialog.';
-			    })
-			
-//			var modalInstance = $uibModal.open({
-//				animation: true,
-//				templateUrl: modalTemplate,
-//				controller: 'ModalInstanceCtrl',
-//				controllerAs: '$ctrl'
-//			});
+			    .then(function(feedback) {
+			    	
+			    	if (!feedback) {
+			    		return;
+			    	}
 
-//			// At clicking the Send button receive the feedback here...
-//			modalInstance.result.then(function (feedback) {
-//				
-//				// Create new feedback entry in db
-//				Feedback.insert({
-//					ownerId: Meteor.userId(),
-//					ownerName : Meteor.user() ? Meteor.user().username : 'null',
-//					// email: Meteor.user() ? Meteor.user().emails[0].address : 'null',
-//					ip: $rootScope.ip,
-//					feedback: feedback
-//				}, function() {
-//					alert('Bedankt voor je reactie!');
-//				});
-//			
-//			}, function () {
-//				console.log('Modal dismissed at: ' + new Date());
-//			});
+			    	console.log(Meteor.user())
+			    	
+					Feedback.insert({
+						ownerId: Meteor.userId(),
+						ownerName : Meteor.user() ? Meteor.user().profile.firstName : 'null',
+						email: Meteor.user() ? Meteor.user().profile.emailAddress: 'null',
+						ip: $rootScope.ip,
+						feedback: feedback,
+						
+					}, function(error, _id) {
+						
+						if (error) {
+							console.error(error);
+							return;
+						}
+						console.log('sucessful insert with id: ' + _id);
+						
+						$mdDialog.show(
+							$mdDialog.alert({
+				                onComplete: function afterShowAnimation() {
+				                    var $dialog = angular.element(document.querySelector('md-dialog'));
+				                    var $actionsSection = $dialog.find('md-dialog-actions');
+				                    var $cancelButton = $actionsSection.children()[0];
+				                    angular.element($cancelButton).addClass('md-raised');
+			                	}
+					    	})
+						        .parent(angular.element(document.body))
+						        .clickOutsideToClose(false)
+						        .title('Bedankt voor je reactie.')
+						        .textContent('Wij gaan hier zo snel mogelijk iets mee doen.')
+						        .ariaLabel('Feedback')
+						        .ok('Sluiten')
+				        	);	
+						
+					});
+			    }, function() {
+			    	console.log('You cancelled the feedback dialog.');			        
+			    });
 
 		}
 
