@@ -104,19 +104,6 @@ class CommentsCtrl {
 			
 		}
 
-		$ctrl.blurAllInputs = function() {
-
-			var inputs = $document[0].querySelectorAll('input');
-
-			console.log(inputs);
-
-			inputs.forEach(function(input) {
-				console.log(input.name + ': ' + input.value);
-				console.log(input);
-				input.blur();
-
-			});
-		}
 
 		moment.locale('nl');
 		$ctrl.getTimeTag = function(comment) {
@@ -125,11 +112,15 @@ class CommentsCtrl {
 		}
 
 		$ctrl.newComment = function(comment) {
-			
-			$ctrl.sendButtonsDisabled = true;
 
 			console.log(comment.newChildComment);
 			console.log(comment._id);
+			 
+			if($ctrl.processingComment) {
+				console.error('Trying to save a comment, however still processing another...');
+				return;
+			}
+			$ctrl.processingComment=true;
 
 			Comments.insert({
 
@@ -141,18 +132,16 @@ class CommentsCtrl {
 						score: 0,
 
 			}, function(error, _id){
-
-				$ctrl.sendButtonsDisabled = false;
 				
 				console.log('error: ' + error);
 				console.log('_id: ' + _id);
 
+				$ctrl.processingComment=false;
+				
 				comment.newChildComment = '';
 				$scope.$apply();
 
 			});
-
-			$ctrl.blurAllInputs();
 
 		}
 

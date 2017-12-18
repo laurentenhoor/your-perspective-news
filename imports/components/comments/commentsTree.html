@@ -49,7 +49,7 @@
 
 		<form name="newComment" 
 			ng-show="showDetails"
-			ng-submit="$ctrl.newComment(comment);showDetails=false;" 
+			ng-submit="showDetails=false;$ctrl.newComment(comment);" 
 			novalidate>
 			
 			<textarea class="comments-input" 
@@ -60,7 +60,7 @@
 			<input class="comments-input-button"
 				type="submit" 
 				value="Reageer" 
-				ng-disabled="newComment.$invalid || $ctrl.sendButtonsDisabled"/>
+				ng-disabled="newComment.$invalid"/>
 		</form>
 
 	</div>
