@@ -48,7 +48,7 @@
 		</div>
 
 		<form name="newComment" 
-			ng-if="showDetails"
+			ng-show="showDetails"
 			ng-submit="$ctrl.newComment(comment);showDetails=false;" 
 			novalidate>
 			
@@ -60,7 +60,7 @@
 			<input class="comments-input-button"
 				type="submit" 
 				value="Reageer" 
-				ng-disabled="newComment.$invalid"/>
+				ng-disabled="newComment.$invalid || $ctrl.sendButtonsDisabled"/>
 		</form>
 
 	</div>

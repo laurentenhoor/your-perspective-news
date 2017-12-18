@@ -125,6 +125,8 @@ class CommentsCtrl {
 		}
 
 		$ctrl.newComment = function(comment) {
+			
+			$ctrl.sendButtonsDisabled = true;
 
 			console.log(comment.newChildComment);
 			console.log(comment._id);
@@ -140,6 +142,8 @@ class CommentsCtrl {
 
 			}, function(error, _id){
 
+				$ctrl.sendButtonsDisabled = false;
+				
 				console.log('error: ' + error);
 				console.log('_id: ' + _id);
 

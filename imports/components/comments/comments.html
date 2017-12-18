@@ -9,7 +9,7 @@
 	</div>
 
 	<form name="newCommentRoot"
-		ng-if="$ctrl.showRootInput"
+		ng-show="$ctrl.showRootInput"
 		ng-submit="$ctrl.newComment(comment);$ctrl.showRootInput=false;"
 		novalidate> 
 			
@@ -21,7 +21,7 @@
 		<input class="comments-input-button root" 
 			type="submit" 
 			value="Reageer"
-			ng-disabled="newCommentRoot.$invalid"/>
+			ng-disabled="newCommentRoot.$invalid || $ctrl.sendButtonsDisabled"/>
 	</form>
 	
 
