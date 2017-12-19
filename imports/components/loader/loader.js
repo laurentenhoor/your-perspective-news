@@ -11,7 +11,7 @@ class LoaderCtrl {
 		$rootScope.initializedDatabase = false;
 		
 		var pageLoadCounter = 0;
-
+		
 		$rootScope.$on( "$routeChangeStart", function(event, next, current) {
 			console.log('$routeChangeStart');
 			$rootScope.stateIsLoading = true;
