@@ -35,7 +35,6 @@ class BulletinCtrl {
 
 					'topics':function() {
 						console.log('topics helper');
-						
 						return Topics.find({}, {}).fetch();
 					},
 					'userVoteMap':function() {
@@ -114,6 +113,8 @@ class BulletinCtrl {
 		};
 
 		$ctrl.vote = function(article, voteUpOrDown) {
+
+			debugger;
 			
 			if (AuthService.isLoggedIn()) {
 				$ctrl.call('voteById', article._id, voteUpOrDown);

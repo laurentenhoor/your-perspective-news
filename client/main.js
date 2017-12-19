@@ -53,7 +53,6 @@ class MainCtrl {
 	
 }
 
-
 angular.module('yourpers', [
 	
 	angularMeteor,
