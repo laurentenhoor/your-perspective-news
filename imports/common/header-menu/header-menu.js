@@ -1,8 +1,8 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
-import template from './menu.html';
-import style from './menu.less';
+import template from './header-menu.html';
+import style from './header-menu.less';
 
 import {name as yourpersAuthentication} from '/imports/components/authentication/authentication';
 
@@ -30,4 +30,4 @@ export default angular.module('menu', [
   .component('yourpersMenu', {
     templateUrl : template,
     controller: ['$scope', '$location', '$window', MenuCtrl]
-  });
+  }).name;

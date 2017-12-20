@@ -7,8 +7,8 @@ import 'moment/locale/nl'
 
 import {name as CommentsTreeBuilder} from '../../services/CommentsTreeBuilder.js';
 
-import template from './comments.html';
-import style from './comments.less';
+import template from './comments-tile.html';
+import style from './comments-tile.less';
 import commentsTreeTemplate from './commentsTree.html';
 
 import {name as AuthService} from '/imports/services/AuthService';
@@ -181,4 +181,4 @@ export default angular.module('yourpers.comments', [
 		bindings: {
 			topicId : '<',
 		}
-	});
+	}).name;

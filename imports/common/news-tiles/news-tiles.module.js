@@ -6,7 +6,7 @@ import 'moment/locale/nl'
 
 import yourpersArticleActions from '/imports/common/article-menu/article-menu';
 import {name as SmoothScrollService} from '/imports/services/SmoothScrollService';
-import {name as yourpersComments} from '/imports/common/comments/comments';
+import yourpersComments from '/imports/common/comments-tile/comments-tile';
 
 import {name as AuthService} from '/imports/services/AuthService'
 
