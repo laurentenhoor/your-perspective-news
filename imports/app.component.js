@@ -1,10 +1,10 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
-import AppView from './app.html';
-import AppStyle from './app.less';
+import appTemplate from './app.html';
+import appStyle from './app.less';
 
-class AppCtrl {
+class AppComponent {
 	
 	constructor($scope, $reactive, $window, $document) {
 		'ngInject';
@@ -39,7 +39,7 @@ class AppCtrl {
 	}
 }
 
-export const appComponent = {
-	controller: AppCtrl,
-	templateUrl : AppView
+export default {
+	controller: AppComponent,
+	templateUrl : appTemplate
   };

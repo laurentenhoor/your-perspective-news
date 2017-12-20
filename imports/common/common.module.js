@@ -1,6 +1,6 @@
 import {name as yourpersMenu} from '/imports/common/menu/menu';
 import {name as yourpersBulletin} from '/imports/common/bulletin/bulletin';
-import {name as yourpersMobilePreview} from '/imports/common/mobilePreview/mobilePreview';
+import desktopViewer from '/imports/common/desktop-viewer/desktop-viewer';
 
 // Deprecated
 import {name as yourpersPosts} from '/imports/common/deprecated/post/post';
@@ -9,18 +9,17 @@ import {name as yourpersBundle} from '/imports/common/deprecated/bundle/bundle';
 import {name as yourpersOverview} from '/imports/common/deprecated/overview/overview';
 import {name as yourpersTopic} from '/imports/common/deprecated/topic/topic';	
 
-export const commonModule = angular
-    .module('app.common', [
-        
-        yourpersMenu,
-        yourpersBulletin,
-        yourpersMobilePreview,
-        
-        // Deprecated
-        yourpersPosts,
-        yourpersItem,
-        yourpersBundle,
-        yourpersOverview,
-        yourpersTopic,
-        
-    ]).name;
+export default angular.module('app.common', [
+    
+    yourpersMenu,
+    yourpersBulletin,
+    desktopViewer,
+    
+    // Deprecated
+    yourpersPosts,
+    yourpersItem,
+    yourpersBundle,
+    yourpersOverview,
+    yourpersTopic,
+    
+]).name;

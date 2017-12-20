@@ -5,10 +5,10 @@ import angularRoute from 'angular-route';
 import angularMaterial from 'angular-material';
 import angularMaterialStyle from '/node_modules/angular-material/angular-material.css';
 
-import { componentsModule } from './components/components.module'
-import { commonModule } from './common/common.module'
+import componentsModule from './components/components.module'
+import commonModule from './common/common.module'
 
-import { appComponent } from './app.component';
+import appComponent from './app.component';
 
 angular.module('yourpers', [
 	
