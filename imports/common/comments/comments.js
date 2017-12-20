@@ -1,5 +1,6 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
+import angularSanitize from 'angular-sanitize';
 
 import moment from 'moment';
 import 'moment/locale/nl'
@@ -15,7 +16,7 @@ import {name as AuthService} from '/imports/services/AuthService';
 import { Comments } from '/imports/api/comments.js';
 import { Votes } from '/imports/api/votes.js';
 
-import {name as AutoFocusDirective} from '/imports/directives/autoFocus.js';
+import {name as AutoFocusDirective} from '/imports/directives/auto-focus.js';
 
 
 class CommentsCtrl {
@@ -167,9 +168,9 @@ class CommentsCtrl {
 
 }
 
-
 export default angular.module('yourpers.comments', [
 	angularMeteor,
+	angularSanitize,
 	CommentsTreeBuilder,
 	AutoFocusDirective,
 	AuthService,

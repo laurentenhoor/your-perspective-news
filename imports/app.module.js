@@ -7,66 +7,37 @@ import angularMaterialStyle from '/node_modules/angular-material/angular-materia
 
 import componentsModule from './components/components.module'
 import commonModule from './common/common.module'
+import deprecatedModule from './deprecated/deprecated.module'
 
 import appComponent from './app.component';
 
 angular.module('yourpers', [
 	
 	angularMeteor,
-	angularRoute,
 	angularMaterial,
+	angularRoute,
 
 	commonModule,
-    componentsModule,
+	componentsModule,
+	// deprecatedModule,
 	
 ])
 
 .component('yourpersApp', appComponent)
 
-.config(['$locationProvider', '$routeProvider', '$httpProvider', '$provide', '$sceDelegateProvider', function(
-		$locationProvider, $routeProvider, $httpProvider, $provide, $sceDelegateProvider) {
-	
-	$sceDelegateProvider.resourceUrlWhitelist(['**']);
+.config(($routeProvider, $locationProvider, $sceDelegateProvider) => {
+	'ngInject';
 
 	$routeProvider.
 	    when('/nieuws', {
     		template: '<yourpers-bulletin></yourpers-bulletin>'
 	    }).
-	    
-	    // Deprecated
-	    when('/overview', {
-		      template: '<yourpers-overview></yourpers-overview>'
-	    }).
-	    when('/topic', {
-	      template: '<yourpers-topic></yourpers-topic>'
-	    }).
-	    when('/tijdslijn', {
-		      template: '<yourpers-post></yourpers-post>'
-	    }).
-	    when('/item/:id', {
-	    		template: '<yourpers-item></yourpers-item>'
-	    }).
-	    when('/bundle', {
-  		template: '<yourpers-bundle></yourpers-bundle>'
-	    }).
-	    
 	    otherwise('/nieuws');
 	
-	$httpProvider.defaults.useXDomain = true;
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+	$locationProvider.html5Mode({ enabled: true, requireBase: false, rewriteLinks: false });
+	$sceDelegateProvider.resourceUrlWhitelist(['**']);
+
+	// $httpProvider.defaults.useXDomain = true;
+    // delete $httpProvider.defaults.headers.common['X-Requested-With'];	
     
-    $locationProvider.html5Mode({ enabled: true, requireBase: false, rewriteLinks: false });
-    
-    $provide.decorator('$browser', ['$delegate', function($delegate) {
-        var originalUrl = $delegate.url;
-        $delegate.url = function() {
-            var result = originalUrl.apply(this, arguments);
-            if (result && result.replace) {
-                result = result.replace(/%23/g, '#');
-            }
-            return result;
-        };
-        return $delegate;
-    }]);
-    
-}]);
+});

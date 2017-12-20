@@ -204,27 +204,62 @@ export default angular.module('yourpers.post', [
 		templateUrl : template,
 		controller: ['$rootScope', '$scope', '$reactive', '$http', '$location', '$anchorScroll', '$timeout', PostCtrl]
 	})
-	.directive('httpPrefix', function() {
-	    return {
-	        restrict: 'A',
-	        require: 'ngModel',
-	        link: function(scope, element, attrs, controller) {
-	            function ensureHttpPrefix(value) {
-	                // Need to add prefix if we don't have http:// prefix already AND we don't have part of it
-	                if(value && !/^(https?):\/\//i.test(value)
-	                   && 'http://'.indexOf(value) !== 0 && 'https://'.indexOf(value) !== 0 ) {
-	                    controller.$setViewValue('http://' + value);
-	                    controller.$render();
-	                    return 'http://' + value;
-	                }
-	                else
-	                    return value;
-	            }
-	            controller.$formatters.push(ensureHttpPrefix);
-	            controller.$parsers.splice(0, 0, ensureHttpPrefix);
-	        }
-	    };
-	}).directive('selectOnClick', ['$window', function ($window) {
+	.config(($locationProvider, $routeProvider, $httpProvider, $provide, $sceDelegateProvider) => {
+		'ngInject';
+
+		$routeProvider.
+			// Deprecated
+			when('/overview', {
+				template: '<yourpers-overview></yourpers-overview>'
+			}).
+			when('/topic', {
+				template: '<yourpers-topic></yourpers-topic>'
+			}).
+			when('/tijdslijn', {
+				template: '<yourpers-post></yourpers-post>'
+			}).
+			when('/item/:id', {
+				template: '<yourpers-item></yourpers-item>'
+			}).
+			when('/bundle', {
+				template: '<yourpers-bundle></yourpers-bundle>'
+			});
+		    
+		// $provide.decorator('$browser', ['$delegate', function($delegate) {
+		// 	var originalUrl = $delegate.url;
+		// 	$delegate.url = function() {
+		// 		var result = originalUrl.apply(this, arguments);
+		// 		if (result && result.replace) {
+		// 			result = result.replace(/%23/g, '#');
+		// 		}
+		// 		return result;
+		// 	};
+		// 	return $delegate;
+		// }]);
+
+	})
+	// .directive('httpPrefix', function() {
+	//     return {
+	//         restrict: 'A',
+	//         require: 'ngModel',
+	//         link: function(scope, element, attrs, controller) {
+	//             function ensureHttpPrefix(value) {
+	//                 // Need to add prefix if we don't have http:// prefix already AND we don't have part of it
+	//                 if(value && !/^(https?):\/\//i.test(value)
+	//                    && 'http://'.indexOf(value) !== 0 && 'https://'.indexOf(value) !== 0 ) {
+	//                     controller.$setViewValue('http://' + value);
+	//                     controller.$render();
+	//                     return 'http://' + value;
+	//                 }
+	//                 else
+	//                     return value;
+	//             }
+	//             controller.$formatters.push(ensureHttpPrefix);
+	//             controller.$parsers.splice(0, 0, ensureHttpPrefix);
+	//         }
+	//     };
+	// })
+	.directive('selectOnClick', ['$window', function ($window) {
 	    return {
 	        restrict: 'A',
 	        link: function (scope, element, attrs) {

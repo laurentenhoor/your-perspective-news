@@ -1,8 +1,8 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
-import materialModalTemplate from './articleMaterialModal.html';
-import {name as materialModalCtrl} from './articleMaterialModal.js';
+import materialModalTemplate from './articleDialog.html';
+import {name as materialModalCtrl} from './articleDialog.js';
 
 import {name as AuthService} from '/imports/services/AuthService';
 

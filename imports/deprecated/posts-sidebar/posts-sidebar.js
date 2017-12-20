@@ -8,7 +8,7 @@ import ngSidbarJsStyle from './sidebarjs-custom.css';// original file in: node_m
 import template from './posts-sidebar.html';
 //import style from './posts-sidebar.less';
 
-import { Posts } from '../../../api/posts.js';
+import { Posts } from '/imports/api/posts.js';
 import { Meteor } from 'meteor/meteor';
 
 class PostCtrl {
@@ -70,24 +70,24 @@ export default angular.module('yourpers.posts.sidebar', [
 		templateUrl : template,
 		controller: ['$rootScope', '$scope', '$http', PostCtrl]
 	})
-	.directive('httpPrefix', function() {
-	    return {
-	        restrict: 'A',
-	        require: 'ngModel',
-	        link: function(scope, element, attrs, controller) {
-	            function ensureHttpPrefix(value) {
-	                // Need to add prefix if we don't have http:// prefix already AND we don't have part of it
-	                if(value && !/^(https?):\/\//i.test(value)
-	                   && 'http://'.indexOf(value) !== 0 && 'https://'.indexOf(value) !== 0 ) {
-	                    controller.$setViewValue('http://' + value);
-	                    controller.$render();
-	                    return 'http://' + value;
-	                }
-	                else
-	                    return value;
-	            }
-	            controller.$formatters.push(ensureHttpPrefix);
-	            controller.$parsers.splice(0, 0, ensureHttpPrefix);
-	        }
-	    };
-	});
+	// .directive('httpPrefix', function() {
+	//     return {
+	//         restrict: 'A',
+	//         require: 'ngModel',
+	//         link: function(scope, element, attrs, controller) {
+	//             function ensureHttpPrefix(value) {
+	//                 // Need to add prefix if we don't have http:// prefix already AND we don't have part of it
+	//                 if(value && !/^(https?):\/\//i.test(value)
+	//                    && 'http://'.indexOf(value) !== 0 && 'https://'.indexOf(value) !== 0 ) {
+	//                     controller.$setViewValue('http://' + value);
+	//                     controller.$render();
+	//                     return 'http://' + value;
+	//                 }
+	//                 else
+	//                     return value;
+	//             }
+	//             controller.$formatters.push(ensureHttpPrefix);
+	//             controller.$parsers.splice(0, 0, ensureHttpPrefix);
+	//         }
+	//     };
+	// });

@@ -1,9 +1,10 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
-import style from'./articleMaterialModal.less';
+import style from'./articleDialog.less';
 
 import {name as UrlMetaData} from '/imports/services/UrlMetaData'
+import {name as httpPrefixDirective} from '/imports/directives/http-prefix'
 
 class ArticleModalCtrl {
 
@@ -226,6 +227,7 @@ class ArticleModalCtrl {
 export default angular.module('yourpers.ArticleModalCtrl', [
 	angularMeteor,
 	UrlMetaData,
+	httpPrefixDirective,
 	]).controller('ArticleModalCtrl', 
 			['$rootScope', '$scope', '$reactive', '$document', '$mdDialog', 'UrlMetaData',
 				'topicId', 'category', 'article', 
