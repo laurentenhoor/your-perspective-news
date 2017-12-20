@@ -1,13 +1,12 @@
-import {name as yourpersMenu} from '/imports/common/menu/menu';
-import {name as yourpersBulletin} from '/imports/common/bulletin/bulletin';
-
+import newsTiles from './news-tiles/news-tiles.module';
+import articleMenu from './article-menu/article-menu';
 import desktopViewer from './desktop-viewer/desktop-viewer';
 
 export default 
 angular.module('app.common', [
     
-    yourpersMenu,
-    yourpersBulletin,
+    newsTiles,
+    articleMenu,
     desktopViewer,
     
 ]).name;

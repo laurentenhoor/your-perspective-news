@@ -1,5 +1,11 @@
 @import "/imports/style/variables.less";
 
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+    display: none;
+}
+
 desktop-viewer {
     
     .desktop-title {
@@ -9,13 +15,6 @@ desktop-viewer {
         text-align:center;
         
     }
-
-    ::-webkit-scrollbar {
-        width: 0px;  /* remove scrollbar space */
-        background: transparent;  /* optional: just make scrollbar invisible */
-        display: none;
-    }
-
     .maincontentdiv {
         position: relative;
         height: 736px;
@@ -47,3 +46,4 @@ desktop-viewer {
     }
 
 }
+

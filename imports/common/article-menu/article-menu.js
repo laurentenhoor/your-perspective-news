@@ -1,13 +1,13 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
-import materialModalTemplate from './articleDialog.html';
-import {name as materialModalCtrl} from './articleDialog.js';
+import materialModalTemplate from './article-dialog.html';
+import {name as materialModalCtrl} from './article-dialog.js';
 
 import {name as AuthService} from '/imports/services/AuthService';
 
-import template from './articleActions.html';
-import style from './articleActions.less';
+import template from './article-menu.html';
+import style from './article-menu.less';
 
 
 class ArticleActionsCtrl {
@@ -91,4 +91,4 @@ export default angular.module('yourpers.articleActions', [
 			category : '<',
 			article : '<',
 		}
-	});
+	}).name;

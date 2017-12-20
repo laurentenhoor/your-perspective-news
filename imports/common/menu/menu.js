@@ -6,7 +6,7 @@ import style from './menu.less';
 
 import {name as yourpersAuthentication} from '/imports/components/authentication/authentication';
 
-import {name as yourpersArticleActions} from '../articleActions/articleActions';
+import yourpersArticleActions from '../article-menu/article-menu';
 
 class MenuCtrl {
 	

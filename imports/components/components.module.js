@@ -1,5 +1,5 @@
-import {name as yourpersFeedback} from '/imports/components/feedback/feedback';
-import {name as yourpersLoader} from '/imports/components/loader/loader';
+import {name as yourpersFeedback} from './feedback/feedback';
+import {name as yourpersLoader} from './loader/loader';
 
 export default 
 angular.module('app.components', [

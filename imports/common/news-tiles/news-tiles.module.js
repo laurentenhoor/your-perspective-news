@@ -4,14 +4,14 @@ import angularMeteor from 'angular-meteor';
 import moment from 'moment';
 import 'moment/locale/nl'
 
-import {name as yourpersArticleActions} from '/imports/common/articleActions/articleActions';
+import yourpersArticleActions from '/imports/common/article-menu/article-menu';
 import {name as SmoothScrollService} from '/imports/services/SmoothScrollService';
 import {name as yourpersComments} from '/imports/common/comments/comments';
 
 import {name as AuthService} from '/imports/services/AuthService'
 
-import template from './bulletin.html';
-import style from './bulletin.less';
+import template from './news-tiles.html';
+import style from './news-tiles.less';
 
 import { Topics } from '/imports/api/topics.js';
 import { Articles } from '/imports/api/articles.js';
@@ -19,7 +19,8 @@ import { Votes } from '/imports/api/votes.js';
 
 class BulletinCtrl {
 
-	constructor($rootScope, $scope, $reactive, $window, $location, $anchorScrol, SmoothScrollService, AuthService) {
+	constructor($rootScope, $scope, $reactive, $window, $location, SmoothScrollService, AuthService) {
+		'ngInject';
 
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
@@ -136,15 +137,14 @@ class BulletinCtrl {
 
 }
 
-
-export default angular.module('yourpers.bulletin', [
+export default angular.module('bulletin', [
 	angularMeteor,
 	yourpersArticleActions,
 	yourpersComments,
 	SmoothScrollService,
-	AuthService,
+	AuthService
 	])
 	.component('yourpersBulletin', {
-		templateUrl : template,
-		controller: ['$rootScope', '$scope', '$reactive', '$window', '$location', '$anchorScroll', 'SmoothScrollService', 'AuthService', BulletinCtrl]
-	});
+		controller: BulletinCtrl,
+		templateUrl : template
+	}).name;
