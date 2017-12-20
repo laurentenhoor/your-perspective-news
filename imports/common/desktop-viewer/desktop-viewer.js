@@ -8,6 +8,7 @@ import style from './desktop-viewer.less';
 class DesktopViewerCtrl {
 
 	constructor($rootScope, $scope, $reactive) {
+		'ngInject';
 
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
@@ -21,5 +22,5 @@ export default angular.module('desktopViewer', [
 	])
 	.component('desktopViewer', {
 		templateUrl : template,
-		controller: ['$rootScope', '$scope', '$reactive', DesktopViewerCtrl],
+		controller: DesktopViewerCtrl,
 	}).name;
