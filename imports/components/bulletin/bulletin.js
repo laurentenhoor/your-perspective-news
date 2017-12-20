@@ -113,8 +113,6 @@ class BulletinCtrl {
 		};
 
 		$ctrl.vote = function(article, voteUpOrDown) {
-
-			debugger;
 			
 			if (AuthService.isLoggedIn()) {
 				$ctrl.call('voteById', article._id, voteUpOrDown);
