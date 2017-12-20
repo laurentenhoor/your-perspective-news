@@ -21,7 +21,7 @@ angular.module('yourpers', [
 	
 ])
 
-.component('yourpers', appComponent)
+.component('yourpersApp', appComponent)
 
 .config(['$locationProvider', '$routeProvider', '$httpProvider', '$provide', '$sceDelegateProvider', function(
 		$locationProvider, $routeProvider, $httpProvider, $provide, $sceDelegateProvider) {

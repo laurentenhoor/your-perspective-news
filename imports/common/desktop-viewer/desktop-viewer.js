@@ -16,7 +16,6 @@ class DesktopViewerCtrl {
 
 }
 
-
 export default angular.module('desktopViewer', [
 	angularMeteor,
 	])
