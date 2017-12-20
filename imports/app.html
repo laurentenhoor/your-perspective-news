@@ -1,0 +1,17 @@
+<div ng-if="$ctrl.showMobile" ng-cloak>
+    
+    <yourpers-loader></yourpers-loader>
+
+    <yourpers-menu></yourpers-menu>
+    
+    <div ng-view></div>
+
+    <yourpers-feedback></yourpers-feedback>
+
+</div>
+
+<div ng-if="!$ctrl.showMobile" ng-cloak>
+
+    <yourpers-mobile-preview></yourpers-mobile-preview>
+
+</div>

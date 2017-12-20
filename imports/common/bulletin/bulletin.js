@@ -4,9 +4,9 @@ import angularMeteor from 'angular-meteor';
 import moment from 'moment';
 import 'moment/locale/nl'
 
-import {name as yourpersArticleActions} from '/imports/components/articleActions/articleActions';
+import {name as yourpersArticleActions} from '/imports/common/articleActions/articleActions';
 import {name as SmoothScrollService} from '/imports/services/SmoothScrollService';
-import {name as yourpersComments} from '/imports/components/comments/comments';
+import {name as yourpersComments} from '/imports/common/comments/comments';
 
 import {name as AuthService} from '/imports/services/AuthService'
 

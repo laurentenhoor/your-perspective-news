@@ -1,5 +1,5 @@
 <head>
-
+	
 	<title>Jouwpers - Nieuwsoverzicht</title>
 	<meta name="description"
 		content="Jouw perspectief op het nieuws.">
@@ -10,30 +10,9 @@
 	<link rel="apple-touch-icon" href="/assets/logos/newnews_bw_simplified_white_bg.png">
 	<meta name="apple-mobile-web-app-title" content="jouwpers">
 	<meta name="apple-mobile-web-app-status-bar-style" content="white">
-	
+
 </head>
 
-<body ng-app="yourpers" ng-controller="MainCtrl as $ctrl">
-
-	<div id="container">
-	
-		<div ng-if="$ctrl.showMobile" ng-cloak>
-		
-			<yourpers-loader></yourpers-loader>
-	
-			<yourpers-menu></yourpers-menu>
-			
-			<div ng-view></div>
-	
-			<yourpers-feedback></yourpers-feedback>
-	
-		</div>
-	
-		<div ng-if="!$ctrl.showMobile" ng-cloak>
-		
-			<yourpers-mobile-preview></yourpers-mobile-preview>
-	
-		</div>
-	</div>
-	 
+<body ng-app="yourpers">	
+	<yourpers></yourpers>
 </body>
