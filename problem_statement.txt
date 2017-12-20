@@ -4,3 +4,7 @@ Potential problem statements for allpers:
 	Online news distribution is too much personalized. We cannot find a perspective integrator: objectivity by rich subjectivity.
 	Online pulic opinion is not trustworthy and poluted by (rude) personal oneliner statements.
 	It is not possible to share and discuss multiple news items at once (cross-linking and comparison).
+
+	Genuanceerde discussies op basis van vragen, meningen en feiten bij het dagelijkse nieuws.
+	Door een community van betrokken Nederlanders zonder mogelijkheid om te verschuilen achter een digitale identiteit. 
+	Wij verzetten ons tegen twittergeblaat en nepnieuws.
