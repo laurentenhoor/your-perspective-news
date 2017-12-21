@@ -4,9 +4,10 @@ import angularMeteor from 'angular-meteor';
 import template from './loader.html';
 import style from './loader.less';
 
-class LoaderCtrl {
+class LoaderComponent {
 
 	constructor($rootScope, $scope, $location) {
+		'ngInject';
 
 		$rootScope.initializedDatabase = false;
 
@@ -60,41 +61,7 @@ class LoaderCtrl {
 
 }
 
-export default
-	angular.module('yourpers.loader', [
-		angularMeteor
-	])
-		.directive('extLink', ['$rootScope', '$location', '$window', '$anchorScroll', function ($rootScope, $location, $window, $anchorScroll) {
-			return {
-				restrict: 'A',
-				link: function (scope, elem) {
-					elem.bind('click', function (e) {
-
-						e.preventDefault();
-						e.stopPropagation();
-
-						$rootScope.$apply(function () {
-							$rootScope.stateIsLoading = true;
-						});
-
-						var idHash = $(e.srcElement.parentElement).data('id');
-
-						$location.hash(idHash);
-						$anchorScroll();
-
-						$location.replace();
-
-						$window.history.pushState(null, 'any', $location.absUrl());
-
-						console.log(e.srcElement);
-						//					$window.location.href = e.srcElement.parentElement.href;
-
-
-					});
-				}
-			};
-		}])
-		.component('yourpersLoader', {
-			templateUrl: template,
-			controller: ['$rootScope', '$scope', '$location', LoaderCtrl]
-		}).name;
+export default {
+	templateUrl: template,
+	controller: LoaderComponent,
+}

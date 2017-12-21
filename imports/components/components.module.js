@@ -1,5 +1,5 @@
 import yourpersFeedback from './feedback/feedback';
-import yourpersLoader from './loader/loader';
+import yourpersLoader from './loader/loader.module';
 
 export default
     angular.module('app.components', [
