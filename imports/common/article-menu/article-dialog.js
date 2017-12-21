@@ -4,7 +4,7 @@ import angularMeteor from 'angular-meteor';
 import style from'./article-dialog.less';
 
 import {name as UrlMetaData} from '/imports/services/UrlMetaData'
-import {name as httpPrefixDirective} from '/imports/directives/http-prefix'
+import {name as httpPrefixDirective} from '/imports/directives/http-prefix.directive'
 
 class ArticleModalCtrl {
 

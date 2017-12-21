@@ -11,7 +11,7 @@
 	<form name="newCommentRoot"
 		ng-show="$ctrl.showRootInput"
 		ng-submit="$ctrl.showRootInput=false;$ctrl.newComment(comment);"
-		novalidate> 
+		novalidate auto-focus> 
 			
 		<textarea class="comments-input root"
 			ng-model="comment.newChildComment" 

@@ -11,7 +11,7 @@ import style from './article-menu.less';
 
 
 class ArticleActionsCtrl {
-	
+
 	constructor($rootScope, $scope, $document, $timeout, $reactive, $mdDialog, AuthService) {
 		
 		var $ctrl = this;
@@ -24,7 +24,6 @@ class ArticleActionsCtrl {
 				$ctrl.category = angular.copy($ctrl.category);	
 				$ctrl.article = angular.copy($ctrl.article);
 			}
-			
 		}
 		
 

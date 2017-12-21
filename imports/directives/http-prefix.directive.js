@@ -10,12 +10,19 @@ export default angular.module(name, [
             restrict: 'A',
             require: 'ngModel',
             link: function(scope, element, attrs, controller) {
+
+                console.log(controller);
+
                 function ensureHttpPrefix(value) {
+
+                    console.log('ensure httpPrefix')
+
                     // Need to add prefix if we don't have http:// prefix already AND we don't have part of it
                     if(value && !/^(https?):\/\//i.test(value)
                        && 'http://'.indexOf(value) !== 0 && 'https://'.indexOf(value) !== 0 ) {
                         controller.$setViewValue('http://' + value);
                         controller.$render();
+                        
                         return 'http://' + value;
                     }
                     else

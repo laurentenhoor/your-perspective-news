@@ -16,7 +16,7 @@ import {name as AuthService} from '/imports/services/AuthService';
 import { Comments } from '/imports/api/comments.js';
 import { Votes } from '/imports/api/votes.js';
 
-import {name as AutoFocusDirective} from '/imports/directives/auto-focus.js';
+import AutoFocusDirective from '/imports/directives/auto-focus.directive';
 
 
 class CommentsCtrl {
