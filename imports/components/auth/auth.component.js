@@ -1,15 +1,12 @@
 import angular from 'angular';
-import angularMeteor from 'angular-meteor';
+import angularMeteor from 'angular-meteor'
 
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 
-import template from './authentication.html';
-import { name as DisplayNameFilter } from '/imports/filters/displayName';
+import template from './auth.html';
 
-const name = 'authentication';
-
-class AuthenticationCtrl {
+class AuthComponent {
 	constructor($scope, $rootScope, $reactive, loaderService) {
 		'ngInject';
 
@@ -50,11 +47,7 @@ class AuthenticationCtrl {
 	
 }
 
-//create a module
-export default angular.module(name, [
-	angularMeteor,
-	DisplayNameFilter
-	]).component(name, {
+export default {
 		templateUrl: template,
-		controller: AuthenticationCtrl
-	});
+		controller: AuthComponent
+	};
