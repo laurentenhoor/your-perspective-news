@@ -10,7 +10,7 @@ import { name as DisplayNameFilter } from '/imports/filters/displayName';
 const name = 'authentication';
 
 class AuthenticationCtrl {
-	constructor($scope, $rootScope, $reactive) {
+	constructor($scope, $rootScope, $reactive, loaderService) {
 		'ngInject';
 
 		console.log('authentication init');
@@ -29,34 +29,22 @@ class AuthenticationCtrl {
 		
 		$ctrl.login = function() {
 
-			$rootScope.stateIsLoading = true;
-			$rootScope.initializedDatabase = false;
+			console.log('login');
+			loaderService.start();
 
-			Meteor.loginWithLinkedIn({}, (err) => {
+			Meteor.loginWithLinkedIn();
 
-				if (err) {
-					// handle error
-				} else {
-					// successful login!
-				}
-
-			});
 		}
 
 		$ctrl.logout = function() {
-			
-			console.log('logout and stateIsLoading to true')
-			
-			$rootScope.stateIsLoading = true;
-			$rootScope.initializedDatabase = false;
+
+			console.log('logout');			
+			loaderService.start();
 			
 			Accounts.logout(function() {
-				$rootScope.stateIsLoading = false;
-				$rootScope.initializedDatabase = false;
+				loaderService.stop();
 			});
 		}
-		
-		
 		
 	}
 	

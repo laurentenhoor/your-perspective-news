@@ -19,18 +19,18 @@ import { Votes } from '/imports/api/votes.js';
 
 class BulletinCtrl {
 
-	constructor($rootScope, $scope, $reactive, $window, $location, SmoothScrollService, AuthService) {
+	constructor($rootScope, $scope, $reactive, $window, $location, SmoothScrollService, AuthService, loaderService) {
 		'ngInject';
 
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
 		
-		$rootScope.stateIsLoading = true;
-		
 		$ctrl.loadedArticles = [];
 		
 		Meteor.subscribe('topicsAndArticles', {
 			onReady: function(){
+
+				loaderService.databaseInitialized();
 				
 				$ctrl.helpers({
 
@@ -65,11 +65,6 @@ class BulletinCtrl {
 						return articlesScoreMap;
 					}
 					
-				});
-				
-				$scope.$apply(function() {
-					$rootScope.stateIsLoading = false;
-					$rootScope.initializedDatabase = true; // used in loader
 				});
 		
 			}

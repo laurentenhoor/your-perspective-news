@@ -1,11 +1,10 @@
 import angular from 'angular';
-import angularMeteor from 'angular-meteor';
 
 import LoaderComponent from './loader.component';
+import LoaderService from './loader.service';
 
-export default
-	angular.module('yourpers.loader', [
-		angularMeteor
-	]).component(
-        'yourpersLoader', LoaderComponent
-    ).name;
+export default angular
+	.module('loaderModule', [])
+	.component('loaderComponent', LoaderComponent)
+	.service('loaderService', LoaderService
+	).name;
