@@ -27,22 +27,22 @@ function setupEventListeners($rootScope, window, $loader) {
 		$loader.stop();
 	});
 
-	window.pageshow = function (e) {
+	window.pageshow = (e) => {
 		console.log('pageshow');
 		$loader.stop();
 	};
 
-	window.onpageshow = function(e) {
+	window.onpageshow = (e) => {
 		console.log('onpageshow');
 		$loader.stop();
 	};
 
-	window.onfocus = function (e) {
+	window.onfocus = (e) => {
 		console.log('focus');
 		// $loader.stop();
-	};
+	}
 
-	window.onbeforeunload = function (e) {
+	window.onbeforeunload = (e) => {
 		console.log('onbeforeunload');
 		$loader.start();
 	};

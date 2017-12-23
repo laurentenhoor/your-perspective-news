@@ -6,5 +6,5 @@ import LoaderService from './loader.service';
 export default angular
 	.module('loader', [])
 	.component('loader', LoaderComponent)
-	.service('$loader', LoaderService
-	).name;
+	.service('$loader', LoaderService)
+	.name;

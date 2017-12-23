@@ -11,8 +11,6 @@ class AuthComponent {
 	constructor($scope, $rootScope, $reactive, $loader) {
 		'ngInject';
 
-		console.log('authentication init');
-
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
 
@@ -27,22 +25,18 @@ class AuthComponent {
 		
 		$ctrl.login = function() {
 
-			console.log('login');
 			$loader.start();
-
 			Meteor.loginWithLinkedIn();
 
 		}
 
 		$ctrl.logout = function() {
 
-			console.log('logout');			
-			$loader.start();
-			
+			$loader.start();			
 			Accounts.logout(function() {
-				console.log('logout callback;');
 				$loader.stop();
 			});
+			
 		}
 		
 	}

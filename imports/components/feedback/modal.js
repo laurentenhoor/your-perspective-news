@@ -2,23 +2,23 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
 class FeedbackModalCtrl {
-	
+
 	constructor($scope, $mdDialog) {
-		
+
 		var $ctrl = this;
-		
-		$ctrl.sendFeedback = function(feedback) {
+
+		$ctrl.sendFeedback = function (feedback) {
 			console.log('sendFeedback()')
 			console.log(feedback);
 			$mdDialog.hide(feedback);
 		}
-		
-		$ctrl.cancel = function() {
+
+		$ctrl.cancel = function () {
 			$mdDialog.cancel();
 		}
 
 	}
-	
+
 }
 
 const name = 'FeedbackModalCtrl'

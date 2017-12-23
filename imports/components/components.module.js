@@ -1,12 +1,7 @@
-import yourpersFeedback from './feedback/feedback';
-import yourpersLoader from './loader/loader.module';
+import Feedback from './feedback/feedback';
+import Loader from './loader/loader.module';
 import Auth from './auth/auth.module'
 
-export default
-    angular.module('app.components', [
-
-        yourpersFeedback,
-        yourpersLoader,
-        Auth
-
-    ]).name;
+export default angular
+    .module('app.components', [Feedback, Loader, Auth])
+    .name;
