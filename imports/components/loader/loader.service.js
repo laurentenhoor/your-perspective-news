@@ -3,7 +3,7 @@ import angularMeteor from 'angular-meteor';
 
 export default class LoaderService {
 
-	constructor($timeout) {
+    constructor($timeout) {
         'ngInject';
 
         let showing = true;
@@ -13,33 +13,33 @@ export default class LoaderService {
             $timeout(() => showing = value);
         }
         function hide() {
-           setShowing(false);
+            setShowing(false);
         }
         function show() {
             setShowing(true);
         }
 
-        this.databaseInitialized = function() {
+        this.databaseInitialized = function () {
             console.log('loaderService.databaseInitialized()')
             databaseInitialized = true;
             hide();
         }
 
-        this.start = function() {
+        this.start = function () {
             console.log('loaderService.start()');
             show();
         }
 
-        this.stop = function() {
+        this.stop = function () {
             console.log('loaderService.stop()');
             if (databaseInitialized)
                 hide();
         }
 
-        this.isVisible = function() {
+        this.isVisible = function () {
             return showing;
         }
-        
+
     }
 
 }

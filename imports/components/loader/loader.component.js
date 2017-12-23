@@ -6,41 +6,46 @@ import style from './loader.less';
 
 class LoaderComponent {
 
-	constructor($rootScope, $scope, $reactive, $location, loaderService, $timeout) {
+	constructor($rootScope, $scope, $reactive, $location, $loader, $timeout) {
 		'ngInject';
-	
-		this.loaderService = loaderService;
-		setupEventListeners($rootScope, window, loaderService);
-		
+
+		this.$loader = $loader;
+		setupEventListeners($rootScope, window, $loader);
+
 	}
 
 }
 
-function setupEventListeners($rootScope, window, loaderService) {
-	$rootScope.$on("$routeChangeStart", function(event, next, current) {
+function setupEventListeners($rootScope, window, $loader) {
+	$rootScope.$on("$routeChangeStart", function (event, next, current) {
 		console.log('$routeChangeStart');
-		loaderService.start();
+		$loader.start();
 	});
-	
-	$rootScope.$on("$routeChangeSuccess", function(event, next, current) {
+
+	$rootScope.$on("$routeChangeSuccess", function (event, next, current) {
 		console.log('$routeChangeSuccess');
-		loaderService.stop();
+		$loader.stop();
 	});
-	
-	window.addEventListener("pageshow", function () {
+
+	window.pageshow = function (e) {
 		console.log('pageshow');
-		loaderService.stop();
-	}, false);
-	
-	window.addEventListener("onpageshow", function () {
+		$loader.stop();
+	};
+
+	window.onpageshow = function(e) {
 		console.log('onpageshow');
-		loaderService.stop();
-	}, false);
-	
-	window.addEventListener("focus", function () {
+		$loader.stop();
+	};
+
+	window.onfocus = function (e) {
 		console.log('focus');
-		// loaderService.stop();
-	}, false);
+		// $loader.stop();
+	};
+
+	window.onbeforeunload = function (e) {
+		console.log('onbeforeunload');
+		$loader.start();
+	};
 }
 
 export default {

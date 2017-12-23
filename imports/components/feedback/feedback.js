@@ -82,11 +82,11 @@ class FeedbackCtrl {
 }
 
 export default
-	angular.module('yourpers.feedback', [
+	angular.module('feedback', [
 		angularMeteor,
 		angularMaterial,
 		modalCtrl.name,
-	]).component('yourpersFeedback', {
+	]).component('feedback', {
 		templateUrl: template,
 		controller: FeedbackCtrl
 	}).name;

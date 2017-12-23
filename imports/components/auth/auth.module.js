@@ -1,13 +1,13 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor'
 
-import { name as DisplayNameFilter } from '/imports/filters/displayName';
+import AuthFilters from './auth.filter';
 import AuthComponent from './auth.component';
 
 export default
     angular.module('auth', [
         angularMeteor,
-        DisplayNameFilter,
     ])
         .component('auth', AuthComponent)
+        .filter('usernameFilter', () => AuthFilters.Username)
         .name

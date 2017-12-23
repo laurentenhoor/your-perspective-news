@@ -19,7 +19,7 @@ import { Votes } from '/imports/api/votes.js';
 
 class BulletinCtrl {
 
-	constructor($rootScope, $scope, $reactive, $window, $location, SmoothScrollService, AuthService, loaderService) {
+	constructor($rootScope, $scope, $reactive, $window, $location, SmoothScrollService, AuthService, $loader) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -30,7 +30,7 @@ class BulletinCtrl {
 		Meteor.subscribe('topicsAndArticles', {
 			onReady: function(){
 
-				loaderService.databaseInitialized();
+				$loader.databaseInitialized();
 				
 				$ctrl.helpers({
 
