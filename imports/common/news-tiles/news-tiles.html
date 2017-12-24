@@ -75,8 +75,7 @@
 				<div class="solid-overlay">
 				</div>
 
-				<a href="{{topic.selectedArticle[categoryName].url || ''}}" 
-					target="_self"
+				<div ng-click="$ctrl.openExternalUrl(topic.selectedArticle[categoryName].url)"
 					ng-class="topic.selectedArticle[categoryName].videoUrl ? 'link-disabled' : ''"
 					ng-hide="topic.selectedArticle[categoryName].videoUrl">
 					
@@ -95,7 +94,7 @@
 						</div>
 							
 					</div>
-				</a>
+				</div>
 
 			</div>
 			

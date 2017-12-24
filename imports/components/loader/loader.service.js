@@ -10,7 +10,7 @@ export default class LoaderService {
         let databaseInitialized = false;
 
         function setShowing(value) {
-            $timeout(() => showing = value);
+            $timeout(() => showing = value); // Why is $timeout required here? Something with responsiveness?
         }
         function hide() {
             setShowing(false);

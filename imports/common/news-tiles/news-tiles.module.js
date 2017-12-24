@@ -19,7 +19,7 @@ import { Votes } from '/imports/api/votes.js';
 
 class BulletinCtrl {
 
-	constructor($rootScope, $scope, $reactive, $window, $location, SmoothScrollService, AuthService, $loader) {
+	constructor($rootScope, $scope, $reactive, $window, $location, SmoothScrollService, AuthService, $loader, $timeout) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -70,7 +70,18 @@ class BulletinCtrl {
 			}
 			
 		});
-		
+
+		$ctrl.openExternalUrl = function(url) {
+			if (url && url != '') {
+
+				$loader.start();
+				
+				$timeout(() => {
+					window.location.href = url;
+				},200)
+				
+			}
+		}
 		
 		moment.locale('nl');
 		$ctrl.getTimeTag = function(article) {

@@ -8,7 +8,8 @@ import yourpersArticleActions from '../article-menu/article-menu';
 
 class MenuCtrl {
 	
-  constructor($scope, $location, $window) {
+  constructor($scope, $rootScope, $location, $window) {
+    'ngInject'
 	  
 	  $scope.isActive = function(viewLocation) {
 	    return viewLocation === $location.path();
@@ -27,5 +28,5 @@ export default angular.module('menu', [
 ])
   .component('yourpersMenu', {
     templateUrl : template,
-    controller: ['$scope', '$location', '$window', MenuCtrl]
+    controller: MenuCtrl,
   }).name;
