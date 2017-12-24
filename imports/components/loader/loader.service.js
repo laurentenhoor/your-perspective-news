@@ -3,20 +3,17 @@ import angularMeteor from 'angular-meteor';
 
 export default class LoaderService {
 
-    constructor($timeout) {
+    constructor($rootScope, $timeout) {
         'ngInject';
 
         let showing = true;
         let databaseInitialized = false;
 
-        function setShowing(value) {
-            $timeout(() => showing = value); // Why is $timeout required here? Something with responsiveness?
-        }
         function hide() {
-            setShowing(false);
+            $timeout(()=>showing = false);
         }
         function show() {
-            setShowing(true);
+            $timeout(()=>showing = true);
         }
 
         this.databaseInitialized = function () {

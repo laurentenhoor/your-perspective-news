@@ -9,9 +9,7 @@ class LoaderComponent {
 	constructor($rootScope, $scope, $reactive, $location, $loader, $timeout) {
 		'ngInject';
 
-		this.$loader = $loader;
-		console.log(window.location.href);
-
+		this.loader = $loader; 
 		setupEventListeners($rootScope, window, $loader);
 		
 	}
