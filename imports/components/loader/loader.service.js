@@ -10,10 +10,10 @@ export default class LoaderService {
         let databaseInitialized = false;
 
         function hide() {
-            $timeout(()=>showing = false);
+            $timeout(() => showing = false);
         }
         function show() {
-            $timeout(()=>showing = true);
+            $timeout(() => showing = true);
         }
 
         this.databaseInitialized = function () {
@@ -22,9 +22,11 @@ export default class LoaderService {
             hide();
         }
 
-        this.start = function () {
+        this.start = function (renderingFinishedCallback) {
             console.log('loaderService.start()');
             show();
+            $timeout(() => renderingFinishedCallback(), 200); // Have 200 ms for rendering the loader before changing the url
+            $timeout(() => hide(), 10000); // Fallback: hide loader if loading takes very long
         }
 
         this.stop = function () {

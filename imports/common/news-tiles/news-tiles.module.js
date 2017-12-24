@@ -73,13 +73,7 @@ class BulletinCtrl {
 
 		$ctrl.openExternalUrl = function(url) {
 			if (url && url != '') {
-
-				$loader.start();
-				
-				$timeout(() => {
-					window.location.href = url;
-				},200)
-				
+				$loader.start(() => window.location.href = url);
 			}
 		}
 		

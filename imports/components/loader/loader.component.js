@@ -9,7 +9,9 @@ class LoaderComponent {
 	constructor($rootScope, $scope, $reactive, $location, $loader, $timeout) {
 		'ngInject';
 
-		this.loader = $loader; 
+		this.loader = $loader;
+		this.isVisible = this.loader.isVisible();
+
 		setupEventListeners($rootScope, window, $loader);
 		
 	}
