@@ -75,7 +75,7 @@ class BulletinCtrl {
 			$timeout(() => $ctrl.visitedId = null, 700); // should be > animation time
 
 			if (article.url && article.url != '') {
-				window.location.href = article.url;
+				$timeout(() => window.location.href = article.url, 300);
 			}
 
 		}
