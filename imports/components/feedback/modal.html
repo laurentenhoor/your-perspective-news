@@ -1,24 +1,25 @@
 <md-dialog>
 
-<form ng-cloak>
-	<md-toolbar> <md-toolbar-header>Geef
-	ons feedback.</md-toolbar-header> <md-toolbar-subtitle>Laat ons weten
-	wat je denkt zodat wij kunnen blijven verbeteren.</md-toolbar-subtitle> </md-toolbar>
+	<form ng-cloak>
+		<md-toolbar>
+			<md-toolbar-header>Geef ons feedback.</md-toolbar-header>
+			<md-toolbar-subtitle>Laat ons weten wat je denkt zodat wij kunnen blijven verbeteren.</md-toolbar-subtitle>
+		</md-toolbar>
 
-	<md-dialog-content>
-	<div class="md-dialog-content md-inline-form" layout="column">
+		<md-dialog-content>
+			<div class="md-dialog-content md-inline-form" layout="column">
+				<md-input-container class="md-block">
+					<label>Feedback</label>
+					<textarea ng-model="$ctrl.feedback" rows="5" md-select-on-focus></textarea>
+				</md-input-container>
+			</div>
+		</md-dialog-content>
 
-		<textarea ng-model="$ctrl.feedback" class="form-control" rows="5"
-			id="comment"></textarea>
-			
-	</div>
-	</md-dialog-content>
-
-
-	<md-dialog-actions layout="row"> <span flex></span>
-	<md-button class="md-raised" ng-click="$ctrl.cancel()" tabindex="0" auto-focus>Annuleren</md-button> 
-	<md-button class="md-raised  md-primary" ng-click="$ctrl.sendFeedback($ctrl.feedback)">Opslaan</md-button> 
-	</md-dialog-actions>
-</form>
+		<md-dialog-actions layout="row">
+			<span flex></span>
+			<md-button class="md-raised" ng-click="$ctrl.cancel()" tabindex="0" auto-focus>Annuleren</md-button>
+			<md-button class="md-raised  md-primary" ng-click="$ctrl.sendFeedback($ctrl.feedback)">Opslaan</md-button>
+		</md-dialog-actions>
+	</form>
 
 </md-dialog>
