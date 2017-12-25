@@ -27,16 +27,15 @@ class AuthComponent {
 
 			$loader.start();
 			Meteor.loginWithLinkedIn();
-
+			
 		}
 
 		$ctrl.logout = function() {
 
-			$loader.start();			
-			Accounts.logout(function() {
-				$loader.stop();
-			});
-			
+			$loader.startAndWait(() => 
+				Accounts.logout(() => 
+					$loader.stop()))
+
 		}
 		
 	}

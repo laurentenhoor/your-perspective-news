@@ -11,6 +11,7 @@
 			articles=$ctrl.getArticlesByIds(categoryBlock.articleIds);
 			topic.selectedArticle[categoryName]=$ctrl.getArticleWithHighestScore(articles);
 			$ctrl.loadedArticles= $ctrl.loadedArticles.concat(categoryBlock.articleIds);
+			articleId = topic.selectedArticle[categoryName]._id;
 			">
 	
 		<div class="bulletin-item-header">{{categoryName}}</div>
@@ -46,16 +47,16 @@
 						
 						<div ng-click="$ctrl.vote(topic.selectedArticle[categoryName],1)" 
 							class="bulletin-arrow-up" 
-							ng-class="{true: 'bulletin-upvoted', false: ''}[$ctrl.userVoteMap[topic.selectedArticle[categoryName]._id]==1]">
+							ng-class="{true: 'bulletin-upvoted', false: ''}[$ctrl.userVoteMap[articleId]==1]">
 						</div>
 						
 						<div class="bulletin-vote-score">
-							{{$ctrl.articlesScoreMap[topic.selectedArticle[categoryName]._id] || 0}}
+							{{$ctrl.articlesScoreMap[articleId] || 0}}
 						</div>
 						
 						<div ng-click="$ctrl.vote(topic.selectedArticle[categoryName],-1)" 
 							class="bulletin-arrow-down" 
-							ng-class="{true: 'bulletin-downvoted', false: ''}[$ctrl.userVoteMap[topic.selectedArticle[categoryName]._id]==-1]">
+							ng-class="{true: 'bulletin-downvoted', false: ''}[$ctrl.userVoteMap[articleId]==-1]">
 						</div>
 						
 					</div>
@@ -75,13 +76,13 @@
 				<div class="solid-overlay">
 				</div>
 
-				<div ng-click="$ctrl.openExternalUrl(topic.selectedArticle[categoryName].url)"
+				<div ng-click="$ctrl.openExternalUrl(topic.selectedArticle[categoryName]);"
 					ng-class="topic.selectedArticle[categoryName].videoUrl ? 'link-disabled' : ''"
 					ng-hide="topic.selectedArticle[categoryName].videoUrl">
 					
 					<div class="bulletin-item-title-container">
 						
-						<div class="bulletin-item-title">
+						<div class="bulletin-item-title" ng-class="{'bulletin-visited' : (articleId == $ctrl.visitedId)}">
 							{{topic.selectedArticle[categoryName].title}}
 						</div>
 						
@@ -119,7 +120,7 @@
 				<div class="bulletin-source"
 					ng-repeat="article in articles | orderBy:'-score'"
 					ng-click="$ctrl.clickArticle(topic, categoryName, article)"
-					ng-class="(article._id == topic.selectedArticle[categoryName]._id) ? 'bulletin-source-selected':''"
+					ng-class="(article._id == articleId) ? 'bulletin-source-selected':''"
 					ng-style="{'background-image':'url(\'' + (article.logoUrl) + '\')'}">
 				</div>
 			</div>

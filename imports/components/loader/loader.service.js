@@ -3,7 +3,7 @@ import angularMeteor from 'angular-meteor';
 
 export default class LoaderService {
 
-    constructor($rootScope, $timeout) {
+    constructor($timeout) {
         'ngInject';
 
         let showing = true;
@@ -22,11 +22,21 @@ export default class LoaderService {
             hide();
         }
 
-        this.start = function (renderingFinishedCallback) {
+        this.start = function() {
             console.log('loaderService.start()');
+            show();            
+        }   
+
+        this.startAndWait = function(delayedFunction, intervalInMs) {
             show();
-            $timeout(() => renderingFinishedCallback(), 200); // Have 200 ms for rendering the loader before changing the url
-            $timeout(() => hide(), 10000); // Fallback: hide loader if loading takes very long
+            if (!intervalInMs) {
+                intervalInMs = 300;
+            }
+            $timeout(()=> {
+                if (delayedFunction) {
+                    delayedFunction();
+                }
+            }, intervalInMs);
         }
 
         this.stop = function () {

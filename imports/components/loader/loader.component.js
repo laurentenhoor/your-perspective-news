@@ -29,27 +29,7 @@ function setupEventListeners($rootScope, window, $loader) {
 		console.log('$routeChangeSuccess');
 		$loader.stop();
 	});
-
-	// Event for returning via back button
-	window.addEventListener('pageshow', function() {
-		console.log('pageshow');
-		$loader.stop();
-	}, false);
-
-	// Listen to both pageshow and popstate for page navigations
-	// Since popstate events are not always fired when navigating between
-	// pages, listen to the pageshow event as well.
-	window.addEventListener('popstate', function() {
-		console.log('popstate');
-		$loader.stop();
-	}, false);
-
-	// event for returning to the browser
-	window.addEventListener("focus", function() {
-		console.log('focus');
-		$loader.stop();
-	}, false);
-
+	
 }
 
 export default {
