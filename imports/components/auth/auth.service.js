@@ -7,6 +7,7 @@ import { Meteor } from 'meteor/meteor';
 export default class AuthService {
 
 	constructor($mdDialog) {
+		'ngInject';
 
 		return {
 			isLoggedIn: isLoggedIn
@@ -51,6 +52,7 @@ export default class AuthService {
 	}
 
 	static factory($mdDialog){
+		'ngInject';
 		return new AuthService($mdDialog);
 	}
 

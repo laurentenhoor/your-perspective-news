@@ -16,10 +16,10 @@ import { Votes } from '/imports/api/votes.js';
 
 import AutoFocusDirective from '/imports/directives/auto-focus.directive';
 
-
 class CommentsCtrl {
 
 	constructor($rootScope, $scope, $document, $reactive, CommentsTreeBuilder, $auth) {
+		'ngInject';
 
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
@@ -174,7 +174,7 @@ export default angular.module('yourpers.comments', [
 	])
 	.component('yourpersComments', {
 		templateUrl : template,
-		controller: ['$rootScope', '$scope', '$document', '$reactive', 'CommentsTreeBuilder', '$auth', CommentsCtrl],
+		controller: CommentsCtrl,
 		bindings: {
 			topicId : '<',
 		}

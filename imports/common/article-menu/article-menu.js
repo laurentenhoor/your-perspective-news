@@ -7,10 +7,10 @@ import {name as materialModalCtrl} from './article-dialog.js';
 import template from './article-menu.html';
 import style from './article-menu.less';
 
-
 class ArticleActionsCtrl {
 
 	constructor($rootScope, $scope, $document, $timeout, $reactive, $mdDialog, $auth) {
+		'ngInject';
 		
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
@@ -81,7 +81,7 @@ export default angular.module('yourpers.articleActions', [
 	])
 	.component('yourpersArticleActions', {
 		templateUrl : template,
-		controller: ['$rootScope', '$scope', '$document', '$timeout', '$reactive', '$mdDialog', '$auth', ArticleActionsCtrl],
+		controller: ArticleActionsCtrl,
 		bindings: {
 			topicId : '<',
 			category : '<',
