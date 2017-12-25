@@ -6,7 +6,11 @@ export default class AuthFilters {
 
 	filterUsername(user) {
 
-		if (user.profile && user.profile.firstName) {
+		if (!user) {
+			
+			return null;
+
+		} else if (user.profile && user.profile.firstName) {
 
 			return user.profile.firstName + ' afmelden';
 
