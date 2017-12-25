@@ -4,15 +4,13 @@ import angularMeteor from 'angular-meteor';
 import materialModalTemplate from './article-dialog.html';
 import {name as materialModalCtrl} from './article-dialog.js';
 
-import {name as AuthService} from '/imports/services/AuthService';
-
 import template from './article-menu.html';
 import style from './article-menu.less';
 
 
 class ArticleActionsCtrl {
 
-	constructor($rootScope, $scope, $document, $timeout, $reactive, $mdDialog, AuthService) {
+	constructor($rootScope, $scope, $document, $timeout, $reactive, $mdDialog, $auth) {
 		
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
@@ -44,7 +42,7 @@ class ArticleActionsCtrl {
 		
 		$ctrl.open = function(ev) {
 			
-			if(!AuthService.isLoggedIn()) {
+			if(!$auth.isLoggedIn()) {
 				return;
 			}
 			
@@ -80,11 +78,10 @@ class ArticleActionsCtrl {
 export default angular.module('yourpers.articleActions', [
 	angularMeteor,
 	materialModalCtrl,
-	AuthService,
 	])
 	.component('yourpersArticleActions', {
 		templateUrl : template,
-		controller: ['$rootScope', '$scope', '$document', '$timeout', '$reactive', '$mdDialog', 'AuthService', ArticleActionsCtrl],
+		controller: ['$rootScope', '$scope', '$document', '$timeout', '$reactive', '$mdDialog', '$auth', ArticleActionsCtrl],
 		bindings: {
 			topicId : '<',
 			category : '<',

@@ -17,8 +17,8 @@ angular.module('yourpers', [
 	angularMaterial,
 	angularRoute,
 
-	commonModule,
 	componentsModule,
+	commonModule,
 	// deprecatedModule,
 	
 ])

@@ -11,8 +11,6 @@ import template from './comments-tile.html';
 import style from './comments-tile.less';
 import commentsTreeTemplate from './commentsTree.html';
 
-import {name as AuthService} from '/imports/services/AuthService';
-
 import { Comments } from '/imports/api/comments.js';
 import { Votes } from '/imports/api/votes.js';
 
@@ -21,7 +19,7 @@ import AutoFocusDirective from '/imports/directives/auto-focus.directive';
 
 class CommentsCtrl {
 
-	constructor($rootScope, $scope, $document, $reactive, CommentsTreeBuilder, AuthService) {
+	constructor($rootScope, $scope, $document, $reactive, CommentsTreeBuilder, $auth) {
 
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
@@ -93,7 +91,7 @@ class CommentsCtrl {
 			
 			if (initialValue == false) {
 				
-				if(AuthService.isLoggedIn()) {
+				if($auth.isLoggedIn()) {
 					return true;
 				} else {
 					return false;
@@ -148,7 +146,7 @@ class CommentsCtrl {
 
 		$ctrl.vote = function(commentId, voteUpOrDown) {
 
-			if (AuthService.isLoggedIn()) {
+			if ($auth.isLoggedIn()) {
 				$ctrl.call('voteById', commentId, voteUpOrDown); 
 			}
 			
@@ -173,11 +171,10 @@ export default angular.module('yourpers.comments', [
 	angularSanitize,
 	CommentsTreeBuilder,
 	AutoFocusDirective,
-	AuthService,
 	])
 	.component('yourpersComments', {
 		templateUrl : template,
-		controller: ['$rootScope', '$scope', '$document', '$reactive', 'CommentsTreeBuilder', 'AuthService', CommentsCtrl],
+		controller: ['$rootScope', '$scope', '$document', '$reactive', 'CommentsTreeBuilder', '$auth', CommentsCtrl],
 		bindings: {
 			topicId : '<',
 		}

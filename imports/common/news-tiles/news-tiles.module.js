@@ -8,8 +8,6 @@ import yourpersArticleActions from '/imports/common/article-menu/article-menu';
 import {name as SmoothScrollService} from '/imports/services/SmoothScrollService';
 import yourpersComments from '/imports/common/comments-tile/comments-tile';
 
-import {name as AuthService} from '/imports/services/AuthService'
-
 import template from './news-tiles.html';
 import style from './news-tiles.less';
 
@@ -19,7 +17,7 @@ import { Votes } from '/imports/api/votes.js';
 
 class BulletinCtrl {
 
-	constructor($rootScope, $scope, $reactive, $window, $location, SmoothScrollService, AuthService, $loader, $timeout) {
+	constructor($rootScope, $scope, $reactive, $window, $location, SmoothScrollService, $auth, $loader, $timeout) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -120,7 +118,7 @@ class BulletinCtrl {
 
 		$ctrl.vote = function(article, voteUpOrDown) {
 			
-			if (AuthService.isLoggedIn()) {
+			if ($auth.isLoggedIn()) {
 				$ctrl.call('voteById', article._id, voteUpOrDown);
 			} 
 			
@@ -147,7 +145,6 @@ export default angular.module('bulletin', [
 	yourpersArticleActions,
 	yourpersComments,
 	SmoothScrollService,
-	AuthService
 	])
 	.component('yourpersBulletin', {
 		controller: BulletinCtrl,

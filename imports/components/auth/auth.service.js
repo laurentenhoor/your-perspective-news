@@ -4,7 +4,7 @@ import angularMaterial from 'angular-material';
 
 import { Meteor } from 'meteor/meteor';
 
-class AuthService {
+export default class AuthService {
 
 	constructor($mdDialog) {
 
@@ -28,9 +28,9 @@ class AuthService {
 			    	})
 						.parent(angular.element(document.querySelector('#popupContainer')))
 						.clickOutsideToClose(false)
-						.title('Je bent niet ingelogd')
-						.textContent('Log eenvoudig in met LinkedIn. Een account aanmaken is niet nodig.')
-						.ariaLabel('Login met LinkedIn')
+						.title('Log in met LinkedIn')
+						.textContent(`Wij streven naar eerlijke discussies tussen echte mensen.`)
+						.ariaLabel('Log in met LinkedIn')
 						.ok('Login')
 						.cancel('Annuleren')
 				
@@ -55,10 +55,3 @@ class AuthService {
 	}
 
 }
-
-var name = "AuthService";
-
-export default angular.module(name, [
-	angularMeteor,
-	angularMaterial,
-	]).service(name, ['$mdDialog', AuthService.factory]);
