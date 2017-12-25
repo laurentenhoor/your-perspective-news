@@ -64,8 +64,8 @@ class FeedbackCtrl {
 							})
 								.parent(angular.element(document.body))
 								.clickOutsideToClose(false)
-								.title('Bedankt voor je reactie.')
-								.textContent('Wij willen samen blijven verbeteren.')
+								.title('Bedankt voor jouw reactie.')
+								.textContent('Samen kunnen wij blijven verbeteren.')
 								.ariaLabel('Feedback')
 								.ok('Sluiten')
 						);
