@@ -1,12 +1,12 @@
 <div class="auth-menu" layout="row">
   <u>
-    <div id="login-sign-in-link" ng-hide="$ctrl.isLoggedIn" ng-click="$ctrl.login()">
+    <div id="login-sign-in-link" ng-if="!$ctrl.isLoggedIn" ng-click="$ctrl.login()">
       Login met LinkedIn
     </div>
   </u>
   <u>
-    <div ng-show="$ctrl.isLoggedIn" ng-click="$ctrl.logout()">
-      {{ $ctrl.currentUser | usernameFilter }} afmelden
+    <div ng-if="$ctrl.isLoggedIn" ng-click="$ctrl.logout()">
+      {{ $ctrl.currentUser | usernameFilter }} 
     </div>
   </u>
 </div>

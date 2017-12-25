@@ -6,23 +6,19 @@ export default class AuthFilters {
 
 	filterUsername(user) {
 
-		if (!user) {
-			return '';
-		}
-		
-		if (user.username) {
-			return user.username 
-		}
-
 		if (user.profile && user.profile.firstName) {
-			return user.profile.firstName;
-		}
 
-		if (user.emails) {
-			return user.emails[0].address;	
-		}
+			return user.profile.firstName + ' afmelden';
 
-		return user;
+		} else if (user.username) {
+
+			return user.username + ' afmelden'
+
+		} else {
+
+			return null;
+
+		}
 
 	}
 
