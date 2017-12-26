@@ -8,7 +8,7 @@ import { name as httpPrefixDirective } from '/imports/directives/http-prefix.dir
 
 class ArticleModalCtrl {
 
-	constructor($rootScope, $scope, $reactive, $document, $mdDialog, $metadata, topicId, category, article) {
+	constructor($loader, $scope, $reactive, $document, $mdDialog, $metadata, topicId, category, article) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -69,7 +69,7 @@ class ArticleModalCtrl {
 			if (!isValidUrl($ctrl.article.url)) {
 				return;
 			}
-			$rootScope.stateIsLoading = true;
+			$loader.start();
 
 			$ctrl.call('getUrlMetadata', $ctrl.article.url, function (error, result) {
 
@@ -82,7 +82,7 @@ class ArticleModalCtrl {
 				$ctrl.urlDataIsLoaded = true;
 
 				$scope.$apply(function () {
-					$rootScope.stateIsLoading = false;
+					$loader.stop();
 				});
 
 			});
