@@ -19,7 +19,7 @@ class LoaderComponent {
 }
 
 function setupEventListeners($rootScope, window, $loader) {
-
+	
 	$rootScope.$on("$routeChangeStart", function (event, next, current) {
 		console.log('$routeChangeStart');
 		$loader.start();
@@ -27,6 +27,20 @@ function setupEventListeners($rootScope, window, $loader) {
 
 	$rootScope.$on("$routeChangeSuccess", function (event, next, current) {
 		console.log('$routeChangeSuccess');
+		$loader.stop();
+	});
+
+	window.addEventListener('visibilitychange', () => {
+		console.log('visibilitychange');
+		console.log(document.visibilityState);
+		
+		if (document.visibilityState == 'visible') {
+			$loader.stop();
+		}
+
+	});
+
+	window.addEventListener('pageshow', () => {
 		$loader.stop();
 	});
 	

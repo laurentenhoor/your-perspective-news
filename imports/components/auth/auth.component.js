@@ -22,27 +22,25 @@ class AuthComponent {
 				return Meteor.user();
 			}
 		});
-		
-		$ctrl.login = function() {
+
+		$ctrl.login = function () {
 
 			$loader.start();
-			Meteor.loginWithLinkedIn();
-			
+			Meteor.loginWithLinkedIn(() => $loader.stop());
+
 		}
 
-		$ctrl.logout = function() {
+		$ctrl.logout = function () {
 
-			$loader.startAndWait(() => 
-				Accounts.logout(() => 
+			$loader.startAndWait(() =>
+				Accounts.logout(() =>
 					$loader.stop()))
-
 		}
-		
 	}
-	
+
 }
 
 export default {
-		templateUrl: template,
-		controller: AuthComponent
-	};
+	templateUrl: template,
+	controller: AuthComponent
+};

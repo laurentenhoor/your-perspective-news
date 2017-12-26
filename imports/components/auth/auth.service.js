@@ -6,7 +6,7 @@ import { Meteor } from 'meteor/meteor';
 
 export default class AuthService {
 
-	constructor($mdDialog) {
+	constructor($mdDialog, $timeout) {
 		'ngInject';
 
 		return {
@@ -35,10 +35,9 @@ export default class AuthService {
 						.ok('Login')
 						.cancel('Annuleren')
 				
-				
 				 $mdDialog.show(confirmModal).then(function() {
-					 	Meteor.loginWithLinkedIn();		
-					 return;
+						Meteor.loginWithLinkedIn();
+						return;
 				    }, function() {
 				    	console.log('canceled login modal');
 				    });

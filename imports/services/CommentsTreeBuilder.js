@@ -20,7 +20,6 @@ class CommentsTreeBuilder {
 	}
 }
 
-
 function findRootCommentsAndSortByVotes(unsortedComments) {
 
 	var rootComments = [];

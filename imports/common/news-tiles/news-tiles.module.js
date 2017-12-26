@@ -70,7 +70,7 @@ class BulletinCtrl {
 		});
 
 		$ctrl.openExternalUrl = function(article) {
-		
+			
 			$ctrl.visitedId = article._id; // trigger animation of click
 			$timeout(() => $ctrl.visitedId = null, 700); // should be > animation time
 
