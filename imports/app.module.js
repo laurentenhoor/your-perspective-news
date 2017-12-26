@@ -1,6 +1,6 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
-import angularRoute from 'angular-route';
+import uiRouter from 'angular-ui-router';
 
 import angularMaterial from 'angular-material';
 import angularMaterialStyle from '/node_modules/angular-material/angular-material.css';
@@ -15,7 +15,7 @@ angular.module('yourpers', [
 	
 	angularMeteor,
 	angularMaterial,
-	angularRoute,
+	uiRouter,
 
 	componentsModule,
 	commonModule,
@@ -25,17 +25,12 @@ angular.module('yourpers', [
 
 .component('yourpersApp', appComponent)
 
-.config(($routeProvider, $locationProvider, $sceDelegateProvider) => {
+.config(($locationProvider, $sceDelegateProvider, $urlRouterProvider) => {
 	'ngInject';
 
-	$routeProvider.
-	    when('/nieuws', {
-    		template: '<yourpers-bulletin></yourpers-bulletin>'
-	    }).
-	    otherwise('/nieuws');
-	
 	$locationProvider.html5Mode({ enabled: true, requireBase: false, rewriteLinks: false });
 	$sceDelegateProvider.resourceUrlWhitelist(['**']);
+	$urlRouterProvider.otherwise('/nieuws');
 
 	// $httpProvider.defaults.useXDomain = true;
     // delete $httpProvider.defaults.headers.common['X-Requested-With'];	

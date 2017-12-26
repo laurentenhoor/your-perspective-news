@@ -13,6 +13,7 @@
     "angular-route": "^1.6.5",
     "angular-sanitize": "^1.6.5",
     "angular-sidebarjs": "^2.2.0",
+    "angular-ui-router": "^1.0.3",
     "babel-runtime": "^6.23.0",
     "bcrypt": "^1.0.3",
     "client": "0.0.1",

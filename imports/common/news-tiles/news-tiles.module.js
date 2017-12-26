@@ -149,4 +149,13 @@ export default angular.module('bulletin', [
 	.component('yourpersBulletin', {
 		controller: BulletinCtrl,
 		templateUrl : template
+	}).config(($stateProvider) => {
+		'ngInject';
+
+		$stateProvider
+		.state('nieuws', {
+			url: "/nieuws",
+			component: 'yourpersBulletin'
+		})
+
 	}).name;
