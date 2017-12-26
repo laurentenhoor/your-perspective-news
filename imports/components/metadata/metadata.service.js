@@ -1,7 +1,4 @@
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-
-class UrlMetaDataService {
+export default class MetadataService {
 
 	constructor() {
 		
@@ -41,12 +38,5 @@ class UrlMetaDataService {
 		
 		return article;
 		
-		
 	}
 }
-
-var serviceName = "UrlMetaData";
-
-export default angular.module(serviceName, [
-	angularMeteor
-	]).service(serviceName, UrlMetaDataService);

@@ -5,20 +5,19 @@ import angularSanitize from 'angular-sanitize';
 import moment from 'moment';
 import 'moment/locale/nl'
 
-import {name as CommentsTreeBuilder} from '../../services/CommentsTreeBuilder.js';
-
 import template from './comments-tile.html';
 import style from './comments-tile.less';
-import commentsTreeTemplate from './commentsTree.html';
+import commentsTreeTemplate from './comments-tree.html';
 
 import { Comments } from '/imports/api/comments.js';
 import { Votes } from '/imports/api/votes.js';
 
 import AutoFocusDirective from '/imports/directives/auto-focus.directive';
+import CommentsTreeService from './comments-tree.service';
 
 class CommentsCtrl {
 
-	constructor($rootScope, $scope, $document, $reactive, CommentsTreeBuilder, $auth) {
+	constructor($rootScope, $scope, $document, $reactive, $commentsTree, $auth) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -37,7 +36,7 @@ class CommentsCtrl {
 //						console.log('fetch comments for topicId: '+ $ctrl.topicId);
 
 						var comments = Comments.find({parentItemId: $ctrl.getReactively('topicId')})
-						var roots = CommentsTreeBuilder.getCommentsTree(comments.fetch());
+						var roots = $commentsTree.getCommentsTree(comments.fetch());
 
 						return roots;
 					},
@@ -169,7 +168,6 @@ class CommentsCtrl {
 export default angular.module('yourpers.comments', [
 	angularMeteor,
 	angularSanitize,
-	CommentsTreeBuilder,
 	AutoFocusDirective,
 	])
 	.component('yourpersComments', {
@@ -178,4 +176,6 @@ export default angular.module('yourpers.comments', [
 		bindings: {
 			topicId : '<',
 		}
-	}).name;
+	})
+	.service('$commentsTree', CommentsTreeService)
+	.name;

@@ -1,8 +1,4 @@
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-
-
-class CommentsTreeBuilder {
+export default class CommentsTreeBuilder {
 
 	constructor() {
 
@@ -92,7 +88,6 @@ function recursivelyAddChildrenToSelectedRootComment(selectedRootComment, childr
 	}
 }
 
-
 function sortCommentsArrayByVotes(commentsArray) {
 
 	// sort root by voting score
@@ -103,9 +98,3 @@ function sortCommentsArrayByVotes(commentsArray) {
 	return commentsArray;
 
 }
-
-var name = "CommentsTreeBuilder";
-
-export default angular.module(name, [
-	angularMeteor
-	]).service(name, CommentsTreeBuilder);

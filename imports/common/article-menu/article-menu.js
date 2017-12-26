@@ -2,7 +2,7 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
 import materialModalTemplate from './article-dialog.html';
-import {name as materialModalCtrl} from './article-dialog.js';
+import materialModalCtrl from './article-dialog.js';
 
 import template from './article-menu.html';
 import style from './article-menu.less';
@@ -53,7 +53,7 @@ class ArticleActionsCtrl {
 			      templateUrl: materialModalTemplate,
 			      parent: angular.element(document.body),
 			      targetEvent: ev,
-			      clickOutsideToClose:false,
+			      clickOutsideToClose: false,
 			      fullscreen: false,// Only for -xs, -sm breakpoints.
 			      locals : {
 						topicId : $ctrl.topicId,
