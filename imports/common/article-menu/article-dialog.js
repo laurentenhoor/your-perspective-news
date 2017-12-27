@@ -14,17 +14,12 @@ class ArticleModalCtrl {
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
 
-		console.log('init ArticleModalCtrl Material Version');
-
 		$ctrl.topicId = topicId;
 		$ctrl.category = category;
 		$ctrl.article = article;
 
-		console.log($ctrl.topicId);
-
 		if (category) {
-			$ctrl.initialCategory = category.category;
-			//			$ctrl.selectedCategory = category.category;			
+			$ctrl.initialCategory = category.category;	
 		}
 
 		if ($ctrl.article) {
@@ -190,7 +185,7 @@ class ArticleModalCtrl {
 					display: state
 				};
 			});
-			console.log(map)
+			// console.log(map)
 			return map;
 		}
 

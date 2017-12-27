@@ -6,17 +6,21 @@ import { Meteor } from 'meteor/meteor';
 
 export default class AuthService {
 
-	constructor($mdDialog, $timeout) {
+	static factory($mdDialog){
 		'ngInject';
+		return new AuthService($mdDialog);
+	}
+
+	constructor($mdDialog) {
 
 		return {
 			isLoggedIn: isLoggedIn
 		}
 
 		function isLoggedIn() {
+			
+			if (!Meteor.user()) {
 
-			if (!Meteor.userId()) {
-				
 				 var confirmModal = $mdDialog.confirm({
 		                onComplete: function afterShowAnimation() {
 		                    var $dialog = angular.element(document.querySelector('md-dialog'));
@@ -48,11 +52,6 @@ export default class AuthService {
 			}		
 
 		}
-	}
-
-	static factory($mdDialog){
-		'ngInject';
-		return new AuthService($mdDialog);
 	}
 
 }

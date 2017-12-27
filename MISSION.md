@@ -2,7 +2,7 @@
 ## Mogen wij jou helpen bij het zoeken naar het volledige verhaal achter het nieuws?
 ---
 ## Wat is Jouwpers?
-### Jouwpers is een open community van betrokken nederlanders. Samen zijn wij op zoek naar een nieuwe vorm van journalistiek in het veranderende medialandschap. 
+### Jouwpers is een open community van betrokken Nederlanders. Samen zijn wij op zoek naar een nieuwe vorm van journalistiek in het veranderende medialandschap. 
 
 #### Zoek jij met ons mee naar de toekomst van de journalistiek?
 ---
@@ -16,15 +16,15 @@
 Wij behandelen drie nieuwsitems per dag. Deze nieuwsitems worden continu verrijkt met verbredende, verdiepende of ontwrichtende bronnen. Wij geloven in objectiviteit door rijke subjectiviteit.
 
 #### Mini Opinie
-Korte opiniestukken zijn de lijm tussen de blikverruimende bronnen. Schrijf kritisch commentaar of vergelijk meerdere bronnen. Zie dit als een moderne variant van de ingezonden brief.
+Korte opiniestukken zijn de lijm tussen de blikverruimende bronnen. Schrijf kritisch commentaar of vergelijk bronnen. Zie dit als een moderne variant van de ingezonden brief.
 
 #### Discussie, of beter gezegd, Q&A
-Wij discussieren enkel en alleen in vraag-antwoord vorm. Open vragen leiden tot betere discussie dan korte statements. Stel daarom open vragen en ontvang doelgerichte opbouwende antwoorden.
+Wij discussieren enkel en alleen in vraag-antwoord vorm. Open vragen leiden tot betere discussie dan gesloten statements. Stel daarom open vragen en ontvang doelgerichte opbouwende antwoorden.
 
 --- 
 ## Hoe waarborgen wij onze kwaliteit?
 
-#### Alleen gevalideerde identiteiten
+#### Alleen gevalideerde profielen
 Door inloggen via LinkedIn en een simpele identiteitscheck verlagen wij de kans van aanmelding van ongewenste bezoekers. 
 
 #### Opbouwen van vertrouwen binnen onze community

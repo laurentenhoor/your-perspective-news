@@ -11,11 +11,11 @@ export default angular.module(name, [
             require: 'ngModel',
             link: function(scope, element, attrs, controller) {
 
-                console.log(controller);
+                // console.log(controller);
 
                 function ensureHttpPrefix(value) {
 
-                    console.log('ensure httpPrefix')
+                    // console.log('ensure httpPrefix')
 
                     // Need to add prefix if we don't have http:// prefix already AND we don't have part of it
                     if(value && !/^(https?):\/\//i.test(value)
