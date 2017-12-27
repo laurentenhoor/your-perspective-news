@@ -6,7 +6,7 @@ import moment from 'moment';
 import 'moment/locale/nl'
 
 import template from './comments-tile.html';
-import style from './comments-tile.less';
+import style from './comments-tile.scss';
 import commentsTreeTemplate from './comments-tree.html';
 
 import { Comments } from '/imports/api/comments.js';

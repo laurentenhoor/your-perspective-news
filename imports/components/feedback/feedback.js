@@ -7,7 +7,7 @@ import { Meteor } from 'meteor/meteor';
 import { Feedback } from '/imports/api/feedback.js';
 
 import template from './feedback.html';
-import style from './feedback.less';
+import style from './feedback.scss';
 
 import modalTemplate from './modal.html';
 import modalCtrl from './modal.js';

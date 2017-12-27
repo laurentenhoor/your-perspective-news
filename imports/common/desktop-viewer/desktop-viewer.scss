@@ -1,4 +1,4 @@
-@import "/imports/style/variables.less";
+@import "{}/imports/style/variables";
 
 ::-webkit-scrollbar {
     width: 0px;  /* remove scrollbar space */
@@ -41,7 +41,7 @@ desktop-viewer {
     }	
 
     .red {
-        color: @brand-color;
+        color: $brand-color;
         //color: rgba(0, 0, 0, 0.7);
     }
 

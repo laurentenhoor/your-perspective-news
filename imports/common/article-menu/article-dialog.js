@@ -1,7 +1,7 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
-import style from './article-dialog.less';
+import style from './article-dialog.scss';
 
 import MetadataModule from '/imports/components/metadata/metadata.module'
 import { name as httpPrefixDirective } from '/imports/directives/http-prefix.directive'

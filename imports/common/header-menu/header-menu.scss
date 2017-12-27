@@ -1,14 +1,14 @@
-@import "../../style/variables.less";
-@import "../../style/accounts_login.less";
+@import "{}/imports/style/variables";
+// @import "../../style/accounts_login.less";
 
 .company-strategy {
     // font-family: "Montserrat";
     font-size: 2.2vw;
     margin-top: -0.8vw;
     display: table;
-    color: #3d448b;
+    color: #6d76d4;
     
-    color: @brand-color;
+    color: $brand-color;
     padding-left: 5.3vw;
     margin-top: -1.1vw;
     display:none;

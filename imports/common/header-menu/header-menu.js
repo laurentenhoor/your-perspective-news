@@ -2,7 +2,7 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
 import template from './header-menu.html';
-import style from './header-menu.less';
+import style from './header-menu.scss';
 
 import yourpersArticleActions from '../article-menu/article-menu';
 

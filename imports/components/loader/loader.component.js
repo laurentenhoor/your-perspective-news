@@ -2,7 +2,7 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
 import template from './loader.html';
-import style from './loader.less';
+import style from './loader.scss';
 
 class LoaderComponent {
 

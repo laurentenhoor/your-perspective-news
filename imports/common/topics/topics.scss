@@ -1,4 +1,14 @@
 
+topics {
+
+    .outer-container {
+        margin: 1vw;	
+        display:inline-table;
+        width:80vw;
+    }
+
+}
+
 .bulletin-items-scroll-container {
 
 	padding-left: 2vw;
@@ -11,36 +21,16 @@
 
 }
 
-.bulletin-item-outer-container {
-
-    margin: 1vw;	
-    display:inline-table;
-    width:80vw;
-
-}
-
-.keyframes(@name; @arguments) {
-	@-moz-keyframes @name { @arguments(); }
-	@-webkit-keyframes @name { @arguments(); }
-	@keyframes @name { @arguments(); }
-}
-
-.animation(@arguments) {
-	-webkit-animation: @arguments;
-	-moz-animation: @arguments;
-	animation: @arguments;
-}
-
 .bulletin-visited {
     
-    .keyframes(visited;{
+    @keyframes visited {
         0% {transform: translateY(0);}
         10% {transform: translateY(-7vw);}
         95% {transform: translateY(0);}
         100% {transform: translateY(0);}
-    });
+    }
 
-    .animation(visited 0.7s ease-out 0s 1 normal)
+    animation: visited 0.7s ease-out 0s 1 normal;
 }
 
 .bulletin-item-image-and-details-container {
@@ -337,19 +327,6 @@
 
 }
 
-
-.keyframes(@name; @arguments) {
-	@-moz-keyframes @name { @arguments(); }
-	@-webkit-keyframes @name { @arguments(); }
-	@keyframes @name { @arguments(); }
-}
-
-.animation(@arguments) {
-	-webkit-animation: @arguments;
-	-moz-animation: @arguments;
-	animation: @arguments;
-}
-
 .bulletin-upvoted {
 	
 // 	border-bottom: 3.7vw solid rgba(39, 86, 218, 1);
@@ -357,14 +334,14 @@
 	border-bottom: 3.7vw solid rgba(10, 80, 191, 1);
 	
 	 
-	 .keyframes(bounceUp;{
+	 @keyframes bounceUp {
 			0% {transform: translateY(0);}
 			15% {transform: translateY(-1.2vw);}
 			95% {transform: translateY(0);}
 			100% {transform: translateY(0);}
-		});
+		}
 
-	.animation(bounceUp .4s ease-out 0s 1 normal)
+	animation: bounceUp .4s ease-out 0s 1 normal;
 
 }
 
@@ -372,14 +349,13 @@
 
 	border-top: 3.7vw solid rgba(218, 39, 44, 1);
 	
-	.keyframes(bounceDown;{
+	@keyframes bounceDown {
 		0% {transform: translateY(0);}
 		15% {transform: translateY(1.2vw);}
 		95% {transform: translateY(0);}
 		100% {transform: translateY(0);}
-	});
-
-	.animation(bounceDown .4s ease-out 0s 1 normal;)
+	}
+	animation: bounceDown .4s ease-out 0s 1 normal;
 }
 
 

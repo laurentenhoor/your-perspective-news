@@ -5,7 +5,7 @@ import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 
 import template from './auth.html';
-import style from './auth.less';
+import style from './auth.scss';
 
 class AuthComponent {
 	constructor($scope, $rootScope, $reactive, $loader) {

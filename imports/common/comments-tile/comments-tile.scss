@@ -1,17 +1,4 @@
-@transparante_white : rgba(255,255,255,0.49);//#ffffff7d
-
-.keyframes(@name; @arguments) {
-	@-moz-keyframes @name { @arguments(); }
-	@-webkit-keyframes @name { @arguments(); }
-	@keyframes @name { @arguments(); }
-}
-
-.animation(@arguments) {
-	-webkit-animation: @arguments;
-	-moz-animation: @arguments;
-	animation: @arguments;
-}
-
+$transparante_white : rgba(255,255,255,0.49);//#ffffff7d
 
 yourpers-comments {
 	height:100%;
@@ -42,7 +29,7 @@ yourpers-comments {
 	display:inline-block;
 	font-size: 3vw;
     margin-right: 2vw;
-    color:@transparante_white;
+    color:$transparante_white;
 }
 
 .comments-delete > .material-icons {
@@ -65,7 +52,7 @@ yourpers-comments {
 
 .comments-input-button {
 	width:100%;
-	background-color:@transparante_white;
+	background-color:$transparante_white;
 	border-radius: 0.8vw;
 	color:white;
 	font-weight: 600;
@@ -94,7 +81,7 @@ yourpers-comments {
 
 .comments-content-header {
 	
-	color:@transparante_white;
+	color:$transparante_white;
 	font-size: 3vw;
 	
 	padding-bottom:1vw;
@@ -114,7 +101,7 @@ yourpers-comments {
 }
 
 .comments-content-voting {
-	color:@transparante_white ;
+	color:$transparante_white ;
 	padding-bottom:2vw;
 	display:inline-block;
 	
@@ -128,7 +115,7 @@ yourpers-comments {
 	
 	border-left: 3vw solid transparent;
 	border-right: 3vw solid transparent;
-	border-bottom: 3vw solid @transparante_white;
+	border-bottom: 3vw solid $transparante_white;
 	
 	display:inline-block;
 	
@@ -144,7 +131,7 @@ yourpers-comments {
 	
 	border-left: 3vw solid transparent;
 	border-right: 3vw solid transparent;
-	border-top: 3vw solid @transparante_white;
+	border-top: 3vw solid $transparante_white;
 	
 	display:inline-block;
 	
@@ -152,37 +139,33 @@ yourpers-comments {
 }	
 
 
-
-
 .comments-upvoted {
 		
 	border-bottom: 3vw solid white !important;
 	opacity:1;
-	
-	 .keyframes(bounceUp;{
-			0% {transform: translateY(0);}
-			15% {transform: translateY(-1.2vw);}
-			95% {transform: translateY(0);}
-			100% {transform: translateY(0);}
-		});
 
-	.animation(bounceUp .4s ease-out 0s 1 normal)
+	@keyframes bounceUp {
+		0% {transform: translateY(0);}
+		15% {transform: translateY(-1.2vw);}
+		95% {transform: translateY(0);}
+		100% {transform: translateY(0);}
+	}
+	animation: bounceUp .4s ease-out 0s 1 normal;
 }
+
 
 .comments-downvoted {
 	
 	border-top: 3vw solid white !important;
 	opacity:1;
-	
-	.keyframes(bounceDown;{
+
+	@keyframes bounceDown {
 		0% {transform: translateY(0);}
 		15% {transform: translateY(1.2vw);}
 		95% {transform: translateY(0);}
 		100% {transform: translateY(0);}
-	});
-
-	.animation(bounceDown .4s ease-out 0s 1 normal;)
-	
+	}
+	animation: bounceDown .4s ease-out 0s 1 normal;
 }
 
 .comments-tree.root {

@@ -7,7 +7,7 @@ import angularMaterialStyle from '/node_modules/angular-material/angular-materia
 
 import componentsModule from './components/components.module'
 import commonModule from './common/common.module'
-import deprecatedModule from './deprecated/deprecated.module'
+// import deprecatedModule from './deprecated/deprecated.module'
 
 import appComponent from './app.component';
 

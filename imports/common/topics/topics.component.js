@@ -1,6 +1,6 @@
 
 import template from './topics.html';
-import style from './topics.less';
+import style from './topics.scss';
 
 import moment from 'moment';
 import 'moment/locale/nl'

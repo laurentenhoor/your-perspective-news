@@ -2,7 +2,7 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
 import appTemplate from './app.html';
-import appStyle from './app.less';
+import appStyle from './app.scss';
 
 class AppComponent {
 	

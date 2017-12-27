@@ -6,7 +6,7 @@
 	<topic-controls></topic-controls>
 	<topic-summary></topic-summary>
 		
-	<div class="bulletin-item-outer-container"
+	<div class="outer-container"
 		ng-repeat="categoryBlock in topic.articlesByCategory | orderBy:'sortingOrder'" 
 		ng-show="articles.length>0"
 		ng-init="
@@ -137,7 +137,7 @@
 	<topic-discussion></topic-discussion>
 	<topic-opinion></topic-opinion>
 	
-	<div class="bulletin-item-outer-container"
+	<div class="outer-container"
 	 	id="discuss-{{topic._id}}">
 	
 		<div class="bulletin-item-header">Jouw perspectief</div>
