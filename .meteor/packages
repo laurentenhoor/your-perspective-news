@@ -28,5 +28,5 @@ percolate:migrations
 service-configuration
 base64
 pauli:accounts-linkedin
-fourseven:scss
-seba:minifiers-autoprefixer
+stylus
+standard-minifier-css

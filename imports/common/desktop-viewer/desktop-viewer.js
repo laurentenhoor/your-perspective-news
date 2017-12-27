@@ -2,7 +2,7 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
 import template from './desktop-viewer.html';
-import style from './desktop-viewer.scss';
+import style from './desktop-viewer.styl';
 
 
 class DesktopViewerCtrl {

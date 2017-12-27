@@ -5,7 +5,7 @@ import materialModalTemplate from './article-dialog.html';
 import materialModalCtrl from './article-dialog.js';
 
 import template from './article-menu.html';
-import style from './article-menu.scss';
+import style from './article-menu.styl';
 
 class ArticleActionsCtrl {
 

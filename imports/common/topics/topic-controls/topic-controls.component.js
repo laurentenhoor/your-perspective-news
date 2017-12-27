@@ -1,5 +1,5 @@
 import template from './topic-controls.html';
-import style from './topic-controls.scss';
+import style from './topic-controls.styl';
 
 class TopicControlsComponent {
 
