@@ -2,32 +2,41 @@
 
 topics {
 
-    font-size:0;
+    .scroll-window {
 
-    .outer-container {
+        margin: 3vw 0 0 0; 
+        padding: 0 0 3vw 0;
 
-        display:inline-block;
-        margin: 0vw 1vw;
-        display:inline-table;
-        width:80vw;
+        width:100%;
+        overflow-x: scroll;
+  
     }
 
+    .scroll-container {
+        display:flex;
+        width:fit-content;
+
+        position:relative;
+
+        padding-left: 1vw;
+        padding-right: 1vw;
+        
+        }
+
+    .content-container {
+        
+        display:block;
+
+        margin: 0vw 1vw;
+        
+        width:80vw;
+        vertical-align: top;
+
+    }
+
+
 }
 
-.bulletin-items-scroll-container {
-
-    margin-top: 3vw;
-    padding-left: 1vw;
-    padding-right: 1vw;
-    padding-bottom: 3vw;
-    
-    overflow-x: scroll;
-    overflow-y: visible;
-    
-    text-align: left;
-    white-space: nowrap;
-
-}
 
 .bulletin-visited {
     
@@ -221,7 +230,7 @@ topics {
 .bulletin-item-header {
     text-align: left;
     color: darkgrey;
-    // font-family: "Montserrat";
+
     font-weight: 400;
     font-size: 3vw;
     margin: 1vw 1vw;
