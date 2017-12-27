@@ -1,5 +1,5 @@
 # Yourpers Mobile Web Application
-## Yourpers is the future of the daily news.
+## Yourpers is the future of daily news.
 
 Genuanceerde discussies op basis van vragen, meningen en feiten bij het dagelijkse nieuws.
 Door een community van betrokken Nederlanders zonder mogelijkheid om te verschuilen achter een digitale identiteit. 
@@ -12,6 +12,10 @@ Wij verzetten ons tegen twittergeblaat en nepnieuws.
 * It is not possible to share and discuss multiple news items at once (cross-linking and comparison).
 
 # Application Changelog
+## Upcoming version 1.4.0
+* Added a MISSION document to highlight our goals
+* Dialog load time optimalization
+
 ## version 1.3.1
 * Login required for most user actions.
 * Refactoring to component achitecture.
