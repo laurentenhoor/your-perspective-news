@@ -20,16 +20,19 @@ class TopicControlsComponent {
 			$autoScroll.horizontalScroll('discuss-'+topicId, 'scroll-'+topicId);
 		}
 
-        $ctrl.writeArticle = function () {
-
-        }
-
-        $ctrl.dummyAlert = function (ev) {
+        $ctrl.writeArticle = function (ev) {
             $mdDialog.show(
-                $mdDialog.alert()
+                $mdDialog.alert({
+                    onComplete: function afterShowAnimation() {
+                        var $dialog = angular.element(document.querySelector('md-dialog'));
+                        var $actionsSection = $dialog.find('md-dialog-actions');
+                        var $cancelButton = $actionsSection.children()[0];
+                        angular.element($cancelButton).addClass('md-raised');
+                    }
+                })
                     .clickOutsideToClose(false)
-                    .title('Nieuwe knop!')
-                    .textContent('Waarvoor?')
+                    .title('Wil je schrijven?')
+                    .textContent('Hier komt binnenkort een editor voor korte opiniestukken...')
                     .ariaLabel('')
                     .ok('Annuleren')
                     .targetEvent(ev)
