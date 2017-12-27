@@ -4,7 +4,7 @@
 	ng-init="topic.selectedArticle = {}">
 
 	<topic-controls></topic-controls>
-	<topic-summary></topic-summary>
+	<!-- <topic-summary></topic-summary> -->
 		
 	<div class="outer-container"
 		ng-repeat="categoryBlock in topic.articlesByCategory | orderBy:'sortingOrder'" 
@@ -17,7 +17,7 @@
 			articleId = topic.selectedArticle[categoryName]._id;
 			">
 
-		<topic-item></topic-item>
+		<!-- <topic-item></topic-item> -->
 	
 		<div class="bulletin-item-header">{{categoryName}}</div>
 
