@@ -25,7 +25,7 @@ class FeedbackCtrl {
 			$mdDialog.show({
 				controller: 'FeedbackModalCtrl as $ctrl',
 				templateUrl: modalTemplate,
-				parent: angular.element(document.body),
+				// parent: angular.element(document.body),
 				targetEvent: $event,
 				clickOutsideToClose: false,
 				fullscreen: false,// Only for -xs, -sm breakpoints.
