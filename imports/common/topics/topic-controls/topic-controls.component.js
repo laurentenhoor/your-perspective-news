@@ -3,10 +3,23 @@ import style from './topic-controls.styl';
 
 class TopicControlsComponent {
 
-    constructor() {
+    constructor($reactive, $mdDialog) {
         'ngInject';
-
-        console.log('TopicControlsComponent init');
+        
+        var $ctrl = this;
+		$reactive($ctrl).attach($scope);
+        
+        $ctrl.dummyAlert = function(ev) {
+            $mdDialog.show(
+                $mdDialog.alert()                  
+                  .clickOutsideToClose(false)
+                  .title('Nieuwe knop!')
+                  .textContent('Waarvoor?')
+                  .ariaLabel('')
+                  .ok('Annuleren')
+                  .targetEvent(ev)
+              );
+        }
         
     }
 
