@@ -30,7 +30,7 @@ angular.module('yourpers', [
 
 	$locationProvider.html5Mode({ enabled: true, requireBase: false, rewriteLinks: false });
 	$sceDelegateProvider.resourceUrlWhitelist(['**']);
-	$urlRouterProvider.otherwise('/nieuws');
+	$urlRouterProvider.otherwise('/');
 
 	// $httpProvider.defaults.useXDomain = true;
     // delete $httpProvider.defaults.headers.common['X-Requested-With'];	

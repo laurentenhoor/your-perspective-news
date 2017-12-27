@@ -1,6 +1,6 @@
 
-import template from './news-tiles.html';
-import style from './news-tiles.less';
+import template from './topics.html';
+import style from './topics.less';
 
 import moment from 'moment';
 import 'moment/locale/nl'
@@ -9,7 +9,7 @@ import { Topics } from '/imports/api/topics.js';
 import { Articles } from '/imports/api/articles.js';
 import { Votes } from '/imports/api/votes.js';
 
-class NewsTilesComponent {
+class TopicsComponent {
 
 	constructor($rootScope, $scope, $reactive, $window, $location, $autoScroll, $auth, $loader, $timeout) {
 		'ngInject';
@@ -135,6 +135,6 @@ class NewsTilesComponent {
 }
 
 export default {
-    controller: NewsTilesComponent,
+    controller: TopicsComponent,
     templateUrl : template
 }

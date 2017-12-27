@@ -3,6 +3,9 @@
 	ng-repeat="topic in $ctrl.topics | orderBy:'-createdAt'" 
 	ng-init="topic.selectedArticle = {}">
 
+	<topic-controls></topic-controls>
+	<topic-summary></topic-summary>
+		
 	<div class="bulletin-item-outer-container"
 		ng-repeat="categoryBlock in topic.articlesByCategory | orderBy:'sortingOrder'" 
 		ng-show="articles.length>0"
@@ -13,6 +16,8 @@
 			$ctrl.loadedArticles= $ctrl.loadedArticles.concat(categoryBlock.articleIds);
 			articleId = topic.selectedArticle[categoryName]._id;
 			">
+
+		<topic-item></topic-item>
 	
 		<div class="bulletin-item-header">{{categoryName}}</div>
 
@@ -129,6 +134,8 @@
 
 	</div>
 	
+	<topic-discussion></topic-discussion>
+	<topic-opinion></topic-opinion>
 	
 	<div class="bulletin-item-outer-container"
 	 	id="discuss-{{topic._id}}">

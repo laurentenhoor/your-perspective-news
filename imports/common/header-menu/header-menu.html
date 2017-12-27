@@ -13,11 +13,11 @@
 <yourpers-article-actions class="add-article-top-menu"></yourpers-article-actions>
 
 <ul class="menu">
-	<li ng-hide="isActive('/nieuws') || isActive('/tijdslijn')">
+	<li ng-hide="isActive('/') || isActive('/tijdslijn')">
 		<a href="/tijdslijn#{{$root.activeItem}}/">&#8612; terug</a>
 	</li>
 			
-	<li ng-show="isActive('/nieuws') || isActive('/tijdslijn')"><a href="">nieuwsoverzicht</a> </li>
+	<li ng-show="isActive('/') || isActive('/tijdslijn')"><a href="">nieuwsoverzicht</a> </li>
 
 	<auth style="float:right;padding-right:4vw;"></auth>
 <!-- 	<login-buttons class="right"></login-buttons> -->
