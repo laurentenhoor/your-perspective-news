@@ -6,25 +6,34 @@
 
     <div class="control-container">
 
-        <yourpers-article-actions topic-id="$ctrl.topicId">
-        </yourpers-article-actions>
+        <div class="button-container">
+            <yourpers-article-actions topic-id="$ctrl.topicId">
+            </yourpers-article-actions>
+            <label>Bron</label>
+        </div>
 
-        <md-button class="md-icon-button" 
-        ng-click="$ctrl.writeArticle($event)" aria-label="Schrijf een mini opinie.">
-            <md-icon>edit</md-icon>
-        </md-button>
+        <div class="button-container">
+            <md-button class="md-icon-button" ng-click="$ctrl.writeArticle($event)" aria-label="Schrijf een mini opinie.">
+                <md-icon>edit</md-icon>
+            </md-button>
+            <label>Schrijf</label>
+        </div>
 
-        <md-button class="md-icon-button" 
-        ng-click="$ctrl.discuss($ctrl.topicId)" aria-label="Stel een vraag.">
-            <md-icon>question_answer</md-icon>
-        </md-button>
+        <div class="button-container">
+            <md-button class="md-icon-button" ng-click="$ctrl.discuss($ctrl.topicId)" aria-label="Stel een vraag.">
+                <md-icon>question_answer</md-icon>
+            </md-button>
+            <label>Vraag</label>
+        </div>
 
-        <md-button class="md-icon-button" 
-        ng-click="" aria-label="Delen.">
-            <a href="whatsapp://send?text=http://beta.jouwpers.nl/" data-action="share/whatsapp/share" tabindex="0">
-                <md-icon>share</md-icon>
-            </a>
-        </md-button>
+        <div class="button-container">
+            <md-button class="md-icon-button" ng-click="" aria-label="Delen.">
+                <a href="whatsapp://send?text=http://beta.jouwpers.nl/" data-action="share/whatsapp/share" tabindex="0">
+                    <md-icon>share</md-icon>
+                </a>
+            </md-button>
+            <label>Deel</label>
+        </div>
 
     </div>
 
