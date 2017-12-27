@@ -16,14 +16,16 @@ class ArticleActionsCtrl {
 		$reactive($ctrl).attach($scope);
 
 		$ctrl.$onChanges = function (changes) {
-			// Explaination: https://medium.com/front-end-hacking/angularjs-component-binding-types-my-experiences-10f354d4660
-			if (changes.data && $ctrl.data) {
+			if (changes.topicId) {
 				$ctrl.topicId = angular.copy($ctrl.topicId);
+			}
+			if (changes.category) {
 				$ctrl.category = angular.copy($ctrl.category);
+			}
+			if (changes.article) {
 				$ctrl.article = angular.copy($ctrl.article);
 			}
 		}
-
 
 		$ctrl.blurAllInputs = function () {
 
@@ -39,12 +41,17 @@ class ArticleActionsCtrl {
 			});
 		}
 
-
 		$ctrl.open = function (ev) {
 
 			if (!$auth.isLoggedIn()) {
 				return;
 			}
+
+			console.log({
+				topicId: $ctrl.topicId,
+				category: $ctrl.category,
+				article: $ctrl.article,
+			})
 
 			$mdDialog.show({
 				controller: 'ArticleModalCtrl as $ctrl',

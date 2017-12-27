@@ -3,7 +3,7 @@
 
 	<div class="scroll-container">
 	
-		<topic-controls></topic-controls>
+		<topic-controls topic-id="topic._id"></topic-controls>
 		<!-- <topic-summary></topic-summary> -->
 
 		<div class="content-container" ng-repeat="categoryBlock in topic.articlesByCategory | orderBy:'sortingOrder'" ng-show="articles.length>0"
@@ -24,22 +24,6 @@
 				<div class="bulletin-item-image-container">
 
 					<div class="bulletin-item-controls-container">
-						<div class="bulletin-item-icons">
-
-							<div class="">
-								<i class="material-icons comment-icon" ng-click="$ctrl.clickChat(topic._id)">
-									&#xE24C;</i>
-								<!-- insert_comment -->
-								<a href="whatsapp://send?text=http://beta.jouwpers.nl/" data-action="share/whatsapp/share" tabindex="0">
-									<i class="material-icons share-icon">&#xE80D;</i>
-									<!-- share -->
-								</a>
-
-							</div>
-							<yourpers-article-actions topic-id="topic._id" category="categoryBlock" article="topic.selectedArticle[categoryName]" class="bulletin-edit-icon">
-							</yourpers-article-actions>
-
-						</div>
 
 						<div class="bulletin-voting" ng-init="" ng-if="true">
 
@@ -100,7 +84,7 @@
 
 				<div class="bulletin-sources">
 
-					<yourpers-article-actions topic-id="topic._id" category="categoryBlock" class="add-article-from-bulletin-item">
+					<yourpers-article-actions topic-id="topic._id" category="categoryBlock" article="topic.selectedArticle[categoryName]" class="edit-article-from-topics">
 					</yourpers-article-actions>
 
 					<div class="bulletin-source" ng-repeat="article in articles | orderBy:'-score'" ng-click="$ctrl.clickArticle(topic, categoryName, article)"

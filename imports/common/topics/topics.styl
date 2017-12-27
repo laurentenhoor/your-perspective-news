@@ -14,8 +14,11 @@ topics {
 
     .scroll-container {
         display:flex;
-        width:fit-content;
+        flex-direction: row;
+        flex-wrap:nowrap;
 
+        width:fit-content;
+        align-items: flex-start;
         position:relative;
 
         padding-left: 1vw;
@@ -28,8 +31,6 @@ topics {
         display:block;
 
         margin: 0vw 1vw;
-        
-        width:80vw;
         vertical-align: top;
 
     }
@@ -56,6 +57,9 @@ topics {
     flex-direction: column;
 
     width: 100%;
+    min-width: 100%;
+    width:80vw;
+
     height: 104vw;
     
     box-shadow: 0.3vw 0.4vw 1.4vw rgba(4, 4, 4, 0.42);
@@ -368,20 +372,6 @@ $arrow-wide-side = $arrow-width solid white;
 }
 
 
-.bulletin-item-icons {
-	
-	position:absolute;
-	margin:3.5vw;
-	margin-left:3.5vw;
-	margin-top:3.0vw;
-	
-		
-	z-index:3;
-	float:left;
-	color:white;
-	
-}
-
 .bulletin-video-player-iframe {
 	position: absolute; 
 	bottom:0; 
@@ -389,12 +379,4 @@ $arrow-wide-side = $arrow-width solid white;
 	height:100%; 
 	width:100%; 
 	border: none;
-}
-
-.comment-icon {
-	margin-bottom:4.5vw;	
-}
-
-.share-icon {
-	margin-left:3vw;		
 }

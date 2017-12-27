@@ -6,24 +6,24 @@
 
     <div class="control-container">
 
+        <yourpers-article-actions topic-id="$ctrl.topicId">
+        </yourpers-article-actions>
+
         <md-button class="md-icon-button" 
-        ng-click="$ctrl.dummyAlert($event)" aria-label="">
+        ng-click="$ctrl.writeArticle($event)" aria-label="Schrijf een mini opinie.">
             <md-icon>edit</md-icon>
         </md-button>
 
         <md-button class="md-icon-button" 
-        ng-click="$ctrl.dummyAlert($event)" aria-label="">
-            <md-icon>note_add</md-icon>
-        </md-button>
-
-        <md-button class="md-icon-button" 
-        ng-click="$ctrl.dummyAlert($event)" aria-label="">
+        ng-click="$ctrl.discuss($ctrl.topicId)" aria-label="Stel een vraag.">
             <md-icon>question_answer</md-icon>
         </md-button>
 
         <md-button class="md-icon-button" 
-        ng-click="$ctrl.dummyAlert($event)" aria-label="">
-            <md-icon>share</md-icon>
+        ng-click="" aria-label="Delen.">
+            <a href="whatsapp://send?text=http://beta.jouwpers.nl/" data-action="share/whatsapp/share" tabindex="0">
+                <md-icon>share</md-icon>
+            </a>
         </md-button>
 
     </div>

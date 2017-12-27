@@ -49,10 +49,18 @@ class ArticleModalCtrl {
 			$ctrl.urlDataIsLoaded = false;
 
 
+		} else if ($ctrl.topicId) {
+
+			$ctrl.mode = 'add_source_to_topic';
+
+			$ctrl.headerText = 'Voeg een bron toe.';
+			$ctrl.headerSubText = 'Verbreed, verdiep of ontwricht dit onderwerp met een interessant artikel.';
+			$ctrl.urlDataIsLoaded = false;
+		
 		} else {
 
 			console.error('Could not succesfully load the modal: the requested inputs are not provided!');
-
+			
 		}
 
 

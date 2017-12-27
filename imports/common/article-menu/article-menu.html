@@ -1,7 +1,10 @@
-<div ng-if="!$ctrl.article" ng-click="$ctrl.open($event)">
-	<i class="material-icons">&#xE89C;</i><!-- note_add -->
-</div>
+<md-button 	class="md-icon-button" aria-label="Voeg een bron toe."
+			ng-if="!$ctrl.article" ng-click="$ctrl.open($event)">
+	
+	<md-icon>note_add</md-icon>
+
+</md-button>
 
 <div ng-if="$ctrl.article" ng-click="$ctrl.open($event)">
-	<i class="material-icons">&#xE3C9;</i><!-- edit -->
+	<i class="material-icons">settings</i>
 </div>
