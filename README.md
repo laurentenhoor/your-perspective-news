@@ -17,6 +17,7 @@ Wij verzetten ons tegen twittergeblaat en nepnieuws.
 ## version 1.3.2
 * Added a side-menu in the topic overview.
 * Added a MISSION document to highlight our goals.
+* Migrated to Stylus for stylesheets.
 
 ## version 1.3.1
 * Login required for most user actions.
