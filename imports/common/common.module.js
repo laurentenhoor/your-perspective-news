@@ -7,7 +7,7 @@ import firstUseToast from './first-use-toast/fist-use-toast.module';
 export default
     angular.module('app.common', [
 
-        desktopViewer,``
+        desktopViewer,
         headerMenu,
         topics,
         articleMenu,

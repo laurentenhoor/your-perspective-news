@@ -15,17 +15,12 @@ export default class FirstUseToastComponent {
                 });
         };
 
-        $scope.openMoreInfo = function (e) {
+        $scope.openMoreInfo = function (e) {    
             
-            console.log('openMoreInfo')
             $scope.closeToast();
 
             if (isDialogOpen) return;
             isDialogOpen = true;
-            
-            
-            console.log('open dialog');
-            
 
             $mdDialog
                 .show($mdDialog
