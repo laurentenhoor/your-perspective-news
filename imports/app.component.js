@@ -36,7 +36,7 @@ class AppComponent {
 		
 		checkWindowSize();
 
-		$timeout(() => $firstUseToast.show(), 6000)
+		$timeout(() => $firstUseToast.show(), 12000)
 	
 	}
 }

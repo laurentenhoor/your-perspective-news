@@ -21,7 +21,7 @@ export default class FirstUseToast {
 		}
 		this.$mdToast.show({
 			hideDelay: 10000,
-			position: 'top right',
+			position: 'bottom',
 			controller: 'FirstUseToastComponent',
 			templateUrl: template,
 			parent: this.$rootElement[0]
