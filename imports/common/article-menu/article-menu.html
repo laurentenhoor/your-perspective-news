@@ -1,8 +1,9 @@
-<md-button 	class="md-icon-button" aria-label="Voeg een bron toe."
+<md-button class="md-button" aria-label="Voeg een bron toe."
 			ng-if="!$ctrl.article" ng-click="$ctrl.open($event)">
 	
-	<md-icon>note_add</md-icon>
-
+	<md-icon ng-if="!$ctrl.topicId">add</md-icon>
+	<md-icon ng-if="$ctrl.topicId">add_box</md-icon>
+		<div>{{ $ctrl.topicId ? 'Bron' : 'Item' }}</div>
 </md-button>
 
 <div ng-if="$ctrl.article" ng-click="$ctrl.open($event)">
