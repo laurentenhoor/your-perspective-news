@@ -36,7 +36,10 @@ class AppComponent {
 		
 		checkWindowSize();
 
-		$timeout(() => $firstUseToast.show(), 12000)
+		$timeout(() => {
+			if (!$firstUseDialog.isCurrentlyShown())
+				$firstUseToast.show();
+		}, 12000)
 	
 	}
 }

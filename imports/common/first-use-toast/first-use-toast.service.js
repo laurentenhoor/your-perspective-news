@@ -1,11 +1,10 @@
-import template from './first-use-toast.html';
+import FirstUseToastTemplate from './first-use-toast.html';
 import FirstUseToastComponent from './first-use-toast.component';
 
 export default class FirstUseToast {
 
 	static factory($rootElement, $mdToast) {
 		'ngInject';
-		console.log(FirstUseToastComponent)
 		return new FirstUseToast($mdToast, $rootElement);
 	}
 
@@ -31,9 +30,10 @@ export default class FirstUseToast {
 			hideDelay: 12000,
 			position: 'bottom',
 			controller: FirstUseToastComponent,
-			templateUrl: template,
+			templateUrl: FirstUseToastTemplate,
 			parent: this.$rootElement[0]
 		});
+		
 	};
 
 }
