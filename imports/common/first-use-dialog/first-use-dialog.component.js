@@ -2,19 +2,16 @@ import style from './first-use-dialog.styl';
 
 export default class FirstUseDialogComponent {
 
-    constructor($scope, $mdDialog) {
+    constructor($scope, $firstUseDialog, $feedbackDialog) {
         'ngInject';
 
-        $scope.hide = function () {
-            $mdDialog.hide();
+        this.like = function() {
+            $firstUseDialog.hide();
         };
 
-        $scope.cancel = function () {
-            $mdDialog.cancel();
-        };
-
-        $scope.answer = function (answer) {
-            $mdDialog.hide(answer);
+        this.dislike = function() {
+            $firstUseDialog.hide()
+                .then($feedbackDialog.show());  
         };
 
     }

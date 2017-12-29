@@ -62,10 +62,10 @@
 
         <md-dialog-actions layout="row" align="center" ng-class="'first-use-dialog-actions'">
             <span flex></span>
-            <md-button class="md-raised" ng-click="answer('not useful')">
+            <md-button class="md-raised" ng-click="$ctrl.dislike()">
                 <md-icon>thumb_down</md-icon>
             </md-button>
-            <md-button class="md-raised md-primary" ng-click="answer('useful')">
+            <md-button class="md-raised md-primary" ng-click="$ctrl.like()">
                 <md-icon>thumb_up</md-icon>
                 Interessant
             </md-button>

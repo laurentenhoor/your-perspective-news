@@ -20,6 +20,7 @@ export default class FirstUseDialog {
 
         return this.$mdDialog.show({
             controller: DialogComponent,
+            controllerAs: '$ctrl',
             templateUrl: DialogTemplate,
             parent: angular.element(document.body),
             targetEvent: $event,
