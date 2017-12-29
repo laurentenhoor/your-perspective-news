@@ -15,7 +15,7 @@ export default class ArticleActionsDialog {
     }
 
     show($event, topicId, category, article) {
-        return $mdDialog.show({
+        return this.$mdDialog.show({
             controller: DialogComponent,
             controllerAs: '$ctrl',
             templateUrl: DialogTemplate,

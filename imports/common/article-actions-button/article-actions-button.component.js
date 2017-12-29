@@ -3,7 +3,7 @@ import ArticleActionsButtonStyle from './article-actions-button.styl';
 
 class ArticleActionsButtonComponent {
 
-	constructor($rootScope, $scope, $document, $timeout, $reactive, $mdDialog, $auth, $articleActionsDialog) {
+	constructor($rootScope, $scope, $document, $timeout, $reactive, $auth, $articleActionsDialog) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -33,7 +33,7 @@ class ArticleActionsButtonComponent {
 			});
 		}
 
-		$ctrl.open = function (ev) {
+		$ctrl.open = function ($event) {
 
 			if (!$auth.isLoggedIn()) {
 				return;
