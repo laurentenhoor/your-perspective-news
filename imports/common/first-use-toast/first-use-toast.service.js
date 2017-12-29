@@ -22,7 +22,7 @@ export default class FirstUseToast {
 		let iframeWidth = 600;
 
 		if (this.$rootElement[0].clientWidth > iframeWidth) {
-			console.warn('$mdToast is being blocked from showing at windows wider than ' + iframeWidth +'px').
+			console.warn('$mdToast is being blocked from showing at windows wider than ' + iframeWidth +'px');
 			return;
 		}
 
@@ -30,6 +30,7 @@ export default class FirstUseToast {
 			hideDelay: 12000,
 			position: 'bottom',
 			controller: FirstUseToastComponent,
+			controllerAs: '$ctrl',
 			templateUrl: FirstUseToastTemplate,
 			parent: this.$rootElement[0]
 		});
