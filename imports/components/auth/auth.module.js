@@ -6,7 +6,7 @@ import AuthComponent from './auth.component';
 import AuthService from './auth.service';
 
 export default
-    angular.module('auth', [
+    angular.module('Auth', [
         angularMeteor,
     ])
         .component('auth', AuthComponent)

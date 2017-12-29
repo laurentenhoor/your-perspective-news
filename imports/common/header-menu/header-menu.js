@@ -27,7 +27,7 @@ class MenuCtrl {
 
 export default angular.module('menu', [
   angularMeteor,
-  'auth',
+  'Auth',
   'ArticleActionsButton',
 ])
   .component('yourpersMenu', {
