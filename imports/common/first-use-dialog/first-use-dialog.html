@@ -4,8 +4,8 @@
             Over ons.
         </md-toolbar>
 
-        <md-dialog-content>
-            <div class="md-dialog-content first-use-content">
+        <md-dialog-content class="first-use-content">
+            <div class="md-dialog-content">
 
                 <div class="first-use-content-block">
                     <h1>Jouw perspectief. Jouwpers.</h1>
@@ -60,7 +60,7 @@
             </div>
         </md-dialog-content>
 
-        <md-dialog-actions layout="row" align="center">
+        <md-dialog-actions layout="row" align="center" ng-class="'first-use-dialog-actions'">
             <span flex></span>
             <md-button class="md-raised" ng-click="answer('not useful')">
                 <md-icon>thumb_down</md-icon>

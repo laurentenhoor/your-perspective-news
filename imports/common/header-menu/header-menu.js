@@ -17,10 +17,10 @@ class MenuCtrl {
 
     $scope.window = $window;
 
-    $scope.clickLogo = function () {
+    $scope.clickLogo = function ($event) {
       console.log('logo clicked')
       $firstUseToast.hide();
-      $firstUseDialog.show();
+      $firstUseDialog.show($event);
     }
 
   }
