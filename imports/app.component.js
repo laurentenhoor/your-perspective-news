@@ -6,7 +6,7 @@ import appStyle from './app.styl';
 
 class AppComponent {
 	
-	constructor($scope, $reactive, $window, $document, $timeout, $firstUseToast) {
+	constructor($scope, $reactive, $window, $document, $timeout, $firstUseToast, $firstUseDialog) {
 		'ngInject';
 		
 		console.log('init AppCtrl');
@@ -36,7 +36,7 @@ class AppComponent {
 		
 		checkWindowSize();
 
-		$timeout(() => $firstUseToast.show(), 12000)
+		$timeout(() => $firstUseDialog.show(), 1000)
 	
 	}
 }

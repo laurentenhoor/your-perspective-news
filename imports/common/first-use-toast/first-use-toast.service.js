@@ -1,9 +1,11 @@
 import template from './first-use-toast.html';
+import FirstUseToastComponent from './first-use-toast.component';
 
 export default class FirstUseToast {
 
 	static factory($rootElement, $mdToast) {
 		'ngInject';
+		console.log(FirstUseToastComponent)
 		return new FirstUseToast($mdToast, $rootElement);
 	}
 
@@ -12,17 +14,23 @@ export default class FirstUseToast {
 		this.$rootElement = $rootElement;
 	}
 
+	hide() {
+		this.$mdToast.hide();
+	}
+
 	show() {
-		console.log(this.$rootElement)
-		
 		// should be the same pixel value as the desktopviewer component
-		if (this.$rootElement[0].clientWidth > 600) {
+		let iframeWidth = 600;
+
+		if (this.$rootElement[0].clientWidth > iframeWidth) {
+			console.warn('$mdToast is being blocked from showing at windows wider than ' + iframeWidth +'px').
 			return;
 		}
+
 		this.$mdToast.show({
-			hideDelay: 10000,
+			hideDelay: 12000,
 			position: 'bottom',
-			controller: 'FirstUseToastComponent',
+			controller: FirstUseToastComponent,
 			templateUrl: template,
 			parent: this.$rootElement[0]
 		});
