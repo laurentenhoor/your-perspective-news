@@ -1,10 +1,8 @@
 import DialogComponent from './feedback-dialog.component';
 import DialogTemplate from './feedback-dialog.html';
 import DialogStyle from './feedback-dialog.styl';
-import feedbackComponent from '../feedback/feedback.component';
 
 import { Meteor } from 'meteor/meteor';
-
 import { Feedback } from '/imports/api/feedback.js';
 
 export default class FeedbackDialog {

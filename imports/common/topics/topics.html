@@ -84,8 +84,8 @@
 
 				<div class="bulletin-sources">
 
-					<yourpers-article-actions topic-id="topic._id" category="categoryBlock" article="topic.selectedArticle[categoryName]" class="edit-article-from-topics">
-					</yourpers-article-actions>
+					<article-actions-button topic-id="topic._id" category="categoryBlock" article="topic.selectedArticle[categoryName]" class="edit-article-from-topics">
+					</article-actions-button>
 
 					<div class="bulletin-source" ng-repeat="article in articles | orderBy:'-score'" ng-click="$ctrl.clickArticle(topic, categoryName, article)"
 					 ng-class="(article._id == articleId) ? 'bulletin-source-selected':''" ng-style="{'background-image':'url(\'' + (article.logoUrl) + '\')'}">

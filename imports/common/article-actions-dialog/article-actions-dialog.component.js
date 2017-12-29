@@ -1,12 +1,4 @@
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-
-import style from './article-dialog.styl';
-
-import MetadataModule from '/imports/components/metadata/metadata.module'
-import { name as httpPrefixDirective } from '/imports/directives/http-prefix.directive'
-
-class ArticleModalCtrl {
+export default class ArticleModalCtrl {
 
 	constructor($loader, $scope, $reactive, $document, $mdDialog, $metadata, topicId, category, article) {
 		'ngInject';
@@ -226,12 +218,3 @@ class ArticleModalCtrl {
 	}
 
 }
-
-
-export default angular.module('yourpers.ArticleModalCtrl', [
-	angularMeteor,
-	MetadataModule,
-	httpPrefixDirective,
-])
-	.controller('ArticleModalCtrl', ArticleModalCtrl)
-	.name;
