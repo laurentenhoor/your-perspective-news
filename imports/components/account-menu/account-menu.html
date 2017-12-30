@@ -1,5 +1,4 @@
 <md-sidenav class="md-sidenav-left" md-component-id="account-menu" md-whiteframe="4">
-    <!-- md-disable-backdrop  -->
 
     <md-toolbar>
 
@@ -17,16 +16,17 @@
         <md-card>
             <md-card-header>
                 <md-card-avatar>
-                    <img class="md-user-avatar" src="{{ $ctrl.userImage }}" />
+                    <img class="md-user-avatar" src="{{ $ctrl.user | profileImageFilter }}" />
                 </md-card-avatar>
                 <md-card-header-text>
-                    <span class="md-title" ng-bind="$ctrl.userName"></span>
+                    <span class="md-title" >{{ $ctrl.user | usernameFilter }}</span>
                     <span class="md-subhead">Witte band</span>
                 </md-card-header-text>
             </md-card-header>
             
+            <img ng-src="/assets/karatebanden.jpeg"  style="display:none"/>
             <img ng-src="{{$ctrl.beltImage}}" ng-mousedown="$ctrl.showAllBelts()" ng-mouseup="$ctrl.resetBelt()" ng-mousemove="$ctrl.resetBelt()" 
-                class="md-card-image" alt="Washed Out" />
+                class="md-card-image" alt="Reputatie" />
             <!-- <md-card-title>
                 <md-card-title-text>
                     <span class="md-headline">In-card mixed actions</span>

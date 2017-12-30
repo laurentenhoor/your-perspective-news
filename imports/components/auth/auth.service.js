@@ -7,12 +7,8 @@ import { Accounts } from 'meteor/accounts-base'
 
 export default class AuthService {
 
-	static factory($mdDialog, $loader){
-		'ngInject';
-		return new AuthService($mdDialog, $loader);
-	}
-
 	constructor($mdDialog, $loader) {
+		'ngInject';
 
 		return {
 			isLoggedIn: isLoggedIn,

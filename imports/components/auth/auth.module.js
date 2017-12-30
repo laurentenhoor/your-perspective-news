@@ -10,6 +10,7 @@ export default
         angularMeteor,
     ])
         .component('auth', AuthComponent)
-        .service('$auth', AuthService.factory)
-        .filter('usernameFilter', () => AuthFilters.Username)
+        .service('$auth', AuthService)
+        .filter('usernameFilter', AuthFilters.username)
+        .filter('profileImageFilter', AuthFilters.profileImage)
         .name

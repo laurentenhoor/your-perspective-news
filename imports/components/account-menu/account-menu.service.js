@@ -2,7 +2,7 @@ import angular from 'angular';
 
 export default class AccountMenuService {
 
-	static constructor($timeout, $mdSidenav) {
+	constructor($timeout, $mdSidenav) {
 		'ngInject';
 
 		$timeout(()=>setupListeners());

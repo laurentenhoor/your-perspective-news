@@ -5,31 +5,17 @@ import { Meteor } from 'meteor/meteor';
 
 class AccountMenuComponent {
 
-    constructor($reactive, $scope, $accountMenu, $auth, $timeout) {
+    constructor($reactive, $scope, $accountMenu, $auth, $timeout, $filter) {
         'ngInject';
-        
+
         var $ctrl = this;
 		$reactive($ctrl).attach($scope);
 
 		$ctrl.helpers({
-			userName() {
-                let user = Meteor.user();
-                if (user && user.profile) {
-                    let fullName = user.profile.firstName + ' ' + user.profile.lastName;
-				    return fullName;
-                }
-                return;
-			},
-			userImage() {
-                let user = Meteor.user();
-                console.log(user);
-                if (user && user.profile) {
-                    let pictureUrl = user.profile.pictureUrl;
-                    console.log(pictureUrl);
-                    return pictureUrl;
-                }
-                return;
-			}
+			user() {
+                console.log(Meteor.user())
+                return Meteor.user();
+            }
         });
         
         $ctrl.beltImage = '/assets/karateband-wit.jpeg';
