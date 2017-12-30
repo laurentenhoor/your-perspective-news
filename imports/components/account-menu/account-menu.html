@@ -24,8 +24,9 @@
                     <span class="md-subhead">Witte band</span>
                 </md-card-header-text>
             </md-card-header>
-            <img ng-src="https://static1.squarespace.com/static/52e957fbe4b0809fd8c137f2/t/52fced10e4b01ee2f9bb9aae/1392307473516/alle+kempo+banden"
-                class="md-card-image" alt="Washed Out">
+            
+            <img ng-src="{{$ctrl.beltImage}}" ng-mousedown="$ctrl.showAllBelts()" ng-mouseup="$ctrl.resetBelt()" ng-mousemove="$ctrl.resetBelt()" 
+                class="md-card-image" alt="Washed Out" />
             <!-- <md-card-title>
                 <md-card-title-text>
                     <span class="md-headline">In-card mixed actions</span>

@@ -30,7 +30,17 @@ class AccountMenuComponent {
                 }
                 return;
 			}
-		});
+        });
+        
+        $ctrl.beltImage = '/assets/karateband-wit.jpeg';
+        $ctrl.showAllBelts = function() {
+            console.log('all belts')
+            $ctrl.beltImage = '/assets/karatebanden.jpeg'
+        }
+        $ctrl.resetBelt= function() {
+            console.log('only white belt')
+            $ctrl.beltImage = '/assets/karateband-wit.jpeg';
+        }
 
         $ctrl.toggleAccountMenu = function() {
             console.log('toggleAccountMenu');
