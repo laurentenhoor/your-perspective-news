@@ -10,13 +10,13 @@ export default class AuthFilters {
 			
 			return null;
 
-		} else if (user.profile && user.profile.firstName) {
+		} else if (user.profile && user.profile.firstName && user.profile.lastName) {
 
-			return user.profile.firstName + ' afmelden';
+			return user.profile.firstName + ' ' + user.profile.lastName;
 
 		} else if (user.username) {
 
-			return user.username + ' afmelden'
+			return user.username;
 
 		} else {
 

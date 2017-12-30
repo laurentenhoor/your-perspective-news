@@ -3,18 +3,26 @@ import angularMeteor from 'angular-meteor';
 import angularMaterial from 'angular-material';
 
 import { Meteor } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base'
 
 export default class AuthService {
 
-	static factory($mdDialog){
+	static factory($mdDialog, $loader){
 		'ngInject';
-		return new AuthService($mdDialog);
+		return new AuthService($mdDialog, $loader);
 	}
 
-	constructor($mdDialog) {
+	constructor($mdDialog, $loader) {
 
 		return {
-			isLoggedIn: isLoggedIn
+			isLoggedIn: isLoggedIn,
+			logout : logout
+		}
+
+		function logout() {
+			$loader.startAndWait(() =>
+				Accounts.logout(() =>
+					$loader.stop()))
 		}
 
 		function isLoggedIn() {
