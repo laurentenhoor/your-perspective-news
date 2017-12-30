@@ -18,13 +18,7 @@ class AccountMenuComponent {
         });
         
         $ctrl.beltImage = '/assets/karateband-wit.jpeg';
-        $ctrl.showAllBelts = function() {
-            $ctrl.beltImage = '/assets/karatebanden.jpeg'
-        }
-        $ctrl.resetBelt= function() {
-            $ctrl.beltImage = '/assets/karateband-wit.jpeg';
-        }
-
+       
         $ctrl.toggleAccountMenu = function() {
             $accountMenu.toggle();
         }
