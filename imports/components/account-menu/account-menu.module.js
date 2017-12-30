@@ -7,5 +7,5 @@ import AccountMenuService from './account-menu.service';
 export default angular
     .module('AccountMenu', [angularMeteor])
     .component('accountMenu', AccountMenuComponent)
-    .service('$accountMenu', AccountMenuService.create)
+    .service('$accountMenu', AccountMenuService.constructor)
     .name;

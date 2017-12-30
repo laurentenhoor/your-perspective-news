@@ -2,12 +2,12 @@ import angular from 'angular';
 
 export default class AccountMenuService {
 
-	static create($mdSidenav){
-		'ngInject';
-		return new AccountMenuService($mdSidenav);
-	}
+	// static create($mdSidenav){
+	// 	'ngInject';
+	// 	return new AccountMenuService($mdSidenav);
+	// }
 
-	constructor($mdSidenav) {
+	static constructor($mdSidenav) {
 		'ngInject';
 
 		let isOpen = false;
