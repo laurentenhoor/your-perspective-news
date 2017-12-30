@@ -2,32 +2,39 @@ import angular from 'angular';
 
 export default class AccountMenuService {
 
-	// static create($mdSidenav){
-	// 	'ngInject';
-	// 	return new AccountMenuService($mdSidenav);
-	// }
-
-	static constructor($mdSidenav) {
+	static constructor($timeout, $mdSidenav) {
 		'ngInject';
 
-		let isOpen = false;
+		$timeout(()=>setupListeners());
 
 		return {
 			toggle: toggle
 		}
-
+		
 		function toggle() {
-			isOpen = !isOpen;
 
-			var bodyElement = angular.element(document.querySelector('body'));
-			if (isOpen) {
-				bodyElement.addClass('md-dialog-is-showing');
-			} else {
-				bodyElement.removeClass('md-dialog-is-showing');
-			}
-			
-			return $mdSidenav('account-menu').toggle();
+			return $mdSidenav('account-menu').toggle().then(() => {
+				if ($mdSidenav('account-menu').isOpen()) {
+					console.log('addClass');
+					let bodyElement = angular.element(document.querySelector('body'));
+					bodyElement.addClass('md-dialog-is-showing');
+				}
+					
+			});
+
 		}
+
+		function setupListeners() {
+			console.log('setSidenavListener');
+
+			$mdSidenav('account-menu').onClose(function() {
+				console.log('removeClass');
+				let bodyElement = angular.element(document.querySelector('body'));
+				bodyElement.removeClass('md-dialog-is-showing');
+			});
+	
+		}
+
 	}
 
 }
