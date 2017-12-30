@@ -5,7 +5,7 @@ import { Meteor } from 'meteor/meteor';
 
 class AccountMenuComponent {
 
-    constructor($reactive, $scope, $accountMenu, $auth, $timeout, $filter) {
+    constructor($reactive, $scope, $accountMenu, $auth, $timeout) {
         'ngInject';
 
         var $ctrl = this;
@@ -13,23 +13,19 @@ class AccountMenuComponent {
 
 		$ctrl.helpers({
 			user() {
-                console.log(Meteor.user())
                 return Meteor.user();
             }
         });
         
         $ctrl.beltImage = '/assets/karateband-wit.jpeg';
         $ctrl.showAllBelts = function() {
-            console.log('all belts')
             $ctrl.beltImage = '/assets/karatebanden.jpeg'
         }
         $ctrl.resetBelt= function() {
-            console.log('only white belt')
             $ctrl.beltImage = '/assets/karateband-wit.jpeg';
         }
 
         $ctrl.toggleAccountMenu = function() {
-            console.log('toggleAccountMenu');
             $accountMenu.toggle();
         }
 

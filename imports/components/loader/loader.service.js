@@ -8,6 +8,7 @@ export default class LoaderService {
 
         let showing = true;
         let databaseInitialized = false;
+        var functionsToExecute = [];
 
         function hide() {
             $timeout(() => showing = false);
@@ -19,13 +20,22 @@ export default class LoaderService {
         this.databaseInitialized = function () {
             console.log('loaderService.databaseInitialized()')
             databaseInitialized = true;
+
+            angular.forEach(functionsToExecute, (functionToExecute) => {
+                functionToExecute();
+            })
+
             hide();
         }
 
         this.start = function() {
             console.log('loaderService.start()');
             show();            
-        }   
+        }
+
+        this.executeAfterDatabaseInit = function(functionToExecute) {
+            functionsToExecute.push(functionToExecute);
+        }
 
         this.startAndWait = function(delayedFunction, intervalInMs) {
             show();
