@@ -6,41 +6,17 @@ import appStyle from './app.styl';
 
 class AppComponent {
 	
-	constructor($scope, $reactive, $window, $document, $timeout, $loader, $firstUseToast, $firstUseDialog) {
+	constructor($timeout, $loader, $firstUseToast, $firstUseDialog) {
 		'ngInject';
 		
 		console.log('init AppCtrl');
-		
-		let $ctrl = this;
-		$reactive($ctrl).attach($scope);
-		
-		$ctrl.showMobile = false;
-		
-		angular.element($window).bind('resize', function(){
-			$scope.$apply(function() {
-				checkWindowSize();	
-			});
-		});
-		
-		function checkWindowSize() {
-			
-			var windowSize = $window.innerWidth;
-			
-			if (windowSize < 600) {
-				$ctrl.showMobile = true;
-			} else {
-				$ctrl.showMobile = false;
-			};
-		
-		}
-		checkWindowSize();
 
 		$loader.executeAfterDatabaseInit(() => {
 			$timeout(() => {
 				if (!$firstUseDialog.isCurrentlyShown())
 					$firstUseToast.show();
-			}, 4000)
-		})
+			}, 6000)
+		});
 		
 	}
 }

@@ -1,9 +1,21 @@
-<div class="desktop-title">
-	<img class="logo-desktop" src="assets/logos/newnews_bw_simplified.png"/> 
-	Bezoek <span class="red">jouw<b>pers</b></span> via een smartphone.
+<div ng-if="!$ctrl.showMobile" ng-cloak>
+
+	<div class="desktop-title">
+		<img class="logo-desktop" src="assets/logos/newnews_bw_simplified.png" /> Bezoek
+		<span class="red">jouw
+			<b>pers</b>
+		</span> via een smartphone.
+	</div>
+
+	<div class="maincontentdiv">
+		<iframe src="/" sandbox="allow-same-origin allow-forms allow-scripts" seamless width="414" height="736">
+			<ng-transclude></ng-transclude>
+		</iframe>
+	</div>
+
 </div>
 
-<div class="maincontentdiv">
-	<iframe src="/" sandbox="allow-same-origin allow-forms allow-scripts" 
-		seamless width="414" height="736"></iframe>
+
+<div id="app-container" ng-if="$ctrl.showMobile" ng-cloak>
+	<ng-transclude></ng-transclude>
 </div>

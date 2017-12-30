@@ -1,19 +1,13 @@
-<div id="app-container" ng-if="$ctrl.showMobile" ng-cloak>
+<desktop-viewer>
 
     <yourpers-menu></yourpers-menu>
 
     <account-menu></account-menu>
-    
+
     <ui-view></ui-view>
 
     <loader></loader>
 
     <feedback-button></feedback-button>
 
-</div>
-
-<div ng-if="!$ctrl.showMobile" ng-cloak>
-
-    <desktop-viewer></desktop-viewer>
-
-</div>
+</desktop-viewer>
