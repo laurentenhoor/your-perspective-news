@@ -42,7 +42,7 @@ class AccountMenuComponent {
             $auth.logout();
         }
 
-        $timeout(()=>$ctrl.toggleAccountMenu())
+        // $timeout(()=>$ctrl.toggleAccountMenu())
 
     }
 }
