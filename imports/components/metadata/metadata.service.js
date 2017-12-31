@@ -41,8 +41,6 @@ export default class MetadataService {
 
 	}
 
-
-	
 	createArticle(url, result) {
 		
 		var article = {};
