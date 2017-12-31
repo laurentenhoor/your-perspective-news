@@ -3,7 +3,7 @@ import { Opinions } from '/imports/api/opinions.js';
 
 export default class WriteOpinionDialogComponent {
 
-    constructor(topicId, $writeOpinionDialog) {
+    constructor(topicId, $writeOpinionDialog, $metadata) {
         'ngInject';
 
         console.log('init WriteOpinionDialog')
@@ -52,6 +52,12 @@ export default class WriteOpinionDialogComponent {
                 console.log(result);
             });
             $ctrl.hide();
+        }
+
+        $ctrl.urlChange = function() {
+            console.log($ctrl.article.url);
+            $ctrl.newArticle = $metadata.getArticleFromUrl($ctrl.article.url);
+            console.log($ctrl.newArticle);
         }
 
     }

@@ -1,8 +1,47 @@
 export default class MetadataService {
 
-	constructor() {
-		
+	constructor($loader) {
+		'ngInject';
+
+		this.$loader = $loader;
 	}
+	
+	getArticleFromUrl = function (url) {
+
+		console.log('Url input: ' + url);
+
+		if (!this.isValidUrl(url)) {
+			return;
+		}
+		$loader = this.$loader;
+		$loader.start();
+
+		$ctrl.call('getUrlMetadata', url, function (error, result) {
+			
+			if (error) {
+				console.error(error);
+				$loader.stop();
+				return;
+			}
+
+			let article = this.createArticle(url, result);
+			$loader.stop();
+			return article;
+
+		});
+	}
+
+	isValidUrl(url) {
+
+		console.log('isValidUrl()');
+		console.log(url);
+
+		var urlregex = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
+		return urlregex.test(url);
+
+	}
+
+
 	
 	createArticle(url, result) {
 		
