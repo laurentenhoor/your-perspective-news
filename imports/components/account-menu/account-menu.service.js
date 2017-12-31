@@ -2,10 +2,10 @@ import angular from 'angular';
 
 export default class AccountMenuService {
 
-	constructor($timeout, $mdSidenav) {
+	constructor($timeout, $mdSidenav, $scrollDisabler) {
 		'ngInject';
 
-		$timeout(()=>setupListeners());
+		$timeout(() => setupListeners());
 
 		return {
 			toggle: toggle

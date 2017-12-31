@@ -52,9 +52,7 @@ class ArticleActionsButtonComponent {
 				$ctrl.article
 			)
 
-
 		};
-
 	}
 }
 

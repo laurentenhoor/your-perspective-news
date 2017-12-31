@@ -9,5 +9,5 @@ export default angular.module('ArticleActionsDialog', [
     MetadataModule,
     httpPrefixDirective,
 ])
-    .service('$articleActionsDialog', ArticleActionsDialogService.factory)
+    .service('$articleActionsDialog', ArticleActionsDialogService)
     .name;

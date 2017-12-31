@@ -1,6 +1,6 @@
 export default class ArticleModalCtrl {
 
-	constructor($loader, $scope, $reactive, $document, $mdDialog, $metadata, topicId, category, article) {
+	constructor($loader, $scope, $reactive, $document, $dialog, $metadata, topicId, category, article) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -93,7 +93,6 @@ export default class ArticleModalCtrl {
 
 		}
 
-
 		$ctrl.ok = function () {
 
 			console.log($ctrl.article)
@@ -111,7 +110,7 @@ export default class ArticleModalCtrl {
 					Meteor.call('removeArticleFromCategory', $ctrl.topicId, $ctrl.category.category, $ctrl.article._id);
 					break;
 			}
-			$mdDialog.hide();
+			$dialog.hide();
 
 		};
 
@@ -135,25 +134,15 @@ export default class ArticleModalCtrl {
 
 		}
 
-
 		$ctrl.cancel = function () {
 			console.log('mdDialog $ctrl.cancel()')
-			$mdDialog.hide();
+			$dialog.cancel();
 		}
 
 
 		$ctrl.showRemovalConfirmation = function (ev) {
 			// Appending dialog to document.body to cover sidenav in docs app
-			var confirm = $mdDialog.confirm({
-				onComplete: function afterShowAnimation() {
-					var $dialog = angular.element(document.querySelector('md-dialog'));
-					var $actionsSection = $dialog.find('md-dialog-actions');
-					var $cancelButton = $actionsSection.children()[0];
-					var $confirmButton = $actionsSection.children()[1];
-					angular.element($confirmButton).addClass('md-raised');
-					angular.element($cancelButton).addClass('md-raised').removeClass('md-primary');
-				}
-			})
+			var confirm = $dialog.confirm()
 				.title('Weet je het zeker?')
 				.textContent('Dit artikel zal definitief worden verwijderd.')
 				.ariaLabel('Verwijderen')
@@ -161,7 +150,8 @@ export default class ArticleModalCtrl {
 				.ok('Verwijderen')
 				.cancel('Annuleren');
 
-			$mdDialog.show(confirm).then(function () {
+			$dialog.show(confirm).then(function () {
+				console.log('dialog confirmed, will remove item')
 				$ctrl.remove($ctrl.topicId, $ctrl.category.category, $ctrl.article);
 			}, function () {
 				// do nothing.
@@ -173,7 +163,7 @@ export default class ArticleModalCtrl {
 		$ctrl.remove = function (topicId, categoryName, article) {
 			console.log('removeArticle'); console.log(article._id); console.log(topicId);
 			Meteor.call('removeArticleFromCategory', topicId, categoryName, article._id)
-			$mdDialog.hide();
+			$dialog.hide();
 		}
 
 
