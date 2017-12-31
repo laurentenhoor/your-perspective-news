@@ -19,9 +19,6 @@ export default class DialogService {
     }
 
     show(options) {
-
-        console.log('$dialog.show() with options:');
-        console.log(options);
         
         if (!options._options) {
             options = Object.assign(getDefaultOptions(), options);

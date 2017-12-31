@@ -2,7 +2,7 @@
  ng-init="topic.selectedArticle = {}">
 
 	<div class="scroll-container">
-	
+
 		<topic-controls topic-id="topic._id"></topic-controls>
 		<!-- <topic-summary></topic-summary> -->
 
@@ -96,21 +96,12 @@
 
 		</div>
 
-		<topic-discussion></topic-discussion>
-		<topic-opinion></topic-opinion>
+		<opinion-tile topic-id="topic._id">
+		</opinion-tile>
 
-		<div class="content-container" id="discuss-{{topic._id}}">
-
-			<div class="bulletin-item-header">Vraag en antwoord</div>
-
-			<div class="bulletin-item-image-and-details-container bulletin-community">
-
-				<comments-tile topic-id="topic._id">
-				</comments-tile>
-
-			</div>
-
-		</div>
+		<comments-tile topic-id="topic._id">
+		</comments-tile>
 
 	</div>
+
 </div>
