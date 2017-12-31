@@ -39,12 +39,6 @@ class ArticleActionsButtonComponent {
 				return;
 			}
 
-			console.log({
-				topicId: $ctrl.topicId,
-				category: $ctrl.category,
-				article: $ctrl.article,
-			})
-
 			$articleActionsDialog.show(
 				$event,
 				$ctrl.topicId,

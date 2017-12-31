@@ -52,6 +52,19 @@ export default class DialogService {
                 angular.element($cancelButton).addClass('md-raised').removeClass('md-primary');
             }
         })
+        .clickOutsideToClose(false)
+    }
+
+    alert() {
+        return this.$mdDialog.alert({
+            onComplete: function afterShowAnimation() {
+                var $dialog = angular.element(document.querySelector('md-dialog'));
+                var $actionsSection = $dialog.find('md-dialog-actions');
+                var $cancelButton = $actionsSection.children()[0];
+                angular.element($cancelButton).addClass('md-raised');
+            }
+        })
+        .clickOutsideToClose(false);
     }
 
 }

@@ -5,5 +5,5 @@ import FeedbackDialog from './feedback-dialog.service'
 
 export default angular
     .module('FeedbackDialog', [angularMaterial])
-    .service('$feedbackDialog', FeedbackDialog.factory)
+    .service('$feedbackDialog', FeedbackDialog)
     .name

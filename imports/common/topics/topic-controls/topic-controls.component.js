@@ -3,7 +3,7 @@ import style from './topic-controls.styl';
 
 class TopicControlsComponent {
 
-    constructor($reactive, $scope, $mdDialog, $autoScroll)  {
+    constructor($reactive, $scope, $dialog, $autoScroll)  {
         'ngInject';
 
         var $ctrl = this;
@@ -20,22 +20,14 @@ class TopicControlsComponent {
 			$autoScroll.horizontalScroll('discuss-'+topicId, 'scroll-'+topicId);
 		}
 
-        $ctrl.writeArticle = function (ev) {
-            $mdDialog.show(
-                $mdDialog.alert({
-                    onComplete: function afterShowAnimation() {
-                        var $dialog = angular.element(document.querySelector('md-dialog'));
-                        var $actionsSection = $dialog.find('md-dialog-actions');
-                        var $cancelButton = $actionsSection.children()[0];
-                        angular.element($cancelButton).addClass('md-raised');
-                    }
-                })
-                    .clickOutsideToClose(false)
+        $ctrl.writeArticle = function ($event) {
+            $dialog.show(
+                $dialog.alert()
                     .title('Wil je schrijven?')
                     .textContent('Hier komt binnenkort een editor voor korte opiniestukken...')
                     .ariaLabel('')
-                    .ok('Annuleren')
-                    .targetEvent(ev)
+                    .ok('Sluiten')
+                    .targetEvent($event)
             );
         }
 

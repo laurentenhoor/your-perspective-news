@@ -5,38 +5,29 @@ import DialogStyle from './feedback-dialog.styl';
 import { Meteor } from 'meteor/meteor';
 import { Feedback } from '/imports/api/feedback.js';
 
-export default class FeedbackDialog {
+export default class FeedbackDialogService {
 
-    static factory($mdDialog) {
+    constructor($dialog) {
         'ngInject';
-        return new FeedbackDialog($mdDialog);
-    }
-
-    constructor($mdDialog) {
-        this.$mdDialog = $mdDialog;
+        this.$dialog = $dialog;
     }
 
     show($event) {
 
-        this.$mdDialog.show({
+        this.$dialog.show({
             controller: DialogComponent,
-            controllerAs: '$ctrl',
             templateUrl: DialogTemplate,
-            // parent: angular.element(document.body),
             targetEvent: $event,
-            clickOutsideToClose: false,
-            fullscreen: false,// Only for -xs, -sm breakpoints.
         });
-
 
     }
 
     hide($event) {
-        return this.$mdDialog.hide();
+        return this.$dialog.hide();
     }
 
     cancel($event) {
-        return this.$mdDialog.cancel();
+        return this.$dialog.cancel();
     }
 
     storeFeedback(feedback) {
@@ -44,9 +35,7 @@ export default class FeedbackDialog {
             return;
         }
 
-        let $mdDialog = this.$mdDialog;
-
-        console.log(Meteor.user())
+        let $dialog = this.$dialog;
 
         Feedback.insert({
             ownerId: Meteor.userId(),
@@ -68,17 +57,8 @@ export default class FeedbackDialog {
         });
 
         function confirmSuccesfulFeedbackStorage() {
-            $mdDialog.show(
-                $mdDialog.alert({
-                    onComplete: function afterShowAnimation() {
-                        var $dialog = angular.element(document.querySelector('md-dialog'));
-                        var $actionsSection = $dialog.find('md-dialog-actions');
-                        var $cancelButton = $actionsSection.children()[0];
-                        angular.element($cancelButton).addClass('md-raised');
-                    }
-                })
-                    .parent(angular.element(document.body))
-                    .clickOutsideToClose(false)
+            $dialog.show(
+                $dialog.alert()
                     .title('Bedankt voor jouw reactie.')
                     .textContent('Samen kunnen wij blijven verbeteren.')
                     .ariaLabel('Feedback')

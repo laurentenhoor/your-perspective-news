@@ -25,11 +25,12 @@ angular.module('yourpers', [
 
 .component('yourpersApp', appComponent)
 
-.config(($locationProvider, $sceDelegateProvider, $urlRouterProvider) => {
+.config(($locationProvider, $sceDelegateProvider, $urlRouterProvider, $qProvider) => {
 	'ngInject';
 
 	$locationProvider.html5Mode({ enabled: true, requireBase: false, rewriteLinks: false });
 	$sceDelegateProvider.resourceUrlWhitelist(['**']);
 	$urlRouterProvider.otherwise('/');
+	$qProvider.errorOnUnhandledRejections(false);
 
 });

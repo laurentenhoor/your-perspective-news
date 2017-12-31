@@ -2,15 +2,11 @@ import DialogComponent from './first-use-dialog.component';
 import DialogTemplate from './first-use-dialog.html';
 import DialogStyle from './first-use-dialog.styl';
 
-export default class FirstUseDialog {
+export default class FirstUseDialogService {
 
-    static factory($mdDialog) {
+    constructor($dialog) {
         'ngInject';
-        return new FirstUseDialog($mdDialog);
-    }
-
-    constructor($mdDialog) {
-        this.$mdDialog = $mdDialog;
+        this.$dialog = $dialog;
         this.dialogIsCurrentlyShown = false;
     }
 
@@ -18,21 +14,18 @@ export default class FirstUseDialog {
 
         this.dialogIsCurrentlyShown = true;
 
-        return this.$mdDialog.show({
+        return this.$dialog.show({
             controller: DialogComponent,
-            controllerAs: '$ctrl',
             templateUrl: DialogTemplate,
-            parent: angular.element(document.body),
             targetEvent: $event,
-            clickOutsideToClose: false,
-            fullscreen: true, // Only for -xs, -sm breakpoints.
+            fullscreen: true,
         }).then(() => {
             this.dialogIsCurrentlyShown = false
         });
     }
-
+    
     hide($event) {
-        return this.$mdDialog.hide();
+        return this.$dialog.hide();
     }
 
     isCurrentlyShown() {
