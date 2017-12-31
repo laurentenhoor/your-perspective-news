@@ -3,7 +3,7 @@ import style from './topic-controls.styl';
 
 class TopicControlsComponent {
 
-    constructor($reactive, $scope, $dialog, $autoScroll, $writeArticleDialog)  {
+    constructor($reactive, $scope, $dialog, $autoScroll, $writeOpinionDialog)  {
         'ngInject';
 
         var $ctrl = this;
@@ -21,7 +21,7 @@ class TopicControlsComponent {
 		}
 
         $ctrl.writeArticle = function ($event) {
-            $writeArticleDialog.show($event, $ctrl.topicId);
+            $writeOpinionDialog.show($event, $ctrl.topicId);
 
             // $dialog.show(
             //     $dialog.alert()

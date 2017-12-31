@@ -1,9 +1,9 @@
 
-import WriteArticleDialogComponent from './write-article-dialog.component'
-import WriteArticleDialogTemplate from './write-article-dialog.html';
-import WriteArticleDialogStyle from './write-article-dialog.styl';
+import WriteOpinionDialogComponent from './write-opinion-dialog.component'
+import WriteOpinionDialogTemplate from './write-opinion-dialog.html';
+import WriteOpinionDialogStyle from './write-opinion-dialog.styl';
 
-export default class WriteArticleDialogService {
+export default class WriteOpinionDialogService {
 
     constructor($dialog) {
         'ngInject';
@@ -13,8 +13,8 @@ export default class WriteArticleDialogService {
     show($event, topicId) {
 
         let dialogOptions = {
-            templateUrl : WriteArticleDialogTemplate,
-            controller : WriteArticleDialogComponent,
+            templateUrl : WriteOpinionDialogTemplate,
+            controller : WriteOpinionDialogComponent,
             targetEvent: $event,
             fullscreen : true,
             locals : {

@@ -1,12 +1,12 @@
 import { Meteor } from 'meteor/meteor';
 import { Opinions } from '/imports/api/opinions.js';
 
-export default class WriteArticleDialogComponent {
+export default class WriteOpinionDialogComponent {
 
-    constructor(topicId, $writeArticleDialog) {
+    constructor(topicId, $writeOpinionDialog) {
         'ngInject';
 
-        console.log('init WriteArticleDialog')
+        console.log('init WriteOpinionDialog')
         var $ctrl = this;
         
         $ctrl.topicId = topicId;
@@ -40,7 +40,7 @@ export default class WriteArticleDialogComponent {
         }
 
         $ctrl.hide = function () {
-            $writeArticleDialog.hide();
+            $writeOpinionDialog.hide();
         }
 
         $ctrl.saveDocument = function() {
