@@ -6,5 +6,5 @@ import FirstUseToastService from './first-use-toast.service'
 
 export default angular
     .module('firstUseToast', [angularMaterial])
-    .service('$firstUseToast', FirstUseToastService.factory)
+    .service('$firstUseToast', FirstUseToastService)
     .name

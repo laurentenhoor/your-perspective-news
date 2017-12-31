@@ -15,7 +15,4 @@
 
 </div>
 
-
-<div id="app-container" ng-if="$ctrl.showMobile" ng-cloak>
-	<ng-transclude></ng-transclude>
-</div>
+<ng-transclude ng-if="$ctrl.showMobile"></ng-transclude>
