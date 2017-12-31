@@ -2,7 +2,7 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
 import TopicControls from './topic-controls/topic-controls.module';
-import yourpersComments from '/imports/common/comments-tile/comments-tile';
+import CommentsTile from './comments-tile/comments-tile.module';
 
 import Vote from './vote/vote.module';
 
@@ -11,7 +11,7 @@ import AutoScrollService from './auto-scroll.service';
 
 
 export default angular.module('topics', [
-	yourpersComments,
+	CommentsTile,
 	TopicControls,
 	Vote,
 	'ArticleActionsButton',

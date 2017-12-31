@@ -2,7 +2,6 @@ export default class MetadataService {
 
 	constructor($loader) {
 		'ngInject';
-
 		this.$loader = $loader;
 	}
 	

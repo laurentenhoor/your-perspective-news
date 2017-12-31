@@ -1,7 +1,3 @@
-import angular from 'angular';
-import angularMeteor from 'angular-meteor';
-import angularSanitize from 'angular-sanitize';
-
 import moment from 'moment';
 import 'moment/locale/nl'
 
@@ -12,10 +8,8 @@ import commentsTreeTemplate from './comments-tree.html';
 import { Comments } from '/imports/api/comments.js';
 import { Votes } from '/imports/api/votes.js';
 
-import AutoFocusDirective from '/imports/directives/auto-focus.directive';
-import CommentsTreeService from './comments-tree.service';
 
-class CommentsCtrl {
+class CommentsTileComponent {
 
 	constructor($rootScope, $scope, $document, $reactive, $commentsTree, $auth, $vote) {
 		'ngInject';
@@ -161,17 +155,10 @@ class CommentsCtrl {
 
 }
 
-export default angular.module('yourpers.comments', [
-	angularMeteor,
-	angularSanitize,
-	AutoFocusDirective,
-	])
-	.component('yourpersComments', {
-		templateUrl : template,
-		controller: CommentsCtrl,
-		bindings: {
-			topicId : '<',
-		}
-	})
-	.service('$commentsTree', CommentsTreeService)
-	.name;
+export default {
+    templateUrl: template,
+    controller: CommentsTileComponent,
+    bindings: {
+        topicId: '<',
+    }
+}
