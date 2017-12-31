@@ -15,9 +15,7 @@ export default class AccountMenuService {
 
 			return $mdSidenav('account-menu').toggle().then(() => {
 				if ($mdSidenav('account-menu').isOpen()) {
-					console.log('addClass');
-					let bodyElement = angular.element(document.querySelector('body'));
-					bodyElement.addClass('md-dialog-is-showing');
+					$scrollDisabler.disable();
 				}
 					
 			});
@@ -25,12 +23,8 @@ export default class AccountMenuService {
 		}
 
 		function setupListeners() {
-			console.log('setSidenavListener');
-
 			$mdSidenav('account-menu').onClose(function() {
-				console.log('removeClass');
-				let bodyElement = angular.element(document.querySelector('body'));
-				bodyElement.removeClass('md-dialog-is-showing');
+				$scrollDisabler.enable();
 			});
 	
 		}
