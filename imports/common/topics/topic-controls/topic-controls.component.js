@@ -3,7 +3,7 @@ import style from './topic-controls.styl';
 
 class TopicControlsComponent {
 
-    constructor($reactive, $scope, $dialog, $autoScroll)  {
+    constructor($reactive, $scope, $dialog, $autoScroll, $writeArticleDialog)  {
         'ngInject';
 
         var $ctrl = this;
@@ -21,14 +21,17 @@ class TopicControlsComponent {
 		}
 
         $ctrl.writeArticle = function ($event) {
-            $dialog.show(
-                $dialog.alert()
-                    .title('Wil je schrijven?')
-                    .textContent('Hier komt binnenkort een editor voor korte opiniestukken...')
-                    .ariaLabel('')
-                    .ok('Sluiten')
-                    .targetEvent($event)
-            );
+            $writeArticleDialog.show($event, $ctrl.topicId);
+
+            // $dialog.show(
+            //     $dialog.alert()
+            //         .title('Wil je schrijven?')
+            //         .textContent('Hier komt binnenkort een editor voor korte opiniestukken...')
+            //         .ariaLabel('')
+            //         .ok('Sluiten')
+            //         .targetEvent($event)
+            // );
+
         }
 
     }
@@ -37,7 +40,7 @@ class TopicControlsComponent {
 
 export default {
     bindings: {
-        topicId: '<'
+        topicId: '<',
     },
     controller: TopicControlsComponent,
     templateUrl: template,

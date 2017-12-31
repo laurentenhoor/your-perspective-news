@@ -5,6 +5,7 @@ import '/imports/api/posts.js';
 import '/imports/api/votes.js';
 import '/imports/api/feedback.js';
 import '/imports/api/comments.js';
+import '/imports/api/opinions.js';
 
 Meteor.startup(() => {
 

@@ -13,8 +13,6 @@ Topics.before.insert(function (userId, doc) {
 	}
 });
 
-
-
 if(Meteor.isServer) {
     Meteor.publish('topics', function(){
         return Topics.find({});

@@ -5,6 +5,8 @@ import Auth from './auth/auth.module';
 import AccountMenu from './account-menu/account-menu.module';
 import ScrollDisabler from './scroll-disabler/scroll-disabler.module';
 import Dialog from './dialog/dialog.module';
+import SelectSource from './select-source/select-source.module'
+import WriteArticleDialog from './write-article-dialog/write-article-dialog.module';
 
 export default angular
     .module('app.components', [
@@ -15,5 +17,7 @@ export default angular
         AccountMenu,
         ScrollDisabler,
         Dialog,
+        SelectSource,
+        WriteArticleDialog
     ])
     .name;

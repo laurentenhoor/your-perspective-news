@@ -1,0 +1,10 @@
+<div ng-repeat="article in $ctrl.articles" ng-click="$ctrl.clickArticle(article)">
+
+    <div class="icon" ng-style="{'background-image':'url(\'' + (article.imageUrl) + '\')'}">
+        <div class="text">
+            <div class=" title">{{ article.title }}</div>
+            <div class=" publisher">{{ article.publisher }}</div>
+        </div>
+    </div>
+
+</div>

@@ -27,6 +27,9 @@ export default {
 			}
 			else if (user.profile && user.profile.pictureUrl) {
 				return user.profile.pictureUrl;
+			} 
+			else {
+				return null;
 			}
 
 		}
