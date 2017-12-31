@@ -18,6 +18,7 @@ export default class FirstUseToastService {
 		this.$mdToast.show({
 			controller: FirstUseToastComponent,
 			templateUrl: FirstUseToastTemplate,
+			controllerAs: '$ctrl',
 			hideDelay: 12000,
 			position: 'bottom',
 		});
