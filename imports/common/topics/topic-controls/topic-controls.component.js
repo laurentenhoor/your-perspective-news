@@ -3,25 +3,27 @@ import style from './topic-controls.styl';
 
 class TopicControlsComponent {
 
-    constructor($reactive, $scope, $dialog, $autoScroll, $writeOpinionDialog)  {
+    constructor($reactive, $scope, $dialog, $autoScroll, $writeOpinionDialog, $auth) {
         'ngInject';
 
         var $ctrl = this;
         $reactive($ctrl).attach($scope);
 
-        $ctrl.$onChanges = function(changes) {
+        $ctrl.$onChanges = function (changes) {
             if (changes.topicId) {
-              $ctrl.topicId = angular.copy($ctrl.topicId);
+                $ctrl.topicId = angular.copy($ctrl.topicId);
             }
         }
 
-        $ctrl.discuss =function(topicId) {
-			console.log('clickChat');
-			$autoScroll.horizontalScroll('discuss-'+topicId, 'scroll-'+topicId);
-		}
+        $ctrl.discuss = function (topicId) {
+            console.log('clickChat');
+            $autoScroll.horizontalScroll('discuss-' + topicId, 'scroll-' + topicId);
+        }
 
-        $ctrl.writeArticle = function ($event) {
-            $writeOpinionDialog.show($event, $ctrl.topicId);
+        $ctrl.writeOpinion = function ($event) {
+            if ($auth.isLoggedIn()) {
+                $writeOpinionDialog.show($event, $ctrl.topicId);
+            }
 
             // $dialog.show(
             //     $dialog.alert()

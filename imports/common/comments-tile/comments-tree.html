@@ -30,7 +30,7 @@
 			</div>
 			
 			<a href="" ng-click="showDetails = $ctrl.willShowCommentField(showDetails);">
-				Reageer <i class="fa fa-reply" aria-hidden="true"></i>
+				Beantwoord <i class="fa fa-reply" aria-hidden="true"></i>
 			</a>
 		
 			<div class="comments-arrow-up" 
@@ -59,7 +59,7 @@
 				
 			<input class="comments-input-button"
 				type="submit" 
-				value="Reageer" 
+				value="Beantwoord" 
 				ng-disabled="newComment.$invalid"/>
 		</form>
 
@@ -69,7 +69,7 @@
 		<div ng-init="showDetails=false;"	
 			ng-repeat="comment in comment.children"
 			ng-include="$ctrl.commentsTreeTemplate">
-		</div>
+		</div> 	
 	</div>	
 
 </div>
