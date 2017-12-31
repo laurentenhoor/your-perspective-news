@@ -30,13 +30,14 @@ export default class WriteOpinionDialogComponent {
         }
 
         $ctrl.addArticleRef = function ($event) {
-            console.log($event.article.title);
-
             var spacing = '';
             if ($ctrl.document.content != '') {
                 spacing = ' ';
             }
-            $ctrl.document.content = $ctrl.document.content + spacing + '#' + $event.article.publisher +': ' + '' + $event.article.title + '#';
+            $ctrl.document.content = 
+                $ctrl.document.content + spacing 
+                + '@' +$event.article.publisher 
+                +' #' + $event.article.title.replace(new RegExp(' ', 'g'), '_') + ' ';
         }
 
         $ctrl.hide = function () {
