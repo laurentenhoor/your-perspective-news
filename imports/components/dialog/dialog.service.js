@@ -1,3 +1,13 @@
+import angular from 'angular';
+
+function getDefaultOptions() {
+    return {
+        controllerAs: '$ctrl',
+        clickOutsideToClose: false,
+        fullscreen: false,
+    }
+}
+
 export default class DialogService {
 
     constructor($mdDialog, $scrollDisabler) {
@@ -5,12 +15,6 @@ export default class DialogService {
 
         this.$mdDialog = $mdDialog;
         this.$scrollDisabler = $scrollDisabler;
-
-        this.defaultOptions = {
-            controllerAs: '$ctrl',
-            clickOutsideToClose: false,
-            fullscreen: false,
-        }
 
     }
 
@@ -20,7 +24,7 @@ export default class DialogService {
         console.log(options);
         
         if (!options._options) {
-            options = Object.assign(this.defaultOptions, options);
+            options = Object.assign(getDefaultOptions(), options);
         }
         this.$scrollDisabler.disable();
 
