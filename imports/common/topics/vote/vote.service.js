@@ -1,14 +1,19 @@
-import { Votes } from '../../imports/api/votes.js';
-import { Posts } from '../../imports/api/posts.js';
-import { Articles } from '../../imports/api/articles.js';
-import { Comments } from '../../imports/api/comments.js';
+import { Votes } from '/imports/api/votes.js';
+import { Articles } from '/imports/api/articles.js';
+import { Comments } from '/imports/api/comments.js';
 
-Meteor.methods({
+export default class VoteService {
 
-	voteById(id, voteValue) {
+    constructor($auth) {
+        'ngInject';
+        this.$auth = $auth;
+    }
+
+    voteById(id, voteValue) {
 		
-		if (!Meteor.userId()) {
-			throw new Meteor.Error('not-logged-in', "Please login first");
+		if (!this.$auth.isLoggedIn()) {
+            throw new Meteor.Error('not-logged-in', "Please login first");
+            return;
 		}
 		
 		// robustness for adjusting the javascript value
@@ -22,7 +27,6 @@ Meteor.methods({
 		var vote = Votes.findOne({articleId : id, ownerId: Meteor.userId()});
 		console.log(vote);
 		
-		
 		if (!vote) {
 			
 			Votes.insert({
@@ -34,9 +38,7 @@ Meteor.methods({
 			});
 			
 			Articles.update(id, {$inc : {score: voteValue}});
-			Posts.update(id, {$inc : { score: voteValue}});
-			Comments.update(id, {$inc : {score: voteValue}});
-			
+			Comments.update(id, {$inc : {score: voteValue}});			
 			
 		} else {
 			
@@ -45,7 +47,6 @@ Meteor.methods({
 				Votes.update(vote._id, {$set: {value: voteValue}});
 				
 				Articles.update(id, {$inc : {score: 2*voteValue}});
-				Posts.update(id, {$inc : {score: 2*voteValue}});
 				Comments.update(id, {$inc : {score: 2*voteValue}});
 				
 			}
@@ -53,4 +54,5 @@ Meteor.methods({
 		}
 		
 	}
-});
+
+}

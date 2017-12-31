@@ -22,5 +22,6 @@ export default angular
 
         FirstUseToast,
         FistUseDialog,
+
     ])
     .name;

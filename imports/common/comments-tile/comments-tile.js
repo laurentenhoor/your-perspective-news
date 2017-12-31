@@ -17,7 +17,7 @@ import CommentsTreeService from './comments-tree.service';
 
 class CommentsCtrl {
 
-	constructor($rootScope, $scope, $document, $reactive, $commentsTree, $auth) {
+	constructor($rootScope, $scope, $document, $reactive, $commentsTree, $auth, $vote) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -144,11 +144,7 @@ class CommentsCtrl {
 		}
 
 		$ctrl.vote = function(commentId, voteUpOrDown) {
-
-			if ($auth.isLoggedIn()) {
-				$ctrl.call('voteById', commentId, voteUpOrDown); 
-			}
-			
+			$vote.voteById(commentId, voteUpOrDown);
 		}
 
 		$ctrl.deleteComment = function(comment) {

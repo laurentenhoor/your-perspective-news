@@ -11,7 +11,7 @@ import { Votes } from '/imports/api/votes.js';
 
 class TopicsComponent {
 
-	constructor($rootScope, $scope, $reactive, $window, $location, $autoScroll, $auth, $loader, $timeout) {
+	constructor($rootScope, $scope, $reactive, $window, $location, $autoScroll, $loader, $timeout, $vote) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -111,10 +111,8 @@ class TopicsComponent {
 		};
 
 		$ctrl.vote = function(article, voteUpOrDown) {
-			
-			if ($auth.isLoggedIn()) {
-				$ctrl.call('voteById', article._id, voteUpOrDown);
-			} 
+		
+			$vote.voteById(article._id, voteUpOrDown)
 			
 		}
 
