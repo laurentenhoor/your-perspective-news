@@ -3,16 +3,18 @@ import { Opinions } from '/imports/api/opinions.js';
 
 export default class WriteOpinionDialogComponent {
 
-    constructor(topicId, $writeOpinionDialog, $metadata) {
+    constructor(topicId, $writeOpinionDialog, $metadata, $articlesApi) {
         'ngInject';
 
         console.log('init WriteOpinionDialog')
         var $ctrl = this;
-        
-        $ctrl.topicId = topicId;
 
-        var opinion = Opinions.findOne({topicId: $ctrl.topicId}, {});
-        
+        $ctrl.topicId = topicId;
+        $ctrl.articles = $articlesApi.getAllByTopicId($ctrl.topicId);
+        console.log($ctrl.articles)
+
+        var opinion = Opinions.findOne({ topicId: $ctrl.topicId }, {});
+
         if (opinion) {
             $ctrl.document = opinion;
             $ctrl.document.new = false
@@ -21,9 +23,9 @@ export default class WriteOpinionDialogComponent {
                 title: '',
                 content: '',
                 imageUrl: '',
-                refs : [],
+                refs: [],
                 topicId: topicId,
-                ownerId : Meteor.userId(),
+                ownerId: Meteor.userId(),
                 draft: true,
                 new: true,
             }
@@ -34,30 +36,38 @@ export default class WriteOpinionDialogComponent {
             if ($ctrl.document.content != '') {
                 spacing = ' ';
             }
-            $ctrl.document.content = 
-                $ctrl.document.content + spacing 
-                + '@' +$event.article.publisher 
-                +' #' + $event.article.title.replace(new RegExp(' ', 'g'), '_') + ' ';
+            $ctrl.document.content =
+                $ctrl.document.content + spacing
+                + '@' + $event.article.publisher
+                + ' #' + $event.article.title.replace(new RegExp(' ', 'g'), '_') + ' ';
         }
 
-        $ctrl.hide = function () {
+        $ctrl.hideDialog = function () {
             $writeOpinionDialog.hide();
         }
 
-        $ctrl.saveDocument = function() {
+        $ctrl.saveDocument = function () {
             console.log($ctrl.document)
-            Opinions.upsert({_id: $ctrl.document._id}, $ctrl.document, (error, result) => {
+            Opinions.upsert({ _id: $ctrl.document._id }, $ctrl.document, (error, result) => {
                 if (error)
                     return console.error(error);
                 console.log(result);
             });
-            $ctrl.hide();
+            $ctrl.hideDialog();
         }
 
-        $ctrl.urlChange = function() {
-            console.log($ctrl.article.url);
-            $ctrl.newArticle = $metadata.getArticleFromUrl($ctrl.article.url);
-            console.log($ctrl.newArticle);
+        $ctrl.publishDocument = function () {
+            $ctrl.document.draft = false
+            $ctrl.saveDocument();
+        }
+
+        $ctrl.urlChange = function () {
+            $metadata.getArticleFromUrl($ctrl.article.url, (error, article) => {
+                if (error)
+                    return console.error(error);
+                $ctrl.articles.unshift(article)
+            });
+           
         }
 
     }

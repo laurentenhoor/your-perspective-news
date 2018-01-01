@@ -24,7 +24,7 @@
 
             <md-input-container class="md-block">
                 <div class="ref-label">Klik om te refereren</div>
-                <select-source topic-id="$ctrl.topicId" articles="$ctrl.articles" on-add-article-ref="$ctrl.addArticleRef($event)"></select-source>
+                <select-source topic-id="$ctrl.topicId" articles="$ctrl.articles" on-article-ref-click="$ctrl.addArticleRef($event)"></select-source>
             </md-input-container>
 
             <md-input-container class="md-block" ng-show="!$ctrl.urlDataIsLoaded">
@@ -45,7 +45,7 @@
             <md-button class="md-raised" ng-click="$ctrl.saveDocument()">
                 <md-icon>save</md-icon> Opslaan voor later  
             </md-button>
-            <md-button class="md-raised md-primary" ng-click="$ctrl.saveDocument()" disabled>
+            <md-button class="md-raised md-primary" ng-click="$ctrl.publishDocument()">
                 <md-icon>send</md-icon> Plaatsen
             </md-button>
         </md-dialog-actions>

@@ -1,3 +1,5 @@
+import { Meteor } from 'meteor/meteor';
+
 export default class MetadataService {
 
 	constructor($loader) {
@@ -5,27 +7,28 @@ export default class MetadataService {
 		this.$loader = $loader;
 	}
 	
-	getArticleFromUrl = function (url) {
+	getArticleFromUrl = function (url, cb) {
 
 		console.log('Url input: ' + url);
 
 		if (!this.isValidUrl(url)) {
 			return;
 		}
-		$loader = this.$loader;
-		$loader.start();
 
-		$ctrl.call('getUrlMetadata', url, function (error, result) {
+		self = this;
+		self.$loader.start();
+
+		Meteor.call('getUrlMetadata', url, function (error, result) {
 			
 			if (error) {
 				console.error(error);
-				$loader.stop();
-				return;
+				self.$loader.stop();
+				return cb(error);
 			}
 
-			let article = this.createArticle(url, result);
-			$loader.stop();
-			return article;
+			let article = self.createArticle(url, result);
+			self.$loader.stop();
+			return cb(false, article);
 
 		});
 	}

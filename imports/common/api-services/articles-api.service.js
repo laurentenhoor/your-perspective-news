@@ -7,9 +7,9 @@ export default class ArticlesApi {
         'ngInject';
     }
 
-    getAllyTopicId(topicId) {
-        let topic = Topic.findOne({ _id: topicId });
-        return getAllByTopic(topic);
+    getAllByTopicId(topicId) {
+        let topic = Topics.findOne({ _id: topicId });
+        return this.getAllByTopic(topic);
     }
 
     getAllByTopic(topic) {
@@ -24,7 +24,7 @@ export default class ArticlesApi {
 
         return Articles.find({
             _id: { "$in": articleIds }
-        }).fetch()
+        }).fetch();
     }
 
 }
