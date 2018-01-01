@@ -45,7 +45,7 @@ class RichTextEditorComponent {
         $ctrl.$onChanges = function(changes) {
             if (changes.addArticle && $ctrl.addArticle) {
                 let article = angular.copy($ctrl.addArticle);
-                let htmlString = $sanitize('<a href="'+article.url+'"><b>'+ (article.publisher || '') + '</b> ' + (article.title || '') + '</a>&nbsp;');
+                let htmlString = $sanitize('<a href="'+article.url+'"><b>'+ (article.publisher || '') + '</b> "' + (article.title.substring(0, 6)+'..."' || '') + '</a>&nbsp;');
                 editor.insertHTML(htmlString);
             }
             if (changes.initContent) {
