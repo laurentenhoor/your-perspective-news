@@ -18,7 +18,7 @@ export default class MetadataService {
 		self = this;
 		self.$loader.start();
 
-		Meteor.call('getUrlMetadata', url, function (error, result) {
+		Meteor.call('getUrlMetadata', url, (error, result) => {
 			
 			if (error) {
 				console.error(error);

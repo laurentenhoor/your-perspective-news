@@ -7,6 +7,8 @@ export default class OpinionsApiService {
     }
 
     getByTopicId(topicId) {
+
+        console.log('topicId', topicId)
         
         let opinions = Opinions.find({
             topicId: topicId,

@@ -1,4 +1,7 @@
 select-source {
+
+    $border-radius = 0.8vw;
+
     .icon {
         width: 30vw;
         height: 20vw;
@@ -8,7 +11,7 @@ select-source {
         float: left;
         position: relative;
         opacity: 0.9;
-        border-radius: 0.8vw;
+        border-radius: $border-radius
     }
 
     .icon::before {
@@ -17,6 +20,7 @@ select-source {
         background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 40%, transparent);
         height: 100%;
         display: block;
+        border-radius:$border-radius
     }
 
     .text {
