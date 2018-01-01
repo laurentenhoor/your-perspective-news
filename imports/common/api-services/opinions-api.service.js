@@ -7,15 +7,13 @@ export default class OpinionsApiService {
     }
 
     getByTopicId(topicId) {
-
-        console.log('topicId', topicId)
         
         let opinions = Opinions.find({
             topicId: topicId,
             draft: false
         }).fetch();
         
-        console.log(opinions);
+        console.log('Opinions', opinions);
         
         return opinions;
     }

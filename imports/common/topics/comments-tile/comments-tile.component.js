@@ -27,7 +27,7 @@ class CommentsTileComponent {
 				$ctrl.helpers({
 
 					'comments' : function() {
-						console.log('fetch comments for topicId: '+ $ctrl.topicId);
+						// console.log('fetch comments for topicId: '+ $ctrl.topicId);
 
 						var comments = Comments.find({parentItemId: $ctrl.getReactively('topicId')})
 						var roots = $commentsTree.getCommentsTree(comments.fetch());
