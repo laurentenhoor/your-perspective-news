@@ -1,104 +1,88 @@
 <md-dialog aria-label="{{$ctrl.headerText}}">
-  <form ng-cloak>
-    <md-toolbar >
-        <md-toolbar-header>{{$ctrl.headerText}}</md-toolbar-header>
-        <md-toolbar-subtitle>{{$ctrl.headerSubText}}</md-toolbar-subtitle>      
-    </md-toolbar>
+	<form ng-cloak>
+		<md-toolbar>
+			<md-toolbar-header>{{$ctrl.headerText}}</md-toolbar-header>
+			<md-toolbar-subtitle>{{$ctrl.headerSubText}}</md-toolbar-subtitle>
+		</md-toolbar>
 
-    <md-dialog-content>
-      <div class="md-dialog-content md-inline-form" layout="column">
-     
-        <md-input-container class="md-block" ng-show="!$ctrl.urlDataIsLoaded">
-        
-          	<label ng-cloak>Plak een url naar een artikel</label>
-          	
-          	<input class="modal-item-url-input" 
-          		ng-model="$ctrl.article.url"
-         		ng-change="$ctrl.urlChange()" http-prefix>
-      		</input>
-      		
-      	<!-- 	<div class="hint">Klik op bovenstaande veld en houd daarna lang ingedrukt om een url te plakken.</div> -->
-      	
-      	</md-input-container>
-      
-      	<md-autocomplete
-					md-selected-item="$ctrl.selectedCategory"
-					md-search-text-change="$ctrl.searchTextChange($ctrl.searchText)"
-					md-search-text="$ctrl.searchText"
-					md-selected-item-change="$ctrl.selectedItemChange(item)"
-					md-items="item in $ctrl.querySearch($ctrl.searchText)"
-					md-item-text="item.display"
-					md-min-length="0"
-					md-floating-label="Selecteer een categorie"
-					placeholder="Categorie"
-					ng-focus="$ctrl.clearFieldAtFirstFocusOnly()"
-		    >
-		    
-		  <md-item-template>
-		    <span md-highlight-text="$ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
-		  </md-item-template>
-		  
-<!-- 		  <md-not-found> -->
-<!-- 		    <a ng-click="$ctrl.newCategory($ctrl.searchText)">Maak categorie '{{$ctrl.searchText}}'.</a> -->
-<!-- 		  </md-not-found> -->
-		  
-<!-- 		  <div class="hint">Selecteer een categorie waarin dit artikel het best past.  -->
-<!-- 		  Voeg zelf een categorie toe als de juiste er niet tussenzit.</div> -->
-		  
-		</md-autocomplete>
-		
-		
-		</div>
-    </md-dialog-content>
-		
-		<div class="modal-item-image-and-details-container"
-			ng-if="$ctrl.urlDataIsLoaded">
-			
-				<div class="bulletin-item-image-container">
-			
-					<div class="bulletin-item-image"
-						ng-style="{'background-image':'url(\'' + $ctrl.article.imageUrl + '\')'}">
-					</div>
-			
-					<iframe ng-if="$ctrl.article.videoUrl"
-						src="{{$ctrl.article.videoUrl}}" width="100%"
-						height="60%" frameborder="0" allowfullscreen
-						style="position: absolute; bottom:0; top:0; height:100%; z-index:1;"></iframe>
-			
-					<div ng-if="!$ctrl.article.videoUrl" class="gradient-overlay"></div>
-			
-					<div class="bulletin-item-title-container" ng-if="!$ctrl.article.videoUrl">
-						
-						<div class="modal-item-publisher">
-							{{$ctrl.article.publisher}}</div>
-						<div class="modal-item-title" >
-							{{$ctrl.article.title}}</div>
-						
-					</div>
-			
-				</div>
-<!-- 				<div class="bulletin-item-description" -->
-<!-- 					ng-if="$ctrl.article.description"> -->
-<!-- 					{{$ctrl.article.description}}</div> -->
+		<md-dialog-content>
+			<div class="md-dialog-content md-inline-form" layout="column">
+
+				<md-input-container class="md-block" ng-show="!$ctrl.urlDataIsLoaded">
+
+					<label ng-cloak>Plak een url naar een artikel</label>
+
+					<input class="modal-item-url-input" ng-model="$ctrl.article.url" ng-change="$ctrl.urlChange()" http-prefix>
+					</input>
+
+					<!-- 	<div class="hint">Klik op bovenstaande veld en houd daarna lang ingedrukt om een url te plakken.</div> -->
+
+				</md-input-container>
+
+				<md-autocomplete md-selected-item="$ctrl.selectedCategory" md-search-text-change="$ctrl.searchTextChange($ctrl.searchText)"
+				 md-search-text="$ctrl.searchText" md-selected-item-change="$ctrl.selectedItemChange(item)" md-items="item in $ctrl.querySearch($ctrl.searchText)"
+				 md-item-text="item.display" md-min-length="0" md-floating-label="Selecteer een categorie" placeholder="Categorie" ng-focus="$ctrl.clearFieldAtFirstFocusOnly()">
+
+					<md-item-template>
+						<span md-highlight-text="$ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+					</md-item-template>
+
+					<!-- 		  <md-not-found> -->
+					<!-- 		    <a ng-click="$ctrl.newCategory($ctrl.searchText)">Maak categorie '{{$ctrl.searchText}}'.</a> -->
+					<!-- 		  </md-not-found> -->
+
+					<!-- 		  <div class="hint">Selecteer een categorie waarin dit artikel het best past.  -->
+					<!-- 		  Voeg zelf een categorie toe als de juiste er niet tussenzit.</div> -->
+
+				</md-autocomplete>
+
+
 			</div>
-		      
+		</md-dialog-content>
 
-    <md-dialog-actions layout="row">
-    
-    	<div class="remove-icon"
-			ng-if="$ctrl.urlDataIsLoaded"  
-			ng-click="$ctrl.showRemovalConfirmation($event)">
-		
-			<i class="material-icons">&#xE872;</i><!-- delete -->
+		<div class="modal-item-image-and-details-container" ng-if="$ctrl.urlDataIsLoaded">
+
+			<div class="bulletin-item-image-container">
+
+				<div class="bulletin-item-image" ng-style="{'background-image':'url(\'' + $ctrl.article.imageUrl + '\')'}">
+				</div>
+
+				<iframe ng-if="$ctrl.article.videoUrl" src="{{$ctrl.article.videoUrl}}" width="100%" height="60%" frameborder="0" allowfullscreen
+				 style="position: absolute; bottom:0; top:0; height:100%; z-index:1;"></iframe>
+
+				<div ng-if="!$ctrl.article.videoUrl" class="gradient-overlay"></div>
+
+				<div class="bulletin-item-title-container" ng-if="!$ctrl.article.videoUrl">
+
+					<div class="modal-item-publisher">
+						{{$ctrl.article.publisher}}</div>
+					<div class="modal-item-title">
+						{{$ctrl.article.title}}</div>
+
+				</div>
+
+			</div>
+			<!-- 				<div class="bulletin-item-description" -->
+			<!-- 					ng-if="$ctrl.article.description"> -->
+			<!-- 					{{$ctrl.article.description}}</div> -->
 		</div>
 
-      <span flex></span>
-      <md-button class="md-raised" ng-click="$ctrl.cancel()" tabindex="0" auto-focus>
-       Annuleren
-      </md-button>
-      <md-button ng-disabled="!($ctrl.urlDataIsLoaded && $ctrl.modifiedCategory)" class="md-raised  md-primary" ng-click="$ctrl.ok()">
-        Opslaan
-      </md-button>
-    </md-dialog-actions>
-  </form>
+
+		<md-dialog-actions layout="row">
+
+			<div class="remove-icon" ng-if="$ctrl.urlDataIsLoaded" ng-click="$ctrl.showRemovalConfirmation($event)">
+
+				<i class="material-icons">&#xE872;</i>
+				<!-- delete -->
+			</div>
+
+			<span flex></span>
+			<md-button class="md-raised" ng-click="$ctrl.cancel()" tabindex="0" auto-focus autofocus>
+				Annuleren
+			</md-button>
+			<md-button ng-disabled="!($ctrl.urlDataIsLoaded && $ctrl.modifiedCategory)" class="md-raised  md-primary" ng-click="$ctrl.ok()" tabindex="1"> 
+				Opslaan
+			</md-button>
+		</md-dialog-actions>
+	</form>
 </md-dialog>

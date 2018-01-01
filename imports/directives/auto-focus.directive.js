@@ -10,7 +10,6 @@ class AutoFocus {
 		this.link = function($scope, $element, $attrs) {
 		
 			$timeout(() => $element[0].focus());
-
 		}
 
 	}
