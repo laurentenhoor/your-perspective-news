@@ -24,7 +24,7 @@
 
             <md-input-container class="md-block">
                 <div class="ref-label">Klik om te refereren</div>
-                <select-source topic-id="$ctrl.topicId" on-add-article-ref="$ctrl.addArticleRef($event)"></select-source>
+                <select-source topic-id="$ctrl.topicId" articles="$ctrl.articles" on-add-article-ref="$ctrl.addArticleRef($event)"></select-source>
             </md-input-container>
 
             <md-input-container class="md-block" ng-show="!$ctrl.urlDataIsLoaded">

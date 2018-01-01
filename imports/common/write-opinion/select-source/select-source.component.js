@@ -49,6 +49,7 @@ export default {
     controller : SelectSourceComponent,
     bindings : {
         topicId : '<',
+        articles : '<',
         onAddArticleRef : '&',
     }
 }
