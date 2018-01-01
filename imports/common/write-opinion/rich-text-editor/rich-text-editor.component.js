@@ -21,7 +21,8 @@ class RichTextEditorComponent {
         };
 
         var editor = new Squire($element.find('article')[0], {});
-        
+        console.log(editor)
+
         editor.addEventListener('pathChange', function (e) {
             $timeout(function () {
                 $ctrl.buttonState.bold = editor.hasFormat('b');
@@ -34,19 +35,33 @@ class RichTextEditorComponent {
             });
         });
 
-        editor.addEventListener('input', function (e) {
+        editor.addEventListener('select', function (e) {
             $timeout(function () {
-                $ctrl.onInput({$event :{
-                    htmlContent : editor.getHTML()
-                }})
+                $ctrl.buttonState.bold = editor.hasFormat('b');
+                $ctrl.buttonState.italic = editor.hasFormat('i');
+                $ctrl.buttonState.underline = editor.hasFormat('u');
+                $ctrl.buttonState.bullet = editor.hasFormat('ul');
+                $ctrl.buttonState.numbered = editor.hasFormat('ol');
+                $ctrl.buttonState.quote = editor.hasFormat('blockquote');
+                $ctrl.buttonState.link = editor.hasFormat('a');
             });
         });
 
-        $ctrl.$onChanges = function(changes) {
+        editor.addEventListener('input', function (e) {
+            $ctrl.onInput({
+                $event: {
+                    htmlContent: editor.getHTML()
+                }
+            })
+
+        });
+
+        $ctrl.$onChanges = function (changes) {
             if (changes.addArticle && $ctrl.addArticle) {
                 let article = angular.copy($ctrl.addArticle);
-                let htmlString = $sanitize('<a href="'+article.url+'"><b>'+ (article.publisher || '') + '</b> "' + (article.title.substring(0, 6)+'..."' || '') + '</a>&nbsp;');
+                let htmlString = $sanitize('<a href="' + article.url + '"><b>' + (article.publisher || '') + '</b> "' + (article.title.substring(0, 8) + '..."' || '') + '</a>&nbsp;');
                 editor.insertHTML(htmlString);
+                editor.focus();
             }
             if (changes.initContent) {
                 $ctrl.clear();
@@ -54,37 +69,50 @@ class RichTextEditorComponent {
             }
         }
 
-        $ctrl.clear = function() {
+        $ctrl.clear = function () {
             editor.focus();
-            editor = new Squire($element.find('article')[0], {});
-            editor.focus();
+            editor.setHTML('');
+            editor.moveCursorToStart();
+            // editor.focus();
         }
 
-        $ctrl.undo = function() {
+        $ctrl.undo = function () {
             editor.undo();
         }
 
         $ctrl.bold = function () {
-            editor.focus();
-            if ($ctrl.buttonState.bold) {
+
+            if (editor.hasFormat('b')) {
                 editor.removeBold();
+                $ctrl.buttonState.bold = false;
             } else {
                 editor.bold();
+                $ctrl.buttonState.bold = true;
             }
-            editor.focus();
-            editor.insert('');
+
+        }
+
+        $ctrl.bullet = function () {
+
+            if (editor.hasFormat('ul')) {
+                editor.removeList();
+                $ctrl.buttonState.bullet = false;
+            } else {
+                editor.makeUnorderedList();
+                $ctrl.buttonState.bullet = true;
+            }
 
         }
 
         $ctrl.italic = function () {
-            editor.focus();
-            if ($ctrl.buttonState.italic) {
+
+            if (editor.hasFormat('i')) {
                 editor.removeItalic();
+                $ctrl.buttonState.italic = false;
             } else {
                 editor.italic();
+                $ctrl.buttonState.italic = true;
             }
-            editor.focus();
-            editor.insert('');
         }
 
         $ctrl.underline = function () {
@@ -96,6 +124,7 @@ class RichTextEditorComponent {
             }
             editor.focus();
             editor.insert('');
+            editor.focus();
         }
 
         $ctrl.quote = function () {
@@ -107,31 +136,22 @@ class RichTextEditorComponent {
             }
             editor.focus();
             editor.insert('');
+            editor.focus();
         }
 
         $ctrl.numbered = function () {
-            
+
             // editor.insert('');
-            
+
             if ($ctrl.buttonState.numbered) {
                 editor.removeList();
             } else {
                 editor.makeOrderedList();
             }
             // editor.focus();
-            
+
         }
 
-        $ctrl.bullet = function () {
-            // editor.focus();
-            if ($ctrl.buttonState.bullet) {
-                editor.removeList();
-            } else {
-                editor.makeUnorderedList();
-            }
-            // editor.focus();
-            // editor.insert('');
-        }
 
         $ctrl.link = function ($event) {
             // editor.focus();
