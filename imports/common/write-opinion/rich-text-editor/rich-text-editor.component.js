@@ -37,12 +37,17 @@ class RichTextEditorComponent {
             if (changes.addArticle && $ctrl.addArticle) {
                 console.log($ctrl.addArticle)
                 let article = angular.copy($ctrl.addArticle);
-                let htmlString = $sanitize('<a href="'+article.url+'"><b>'+ article.publisher + '</b> ' + article.title + '</a>');
+                let htmlString = $sanitize('<a href="'+article.url+'"><b>'+ (article.publisher || '') + '</b> ' + (article.title || '') + '</a>&nbsp;');
                 console.log(htmlString)
                 editor.insertHTML(htmlString);
 
                 // editor.insertHtml('<div>'+$ctrl.addArticle.title +'</div>');
             }
+        }
+
+        $ctrl.clear = function() {
+            editor = new Squire($element.find('article')[0], {});
+            editor.focus();
         }
 
         $ctrl.undo = function() {
