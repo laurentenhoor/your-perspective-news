@@ -21,6 +21,7 @@ class RichTextEditorComponent {
         };
 
         var editor = new Squire($element.find('article')[0], {});
+        
         editor.addEventListener('pathChange', function (e) {
             $timeout(function () {
                 $ctrl.buttonState.bold = editor.hasFormat('b');
@@ -33,15 +34,23 @@ class RichTextEditorComponent {
             });
         });
 
+        editor.addEventListener('input', function (e) {
+            $timeout(function () {
+                $ctrl.onInput({$event :{
+                    htmlContent : editor.getHTML()
+                }})
+            });
+        });
+
         $ctrl.$onChanges = function(changes) {
             if (changes.addArticle && $ctrl.addArticle) {
-                console.log($ctrl.addArticle)
                 let article = angular.copy($ctrl.addArticle);
                 let htmlString = $sanitize('<a href="'+article.url+'"><b>'+ (article.publisher || '') + '</b> ' + (article.title || '') + '</a>&nbsp;');
-                console.log(htmlString)
                 editor.insertHTML(htmlString);
-
-                // editor.insertHtml('<div>'+$ctrl.addArticle.title +'</div>');
+            }
+            if (changes.initContent) {
+                $ctrl.clear();
+                editor.insertHTML($ctrl.initContent);
             }
         }
 
@@ -156,6 +165,7 @@ export default {
     controller: RichTextEditorComponent,
     bindings: {
         addArticle: '<',
-        getDocument: '&',
+        onInput: '&',
+        initContent: '<',
     }
 }

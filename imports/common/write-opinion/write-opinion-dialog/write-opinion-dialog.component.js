@@ -30,22 +30,16 @@ export default class WriteOpinionDialogComponent {
                 new: true,
             }
         }
+        $ctrl.initContent = angular.copy($ctrl.document.content);
 
-        $ctrl.addArticleRef = function ($event) {
-            $ctrl.addArticle = $event.article;
-            var spacing = '';
-            if ($ctrl.document.content != '') {
-                spacing = ' ';
-            }
-            $ctrl.document.content =
-                $ctrl.document.content + spacing
-                + '@' + $event.article.publisher
-                + ' #' + $event.article.title.replace(new RegExp(' ', 'g'), '_') + ' ';
+        $ctrl.receiveHtml = function($event) {
+            $ctrl.document.content = $event.htmlContent;
         }
 
         $ctrl.hideDialog = function () {
             $writeOpinionDialog.hide();
         }
+
 
         $ctrl.saveDocument = function () {
             console.log($ctrl.document)
@@ -69,6 +63,10 @@ export default class WriteOpinionDialogComponent {
                 $ctrl.articles.unshift(article)
             });
            
+        }
+
+        $ctrl.addArticleRef = function($event) {
+            $ctrl.addArticle = angular.copy($event.article);
         }
 
     }

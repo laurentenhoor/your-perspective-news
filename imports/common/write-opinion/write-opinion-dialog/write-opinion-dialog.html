@@ -18,7 +18,7 @@
 
             <md-input-container class="md-block editor-block">
                 <!-- <label>Schrijf hier jouw perspectief</label> -->
-                <rich-text-editor flex add-article="$ctrl.addArticle"></rich-text-editor>
+                <rich-text-editor flex init-content="$ctrl.initContent" add-article="$ctrl.addArticle" on-input="$ctrl.receiveHtml($event)"></rich-text-editor>
             </md-input-container>
             
             <md-input-container class="md-block">
