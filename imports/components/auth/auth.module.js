@@ -1,13 +1,14 @@
 import angular from 'angular';
-import angularMeteor from 'angular-meteor'
 
 import AuthFilters from './auth.filter';
 import AuthComponent from './auth.component';
 import AuthService from './auth.service';
 
+import AccountMenu from './account-menu/account-menu.module';
+
 export default
     angular.module('Auth', [
-        angularMeteor,
+        AccountMenu,
     ])
         .component('auth', AuthComponent)
         .service('$auth', AuthService)

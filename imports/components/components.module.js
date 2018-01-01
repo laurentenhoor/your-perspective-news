@@ -1,23 +1,21 @@
-import FeedbackButton from './feedback-button/feedback-button.module';
-import FeedbackDialog from './feedback-dialog/feedback-dialog.module';
+import Feedback from './feedback/feedback.module';
 import Loader from './loader/loader.module';
 import Auth from './auth/auth.module';
-import AccountMenu from './account-menu/account-menu.module';
+
 import ScrollDisabler from './scroll-disabler/scroll-disabler.module';
 import Dialog from './dialog/dialog.module';
-import SelectSource from './select-source/select-source.module'
-import WriteOpinionDialog from './write-opinion-dialog/write-opinion-dialog.module';
+
+import DesktopViewer from './desktop-viewer/desktop-viewer';
+import About from './about/about.module';
 
 export default angular
     .module('app.components', [
-        FeedbackButton,
-        FeedbackDialog,
         Loader,
+        Feedback,
         Auth,
-        AccountMenu,
         ScrollDisabler,
         Dialog,
-        SelectSource,
-        WriteOpinionDialog
+        About,
+        DesktopViewer,
     ])
     .name;

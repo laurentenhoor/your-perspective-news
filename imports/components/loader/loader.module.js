@@ -4,7 +4,7 @@ import LoaderComponent from './loader.component';
 import LoaderService from './loader.service';
 
 export default angular
-	.module('loader', [])
+	.module('Loader', [])
 	.component('loader', LoaderComponent)
 	.service('$loader', LoaderService)
 	.name;

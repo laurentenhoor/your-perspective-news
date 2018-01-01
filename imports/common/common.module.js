@@ -1,20 +1,15 @@
-import About from './about/about.module';
-import DesktopViewer from './desktop-viewer/desktop-viewer';
-
-import HeaderMenu from './header-menu/header-menu';
+import HeaderMenu from './header-menu/header-menu.module';
+import ArticleActions from './article-actions/article-actions.module';
 import Topics from './topics/topics.module';
-
-import ArticleActionsButton from './article-actions-button/article-actions-button.module';
-import ArticleActionsDialog from './article-actions-dialog/article-actions-dialog.module';
-
+import WriteOpinion from './write-opinion/write-opinion.module';
+import Metadata from './metadata/metadata.module'
 
 export default angular
     .module('app.common', [
-        About,
-        DesktopViewer,
         HeaderMenu,
+        ArticleActions,
         Topics,
-        ArticleActionsButton,
-        ArticleActionsDialog,
+        WriteOpinion,
+        Metadata,
     ])
     .name;
