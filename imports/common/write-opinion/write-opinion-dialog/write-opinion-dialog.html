@@ -2,7 +2,7 @@
     <form ng-cloak>
         <md-toolbar class="md-toolbar-tools">
 
-            <div flex>Schrijfblok</div>
+            <div flex>Schrijf hierover</div>
             <md-button class="md-icon-button" aria-label="Sluiten" ng-click="$ctrl.saveDocument()">
                 <md-icon>close</md-icon>
             </md-button>
@@ -16,7 +16,7 @@
                 <input ng-model="$ctrl.document.title" type="text">
             </md-input-container>
 
-            <md-input-container class="md-block">
+            <md-input-container class="md-block editor-block">
                 <!-- <label>Schrijf hier jouw perspectief</label> -->
                 <rich-text-editor flex add-article="$ctrl.addArticle"></rich-text-editor>
             </md-input-container>
@@ -26,7 +26,7 @@
                 <select-source topic-id="$ctrl.topicId" articles="$ctrl.articles" on-article-ref-click="$ctrl.addArticleRef($event)"></select-source>
             </md-input-container>
 
-            <md-input-container class="md-block" ng-show="!$ctrl.urlDataIsLoaded">
+            <md-input-container class="md-block new-url-container" ng-show="!$ctrl.urlDataIsLoaded">
 
                 <label ng-cloak>Of plak een url naar een nieuw artikel</label>
 
@@ -41,7 +41,7 @@
             <!-- <md-button class="md-raised" ng-click="$ctrl.dislike()">
                 <md-icon>delete</md-icon> Verwijderen
             </md-button> -->
-            <md-button class="md-raised" ng-click="$ctrl.saveDocument()">
+            <md-button class="md-raised" ng-click="$ctrl.saveDocument()" md-autofocus tabindex="0">
                 <md-icon>save</md-icon> Opslaan voor later  
             </md-button>
             <md-button disabled class="md-raised md-primary" ng-click="$ctrl.publishDocument()">

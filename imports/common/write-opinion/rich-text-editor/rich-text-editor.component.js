@@ -5,7 +5,7 @@ import Squire from './lib/squire';
 
 class RichTextEditorComponent {
 
-    constructor($timeout, $mdDialog, $element) {
+    constructor($timeout, $mdDialog, $element, $sanitize) {
         'ngInject';
 
         var $ctrl = this;
@@ -37,12 +37,9 @@ class RichTextEditorComponent {
             if (changes.addArticle && $ctrl.addArticle) {
                 console.log($ctrl.addArticle)
                 let article = angular.copy($ctrl.addArticle);
-                
-                editor.focus();
-                editor.moveCursorToEnd();
-                editor.insertHTML('<div><a href="'+article.url+'"><b> '+  article.publisher+'</b> '+ article.title+'</a></div>')
-                editor.moveCursorToEnd();
-
+                let htmlString = $sanitize('<a href="'+article.url+'"><b>'+ article.publisher + '</b> ' + article.title + '</a>');
+                console.log(htmlString)
+                editor.insertHTML(htmlString);
 
                 // editor.insertHtml('<div>'+$ctrl.addArticle.title +'</div>');
             }
