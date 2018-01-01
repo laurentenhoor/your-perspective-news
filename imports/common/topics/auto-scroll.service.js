@@ -4,7 +4,7 @@ export default class SmoothScrollServices {
         'ngInject';
 
         this.horizontalScroll = function(targetId, scrollScopeId) {
-		
+            
             var scrollElement = document.getElementById(scrollScopeId);
             var targetElement = document.getElementById(targetId);
             

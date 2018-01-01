@@ -121,11 +121,10 @@ class TopicsComponent {
 		}
 		
 	
-		$ctrl.clickChat = function(topicId) {
-			console.log('clickChat');
-			$autoScroll.horizontalScroll('discuss-'+topicId, 'scroll-'+topicId);
-			
-		}
+		// $ctrl.clickChat = function(topicId) {
+		// 	console.log('clickChat');
+		// 	$autoScroll.horizontalScroll('discuss-'+topicId, 'scroll-'+topicId);
+		// }
 		
 		
 	}
