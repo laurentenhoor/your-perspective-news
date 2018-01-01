@@ -32,6 +32,7 @@ export default class WriteOpinionDialogComponent {
         }
 
         $ctrl.addArticleRef = function ($event) {
+            $ctrl.addArticle = $event.article;
             var spacing = '';
             if ($ctrl.document.content != '') {
                 spacing = ' ';

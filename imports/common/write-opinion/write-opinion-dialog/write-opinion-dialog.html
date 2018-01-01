@@ -18,7 +18,7 @@
 
             <md-input-container class="md-block">
                 <!-- <label>Schrijf hier jouw perspectief</label> -->
-                <rich-text-editor flex></rich-text-editor>
+                <rich-text-editor flex add-article="$ctrl.addArticle"></rich-text-editor>
             </md-input-container>
             
             <md-input-container class="md-block">
@@ -44,7 +44,7 @@
             <md-button class="md-raised" ng-click="$ctrl.saveDocument()">
                 <md-icon>save</md-icon> Opslaan voor later  
             </md-button>
-            <md-button class="md-raised md-primary" ng-click="$ctrl.publishDocument()">
+            <md-button disabled class="md-raised md-primary" ng-click="$ctrl.publishDocument()">
                 <md-icon>send</md-icon> Plaatsen
             </md-button>
         </md-dialog-actions>

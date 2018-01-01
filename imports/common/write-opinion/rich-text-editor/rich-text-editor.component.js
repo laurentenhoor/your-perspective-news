@@ -33,6 +33,25 @@ class RichTextEditorComponent {
             });
         });
 
+        $ctrl.$onChanges = function(changes) {
+            if (changes.addArticle && $ctrl.addArticle) {
+                console.log($ctrl.addArticle)
+                let article = angular.copy($ctrl.addArticle);
+                
+                editor.focus();
+                editor.moveCursorToEnd();
+                editor.insertHTML('<div><a href="'+article.url+'"><b> '+  article.publisher+'</b> '+ article.title+'</a></div>')
+                editor.moveCursorToEnd();
+
+
+                // editor.insertHtml('<div>'+$ctrl.addArticle.title +'</div>');
+            }
+        }
+
+        $ctrl.undo = function() {
+            editor.undo();
+        }
+
         $ctrl.bold = function () {
 
             if ($ctrl.buttonState.bold) {
@@ -110,5 +129,6 @@ export default {
     templateUrl: RichTextEditorTemplate,
     controller: RichTextEditorComponent,
     bindings: {
+        addArticle: '<'
     }
 }
