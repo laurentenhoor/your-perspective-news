@@ -46,6 +46,7 @@ class RichTextEditorComponent {
         }
 
         $ctrl.clear = function() {
+            editor.focus();
             editor = new Squire($element.find('article')[0], {});
             editor.focus();
         }
@@ -55,55 +56,76 @@ class RichTextEditorComponent {
         }
 
         $ctrl.bold = function () {
-
+            editor.focus();
             if ($ctrl.buttonState.bold) {
                 editor.removeBold();
             } else {
                 editor.bold();
             }
+            editor.focus();
+            editor.insert('');
+
         }
 
         $ctrl.italic = function () {
+            editor.focus();
             if ($ctrl.buttonState.italic) {
                 editor.removeItalic();
             } else {
                 editor.italic();
             }
+            editor.focus();
+            editor.insert('');
         }
 
         $ctrl.underline = function () {
+            editor.focus();
             if ($ctrl.buttonState.underline) {
                 editor.removeUnderline();
             } else {
                 editor.underline();
             }
+            editor.focus();
+            editor.insert('');
         }
 
         $ctrl.quote = function () {
+            editor.focus();
             if ($ctrl.buttonState.quote) {
                 editor.decreaseQuoteLevel();
             } else {
                 editor.increaseQuoteLevel();
             }
+            editor.focus();
+            editor.insert('');
         }
 
         $ctrl.numbered = function () {
+            
+            // editor.insert('');
+            
             if ($ctrl.buttonState.numbered) {
                 editor.removeList();
             } else {
                 editor.makeOrderedList();
             }
+            // editor.focus();
+            
         }
 
         $ctrl.bullet = function () {
+            // editor.focus();
             if ($ctrl.buttonState.bullet) {
                 editor.removeList();
             } else {
                 editor.makeUnorderedList();
             }
+            // editor.focus();
+            // editor.insert('');
         }
 
         $ctrl.link = function ($event) {
+            // editor.focus();
             if ($ctrl.buttonState.link) {
                 editor.removeLink();
             } else {
@@ -120,6 +142,8 @@ class RichTextEditorComponent {
                     }
                 });
             }
+            // editor.focus();
+            // editor.insert('');
         }
 
     }
@@ -131,6 +155,7 @@ export default {
     templateUrl: RichTextEditorTemplate,
     controller: RichTextEditorComponent,
     bindings: {
-        addArticle: '<'
+        addArticle: '<',
+        getDocument: '&',
     }
 }
