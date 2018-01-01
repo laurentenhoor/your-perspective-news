@@ -1,0 +1,26 @@
+<div layout="row">
+    <md-button ng-class="{'md-primary':$ctrl.buttonState.bold}" ng-click="$ctrl.bold()" class="md-raised md-icon-button">
+        <md-icon> format_bold </md-icon>
+    </md-button>
+    <md-button ng-class="{'md-primary':$ctrl.buttonState.italic}" ng-click="$ctrl.italic()" class="md-raised md-icon-button">
+        <md-icon> format_italic </md-icon>
+    </md-button>
+    <md-button ng-class="{'md-primary':$ctrl.buttonState.underline}" ng-click="$ctrl.underline()" class="md-raised md-icon-button">
+        <md-icon> format_underline </md-icon>
+    </md-button>
+    <md-button ng-class="{'md-primary':$ctrl.buttonState.link}" ng-click="$ctrl.link($event)" class="md-icon-button md-raised">
+        <md-icon> insert_link </md-icon>
+    </md-button>
+    <md-button ng-class="{'md-primary':$ctrl.buttonState.bullet}" ng-click="$ctrl.bullet()" class="md-raised md-icon-button">
+        <md-icon> format_list_bulleted </md-icon>
+    </md-button>
+    <md-button ng-class="{'md-primary':$ctrl.buttonState.numbered}" ng-click="$ctrl.numbered()" class="md-raised md-icon-button">
+        <md-icon> format_list_numbered </md-icon>
+    </md-button>
+    <md-button ng-class="{'md-primary':$ctrl.buttonState.quote}" ng-click="$ctrl.quote()" class="md-raised md-icon-button">
+        <md-icon> format_quote </md-icon>
+    </md-button>
+</div>
+<md-card layout-padding>
+    <article></article>
+</md-card>

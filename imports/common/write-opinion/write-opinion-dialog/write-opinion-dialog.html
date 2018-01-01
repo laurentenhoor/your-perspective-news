@@ -17,11 +17,10 @@
             </md-input-container>
 
             <md-input-container class="md-block">
-                <label>Schrijf hier jouw perspectief</label>
-                <textarea ng-model="$ctrl.document.content" type="html" rows="8">
-                </textarea>
+                <!-- <label>Schrijf hier jouw perspectief</label> -->
+                <rich-text-editor flex></rich-text-editor>
             </md-input-container>
-
+            
             <md-input-container class="md-block">
                 <div class="ref-label">Klik om te refereren</div>
                 <select-source topic-id="$ctrl.topicId" articles="$ctrl.articles" on-article-ref-click="$ctrl.addArticleRef($event)"></select-source>
