@@ -40,7 +40,6 @@ export default class WriteOpinionDialogComponent {
             $writeOpinionDialog.hide();
         }
 
-
         $ctrl.saveDocument = function () {
             console.log($ctrl.document)
             Opinions.upsert({ _id: $ctrl.document._id }, $ctrl.document, (error, result) => {

@@ -6,7 +6,7 @@ import Squire from './lib/squire';
 
 class RichTextEditorComponent {
 
-    constructor($timeout, $mdDialog, $element, $sanitize) {
+    constructor($timeout, $mdDialog, $element, $sanitize, $document) {
         'ngInject';
 
         var $ctrl = this;
@@ -40,8 +40,22 @@ class RichTextEditorComponent {
         }
 
         $ctrl.$onDestroy = () => {
+            $ctrl.blurAllInputs();
             editor.blur();
         }
+
+        $ctrl.blurAllInputs = function () {
+
+			var inputs = $document[0].querySelectorAll('input');
+			console.log(inputs);
+
+			_.forEach(inputs, (input) => {
+                console.log(input)
+				input.blur((event) => {
+                    console.log(event)
+                });
+			});
+		}
 
         function setButtonStates() {
             $ctrl.buttonState.bold = editor.hasFormat('b');

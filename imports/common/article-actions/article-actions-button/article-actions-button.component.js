@@ -20,19 +20,6 @@ class ArticleActionsButtonComponent {
 			}
 		}
 
-		$ctrl.blurAllInputs = function () {
-
-			var inputs = $document[0].querySelectorAll('input');
-
-			console.log(inputs);
-
-			inputs.forEach(function (input) {
-				console.log(input.name + ': ' + input.value);
-				console.log(input);
-				input.blur();
-			});
-		}
-
 		$ctrl.open = function ($event) {
 
 			if (!$auth.isLoggedIn()) {
