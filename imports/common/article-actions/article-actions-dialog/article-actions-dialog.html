@@ -77,10 +77,10 @@
 			</div>
 
 			<span flex></span>
-			<md-button class="md-raised" ng-click="$ctrl.cancel()" tabindex="0" md-autofocus>
+			<md-button class="md-raised" ng-click="$ctrl.cancel()" tabindex="1" md-autofocus>
 				Annuleren
 			</md-button>
-			<md-button ng-disabled="!($ctrl.urlDataIsLoaded && $ctrl.modifiedCategory)" class="md-raised  md-primary" ng-click="$ctrl.ok()" tabindex="1"> 
+			<md-button ng-disabled="!($ctrl.urlDataIsLoaded && $ctrl.modifiedCategory)" class="md-raised  md-primary" ng-click="$ctrl.ok()"> 
 				Opslaan
 			</md-button>
 		</md-dialog-actions>
