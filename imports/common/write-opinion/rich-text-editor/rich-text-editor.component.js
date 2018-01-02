@@ -70,7 +70,6 @@ class RichTextEditorComponent {
         });
 
         editor.addEventListener('input', function (e) {
-            console.log(e)
             sendContent()
         });
 
