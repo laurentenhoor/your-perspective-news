@@ -3,7 +3,7 @@ import { Opinions } from '/imports/api/opinions.js';
 
 export default class WriteOpinionDialogComponent {
 
-    constructor(topicId, $writeOpinionDialog, $metadata, $articlesApi) {
+    constructor(topicId, $writeOpinionDialog, $metadata, $articlesApi, $element) {
         'ngInject';
 
         console.log('init WriteOpinionDialog')
@@ -37,6 +37,10 @@ export default class WriteOpinionDialogComponent {
         }
 
         $ctrl.hideDialog = function () {
+            // Unfortunately blurring here is the only (indirect) solution for having the 
+            // blur event directly linked to the touch event (required for iOS)
+            // normally this should have been done in the rich-text-editor.component $onDestroy
+            $element.find('text-editor')[0].blur();
             $writeOpinionDialog.hide();
         }
 

@@ -6,7 +6,7 @@ import Squire from './lib/squire';
 
 class RichTextEditorComponent {
 
-    constructor($timeout, $mdDialog, $element, $sanitize, $document) {
+    constructor($timeout, $mdDialog, $element, $sanitize, $document, $scope) {
         'ngInject';
 
         var $ctrl = this;
@@ -21,7 +21,7 @@ class RichTextEditorComponent {
             link: false
         };
 
-        var editor = new Squire($element.find('article')[0], {});
+        var editor = new Squire($element.find('text-editor')[0], {});
         console.log(editor);
 
         $ctrl.$onChanges = (changes) => {
@@ -31,7 +31,6 @@ class RichTextEditorComponent {
                 editor.removeLink();
                 editor.insertHTML(htmlString);
                 editor.removeLink();
-                editor.focus();
             }
         }
 
@@ -40,22 +39,8 @@ class RichTextEditorComponent {
         }
 
         $ctrl.$onDestroy = () => {
-            $ctrl.blurAllInputs();
-            editor.blur();
+            // editor.blur();
         }
-
-        $ctrl.blurAllInputs = function () {
-
-			var inputs = $document[0].querySelectorAll('input');
-			console.log(inputs);
-
-			_.forEach(inputs, (input) => {
-                console.log(input)
-				input.blur((event) => {
-                    console.log(event)
-                });
-			});
-		}
 
         function setButtonStates() {
             $ctrl.buttonState.bold = editor.hasFormat('b');
@@ -75,6 +60,15 @@ class RichTextEditorComponent {
             $timeout(() => setButtonStates());
         });
 
+
+        editor.addEventListener('blur', (e) => {
+            console.log('blur', e);
+        });
+
+        editor.addEventListener('focus', (e) => {
+            console.log('focus', e);
+        });
+
         editor.addEventListener('input', function (e) {
             $ctrl.onInput({
                 $event: {
@@ -85,18 +79,15 @@ class RichTextEditorComponent {
         });
 
         $ctrl.clear = function () {
-            editor.focus();
             editor.setHTML('');
             editor.moveCursorToStart();
-            // editor.focus();
         }
 
         $ctrl.undo = function () {
             editor.undo();
         }
 
-        $ctrl.bold = function () {
-
+        $ctrl.bold = function ($event) {
             if (editor.hasFormat('b')) {
                 editor.removeBold();
                 $ctrl.buttonState.bold = false;
@@ -104,23 +95,9 @@ class RichTextEditorComponent {
                 editor.bold();
                 $ctrl.buttonState.bold = true;
             }
-
-        }
-
-        $ctrl.bullet = function () {
-
-            if (editor.hasFormat('ul')) {
-                editor.removeList();
-                $ctrl.buttonState.bullet = false;
-            } else {
-                editor.makeUnorderedList();
-                $ctrl.buttonState.bullet = true;
-            }
-
         }
 
         $ctrl.italic = function () {
-
             if (editor.hasFormat('i')) {
                 editor.removeItalic();
                 $ctrl.buttonState.italic = false;
@@ -129,6 +106,18 @@ class RichTextEditorComponent {
                 $ctrl.buttonState.italic = true;
             }
         }
+
+
+        $ctrl.bullet = function () {
+            if (editor.hasFormat('ul')) {
+                editor.removeList();
+                $ctrl.buttonState.bullet = false;
+            } else {
+                editor.makeUnorderedList();
+                $ctrl.buttonState.bullet = true;
+            }
+        }
+
 
         $ctrl.underline = function () {
         }
