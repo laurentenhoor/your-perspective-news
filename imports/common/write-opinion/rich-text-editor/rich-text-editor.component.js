@@ -2,6 +2,7 @@ import RichTextEditorTemplate from './rich-text-editor.html';
 import RichTextEditorStyle from './rich-text-editor.styl';
 
 import Squire from './lib/squire';
+// http://neilj.github.io/Squire/
 
 class RichTextEditorComponent {
 
@@ -21,7 +22,26 @@ class RichTextEditorComponent {
         };
 
         var editor = new Squire($element.find('article')[0], {});
-        console.log(editor)
+        console.log(editor);
+
+        $ctrl.$onChanges = (changes) => {
+            if (changes.addArticle && $ctrl.addArticle) {
+                let article = angular.copy($ctrl.addArticle);
+                let htmlString = $sanitize('<a class="source-chip" href="' + article.url + '">&nbsp;' + (article.publisher || (article.title.substring(0, 9) + '...') || 'link') + '&nbsp;</a>​');
+                editor.removeLink();
+                editor.insertHTML(htmlString);
+                editor.removeLink();
+                editor.focus();
+            }
+        }
+
+        $ctrl.$onInit = () => {
+            editor.setHTML($ctrl.initContent);
+        }
+
+        $ctrl.$onDestroy = () => {
+            editor.blur();
+        }
 
         function setButtonStates() {
             $ctrl.buttonState.bold = editor.hasFormat('b');
@@ -49,21 +69,6 @@ class RichTextEditorComponent {
             })
 
         });
-
-        $ctrl.$onChanges = (changes) => {
-            if (changes.addArticle && $ctrl.addArticle) {
-                let article = angular.copy($ctrl.addArticle);
-                let htmlString = $sanitize('<a class="source-chip" href="' + article.url + '">&nbsp;' + (article.publisher || (article.title.substring(0, 9) + '...') || 'link') + '&nbsp;</a>​');
-                editor.removeLink();
-                editor.insertHTML(htmlString);
-                editor.removeLink();
-                editor.focus();
-            }
-        }
-
-        $ctrl.$onInit = () => {
-            editor.setHTML($ctrl.initContent);
-        }
 
         $ctrl.clear = function () {
             editor.focus();
@@ -132,8 +137,8 @@ export default {
     templateUrl: RichTextEditorTemplate,
     controller: RichTextEditorComponent,
     bindings: {
+        initContent: '<',
         addArticle: '<',
         onInput: '&',
-        initContent: '<',
     }
 }
