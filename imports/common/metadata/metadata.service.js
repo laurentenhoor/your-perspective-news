@@ -7,7 +7,7 @@ export default class MetadataService {
 		this.$loader = $loader;
 	}
 	
-	getArticleFromUrl = function (url, cb) {
+	getArticleFromUrl = function (url, callback) {
 
 		console.log('Url input: ' + url);
 
@@ -23,12 +23,12 @@ export default class MetadataService {
 			if (error) {
 				console.error(error);
 				self.$loader.stop();
-				return cb(error);
+				return callback(error, null);
 			}
 
 			let article = self.createArticle(url, result);
 			self.$loader.stop();
-			return cb(false, article);
+			return callback(false, article);
 
 		});
 	}
