@@ -1,0 +1,11 @@
+  {
+    "meteorhelper.envArgs": [
+      {
+        "argName": "ROOT_URL",
+        "argValue": "http://192.168.1.11:3000/"
+      }
+    ],
+    // path to the Meteor executable (e.g. /usr/local/bin/meteor on the Mac or %USERPROFILE%\AppData\Local\.meteor\meteor.bat on Windows
+    "meteorhelper.meteorPath": "/usr/local/bin/meteor",
+    "meteorhelper.meteorPort": "3000",
+  }
