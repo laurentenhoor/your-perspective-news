@@ -11,7 +11,7 @@ import { Votes } from '/imports/api/votes.js';
 
 class CommentsTileComponent {
 
-	constructor($rootScope, $scope, $document, $reactive, $commentsTree, $auth, $vote) {
+	constructor($rootScope, $scope, $document, $reactive, $commentsTree, $auth, $vote, $dialog) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -141,7 +141,30 @@ class CommentsTileComponent {
 			$vote.voteById(commentId, voteUpOrDown);
 		}
 
+
+		$ctrl.showRemovalConfirmation = function (ev, comment) {
+			// Appending dialog to document.body to cover sidenav in docs app
+			var confirm = $dialog.confirm()
+				.title('Weet je het zeker?')
+				.textContent('Deze reactie zal definitief worden verwijderd.')
+				.ariaLabel('Verwijderen')
+				.targetEvent(ev)
+				.ok('Verwijderen')
+				.cancel('Annuleren');
+
+			$dialog.show(confirm).then(function () {
+				console.log('dialog confirmed, will remove item')
+				$ctrl.deleteComment(comment);
+			}, function () {
+				// do nothing.
+				console.log('canceled article removal');
+			});
+		};
+
+
 		$ctrl.deleteComment = function(comment) {
+			
+			
 			Comments.remove({
 				_id : comment._id
 			});

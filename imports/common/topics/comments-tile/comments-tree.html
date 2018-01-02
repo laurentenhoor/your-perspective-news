@@ -24,7 +24,7 @@
 			<div class="comments-delete">
 				<i class=" material-icons"
 					ng-show="$ctrl.userCommentsMap[comment._id]"
-					ng-click="$ctrl.deleteComment(comment)">
+					ng-click="$ctrl.showRemovalConfirmation($event, comment)">
 					&#xE872;<!-- delete -->
 				</i>
 			</div>
