@@ -70,17 +70,21 @@ class RichTextEditorComponent {
         });
 
         editor.addEventListener('input', function (e) {
+            console.log(e)
+            sendContent()
+        });
+
+        function sendContent() {
             $ctrl.onInput({
                 $event: {
                     htmlContent: editor.getHTML()
                 }
             })
-
-        });
+        }
 
         $ctrl.clear = function () {
             editor.setHTML('');
-            editor.moveCursorToStart();
+            sendContent()
         }
 
         $ctrl.undo = function () {
