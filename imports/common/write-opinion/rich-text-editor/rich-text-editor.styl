@@ -1,21 +1,38 @@
 rich-text-editor {
+  
   article {
     min-height: 30vw;
+    line-height: 1.5;
+    font-size: 3.3vw;
+    
+    word-wrap: break-word;
+
     &:focus {
       outline: 0;
     }
   }
 
   md-card {
-    margin:0;
-    margin-bottom:2vw;
+    margin: 0;
+    margin-bottom: 2vw;
   }
 
   a {
     text-decoration: underline;
-    color:blue;
-    font-size:2.5vw;
-    font-style:italic;
+    color: darkblue;
+    font-size: 3vw;
+    display: content;
+    font-weight: 600;
     // margin: 0vw 2vw;
+  }
+
+  ul {
+    margin: 0;
+    margin-left: 4vw;
+    list-style-position: outside;
+  }
+
+  li {
+    margin: 0;
   }
 }

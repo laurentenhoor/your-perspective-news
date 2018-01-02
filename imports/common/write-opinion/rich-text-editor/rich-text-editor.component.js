@@ -23,28 +23,22 @@ class RichTextEditorComponent {
         var editor = new Squire($element.find('article')[0], {});
         console.log(editor)
 
+        function setButtonStates() {
+            $ctrl.buttonState.bold = editor.hasFormat('b');
+            $ctrl.buttonState.italic = editor.hasFormat('i');
+            $ctrl.buttonState.underline = editor.hasFormat('u');
+            $ctrl.buttonState.bullet = editor.hasFormat('ul');
+            $ctrl.buttonState.numbered = editor.hasFormat('ol');
+            $ctrl.buttonState.quote = editor.hasFormat('blockquote');
+            $ctrl.buttonState.link = editor.hasFormat('a');
+        }
+
         editor.addEventListener('pathChange', function (e) {
-            $timeout(function () {
-                $ctrl.buttonState.bold = editor.hasFormat('b');
-                $ctrl.buttonState.italic = editor.hasFormat('i');
-                $ctrl.buttonState.underline = editor.hasFormat('u');
-                $ctrl.buttonState.bullet = editor.hasFormat('ul');
-                $ctrl.buttonState.numbered = editor.hasFormat('ol');
-                $ctrl.buttonState.quote = editor.hasFormat('blockquote');
-                $ctrl.buttonState.link = editor.hasFormat('a');
-            });
+            $timeout(() => setButtonStates());
         });
 
         editor.addEventListener('select', function (e) {
-            $timeout(function () {
-                $ctrl.buttonState.bold = editor.hasFormat('b');
-                $ctrl.buttonState.italic = editor.hasFormat('i');
-                $ctrl.buttonState.underline = editor.hasFormat('u');
-                $ctrl.buttonState.bullet = editor.hasFormat('ul');
-                $ctrl.buttonState.numbered = editor.hasFormat('ol');
-                $ctrl.buttonState.quote = editor.hasFormat('blockquote');
-                $ctrl.buttonState.link = editor.hasFormat('a');
-            });
+            $timeout(() => setButtonStates());
         });
 
         editor.addEventListener('input', function (e) {
@@ -56,17 +50,19 @@ class RichTextEditorComponent {
 
         });
 
-        $ctrl.$onChanges = function (changes) {
+        $ctrl.$onChanges = (changes) => {
             if (changes.addArticle && $ctrl.addArticle) {
                 let article = angular.copy($ctrl.addArticle);
-                let htmlString = $sanitize('<a href="' + article.url + '"><b>' + (article.publisher || '') + '</b> "' + (article.title.substring(0, 8) + '..."' || '') + '</a>&nbsp;');
+                let htmlString = $sanitize('<a href="' + article.url + '">[ ' + (article.publisher || (article.title.substring(0, 9) + '...') || 'link') + ' ]</a>​');
+                editor.removeLink();
                 editor.insertHTML(htmlString);
+                editor.removeLink();
                 editor.focus();
             }
-            if (changes.initContent) {
-                $ctrl.clear();
-                editor.insertHTML($ctrl.initContent);
-            }
+        }
+
+        $ctrl.$onInit = () => {
+            editor.setHTML($ctrl.initContent);
         }
 
         $ctrl.clear = function () {
@@ -116,63 +112,15 @@ class RichTextEditorComponent {
         }
 
         $ctrl.underline = function () {
-            editor.focus();
-            if ($ctrl.buttonState.underline) {
-                editor.removeUnderline();
-            } else {
-                editor.underline();
-            }
-            editor.focus();
-            editor.insert('');
-            editor.focus();
         }
 
         $ctrl.quote = function () {
-            editor.focus();
-            if ($ctrl.buttonState.quote) {
-                editor.decreaseQuoteLevel();
-            } else {
-                editor.increaseQuoteLevel();
-            }
-            editor.focus();
-            editor.insert('');
-            editor.focus();
         }
 
         $ctrl.numbered = function () {
-
-            // editor.insert('');
-
-            if ($ctrl.buttonState.numbered) {
-                editor.removeList();
-            } else {
-                editor.makeOrderedList();
-            }
-            // editor.focus();
-
         }
 
-
         $ctrl.link = function ($event) {
-            // editor.focus();
-            if ($ctrl.buttonState.link) {
-                editor.removeLink();
-            } else {
-                $mdDialog.show($mdDialog
-                    .prompt()
-                    .title('New Link')
-                    .textContent('What is the URL of the link?')
-                    .ok('ok')
-                    .cancel('cancel')
-                    .targetEvent($event)
-                ).then(function (result) {
-                    if (result && result !== '') {
-                        editor.makeLink(result);
-                    }
-                });
-            }
-            // editor.focus();
-            // editor.insert('');
         }
 
     }
