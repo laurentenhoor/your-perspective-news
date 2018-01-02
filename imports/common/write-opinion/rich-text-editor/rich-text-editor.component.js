@@ -40,8 +40,22 @@ class RichTextEditorComponent {
         }
 
         $ctrl.$onDestroy = () => {
+            $ctrl.blurAllInputs();
             editor.blur();
         }
+
+        $ctrl.blurAllInputs = function () {
+
+			var inputs = $document[0].querySelectorAll('input');
+			console.log(inputs);
+
+			_.forEach(inputs, (input) => {
+                console.log(input)
+				input.blur((event) => {
+                    console.log(event)
+                });
+			});
+		}
 
         function setButtonStates() {
             $ctrl.buttonState.bold = editor.hasFormat('b');
