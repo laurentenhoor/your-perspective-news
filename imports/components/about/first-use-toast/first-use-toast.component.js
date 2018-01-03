@@ -1,3 +1,5 @@
+import FirstUseToastStyle from './first-use-toast.styl';
+
 export default class FirstUseToastComponent {
 
     constructor($scope, $mdToast, $firstUseDialog) {
