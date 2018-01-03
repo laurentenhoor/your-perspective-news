@@ -12,10 +12,16 @@ Wij verzetten ons tegen twittergeblaat en nepnieuws.
 * It is not possible to share and discuss multiple news items at once (cross-linking and comparison).
 
 # Application Changelog
-## Upcoming major release 1.4.0
+## version 1.3.3
+* Added a dialog for writing opinions
+    * Rich text editor
+    * Referece by clicking articles images
+* Added a user-account side-pane
+* Added about-us toast & about-us dialog
+* Refactoring of full application
 
 ## version 1.3.2
-* Added a side-menu in the topic overview.
+* Added article actions in the topic overview (side-bar).
 * Added a MISSION document to highlight our goals.
 * Migrated to Stylus for stylesheets.
 
