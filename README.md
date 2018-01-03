@@ -49,4 +49,10 @@ Wij verzetten ons tegen twittergeblaat en nepnieuws.
 * Back-end structure completed and implemented.
 
 ## version 1.0.0
-* Initial stable version
+* Initial stable Meteor-Angularjs version
+
+## version 0.2.0
+* Migrated to Angularjs
+
+## version 0.1.0
+* Initial plain HTML prototype
