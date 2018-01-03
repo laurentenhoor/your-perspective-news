@@ -28,11 +28,10 @@ class RichTextEditorComponent {
             if (changes.addArticle && $ctrl.addArticle) {
                 let article = angular.copy($ctrl.addArticle);
                 let contentString = (article.publisher || (article.title.substring(0, 9) + '...') || 'link');
-                contentString = contentString.replace(/\s/g, '&nbsp;');
                 let htmlString = $sanitize('<a class="source-chip" href="' 
-                    + article.url + '">&nbsp;' 
+                    + article.url + '">' 
                     + contentString
-                    + '&nbsp;</a>​');
+                    + '</a>​');
                 editor.insertHTML(htmlString);
             }
         }
