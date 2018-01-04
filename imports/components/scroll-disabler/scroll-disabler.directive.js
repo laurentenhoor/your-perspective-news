@@ -10,9 +10,9 @@ export default class ScrollDisablerDirective {
 				(scrollingDisabled) => {
 
 					if (scrollingDisabled) {
-						$element.addClass('scrolling-disabled');
+						$element.css('overflow', 'hidden');
 					} else {
-						$element.removeClass('scrolling-disabled');
+						$element.css('overflow', '');
 					}
 
 				});
