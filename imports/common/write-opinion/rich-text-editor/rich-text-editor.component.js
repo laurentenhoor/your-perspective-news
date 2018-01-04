@@ -14,8 +14,8 @@ class RichTextEditorComponent {
         $ctrl.buttonState = {
             bold: false,
             italic: false,
-            underline: false,
             bullet: false,
+            underline: false,
             numbered: false,
             quote: false,
             link: false
@@ -47,8 +47,8 @@ class RichTextEditorComponent {
         function setButtonStates() {
             $ctrl.buttonState.bold = editor.hasFormat('b');
             $ctrl.buttonState.italic = editor.hasFormat('i');
-            $ctrl.buttonState.underline = editor.hasFormat('u');
             $ctrl.buttonState.bullet = editor.hasFormat('ul');
+            $ctrl.buttonState.underline = editor.hasFormat('u');
             $ctrl.buttonState.numbered = editor.hasFormat('ol');
             $ctrl.buttonState.quote = editor.hasFormat('blockquote');
             $ctrl.buttonState.link = editor.hasFormat('a');

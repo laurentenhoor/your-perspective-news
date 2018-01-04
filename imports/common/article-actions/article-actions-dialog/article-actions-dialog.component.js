@@ -161,7 +161,7 @@ export default class ArticleModalCtrl {
 
 
 		$ctrl.remove = function (topicId, categoryName, article) {
-			console.log('removeArticle'); console.log(article._id); console.log(topicId);
+			console.log('removeArticle'); console.log(article._id); console.log(topicId); console.log(categoryName);
 			Meteor.call('removeArticleFromCategory', topicId, categoryName, article._id)
 			$dialog.hide();
 		}

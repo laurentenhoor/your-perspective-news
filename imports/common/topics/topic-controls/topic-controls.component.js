@@ -3,7 +3,7 @@ import style from './topic-controls.styl';
 
 class TopicControlsComponent {
 
-    constructor($reactive, $scope, $dialog, $autoScroll, $writeOpinionDialog, $auth) {
+    constructor($reactive, $scope, $dialog, $autoScroll, $writeOpinionDialog, $auth, $timeout) {
         'ngInject';
 
         var $ctrl = this;
@@ -24,15 +24,6 @@ class TopicControlsComponent {
             if ($auth.isLoggedIn()) {
                 $writeOpinionDialog.show($event, $ctrl.topicId);
             }
-
-            // $dialog.show(
-            //     $dialog.alert()
-            //         .title('Wil je schrijven?')
-            //         .textContent('Hier komt binnenkort een editor voor korte opiniestukken...')
-            //         .ariaLabel('')
-            //         .ok('Sluiten')
-            //         .targetEvent($event)
-            // );
 
         }
 

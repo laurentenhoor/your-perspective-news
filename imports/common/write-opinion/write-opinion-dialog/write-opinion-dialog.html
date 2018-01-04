@@ -17,7 +17,6 @@
             </md-input-container>
 
             <md-input-container class="md-block editor-block">
-                <!-- <label>Schrijf hier jouw perspectief</label> -->
                 <rich-text-editor flex init-content="$ctrl.initContent" add-article="$ctrl.addArticle" on-input="$ctrl.receiveHtml($event)"></rich-text-editor>
             </md-input-container>
             
@@ -26,10 +25,8 @@
                 <select-source topic-id="$ctrl.topicId" articles="$ctrl.articles" on-article-ref-click="$ctrl.addArticleRef($event)"></select-source>
             </md-input-container>
 
-            <md-input-container class="md-block new-url-container" ng-show="!$ctrl.urlDataIsLoaded">
-
+            <md-input-container class="md-block new-url-container">
                 <label ng-cloak>Of plak hier een url naar een nieuw artikel</label>
-
                 <input class="modal-item-url-input" ng-model="$ctrl.article.url" ng-change="$ctrl.urlChange()" http-prefix>
                 </input>
             </md-input-container>
@@ -38,9 +35,6 @@
 
         <md-dialog-actions layout="row" align="center">
             <span flex></span>
-            <!-- <md-button class="md-raised" ng-click="$ctrl.dislike()">
-                <md-icon>delete</md-icon> Verwijderen
-            </md-button> -->
             <md-button class="md-raised" ng-click="$ctrl.saveDocument()" md-autofocus tabindex="0">
                 <md-icon>watch_later</md-icon> Opslaan voor later
             </md-button>

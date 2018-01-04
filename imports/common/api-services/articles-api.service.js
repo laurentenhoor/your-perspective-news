@@ -27,4 +27,8 @@ export default class ArticlesApi {
         }).fetch();
     }
 
+    getByIds(idArray) {
+        return Articles.find({ "_id": { "$in": idArray } }).fetch();
+    }
+
 }

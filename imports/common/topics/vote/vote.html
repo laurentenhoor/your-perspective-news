@@ -1,0 +1,13 @@
+<div class="bulletin-arrow-up" 
+    ng-click="$ctrl.vote(1)" 
+    ng-class="{true: 'bulletin-upvoted', false: ''}[$ctrl.myVoteValue==1]">
+</div>
+
+<div class="bulletin-vote-score">
+    {{$ctrl.itemTotalScore || 0}}
+</div>
+
+<div class="bulletin-arrow-down" 
+    ng-click="$ctrl.vote(-1)" 
+    ng-class="{true: 'bulletin-downvoted', false: ''}[$ctrl.myVoteValue==-1]">
+</div>
