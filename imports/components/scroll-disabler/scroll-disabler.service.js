@@ -1,7 +1,3 @@
-import angular from 'angular';
-
-import style from './scroll-disabler.styl';
-
 export default class ScrollDisablerService {
 
     constructor() {
@@ -21,10 +17,4 @@ export default class ScrollDisablerService {
         this.scrollingDisabled = false;
     }
 
-}
-
-function getElements(className) {
-    let query = document.getElementsByClassName(className);
-    let elements = angular.element(query);
-    return elements;
 }
