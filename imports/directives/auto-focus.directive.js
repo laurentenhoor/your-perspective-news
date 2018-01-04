@@ -17,6 +17,6 @@ class AutoFocus {
 
 export default
 	angular.module('autoFocusDirective', [])
-	.directive('autoFocus',['$timeout',
-		($timeout) => new AutoFocus($timeout)]
+	.directive('autoFocus', /*@ngInject*/
+		($timeout) => new AutoFocus($timeout)
 	).name;
