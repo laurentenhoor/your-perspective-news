@@ -117,7 +117,9 @@ class TopicsComponent {
 		}
 
 		$ctrl.clickArticle = function(topic, category, article) {
+			console.log('click article', article);
 			topic.selectedArticle[category] = article;
+
 		}
 		
 	

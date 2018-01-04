@@ -12,7 +12,6 @@
 			articles=$ctrl.getArticlesByIds(categoryBlock.articleIds);
 			topic.selectedArticle[categoryName]=$ctrl.getArticleWithHighestScore(articles);
 			$ctrl.loadedArticles= $ctrl.loadedArticles.concat(categoryBlock.articleIds);
-			articleId = topic.selectedArticle[categoryName]._id;
 			">
 
 			<!-- <topic-item></topic-item> -->
@@ -27,14 +26,14 @@
 
 						<div class="bulletin-voting" ng-init="" ng-if="true">
 
-							<div ng-click="$ctrl.vote(topic.selectedArticle[categoryName],1)" class="bulletin-arrow-up" ng-class="{true: 'bulletin-upvoted', false: ''}[$ctrl.userVoteMap[articleId]==1]">
+							<div ng-click="$ctrl.vote(topic.selectedArticle[categoryName],1)" class="bulletin-arrow-up" ng-class="{true: 'bulletin-upvoted', false: ''}[$ctrl.userVoteMap[topic.selectedArticle[categoryName]._id]==1]">
 							</div>
 
 							<div class="bulletin-vote-score">
-								{{$ctrl.articlesScoreMap[articleId] || 0}}
+								{{$ctrl.articlesScoreMap[topic.selectedArticle[categoryName]._id] || 0}}
 							</div>
 
-							<div ng-click="$ctrl.vote(topic.selectedArticle[categoryName],-1)" class="bulletin-arrow-down" ng-class="{true: 'bulletin-downvoted', false: ''}[$ctrl.userVoteMap[articleId]==-1]">
+							<div ng-click="$ctrl.vote(topic.selectedArticle[categoryName],-1)" class="bulletin-arrow-down" ng-class="{true: 'bulletin-downvoted', false: ''}[$ctrl.userVoteMap[topic.selectedArticle[categoryName]._id]==-1]">
 							</div>
 
 						</div>
@@ -56,7 +55,7 @@
 
 						<div class="bulletin-item-title-container">
 
-							<div class="bulletin-item-title" ng-class="{'bulletin-visited' : (articleId == $ctrl.visitedId)}">
+							<div class="bulletin-item-title" ng-class="{'bulletin-visited' : (topic.selectedArticle[categoryName]._id == $ctrl.visitedId)}">
 								{{topic.selectedArticle[categoryName].title}}
 							</div>
 
@@ -88,7 +87,7 @@
 					</article-actions-button>
 
 					<div class="bulletin-source" ng-repeat="article in articles | orderBy:'-score'" ng-click="$ctrl.clickArticle(topic, categoryName, article)"
-					 ng-class="(article._id == articleId) ? 'bulletin-source-selected':''" ng-style="{'background-image':'url(\'' + (article.logoUrl) + '\')'}">
+					 ng-class="(article._id == topic.selectedArticle[categoryName]._id) ? 'bulletin-source-selected':''" ng-style="{'background-image':'url(\'' + (article.logoUrl) + '\')'}">
 					</div>
 				</div>
 
