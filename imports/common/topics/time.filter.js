@@ -6,10 +6,8 @@ export default {
 
 	timeFromNow: function () {
 		return (timestamp) => {
-          
-            return moment(timestamp).fromNow()
-	
+			return moment(timestamp).fromNow()
 		}
 
-    }
+	}
 }
