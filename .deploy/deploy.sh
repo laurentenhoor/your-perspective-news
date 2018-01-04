@@ -130,3 +130,5 @@ forever start --uid '${APP_NAME}' -a ./main.js;
 # end;
 echo 'If no error, ${APP_NAME} deployed and running on:';
 echo 'App started. Exiting server...';"
+
+$SHELL
