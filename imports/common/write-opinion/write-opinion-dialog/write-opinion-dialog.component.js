@@ -24,6 +24,7 @@ export default class WriteOpinionDialogComponent {
                 content: '',
                 imageUrl: '',
                 refs: [],
+                score : 0,
                 topicId: topicId,
                 ownerId: Meteor.userId(),
                 draft: true,

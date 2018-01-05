@@ -5,7 +5,7 @@
     <div class="tile-container">
 
         <div class="summary-header">
-            {{$ctrl.topic.title}}
+            {{$ctrl.bestArticle.title}}
         </div>
 
         <div class="categories">
@@ -22,10 +22,10 @@
 
         <div class="community">
             <div class="opinion">
-
+                {{ $ctrl.bestOpinion.title}}
             </div>
             <div class="discussion">
-
+                {{$ctrl.bestQuestion.comment}}
             </div>
         </div>
 

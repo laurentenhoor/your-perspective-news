@@ -4,6 +4,10 @@ export default class CommentsTreeBuilder {
 
 	}
 
+	getSortedRoots(unsortedComments) {
+		return findRootCommentsAndSortByVotes(unsortedComments);
+	}
+
 	getCommentsTree(unsortedComments) {
 
 		var rootComments = findRootCommentsAndSortByVotes(unsortedComments);

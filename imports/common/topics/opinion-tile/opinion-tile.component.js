@@ -13,7 +13,7 @@ class OpinionTileComponent {
 
                 $ctrl.helpers({
                     'opinions' : function() {
-                        return $opinionsApi.getByTopicId($ctrl.topicId);
+                        return $opinionsApi.getAllByTopicId($ctrl.topicId);
                     }
                 });
 
