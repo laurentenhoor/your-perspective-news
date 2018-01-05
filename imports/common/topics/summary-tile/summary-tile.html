@@ -1,10 +1,33 @@
 <div class="content-container">
 
-    <div class="bulletin-item-header">Overzicht</div>
+    <div class="tile-header">Overzicht</div>
 
-    <div class="bulletin-item-image-and-details-container bulletin-community">
+    <div class="tile-container">
 
-        <div>{{$ctrl.topicId}}</div>
-        
+        <div class="summary-header">
+            {{$ctrl.topic.title}}
+        </div>
+
+        <div class="categories">
+            <div class="category cat1">
+                Algemene berichtgeving
+            </div>
+            <div class="category cat2">
+                Andere kijk
+            </div>
+            <div class="category cat3">
+                Entertainment
+            </div>
+        </div>
+
+        <div class="community">
+            <div class="opinion">
+
+            </div>
+            <div class="discussion">
+
+            </div>
+        </div>
+
     </div>
 </div>

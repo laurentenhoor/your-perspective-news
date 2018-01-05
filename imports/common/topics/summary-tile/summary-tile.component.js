@@ -3,16 +3,21 @@ import SummaryTileStyle from './summary-tile.styl';
 
 class SummaryTileComponent {
 
-    constructor($reactive, $scope) {
+    constructor($reactive, $scope, $articlesApi, $timeout) {
         'ngInject';
-        $ctrl = this;
+        var $ctrl = this;
         $reactive($ctrl).attach($scope);
-      
+        
         $ctrl.$onChanges = (changes) => {
-            if (changes.topicId) {
+            if (changes.topic) {
+                
+                $ctrl.topic = angular.copy($ctrl.topic)
+                $ctrl.articles = $articlesApi.getAllByTopic($ctrl.topic)
 
-                $ctrl.helpers({
-                });
+                console.log($ctrl.topic)
+                console.log($ctrl.articles);
+
+                $ctrl.topic.title = "Titel van dit topic!"
 
             }
         }
@@ -25,6 +30,6 @@ export default {
     templateUrl: SummaryTileTemplate,
     controller: SummaryTileComponent,
     bindings: {
-        topicId: '<',
+        topic: '<',
     }
 }
