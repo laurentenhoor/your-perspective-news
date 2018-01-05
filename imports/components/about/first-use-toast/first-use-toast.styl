@@ -1,3 +1,41 @@
-.first-use-toast {
-    
+md-toast.first-use-toast {
+    .md-toast-content {
+        background-image: linear-gradient(to right, #005c97, #363795);
+        height: 14vw;
+        opacity: 1;
+    }
+
+    .shimmer {
+        display: inline-block;
+
+        $shadow-text-color =#ffffff8f;
+        $highliht-text-color =#fff;
+
+        background: $shadow-text-color -webkit-gradient(linear, 100% 0, 0 0, from($shadow-text-color), color-stop(0.5, #fff), to($shadow-text-color));
+        background-position: -4rem top; /* 50px */
+        background-repeat: no-repeat;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-animation-name: shimmer;
+        -webkit-animation-duration: 10.2s;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-background-size: 3rem 100%; /* 50px */
+
+        font-weight:700;
+    }
+
+    @keyframes shimmer {
+        0% {
+            background-position: -4rem top; /* 50px */
+        }
+        20% {
+            background-position: -4rem top; /* 50px */
+        }
+        37% {
+            background-position: 104vw top; /* 200px */
+        }
+        100% {
+            background-position: 104vw top; /* 200px */
+        }
+    }
 }
