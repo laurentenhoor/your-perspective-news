@@ -13,7 +13,7 @@
 
             <md-input-container class="md-block title-block">
                 <label>Titel</label>
-                <input ng-model="$ctrl.document.title" type="text" tabindex="-1">
+                <input ng-model="$ctrl.document.title" type="text">
             </md-input-container>
 
             <md-input-container class="md-block editor-block">
@@ -27,7 +27,7 @@
 
             <md-input-container class="md-block new-url-container">
                 <label ng-cloak>Of plak hier een url naar een nieuw artikel</label>
-                <input class="modal-item-url-input" ng-model="$ctrl.article.url" ng-change="$ctrl.urlChange()" http-prefix tabindex="-1">
+                <input class="modal-item-url-input" ng-model="$ctrl.article.url" ng-change="$ctrl.urlChange()" http-prefix>
                 </input>
             </md-input-container>
 
