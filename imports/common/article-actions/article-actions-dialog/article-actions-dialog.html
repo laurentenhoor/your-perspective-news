@@ -1,5 +1,4 @@
-<md-dialog class="article-actions-dialog"
-	aria-label="{{$ctrl.headerText}}">
+<md-dialog class="article-actions-dialog" aria-label="{{$ctrl.headerText}}">
 	<form ng-cloak>
 		<md-toolbar>
 			<md-toolbar-header>{{$ctrl.headerText}}</md-toolbar-header>
@@ -25,7 +24,7 @@
 					<md-item-template>
 						<span md-highlight-text="$ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
 					</md-item-template>
-					
+
 				</md-autocomplete>
 
 
@@ -54,25 +53,23 @@
 				</div>
 
 			</div>
-			<!-- 				<div class="description" -->
-			<!-- 					ng-if="$ctrl.article.description"> -->
-			<!-- 					{{$ctrl.article.description}}</div> -->
+			<!-- <div class="description" ng-if="$ctrl.article.description">
+				{{$ctrl.article.description}}
+			</div> -->
 		</div>
 
 
 		<md-dialog-actions layout="row">
 
 			<div class="remove-icon" ng-if="$ctrl.urlDataIsLoaded" ng-click="$ctrl.showRemovalConfirmation($event)">
-
-				<i class="material-icons">&#xE872;</i>
-				<!-- delete -->
+				<i class="material-icons">delete</i>
 			</div>
 
 			<span flex></span>
 			<md-button class="md-raised" ng-click="$ctrl.cancel()" tabindex="1" md-autofocus>
 				Annuleren
 			</md-button>
-			<md-button ng-disabled="!($ctrl.urlDataIsLoaded && $ctrl.modifiedCategory)" class="md-raised  md-primary" ng-click="$ctrl.ok()"> 
+			<md-button ng-disabled="!($ctrl.urlDataIsLoaded && $ctrl.modifiedCategory)" class="md-raised  md-primary" ng-click="$ctrl.ok()">
 				Opslaan
 			</md-button>
 		</md-dialog-actions>
