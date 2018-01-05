@@ -1,12 +1,12 @@
 <div class="content-container" id="discuss-{{$ctrl.topicId}}">
 
-	<div class="bulletin-item-header">Vraag en antwoord</div>
+	<div class="header">Vraag en antwoord</div>
 
-	<div class="bulletin-item-image-and-details-container bulletin-community">
+	<div class="tile-container">
 
-		<div class="comments-container">
+		<div class="container">
 
-			<div class="comments-add-comment-button">
+			<div class="add-button">
 				<a href="" ng-init="$ctrl.showRootInput=false" ng-click="$ctrl.showRootInput = $ctrl.willShowCommentField($ctrl.showRootInput);"
 				 style="padding-right: 3vw;">
 					Stel een vraag
@@ -17,16 +17,14 @@
 			<form name="newCommentRoot" ng-show="$ctrl.showRootInput" ng-submit="$ctrl.showRootInput=false;$ctrl.newComment(comment);"
 			 novalidate>
 
-				<textarea class="comments-input root" ng-model="comment.newChildComment" required></textarea>
+				<textarea class="input root" ng-model="comment.newChildComment" required></textarea>
 
-				<input class="comments-input-button root" type="submit" value="Vragen" ng-disabled="newCommentRoot.$invalid" />
+				<input class="input-button root" type="submit" value="Vragen" ng-disabled="newCommentRoot.$invalid" />
 			</form>
 
-
-			<div class="comments-tree root" ng-repeat="comment in $ctrl.comments" ng-include="$ctrl.commentsTreeTemplate"></div>
+			<div class="tree root" ng-repeat="comment in $ctrl.comments" ng-include="$ctrl.commentsTreeTemplate"></div>
 
 		</div>
-
 
 	</div>
 

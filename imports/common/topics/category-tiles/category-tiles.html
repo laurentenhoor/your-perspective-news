@@ -7,27 +7,26 @@
            selectedArticle[categoryName] = $ctrl.getArticleWithHighestScore(articles);
            $ctrl.loadedArticles = $ctrl.loadedArticles.concat(categoryBlock.articleIds);
            "
-        ng-show="articles.length > 0">
+    ng-show="articles.length > 0"
+    >
 
-    <div class="bulletin-item-header">{{categoryName}}</div>
+    <div class="header">{{categoryName}}</div>
 
-    <div class="bulletin-item-image-and-details-container">
+    <div class="tile-container">
 
-        <div class="bulletin-item-image-container">
+        <div class="image-container">
 
-            <div class="bulletin-item-controls-container">
+            <div class="vote-container">
 
-                <vote class="bulletin-voting"
-                    article-id="selectedArticle[categoryName]._id">
+                <vote article-id="selectedArticle[categoryName]._id">
                 </vote>
-
             </div>
 
-            <div class="bulletin-item-image" ng-style="{'background-image':'url(\'' + (selectedArticle[categoryName].imageUrl) + '\')'}"
+            <div class="image" ng-style="{'background-image':'url(\'' + (selectedArticle[categoryName].imageUrl) + '\')'}"
                 style="background-color:{{ selectedArticle[categoryName].videoUrl ? 'black' : 'rgb(187, 187, 187)' }}">
             </div>
 
-            <iframe class="bulletin-video-player-iframe" ng-if="selectedArticle[categoryName].videoUrl" src="{{selectedArticle[categoryName].videoUrl}}"
+            <iframe class="video-player-iframe" ng-if="selectedArticle[categoryName].videoUrl" src="{{selectedArticle[categoryName].videoUrl}}"
                 allowfullscreen>
             </iframe>
 
@@ -37,17 +36,17 @@
             <div ng-click="$ctrl.openExternalUrl(selectedArticle[categoryName]);" ng-class="selectedArticle[categoryName].videoUrl ? 'link-disabled' : ''"
                 ng-hide="selectedArticle[categoryName].videoUrl">
 
-                <div class="bulletin-item-title-container">
+                <div class="title-container">
 
-                    <div class="bulletin-item-title" ng-class="{'bulletin-visited' : (selectedArticle[categoryName]._id == $ctrl.visitedId)}">
+                    <div class="title" ng-class="{'visited' : (selectedArticle[categoryName]._id == $ctrl.visitedId)}">
                         {{selectedArticle[categoryName].title}}
                     </div>
 
-                    <div class="bulletin-item-publisher">
+                    <div class="publisher">
                         {{selectedArticle[categoryName].publisher}}
                     </div>
 
-                    <div class="bulletin-time-elapsed">
+                    <div class="time-elapsed">
                         {{ selectedArticle[categoryName].publishedAt || selectedArticle[categoryName].updatedAt | timeFromNow }}
                     </div>
 
@@ -56,18 +55,18 @@
 
         </div>
 
-        <div class="bulletin-item-description" ng-if="selectedArticle[categoryName].description" 
+        <div class="description" ng-if="selectedArticle[categoryName].description" 
             ng-click="toggle = !toggle" ng-class="{'auto-height' : toggle}">
             {{selectedArticle[categoryName].description}}
         </div>
 
-        <div class="bulletin-sources">
+        <div class="sources">
 
             <article-actions-button topic-id="$ctrl.topic._id" category="categoryBlock" article="selectedArticle[categoryName]" class="edit-article-from-topics">
             </article-actions-button>
 
-            <div class="bulletin-source" ng-repeat="article in articles | orderBy:'-score'" ng-click="selectedArticle[categoryName] = article"
-                ng-class="(article._id == selectedArticle[categoryName]._id) ? 'bulletin-source-selected':''" ng-style="{'background-image':'url(\'' + (article.logoUrl) + '\')'}">
+            <div class="source" ng-repeat="article in articles | orderBy:'-score'" ng-click="selectedArticle[categoryName] = article"
+                ng-class="(article._id == selectedArticle[categoryName]._id) ? 'source-selected':''" ng-style="{'background-image':'url(\'' + (article.logoUrl) + '\')'}">
             </div>
             
         </div>
