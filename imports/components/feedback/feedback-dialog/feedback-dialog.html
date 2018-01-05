@@ -1,6 +1,6 @@
 <md-dialog>
 
-	<form ng-cloak>
+	<form ng-cloak name="feedbackForm">
 		<md-toolbar>
 			<md-toolbar-header>Geef ons feedback.</md-toolbar-header>
 			<md-toolbar-subtitle>Laat ons weten wat je denkt zodat wij kunnen blijven verbeteren.</md-toolbar-subtitle>
@@ -10,7 +10,7 @@
 			<div class="md-dialog-content md-inline-form" layout="column">
 				<md-input-container class="md-block">
 					<label>Feedback</label>
-					<textarea ng-model="$ctrl.feedback" rows="5" md-select-on-focus></textarea>
+					<textarea ng-model="$ctrl.feedback" rows="5" md-select-on-focus required></textarea>
 				</md-input-container>
 			</div>
 		</md-dialog-content>
@@ -18,7 +18,9 @@
 		<md-dialog-actions layout="row">
 			<span flex></span>
 			<md-button class="md-raised" ng-click="$ctrl.cancel()" tabindex="0" auto-focus>Annuleren</md-button>
-			<md-button class="md-raised  md-primary" ng-click="$ctrl.sendFeedback($ctrl.feedback)">Opslaan</md-button>
+			<md-button class="md-raised  md-primary" 
+				ng-click="$ctrl.sendFeedback($ctrl.feedback)" 
+					ng-disabled="feedbackForm.$invalid">Opslaan</md-button>
 		</md-dialog-actions>
 	</form>
 
