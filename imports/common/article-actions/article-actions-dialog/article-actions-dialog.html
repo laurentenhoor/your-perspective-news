@@ -1,4 +1,5 @@
-<md-dialog aria-label="{{$ctrl.headerText}}">
+<md-dialog class="article-actions-dialog"
+	aria-label="{{$ctrl.headerText}}">
 	<form ng-cloak>
 		<md-toolbar>
 			<md-toolbar-header>{{$ctrl.headerText}}</md-toolbar-header>
@@ -12,10 +13,8 @@
 
 					<label ng-cloak>Plak een url naar een artikel</label>
 
-					<input class="modal-item-url-input" ng-model="$ctrl.article.url" ng-change="$ctrl.urlChange()" http-prefix>
+					<input class="url-input" ng-model="$ctrl.article.url" ng-change="$ctrl.urlChange()" http-prefix>
 					</input>
-
-					<!-- 	<div class="hint">Klik op bovenstaande veld en houd daarna lang ingedrukt om een url te plakken.</div> -->
 
 				</md-input-container>
 
@@ -26,25 +25,18 @@
 					<md-item-template>
 						<span md-highlight-text="$ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
 					</md-item-template>
-
-					<!-- 		  <md-not-found> -->
-					<!-- 		    <a ng-click="$ctrl.newCategory($ctrl.searchText)">Maak categorie '{{$ctrl.searchText}}'.</a> -->
-					<!-- 		  </md-not-found> -->
-
-					<!-- 		  <div class="hint">Selecteer een categorie waarin dit artikel het best past.  -->
-					<!-- 		  Voeg zelf een categorie toe als de juiste er niet tussenzit.</div> -->
-
+					
 				</md-autocomplete>
 
 
 			</div>
 		</md-dialog-content>
 
-		<div class="modal-item-image-and-details-container" ng-if="$ctrl.urlDataIsLoaded">
+		<div class="image-and-details-container" ng-if="$ctrl.urlDataIsLoaded">
 
-			<div class="bulletin-item-image-container">
+			<div class="image-container">
 
-				<div class="bulletin-item-image" ng-style="{'background-image':'url(\'' + $ctrl.article.imageUrl + '\')'}">
+				<div class="image" ng-style="{'background-image':'url(\'' + $ctrl.article.imageUrl + '\')'}">
 				</div>
 
 				<iframe ng-if="$ctrl.article.videoUrl" src="{{$ctrl.article.videoUrl}}" width="100%" height="60%" frameborder="0" allowfullscreen
@@ -52,17 +44,17 @@
 
 				<div ng-if="!$ctrl.article.videoUrl" class="gradient-overlay"></div>
 
-				<div class="bulletin-item-title-container" ng-if="!$ctrl.article.videoUrl">
+				<div class="title-container" ng-if="!$ctrl.article.videoUrl">
 
-					<div class="modal-item-publisher">
+					<div class="publisher">
 						{{$ctrl.article.publisher}}</div>
-					<div class="modal-item-title">
+					<div class="title">
 						{{$ctrl.article.title}}</div>
 
 				</div>
 
 			</div>
-			<!-- 				<div class="bulletin-item-description" -->
+			<!-- 				<div class="description" -->
 			<!-- 					ng-if="$ctrl.article.description"> -->
 			<!-- 					{{$ctrl.article.description}}</div> -->
 		</div>
