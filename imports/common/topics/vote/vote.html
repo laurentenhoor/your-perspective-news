@@ -1,13 +1,13 @@
-<div class="bulletin-arrow-up" 
+<div class="arrow-up" 
     ng-click="$ctrl.vote(1)" 
-    ng-class="{true: 'bulletin-upvoted', false: ''}[$ctrl.myVoteValue==1]">
+    ng-class="{true: 'upvoted', false: ''}[$ctrl.myVoteValue==1]">
 </div>
 
-<div class="bulletin-vote-score">
+<div class="vote-score">
     {{$ctrl.itemTotalScore || 0}}
 </div>
 
-<div class="bulletin-arrow-down" 
+<div class="arrow-down"
     ng-click="$ctrl.vote(-1)" 
-    ng-class="{true: 'bulletin-downvoted', false: ''}[$ctrl.myVoteValue==-1]">
+    ng-class="{true: 'downvoted', false: ''}[$ctrl.myVoteValue==-1]">
 </div>
