@@ -1,5 +1,6 @@
 import { Topics } from '../../imports/api/topics.js';
 import { Articles } from '../../imports/api/articles.js';
+import { Opinions } from '../../imports/api/opinions.js';
 
 import { Random } from 'meteor/random';
 
@@ -78,6 +79,23 @@ if (Meteor.isServer) {
 	    		})
 	    		
 	    		Topics.update({_id:topic._id}, topic);
+	    		
+	    	})
+		
+	    }
+	  });
+
+	  Migrations.add({
+	    version: 5,
+	    name: 'Add score to all existing opinions',
+	    up: function() {
+
+	    	_.forEach(Opinions.find({}).fetch(), function(opinion){
+				
+				if (!('score' in opinion)) {
+					opinion.score = 0;
+				}
+	    		Opinions.update({_id:opinion._id}, opinion);
 	    		
 	    	})
 		

@@ -11,6 +11,7 @@ class SummaryTileComponent {
         $ctrl.$onChanges = (changes) => {
             if (changes.topic) {
                 $ctrl.topic = angular.copy($ctrl.topic)
+                $ctrl.topic.articlesByCategory = _.sortBy($ctrl.topic.articlesByCategory, 'sortingOrder', 'desc');
                 console.log($ctrl.topic)
 
                 $ctrl.helpers({
@@ -21,22 +22,19 @@ class SummaryTileComponent {
                         );
                     },
                     articlesByCategory: () => {
-                        let topic = $ctrl.getReactively('topic')
+                        var topic = $ctrl.getReactively('topic')
+                        
                         _.each(topic.articlesByCategory, (categoryBlock, i) => {
                             topic.articlesByCategory[i].articles = _.orderBy($articlesApi.getByIds(categoryBlock.articleIds), 'score', 'desc');
                         })
                         console.log('categories', topic.articlesByCategory)
-                        let length = topic.articlesByCategory[0].articles.length;
+                        var length = topic.articlesByCategory[0].articles.length;
                         $ctrl.topicImageUrl = topic.articlesByCategory[0].articles[length - 1].imageUrl;
                         return topic.articlesByCategory
                     },
                     bestOpinion: () => {
-                        let bestOpinion = _.maxBy(
-                            $opinionsApi.getAllByTopic($ctrl.topic),
-                            'score'
-                        );
-                        console.log('bestOpinion', bestOpinion);
-                        return bestOpinion;
+                        var opinions = $opinionsApi.getAllByTopic($ctrl.topic);
+                        return _.maxBy(opinions,'score');;
                     },
                     bestQuestion: () => {
                         let bestQuestion = $commentsApi.getBestCommentByTopic($ctrl.topic);
@@ -50,6 +48,7 @@ class SummaryTileComponent {
 
         $ctrl.gotoCategory = function (index, topicId) {
             console.log('scrollToCategory:', index, topicId);
+            console.log($ctrl.topic.articlesByCategory)
             $autoScroll.horizontalScroll('category-' + index + '-' + topicId, 'scroll-' + topicId);
         }
 

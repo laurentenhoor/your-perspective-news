@@ -2,7 +2,6 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 
-
 import angularMaterial from 'angular-material';
 import angularMaterialStyle from '/node_modules/angular-material/angular-material.css';
 
@@ -11,8 +10,6 @@ import commonModule from './common/common.module'
 // import deprecatedModule from './deprecated/deprecated.module'
 
 import appComponent from './app.component';
-
-_ = lodash;
 
 angular.module('yourpers', [
 	
@@ -37,3 +34,5 @@ angular.module('yourpers', [
 	$qProvider.errorOnUnhandledRejections(false);
 
 });
+
+_ = lodash;
