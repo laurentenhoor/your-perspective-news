@@ -117,12 +117,13 @@ summary-tile {
             background: whitesmoke;
         }
 
-        .small-content-container {
+        .small-content-container-grey {
             overflow: hidden;
             position: relative;
+            min-height:100%;
         }
 
-        .small-content-container:before {
+        .small-content-container-grey:before {
             content: '';
             position: absolute;
             bottom: 0;
@@ -130,6 +131,22 @@ summary-tile {
             width: 100%;
             height: 10%;
             background-image: linear-gradient(to top, whitesmoke, rgba(255, 255, 255, 0));
+        }
+
+        .small-content-container-white {
+            overflow: hidden;
+            position: relative;
+            min-height:100%;
+        }
+
+        .small-content-container-white:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 10%;
+            background-image: linear-gradient(to top, white, rgba(255, 255, 255, 0));
         }
     }
 }

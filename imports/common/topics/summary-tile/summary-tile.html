@@ -20,7 +20,7 @@
 
         <div class="community">
             <div class="opinion">
-                <div ng-if="$ctrl.bestOpinion.title" ng-click="$ctrl.comingSoonAlert($event)" class="small-content-container">
+                <div ng-if="$ctrl.bestOpinion.title" ng-click="$ctrl.comingSoonAlert($event)" class="small-content-container-white">
                     <div class="title">Top perspectief</div>
                     <div class="content">
                         "{{ $ctrl.bestOpinion.title}}"
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="discussion">
-                <div ng-if="$ctrl.bestQuestion.comment" ng-click="$ctrl.discuss($ctrl.topic._id)" class="small-content-container">
+                <div ng-if="$ctrl.bestQuestion.comment" ng-click="$ctrl.discuss($ctrl.topic._id)" class="small-content-container-grey">
                     <div class="title">Top discussiepunt</div>
                     <div class="content">
                         "{{$ctrl.bestQuestion.comment}}"

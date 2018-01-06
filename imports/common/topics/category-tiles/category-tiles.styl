@@ -1,17 +1,15 @@
 category-tiles {
-    
     display: flex;
 
-
     .custom-svg-icon {
-        width:8vw;
-        height:8vw;
-        margin-top:2.3vw;
-        margin-left:3vw;
-        fill:white;
+        width: 8vw;
+        height: 8vw;
+        margin-top: 2.3vw;
+        margin-left: 3vw;
+        fill: white;
         // border: 1px solid white;
-    
     }
+
     .image-container {
         display: flex;
         flex-direction: column;
@@ -176,5 +174,27 @@ category-tiles {
         height: 100%;
         width: 100%;
         border: none;
+    }
+
+    .visited {
+        @keyframes visited {
+            0% {
+                transform: translateY(0);
+            }
+
+            10% {
+                transform: translateY(-7vw);
+            }
+
+            95% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        animation: visited 0.7s ease-out 0s 1 normal;
     }
 }

@@ -49,6 +49,7 @@ class SummaryTileComponent {
         }
 
         $ctrl.gotoCategory = function (index, topicId) {
+            console.log('scrollToCategory:', index, topicId);
             $autoScroll.horizontalScroll('category-' + index + '-' + topicId, 'scroll-' + topicId);
         }
 
