@@ -3,42 +3,42 @@ import SummaryTileStyle from './summary-tile.styl';
 
 class SummaryTileComponent {
 
-    constructor($reactive, $scope, $articlesApi, $opinionsApi, $commentsApi, $timeout, $autoScroll, $auth, $writeOpinionDialog) {
+    constructor($reactive, $scope, $articlesApi, $opinionsApi, $commentsApi, $timeout, $autoScroll, $auth, $writeOpinionDialog, $dialog) {
         'ngInject';
         var $ctrl = this;
         $reactive($ctrl).attach($scope);
-        
+
         $ctrl.$onChanges = (changes) => {
             if (changes.topic) {
                 $ctrl.topic = angular.copy($ctrl.topic)
                 console.log($ctrl.topic)
 
                 $ctrl.helpers({
-                    bestArticle : () => {
+                    bestArticle: () => {
                         return _.maxBy(
                             $articlesApi.getAllByTopic($ctrl.topic),
                             'score'
                         );
                     },
-                    articlesByCategory : () => {
+                    articlesByCategory: () => {
                         let topic = $ctrl.getReactively('topic')
                         _.each(topic.articlesByCategory, (categoryBlock, i) => {
                             topic.articlesByCategory[i].articles = _.orderBy($articlesApi.getByIds(categoryBlock.articleIds), 'score', 'desc');
                         })
                         console.log('categories', topic.articlesByCategory)
                         let length = topic.articlesByCategory[0].articles.length;
-                        $ctrl.topicImageUrl = topic.articlesByCategory[0].articles[length-1].imageUrl;
+                        $ctrl.topicImageUrl = topic.articlesByCategory[0].articles[length - 1].imageUrl;
                         return topic.articlesByCategory
                     },
-                    bestOpinion : () => {
+                    bestOpinion: () => {
                         let bestOpinion = _.maxBy(
-                            $opinionsApi.getAllByTopic($ctrl.topic), 
+                            $opinionsApi.getAllByTopic($ctrl.topic),
                             'score'
                         );
                         console.log('bestOpinion', bestOpinion);
                         return bestOpinion;
                     },
-                    bestQuestion : () => {
+                    bestQuestion: () => {
                         let bestQuestion = $commentsApi.getBestCommentByTopic($ctrl.topic);
                         console.log('bestQuestion', bestQuestion);
                         return bestQuestion;
@@ -48,18 +48,34 @@ class SummaryTileComponent {
             }
         }
 
-        $ctrl.gotoCategory = function(index, topicId) {
-            $autoScroll.horizontalScroll('category-'+index+'-' + topicId, 'scroll-' + topicId);
+        $ctrl.gotoCategory = function (index, topicId) {
+            $autoScroll.horizontalScroll('category-' + index + '-' + topicId, 'scroll-' + topicId);
         }
 
-        $ctrl.discuss = function(topicId) {
+        $ctrl.discuss = function (topicId) {
             $autoScroll.horizontalScroll('discuss-' + topicId, 'scroll-' + topicId);
         }
 
-        $ctrl.writeOpinion = function($event) {
+        $ctrl.writeOpinion = function ($event) {
             if ($auth.isLoggedIn()) {
                 $writeOpinionDialog.show($event, $ctrl.topic._id);
             }
+        }
+
+        $ctrl.comingSoonAlert = function (ev) {
+            var confirm = $dialog.alert()
+                .title('Lezen van opninie is helaas nog niet mogelijk.')
+                .textContent('Schrijven wel. Ga hiervoor naar het "Schrijf" menu en sla op voor later.')
+                .ariaLabel('Coming Soon')
+                .targetEvent(ev)
+                .ok('Bedankt')
+                // .cancel('Annuleren');
+
+            $dialog.show(confirm).then(function () {
+                console.log('dialog closed')
+            }, function () {
+                // do nothing.
+            });
         }
 
     }

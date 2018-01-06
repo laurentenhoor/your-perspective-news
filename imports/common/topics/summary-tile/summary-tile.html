@@ -20,7 +20,7 @@
 
         <div class="community">
             <div class="opinion">
-                <div ng-if="$ctrl.bestOpinion.title" ng-click="">
+                <div ng-if="$ctrl.bestOpinion.title" ng-click="$ctrl.comingSoonAlert($event)">
                     <div class="title">Top perspectief</div>
                     <div class="content">
                         "{{ $ctrl.bestOpinion.title}}"
