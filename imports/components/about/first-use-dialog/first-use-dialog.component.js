@@ -14,6 +14,10 @@ export default class FirstUseDialogComponent {
                 .then($feedbackDialog.show());  
         };
 
+        this.close = function() {
+            $firstUseDialog.hide();
+        }
+
     }
 
 }

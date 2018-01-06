@@ -1,7 +1,11 @@
 <md-dialog aria-label="">
     <form ng-cloak>
-        <md-toolbar>
-            Over ons.
+        <md-toolbar class="md-toolbar-tools">
+            
+            <div flex>Over ons.</div>
+            <md-button class="md-icon-button" aria-label="Sluiten" ng-click="$ctrl.close()" >
+                    <md-icon>close</md-icon>
+                </md-button>
         </md-toolbar>
 
         <md-dialog-content class="first-use-content">
