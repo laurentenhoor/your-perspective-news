@@ -20,33 +20,45 @@
 
         <div class="community">
             <div class="opinion">
-                <div ng-if="$ctrl.bestOpinion.title" ng-click="$ctrl.comingSoonAlert($event)">
+                <div ng-if="$ctrl.bestOpinion.title" ng-click="$ctrl.comingSoonAlert($event)" class="small-content-container">
                     <div class="title">Top perspectief</div>
                     <div class="content">
                         "{{ $ctrl.bestOpinion.title}}"
                     </div>
                 </div>
-                
-                <div ng-if="!$ctrl.bestOpinion.title" style="margin:auto;">
-                    <md-button class="md-button" ng-click="$ctrl.writeOpinion($event)" aria-label="Schrijf een mini opinie." >
-                        <md-icon>edit</md-icon>
-                        <div>Schrijf</div>
-                    </md-button>
+
+
+                <div ng-if="!$ctrl.bestOpinion.title" style="text-align:center;">
+                    Wees de eerste
+                    <div style="margin:auto;">
+
+                        <div>
+                            <md-button class="md-button" ng-click="$ctrl.writeOpinion($event)" aria-label="Schrijf een mini opinie.">
+                                <md-icon>edit</md-icon>
+                                <div>Schrijf</div>
+                            </md-button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="discussion">
-                    <div ng-if="$ctrl.bestQuestion.comment" ng-click="$ctrl.discuss($ctrl.topic._id)">
-                            <div class="title" >Top discussiepunt</div>
-                            <div class="content">
-                                "{{$ctrl.bestQuestion.comment}}"
-                            </div>
-                        </div>
-                
-                <div ng-if="!$ctrl.bestQuestion.comment" style="margin:auto;">
-                    <md-button class="md-button md-small" ng-click="$ctrl.discuss($ctrl.topic._id)" aria-label="Stel een vraag.">
-                        <md-icon>question_answer</md-icon>
-                        <div>Vraag</div>
-                    </md-button>  
+                <div ng-if="$ctrl.bestQuestion.comment" ng-click="$ctrl.discuss($ctrl.topic._id)" class="small-content-container">
+                    <div class="title">Top discussiepunt</div>
+                    <div class="content">
+                        "{{$ctrl.bestQuestion.comment}}"
+                    </div>
+                </div>
+
+                <div ng-if="!$ctrl.bestQuestion.comment" style="text-align:center;">
+                    Wees de eerste
+                    <div style="margin:auto;">
+
+                        <md-button class="md-button md-small" ng-click="$ctrl.discuss($ctrl.topic._id)" aria-label="Stel een vraag.">
+                            <md-icon>question_answer</md-icon>
+                            <div>Vraag</div>
+                        </md-button>
+                    </div>
+
                 </div>
             </div>
         </div>

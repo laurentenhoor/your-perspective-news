@@ -26,16 +26,18 @@ summary-tile {
         .main-category {
             background-image: linear-gradient(to top, rgba(0, 0, 0, 0.7) 40%, transparent);
             bottom: 0;
-            padding: 2vw 4vw 2vw 4vw;
+            padding: 3vw 4vw 3vw 4vw;
 
             .category-title {
                 font-weight: 300;
                 font-size: 3vw;
+                padding-bottom: 1vw;
             }
 
             .article-title {
                 font-size: 4vw;
                 font-weight: 700;
+                padding-bottom: 1vw;
             }
         }
 
@@ -53,16 +55,18 @@ summary-tile {
             // background: rgba(155, 155, 155, 0.9);
             // background: rgba(219, 39, 45, 0.9);
             background-image: linear-gradient(to right, rgba(0, 92, 151, $gradient-opacity), rgba(54, 55, 149, $gradient-opacity));
-            padding: 2vw 4vw 2vw 4vw;
+            padding: 3vw 4vw 3vw 4vw;
 
             .category-title {
                 font-weight: 300;
                 font-size: 2.5vw;
+                padding-bottom: 1vw;
             }
 
             .article-title {
                 font-size: 3vw;
                 font-weight: 600;
+                padding-bottom: 1vw;
             }
         }
     }
@@ -77,13 +81,13 @@ summary-tile {
         line-height: 1.4;
 
         .title {
-            font-size: 2.5vw;
+            font-size: 2.4vw;
             font-weight: 300;
             padding-bottom: 1vw;
         }
 
         .content {
-            font-size: 2.8vw;
+            font-size: 2.6vw;
             font-weight: 600;
         }
 
@@ -92,7 +96,7 @@ summary-tile {
             flex-direction: column;
             flex: 1;
             // background: orange;
-            padding: 4vw;
+            padding: 4vw 4vw;
             // background:gold; // to combine with #e6c512;
             // background: rgba(155, 155, 155, 0.5);
             // background: darkorange; // to combine with chocolate;
@@ -105,12 +109,27 @@ summary-tile {
             flex: 1;
             flex-direction: column;
             // background: green;
-            padding: 4vw;
+            padding: 4vw 4vw;
             // background:#e6c512;
             // background: rgba(155, 155, 155, 0.4);
             // background: chocolate;
             // background: #2e925b;
             background: whitesmoke;
+        }
+
+        .small-content-container {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .small-content-container:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 10%;
+            background-image: linear-gradient(to top, whitesmoke, rgba(255, 255, 255, 0));
         }
     }
 }
