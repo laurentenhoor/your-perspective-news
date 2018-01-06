@@ -1,55 +1,116 @@
 summary-tile {
     display: flex;
     flex-direction: column;
-    
-    color:white;
+    color: white;
 
     .summary-header {
         display: flex;
-        background: red;
-        min-height: 50vw;
+        // background: red;
+        // min-height: 50vw;
         flex: 1;
+        // padding:4vw;
+        background-size: cover;
+        background-position: center;
+        position: relative;
     }
 
     .categories {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         flex: 1;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        line-height: 1.4;
 
-        .category {
+        .main-category {
+            background-image: linear-gradient(to top, rgba(0, 0, 0, 0.7) 40%, transparent);
+            bottom: 0;
+            padding: 2vw 4vw 2vw 4vw;
+
+            .category-title {
+                font-weight: 300;
+                font-size: 3vw;
+            }
+
+            .article-title {
+                font-size: 4vw;
+                font-weight: 700;
+            }
+        }
+
+        $gradient-opacity = 0.95;
+
+        .even-sub {
+            // background-image: linear-gradient(to right, rgba(203, 45, 62, $gradient-opacity), rgba(239, 71, 58, $gradient-opacity)) !important; // nice brigh red
+            background-image: linear-gradient(to right, rgba(229, 45, 39, $gradient-opacity), rgba(179, 18, 23, $gradient-opacity)) !important; // youtube dark red
+        }
+
+        .sub-category {
             display: flex;
+            flex-direction: column;
             flex: 1;
-        }
+            // background: rgba(155, 155, 155, 0.9);
+            // background: rgba(219, 39, 45, 0.9);
+            background-image: linear-gradient(to right, rgba(0, 92, 151, $gradient-opacity), rgba(54, 55, 149, $gradient-opacity));
+            padding: 2vw 4vw 2vw 4vw;
 
-        .cat1 {
-            background: blue;
-        }
+            .category-title {
+                font-weight: 300;
+                font-size: 2.5vw;
+            }
 
-        .cat2 {
-            background: purple;
-        }
-
-        .cat3 {
-            background: pink;
+            .article-title {
+                font-size: 3vw;
+                font-weight: 600;
+            }
         }
     }
 
     .community {
         display: flex;
         flex-direction: row;
-        
-        flex: 1;
+        // flex: 1;
+        height: 29.6vw;
+        color: grey;
+        // color:rgba(255,255,255,0.95)
+        line-height: 1.4;
+
+        .title {
+            font-size: 2.5vw;
+            font-weight: 300;
+            padding-bottom: 1vw;
+        }
+
+        .content {
+            font-size: 2.8vw;
+            font-weight: 600;
+        }
 
         .opinion {
             display: flex;
+            flex-direction: column;
             flex: 1;
-            background: orange;
+            // background: orange;
+            padding: 4vw;
+            // background:gold; // to combine with #e6c512;
+            // background: rgba(155, 155, 155, 0.5);
+            // background: darkorange; // to combine with chocolate;
+            // background: mediumseagreen; // to combine with #2e925b;
+            background: white; // to combine with whitesmoke
         }
 
         .discussion {
             display: flex;
             flex: 1;
-            background: green;
+            flex-direction: column;
+            // background: green;
+            padding: 4vw;
+            // background:#e6c512;
+            // background: rgba(155, 155, 155, 0.4);
+            // background: chocolate;
+            // background: #2e925b;
+            background: whitesmoke;
         }
     }
 }

@@ -4,7 +4,8 @@
            categoryName = categoryBlock.category; 
            selectedArticle[categoryName] = $ctrl.getArticleWithHighestScore(articles);
            $ctrl.loadedArticles = $ctrl.loadedArticles.concat(categoryBlock.articleIds);
-           " ng-show="articles.length > 0">
+           " ng-show="articles.length > 0"
+           id="category-{{$index}}-{{$ctrl.topic._id}}">
 
     <div class="tile-header">{{categoryName}}</div>
 
@@ -13,8 +14,8 @@
         <div class="image-container">
 
             <div class="vote-container">
-                <md-icon class="custom-svg-icon" md-svg-src="/assets/icons/brain-power-filled.svg" aria-label="brain-power ">
-                </md-icon>
+                <!-- <md-icon class="custom-svg-icon" md-svg-src="/assets/icons/brain-power-filled.svg" aria-label="brain-power ">
+                </md-icon> -->
 
                 <vote article-id="selectedArticle[categoryName]._id">
                 </vote>
