@@ -1,14 +1,10 @@
-<div class="content-container" 
-    ng-repeat="categoryBlock in $ctrl.topic.articlesByCategory | orderBy:'sortingOrder'" 
-    ng-init="
+<div class="content-container" ng-repeat="categoryBlock in $ctrl.topic.articlesByCategory | orderBy:'sortingOrder'" ng-init="
            articles = $ctrl.getArticlesByIds(categoryBlock.articleIds);
            selectedArticle = {};
            categoryName = categoryBlock.category; 
            selectedArticle[categoryName] = $ctrl.getArticleWithHighestScore(articles);
            $ctrl.loadedArticles = $ctrl.loadedArticles.concat(categoryBlock.articleIds);
-           "
-    ng-show="articles.length > 0"
-    >
+           " ng-show="articles.length > 0">
 
     <div class="tile-header">{{categoryName}}</div>
 
@@ -17,13 +13,14 @@
         <div class="image-container">
 
             <div class="vote-container">
+                <md-icon class="custom-svg-icon" md-svg-src="/assets/icons/brain-power-filled.svg" aria-label="brain-power ">
+                </md-icon>
 
                 <vote article-id="selectedArticle[categoryName]._id">
                 </vote>
             </div>
 
-            <div class="image" ng-style="{'background-image':'url(\'' + (selectedArticle[categoryName].imageUrl) + '\')'}"
-                style="background-color:{{ selectedArticle[categoryName].videoUrl ? 'black' : 'rgb(187, 187, 187)' }}">
+            <div class="image" ng-style="{'background-image':'url(\'' + (selectedArticle[categoryName].imageUrl) + '\')'}" style="background-color:{{ selectedArticle[categoryName].videoUrl ? 'black' : 'rgb(187, 187, 187)' }}">
             </div>
 
             <iframe class="video-player-iframe" ng-if="selectedArticle[categoryName].videoUrl" src="{{selectedArticle[categoryName].videoUrl}}"
@@ -55,8 +52,7 @@
 
         </div>
 
-        <div class="description" ng-if="selectedArticle[categoryName].description" 
-            ng-click="toggle = !toggle" ng-class="{'auto-height' : toggle}">
+        <div class="description" ng-if="selectedArticle[categoryName].description" ng-click="toggle = !toggle" ng-class="{'auto-height' : toggle}">
             {{selectedArticle[categoryName].description}}
         </div>
 
@@ -68,7 +64,7 @@
             <div class="source" ng-repeat="article in articles | orderBy:'-score'" ng-click="selectedArticle[categoryName] = article"
                 ng-class="(article._id == selectedArticle[categoryName]._id) ? 'source-selected':''" ng-style="{'background-image':'url(\'' + (article.logoUrl) + '\')'}">
             </div>
-            
+
         </div>
 
     </div>

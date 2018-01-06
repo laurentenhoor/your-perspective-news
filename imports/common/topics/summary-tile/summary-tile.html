@@ -9,15 +9,13 @@
         </div>
 
         <div class="categories">
-            <div class="category cat1">
-                Algemene berichtgeving
+
+            <div class="category cat1" 
+                ng-repeat="categoryBlock in $ctrl.categories"
+                ng-if="categoryBlock.articleIds.length > 0">
+                {{ categoryBlock.category }}
             </div>
-            <div class="category cat2">
-                Andere kijk
-            </div>
-            <div class="category cat3">
-                Entertainment
-            </div>
+
         </div>
 
         <div class="community">

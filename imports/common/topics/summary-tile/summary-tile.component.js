@@ -1,8 +1,6 @@
 import SummaryTileTemplate from './summary-tile.html';
 import SummaryTileStyle from './summary-tile.styl';
 
-_ = lodash;
-
 class SummaryTileComponent {
 
     constructor($reactive, $scope, $articlesApi, $opinionsApi, $commentsApi, $timeout) {
@@ -15,6 +13,7 @@ class SummaryTileComponent {
                 
                 $ctrl.topic = angular.copy($ctrl.topic)
                 $ctrl.articles = $articlesApi.getAllByTopic($ctrl.topic)
+                console.log($ctrl.topic)
 
                 $ctrl.helpers({
                     bestArticle : () => {
