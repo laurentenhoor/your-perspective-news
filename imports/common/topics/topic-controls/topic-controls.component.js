@@ -13,6 +13,9 @@ class TopicControlsComponent {
             if (changes.topicId) {
                 $ctrl.topicId = angular.copy($ctrl.topicId);
             }
+            if (changes.showDetails) {
+                $ctrl.detailsAreShown = angular.copy($ctrl.showDetails);
+            }
         }
 
         $ctrl.discuss = function (topicId) {
@@ -27,6 +30,11 @@ class TopicControlsComponent {
 
         }
 
+        $ctrl.makeDetailsVisible = function() {
+            $ctrl.detailsAreShown = true;
+            $ctrl.onShowDetails({$event: {showDetails: $ctrl.detailsAreShown}});
+        }
+
     }
 
 }
@@ -34,6 +42,8 @@ class TopicControlsComponent {
 export default {
     bindings: {
         topicId: '<',
+        onShowDetails: '&',
+        showDetails: '<'
     },
     controller: TopicControlsComponent,
     templateUrl: template,

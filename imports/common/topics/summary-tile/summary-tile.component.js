@@ -44,9 +44,12 @@ class SummaryTileComponent {
                 });
 
             }
+            if (changes.showDetails) {
+                $ctrl.detailsAreShown = angular.copy($ctrl.showDetails)
+            }
         }
 
-        $ctrl.gotoCategory = function (index, topicId) {
+        $ctrl.gotoCategory = function (index, topicId, $event) {
             console.log('scrollToCategory:', index, topicId);
             console.log($ctrl.topic.articlesByCategory)
             $autoScroll.horizontalScroll('category-' + index + '-' + topicId, 'scroll-' + topicId);
@@ -78,6 +81,17 @@ class SummaryTileComponent {
             });
         }
 
+        $ctrl.makeDetailsVisible = function() {
+            console.log('showDetails')
+            if ($ctrl.detailsAreShown) {
+                $ctrl.detailsAreShown = false;
+            } else {
+                $ctrl.detailsAreShown = true;
+            }
+            
+            $ctrl.onShowDetails({$event: {showDetails: $ctrl.detailsAreShown}});
+        }
+
     }
 
 }
@@ -87,5 +101,7 @@ export default {
     controller: SummaryTileComponent,
     bindings: {
         topic: '<',
+        showDetails: '<',
+        onShowDetails: '&',
     }
 }

@@ -1,29 +1,25 @@
-<div class="scroll-window" scroll-disabler 
-	id="scroll-{{topic._id}}" 
-	ng-repeat="topic in $ctrl.topics | orderBy:'-createdAt'">
+<div class="scroll-window" scroll-disabler id="scroll-{{topic._id}}" ng-repeat="topic in $ctrl.topics | orderBy:'-createdAt'">
 
 	<div class="scroll-content">
 
-		<topic-controls 
-			topic-id="topic._id">
+		<topic-controls topic-id="topic._id" on-show-details="detailsAreShown = $event.showDetails" show-details="detailsAreShown">
 		</topic-controls>
 
-		<summary-tile 
-			topic="topic">
+		<summary-tile topic="topic" show-details="detailsAreShown" on-show-details="detailsAreShown = $event.showDetails">
 		</summary-tile>
 
-		<category-tiles 
-			topic="topic">
-		</category-tiles>
+		<div ng-show="detailsAreShown" style="display:flex;">
+		
+			<category-tiles topic="topic">
+			</category-tiles>
 
-		<!-- <opinion-tile 
+			<!-- <opinion-tile 
 			topic-id="topic._id">
 		</opinion-tile> -->
 
-		<comments-tile 
-			topic-id="topic._id">
-		</comments-tile>
-
+			<comments-tile topic-id="topic._id">
+			</comments-tile>
+		</div>
 	</div>
 
 </div>

@@ -4,27 +4,36 @@
         &#x200b;
     </div>
 
-    <div class="control-container"  layout="column" flex>
+    <div class="control-container" layout="column" flex>
 
-        <article-actions-button topic-id="$ctrl.topicId">
-        </article-actions-button>
+        <div ng-if="!$ctrl.detailsAreShown" style="display:flex;flex-direction:column;">
+            <md-button class="md-button md-small" ng-click="$ctrl.makeDetailsVisible()" aria-label="Details">
+                <md-icon>more_vert</md-icon>
+                <div>Meer</div>
+            </md-button>
+        </div>
 
-        <md-button class="md-button md-small" ng-click="$ctrl.discuss($ctrl.topicId)" aria-label="Stel een vraag.">
-            <md-icon>question_answer</md-icon>
-            <div>Vraag</div>
-        </md-button>
+        <div ng-show="$ctrl.detailsAreShown" style="display:flex;flex-direction:column">
+            <article-actions-button topic-id="$ctrl.topicId">
+            </article-actions-button>
 
-        <md-button class="md-button" ng-click="$ctrl.writeOpinion($event)" aria-label="Schrijf een mini opinie.">
-            <md-icon>edit</md-icon>
-            <div>Schrijf</div>
-        </md-button>
+            <md-button class="md-button md-small" ng-click="$ctrl.discuss($ctrl.topicId)" aria-label="Stel een vraag.">
+                <md-icon>question_answer</md-icon>
+                <div>Vraag</div>
+            </md-button>
 
-        <md-button class="md-button" ng-click="" aria-label="Delen.">
-            <a href="whatsapp://send?text=http://wij.jouwpers.nl/" data-action="share/whatsapp/share">
-                <md-icon>share</md-icon>
-            </a>
-            <div>Deel</div>
-        </md-button>
+            <md-button class="md-button" ng-click="$ctrl.writeOpinion($event)" aria-label="Schrijf een mini opinie.">
+                <md-icon>edit</md-icon>
+                <div>Schrijf</div>
+            </md-button>
+
+            <md-button class="md-button" ng-click="" aria-label="Delen.">
+                <a href="whatsapp://send?text=http://wij.jouwpers.nl/" data-action="share/whatsapp/share">
+                    <md-icon>share</md-icon>
+                </a>
+                <div>Deel</div>
+            </md-button>
+        </div>
 
     </div>
 

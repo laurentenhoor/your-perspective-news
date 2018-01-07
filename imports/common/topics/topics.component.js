@@ -26,6 +26,11 @@ class TopicsComponent {
 			}
 			
 		});
+
+		$ctrl.showDetails = function($event) {
+			console.log($event)
+			$ctrl.detailsAreShown = $event.showDetails;
+		}
 		
 	}
 

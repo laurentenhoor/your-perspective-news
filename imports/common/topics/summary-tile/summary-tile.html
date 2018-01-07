@@ -1,24 +1,24 @@
 <div class="content-container">
 
-    <div class="tile-header">Overzicht</div>
+    <div class="tile-header">{{ $ctrl.detailsAreShown ? 'Overzicht' : '&nbsp;' }}</div>
 
-    <div class="tile-container">
+    <div class="tile-container" ng-style="!$ctrl.detailsAreShown ? {'height' : '50vw'} : {}" ng-click="$ctrl.makeDetailsVisible();">
 
         <div class="summary-header" ng-style="{'background-image':'url(\'' + ($ctrl.topicImageUrl) + '\')'}">
             <!-- {{$ctrl.bestArticle.title}} -->
 
             <div class="categories">
 
-                <div class="category" ng-repeat="categoryBlock in $ctrl.articlesByCategory" ng-if="categoryBlock.articleIds.length > 0" ng-class="{'main-category' : ($index == 0), 'sub-category': ($index == 1), 'even-sub sub-category' : ($index==2)}"
-                    ng-click="$ctrl.gotoCategory($index, $ctrl.topic._id)">
-                    <div class="category-title">{{ categoryBlock.category }}</div>
+                <div class="category" ng-repeat="categoryBlock in $ctrl.articlesByCategory" ng-show="categoryBlock.articleIds.length > 0 && !($index>0 && !$ctrl.detailsAreShown)" ng-class="{'main-category' : ($index == 0), 'sub-category': ($index == 1), 'even-sub sub-category' : ($index==2)}"
+                    ng-click="$ctrl.gotoCategory($index, $ctrl.topic._id, $event);">
+                    <div class="category-title" ng-show="$ctrl.detailsAreShown">{{ categoryBlock.category }}</div>
                     <div class="article-title">{{ categoryBlock.articles[0].title }}</div>
                 </div>
 
             </div>
         </div>
 
-        <div class="community">
+        <div class="community" ng-show="$ctrl.detailsAreShown">
             <div class="opinion">
                 <div ng-if="$ctrl.bestOpinion.title" ng-click="$ctrl.comingSoonAlert($event)" class="small-content-container-white">
                     <div class="title">Top perspectief</div>
