@@ -13,7 +13,7 @@ Opinions.before.insert(function (userId, doc) {
 
 if(Meteor.isServer) {
     Meteor.publish('opinions', function(){
-        return Opinions.find({ownerId: Meteor.userId()});
+        return Opinions.find({});
     });
 }
 

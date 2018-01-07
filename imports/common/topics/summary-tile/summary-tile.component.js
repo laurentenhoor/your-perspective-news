@@ -34,7 +34,9 @@ class SummaryTileComponent {
                     },
                     bestOpinion: () => {
                         var opinions = $opinionsApi.getAllByTopic($ctrl.topic);
-                        return _.maxBy(opinions,'score');;
+                        var bestOpinion = _.maxBy(opinions,'score');
+                        console.log('bestOpinion', bestOpinion)
+                        return bestOpinion;
                     },
                     bestQuestion: () => {
                         let bestQuestion = $commentsApi.getBestCommentByTopic($ctrl.topic);

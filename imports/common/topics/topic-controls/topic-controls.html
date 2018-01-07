@@ -6,10 +6,10 @@
 
     <div class="control-container" layout="column" flex>
 
-        <div ng-if="!$ctrl.detailsAreShown" style="display:flex;flex-direction:column;">
-            <md-button class="md-button md-small" ng-click="$ctrl.makeDetailsVisible()" aria-label="Details">
+        <div style="display:flex;flex-direction:column;">
+            <md-button class="md-button md-small" ng-click="$ctrl.toggleDetailsVisibility()" aria-label="Details">
                 <md-icon>more_vert</md-icon>
-                <div>Meer</div>
+                <div>Menu</div>
             </md-button>
         </div>
 

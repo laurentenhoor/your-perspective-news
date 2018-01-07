@@ -30,8 +30,8 @@ class TopicControlsComponent {
 
         }
 
-        $ctrl.makeDetailsVisible = function() {
-            $ctrl.detailsAreShown = true;
+        $ctrl.toggleDetailsVisibility = function() {
+            $ctrl.detailsAreShown = !$ctrl.detailsAreShown;
             $ctrl.onShowDetails({$event: {showDetails: $ctrl.detailsAreShown}});
         }
 

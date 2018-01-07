@@ -1,11 +1,11 @@
-<div class="content-container" ng-repeat="categoryBlock in $ctrl.topic.articlesByCategory | orderBy:'sortingOrder'" ng-init="
+<div class="content-container" ng-repeat="categoryBlock in $ctrl.topic.articlesByCategory | orderBy:'-sortingOrder'" ng-init="
            articles = $ctrl.getArticlesByIds(categoryBlock.articleIds);
            selectedArticle = {};
            categoryName = categoryBlock.category; 
            selectedArticle[categoryName] = $ctrl.getArticleWithHighestScore(articles);
            $ctrl.loadedArticles = $ctrl.loadedArticles.concat(categoryBlock.articleIds);
            " ng-show="articles.length > 0"
-           id="category-{{$index}}-{{$ctrl.topic._id}}">
+           id="category-{{categoryBlock.sortingOrder}}-{{$ctrl.topic._id}}">
 
     <div class="tile-header">{{categoryName}}</div>
 
