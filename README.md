@@ -12,6 +12,9 @@ Wij verzetten ons tegen twittergeblaat en nepnieuws.
 * It is not possible to share and discuss multiple news items at once (cross-linking and comparison).
 
 # Application Changelog
+## version 1.3.4
+* Added the summary tile
+
 ## version 1.3.3
 * Added a dialog for writing opinions
     * Rich text editor

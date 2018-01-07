@@ -69,7 +69,7 @@ class SummaryTileComponent {
 
         $ctrl.comingSoonAlert = function (ev) {
             var confirm = $dialog.alert()
-                .title('Lezen van opninie is helaas nog niet mogelijk.')
+                .title('Lezen van opinie is helaas nog niet mogelijk.')
                 .textContent('Schrijven wel. Ga hiervoor naar het "Schrijf" menu en sla op voor later.')
                 .ariaLabel('Coming Soon')
                 .targetEvent(ev)
