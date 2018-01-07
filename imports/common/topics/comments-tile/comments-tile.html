@@ -17,7 +17,7 @@
 			<form name="newCommentRoot" ng-show="$ctrl.showRootInput" ng-submit="$ctrl.showRootInput=false;$ctrl.newComment(comment);"
 			 novalidate>
 
-				<textarea class="input root" ng-model="comment.newChildComment" required></textarea>
+				<textarea class="input root" ng-model="comment.newChildComment" placeholder="Open vragen beginnen met 'wie', 'wat', 'wanneer', 'hoe', 'waar' of 'waarom'..." required></textarea>
 
 				<input class="input-button root" type="submit" value="Vragen" ng-disabled="newCommentRoot.$invalid" />
 			</form>
