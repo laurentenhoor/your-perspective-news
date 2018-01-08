@@ -11,55 +11,65 @@
 
                 <div class="category" ng-repeat="categoryBlock in $ctrl.articlesByCategory" ng-show="categoryBlock.articleIds.length > 0 && !($index>0 && !$ctrl.detailsAreShown)"
                     ng-class="{'main-category' : ($index == 0), 'sub-category': ($index == 1), 'even-sub sub-category' : ($index==2)}"
-                    ng-click="$ctrl.gotoCategory(categoryBlock.sortingOrder, $ctrl.topic._id, $event);">
-                    <div class="category-title" ng-show="$ctrl.detailsAreShown">{{ categoryBlock.category }}</div>
+                    ng-click="$ctrl.gotoCategory(categoryBlock.sortingOrder, $ctrl.topic._id, $event);" ng-if="$index==0">
+                    <!-- <div class="category-title" ng-show="$ctrl.detailsAreShown">{{ categoryBlock.category }}</div> -->
+                    <div class="time-elapsed" ng-show="$ctrl.detailsAreShown">{{ $ctrl.latestUpdate | timeFromNow }}</div>
                     <div class="article-title">{{ categoryBlock.articles[0].title }}</div>
                 </div>
 
             </div>
         </div>
+        <div class="teaser">
+
+                <div class="category" ng-repeat="categoryBlock in $ctrl.articlesByCategory" ng-show="categoryBlock.articleIds.length > 0 && !($index>0 && !$ctrl.detailsAreShown)"
+                    ng-class="{'main-category' : ($index == 0), 'sub-category': ($index == 1), 'even-sub sub-category' : ($index==2)}"
+                    ng-click="$ctrl.gotoCategory(categoryBlock.sortingOrder, $ctrl.topic._id, $event);" ng-if="$index==1">
+                    <div class="category-title" ng-show="$ctrl.detailsAreShown">{{ categoryBlock.category }}</div>
+                    <div class="article-title">{{ categoryBlock.articles[0].title }}</div>
+                </div>
+
+        </div>
 
         <div class="community" ng-show="$ctrl.detailsAreShown">
             <div class="opinion">
-                <div ng-if="$ctrl.bestOpinion.title" ng-click="$ctrl.comingSoonAlert($event)" class="small-content-container-white">
-                    <div class="title">Top perspectief</div>
-                    <div class="content">
+                <div ng-click="$ctrl.comingSoonAlert($event)" class="small-content-container-white">
+                    <div class="title">{{$ctrl.amountOfOpinions}} opinies</div>
+                    <!-- <div class="content">
                         "{{ $ctrl.bestOpinion.title}}"
-                    </div>
+                    </div> -->
                 </div>
 
 
-                <div ng-if="!$ctrl.bestOpinion.title" >
+                <!-- <div ng-if="!$ctrl.bestOpinion.title" >
                     <div class="title">Top perspectief</div>
                     <div style="margin:auto;text-align:center;">
                         <md-button class="md-button md-small" ng-click="$ctrl.writeOpinion($event)" aria-label="Schrijf een mini opinie.">
                             <md-icon>edit</md-icon>
-                            <!-- <div>Vraag</div> -->
+                            <div>Vraag</div>
                         </md-button>
                     </div>
+                </div> -->
 
-                </div>
             </div>
+
             <div class="discussion">
-                <div ng-if="$ctrl.bestQuestion.comment" ng-click="$ctrl.discuss($ctrl.topic._id)" class="small-content-container-grey">
-                    <div class="title">Top vraag</div>
-                    <div class="content">
+                <div ng-click="$ctrl.discuss($ctrl.topic._id)" class="small-content-container-grey">
+                    <div class="title">{{$ctrl.amountOfQuestions}} vragen</div>
+                    <!-- <div class="content">
                         "{{$ctrl.bestQuestion.comment}}"
-                    </div>
+                    </div> -->
                 </div>
 
-                <div ng-if="!$ctrl.bestQuestion.comment">
-
-
+                <!-- <div ng-if="!$ctrl.bestQuestion.comment">
                     <div class="title">Top vraag</div>
                     <div style="margin:auto;text-align:center;">
                         <md-button class="md-button md-small" ng-click="$ctrl.discuss($ctrl.topic._id)" aria-label="Stel een vraag.">
                             <md-icon>question_answer</md-icon>
-                            <!-- <div>Vraag</div> -->
+                            <div>Vraag</div>
                         </md-button>
                     </div>
+                </div> -->
 
-                </div>
             </div>
         </div>
 

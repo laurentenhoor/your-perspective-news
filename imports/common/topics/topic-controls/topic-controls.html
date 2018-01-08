@@ -8,7 +8,7 @@
 
         <div style="display:flex;flex-direction:column;">
             <md-button class="md-button md-small" ng-click="$ctrl.toggleDetailsVisibility()" aria-label="Details">
-                <md-icon>more_vert</md-icon>
+                <md-icon>{{$ctrl.detailsAreShown ? 'close' : 'more_vert'}}</md-icon>
                 <div>Menu</div>
             </md-button>
         </div>

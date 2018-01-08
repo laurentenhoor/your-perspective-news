@@ -29,8 +29,15 @@ class SummaryTileComponent {
                         })
                         console.log('categories', topic.articlesByCategory)
                         var length = topic.articlesByCategory[0].articles.length;
-                        $ctrl.topicImageUrl = topic.articlesByCategory[0].articles[length - 1].imageUrl;
+                        $ctrl.topicImageUrl = topic.articlesByCategory[0].articles[0].imageUrl;
                         return topic.articlesByCategory
+                    },
+                    latestUpdate: () => {
+                        var articles = $articlesApi.getAllByTopic($ctrl.topic)
+                        console.log(articles);
+                        var latestUpdate = _.maxBy(articles, 'updatedAt');
+                        console.log(latestUpdate);
+                        return latestUpdate.updatedAt;
                     },
                     bestOpinion: () => {
                         var opinions = $opinionsApi.getAllByTopic($ctrl.topic);
@@ -42,6 +49,14 @@ class SummaryTileComponent {
                         let bestQuestion = $commentsApi.getBestCommentByTopic($ctrl.topic);
                         console.log('bestQuestion', bestQuestion);
                         return bestQuestion;
+                    },
+                    amountOfQuestions : () => {
+                        let questions = $commentsApi.getAllByTopic($ctrl.topic);
+                        return questions.length;
+                    },
+                    amountOfOpinions : () => {
+                        let opinions = $opinionsApi.getAllByTopic($ctrl.topic);
+                        return opinions.length;
                     }
                 });
 
