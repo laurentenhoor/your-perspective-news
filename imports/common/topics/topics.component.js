@@ -19,7 +19,7 @@ class TopicsComponent {
 				
 				$ctrl.helpers({
 					'topics': () => {
-						return Topics.find({}, {}).fetch();
+						return Topics.find({}, {}).fetch();;
 					}
 				});
 		

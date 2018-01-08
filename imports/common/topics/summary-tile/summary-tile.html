@@ -33,7 +33,7 @@
         <div class="community" ng-show="$ctrl.detailsAreShown">
             <div class="opinion">
                 <div ng-click="$ctrl.comingSoonAlert($event)" class="small-content-container-white">
-                    <div class="title">{{$ctrl.amountOfOpinions}} opinies</div>
+                    <div class="title">{{$ctrl.amountOfOpinions}} {{$ctrl.amountOfQuestions == 1 ? 'opinie' : 'opinies'}}</div>
                     <!-- <div class="content">
                         "{{ $ctrl.bestOpinion.title}}"
                     </div> -->
@@ -54,7 +54,7 @@
 
             <div class="discussion">
                 <div ng-click="$ctrl.discuss($ctrl.topic._id)" class="small-content-container-grey">
-                    <div class="title">{{$ctrl.amountOfQuestions}} vragen</div>
+                    <div class="title">{{$ctrl.amountOfQuestions}} {{$ctrl.amountOfQuestions == 1 ? 'vraag' : 'vragen'}}</div>
                     <!-- <div class="content">
                         "{{$ctrl.bestQuestion.comment}}"
                     </div> -->

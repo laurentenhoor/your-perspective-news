@@ -1,4 +1,4 @@
-<div class="content-container" ng-repeat="categoryBlock in $ctrl.topic.articlesByCategory | orderBy:'-sortingOrder'" ng-init="
+<div class="content-container" ng-repeat="categoryBlock in $ctrl.topic.articlesByCategory" ng-init="
            articles = $ctrl.getArticlesByIds(categoryBlock.articleIds);
            selectedArticle = {};
            categoryName = categoryBlock.category; 
