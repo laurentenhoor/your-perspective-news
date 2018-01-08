@@ -5,10 +5,10 @@
 		<topic-controls topic-id="topic._id" on-show-details="detailsAreShown = $event.showDetails" show-details="">
 		</topic-controls>
 
-		<summary-tile topic="topic" show-details="true" on-show-details="detailsAreShown = $event.showDetails">
+		<summary-tile topic="topic" show-details="detailsAreShown" on-show-details="detailsAreShown = $event.showDetails">
 		</summary-tile>
 
-		<div ng-show="true" style="display:flex;">
+		<div ng-show="detailsAreShown" style="display:flex;">
 		
 			<category-tiles topic="topic">
 			</category-tiles>

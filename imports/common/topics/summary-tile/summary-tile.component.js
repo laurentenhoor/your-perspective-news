@@ -8,6 +8,8 @@ class SummaryTileComponent {
         var $ctrl = this;
         $reactive($ctrl).attach($scope);
 
+        $ctrl.showSummary = true;
+
         $ctrl.$onChanges = (changes) => {
             if (changes.topic) {
                 $ctrl.topic = angular.copy($ctrl.topic)
@@ -69,11 +71,24 @@ class SummaryTileComponent {
         $ctrl.gotoCategory = function (index, topicId, $event) {
             console.log('scrollToCategory:', index, topicId);
             console.log($ctrl.topic.articlesByCategory)
-            $autoScroll.horizontalScroll('category-' + index + '-' + topicId, 'scroll-' + topicId);
+            
+            $ctrl.detailsAreShown = true;
+            $ctrl.onShowDetails({$event: {showDetails: $ctrl.detailsAreShown}});
+
+            $timeout(()=>{
+                $autoScroll.horizontalScroll('category-' + index + '-' + topicId, 'scroll-' + topicId);
+            })
+            
         }
 
         $ctrl.discuss = function (topicId) {
-            $autoScroll.horizontalScroll('discuss-' + topicId, 'scroll-' + topicId);
+            $ctrl.detailsAreShown = true;
+            $ctrl.onShowDetails({$event: {showDetails: $ctrl.detailsAreShown}});
+
+            $timeout(()=>{
+                $autoScroll.horizontalScroll('discuss-' + topicId, 'scroll-' + topicId);
+            })
+           
         }
 
         $ctrl.writeOpinion = function ($event) {

@@ -1,19 +1,20 @@
-<div class="content-container">
+<div class="content-container" ng-show="!$ctrl.detailsAreShown">
 
-    <div class="tile-header">{{ $ctrl.detailsAreShown ? 'Overzicht' : '&nbsp;' }}</div>
+    <div class="tile-header">Overzicht</div>
 
-    <div class="tile-container">
+    <div class="tile-container">    
 
         <div class="summary-header" ng-style="{'background-image':'url(\'' + ($ctrl.topicImageUrl) + '\')'}">
             <!-- {{$ctrl.bestArticle.title}} -->
 
+          
             <div class="categories">
 
-                <div class="category" ng-repeat="categoryBlock in $ctrl.articlesByCategory" ng-show="categoryBlock.articleIds.length > 0 && !($index>0 && !$ctrl.detailsAreShown)"
+                <div class="category" ng-repeat="categoryBlock in $ctrl.articlesByCategory" ng-show="categoryBlock.articleIds.length > 0 "
                     ng-class="{'main-category' : ($index == 0), 'sub-category': ($index == 1), 'even-sub sub-category' : ($index==2)}"
                     ng-click="$ctrl.gotoCategory(categoryBlock.sortingOrder, $ctrl.topic._id, $event);" ng-if="$index==0">
-                    <!-- <div class="category-title" ng-show="$ctrl.detailsAreShown">{{ categoryBlock.category }}</div> -->
-                    <div class="time-elapsed" ng-show="$ctrl.detailsAreShown">{{ $ctrl.latestUpdate | timeFromNow }}</div>
+                    <!-- <div class="category-title">{{ categoryBlock.category }}</div> -->
+                    <div class="time-elapsed">{{ $ctrl.latestUpdate | timeFromNow }}</div>
                     <div class="article-title">{{ categoryBlock.articles[0].title }}</div>
                 </div>
 
@@ -21,16 +22,16 @@
         </div>
         <div class="teaser">
 
-                <div class="category" ng-repeat="categoryBlock in $ctrl.articlesByCategory" ng-show="categoryBlock.articleIds.length > 0 && !($index>0 && !$ctrl.detailsAreShown)"
+                <div class="category" ng-repeat="categoryBlock in $ctrl.articlesByCategory" ng-show="categoryBlock.articleIds.length > 0 "
                     ng-class="{'main-category' : ($index == 0), 'sub-category': ($index == 1), 'even-sub sub-category' : ($index==2)}"
                     ng-click="$ctrl.gotoCategory(categoryBlock.sortingOrder, $ctrl.topic._id, $event);" ng-if="$index==1">
-                    <div class="category-title" ng-show="$ctrl.detailsAreShown">{{ categoryBlock.category }}</div>
+                    <div class="category-title">{{ categoryBlock.category }}</div>
                     <div class="article-title">{{ categoryBlock.articles[0].title }}</div>
                 </div>
 
         </div>
 
-        <div class="community" ng-show="$ctrl.detailsAreShown">
+        <div class="community" >
             <div class="opinion">
                 <div ng-click="$ctrl.comingSoonAlert($event)" class="small-content-container-white">
                     <div class="title">{{$ctrl.amountOfOpinions}} {{$ctrl.amountOfQuestions == 1 ? 'opinie' : 'opinies'}}</div>
