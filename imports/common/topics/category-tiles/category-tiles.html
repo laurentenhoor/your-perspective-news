@@ -21,7 +21,7 @@
                 </vote>
             </div>
 
-            <div class="image" ng-style="{'background-image':'url(\'' + (selectedArticle[categoryName].imageUrl) + '\')'}" style="background-color:{{ selectedArticle[categoryName].videoUrl ? 'black' : 'rgb(187, 187, 187)' }}">
+            <div class="image" style="background-color:{{ selectedArticle[categoryName].videoUrl ? 'black' : 'rgb(187, 187, 187)' }}; background-image:url('{{ selectedArticle[categoryName].imageUrl }}');">
             </div>
 
             <iframe class="video-player-iframe" ng-if="selectedArticle[categoryName].videoUrl" src="{{selectedArticle[categoryName].videoUrl}}"

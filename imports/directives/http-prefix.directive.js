@@ -13,10 +13,15 @@ export default angular
             require: 'ngModel',
             link: function (scope, element, attrs, controller) {
 
-                // console.log(controller);
+                function ensureHttpPrefix(value) {                    
 
-                function ensureHttpPrefix(value) {
-
+                    // Google amp to regular string: not very robust!! To be improved!!
+                    if (value.indexOf('google') > 0 && value.indexOf('amp') > 0) {
+                        value = value.replace('https://www.google.nl/amp/s/', '')
+                        value = value.replace('https://www.google.com/amp/s/', '')
+                        value = value.replace('/amp', '')
+                        console.warning('please improve the google amp compatibility!')
+                    }
                     // console.log('ensure httpPrefix')
 
                     // Need to add prefix if we don't have http:// prefix already AND we don't have part of it
