@@ -4,17 +4,23 @@
 
     <div class="tile-container">    
 
-        <div class="summary-header" ng-style="{'background-image':'url(\'' + ($ctrl.topicImageUrl) + '\')'}">
+        <div class="summary-header" ng-style="{'background-image':'url(\'' + ($ctrl.topicImageUrl) + '\')'}"
+            ng-repeat="categoryBlock in $ctrl.articlesByCategory" ng-show="categoryBlock.articleIds.length > 0 "    
+            ng-click="$ctrl.gotoCategory(categoryBlock.sortingOrder, $ctrl.topic._id, $event);" 
+            ng-if="$index==0"
+            >
             <!-- {{$ctrl.bestArticle.title}} -->
+
+            <div class="time-elapsed">{{ $ctrl.latestUpdate | timeFromNow }}</div>
 
           
             <div class="categories">
 
-                <div class="category" ng-repeat="categoryBlock in $ctrl.articlesByCategory" ng-show="categoryBlock.articleIds.length > 0 "
+                <div class="category"
                     ng-class="{'main-category' : ($index == 0), 'sub-category': ($index == 1), 'even-sub sub-category' : ($index==2)}"
-                    ng-click="$ctrl.gotoCategory(categoryBlock.sortingOrder, $ctrl.topic._id, $event);" ng-if="$index==0">
+                    >
                     <!-- <div class="category-title">{{ categoryBlock.category }}</div> -->
-                    <div class="time-elapsed">{{ $ctrl.latestUpdate | timeFromNow }}</div>
+                    
                     <div class="article-title">{{ categoryBlock.articles[0].title }}</div>
                 </div>
 
