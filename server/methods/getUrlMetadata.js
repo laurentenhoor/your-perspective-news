@@ -40,6 +40,7 @@ function fetchSuq(url, callback) {
 
 	cookieJar = request.jar()
 	cookieJar.setCookie(request.cookie('cookieconsent=true'), url);
+	cookieJar.setCookie(request.cookie('nl_cookiewall_version=1'), url);
 
 	suq(url, function (err, json, body) {
 
@@ -81,8 +82,10 @@ function fetchLogo(url, callback) {
 function fetchMetaData(url, callback) {
 
 	var options = {
-		headers:
-			{ 'Cookie': 'cookieconsent=true' }
+		headers: {
+			'Cookie': 'cookieconsent=true',
+			'Cookie': 'nl_cookiewall_version=1'
+		},
 	};
 	metaGet.fetch(url, options, function (err, meta_response) {
 		callback(false, meta_response);

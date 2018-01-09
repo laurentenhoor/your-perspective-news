@@ -1,11 +1,12 @@
 <div layout="column" ng-cloak class="md-inline-form">
 
     <md-content layout-gt-sm="row" layout-padding>
+
         <md-input-container style="width:100%;">
             <label>Url</label>
             <input ng-model="$ctrl.url" ng-change="$ctrl.processUrl()">
         </md-input-container>
-
+        >
         <div>
             Output Metaget
             <pre>{{ $ctrl.output | json }}</pre>
@@ -15,7 +16,14 @@
             Output Suq
             <pre>{{ $ctrl.output3 | json }}</pre>
         </div>
+        <div>
+            Output acemtp:meta-extractor
+            <pre>{{ $ctrl.output2 | json }}</pre>
+        </div>
 
-    </md-content>
+        <div>
+            Output opengraph.io
+            <pre>{{ $ctrl.output1 | json }}</pre>
+        </div </md-content>
 
 </div>
