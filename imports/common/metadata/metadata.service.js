@@ -6,6 +6,25 @@ export default class MetadataService {
 		'ngInject';
 		this.$loader = $loader;
 	}
+
+	getRawArticleFromUrl = function(url, callback) {
+
+		self = this;
+		self.$loader.start();
+
+		Meteor.call('getUrlMetadata', url, (error, result) => {
+			
+			if (error) {
+				console.error(error);
+				self.$loader.stop();
+				return callback(error, null);
+			}
+			self.$loader.stop();
+			return callback(false, result);
+
+		});
+
+	} 
 	
 	getArticleFromUrl = function (url, callback) {
 
