@@ -13,14 +13,16 @@ export default class SmoothScrollServices {
             var stopX = targetElement.offsetLeft - scrollPadding;
             var distance = stopX > startX ? stopX - startX : startX - stopX;
             
-            if (distance < 100) {
-                scrollElement.scrollLeft = stopX;  
-                return;
-            }
+            // if (distance < 100) {
+            //     scrollElement.scrollLeft = stopX;  
+            //     return;
+            // }
             
             var speed = Math.round(distance / 75);
+            console.log('speed', speed)
             if (speed >= 20) speed = 20;
             var step = Math.round(distance / 25);
+            console.log('step',  step)
             var leapX = stopX > startX ? startX + step : startX - step;
             var timer = 0;
             
