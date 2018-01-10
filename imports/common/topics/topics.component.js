@@ -6,7 +6,7 @@ import { Topics } from '/imports/api/topics.js';
 
 class TopicsComponent {
 
-	constructor($scope, $reactive, $loader) {
+	constructor($scope, $reactive, $loader, $articlesApi) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -19,7 +19,16 @@ class TopicsComponent {
 				
 				$ctrl.helpers({
 					'topics': () => {
-						return Topics.find({}, {}).fetch();;
+
+						var topics = Topics.find({}, {}).fetch();
+
+						_.forEach(topics, (topic, i) => {
+							var articles = $articlesApi.getAllByTopic(topic)
+							var latestUpdatedArticle = _.maxBy(articles, 'updatedAt');
+							topics[i].latestUpdate = latestUpdatedArticle.updatedAt;
+						});
+						
+						return topics;
 					}
 				});
 		
@@ -34,6 +43,12 @@ class TopicsComponent {
 		
 	}
 
+}
+
+
+function addLatestUpdateToTopic(topic, articles) {
+	
+                        console.log(latestUpdate);
 }
 
 export default {

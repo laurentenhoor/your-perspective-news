@@ -34,13 +34,6 @@ class SummaryTileComponent {
                         $ctrl.topicImageUrl = topic.articlesByCategory[0].articles[0].imageUrl;
                         return topic.articlesByCategory
                     },
-                    latestUpdate: () => {
-                        var articles = $articlesApi.getAllByTopic($ctrl.topic)
-                        console.log(articles);
-                        var latestUpdate = _.maxBy(articles, 'updatedAt');
-                        console.log(latestUpdate);
-                        return latestUpdate.updatedAt;
-                    },
                     bestOpinion: () => {
                         var opinions = $opinionsApi.getAllByTopic($ctrl.topic);
                         var bestOpinion = _.maxBy(opinions,'score');

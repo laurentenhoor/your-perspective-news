@@ -1,7 +1,6 @@
-<div class="scroll-window" scroll-disabler id="scroll-{{topic._id}}" ng-repeat="topic in $ctrl.topics | orderBy:'-createdAt'">
+<div class="scroll-window" scroll-disabler id="scroll-{{topic._id}}" ng-repeat="topic in $ctrl.topics | orderBy:'-latestUpdate'">
 
 	<div class="scroll-content">
-
 
 		<topic-controls topic-id="topic._id" on-show-details="detailsAreShown = $event.showDetails;$ctrl.activeTopic=topic._id" show-details="($ctrl.activeTopic == topic._id)  ? detailsAreShown : false" >
 		</topic-controls>
