@@ -4,17 +4,11 @@
 
     <div class="tile-container">
 
-<<<<<<< HEAD
-        <div class="summary-header" ng-style="{'background-image':'url(\'' + ($ctrl.topicImageUrl) + '\')'}" ng-repeat="categoryBlock in $ctrl.articlesByCategory"
-            ng-show="categoryBlock.articleIds.length > 0 " ng-click="$ctrl.gotoCategory(categoryBlock.sortingOrder, $ctrl.topic._id, $event);"
-            ng-if="$index==0">
-=======
         <div class="summary-header" style="background-image:url('{{ $ctrl.topicImageUrl }}')"
             ng-repeat="categoryBlock in $ctrl.articlesByCategory" ng-show="categoryBlock.articleIds.length > 0 "    
             ng-click="$ctrl.gotoCategory(categoryBlock.sortingOrder, $ctrl.topic._id, $event);" 
             ng-if="$index==0"
             >
->>>>>>> feature/url_debugger
             <!-- {{$ctrl.bestArticle.title}} -->
 
             <div class="time-elapsed">
