@@ -5,11 +5,14 @@ import DialogStyle from './feedback-dialog.styl';
 import { Meteor } from 'meteor/meteor';
 import { Feedback } from '/imports/api/feedback.js';
 
+import SlackAPI from 'node-slack';
+
 export default class FeedbackDialogService {
 
     constructor($dialog) {
         'ngInject';
         this.$dialog = $dialog;
+        this.Slack = new SlackAPI('https://hooks.slack.com/services/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');
     }
 
     show($event, topic) {
@@ -18,8 +21,8 @@ export default class FeedbackDialogService {
             controller: DialogComponent,
             templateUrl: DialogTemplate,
             targetEvent: $event,
-            locals : {
-                
+            locals: {
+
             }
         });
 
@@ -39,6 +42,13 @@ export default class FeedbackDialogService {
         }
 
         let $dialog = this.$dialog;
+
+        this.Slack.send({
+            text: feedback,
+            username: Meteor.user() ? Meteor.user().profile.firstName + ' '+ Meteor.user().profile.lastName : 'anoniem',
+            icon_url: Meteor.user() ? Meteor.user().profile.pictureUrl : ''
+          });
+
 
         Feedback.insert({
             ownerId: Meteor.userId(),
@@ -68,7 +78,7 @@ export default class FeedbackDialogService {
                     .ok('Sluiten')
             );
         }
-        
+
     }
 
 }
