@@ -17,6 +17,7 @@
     "metaget": "^1.0.3",
     "meteor-node-stubs": "~0.2.4",
     "moment": "^2.18.1",
+    "node-slack": "0.0.7",
     "open-graph-scraper": "^3.1.4",
     "suq": "^1.3.0",
     "url-parse": "^1.1.9",
