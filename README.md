@@ -14,6 +14,8 @@ Wij verzetten ons tegen twittergeblaat en nepnieuws.
 # Application Changelog
 ## version 1.3.4
 * Added the summary tile
+* Added timeline sorting
+* Updated UI of timeline: new clean design
 
 ## version 1.3.3
 * Added a dialog for writing opinions
