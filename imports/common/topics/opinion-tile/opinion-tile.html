@@ -4,7 +4,19 @@
 
     <div class="tile-container">
 
-        <div>{{$ctrl.topicId}}</div>
-        
+        <div class="opinion-container">
+
+            <div ng-repeat="opinion in $ctrl.opinions">
+
+                <!-- <div>{{ opinion }}</div> -->
+
+                <h1>{{ opinion.title }}</h1>
+
+                <div ng-bind-html="opinion.content"></div>
+
+            </div>
+            
+        </div>
+
     </div>
 </div>

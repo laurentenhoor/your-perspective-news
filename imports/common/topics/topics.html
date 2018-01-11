@@ -1,29 +1,25 @@
-<div class="scroll-window" 
-	id="scroll-{{topic._id}}"
-	scroll-disabler  
-	ng-repeat="topic in $ctrl.topics | orderBy:'-latestUpdate'"
-	ng-init="$ctrl.addLatestUpdateToTopic(topic)"
-	>
+<div class="scroll-window" id="scroll-{{topic._id}}" scroll-disabler ng-repeat="topic in $ctrl.topics | orderBy:'-latestUpdate'"
+ ng-init="$ctrl.addLatestUpdateToTopic(topic)">
 
 	<div class="scroll-content">
 
-		<topic-controls topic-id="topic._id" on-show-details="detailsAreShown = $event.showDetails;$ctrl.activeTopic=topic._id" show-details="($ctrl.activeTopic == topic._id)  ? detailsAreShown : false" >
+		<topic-controls topic-id="topic._id" on-show-details="detailsAreShown = $event.showDetails;$ctrl.activeTopic=topic._id" show-details="($ctrl.activeTopic == topic._id)  ? detailsAreShown : false">
 		</topic-controls>
+
+		<opinion-tile topic-id="topic._id">
+		</opinion-tile>
 
 		<summary-tile topic="topic" show-details="($ctrl.activeTopic == topic._id)  ? detailsAreShown : false" on-show-details="detailsAreShown = $event.showDetails;$ctrl.activeTopic=topic._id">
 		</summary-tile>
 
 		<div ng-show="($ctrl.activeTopic == topic._id)  ? detailsAreShown : false" style="display:flex;">
-		
+
 			<category-tiles topic="topic">
 			</category-tiles>
 
-			<!-- <opinion-tile 
-			topic-id="topic._id">
-		</opinion-tile> -->
-
 			<comments-tile topic-id="topic._id">
 			</comments-tile>
+			
 		</div>
 	</div>
 
