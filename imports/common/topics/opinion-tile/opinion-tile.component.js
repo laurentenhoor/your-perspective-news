@@ -3,7 +3,7 @@ import OpinionTileStyle from './opinion-tile.styl';
 
 class OpinionTileComponent {
 
-    constructor($reactive, $scope, $opinionsApi) {
+    constructor($reactive, $scope, $opinionsApi, $usersApi) {
         'ngInject';
         $ctrl = this;
         $reactive($ctrl).attach($scope);
@@ -20,6 +20,10 @@ class OpinionTileComponent {
                 });
 
             }
+        }
+
+        $ctrl.getUsername = function(userId) {
+            return $usersApi.getUsername(userId);
         }
 
     }

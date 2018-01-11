@@ -1,12 +1,16 @@
 opinion-tile {
     height: 100%;
     width: 100%;
-
-    color:white;
+    padding-right: 1vw;
+    color: white;
     font-weight: 500;
 
     a {
         text-decoration: underline;
+    }
+
+    b {
+        font-weight: 700;
     }
 
     .opinion-container {
@@ -14,9 +18,14 @@ opinion-tile {
         padding-right: 5vw;
         height: 100%;
         overflow-y: scroll;
-
-        $gradient-opacity = 1;
+        $gradient-opacity = 0.97;
         // background-image: linear-gradient(to right, rgba(0, 92, 151, $gradient-opacity), rgba(54, 55, 149, $gradient-opacity));
         background-image: linear-gradient(to right, rgba(229, 45, 39, $gradient-opacity), rgba(179, 18, 23, $gradient-opacity)) !important;
+    }
+
+    .content-text {
+        text-align: justify;
+        line-height: 1.6;
+        font-size: 3.4vw;
     }
 }

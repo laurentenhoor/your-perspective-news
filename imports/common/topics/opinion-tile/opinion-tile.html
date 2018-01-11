@@ -8,11 +8,14 @@
 
             <div ng-repeat="opinion in $ctrl.opinions">
 
-                <!-- <div>{{ opinion }}</div> -->
+                <div>{{ $ctrl.getUsername(opinion.ownerId) }}</div>
+                <!-- <div>{{ opinion.updatedAt | timeFromNow }}</div> -->
 
                 <h1>{{ opinion.title }}</h1>
 
-                <div ng-bind-html="opinion.content"></div>
+                <div class="content-text"
+                    ng-bind-html="opinion.content">
+                </div>
 
             </div>
             

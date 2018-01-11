@@ -78,7 +78,7 @@ class SummaryTileComponent {
 
             $timeout(()=>{
                 $autoScroll.horizontalScroll('category-' + index + '-' + topicId, 'scroll-' + topicId);
-            },500)
+            },400)
             
         }
 
@@ -88,7 +88,7 @@ class SummaryTileComponent {
 
             $timeout(()=>{
                 $autoScroll.horizontalScroll('discuss-' + topicId, 'scroll-' + topicId);
-            },500)
+            },400)
            
         }
 

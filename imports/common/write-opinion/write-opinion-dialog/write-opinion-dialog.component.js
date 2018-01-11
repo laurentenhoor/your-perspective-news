@@ -17,7 +17,7 @@ export default class WriteOpinionDialogComponent {
 
         if (opinion) {
             $ctrl.document = opinion;
-            $ctrl.document.new = false
+            $ctrl.document.new = false;
         } else {
             $ctrl.document = {
                 title: '',

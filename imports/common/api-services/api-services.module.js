@@ -4,6 +4,7 @@ import ArticlesApi from './articles-api.service.js'
 import OpinionsApi from './opinions-api.service.js'
 import VotesApi from './votes-api.service.js'
 import CommentsApi from './comments-api.service.js'
+import UsersApi from './users-api.service.js'
 
 export default angular
     .module('ApiServices', [])
@@ -11,4 +12,5 @@ export default angular
     .service('$opinionsApi', OpinionsApi)
     .service('$votesApi', VotesApi)
     .service('$commentsApi', CommentsApi)
+    .service('$usersApi', UsersApi)
     .name;
