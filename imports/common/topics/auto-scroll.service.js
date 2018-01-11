@@ -11,6 +11,8 @@ export default class SmoothScrollServices {
         }
 
         this.horizontalScroll = function(targetId, scrollScopeId) {
+
+            console.log(targetId, scrollScopeId)
             
             var scrollElement = document.getElementById(scrollScopeId);
             var targetElement = document.getElementById(targetId);

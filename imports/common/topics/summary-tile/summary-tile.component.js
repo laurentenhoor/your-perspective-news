@@ -98,20 +98,13 @@ class SummaryTileComponent {
             }
         }
 
-        $ctrl.comingSoonAlert = function (ev) {
-            var confirm = $dialog.alert()
-                .title('Lezen van opinie is helaas nog niet mogelijk.')
-                .textContent('Schrijven wel. Ga hiervoor naar het "Schrijf" menu en sla op voor later.')
-                .ariaLabel('Coming Soon')
-                .targetEvent(ev)
-                .ok('Bedankt')
-                // .cancel('Annuleren');
+        $ctrl.readOpinion = function(topicId) {
+            $ctrl.detailsAreShown = true;
+            $ctrl.onShowDetails({$event: {showDetails: $ctrl.detailsAreShown}});
 
-            $dialog.show(confirm).then(function () {
-                console.log('dialog closed')
-            }, function () {
-                // do nothing.
-            });
+            $timeout(()=>{
+                $autoScroll.horizontalScroll('opinion-' + topicId, 'scroll-' + topicId);
+            },400)
         }
 
         $ctrl.makeDetailsVisible = function() {

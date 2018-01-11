@@ -14,7 +14,6 @@ class OpinionTileComponent {
                 $ctrl.helpers({
                     'opinions' : function() {
                         var opinions = $opinionsApi.getAllByTopicId($ctrl.topicId);
-                        console.log(opinions);
                         return opinions;
                     }
                 });
