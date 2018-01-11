@@ -1,6 +1,6 @@
 export default class ArticleModalCtrl {
 
-	constructor($loader, $scope, $reactive, $document, $dialog, $metadata, topicId, category, article) {
+	constructor($loader, $scope, $reactive, $document, $autoScroll, $dialog, $metadata, topicId, category, article) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -11,7 +11,7 @@ export default class ArticleModalCtrl {
 		$ctrl.article = article;
 
 		if (category) {
-			$ctrl.initialCategory = category.category;	
+			$ctrl.initialCategory = category.category;
 		}
 
 		if ($ctrl.article) {
@@ -48,11 +48,11 @@ export default class ArticleModalCtrl {
 			$ctrl.headerText = 'Voeg een bron toe.';
 			$ctrl.headerSubText = 'Verbreed, verdiep of ontwricht dit onderwerp met een interessant artikel.';
 			$ctrl.urlDataIsLoaded = false;
-		
+
 		} else {
 
 			console.error('Could not succesfully load the modal: the requested inputs are not provided!');
-			
+
 		}
 
 
@@ -70,6 +70,9 @@ export default class ArticleModalCtrl {
 
 				if (error) {
 					console.error(error);
+					$scope.$apply(function () {
+						$loader.stop();
+					});
 					return;
 				}
 
@@ -99,7 +102,9 @@ export default class ArticleModalCtrl {
 
 			switch ($ctrl.mode) {
 				case 'add_source_to_topic':
-					Meteor.call('addArticle', $ctrl.topicId, $ctrl.modifiedCategory, $ctrl.article);
+					Meteor.call('addArticle', $ctrl.topicId, $ctrl.modifiedCategory, $ctrl.article, () => {
+						$autoScroll.scrollToTop();
+					});
 					break;
 				case 'new_topic':
 					Meteor.call('addArticle', null, $ctrl.modifiedCategory, $ctrl.article);

@@ -21,7 +21,7 @@ export default class CommentsApiService {
             parentItemId: topicId
         }).fetch();
         
-        console.log('Comments', comments);
+        // console.log('Comments', comments);
         
         return comments;
     }

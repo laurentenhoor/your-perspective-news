@@ -1,4 +1,9 @@
-<div class="scroll-window" scroll-disabler id="scroll-{{topic._id}}" ng-repeat="topic in $ctrl.topics | orderBy:'-latestUpdate'">
+<div class="scroll-window" 
+	id="scroll-{{topic._id}}"
+	scroll-disabler  
+	ng-repeat="topic in $ctrl.topics | orderBy:'-latestUpdate'"
+	ng-init="$ctrl.addLatestUpdateToTopic(topic)"
+	>
 
 	<div class="scroll-content">
 

@@ -14,7 +14,7 @@ class SummaryTileComponent {
             if (changes.topic) {
                 $ctrl.topic = angular.copy($ctrl.topic)
                 $ctrl.topic.articlesByCategory = _.sortBy($ctrl.topic.articlesByCategory, 'sortingOrder', 'desc');
-                console.log($ctrl.topic)
+                // console.log($ctrl.topic)
 
                 $ctrl.helpers({
                     bestArticle: () => {
@@ -29,7 +29,7 @@ class SummaryTileComponent {
                         _.each(topic.articlesByCategory, (categoryBlock, i) => {
                             topic.articlesByCategory[i].articles = _.orderBy($articlesApi.getByIds(categoryBlock.articleIds), 'score', 'desc');
                         })
-                        console.log('categories', topic.articlesByCategory)
+                        // console.log('categories', topic.articlesByCategory)
                         var length = topic.articlesByCategory[0].articles.length;
                         $ctrl.topicImageUrl = topic.articlesByCategory[0].articles[0].imageUrl;
                         return topic.articlesByCategory
@@ -37,12 +37,12 @@ class SummaryTileComponent {
                     bestOpinion: () => {
                         var opinions = $opinionsApi.getAllByTopic($ctrl.topic);
                         var bestOpinion = _.maxBy(opinions,'score');
-                        console.log('bestOpinion', bestOpinion)
+                        // console.log('bestOpinion', bestOpinion)
                         return bestOpinion;
                     },
                     bestQuestion: () => {
                         let bestQuestion = $commentsApi.getBestCommentByTopic($ctrl.topic);
-                        console.log('bestQuestion', bestQuestion);
+                        // console.log('bestQuestion', bestQuestion);
                         return bestQuestion;
                     },
                     amountOfQuestions : () => {

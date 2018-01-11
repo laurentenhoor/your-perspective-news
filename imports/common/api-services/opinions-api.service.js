@@ -17,7 +17,7 @@ export default class OpinionsApiService {
             // draft: false
         }).fetch();
         
-        console.log('Opinions', opinions);
+        // console.log('Opinions', opinions);
         
         return opinions;
     }

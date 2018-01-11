@@ -19,22 +19,26 @@ class TopicsComponent {
 				
 				$ctrl.helpers({
 					'topics': () => {
-
 						var topics = Topics.find({}, {}).fetch();
-
-						_.forEach(topics, (topic, i) => {
-							var articles = $articlesApi.getAllByTopic(topic)
-							var latestUpdatedArticle = _.maxBy(articles, 'updatedAt');
-							topics[i].latestUpdate = latestUpdatedArticle.updatedAt;
-						});
-						
+						// _.forEach(topics, (topic, i) => {
+						// 	var articles = $articlesApi.getAllByTopic(topic)
+						// 	var latestUpdatedArticle = _.maxBy(articles, 'updatedAt');
+						// 	topics[i].latestUpdate = latestUpdatedArticle.updatedAt;
+						// });
 						return topics;
+
 					}
 				});
 		
 			}
 			
 		});
+
+		$ctrl.addLatestUpdateToTopic = function(topic) {
+			var articles = $articlesApi.getAllByTopic(topic)
+			var latestUpdatedArticle = _.maxBy(articles, 'updatedAt');
+			topic.latestUpdate = latestUpdatedArticle.updatedAt;
+		}
 
 		$ctrl.showDetails = function($event) {
 			console.log($event)

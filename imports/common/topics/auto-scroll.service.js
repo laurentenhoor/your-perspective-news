@@ -3,6 +3,13 @@ export default class SmoothScrollServices {
     constructor() {
         'ngInject';
 
+        this.scrollToTop = function() {
+            
+            var scrollElement = document.getElementById('yourpers');
+            scrollElement.scrollTop = 0;
+
+        }
+
         this.horizontalScroll = function(targetId, scrollScopeId) {
             
             var scrollElement = document.getElementById(scrollScopeId);
