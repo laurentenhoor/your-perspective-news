@@ -20,13 +20,7 @@ class TopicsComponent {
 				$ctrl.helpers({
 					'topics': () => {
 						var topics = Topics.find({}, {}).fetch();
-						// _.forEach(topics, (topic, i) => {
-						// 	var articles = $articlesApi.getAllByTopic(topic)
-						// 	var latestUpdatedArticle = _.maxBy(articles, 'updatedAt');
-						// 	topics[i].latestUpdate = latestUpdatedArticle.updatedAt;
-						// });
 						return topics;
-
 					}
 				});
 		
@@ -47,12 +41,6 @@ class TopicsComponent {
 		
 	}
 
-}
-
-
-function addLatestUpdateToTopic(topic, articles) {
-	
-                        console.log(latestUpdate);
 }
 
 export default {
