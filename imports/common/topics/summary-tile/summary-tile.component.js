@@ -17,7 +17,7 @@ class SummaryTileComponent {
                 $ctrl.topic.articlesByCategory = _.sortBy($ctrl.topic.articlesByCategory, 'sortingOrder', 'desc');
 
                 _.each($ctrl.topic.articlesByCategory, (categoryBlock, i) => {
-                    if (categoryBlock.articleIds && categoryBlock.articleIds.length == 0) {
+                    if (categoryBlock && categoryBlock.articleIds && categoryBlock.articleIds.length == 0) {
                         // remove empty categories: should we do this on db level? 
                         // Risk if we ever change the 'articleIds' name
                         $ctrl.topic.articlesByCategory.splice(i, 1);
