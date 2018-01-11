@@ -20,7 +20,7 @@ export default angular
                         value = value.replace('https://www.google.nl/amp/s/', '')
                         value = value.replace('https://www.google.com/amp/s/', '')
                         value = value.replace('/amp', '')
-                        console.warning('please improve the google amp compatibility!')
+                        console.warn('please improve the google amp compatibility!')
                     }
                     // console.log('ensure httpPrefix')
 

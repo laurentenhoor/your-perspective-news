@@ -13,9 +13,17 @@ class SummaryTileComponent {
         $ctrl.$onChanges = (changes) => {
             if (changes.topic) {
                 $ctrl.topic = angular.copy($ctrl.topic)
-                $ctrl.topic.articlesByCategory = _.sortBy($ctrl.topic.articlesByCategory, 'sortingOrder', 'desc');
-                // console.log($ctrl.topic)
 
+                $ctrl.topic.articlesByCategory = _.sortBy($ctrl.topic.articlesByCategory, 'sortingOrder', 'desc');
+
+                _.each($ctrl.topic.articlesByCategory, (categoryBlock, i) => {
+                    if (categoryBlock.articleIds && categoryBlock.articleIds.length == 0) {
+                        // remove empty categories: should we do this on db level? 
+                        // Risk if we ever change the 'articleIds' name
+                        $ctrl.topic.articlesByCategory.splice(i, 1);
+                    }
+                });
+                
                 $ctrl.helpers({
                     bestArticle: () => {
                         return _.maxBy(
@@ -27,7 +35,7 @@ class SummaryTileComponent {
                         var topic = $ctrl.getReactively('topic')
                         
                         _.each(topic.articlesByCategory, (categoryBlock, i) => {
-                            topic.articlesByCategory[i].articles = _.orderBy($articlesApi.getByIds(categoryBlock.articleIds), 'score', 'desc');
+                            topic.articlesByCategory[i].articles = _.orderBy($articlesApi.getByIds(categoryBlock.articleIds), 'createdAt', 'desc');
                         })
                         // console.log('categories', topic.articlesByCategory)
                         var length = topic.articlesByCategory[0].articles.length;
