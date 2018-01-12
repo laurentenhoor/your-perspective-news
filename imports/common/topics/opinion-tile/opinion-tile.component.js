@@ -18,8 +18,10 @@ class OpinionTileComponent {
             opinions : () => {
                 return $opinionsApi.getAllByTopicId($ctrl.getReactively('topicId'));;
             },
-            userOpinionAvailable : () => {
-                return $opinionsApi.userOpinionAvailable($ctrl.getReactively('topicId'))
+            userOpinion : () => {
+                var userOpinion = $opinionsApi.getUserOpinion($ctrl.getReactively('topicId'))
+                console.log(userOpinion);
+                return userOpinion;
             }
         });
 

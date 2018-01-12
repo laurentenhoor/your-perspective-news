@@ -11,26 +11,21 @@ export default class OpinionsApiService {
     }
 
     getAllByTopicId(topicId) {
-        
+
         let opinions = Opinions.find({
             topicId: topicId,
             draft: false
         }).fetch();
-        
+
         // console.log('Opinions', topicId, opinions);
         return opinions;
     }
 
-    userOpinionAvailable(topicId) {
-        let opinions = Opinions.find({
+    getUserOpinion(topicId) {
+        return Opinions.findOne({
             topicId: topicId,
             ownerId: Meteor.userId(),
-            draft: false,
-        }).fetch();
-        if (opinions && opinions.length > 0) {
-            return true;
-        } 
-        return false;
+        });
     }
 
 }

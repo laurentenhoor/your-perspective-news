@@ -6,13 +6,13 @@
 
         <div class="opinion-container">
 
-            <div href="" ng-hide="$ctrl.userOpinionAvailable" ng-click="$ctrl.editOpinion($event)">
+            <div href="" class="header-button" ng-hide="$ctrl.userOpinionAvailable" ng-click="$ctrl.editOpinion($event)">
                 <b>Schrijf jouw opinie
                     <br>in minstens 280 tekens.</b>
                 <i class="fa fa-pencil" aria-hidden="true"></i>
             </div>
 
-            <div ng-repeat="opinion in $ctrl.opinions" class="content root">
+            <div ng-repeat="opinion in $ctrl.opinions | orderBy : '-score' " class="content root">
 
 
                 <div class="opinion-header">
@@ -20,25 +20,26 @@
                     <vote article-id="opinion._id"></vote>
                 </div>
 
-                <div href="" class="edit-opinion-button" ng-show="$ctrl.userOpinionAvailable" ng-click="$ctrl.editOpinion($event)">
+                <div href="" class="edit-opinion-button" ng-show="$ctrl.userOpinion._id==opinion._id" ng-click="$ctrl.editOpinion($event)">
                     Wijzigen
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                 </div>
 
-                
-
-                    <div class="tree-header">
-                        <b>
-                                {{ $ctrl.getUsername(opinion.ownerId) }}
-                        </b>
-
-                        <span class="time-elapsed">
-                                {{ opinion.updatedAt | timeFromNow }}
-                        </span>
-
+                <div href="" class="spacing-for-button" ng-hide="$ctrl.userOpinion._id==opinion._id">
+                        
                     </div>
 
-                
+                <div class="opinion-information">
+                    <b>
+                        {{ $ctrl.getUsername(opinion.ownerId) }}
+                    </b>
+
+                    <span class="time-elapsed">
+                        {{ opinion.updatedAt | timeFromNow }}
+                    </span>
+
+                </div>
+
 
                 <div class="content-text" ng-bind-html="opinion.content">
                 </div>
