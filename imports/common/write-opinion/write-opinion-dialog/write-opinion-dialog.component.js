@@ -59,6 +59,11 @@ export default class WriteOpinionDialogComponent {
             $ctrl.hideDialog();
         }
 
+        $ctrl.saveDocumentAsDraft = function() {
+            $ctrl.document.draft = true
+            $ctrl.saveDocument();
+        }
+
         $ctrl.publishDocument = function () {
             $ctrl.document.draft = false
             $ctrl.saveDocument();

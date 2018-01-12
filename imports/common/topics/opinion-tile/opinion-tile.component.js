@@ -27,7 +27,6 @@ class OpinionTileComponent {
             return $usersApi.getUsername(userId);
         }
 
-
         $ctrl.editOpinion = function($event) {
             $writeOpinionDialog.show($event, $ctrl.topicId)
         }

@@ -14,11 +14,10 @@ export default class OpinionsApiService {
         
         let opinions = Opinions.find({
             topicId: topicId,
-            // draft: false
+            draft: false
         }).fetch();
         
         // console.log('Opinions', topicId, opinions);
-        
         return opinions;
     }
 

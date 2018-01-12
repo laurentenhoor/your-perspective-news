@@ -7,12 +7,34 @@ opinion-tile {
     color: white;
     font-weight: 500;
 
+    vote {
+        float: right;
+        position: relative;
+        right: 0;
+        top: 0;
+        margin-top: -0.5vw;
+        margin-left: 2.5vw;
+        margin-bottom: 1vw;
+    }
+
     a {
         text-decoration: underline;
     }
 
     b {
         font-weight: 700;
+    }
+
+
+    .edit-opinion-button {
+        margin-bottom:4vw;    
+    }
+    .opinion-info {
+        // float:right;
+        margin-bottom:3vw;
+        div {
+            margin-bottom:1vw;
+        }
     }
 
     .opinion-container {
@@ -22,8 +44,8 @@ opinion-tile {
         overflow-y: scroll;
         $gradient-opacity = 0.97;
         // background-image: linear-gradient(to right, rgba(0, 92, 151, $gradient-opacity), rgba(54, 55, 149, $gradient-opacity));
-        background-image: linear-gradient(to right, rgba(229, 45, 39, $gradient-opacity), rgba(179, 18, 23, $gradient-opacity)) !important;
-        // background: brown; // nice alternative
+        // background-image: linear-gradient(to right, rgba(229, 45, 39, $gradient-opacity), rgba(179, 18, 23, $gradient-opacity)) !important;
+        background: brown; // nice alternative
     }
 
     .content-text {

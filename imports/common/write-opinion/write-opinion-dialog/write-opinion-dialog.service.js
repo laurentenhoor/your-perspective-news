@@ -21,9 +21,8 @@ export default class WriteOpinionDialogService {
                 topicId : topicId
             }
         };
-        
+    
         return this.$dialog.show(dialogOptions);
-
     }
 
     hide() {
