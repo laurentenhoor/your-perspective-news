@@ -14,7 +14,6 @@
 
             <div ng-repeat="opinion in $ctrl.opinions | orderBy : '-score' " class="content root">
 
-
                 <div class="opinion-header">
                     <h1>{{ opinion.title }}</h1>
                     <vote article-id="opinion._id"></vote>
@@ -25,9 +24,7 @@
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                 </div>
 
-                <div href="" class="spacing-for-button" ng-hide="$ctrl.userOpinion._id==opinion._id">
-                        
-                    </div>
+                <div href="" class="spacing-for-button" ng-hide="$ctrl.userOpinion._id==opinion._id"></div>
 
                 <div class="opinion-information">
                     <b>

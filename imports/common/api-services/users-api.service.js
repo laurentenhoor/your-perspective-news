@@ -6,6 +6,7 @@ export default class UsersApiService {
         'ngInject';
 
         this.$filter = $filter;
+        Meteor.subscribe('allUsernames');
 
     }
 
