@@ -1,33 +1,44 @@
 <div class="content-container" id="opinion-{{$ctrl.topicId}}">
 
-    <div class="tile-header">Ons perspectief</div>
+    <div class="tile-header">Jouw perspectief</div>
 
     <div class="tile-container">
 
         <div class="opinion-container">
-            
+
             <div href="" ng-hide="$ctrl.userOpinionAvailable" ng-click="$ctrl.editOpinion($event)">
-                <a>Schrijf jouw opinie
-                <br>in minstens 280 tekens.</a>
+                <b>Schrijf jouw opinie
+                    <br>in minstens 280 tekens.</b>
                 <i class="fa fa-pencil" aria-hidden="true"></i>
             </div>
 
             <div ng-repeat="opinion in $ctrl.opinions" class="content root">
 
-              
-                <h1>{{ opinion.title }}</h1>
-                <vote article-id="opinion._id"></vote>
-                <div class="opinion-info">
-                    <div>
-                        <b>{{ $ctrl.getUsername(opinion.ownerId) }}</b>
-                    </div>
-                    <div>{{ opinion.updatedAt | timeFromNow }}</div>
+
+                <div class="opinion-header">
+                    <h1>{{ opinion.title }}</h1>
+                    <vote article-id="opinion._id"></vote>
                 </div>
 
                 <div href="" class="edit-opinion-button" ng-show="$ctrl.userOpinionAvailable" ng-click="$ctrl.editOpinion($event)">
-                    <a>Wijzig jouw opinie</a>
+                    Wijzigen
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                 </div>
+
+                
+
+                    <div class="tree-header">
+                        <b>
+                                {{ $ctrl.getUsername(opinion.ownerId) }}
+                        </b>
+
+                        <span class="time-elapsed">
+                                {{ opinion.updatedAt | timeFromNow }}
+                        </span>
+
+                    </div>
+
+                
 
                 <div class="content-text" ng-bind-html="opinion.content">
                 </div>
