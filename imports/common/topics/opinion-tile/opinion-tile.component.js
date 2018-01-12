@@ -3,27 +3,22 @@ import OpinionTileStyle from './opinion-tile.styl';
 
 class OpinionTileComponent {
 
-    constructor($reactive, $scope, $opinionsApi, $usersApi) {
+    constructor($reactive, $scope, $opinionsApi) {
         'ngInject';
-        $ctrl = this;
+        var $ctrl = this;
         $reactive($ctrl).attach($scope);
       
         $ctrl.$onChanges = (changes) => {
             if (changes.topicId) {
-
-                $ctrl.helpers({
-                    'opinions' : function() {
-                        var opinions = $opinionsApi.getAllByTopicId($ctrl.topicId);
-                        return opinions;
-                    }
-                });
-
+                $ctrl.topicId = angular.copy($ctrl.topicId);
             }
         }
 
-        $ctrl.getUsername = function(userId) {
-            return $usersApi.getUsername(userId);
-        }
+        $ctrl.helpers({
+            opinions : () => {
+                return $opinionsApi.getAllByTopicId($ctrl.getReactively('topicId'));;
+            }
+        });
 
     }
 

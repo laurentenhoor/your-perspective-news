@@ -18,6 +18,8 @@ export default class WriteOpinionDialogComponent {
         if (opinion) {
             $ctrl.document = opinion;
             $ctrl.document.new = false;
+            $ctrl.document.updatedAt = Date.now();
+            $ctrl.document.ownerId = Meteor.userId();
         } else {
             $ctrl.document = {
                 title: '',
@@ -29,6 +31,8 @@ export default class WriteOpinionDialogComponent {
                 ownerId: Meteor.userId(),
                 draft: true,
                 new: true,
+                createdAt: Date.now(),
+                updatedAt: Date.now(),
             }
         }
         $ctrl.initContent = angular.copy($ctrl.document.content);

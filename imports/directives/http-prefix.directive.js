@@ -16,7 +16,7 @@ export default angular
                 function ensureHttpPrefix(value) {                    
 
                     // Google amp to regular string: not very robust!! To be improved!!
-                    if (value.indexOf('google') > 0 && value.indexOf('amp') > 0) {
+                    if (value && value.indexOf('google') > 0 && value.indexOf('amp') > 0) {
                         value = value.replace('https://www.google.nl/amp/s/', '')
                         value = value.replace('https://www.google.com/amp/s/', '')
                         value = value.replace('/amp', '')

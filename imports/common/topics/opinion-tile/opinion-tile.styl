@@ -1,3 +1,5 @@
+$transparante_white = rgba(255, 255, 255, 0.49); // #ffffff7d
+
 opinion-tile {
     height: 100%;
     width: 100%;
@@ -21,6 +23,7 @@ opinion-tile {
         $gradient-opacity = 0.97;
         // background-image: linear-gradient(to right, rgba(0, 92, 151, $gradient-opacity), rgba(54, 55, 149, $gradient-opacity));
         background-image: linear-gradient(to right, rgba(229, 45, 39, $gradient-opacity), rgba(179, 18, 23, $gradient-opacity)) !important;
+        // background: brown; // nice alternative
     }
 
     .content-text {
@@ -28,4 +31,13 @@ opinion-tile {
         line-height: 1.6;
         font-size: 3.4vw;
     }
+
+    .content.root {
+		margin-left: -3vw;
+        padding-left: 3vw;
+		border-left: 3vw solid rgba(255, 255, 255, 0.53);
+	}
+
+
+
 }
