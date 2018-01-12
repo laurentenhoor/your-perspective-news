@@ -78,9 +78,13 @@ export default class MetadataService {
 		if (!article.imageUrl) {
 			article.imageUrl = 'http://www.workhappynow.com/wp-content/foggy-mountains-blue-595.jpeg';
 		}
+		if (!article.description) {
+			article.description = article.title;
+		}
 		if (!article.title) {
 			article.title = "Dit artikel kunnen wij helaas niet vinden."
 		}
+		console.log(article)
 		
 		if (result['twitter:player']) {
 			article.imageUrl = result['twitter:image'];
