@@ -8,16 +8,27 @@
 
             <div ng-repeat="opinion in $ctrl.opinions" class="content root">
 
-                <opinion-controls opinion="opinion"></opinion-controls>
-                
+                <a href="" ng-hide="$ctrl.userOpinionAvailable" ng-click="$ctrl.editOpinion($event)">
+                    Schrijf jouw opinie<br>in minstens 280 tekens.
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </a>
+
                 <h1>{{ opinion.title }}</h1>
 
-                <div class="content-text"
-                    ng-bind-html="opinion.content">
+                <div>{{ $ctrl.getUsername(opinion.ownerId) }}</div>
+                <div>{{ opinion.updatedAt | timeFromNow }}</div>
+                <a href="" ng-show="$ctrl.userOpinionAvailable" ng-click="$ctrl.editOpinion($event)">
+                        Wijzig jouw opinie
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </a>
+
+                <vote article-id="opinion._id"></vote>
+
+                <div class="content-text" ng-bind-html="opinion.content">
                 </div>
 
             </div>
-            
+
         </div>
 
     </div>

@@ -3,7 +3,7 @@ import OpinionTileStyle from './opinion-tile.styl';
 
 class OpinionTileComponent {
 
-    constructor($reactive, $scope, $opinionsApi) {
+    constructor($reactive, $scope, $opinionsApi, $usersApi, $writeOpinionDialog) {
         'ngInject';
         var $ctrl = this;
         $reactive($ctrl).attach($scope);
@@ -17,8 +17,21 @@ class OpinionTileComponent {
         $ctrl.helpers({
             opinions : () => {
                 return $opinionsApi.getAllByTopicId($ctrl.getReactively('topicId'));;
+            },
+            userOpinionAvailable : () => {
+                return $opinionsApi.userOpinionAvailable($ctrl.getReactively('topicId'))
             }
         });
+
+        $ctrl.getUsername = function(userId) {
+            return $usersApi.getUsername(userId);
+        }
+
+
+        $ctrl.editOpinion = function($event) {
+            $writeOpinionDialog.show($event, $ctrl.topicId)
+        }
+
 
     }
 

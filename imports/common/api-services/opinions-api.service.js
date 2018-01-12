@@ -22,4 +22,16 @@ export default class OpinionsApiService {
         return opinions;
     }
 
+    userOpinionAvailable(topicId) {
+        let opinions = Opinions.find({
+            topicId: topicId,
+            ownerId: Meteor.userId(),
+            draft: false,
+        }).fetch();
+        if (opinions && opinions.length > 0) {
+            return true;
+        } 
+        return false;
+    }
+
 }
