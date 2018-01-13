@@ -1,6 +1,7 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
+import {ngmeta as ngMeta} from 'meteor/mkslt04:ngmeta';
 
 import angularMaterial from 'angular-material';
 import angularMaterialStyle from '/node_modules/angular-material/angular-material.css';
@@ -33,6 +34,8 @@ angular.module('yourpers', [
 	$urlRouterProvider.otherwise('/');
 	$qProvider.errorOnUnhandledRejections(false);
 
-});
+})
+
+.service('ngMeta', ngMeta);
 
 _ = lodash;

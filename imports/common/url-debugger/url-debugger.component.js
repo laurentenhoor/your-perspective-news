@@ -3,15 +3,30 @@ import UrlDebuggerStyle from './url-debugger.styl';
 
 class UrlDebuggerComponent {
 
-    constructor($loader, $metadata, $http) {
+    constructor($loader, $metadata, $http, ngMeta) {
         'ngInject';
+
+        ngMeta.setMetaTags({
+            title: 'Open Graph voor Jouwpers',
+            name : [
+              {type: 'og:title', content: 'Open Graph voor Jouwpers'}
+            ]
+          });
+
 
         $ctrl = this;
         $loader.databaseInitialized();
 
-
         $ctrl.processUrl = function () {
+
+            if (!$ctrl.url) {
+                return;
+            }
+
             $metadata.getRawArticleFromUrl($ctrl.url, (error, article) => {
+                if (error) {
+                    return console.error(error);
+                }
                 console.log(article)
                 $ctrl.output = article;
             })
@@ -19,9 +34,8 @@ class UrlDebuggerComponent {
             Meteor.call('getTestMetadata', $ctrl.url, (error, result) => {
 
                 if (error) {
-                    console.error(error);
                     self.$loader.stop();
-                    return callback(error, null);
+                    return console.error(error);
                 }
                 self.$loader.stop();
                 console.log(result)
@@ -33,9 +47,6 @@ class UrlDebuggerComponent {
                 console.log(res);
                 $ctrl.output2 = res;
             });
-
-
-
 
             $http.get("https://opengraph.io/api/1.1/site/" +
                 $ctrl.url + "?app_id=5a54ba1ab3c5afd665690b3a&full_render=true")
@@ -51,6 +62,7 @@ class UrlDebuggerComponent {
         // $ctrl.url = 'https://www.ad.nl/buitenland/triomf-for-trump-belastingplan-is-erdoor~a8bd0881/';
         // $ctrl.url = 'https://dekanttekening.nl/samenleving/poolse-nederlanders-vinden-polen-niet-xenofobisch/'
         // $ctrl.url = 'http://www.economist.com/blogs/dailychart/2010/11/cartography?fsrc=scn/fb/te/pe/ed/truesizeafrica';
+        $ctrl.url = 'http://localhost:3000/'
 
         $ctrl.processUrl();
 
