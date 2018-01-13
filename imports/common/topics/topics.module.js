@@ -30,7 +30,7 @@ export default angular.module('topics', [
 		$stateProvider
 			.state('topics', {
 				url: "/",
-				component: 'topics'
+				component: 'topics',
 			});
 
 	})

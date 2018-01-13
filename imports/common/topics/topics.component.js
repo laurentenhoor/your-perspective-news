@@ -11,7 +11,7 @@ class TopicsComponent {
 
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
-		
+	
 		Meteor.subscribe('topicsAndArticles', {
 			onReady: function(){
 

@@ -12,9 +12,9 @@ if (!Package.appcache)
 		var route = params[1];
 		var itemId = params[2];
 
-		if (route != 'share' || !itemId) {
-			return next();
-		}
+		// if (route != 'share' || !itemId) {
+		// 	return next();
+		// }
 		console.log('valid share url for topic:', itemId)
 
 		if (Inject.appUrl(req.url)) {
@@ -70,7 +70,7 @@ Meteor.startup(() => {
 function setMetaTagesDynamically() {
 	var tags = `
 		<meta property="og:title" content="jouwpers open graph">
-		<meta property="og:image" content="http://wij.jouwpers.nl/i/jouwpers%20open%20graph.png">
+		<meta property="og:image" content="http://wij.jouwpers.nl/i/jouwpers%20server%20open%20graph.png">
 		`
 	return tags;
 }

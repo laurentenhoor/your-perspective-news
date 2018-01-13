@@ -3,15 +3,16 @@ import UrlDebuggerStyle from './url-debugger.styl';
 
 class UrlDebuggerComponent {
 
-    constructor($loader, $metadata, $http, ngMeta) {
+    constructor($loader, $metadata, $http) {
         'ngInject';
 
-        ngMeta.setMetaTags({
-            title: 'Open Graph voor Jouwpers',
-            name : [
-              {type: 'og:title', content: 'Open Graph voor Jouwpers'}
-            ]
-          });
+        // ngMeta.setMetaTags({
+        //     title: 'Open Graph voor Jouwpers',
+        //     name : [
+        //       {property: 'og:title', content: 'Open Graph voor Jouwpers'},
+        //       {property: 'og:image', content: 'http://wij.jouwpers.nl/i/jouwpers%20debug%20open%20graph.png'}
+        //     ]
+        //   });
 
 
         $ctrl = this;
