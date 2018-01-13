@@ -20,7 +20,6 @@ class OpinionTileComponent {
             },
             userOpinion : () => {
                 var userOpinion = $opinionsApi.getUserOpinion($ctrl.getReactively('topicId'))
-                console.log(userOpinion);
                 return userOpinion;
             }
         });
