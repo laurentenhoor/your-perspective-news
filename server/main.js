@@ -49,15 +49,19 @@ function getAllArticlesFromTopic(topic) {
 
 function render(images, callback) {
 
-	new Jimp(900, 600, (err, canvas) => {
+	var pxWidth = 900;
+	var pxHeight = 600;
+	var pxLogo = 200;
+
+	new Jimp(pxWidth, pxHeight, (err, canvas) => {
 		canvas.background(0xFFFFFFFF);
 		canvas.opacity(1);
 
 		if (images.length > 3) {
 			var row = 1, column = 1;
 			_.each(images, (image, i) => {
-				image.cover(450, 300, Jimp.HORIZONTAL_ALIGN_CENTER | Jimp.VERTICAL_ALIGN_MIDDLE);
-				canvas.composite(image, column * 450, row * 300);
+				image.cover(pxWidth/2, pxHeight/2, Jimp.HORIZONTAL_ALIGN_CENTER | Jimp.VERTICAL_ALIGN_MIDDLE);
+				canvas.composite(image, column * (pxWidth/2), row * (pxHeight/2));
 				row++;
 				if (row == 2) {
 					column++ , row = 0
@@ -68,15 +72,15 @@ function render(images, callback) {
 			})
 		} else if (images.length > 1) {
 
-			images[0].cover(450, 600, Jimp.HORIZONTAL_ALIGN_CENTER | Jimp.VERTICAL_ALIGN_MIDDLE);
+			images[0].cover(pxWidth/2, pxHeight, Jimp.HORIZONTAL_ALIGN_CENTER | Jimp.VERTICAL_ALIGN_MIDDLE);
 			canvas.composite(images[0], 0, 0);
 
-			images[1].cover(450, 600, Jimp.HORIZONTAL_ALIGN_CENTER | Jimp.VERTICAL_ALIGN_MIDDLE);
-			canvas.composite(images[1], 450, 0);
+			images[1].cover(pxWidth/2, pxHeight, Jimp.HORIZONTAL_ALIGN_CENTER | Jimp.VERTICAL_ALIGN_MIDDLE);
+			canvas.composite(images[1], pxWidth/2, 0);
 
 		} else if (images.length == 1) {
 
-			images[0].cover(900, 600, Jimp.HORIZONTAL_ALIGN_CENTER | Jimp.VERTICAL_ALIGN_MIDDLE);
+			images[0].cover(pxWidth, pxHeight, Jimp.HORIZONTAL_ALIGN_CENTER | Jimp.VERTICAL_ALIGN_MIDDLE);
 			canvas.composite(images[0], 0, 0);
 
 		}
@@ -85,9 +89,11 @@ function render(images, callback) {
 
 		Jimp.read(logoPath, (error, logo) => {
 			if (logo) {
-				logo.cover(150, 150)
-				canvas.composite(logo, 375, 225);
+				logo.cover(pxLogo, pxLogo)
+				canvas.composite(logo, pxWidth/2-pxLogo/2, pxHeight/2-pxLogo/2);
 			}
+
+			canvas.quality(50);
 			callback(canvas);
 		})
 
