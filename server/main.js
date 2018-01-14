@@ -53,19 +53,19 @@ function render(images, callback) {
 		canvas.background( 0xFFFFFFFF ); 
 		canvas.opacity(1);
 
-		var row=0, column=0; 
+		var row=1, column=1; 
 		_.each(images, (image, i)=>{ 
 			canvas.composite(image, column*450, row*300);
 			row++;		
 			if (row == 2) {
 				column++, row=0
 			}
+			if (column == 2) {
+				column = 0;
+			}
 		})
 
-		console.log(Meteor.absolutePath)
-
 		var logoPath = path.join(__meteor_bootstrap__.serverDir, "../web.browser/app", '/logos/newnews_bw_simplified_circle.png');
-		console.log(logoPath);
 		
 		Jimp.read(logoPath, (error, logo) => {
 			if (logo) {
@@ -97,7 +97,6 @@ function loadImages(urls, callback) {
 			}
 			if (imageCounter == urls.length) {
 				callback(images); 
-				console.log(images)
 			}
 		})
 	})
