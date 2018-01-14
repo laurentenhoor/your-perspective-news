@@ -3,7 +3,7 @@ import style from './topic-controls.styl';
 
 class TopicControlsComponent {
 
-    constructor($reactive, $scope, $dialog, $autoScroll, $writeOpinionDialog, $auth, $timeout) {
+    constructor($reactive, $scope, $dialog, $autoScroll, $writeOpinionDialog, $auth, $timeout, Socialshare) {
         'ngInject';
 
         var $ctrl = this;
@@ -30,9 +30,18 @@ class TopicControlsComponent {
 
         }
 
-        $ctrl.toggleDetailsVisibility = function() {
+        $ctrl.toggleDetailsVisibility = function () {
             $ctrl.detailsAreShown = !$ctrl.detailsAreShown;
-            $ctrl.onShowDetails({$event: {showDetails: $ctrl.detailsAreShown}});
+            $ctrl.onShowDetails({ $event: { showDetails: $ctrl.detailsAreShown } });
+        }
+
+        $ctrl.shareFacebook = function (topicId) {
+            Socialshare.share({
+                'provider': 'facebook',
+                'attrs': {
+                    'socialshareUrl': 'http://wij.jouwpers.nl/topic/' + topicId
+                }
+            });
         }
 
     }

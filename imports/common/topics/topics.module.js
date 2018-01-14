@@ -1,5 +1,6 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
+import ngSocialShare from 'angular-socialshare';
 
 import CategoryTiles from './category-tiles/category-tiles.module';
 import SummaryTile from './summary-tile/summary-tile.module';
@@ -19,6 +20,7 @@ export default angular.module('topics', [
 	OpinionTile,
 	TopicControls,
 	Vote,
+	ngSocialShare,
 	'ArticleActionsButton',
 ])
 	.component('topics', TopicsComponent)
