@@ -7,7 +7,7 @@ import { fail } from 'assert';
 
 class AppComponent {
 	
-	constructor($timeout, $loader, $firstUseToast, $firstUseDialog, $shareDialog) {
+	constructor($timeout, $loader, $firstUseToast, $firstUseDialog) {
 		'ngInject';
 		
 		console.log('init AppCtrl');
@@ -18,8 +18,6 @@ class AppComponent {
 					$firstUseToast.show();
 			}, 6000)
 		});
-
-		$shareDialog.show(null, 'sss')
 
 	}
 }
