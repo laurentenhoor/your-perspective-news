@@ -22,12 +22,12 @@ if (!Package.appcache)
 		if (route != 'topic' || !itemId) {
 			return next();
 		}
-		var topic = Topics.findOne({_id:itemId});
+		var topic = Topics.findOne({ _id: itemId });
 		if (!topic) {
 			return next();
 		}
 		var articles = getAllArticlesFromTopic(topic);
-		
+
 		if (Inject.appUrl(req.url)) {
 			Inject.rawHead('myData', getMetaTags(topic, articles[0]), res);
 		}
@@ -38,9 +38,9 @@ if (!Package.appcache)
 function getAllArticlesFromTopic(topic) {
 
 	var articles = [];
-	_.each(topic.articlesByCategory, (categoryBlock)=>{
+	_.each(topic.articlesByCategory, (categoryBlock) => {
 		_.each(categoryBlock.articleIds, (articleId) => {
-			articles.push(Articles.findOne({_id:articleId}))			
+			articles.push(Articles.findOne({ _id: articleId }))
 		})
 	})
 
@@ -49,28 +49,44 @@ function getAllArticlesFromTopic(topic) {
 
 function render(images, callback) {
 
-	new Jimp(900, 600, (err, canvas)=> {
-		canvas.background( 0xFFFFFFFF ); 
+	new Jimp(900, 600, (err, canvas) => {
+		canvas.background(0xFFFFFFFF);
 		canvas.opacity(1);
 
-		var row=1, column=1; 
-		_.each(images, (image, i)=>{ 
-			canvas.composite(image, column*450, row*300);
-			row++;		
-			if (row == 2) {
-				column++, row=0
-			}
-			if (column == 2) {
-				column = 0;
-			}
-		})
+		if (images.length > 3) {
+			var row = 1, column = 1;
+			_.each(images, (image, i) => {
+				image.cover(450, 300, Jimp.HORIZONTAL_ALIGN_CENTER | Jimp.VERTICAL_ALIGN_MIDDLE);
+				canvas.composite(image, column * 450, row * 300);
+				row++;
+				if (row == 2) {
+					column++ , row = 0
+				}
+				if (column == 2) {
+					column = 0;
+				}
+			})
+		} else if (images.length > 1) {
 
-		var logoPath = path.join(__meteor_bootstrap__.serverDir, "../web.browser/app", '/logos/newnews_bw_simplified_circle.png');
-		
+			images[0].cover(450, 600, Jimp.HORIZONTAL_ALIGN_CENTER | Jimp.VERTICAL_ALIGN_MIDDLE);
+			canvas.composite(images[0], 0, 0);
+
+			images[1].cover(450, 600, Jimp.HORIZONTAL_ALIGN_CENTER | Jimp.VERTICAL_ALIGN_MIDDLE);
+			canvas.composite(images[1], 450, 0);
+
+		} else if (images.length == 1) {
+
+			images[0].cover(900, 600, Jimp.HORIZONTAL_ALIGN_CENTER | Jimp.VERTICAL_ALIGN_MIDDLE);
+			canvas.composite(images[0], 0, 0);
+
+		}
+
+		var logoPath = path.join(__meteor_bootstrap__.serverDir, "../web.browser/app", '/logos/newnews_bw_simplified_circle2.png');
+
 		Jimp.read(logoPath, (error, logo) => {
 			if (logo) {
-				logo.cover(200,200)
-				canvas.composite(logo, 350, 200);
+				logo.cover(150, 150)
+				canvas.composite(logo, 375, 225);
 			}
 			callback(canvas);
 		})
@@ -91,12 +107,11 @@ function loadImages(urls, callback) {
 				console.error(error);
 			}
 			if (image) {
-				image.cover(450, 300);
-				image.opacity(0.5)	
+				// image.opacity(1)	
 				images.push(image)
 			}
 			if (imageCounter == urls.length) {
-				callback(images); 
+				callback(images);
 			}
 		})
 	})
@@ -121,9 +136,9 @@ function sendBackImage(request, canvas) {
 Router.route('/i/:topicId.jpg', function () {
 
 	var request = this;
-	var urls= [];
-	
-	var topic = Topics.findOne({_id:request.params.topicId});
+	var urls = [];
+
+	var topic = Topics.findOne({ _id: request.params.topicId });
 	var articles = getAllArticlesFromTopic(topic);
 	articles = _.sortBy(articles, 'score', 'asc').reverse();
 
@@ -132,7 +147,7 @@ Router.route('/i/:topicId.jpg', function () {
 			urls.push(article.imageUrl);
 		}
 	})
-	urls = urls.slice(0,4);
+	urls = urls.slice(0, 4);
 
 	loadImages(urls, (images) => {
 		render(images, (canvas) => {
@@ -171,7 +186,7 @@ Meteor.startup(() => {
 
 function getMetaTags(topic, article) {
 	var tags = `
-		<meta property="og:title" content="`+ article.title +`">
+		<meta property="og:title" content="`+ article.title + `">
 		<meta property="og:description" content="Zoek mee naar het volledige verhaal achter dit nieuws op jouwpers.">
 		<meta property="og:image" content="http://wij.jouwpers.nl/i/`+ topic._id + `.jpg">
 		<meta property="og:image:width" content="900">
