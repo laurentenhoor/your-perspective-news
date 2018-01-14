@@ -12,5 +12,16 @@ export default {
 			return null;
 		}
 
+	},
+
+	today: function () {
+		return (timestamp) => {
+			
+			if (timestamp) {
+				return moment.utc(timestamp).format('LL');
+			}
+			return null;
+		}
+
 	}
 }

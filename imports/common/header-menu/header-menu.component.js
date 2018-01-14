@@ -4,8 +4,10 @@ import HeaderMenuStyle from './header-menu.styl';
 
 class HeaderMenuComponent {
 
-    constructor($scope, $rootScope, $location, $window, $firstUseDialog, $firstUseToast) {
+    constructor($scope, $rootScope, $location, $window, $firstUseDialog, $firstUseToast, $filter) {
         'ngInject'
+
+        $scope.now = new Date();
 
         $scope.isActive = function (viewLocation) {
             return viewLocation === $location.path();
@@ -18,7 +20,7 @@ class HeaderMenuComponent {
             $firstUseToast.hide();
             $firstUseDialog.show($event);
         }
-
+       
     }
 
 }

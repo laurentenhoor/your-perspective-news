@@ -12,13 +12,13 @@
 
 <article-actions-button class="add-article-top-menu"></article-actions-button>
 
-<ul class="menu">
+<ul class="menu" ng-cloak>
 	<li ng-hide="isActive('/')">
 		<a href="/">&#8612; terug</a>
 	</li>
 
 	<li ng-show="isActive('/')">
-		<a href="">nieuwsoverzicht</a>
+		<a class="date-banner" href="">{{ now | today }} - <md-icon class="hot-icon">whatshot</md-icon><div class="five">top 5</div></a>
 	</li>
 
 	<auth style="float:right;padding-right:4vw;"></auth>

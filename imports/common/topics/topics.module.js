@@ -26,6 +26,7 @@ export default angular.module('topics', [
 	.component('topics', TopicsComponent)
 	.service('$autoScroll', AutoScrollService)
 	.filter('timeFromNow', TimeFilters.timeFromNow)
+	.filter('today', TimeFilters.today)
 	.config(($stateProvider) => {
 		'ngInject';
 
