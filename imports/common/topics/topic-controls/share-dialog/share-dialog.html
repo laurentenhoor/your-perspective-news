@@ -20,10 +20,12 @@
                 LinkedIn
             </md-button>
 
-            <md-button ng-click="$ctrl.shareWhatsapp()" class="md-raised share-button">
-                <md-icon md-font-set="fa" md-font-icon="fa-whatsapp"></md-icon>
-                Whatsapp
-            </md-button>
+            <a socialshare socialshare-provider="whatsapp" socialshare-url="{{ $ctrl.getShareUrl() }}" socialshare-text="{{ $ctrl.getShareText() }}">
+                <md-button ng-click="" class="md-raised share-button">
+                    <md-icon md-font-set="fa" md-font-icon="fa-whatsapp"></md-icon>
+                    Whatsapp
+                </md-button>
+            </a>
 
             <md-button ng-click="$ctrl.shareFacebook()" class="md-raised share-button">
                 <md-icon md-font-set="fa" md-font-icon="fa-facebook"></md-icon>

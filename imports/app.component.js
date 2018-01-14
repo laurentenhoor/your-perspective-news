@@ -6,7 +6,7 @@ import appStyle from './app.styl';
 
 class AppComponent {
 	
-	constructor($timeout, $loader, $firstUseToast, $firstUseDialog) {
+	constructor($timeout, $loader, $firstUseToast, $firstUseDialog, $shareDialog) {
 		'ngInject';
 		
 		console.log('init AppCtrl');

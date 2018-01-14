@@ -4,26 +4,26 @@ export default class ShareDialogComponent {
         'ngInject';
 
         $ctrl = this;
+    
 
         $ctrl.hide = () => {
             $shareDialog.hide();
         }
-
         
+        $ctrl.getShareUrl = () => {
+            return 'http://wij.jouwpers.nl/topic/' + topicId;
+
+        }
+
+        $ctrl.getShareText = () => {
+            return 'Zoek mee naar het volledige verhaal achter dit nieuws op jouwpers.';
+        }
+                
         $ctrl.shareLinkedIn = () => {
             Socialshare.share({
                 'provider': 'linkedin',
                 'attrs': {
-                    'socialshareUrl': 'http://wij.jouwpers.nl/topic/' + topicId
-                }
-            });
-        }
-
-        $ctrl.shareWhatsapp = () => {
-            Socialshare.share({
-                'provider': 'whatsapp',
-                'attrs': {
-                    'socialshareUrl': 'http://wij.jouwpers.nl/topic/' + topicId
+                    'socialshareUrl': $ctrl.getShareUrl()
                 }
             });
         }
@@ -32,7 +32,8 @@ export default class ShareDialogComponent {
             Socialshare.share({
                 'provider': 'twitter',
                 'attrs': {
-                    'socialshareUrl': 'http://wij.jouwpers.nl/topic/' + topicId
+                    'socialshareUrl': $ctrl.getShareUrl(),
+                    'socialShareText' : $ctrl.getShareText()
                 }
             });
         }
@@ -41,7 +42,7 @@ export default class ShareDialogComponent {
             Socialshare.share({
                 'provider': 'facebook',
                 'attrs': {
-                    'socialshareUrl': 'http://wij.jouwpers.nl/topic/' + topicId
+                    'socialshareUrl': $ctrl.getShareUrl()
                 }
             });
         }
