@@ -17,7 +17,7 @@ class AccountMenuComponent {
             }
         });
         
-        $ctrl.beltImage = '/assets/karateband-wit.jpeg';
+        $ctrl.beltImage = '/karateband-wit.jpeg';
        
         $ctrl.toggleAccountMenu = function() {
             $accountMenu.toggle();

@@ -6,64 +6,140 @@ import '/imports/api/feedback.js';
 import '/imports/api/comments.js';
 import '/imports/api/opinions.js';
 
+import { Topics } from '/imports/api/topics'
+import { Articles } from '/imports/api/articles'
+
 var Jimp = require('jimp');
+var path = require('path');
 
 if (!Package.appcache)
+
 	WebApp.connectHandlers.use(function (req, res, next) {
 		var params = req.url.split('/');
 		var route = params[1];
 		var itemId = params[2];
 
-		// if (route != 'share' || !itemId) {
-		// 	return next();
-		// }
-		console.log('valid share url for topic:', itemId)
-
+		if (route != 'topic' || !itemId) {
+			return next();
+		}
+		var topic = Topics.findOne({_id:itemId});
+		if (!topic) {
+			return next();
+		}
+		var articles = getAllArticlesFromTopic(topic);
+		
 		if (Inject.appUrl(req.url)) {
-			Inject.rawHead('myData', setMetaTagesDynamically(itemId), res);
+			Inject.rawHead('myData', getMetaTags(topic, articles[0]), res);
 		}
 		next();
 
 	});
 
+function getAllArticlesFromTopic(topic) {
 
-Router.route('/i/:text.png', function () {
+	var articles = [];
+	_.each(topic.articlesByCategory, (categoryBlock)=>{
+		_.each(categoryBlock.articleIds, (articleId) => {
+			articles.push(Articles.findOne({_id:articleId}))			
+		})
+	})
 
-	console.log('ironrouter fired')
+	return articles;
+}
 
-	var self = this;
-	var url = "http://img.humo.be/q100/w1200/h628/img_178/1789097.jpg"
+function render(images, callback) {
 
-	Jimp.read(url, function (error, image) {
+	new Jimp(900, 600, (err, canvas)=> {
+		canvas.background( 0xFFFFFFFF ); 
+		canvas.opacity(1);
 
-		if (error) {
-			return console.error(error);;
-		}
+		var row=0, column=0; 
+		_.each(images, (image, i)=>{ 
+			canvas.composite(image, column*450, row*300);
+			row++;		
+			if (row == 2) {
+				column++, row=0
+			}
+		})
 
-		image.cover(600, 600);
+		console.log(Meteor.absolutePath)
 
-		Jimp.loadFont(Jimp.FONT_SANS_128_BLACK)
-			.then((font) => {
+		var logoPath = path.join(__meteor_bootstrap__.serverDir, "../web.browser/app", '/logos/newnews_bw_simplified_circle.png');
+		console.log(logoPath);
+		
+		Jimp.read(logoPath, (error, logo) => {
+			if (logo) {
+				logo.cover(200,200)
+				canvas.composite(logo, 350, 200);
+			}
+			callback(canvas);
+		})
 
-				image.print(font, 20, 300, self.params.text)
-				// image.color([{ apply: 'darken', params: [30] }])
+	})
+}
 
-				image.getBuffer(Jimp.AUTO, (error, imageBuffer) => {
+function loadImages(urls, callback) {
 
-					self.response.writeHeader('200', {
-						'Content-Type': 'image/png',
-						'Content-Length': imageBuffer.length
-					});
+	var images = [];
+	var imageCounter = 0;
 
-					self.response.write(imageBuffer);
-					self.response.end();
+	_.each(urls, (url, i) => {
 
-				});
-			});
+		Jimp.read(url, (error, image) => {
+			imageCounter++;
+			if (error) {
+				console.error(error);
+			}
+			if (image) {
+				image.cover(450, 300);
+				image.opacity(0.5)	
+				images.push(image)
+			}
+			if (imageCounter == urls.length) {
+				callback(images); 
+				console.log(images)
+			}
+		})
+	})
+}
+
+function sendBackImage(request, canvas) {
+
+	canvas.getBuffer(Jimp.MIME_JPEG, (error, imageBuffer) => {
+
+		request.response.writeHeader('200', {
+			'Content-Type': 'image/jpg',
+			'Content-Length': imageBuffer.length
+		});
+
+		request.response.write(imageBuffer);
+		request.response.end();
 
 	});
+}
+
+
+Router.route('/i/:topicId.jpg', function () {
+
+	var request = this;
+	var urls= [];
+	
+	var topic = Topics.findOne({_id:request.params.topicId});
+	var articles = getAllArticlesFromTopic(topic);
+	articles = _.sortBy(articles, 'score', 'asc').reverse();
+
+	_.each(articles.slice(0,4), (article) => {
+		urls.push(article.imageUrl);
+	})
+
+	loadImages(urls, (images) => {
+		render(images, (canvas) => {
+			sendBackImage(request, canvas);
+		})
+	})
 
 }, { where: 'server' });
+
 
 Meteor.startup(() => {
 
@@ -91,11 +167,12 @@ Meteor.startup(() => {
 
 });
 
-function setMetaTagesDynamically(itemId) {
+function getMetaTags(topic, article) {
 	var tags = `
-		<meta property="og:title" content="jouwpers open graph">
-		<meta property="og:image" content="http://wij.jouwpers.nl/i/`+ itemId + `.png">
-		<meta property="og:image:width" content="600">
+		<meta property="og:title" content="`+ article.title +`">
+		<meta property="og:description" content="Zoek mee naar het volledige verhaal achter dit nieuws op jouwpers.">
+		<meta property="og:image" content="http://wij.jouwpers.nl/i/`+ topic._id + `.jpg">
+		<meta property="og:image:width" content="900">
 		<meta property="og:image:height" content="600">
 		`
 	return tags;
