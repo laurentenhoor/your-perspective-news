@@ -127,9 +127,12 @@ Router.route('/i/:topicId.jpg', function () {
 	var articles = getAllArticlesFromTopic(topic);
 	articles = _.sortBy(articles, 'score', 'asc').reverse();
 
-	_.each(articles.slice(0,4), (article) => {
-		urls.push(article.imageUrl);
+	_.each(articles, (article) => {
+		if (article.imageUrl) {
+			urls.push(article.imageUrl);
+		}
 	})
+	urls = urls.slice(0,4);
 
 	loadImages(urls, (images) => {
 		render(images, (canvas) => {
