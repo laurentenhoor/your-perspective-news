@@ -12,6 +12,12 @@ Wij verzetten ons tegen twittergeblaat en nepnieuws.
 * It is not possible to share and discuss multiple news items at once (cross-linking and comparison).
 
 # Application Changelog
+## version 1.3.5
+* Added opinion tile
+* Added share functionality
+    * Social media buttons
+    * Real-time back-end summary image generation (triggered by HTTP-get request)
+
 ## version 1.3.4
 * Added the summary tile
 * Added timeline sorting
