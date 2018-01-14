@@ -3,7 +3,7 @@ import style from './topic-controls.styl';
 
 class TopicControlsComponent {
 
-    constructor($reactive, $scope, $dialog, $autoScroll, $writeOpinionDialog, $auth, $timeout, Socialshare) {
+    constructor($reactive, $scope, $dialog, $autoScroll, $writeOpinionDialog, $auth, $timeout, $shareDialog) {
         'ngInject';
 
         var $ctrl = this;
@@ -35,14 +35,10 @@ class TopicControlsComponent {
             $ctrl.onShowDetails({ $event: { showDetails: $ctrl.detailsAreShown } });
         }
 
-        $ctrl.shareFacebook = function (topicId) {
-            Socialshare.share({
-                'provider': 'facebook',
-                'attrs': {
-                    'socialshareUrl': 'http://wij.jouwpers.nl/topic/' + topicId
-                }
-            });
+        $ctrl.share = function($event, topicId) {
+            $shareDialog.show($event, topicId);
         }
+
 
     }
 

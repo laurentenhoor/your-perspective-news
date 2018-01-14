@@ -1,0 +1,46 @@
+<md-dialog aria-label="Share" class="share-dialog">
+    <form ng-cloak>
+        <md-toolbar>
+            <!-- <div class="md-toolbar-tools"> -->
+
+            <md-toolbar-header>Delen</md-toolbar-header>
+            <!-- <md-toolbar-subtitle>{{$ctrl.headerSubText}}</md-toolbar-subtitle> -->
+
+            <!-- <span flex></span>
+          <md-button class="md-icon-button" ng-click="$ctrl.hide()">
+            <md-icon aria-label="Close dialog">cancel</md-icon>
+          </md-button> -->
+            <!-- </div> -->
+        </md-toolbar>
+
+        <md-dialog-content>
+
+            <md-button ng-click="$ctrl.shareLinkedIn()" class="md-raised share-button">
+                <md-icon md-font-set="fa" md-font-icon="fa-linkedin"></md-icon>
+                LinkedIn
+            </md-button>
+
+            <md-button ng-click="$ctrl.shareWhatsapp()" class="md-raised share-button">
+                <md-icon md-font-set="fa" md-font-icon="fa-whatsapp"></md-icon>
+                Whatsapp
+            </md-button>
+
+            <md-button ng-click="$ctrl.shareFacebook()" class="md-raised share-button">
+                <md-icon md-font-set="fa" md-font-icon="fa-facebook"></md-icon>
+                Facebook
+            </md-button>
+
+            <md-button ng-click="$ctrl.shareTwitter()" class="md-raised share-button">
+                <md-icon md-font-set="fa" md-font-icon="fa-twitter"></md-icon>
+                Twitter
+            </md-button>
+
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <md-button ng-click="$ctrl.hide()">
+                Sluiten
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
