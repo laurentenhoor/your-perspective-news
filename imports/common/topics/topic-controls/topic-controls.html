@@ -13,14 +13,15 @@
             </md-button>
         </div>
 
-        <md-button class="md-button" ng-click="$ctrl.share($event, $ctrl.topicId)" aria-label="Delen.">
-            <!-- <a href="whatsapp://send?text=http://wij.jouwpers.nl/" data-action="share/whatsapp/share"> -->
-                <md-icon>share</md-icon>
-            <!-- </a> -->
-            <div>Deel</div>
-        </md-button>
-
         <div ng-show="$ctrl.detailsAreShown" style="display:flex;flex-direction:column">
+
+            <md-button class="md-button" ng-click="$ctrl.share($event, $ctrl.topicId)" aria-label="Delen.">
+                <!-- <a href="whatsapp://send?text=http://wij.jouwpers.nl/" data-action="share/whatsapp/share"> -->
+                <md-icon>share</md-icon>
+                <!-- </a> -->
+                <div>Deel</div>
+            </md-button>
+
             <article-actions-button topic-id="$ctrl.topicId">
             </article-actions-button>
 

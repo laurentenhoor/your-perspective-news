@@ -3,7 +3,6 @@ import angularMeteor from 'angular-meteor';
 
 import appTemplate from './app.html';
 import appStyle from './app.styl';
-import { fail } from 'assert';
 
 class AppComponent {
 	
