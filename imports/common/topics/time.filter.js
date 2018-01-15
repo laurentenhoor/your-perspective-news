@@ -18,7 +18,7 @@ export default {
 		return (timestamp) => {
 			
 			if (timestamp) {
-				return moment.utc(timestamp).format('LL');
+				return moment.utc(timestamp).format('DD MMMM');
 			}
 			return null;
 		}
