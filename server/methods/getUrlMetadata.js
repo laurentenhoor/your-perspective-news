@@ -2,7 +2,6 @@ import metaGet from 'metaget';
 import Url from 'url-parse';
 import getLogo from 'website-logo';
 
-import ogs from 'open-graph-scraper';
 import suq from 'suq';
 import request from 'request';
 

@@ -21,6 +21,14 @@
 			</opinion-tile>
 
 		</div>
+		
 	</div>
-
+	
 </div>
+
+
+<div class="more-topics-controls">
+	<md-button class="" ng-click="$ctrl.loadMoreTopics();">Meer Topics Laden</md-button>
+	<md-button class="" ng-click="$ctrl.toggleYesterday();">{{ $ctrl.yesterday ? 'Vandaag' : 'Gisteren' }}</md-button>
+	<md-button class="" ng-click="$ctrl.loadAllTopics();">Alles</md-button>
+</div> 

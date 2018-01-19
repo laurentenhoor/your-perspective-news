@@ -6,27 +6,46 @@ import { Articles } from './articles.js';
 
 Topics.before.insert(function (userId, doc) {
 
-	if(Meteor.isServer) {
+	if (Meteor.isServer) {
 		//Format the document
 		doc.createdAt = Date.now();
 		doc.updatedAt = Date.now();
 	}
 });
 
-if(Meteor.isServer) {
-    Meteor.publish('topics', function(){
-        return Topics.find({});
-    });
-    
-    Meteor.publish("topicsAndArticles", function () {
-    	  return [
-//    	    Topics.find({}, {limit: 6, sort: {'createdAt':-1}}),
-    	    Topics.find({}),
-    	    Articles.find({}),
-    	  ];
-    	});   
-}
 
-if(Meteor.isClient) {
-	Meteor.subscribe('topics');
+ 
+if (Meteor.isServer) {
+
+	Meteor.publish('topicsAndArticles', (amountOfTopics, yesterday) => {
+
+		var amountOfDays = 1;
+
+		console.log('amountOfTopics', amountOfTopics);
+
+		function getDayTimestamp(amountOfDays) {
+			return new Date().getTime() - (amountOfDays * 24 * 60 * 60 * 1000);
+		}
+		var startOfDay = getDayTimestamp(1);
+		var endOfDay = getDayTimestamp(-1);
+		
+		if (yesterday == true) {
+			startOfDay = getDayTimestamp(2);
+			endOfDay = getDayTimestamp(1);
+		}
+		else if (yesterday == null) {
+			startOfDay = getDayTimestamp(1000);
+		}
+
+		return [
+			Topics.find({
+				updatedAt : { $gte : startOfDay, $lte: endOfDay}
+			}, {
+				sort: { updatedAt: - 1 },
+				limit: amountOfTopics
+			}),
+			Articles.find({}),
+		];
+	});
+	
 }
