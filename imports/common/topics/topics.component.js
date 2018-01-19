@@ -12,8 +12,10 @@ class TopicsComponent {
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
 		
-		$ctrl.amountOfTopics = 2;
+		$ctrl.amountOfTopics = 5;
 		$ctrl.yesterday = false;
+
+		$ctrl.firstInit = true;
 
 		Tracker.autorun(() => {
 
@@ -22,7 +24,12 @@ class TopicsComponent {
 				$ctrl.getReactively('yesterday'), {
 
 					onReady: function () {
-						$loader.databaseInitialized();
+						if ($ctrl.firstInit) {
+							$loader.databaseInitialized();
+							$ctrl.firstInit = false;
+						} else {
+							$loader.stop();
+						}
 
 						$ctrl.helpers({
 							'topics': () => {
@@ -50,16 +57,19 @@ class TopicsComponent {
 
 		$ctrl.loadMoreTopics = () => {
 			$ctrl.amountOfTopics = $ctrl.amountOfTopics + 5;
+			$loader.start();
 		}
 
 		$ctrl.toggleYesterday = () => {
 			$ctrl.yesterday = !$ctrl.yesterday;
 			$ctrl.amountOfTopics = 5;
+			$loader.start();
 		}
 
 		$ctrl.loadAllTopics = () => {
 			$ctrl.amountOfTopics = 50;
 			$ctrl.yesterday = null;
+			$loader.start();
 		}
 
 	}
