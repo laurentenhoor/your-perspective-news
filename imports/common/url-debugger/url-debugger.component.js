@@ -10,7 +10,7 @@ class UrlDebuggerComponent {
         //     title: 'Open Graph voor Jouwpers',
         //     name : [
         //       {property: 'og:title', content: 'Open Graph voor Jouwpers'},
-        //       {property: 'og:image', content: 'http://wij.jouwpers.nl/i/jouwpers%20debug%20open%20graph.png'}
+        //       {property: 'og:image', content: 'http://beta.jouwpers.nl/i/jouwpers%20debug%20open%20graph.png'}
         //     ]
         //   });
 

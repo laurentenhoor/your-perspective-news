@@ -48,7 +48,7 @@ then
     SERVER_MONGO_PORT="27017"
     SERVER_MONGO_DBNAME="yourpers"
     SERVER_PORT="3000"
-    SERVER_ROOT_URL="http://wij.jouwpers.nl/"
+    SERVER_ROOT_URL="http://beta.jouwpers.nl/"
 else
     ############# Staging ###########
     DEPLOY_ENV="staging"

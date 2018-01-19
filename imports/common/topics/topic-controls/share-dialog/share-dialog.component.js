@@ -11,7 +11,7 @@ export default class ShareDialogComponent {
         }
         
         $ctrl.getShareUrl = () => {
-            return 'http://wij.jouwpers.nl/topic/' + topicId;
+            return 'http://beta.jouwpers.nl/topic/' + topicId;
 
         }
 

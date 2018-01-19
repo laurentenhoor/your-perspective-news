@@ -194,12 +194,12 @@ function getMetaTags(topic, article) {
 	var tags = `
 		<meta property="og:title" content="`+ article.title + `">
 		<meta property="og:description" content="Zoek mee naar het volledige verhaal achter dit nieuws op jouwpers.">
-		<meta property="og:image" content="http://wij.jouwpers.nl/i/`+ topic._id + `.jpg">
+		<meta property="og:image" content="http://beta.jouwpers.nl/i/`+ topic._id + `.jpg">
 		<meta property="og:image:type" content="image/jpeg" />
 		<meta property="og:image:width" content="900">
 		<meta property="og:image:height" content="600">
 		<meta property="og:type" content="article">
-		<meta property="og:url" content="http://wij.jouwpers.nl/topic/`+ topic._id +`/">
+		<meta property="og:url" content="http://beta.jouwpers.nl/topic/`+ topic._id +`/">
 		`
 	return tags;
 }
