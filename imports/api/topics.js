@@ -13,11 +13,9 @@ Topics.before.insert(function (userId, doc) {
 	}
 });
 
-
- 
 if (Meteor.isServer) {
 
-	Meteor.publish('topicsAndArticles', (amountOfTopics, yesterday) => {
+	Meteor.publish('topicsAndArticles', (amountOfTopics, yesterday, topicId) => {
 
 		var amountOfDays = 1;
 
@@ -28,7 +26,7 @@ if (Meteor.isServer) {
 		}
 		var startOfDay = getDayTimestamp(1);
 		var endOfDay = getDayTimestamp(-1);
-		
+
 		if (yesterday == true) {
 			startOfDay = getDayTimestamp(2);
 			endOfDay = getDayTimestamp(1);
@@ -37,15 +35,22 @@ if (Meteor.isServer) {
 			startOfDay = getDayTimestamp(1000);
 		}
 
+		var searchQuery = {
+			updatedAt: { $gte: startOfDay, $lte: endOfDay }
+		}
+
+		if (topicId) {
+			searchQuery._id = topicId;
+		}
+
 		return [
-			Topics.find({
-				updatedAt : { $gte : startOfDay, $lte: endOfDay}
-			}, {
-				sort: { updatedAt: - 1 },
-				limit: amountOfTopics
-			}),
+			Topics.find(
+				searchQuery, {
+					sort: { updatedAt: - 1 },
+					limit: amountOfTopics
+				}),
 			Articles.find({}),
 		];
 	});
-	
+
 }

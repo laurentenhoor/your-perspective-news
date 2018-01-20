@@ -6,11 +6,20 @@ import { Topics } from '/imports/api/topics.js';
 
 class TopicsComponent {
 
-	constructor($scope, $reactive, $loader, $articlesApi, $timeout) {
+	constructor($scope, $reactive, $loader, $articlesApi, $timeout, $state) {
 		'ngInject';
 
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
+
+		$ctrl.$onChanges = (changes) => {
+			if (changes.topicId) {
+				$ctrl.topicId = angular.copy($ctrl.topicId);
+				if ($ctrl.topicId) {
+					$ctrl.yesterday = null;
+				}	
+			}
+		}
 		
 		$ctrl.amountOfTopics = 5;
 		$ctrl.yesterday = false;
@@ -21,7 +30,8 @@ class TopicsComponent {
 
 			Meteor.subscribe('topicsAndArticles',
 				$ctrl.getReactively('amountOfTopics'),
-				$ctrl.getReactively('yesterday'), {
+				$ctrl.getReactively('yesterday'),
+				$ctrl.getReactively('topicId'), {
 
 					onReady: function () {
 						if ($ctrl.firstInit) {
@@ -58,18 +68,27 @@ class TopicsComponent {
 		$ctrl.loadMoreTopics = () => {
 			$loader.start();
 			$ctrl.amountOfTopics = $ctrl.amountOfTopics + 5;
+			checkState();
 		}
 
 		$ctrl.toggleYesterday = () => {
 			$loader.start();
 			$ctrl.yesterday = !$ctrl.yesterday;
 			$ctrl.amountOfTopics = 5;
+			checkState();
 		}
 
 		$ctrl.loadAllTopics = () => {
 			$loader.start();
 			$ctrl.amountOfTopics = $ctrl.amountOfTopics + 5;
 			$ctrl.yesterday = null;
+			checkState();
+		}
+
+		function checkState() {
+			if ($state.current.name == 'singleTopic') {
+				$state.go('topics')
+			}
 		}
 
 	}
@@ -79,5 +98,7 @@ class TopicsComponent {
 export default {
 	controller: TopicsComponent,
 	templateUrl: TopicsTemplate,
-	bindings: {}
+	bindings: { 
+		topicId : '<'
+	}
 }

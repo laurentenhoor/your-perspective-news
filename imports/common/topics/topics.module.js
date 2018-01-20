@@ -34,6 +34,15 @@ export default angular.module('topics', [
 			.state('topics', {
 				url: "/",
 				component: 'topics',
+			})
+			.state('singleTopic', {
+				url: "/topic/:topicId",
+				component: 'topics',
+				resolve: {
+					topicId: ($transition$) => {
+					  return $transition$.params().topicId
+				  }
+				}
 			});
 
 	})
