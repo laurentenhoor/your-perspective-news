@@ -6,7 +6,7 @@ import { Topics } from '/imports/api/topics.js';
 
 class TopicsComponent {
 
-	constructor($scope, $reactive, $loader, $articlesApi) {
+	constructor($scope, $reactive, $loader, $articlesApi, $timeout) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -27,13 +27,13 @@ class TopicsComponent {
 						if ($ctrl.firstInit) {
 							$loader.databaseInitialized();
 							$ctrl.firstInit = false;
+							
 						} else {
 							$loader.stop();
 						}
-
+						
 						$ctrl.helpers({
 							'topics': () => {
-								console.log('loadTopics')
 								return Topics.find({}).fetch();;
 							}
 						});
@@ -56,20 +56,20 @@ class TopicsComponent {
 		}
 
 		$ctrl.loadMoreTopics = () => {
-			$ctrl.amountOfTopics = $ctrl.amountOfTopics + 5;
 			$loader.start();
+			$ctrl.amountOfTopics = $ctrl.amountOfTopics + 5;
 		}
 
 		$ctrl.toggleYesterday = () => {
+			$loader.start();
 			$ctrl.yesterday = !$ctrl.yesterday;
 			$ctrl.amountOfTopics = 5;
-			$loader.start();
 		}
 
 		$ctrl.loadAllTopics = () => {
-			$ctrl.amountOfTopics = 50;
-			$ctrl.yesterday = null;
 			$loader.start();
+			$ctrl.amountOfTopics = $ctrl.amountOfTopics + 5;
+			$ctrl.yesterday = null;
 		}
 
 	}
