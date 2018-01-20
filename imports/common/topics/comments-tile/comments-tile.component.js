@@ -146,7 +146,7 @@ class CommentsTileComponent {
 			// Appending dialog to document.body to cover sidenav in docs app
 			var confirm = $dialog.confirm()
 				.title('Weet je het zeker?')
-				.textContent('Deze reactie zal definitief worden verwijderd.')
+				.textContent('Jouw bijdrage zal definitief worden verwijderd.')
 				.ariaLabel('Verwijderen')
 				.targetEvent(ev)
 				.ok('Verwijderen')
