@@ -29,6 +29,7 @@ class TopicsComponent {
 		Tracker.autorun(() => {
 
 			Meteor.subscribe('topicsAndArticles',
+			
 				$ctrl.getReactively('amountOfTopics'),
 				$ctrl.getReactively('yesterday'),
 				$ctrl.getReactively('topicId'), {
