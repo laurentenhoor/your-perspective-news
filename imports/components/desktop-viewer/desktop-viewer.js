@@ -6,12 +6,13 @@ import style from './desktop-viewer.styl';
 
 class DesktopViewerCtrl {
 
-	constructor($window, $scope) {
+	constructor($window, $scope, $location) {
 		'ngInject';
 
 		var $ctrl = this;
 
 		$ctrl.showMobile = false;
+		$ctrl.absUrl = $location.absUrl();
 		
 		angular.element($window).bind('resize', () => {
 			$scope.$apply(function() {
@@ -23,6 +24,8 @@ class DesktopViewerCtrl {
 		angular.element($window).bind("orientationchange", () => {
 			
 		})
+
+		
 		
 		function checkWindowSize() {
 			
