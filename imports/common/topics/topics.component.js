@@ -80,7 +80,7 @@ class TopicsComponent {
 
 		$ctrl.loadAllTopics = () => {
 			$loader.start();
-			$ctrl.amountOfTopics = $ctrl.amountOfTopics + 5;
+			$ctrl.amountOfTopics = 5;
 			$ctrl.yesterday = null;
 			checkState();
 		}
