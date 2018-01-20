@@ -1,3 +1,5 @@
+import { Meteor } from 'meteor/meteor';
+
 export default class ShareDialogComponent {
 
     constructor(Socialshare, $shareDialog, topicId) {
@@ -11,8 +13,7 @@ export default class ShareDialogComponent {
         }
         
         $ctrl.getShareUrl = () => {
-            return 'http://beta.jouwpers.nl/topic/' + topicId;
-
+            return Meteor.absoluteUrl() + 'topic/' + topicId;
         }
 
         $ctrl.getShareText = () => {
