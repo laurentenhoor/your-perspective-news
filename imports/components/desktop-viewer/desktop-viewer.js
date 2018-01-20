@@ -13,17 +13,22 @@ class DesktopViewerCtrl {
 
 		$ctrl.showMobile = false;
 		
-		angular.element($window).bind('resize', function(){
+		angular.element($window).bind('resize', () => {
 			$scope.$apply(function() {
 				checkWindowSize();	
+
 			});
 		});
+
+		angular.element($window).bind("orientationchange", () => {
+			
+		})
 		
 		function checkWindowSize() {
 			
 			var windowSize = $window.innerWidth;
 			
-			if (windowSize < 600) {
+			if (windowSize <= 736) {
 				$ctrl.showMobile = true;
 			} else {
 				$ctrl.showMobile = false;
