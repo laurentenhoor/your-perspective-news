@@ -12,9 +12,6 @@ class ArticleActionsButtonComponent {
 			if (changes.topicId) {
 				$ctrl.topicId = angular.copy($ctrl.topicId);
 			}
-			if (changes.category) {
-				$ctrl.category = angular.copy($ctrl.category);
-			}
 			if (changes.article) {
 				$ctrl.article = angular.copy($ctrl.article);
 			}
@@ -29,7 +26,6 @@ class ArticleActionsButtonComponent {
 			$articleActionsDialog.show(
 				$event,
 				$ctrl.topicId,
-				$ctrl.category,
 				$ctrl.article
 			)
 
@@ -42,7 +38,6 @@ export default {
 	controller: ArticleActionsButtonComponent,
 	bindings: {
 		topicId: '<',
-		category: '<',
 		article: '<',
 	}
 }

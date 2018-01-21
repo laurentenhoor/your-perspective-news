@@ -3,6 +3,7 @@ import TopicsTemplate from './topics.html';
 import TopicsStyle from './topics.styl';
 
 import { Topics } from '/imports/api/topics.js';
+import { Random } from 'meteor/random'
 
 class TopicsComponent {
 
@@ -13,51 +14,55 @@ class TopicsComponent {
 		$reactive($ctrl).attach($scope);
 
 		$ctrl.$onChanges = (changes) => {
-			if (changes.topicId) {
-				$ctrl.topicId = angular.copy($ctrl.topicId);
-				if ($ctrl.topicId) {
+			if (changes.singleTopicId) {
+				$ctrl.singleTopicId = angular.copy($ctrl.singleTopicId);
+				if ($ctrl.singleTopicId) {
 					$ctrl.yesterday = null;
-				}	
+				}
 			}
 		}
-		
+
 		$ctrl.amountOfTopics = 5;
 		$ctrl.yesterday = false;
-
 		$ctrl.firstInit = true;
 
 		Tracker.autorun(() => {
+			console.log('autorun');
+
+			Topics.find({}).fetch();
 
 			Meteor.subscribe('topicsAndArticles',
-			
+
 				$ctrl.getReactively('amountOfTopics'),
 				$ctrl.getReactively('yesterday'),
-				$ctrl.getReactively('topicId'), {
+				$ctrl.getReactively('singleTopicId'),
 
+				Random.id(), // Random triggers the subscription on every autorun
+
+				{
 					onReady: function () {
+						console.log('subscribe');
+
 						if ($ctrl.firstInit) {
 							$loader.databaseInitialized();
 							$ctrl.firstInit = false;
-							
 						} else {
 							$loader.stop();
 						}
-						
-						$ctrl.helpers({
-							'topics': () => {
-								return Topics.find({}).fetch();;
-							}
-						});
+
+						$ctrl.topics = Topics.find({}).fetch();
 
 					}
-
-				});
+				})
 
 		});
 
 
 		$ctrl.addLatestUpdateToTopic = function (topic) {
 			var articles = $articlesApi.getByTopic(topic)
+			if (articles.length == 0) {
+				return;
+			}
 			var latestUpdatedArticle = _.maxBy(articles, 'updatedAt');
 			topic.latestUpdate = latestUpdatedArticle.updatedAt;
 		}
@@ -99,7 +104,7 @@ class TopicsComponent {
 export default {
 	controller: TopicsComponent,
 	templateUrl: TopicsTemplate,
-	bindings: { 
-		topicId : '<'
+	bindings: {
+		singleTopicId: '<'
 	}
 }

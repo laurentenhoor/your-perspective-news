@@ -1,35 +1,23 @@
-export default class ArticleModalCtrl {
+export default class ArticleActionsComponent {
 
-	constructor($loader, $scope, $reactive, $document, $autoScroll, $dialog, $metadata, topicId, category, article) {
+	constructor($loader, $scope, $reactive, $document, $autoScroll, $dialog, $metadata, topicId, article, $articlesApi) {
 		'ngInject';
 
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
 
 		$ctrl.topicId = topicId;
-		$ctrl.category = category;
 		$ctrl.article = article;
-
-		if (category) {
-			$ctrl.initialCategory = category.category;
-		}
 
 		if ($ctrl.article) {
 
-			$ctrl.mode = 'edit';
+			$ctrl.mode = 'edit_source';
 
 			$ctrl.headerText = 'Wijzig deze bron.';
 			$ctrl.headerSubText = 'Verander de categorie of verwijder deze bron.';
 			$ctrl.urlDataIsLoaded = true;
 
-
-		} else if ($ctrl.category) {
-
-			$ctrl.mode = 'add_source_to_topic';
-
-			$ctrl.headerText = 'Voeg een bron toe.';
-			$ctrl.headerSubText = 'Verbreed, verdiep of ontwricht dit onderwerp met een interessant artikel.';
-			$ctrl.urlDataIsLoaded = false;
+			$ctrl.initialCategory = angular.copy($ctrl.article.category);
 
 
 		} else if (!$ctrl.topicId) {
@@ -99,20 +87,26 @@ export default class ArticleModalCtrl {
 		$ctrl.ok = function () {
 
 			console.log($ctrl.article)
-
+			$ctrl.article.category = $ctrl.modifiedCategory;
+			
 			switch ($ctrl.mode) {
 				case 'add_source_to_topic':
-					Meteor.call('addArticle', $ctrl.topicId, $ctrl.modifiedCategory, $ctrl.article, () => {
-						$autoScroll.scrollToTop();
-					});
+					console.log('add_source_to_topic')
+					$articlesApi.addToTopic($ctrl.topicId, $ctrl.article);
+					
+					// Meteor.call('addArticle', $ctrl.topicId, $ctrl.modifiedCategory, $ctrl.article, () => {
+					// 	$autoScroll.scrollToTop();
+					// });
 					break;
 				case 'new_topic':
-					Meteor.call('addArticle', null, $ctrl.modifiedCategory, $ctrl.article);
+					// Meteor.call('addArticle', null, $ctrl.modifiedCategory, $ctrl.article);
+					$articlesApi.addToNewTopic($ctrl.article)
 					break;
-				case 'edit':
+				case 'edit_source':
 					console.log('edit');
-					Meteor.call('addArticleToCategory', $ctrl.topicId, $ctrl.modifiedCategory, $ctrl.article);
-					Meteor.call('removeArticleFromCategory', $ctrl.topicId, $ctrl.category.category, $ctrl.article._id);
+					$articlesApi.updateArticle($ctrl.article)
+					// Meteor.call('addArticleToCategory', $ctrl.topicId, $ctrl.modifiedCategory, $ctrl.article);
+					// Meteor.call('removeArticleFromCategory', $ctrl.topicId, $ctrl.category.category, $ctrl.article._id);
 					break;
 			}
 			$dialog.hide();
@@ -121,7 +115,7 @@ export default class ArticleModalCtrl {
 
 		$ctrl.searchTextChange = function (text) {
 			console.log('Text changed to ' + text);
-			$ctrl.modifiedCategory = text;
+			$ctrl.modifiedCategory = text;			
 		}
 
 		$ctrl.selectedItemChange = function (item) {
@@ -157,21 +151,12 @@ export default class ArticleModalCtrl {
 
 			$dialog.show(confirm).then(function () {
 				console.log('dialog confirmed, will remove item')
-				$ctrl.remove($ctrl.topicId, $ctrl.category.category, $ctrl.article);
+				$articlesApi.removeFromTopic($ctrl.topicId, $ctrl.article._id)
 			}, function () {
 				// do nothing.
 				console.log('canceled article removal');
 			});
 		};
-
-
-		$ctrl.remove = function (topicId, categoryName, article) {
-			console.log('removeArticle'); console.log(article._id); console.log(topicId); console.log(categoryName);
-			Meteor.call('removeArticleFromCategory', topicId, categoryName, article._id)
-			$dialog.hide();
-		}
-
-
 
 		$ctrl.loadAll = function () {
 			var map = ('Algemene berichtgeving, Andere kijk, Entertainment').split(/, +/g).map(function (state) {
@@ -194,7 +179,6 @@ export default class ArticleModalCtrl {
 			};
 
 		}
-
 
 		$ctrl.querySearch = function (query) {
 

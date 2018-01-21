@@ -12,36 +12,19 @@ class SummaryTileComponent {
 
         $ctrl.$onChanges = (changes) => {
             if (changes.topic) {
-                $ctrl.topic = angular.copy($ctrl.topic)
-
-                $ctrl.topic.articlesByCategory = _.sortBy($ctrl.topic.articlesByCategory, 'sortingOrder', 'desc');
-
-                _.each($ctrl.topic.articlesByCategory, (categoryBlock, i) => {
-                    if (categoryBlock && categoryBlock.articleIds && categoryBlock.articleIds.length == 0) {
-                        // remove empty categories: should we do this on db level? 
-                        // Risk if we ever change the 'articleIds' name
-                        $ctrl.topic.articlesByCategory.splice(i, 1);
-                    }
-                });
                 
+                $ctrl.topic = angular.copy($ctrl.topic)
+                $ctrl.articles = $articlesApi.getByTopic($ctrl.topic);
+
+                if ($ctrl.articles.length > 0) {
+                    $ctrl.articles = _.orderBy($ctrl.articles, 'createdAt', 'asc');
+                    $ctrl.topicImageUrl = $ctrl.articles[0].imageUrl;
+                    $ctrl.mainArticle = $ctrl.articles[0];
+                    $ctrl.otherArticle = $ctrl.articles[1];
+                }
+                
+
                 $ctrl.helpers({
-                    bestArticle: () => {
-                        return _.maxBy(
-                            $articlesApi.getByTopic($ctrl.topic),
-                            'score'
-                        );
-                    },
-                    articlesByCategory: () => {
-                        var topic = $ctrl.getReactively('topic')
-                        
-                        _.each(topic.articlesByCategory, (categoryBlock, i) => {
-                            topic.articlesByCategory[i].articles = _.orderBy($articlesApi.getByIds(categoryBlock.articleIds), 'createdAt', 'desc');
-                        })
-                        // console.log('categories', topic.articlesByCategory)
-                        var length = topic.articlesByCategory[0].articles.length;
-                        $ctrl.topicImageUrl = topic.articlesByCategory[0].articles[0].imageUrl;
-                        return topic.articlesByCategory
-                    },
                     bestOpinion: () => {
                         var opinions = $opinionsApi.getAllByTopic($ctrl.topic);
                         var bestOpinion = _.maxBy(opinions,'score');

@@ -11,7 +11,7 @@ class ArticleTilesComponent {
         $ctrl.$onChanges = (changes) => {
             if (changes.topic) {
                 $ctrl.topic = angular.copy($ctrl.topic);
-                $ctrl.articles = $articlesApi.getByTopic($ctrl.topic);
+                $ctrl.articles = $articlesApi.getByTopic($ctrl.topic);        
             }
         }
 

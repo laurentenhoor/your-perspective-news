@@ -11,7 +11,7 @@ export default class ArticleActionsDialogService {
 
     }
 
-    show($event, topicId, category, article) {
+    show($event, topicId, article) {
         
         let dialogOptions = {
             controller: DialogComponent,
@@ -19,7 +19,6 @@ export default class ArticleActionsDialogService {
             targetEvent: $event,
             locals: {
                 topicId: topicId,
-                category: category,
                 article: article,
             }
         }

@@ -10,7 +10,7 @@ export default class WriteOpinionDialogComponent {
         var $ctrl = this;
 
         $ctrl.topicId = topicId;
-        $ctrl.articles = $articlesApi.getAllByTopicId($ctrl.topicId);
+        $ctrl.articles = $articlesApi.getByTopicId($ctrl.topicId);
         console.log($ctrl.articles)
 
         var opinion = Opinions.findOne({ ownerId: Meteor.userId(), topicId: $ctrl.topicId }, {});

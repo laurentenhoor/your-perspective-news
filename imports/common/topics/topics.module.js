@@ -37,11 +37,11 @@ export default angular.module('topics', [
 				component: 'topics',
 			})
 			.state('singleTopic', {
-				url: "/topic/:topicId",
+				url: "/topic/:singleTopicId",
 				component: 'topics',
 				resolve: {
-					topicId: ($transition$) => {
-					  return $transition$.params().topicId
+					singleTopicId: ($transition$) => {
+					  return $transition$.params().singleTopicId
 				  }
 				}
 			});

@@ -5,17 +5,14 @@
     <div class="tile-container">
 
         <div class="summary-header" style="background-image:url('{{ $ctrl.topicImageUrl }}')"
-            ng-repeat="categoryBlock in $ctrl.articlesByCategory" ng-show="categoryBlock.articleIds.length > 0 "    
-            ng-click="$ctrl.gotoCategory(categoryBlock.articleIds[0], $ctrl.topic._id, $event);" 
-            ng-if="$index==0"
-            >
+            ng-click="$ctrl.gotoCategory($ctrl.mainArticle._id, $ctrl.topic._id, $event);" >
             <!-- {{$ctrl.bestArticle.title}} -->
 
             <div class="time-elapsed">
                 <div style="padding: 1vw;width: fit-content;display: inline-block;">
                     {{ $ctrl.topic.latestUpdate | timeFromNow }}
                 </div>
-                <div style="float:right;" ng-clic="">
+                <div style="float:right;" ng-click="">
                     MEER
                     <md-icon style="color:white">keyboard_arrow_right</md-icon>
                 </div>
@@ -25,23 +22,20 @@
 
             <div class="categories">
 
-                <div class="category" ng-class="{'main-category' : ($index == 0), 'sub-category': ($index == 1), 'even-sub sub-category' : ($index==2)}">
+                <div class="category main-category">
                     <!-- <div class="category-title">{{ categoryBlock.category }}</div> -->
-
-                    <div class="article-title">{{ categoryBlock.articles[0].title }}</div>
+                    <div class="article-title">{{ $ctrl.mainArticle.title }}</div>
                 </div>
 
             </div>
         </div>
         <div class="teaser">
 
-            <div class="category" ng-repeat="categoryBlock in $ctrl.articlesByCategory" ng-show="categoryBlock.articleIds.length > 0 "
-                ng-class="{'main-category' : ($index == 0), 'sub-category': ($index == 1), 'even-sub sub-category' : ($index==2)}"
-                ng-click="$ctrl.gotoCategory(categoryBlock.sortingOrder, $ctrl.topic._id, $event);" ng-if="$index==1">
-                <div class="category-title">{{ categoryBlock.category }}</div>
-                <div class="article-title">{{ categoryBlock.articles[0].title }}</div>
+            <div class="category sub-category" ng-click="$ctrl.gotoCategory($ctrl.otherArticle._id, $ctrl.topic._id, $event);"
+            ng-if="$ctrl.otherArticle">
+                <div class="category-title">{{ $ctrl.ortherArticle.category }}</div>
+                <div class="article-title">{{ $ctrl.otherArticle.title }}</div>
             </div>
-
         </div>
 
         <div class="community">
