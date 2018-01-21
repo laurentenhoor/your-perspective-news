@@ -1,4 +1,3 @@
-
 import TopicsTemplate from './topics.html';
 import TopicsStyle from './topics.styl';
 

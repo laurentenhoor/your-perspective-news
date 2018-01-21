@@ -5,8 +5,7 @@
     <div class="tile-container">
 
         <div class="summary-header" style="background-image:url('{{ $ctrl.topicImageUrl }}')"
-            ng-click="$ctrl.gotoCategory($ctrl.mainArticle._id, $ctrl.topic._id, $event);" >
-            <!-- {{$ctrl.bestArticle.title}} -->
+            ng-click="$ctrl.scrollToArticle($ctrl.mainArticle._id, $ctrl.topic._id, $event);" >
 
             <div class="time-elapsed">
                 <div style="padding: 1vw;width: fit-content;display: inline-block;">
@@ -31,7 +30,7 @@
         </div>
         <div class="teaser">
 
-            <div class="category sub-category" ng-click="$ctrl.gotoCategory($ctrl.otherArticle._id, $ctrl.topic._id, $event);"
+            <div class="category sub-category" ng-click="$ctrl.scrollToArticle($ctrl.otherArticle._id, $ctrl.topic._id, $event);"
             ng-if="$ctrl.otherArticle">
                 <div class="category-title">{{ $ctrl.ortherArticle.category }}</div>
                 <div class="article-title">{{ $ctrl.otherArticle.title }}</div>
@@ -40,7 +39,7 @@
 
         <div class="community">
             <div class="opinion">
-                <div ng-click="$ctrl.readOpinion($ctrl.topic._id)" class="small-content-container-white">
+                <div ng-click="$ctrl.scrollToOpinion($ctrl.topic._id)" class="small-content-container-white">
                     <div class="title">{{$ctrl.amountOfOpinions}} {{$ctrl.amountOfOpinions == 1 ? 'opinie' : 'opinies'}}</div>
                     <!-- <div class="content">
                         "{{ $ctrl.bestOpinion.title}}"
@@ -61,7 +60,7 @@
             </div>
 
             <div class="discussion">
-                <div ng-click="$ctrl.discuss($ctrl.topic._id)" class="small-content-container-grey">
+                <div ng-click="$ctrl.scrollToQuestions($ctrl.topic._id)" class="small-content-container-grey">
                     <div class="title">{{$ctrl.amountOfQuestions}} {{$ctrl.amountOfQuestions == 1 ? 'vraag' : 'vragen'}}</div>
                     <!-- <div class="content">
                         "{{$ctrl.bestQuestion.comment}}"
@@ -71,7 +70,7 @@
                 <!-- <div ng-if="!$ctrl.bestQuestion.comment">
                     <div class="title">Top vraag</div>
                     <div style="margin:auto;text-align:center;">
-                        <md-button class="md-button md-small" ng-click="$ctrl.discuss($ctrl.topic._id)" aria-label="Stel een vraag.">
+                        <md-button class="md-button md-small" ng-click="$ctrl.scrollToQuestions($ctrl.topic._id)" aria-label="Stel een vraag.">
                             <md-icon>question_answer</md-icon>
                             <div>Vraag</div>
                         </md-button>

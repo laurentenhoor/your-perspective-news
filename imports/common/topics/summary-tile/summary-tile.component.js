@@ -12,7 +12,7 @@ class SummaryTileComponent {
 
         $ctrl.$onChanges = (changes) => {
             if (changes.topic) {
-                
+
                 $ctrl.topic = angular.copy($ctrl.topic)
                 $ctrl.articles = $articlesApi.getByTopic($ctrl.topic);
 
@@ -23,7 +23,6 @@ class SummaryTileComponent {
                     $ctrl.otherArticle = $ctrl.articles[1];
                 }
                 
-
                 $ctrl.helpers({
                     bestOpinion: () => {
                         var opinions = $opinionsApi.getAllByTopic($ctrl.topic);
@@ -52,52 +51,37 @@ class SummaryTileComponent {
             }
         }
 
-        $ctrl.gotoCategory = function (articleId, topicId, $event) {
-            console.log('scrollToCategory:', articleId, topicId);
-            // console.log($ctrl.topic.articlesByCategory)
-            
-            $ctrl.detailsAreShown = true;
-            $ctrl.onShowDetails({$event: {showDetails: $ctrl.detailsAreShown}});
-
-            $timeout(()=>{
-                $autoScroll.horizontalScroll('topic-' +topicId + '-article-' + articleId, 'scroll-' + topicId);
-            },400)
-            
-        }
-
-        $ctrl.discuss = function (topicId) {
-            $ctrl.detailsAreShown = true;
-            $ctrl.onShowDetails({$event: {showDetails: $ctrl.detailsAreShown}});
-
-            $timeout(()=>{
-                $autoScroll.horizontalScroll('discuss-' + topicId, 'scroll-' + topicId);
-            },400)
-           
-        }
-
         $ctrl.writeOpinion = function ($event) {
             if ($auth.isLoggedIn()) {
                 $writeOpinionDialog.show($event, $ctrl.topic._id);
             }
         }
 
-        $ctrl.readOpinion = function(topicId) {
-            $ctrl.detailsAreShown = true;
-            $ctrl.onShowDetails({$event: {showDetails: $ctrl.detailsAreShown}});
-
+        $ctrl.scrollToOpinion = function(topicId) {
+            openTopic();
             $timeout(()=>{
                 $autoScroll.horizontalScroll('opinion-' + topicId, 'scroll-' + topicId);
             },400)
         }
 
-        $ctrl.makeDetailsVisible = function() {
-            console.log('showDetails')
-            if ($ctrl.detailsAreShown) {
-                $ctrl.detailsAreShown = false;
-            } else {
-                $ctrl.detailsAreShown = true;
-            }
+
+        $ctrl.scrollToArticle = function (articleId, topicId, $event) {
+            openTopic();            
+            $timeout(()=>{
+                $autoScroll.horizontalScroll('topic-' +topicId + '-article-' + articleId, 'scroll-' + topicId);
+            },400)
             
+        }
+
+        $ctrl.scrollToQuestions = function (topicId) {
+            openTopic();
+            $timeout(()=>{
+                $autoScroll.horizontalScroll('discuss-' + topicId, 'scroll-' + topicId);
+            },400)
+        }
+
+        function openTopic() {
+            $ctrl.detailsAreShown = true;
             $ctrl.onShowDetails({$event: {showDetails: $ctrl.detailsAreShown}});
         }
 

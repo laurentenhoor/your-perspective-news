@@ -3,13 +3,15 @@
 
 	<div class="scroll-content">
 
-		<topic-controls topic-id="topic._id" on-show-details="detailsAreShown = $event.showDetails;$ctrl.activeTopic=topic._id" show-details="($ctrl.activeTopic == topic._id)  ? detailsAreShown : false">
+		<topic-controls topic-id="topic._id" show-details="($ctrl.activeTopic == topic._id)  ? topicIsOpen : false"
+			on-show-details="topicIsOpen = $event.showDetails; $ctrl.activeTopic=topic._id" >
 		</topic-controls>
 
-		<summary-tile topic="topic" show-details="($ctrl.activeTopic == topic._id)  ? detailsAreShown : false" on-show-details="detailsAreShown = $event.showDetails;$ctrl.activeTopic=topic._id">
+		<summary-tile topic="topic" show-details="($ctrl.activeTopic == topic._id)  ? topicIsOpen : false" 
+			on-show-details="topicIsOpen = $event.showDetails; $ctrl.activeTopic=topic._id">
 		</summary-tile>
 
-		<div ng-show="($ctrl.activeTopic == topic._id)  ? detailsAreShown : false" style="display:flex;">
+		<div ng-show="($ctrl.activeTopic == topic._id)  ? topicIsOpen : false" style="display:flex;">
 
 			<article-tiles topic="topic">
 			</article-tiles>
