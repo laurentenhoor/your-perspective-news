@@ -24,16 +24,29 @@ class TopicsComponent {
 		$ctrl.amountOfTopics = 5;
 		$ctrl.yesterday = false;
 		$ctrl.firstInit = true;
+		$ctrl.displayMoreButton = true;
 		
 		Tracker.autorun(() => {
 			Meteor.subscribe('topics',
 				$ctrl.getReactively('amountOfTopics'),
 				$ctrl.getReactively('yesterday'),
-				$ctrl.getReactively('singleTopicId'))
+				$ctrl.getReactively('singleTopicId'),{
+					onReady: ()=>{
+						if (!$ctrl.topics)
+							return;
+						if (Topics.find({}).fetch().length == $ctrl.topics.length) {
+							$loader.stop();
+							$ctrl.displayMoreButton = false;
+						} else {
+							$ctrl.displayMoreButton = true;
+						}
+					}
+				})
 		});
 
 		Tracker.autorun(() => {
 			var topics = Topics.find({}).fetch()
+			$loader.start();
 			
 			Meteor.subscribe('articles', topics, {
 				onReady: () => {
