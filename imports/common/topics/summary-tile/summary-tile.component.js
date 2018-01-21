@@ -27,7 +27,7 @@ class SummaryTileComponent {
                 $ctrl.helpers({
                     bestArticle: () => {
                         return _.maxBy(
-                            $articlesApi.getAllByTopic($ctrl.topic),
+                            $articlesApi.getByTopic($ctrl.topic),
                             'score'
                         );
                     },

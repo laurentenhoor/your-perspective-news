@@ -11,12 +11,12 @@ Articles.before.insert(function (userId, doc) {
 	}
 });
 
-if(Meteor.isServer) {
-    Meteor.publish('articles', function(){
-        return Articles.find({});
-    });
-}
+// if(Meteor.isServer) {
+//     Meteor.publish('articles', function(){
+//         return Articles.find({});
+//     });
+// }
 
-if(Meteor.isClient) {
-	Meteor.subscribe('articles');
-}
+// if(Meteor.isClient) {
+	// Meteor.subscribe('articles');
+// }

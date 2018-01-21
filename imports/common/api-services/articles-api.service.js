@@ -7,23 +7,14 @@ export default class ArticlesApi {
         'ngInject';
     }
 
-    getAllByTopicId(topicId) {
+    getByTopicId(topicId) {
         let topic = Topics.findOne({ _id: topicId });
         return this.getAllByTopic(topic);
     }
 
-    getAllByTopic(topic) {
-
-        let articleIds = [];
-
-        _.forEach(topic.articlesByCategory, (category) => {
-            _.forEach(category.articleIds, (articleId) => {
-                articleIds.push(articleId);
-            })
-        })
-
+    getByTopic(topic) {
         return Articles.find({
-            _id: { "$in": articleIds }
+            _id: { "$in": topic.articleIds }
         }).fetch();
     }
 

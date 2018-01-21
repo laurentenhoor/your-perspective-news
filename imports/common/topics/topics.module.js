@@ -2,7 +2,8 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import ngSocialShare from 'angular-socialshare';
 
-import CategoryTiles from './category-tiles/category-tiles.module';
+import ArticleTiles from './article-tiles/article-tiles.module';
+// import CategoryTiles from './category-tiles/category-tiles.module';
 import SummaryTile from './summary-tile/summary-tile.module';
 import TopicControls from './topic-controls/topic-controls.module';
 import CommentsTile from './comments-tile/comments-tile.module';
@@ -15,7 +16,7 @@ import TimeFilters from './time.filter'
 
 export default angular.module('topics', [
 	SummaryTile,
-	CategoryTiles,
+	ArticleTiles,
 	CommentsTile,
 	OpinionTile,
 	TopicControls,

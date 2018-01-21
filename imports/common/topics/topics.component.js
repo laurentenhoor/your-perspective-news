@@ -57,7 +57,7 @@ class TopicsComponent {
 
 
 		$ctrl.addLatestUpdateToTopic = function (topic) {
-			var articles = $articlesApi.getAllByTopic(topic)
+			var articles = $articlesApi.getByTopic(topic)
 			var latestUpdatedArticle = _.maxBy(articles, 'updatedAt');
 			topic.latestUpdate = latestUpdatedArticle.updatedAt;
 		}
