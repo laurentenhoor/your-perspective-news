@@ -15,11 +15,11 @@ Topics.before.insert(function (userId, doc) {
 
 if (Meteor.isServer) {
 
-	Meteor.publish('topicsAndArticles', (amountOfTopics, yesterday, singleTopicId) => {
+	Meteor.publish('topics', (amountOfTopics, yesterday, singleTopicId) => {
 
 		var amountOfDays = 1;
 
-		console.log('subscribeToTopicsAndArticles');
+		console.log('subscribe to topics');
 		console.log('amountOfTopics', amountOfTopics);
 
 		function getDayTimestamp(amountOfDays) {
@@ -43,21 +43,21 @@ if (Meteor.isServer) {
 		if (singleTopicId) {
 			searchQuery._id = singleTopicId;
 		}
-
-		var topics = Topics.find(
+		
+		return Topics.find(
 			searchQuery, {
 				sort: { updatedAt: - 1 },
 				limit: amountOfTopics
 			})
+	});
 
+	Meteor.publish('articles', (topics) => {
 		var articleIds = []
-		_.each(topics.fetch(), (topic) => {
+		_.each(topics, (topic) => {
 			articleIds = articleIds.concat(topic.articleIds);
 		});
 		var articles = Articles.find({ _id: { $in: articleIds } });
-		console.log(articleIds)
-
-		return [topics, articles]
+		return articles;
 	});
 	
 }

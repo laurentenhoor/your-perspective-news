@@ -25,37 +25,30 @@ class TopicsComponent {
 		$ctrl.yesterday = false;
 		$ctrl.firstInit = true;
 		
-		$ctrl.helpers({
-			topics : () => {
-				console.log('helper fired');
-				return Topics.find({}).fetch();
-			}
-		})
-		
 		Tracker.autorun(() => {
-			console.log('autorun');
-
-			Meteor.subscribe('topicsAndArticles',
-
+			Meteor.subscribe('topics',
 				$ctrl.getReactively('amountOfTopics'),
 				$ctrl.getReactively('yesterday'),
-				$ctrl.getReactively('singleTopicId'),
-
-				{
-					onReady: function () {
-						console.log('subscription updated');
-
-						if ($ctrl.firstInit) {
-							$loader.databaseInitialized();
-							$ctrl.firstInit = false;
-						} else {
-							$loader.stop();
-						}
-						
-					}
-				})
-
+				$ctrl.getReactively('singleTopicId'))
 		});
+
+		Tracker.autorun(() => {
+			var topics = Topics.find({}).fetch()
+			
+			Meteor.subscribe('articles', topics, {
+				onReady: () => {
+
+					$ctrl.topics = topics;
+
+					if ($ctrl.firstInit) {
+						$loader.databaseInitialized();
+						$ctrl.firstInit = false;
+					} else {
+						$loader.stop();
+					}
+				}
+			})
+		})
 
 
 		$ctrl.addLatestUpdateToTopic = function (topic) {
