@@ -24,11 +24,16 @@ class TopicsComponent {
 		$ctrl.amountOfTopics = 5;
 		$ctrl.yesterday = false;
 		$ctrl.firstInit = true;
-
+		
+		$ctrl.helpers({
+			topics : () => {
+				console.log('helper fired');
+				return Topics.find({}).fetch();
+			}
+		})
+		
 		Tracker.autorun(() => {
 			console.log('autorun');
-
-			Topics.find({}).fetch();
 
 			Meteor.subscribe('topicsAndArticles',
 
@@ -36,11 +41,9 @@ class TopicsComponent {
 				$ctrl.getReactively('yesterday'),
 				$ctrl.getReactively('singleTopicId'),
 
-				Random.id(), // Random triggers the subscription on every autorun
-
 				{
 					onReady: function () {
-						console.log('subscribe');
+						console.log('subscription updated');
 
 						if ($ctrl.firstInit) {
 							$loader.databaseInitialized();
@@ -48,9 +51,7 @@ class TopicsComponent {
 						} else {
 							$loader.stop();
 						}
-
-						$ctrl.topics = Topics.find({}).fetch();
-
+						
 					}
 				})
 
