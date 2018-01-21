@@ -69,15 +69,15 @@ class SummaryTileComponent {
             }
         }
 
-        $ctrl.gotoCategory = function (index, topicId, $event) {
-            console.log('scrollToCategory:', index, topicId);
-            console.log($ctrl.topic.articlesByCategory)
+        $ctrl.gotoCategory = function (articleId, topicId, $event) {
+            console.log('scrollToCategory:', articleId, topicId);
+            // console.log($ctrl.topic.articlesByCategory)
             
             $ctrl.detailsAreShown = true;
             $ctrl.onShowDetails({$event: {showDetails: $ctrl.detailsAreShown}});
 
             $timeout(()=>{
-                $autoScroll.horizontalScroll('category-' + index + '-' + topicId, 'scroll-' + topicId);
+                $autoScroll.horizontalScroll('topic-' +topicId + '-article-' + articleId, 'scroll-' + topicId);
             },400)
             
         }

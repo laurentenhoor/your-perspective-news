@@ -6,7 +6,7 @@
 
         <div class="summary-header" style="background-image:url('{{ $ctrl.topicImageUrl }}')"
             ng-repeat="categoryBlock in $ctrl.articlesByCategory" ng-show="categoryBlock.articleIds.length > 0 "    
-            ng-click="$ctrl.gotoCategory(categoryBlock.sortingOrder, $ctrl.topic._id, $event);" 
+            ng-click="$ctrl.gotoCategory(categoryBlock.articleIds[0], $ctrl.topic._id, $event);" 
             ng-if="$index==0"
             >
             <!-- {{$ctrl.bestArticle.title}} -->

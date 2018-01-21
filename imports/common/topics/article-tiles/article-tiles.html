@@ -1,13 +1,9 @@
-<div class="content-container" ng-repeat="categoryBlock in $ctrl.topic.articlesByCategory | orderBy:'sortingOrder'"  ng-init="
-           articles = $ctrl.getArticlesByIds(categoryBlock.articleIds);
-           selectedArticle = {};
-           categoryName = categoryBlock.category; 
-           selectedArticle[categoryName] = $ctrl.getArticleWithHighestScore(articles);
-           $ctrl.loadedArticles = $ctrl.loadedArticles.concat(categoryBlock.articleIds);
-           " ng-show="articles.length > 0"
-           id="category-{{categoryBlock.sortingOrder}}-{{$ctrl.topic._id}}">
+<div class="content-container" 
+    ng-repeat="article in $ctrl.articles" 
+    ng-show="$ctrl.articles.length > 0"
+    id="topic-{{ $ctrl.topic._id }}-article-{{ article._id }}">
 
-    <div class="tile-header">{{categoryName}}</div>
+    <div class="tile-header">{{ article.category }}</div>
 
     <div class="tile-container">
 
@@ -17,35 +13,35 @@
                 <!-- <md-icon class="custom-svg-icon" md-svg-src="/icons/brain-idea.svg" aria-label="brain-power ">
                 </md-icon> -->
 
-                <vote article-id="selectedArticle[categoryName]._id">
+                <vote article-id="article._id">
                 </vote>
             </div>
 
-            <div class="image" style="background-color:{{ selectedArticle[categoryName].videoUrl ? 'black' : 'rgb(187, 187, 187)' }}; background-image:url('{{ selectedArticle[categoryName].imageUrl }}');">
+            <div class="image" style="background-color:{{ article.videoUrl ? 'black' : 'rgb(187, 187, 187)' }}; background-image:url('{{ article.imageUrl }}');">
             </div>
 
-            <iframe class="video-player-iframe" ng-if="selectedArticle[categoryName].videoUrl" src="{{selectedArticle[categoryName].videoUrl}}"
+            <iframe class="video-player-iframe" ng-if="article.videoUrl" src="{{ article.videoUrl }}"
                 allowfullscreen>
             </iframe>
 
             <div class="solid-overlay">
             </div>
 
-            <div ng-click="$ctrl.openExternalUrl(selectedArticle[categoryName]);" ng-class="selectedArticle[categoryName].videoUrl ? 'link-disabled' : ''"
-                ng-hide="selectedArticle[categoryName].videoUrl">
+            <div ng-click="$ctrl.openExternalUrl(article);" ng-class="article.videoUrl ? 'link-disabled' : ''"
+                ng-hide="article.videoUrl">
 
                 <div class="title-container">
 
-                    <div class="title" ng-class="{'visited' : (selectedArticle[categoryName]._id == $ctrl.visitedId)}">
-                        {{selectedArticle[categoryName].title}}
+                    <div class="title" ng-class="{'visited' : (article._id == $ctrl.visitedId)}">
+                        {{ article.title }}
                     </div>
 
                     <div class="publisher">
-                        {{selectedArticle[categoryName].publisher}}
+                        {{ article.publisher }}
                     </div>
 
                     <div class="time-elapsed">
-                        {{ selectedArticle[categoryName].publishedAt || selectedArticle[categoryName].updatedAt | timeFromNow }}
+                        {{ article.publishedAt || article.updatedAt | timeFromNow }}
                     </div>
 
                 </div>
@@ -53,17 +49,16 @@
 
         </div>
 
-        <div class="description" ng-if="selectedArticle[categoryName].description" ng-click="toggle = !toggle" ng-class="{'auto-height' : toggle}">
-            {{selectedArticle[categoryName].description}}
+        <div class="description" ng-if="article.description" ng-click="toggle = !toggle" ng-class="{'auto-height' : toggle}">
+            {{ article.description }}
         </div>
 
         <div class="sources">
 
-            <article-actions-button topic-id="$ctrl.topic._id" category="categoryBlock" article="selectedArticle[categoryName]" class="edit-article-from-topics">
+            <article-actions-button topic-id="$ctrl.topic._id" category="article.category" article="article" class="edit-article-from-topics">
             </article-actions-button>
 
-            <div class="source" ng-repeat="article in articles | orderBy:'-score'" ng-click="selectedArticle[categoryName] = article"
-                ng-class="(article._id == selectedArticle[categoryName]._id) ? 'source-selected':''" ng-style="{'background-image':'url(\'' + (article.logoUrl) + '\')'}">
+            <div class="source source-selected" ng-style="{'background-image':'url(\'' + (article.logoUrl) + '\')'}">
             </div>
 
         </div>

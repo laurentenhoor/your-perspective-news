@@ -15,14 +15,6 @@ class ArticleTilesComponent {
             }
         }
 
-        $ctrl.getArticlesByIds = function (ids) {
-            return $articlesApi.getByIds(ids);
-        }
-
-        $ctrl.getArticleWithHighestScore = function (articles) {
-            return _.last(_.sortBy(articles, 'score'));
-        };
-
         $ctrl.openExternalUrl = function (article) {
 
             $ctrl.visitedId = article._id; // trigger animation of click

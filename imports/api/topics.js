@@ -43,13 +43,21 @@ if (Meteor.isServer) {
 			searchQuery._id = topicId;
 		}
 
+		var topics = Topics.find(
+			searchQuery, {
+				sort: { updatedAt: - 1 },
+				limit: amountOfTopics
+			})
+
+		var articleIds = []
+		_.each(topics.fetch(), (topic)=>{
+			articleIds = articleIds.concat(topic.articleIds);
+		})
+		var articles = Articles.find({ _id: { $in: articleIds } });
+
 		return [
-			Topics.find(
-				searchQuery, {
-					sort: { updatedAt: - 1 },
-					limit: amountOfTopics
-				}),
-			Articles.find({}),
+			topics,
+			articles,
 		];
 	});
 

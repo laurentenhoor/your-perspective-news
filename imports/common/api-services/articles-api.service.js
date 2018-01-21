@@ -13,9 +13,10 @@ export default class ArticlesApi {
     }
 
     getByTopic(topic) {
-        return Articles.find({
+        var articles = Articles.find({
             _id: { "$in": topic.articleIds }
         }).fetch();
+        return articles
     }
 
     getByIds(idArray) {
