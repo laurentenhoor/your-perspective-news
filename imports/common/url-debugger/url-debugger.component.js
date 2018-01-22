@@ -1,6 +1,8 @@
 import UrlDebuggerTemplate from './url-debugger.html'
 import UrlDebuggerStyle from './url-debugger.styl';
 
+var Crawler = require("simplecrawler");
+
 class UrlDebuggerComponent {
 
     constructor($loader, $metadata, $http) {
@@ -14,6 +16,17 @@ class UrlDebuggerComponent {
             if (!$ctrl.url) {
                 return;
             }
+
+            var crawler = new Crawler($ctrl.url)
+
+            crawler.on("fetchcomplete", (queueItem, responseBuffer, response) => {
+                console.log("Fetched a resource!")
+                console.log("I just received %s (%d bytes)", queueItem.url, responseBuffer.length);
+                console.log("It was a resource of type %s", response.headers['content-type']);
+            });
+
+            crawler.start();
+
 
             $metadata.getRawArticleFromUrl($ctrl.url, (error, article) => {
                 if (error) {
@@ -56,7 +69,7 @@ class UrlDebuggerComponent {
             'https://dekanttekening.nl/samenleving/poolse-nederlanders-vinden-polen-niet-xenofobisch/',
             'http://www.economist.com/blogs/dailychart/2010/11/cartography?fsrc=scn/fb/te/pe/ed/truesizeafrica',
         ]
-        $ctrl.url = 'http://localhost:3000/';
+        $ctrl.url = $ctrl.urls[3];
 
         $ctrl.processUrl();
 
