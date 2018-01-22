@@ -5,21 +5,27 @@ import getLogo from 'website-logo';
 import suq from 'suq';
 import request from 'request';
 
-const metascraper = require('metascraper');
-const got = require('got');
+var metascraper = require('metascraper');
+var got = require('got');
+const cookie = require('cookie');
 
 Meteor.methods({
 
-	async betaScraper(url) {
+	async metaScraper(targetUrl) {
 
-		// do something
 		try {
-			var response = await got(url);
-			console.log(response.body);
-			//=> '<!doctype html> ...'
+			const {body: html, url} = await got(targetUrl, {
+				headers: {
+					cookie: [
+						cookie.serialize('nl_cookiewall_version', '1'),
+						cookie.serialize('cookieconsent', 'true')
+					]
+				}
+			})
+			
+			return await metascraper({html, url});
 		} catch (error) {
 			console.log(error.response.body);
-			//=> 'Internal server error ...'
 		}
 
 	},
@@ -50,6 +56,13 @@ Meteor.methods({
 
 	}
 });
+
+
+async function fetchMetaScraper(url) {
+	// do something
+	console.log(url)
+
+}
 
 
 function fetchSuq(url, callback) {

@@ -15,7 +15,9 @@ class UrlDebuggerComponent {
                 return;
             }
 
-            Meteor.call('betaScraper', $ctrl.url)
+            Meteor.call('metaScraper', $ctrl.url, (error, article) => {
+                $ctrl.output4 = article;
+            })
 
 
             $metadata.getRawArticleFromUrl($ctrl.url, (error, article) => {
@@ -59,7 +61,7 @@ class UrlDebuggerComponent {
             'https://dekanttekening.nl/samenleving/poolse-nederlanders-vinden-polen-niet-xenofobisch/',
             'http://www.economist.com/blogs/dailychart/2010/11/cartography?fsrc=scn/fb/te/pe/ed/truesizeafrica',
         ]
-        $ctrl.url = $ctrl.urls[3];
+        $ctrl.url = $ctrl.urls[5];
 
         $ctrl.processUrl();
 

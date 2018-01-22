@@ -8,6 +8,11 @@
             <input ng-model="$ctrl.url" ng-change="$ctrl.processUrl()">
         </md-input-container>
 
+
+        <div>
+            Output Metascraper
+            <pre>{{ $ctrl.output4 | json }}</pre>
+        </div>
         <div>
             Output Metaget
             <pre>{{ $ctrl.output | json }}</pre>
