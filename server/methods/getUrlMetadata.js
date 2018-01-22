@@ -5,23 +5,22 @@ import getLogo from 'website-logo';
 import suq from 'suq';
 import request from 'request';
 
-const ogs = require('open-graph-scraper');
+const metascraper = require('metascraper');
+const got = require('got');
 
 Meteor.methods({
 
-	betaScraper(url) {
+	async betaScraper(url) {
 
-		const options = {
-			'url': url,
-			'followAllRedirects': true,
-		};
-		ogs(options, function (error, results) {
-			console.log('error:', error); // This is returns true or false. True if there was a error. The error it self is inside the results object.
-			console.log('results:', results);
-		});
-
-		return results;
-
+		// do something
+		try {
+			var response = await got(url);
+			console.log(response.body);
+			//=> '<!doctype html> ...'
+		} catch (error) {
+			console.log(error.response.body);
+			//=> 'Internal server error ...'
+		}
 
 	},
 
