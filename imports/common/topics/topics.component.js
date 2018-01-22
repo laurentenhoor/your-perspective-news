@@ -27,6 +27,9 @@ class TopicsComponent {
 		$ctrl.displayMoreButton = true;
 		
 		Tracker.autorun(() => {
+
+			$loader.start();
+
 			Meteor.subscribe('topics',
 				$ctrl.getReactively('amountOfTopics'),
 				$ctrl.getReactively('yesterday'),
@@ -46,7 +49,7 @@ class TopicsComponent {
 
 		Tracker.autorun(() => {
 			var topics = Topics.find({}).fetch()
-			$loader.start();
+			// $loader.start();
 			
 			Meteor.subscribe('articles', topics, {
 				onReady: () => {
@@ -78,20 +81,19 @@ class TopicsComponent {
 		}
 
 		$ctrl.loadMoreTopics = () => {
-			$loader.start();
 			$ctrl.amountOfTopics = $ctrl.amountOfTopics + 5;
 			checkState();
 		}
 
 		$ctrl.toggleYesterday = () => {
-			$loader.start();
+			$ctrl.allTimeFavoritesMode = false;
 			$ctrl.yesterday = !$ctrl.yesterday;
 			$ctrl.amountOfTopics = 5;
 			checkState();
 		}
 
 		$ctrl.loadAllTopics = () => {
-			$loader.start();
+			$ctrl.allTimeFavoritesMode = true;
 			$ctrl.amountOfTopics = 5;
 			$ctrl.yesterday = null;
 			checkState();

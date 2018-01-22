@@ -30,8 +30,8 @@
 
 
 <div class="more-topics-controls">
-	<md-button class="md-raised" ng-click="$ctrl.loadMoreTopics();" ng-show="$ctrl.displayMoreButton">Laad meer topics</md-button>
+	<md-button class="md-raised wide-btn" ng-click="$ctrl.loadMoreTopics();" ng-show="$ctrl.displayMoreButton">Laad meer topics</md-button>
 	<br>
-	<md-button class="md-raised" ng-click="$ctrl.toggleYesterday();">{{ $ctrl.yesterday ? 'Top 5 vandaag' : 'Top 5 gisteren' }}</md-button>
-	<md-button class="md-raised" ng-click="$ctrl.loadAllTopics();">Top 5 allertijden</md-button>
+	<md-button class="md-raised narrow-btn" ng-click="$ctrl.toggleYesterday();">{{ $ctrl.yesterday ? 'Top 5 vandaag' : 'Top 5 gisteren' }}</md-button>
+	<md-button ng-hide="$ctrl.allTimeFavoritesMode" class="md-raised narrow-btn" ng-click="$ctrl.loadAllTopics();">Top 5 allertijden</md-button>
 </div>
