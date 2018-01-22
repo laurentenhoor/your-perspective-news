@@ -1,8 +1,6 @@
 import UrlDebuggerTemplate from './url-debugger.html'
 import UrlDebuggerStyle from './url-debugger.styl';
 
-var Crawler = require("simplecrawler");
-
 class UrlDebuggerComponent {
 
     constructor($loader, $metadata, $http) {
@@ -17,15 +15,7 @@ class UrlDebuggerComponent {
                 return;
             }
 
-            var crawler = new Crawler($ctrl.url)
-
-            crawler.on("fetchcomplete", (queueItem, responseBuffer, response) => {
-                console.log("Fetched a resource!")
-                console.log("I just received %s (%d bytes)", queueItem.url, responseBuffer.length);
-                console.log("It was a resource of type %s", response.headers['content-type']);
-            });
-
-            crawler.start();
+            Meteor.call('betaScraper', $ctrl.url)
 
 
             $metadata.getRawArticleFromUrl($ctrl.url, (error, article) => {

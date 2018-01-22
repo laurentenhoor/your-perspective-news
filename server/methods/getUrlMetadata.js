@@ -5,7 +5,25 @@ import getLogo from 'website-logo';
 import suq from 'suq';
 import request from 'request';
 
+const ogs = require('open-graph-scraper');
+
 Meteor.methods({
+
+	betaScraper(url) {
+
+		const options = {
+			'url': url,
+			'followAllRedirects': true,
+		};
+		ogs(options, function (error, results) {
+			console.log('error:', error); // This is returns true or false. True if there was a error. The error it self is inside the results object.
+			console.log('results:', results);
+		});
+
+		return results;
+
+
+	},
 
 	getUrlMetadata(url) {
 
@@ -82,8 +100,10 @@ function fetchMetaData(url, callback) {
 
 	var options = {
 		headers: {
-			'Cookie': 'cookieconsent=true',
-			'Cookie': 'nl_cookiewall_version=1'
+			'Cookie': [
+				'nl_cookiewall_version=1',
+				'cookieconsent=true'
+			]
 		},
 	};
 	metaGet.fetch(url, options, function (err, meta_response) {
