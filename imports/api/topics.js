@@ -19,9 +19,6 @@ if (Meteor.isServer) {
 
 		var amountOfDays = 1;
 
-		console.log('subscribe to topics');
-		console.log('amountOfTopics', amountOfTopics);
-
 		function getDayTimestamp(amountOfDays) {
 			return new Date().getTime() - (amountOfDays * 24 * 60 * 60 * 1000);
 		}

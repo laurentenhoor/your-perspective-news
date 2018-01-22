@@ -35,9 +35,12 @@ class TopicsComponent {
 				$ctrl.getReactively('yesterday'),
 				$ctrl.getReactively('singleTopicId'),{
 					onReady: ()=>{
-						if (!$ctrl.topics)
+						if (!$ctrl.topics){
+							$ctrl.displayMoreButton = false;
 							return;
-						if (Topics.find({}).fetch().length == $ctrl.topics.length) {
+						}
+						let amountOfTopics = Topics.find({}).fetch().length;
+						if (amountOfTopics == $ctrl.topics.length  || amountOfTopics == 0) {
 							$loader.stop();
 							$ctrl.displayMoreButton = false;
 						} else {
@@ -49,7 +52,6 @@ class TopicsComponent {
 
 		Tracker.autorun(() => {
 			var topics = Topics.find({}).fetch()
-			// $loader.start();
 			
 			Meteor.subscribe('articles', topics, {
 				onReady: () => {
