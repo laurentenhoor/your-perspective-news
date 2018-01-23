@@ -5,15 +5,17 @@ import getLogo from 'website-logo';
 import suq from 'suq';
 import request from 'request';
 
-const metascraper = require('metascraper');
+import metascraper from 'metascraper';
 
-const got = require('got');
-const cookie = require('cookie');
+import got from 'got';
+import cookie from 'cookie';
 
 Meteor.methods({
 
 	async metaScraper(targetUrl) {
 
+		console.log(metascraper)
+		
 		try {
 			const {body: html, url} = await got(targetUrl, {
 				headers: {
@@ -22,12 +24,8 @@ Meteor.methods({
 						cookie.serialize('cookieconsent', 'true')
 					]
 				}
-			})
-
-
-
-
-
+			});
+			console.log(url)
 			return await metascraper({html, url});
 		} catch (error) {
 			console.log(error);
