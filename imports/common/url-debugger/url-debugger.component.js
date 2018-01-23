@@ -3,11 +3,40 @@ import UrlDebuggerStyle from './url-debugger.styl';
 
 class UrlDebuggerComponent {
 
-    constructor($loader, $metadata, $http) {
+    constructor($scope, $loader, $metadata, $http) {
         'ngInject';
 
         $ctrl = this;
         $loader.databaseInitialized();
+
+        
+        $ctrl.urls = [
+            'https://fd.nl/economie-politiek/1210447/overheidsbalans-lagere-gasbaten-maken-nederland-in-een-klap-60-miljard-euro-armer',
+            'https://www.nytimes.com/2018/01/09/sports/alabama-national-championship.html?hp&action=click&pgtype=Homepage&clickSource=story-heading&module=photo-spot-region&region=top-news&WT.nav=top-news',
+            'https://www.google.nl/amp/s/www.volkskrant.nl/binnenland/uitspraak-college-politie-discrimineert-met-verbod-op-hoofddoek-in-niet-publieke-functie~a4540290/amp',
+            'https://www.ad.nl/buitenland/triomf-for-trump-belastingplan-is-erdoor~a8bd0881/',
+            'https://dekanttekening.nl/samenleving/poolse-nederlanders-vinden-polen-niet-xenofobisch/',
+            'http://www.economist.com/blogs/dailychart/2010/11/cartography?fsrc=scn/fb/te/pe/ed/truesizeafrica',
+            'https://www.vpro.nl/programmas/tegenlicht/kijk/afleveringen/2013-2014/de-noodzaak-van-een-utopie.html',
+            'https://www.youtube.com/watch?v=4XDWtU1Zojw',
+        ]
+        $ctrl.url = $ctrl.urls[5];
+        
+        $ctrl.articles = [];
+        
+        _.each($ctrl.urls, (url)=>{
+            Meteor.call('metaScraper', url, (error, article) => {
+                if (error){
+                    console.error(error);
+                }
+                console.log(article);
+                $scope.$apply(() => {
+                    $ctrl.articles.push(article)
+                })
+                
+            })
+        })
+
 
         $ctrl.processUrl = function () {
 
@@ -15,6 +44,7 @@ class UrlDebuggerComponent {
                 return;
             }
 
+            
             Meteor.call('metaScraper', $ctrl.url, (error, article) => {
                 $ctrl.output4 = article;
             })
@@ -52,16 +82,6 @@ class UrlDebuggerComponent {
                 });
 
         }
-
-        $ctrl.urls = [
-            'https://fd.nl/economie-politiek/1210447/overheidsbalans-lagere-gasbaten-maken-nederland-in-een-klap-60-miljard-euro-armer',
-            'https://www.nytimes.com/2018/01/09/sports/alabama-national-championship.html?hp&action=click&pgtype=Homepage&clickSource=story-heading&module=photo-spot-region&region=top-news&WT.nav=top-news',
-            'https://www.google.nl/amp/s/www.volkskrant.nl/binnenland/uitspraak-college-politie-discrimineert-met-verbod-op-hoofddoek-in-niet-publieke-functie~a4540290/amp',
-            'https://www.ad.nl/buitenland/triomf-for-trump-belastingplan-is-erdoor~a8bd0881/',
-            'https://dekanttekening.nl/samenleving/poolse-nederlanders-vinden-polen-niet-xenofobisch/',
-            'http://www.economist.com/blogs/dailychart/2010/11/cartography?fsrc=scn/fb/te/pe/ed/truesizeafrica',
-        ]
-        $ctrl.url = $ctrl.urls[5];
 
         $ctrl.processUrl();
 
