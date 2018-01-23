@@ -10,6 +10,10 @@ class UrlDebuggerComponent {
         $loader.databaseInitialized();
         
         $ctrl.urls = [            
+            'https://www.youtube.com/watch?v=4XDWtU1Zojw',
+            'http://www.dumpert.nl/mediabase/7341269/bce179d5/code_rood.html',
+            'http://www.dumpert.nl/mediabase/7347615/0e8baec2/meiske_doet_schieten.html',
+
             'https://fd.nl/economie-politiek/1210447/overheidsbalans-lagere-gasbaten-maken-nederland-in-een-klap-60-miljard-euro-armer',
             'https://www.nytimes.com/2018/01/09/sports/alabama-national-championship.html?hp&action=click&pgtype=Homepage&clickSource=story-heading&module=photo-spot-region&region=top-news&WT.nav=top-news',
             'https://www.google.nl/amp/s/www.volkskrant.nl/binnenland/uitspraak-college-politie-discrimineert-met-verbod-op-hoofddoek-in-niet-publieke-functie~a4540290/amp',
@@ -17,8 +21,6 @@ class UrlDebuggerComponent {
             'https://dekanttekening.nl/samenleving/poolse-nederlanders-vinden-polen-niet-xenofobisch/',
             'http://www.economist.com/blogs/dailychart/2010/11/cartography?fsrc=scn/fb/te/pe/ed/truesizeafrica',
             'https://www.vpro.nl/programmas/tegenlicht/kijk/afleveringen/2013-2014/de-noodzaak-van-een-utopie.html',
-            'https://www.youtube.com/watch?v=4XDWtU1Zojw',
-            'http://www.dumpert.nl/mediabase/7347615/0e8baec2/meiske_doet_schieten.html',
             'https://www.businessinsider.nl/tesla-heeft-een-nieuwe-versie-van-zijn-roadster-sportwagen-gepresenteerd-en-het-echt-een-game-changer/',
             'https://nl.wikipedia.org/wiki/Koninklijke_Philips',
             'https://blendle.com/i/de-standaard/me-too-in-nederland/bnl-destandaard-20180108-eee62560_f250_11e7_bfa5_c2ed917c3dd8?sharer=eyJ2ZXJzaW9uIjoiMSIsInVpZCI6ImJhcnRkaW5namFuIiwiaXRlbV9pZCI6ImJubC1kZXN0YW5kYWFyZC0yMDE4MDEwOC1lZWU2MjU2MF9mMjUwXzExZTdfYmZhNV9jMmVkOTE3YzNkZDgifQ%3D%3D',
@@ -30,10 +32,9 @@ class UrlDebuggerComponent {
             'https://www.bnr.nl/podcast/bernard-hammelburg/10336697/opstand-in-iran',
             'https://nl.m.wikipedia.org/wiki/Iraanse_Revolutie',
             'https://fd.nl/beurs/1235376/aanpak-corruptie-is-het-grote-thema-in-latijns-amerika',
-            'http://www.dumpert.nl/mediabase/7341269/bce179d5/code_rood.html',
             'https://www.google.nl/amp/s/nos.nl/googleamp/artikel/129340-de-financiele-crisis-in-retroperspectief.html',
         ]
-        $ctrl.url = $ctrl.urls[4];
+        $ctrl.url = $ctrl.urls[2]; //youtube
         
 
         $ctrl.articles = [];
