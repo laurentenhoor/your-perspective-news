@@ -5,8 +5,9 @@ import getLogo from 'website-logo';
 import suq from 'suq';
 import request from 'request';
 
-var metascraper = require('metascraper');
-var got = require('got');
+const metascraper = require('metascraper');
+
+const got = require('got');
 const cookie = require('cookie');
 
 Meteor.methods({
@@ -22,10 +23,14 @@ Meteor.methods({
 					]
 				}
 			})
-			
+
+
+
+
+
 			return await metascraper({html, url});
 		} catch (error) {
-			console.log(error.response.body);
+			console.log(error);
 		}
 
 	},
@@ -84,6 +89,7 @@ function fetchSuq(url, callback) {
 
 }
 
+
 function validateClearbit(url, callback) {
 
 	var clearbitUrl = 'https://logo.clearbit.com/' + getBaseUrl(url);
@@ -123,6 +129,10 @@ function fetchMetaData(url, callback) {
 	});
 
 }
+
+
+
+
 
 function getBaseUrl(url) {
 
