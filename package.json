@@ -27,12 +27,5 @@
     "suq": "^1.3.0",
     "url-parse": "^1.1.9",
     "website-logo": "1.0.0"
-  },
-  "metascraper": {
-    "rules": [
-      "metascraper-publisher",
-      "metascraper-logo",
-      "metascraper-title"
-    ]
   }
 }
