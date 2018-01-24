@@ -1,6 +1,7 @@
 import UrlDebuggerTemplate from './url-debugger.html'
 import UrlDebuggerStyle from './url-debugger.styl';
 
+
 class UrlDebuggerComponent {
 
     constructor($scope, $loader, $metadata, $http) {
@@ -34,23 +35,31 @@ class UrlDebuggerComponent {
             'https://fd.nl/beurs/1235376/aanpak-corruptie-is-het-grote-thema-in-latijns-amerika',
             'https://www.google.nl/amp/s/nos.nl/googleamp/artikel/129340-de-financiele-crisis-in-retroperspectief.html',
         ]
-        $ctrl.url = $ctrl.urls[2]; //youtube
+        $ctrl.url = $ctrl.urls[0]; 
+        console.log($ctrl.url)
+
+        Meteor.call('metaScraper', $ctrl.url, (error, article) => {
+            $scope.$apply(() => {
+                $ctrl.articles.push(article)
+            })
+            console.log(article)
+        })
         
 
         $ctrl.articles = [];
         
-        _.each($ctrl.urls, (url)=>{
-            Meteor.call('metaScraper', url, (error, article) => {
-                if (error){
-                    console.error(error);
-                }
-                console.log(article);
-                $scope.$apply(() => {
-                    $ctrl.articles.push(article)
-                })
+        // _.each($ctrl.urls, (url)=>{
+        //     Meteor.call('metaScraper', url, (error, article) => {
+        //         if (error){
+        //             console.error(error);
+        //         }
+        //         console.log(article);
+        //         $scope.$apply(() => {
+        //             $ctrl.articles.push(article)
+        //         })
                 
-            })
-        })
+        //     })
+        // })
 
         
 
@@ -100,7 +109,7 @@ class UrlDebuggerComponent {
         }
 
 
-        $ctrl.processUrl();
+        // $ctrl.processUrl();
 
     }
 
