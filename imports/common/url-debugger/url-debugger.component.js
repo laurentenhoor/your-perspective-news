@@ -35,7 +35,8 @@ class UrlDebuggerComponent {
             'https://fd.nl/beurs/1235376/aanpak-corruptie-is-het-grote-thema-in-latijns-amerika',
             'https://www.google.nl/amp/s/nos.nl/googleamp/artikel/129340-de-financiele-crisis-in-retroperspectief.html',
         ]
-        $ctrl.url = $ctrl.urls[0]; 
+        $ctrl.url = $ctrl.urls[7]; 
+        // $ctrl.urls =  [$ctrl.url]; 
         
         $ctrl.articles = [];
         
