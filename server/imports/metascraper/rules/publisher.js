@@ -22,7 +22,7 @@ const wrap = rule => ({ htmlDom }) => {
  * Rules.
  */
 
-module.exports = () => ({
+module.exports = {
   publisher: [
     wrap($ => $('meta[property="og:site_name"]').attr('content')),
     wrap($ => $('meta[name="application-name"]').attr('content')),
@@ -59,4 +59,4 @@ module.exports = () => ({
       return matches[1]
     })
   ]
-})
+}

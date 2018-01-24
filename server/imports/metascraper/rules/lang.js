@@ -7,9 +7,9 @@ const wrap = rule => ({ htmlDom }) => {
   return isString(value) && toLower(value.substring(0, 2))
 }
 
-module.exports = () => ({
+module.exports = {
   lang: [
     wrap($ => $('meta[property="og:locale"]').attr('content')),
     wrap($ => $('html').attr('lang'))
   ]
-})
+}

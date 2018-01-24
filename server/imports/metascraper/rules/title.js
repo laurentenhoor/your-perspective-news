@@ -8,7 +8,7 @@ const wrap = rule => ({ htmlDom }) => {
   return isString(value) && titleize(value)
 }
 
-module.exports = () => ({
+module.exports = {
   title: [
     wrap($ => $('meta[property="og:title"]').attr('content')),
     wrap($ => $('meta[name="twitter:title"]').attr('content')),
@@ -22,4 +22,4 @@ module.exports = () => ({
     wrap($ => $('h1[class*="title"]').text()),
     wrap($ => $('title').text())
   ]
-})
+}

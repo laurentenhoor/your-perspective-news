@@ -1,12 +1,11 @@
 'use strict'
 
-const { isUrl } = require('./@metascraper/helpers')
+const { isUrl } = require('./helpers')
 const { isEmpty } = require('lodash')
 
 const loadRules = require('./load-rules')
 const loadHTML = require('./load-html')
 const getData = require('./get-data')
-
 
 module.exports = async ({ url, html }) => {
   
@@ -20,3 +19,4 @@ module.exports = async ({ url, html }) => {
   const htmlDom = loadHTML(html)
   return getData({ rules, htmlDom, url })
 }
+

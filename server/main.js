@@ -12,6 +12,8 @@ import { Articles } from '/imports/api/articles'
 var Jimp = require('jimp');
 var path = require('path');
 
+_ = lodash;
+
 if (!Package.appcache)
 
 	WebApp.connectHandlers.use(function (req, res, next) {

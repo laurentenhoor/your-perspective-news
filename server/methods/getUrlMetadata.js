@@ -5,7 +5,7 @@ import getLogo from 'website-logo';
 import suq from 'suq';
 import request from 'request';
 
-import metascraper from '/imports/metascraper';
+import metascraper from '/server/imports/metascraper';
 
 import got from 'got';
 import cookie from 'cookie';
@@ -13,8 +13,6 @@ import cookie from 'cookie';
 Meteor.methods({
 
 	async metaScraper(targetUrl) {
-
-		console.log('call metaScraper method', targetUrl)
 
 		try {
 			const {body: html, url} = await got(targetUrl, {
@@ -25,7 +23,6 @@ Meteor.methods({
 					]
 				}
 			});
-			console.log('got output', url)
 			return await metascraper({html, url});
 		} catch (error) {
 			console.error(error);

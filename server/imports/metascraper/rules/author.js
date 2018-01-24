@@ -36,7 +36,7 @@ const strict = rule => $ => {
  * Rules.
  */
 
-module.exports = () => ({
+module.exports = {
   author: [
     wrap($ => $('meta[property="author"]').attr('content')),
     wrap($ => $('meta[property="article:author"]').attr('content')),
@@ -56,4 +56,4 @@ module.exports = () => ({
     wrap($ => getValue($, $('[class*="user-info"]'))),
     strict(wrap($ => getValue($, $('[class*="byline"]'))))
   ]
-})
+}

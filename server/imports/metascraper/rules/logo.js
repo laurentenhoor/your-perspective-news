@@ -47,7 +47,7 @@ const wrap = rule => ({ htmlDom, url }) => {
  * Rules.
  */
 
-module.exports = () => ({
+module.exports = {
   logo: [
     wrap($ => $('meta[property="og:logo"]').attr('content')),
     wrap($ => $('meta[itemprop="logo"]').attr('content')),
@@ -61,4 +61,4 @@ module.exports = () => ({
       return size
     })
   ]
-})
+}
