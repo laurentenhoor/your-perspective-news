@@ -1,0 +1,59 @@
+{
+  "_from": "metascraper-image@^3.4.3",
+  "_id": "metascraper-image@3.4.3",
+  "_inBundle": false,
+  "_integrity": "sha512-kah5TbfB8jPySvA5rO1An2I5nawiH7iDDquvYT6uCabzbMi2IFSKDYLQVzCOMpdDrdGbvOH8zcJmCHMSs6Gx4Q==",
+  "_location": "/metascraper-image",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "metascraper-image@^3.4.3",
+    "name": "metascraper-image",
+    "escapedName": "metascraper-image",
+    "rawSpec": "^3.4.3",
+    "saveSpec": null,
+    "fetchSpec": "^3.4.3"
+  },
+  "_requiredBy": [
+    "/metascraper"
+  ],
+  "_resolved": "https://registry.npmjs.org/metascraper-image/-/metascraper-image-3.4.3.tgz",
+  "_shasum": "3a4bfc3037c137591442a999c64032206e92af3c",
+  "_spec": "metascraper-image@^3.4.3",
+  "_where": "C:\\Users\\310172618\\git\\yourpers\\node_modules\\metascraper",
+  "author": {
+    "name": "Ian Storm Taylor",
+    "email": "ian@ianstormtaylor.com"
+  },
+  "bugs": {
+    "url": "https://github.com/microlinkhq/metascraper/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "@metascraper/helpers": "^3.4.3"
+  },
+  "deprecated": false,
+  "description": "Get image property from HTML markup",
+  "devDependencies": {
+    "standard": "latest"
+  },
+  "engines": {
+    "node": ">= 8"
+  },
+  "files": [
+    "index.js"
+  ],
+  "homepage": "https://metascraper.js.org",
+  "license": "MIT",
+  "main": "index.js",
+  "name": "metascraper-image",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/microlinkhq/metascraper/tree/master/packages/metascraper-image"
+  },
+  "scripts": {
+    "test": "exit 0"
+  },
+  "version": "3.4.3"
+}

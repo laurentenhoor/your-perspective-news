@@ -1,0 +1,74 @@
+{
+  "_from": "@metascraper/helpers@^3.4.3",
+  "_id": "@metascraper/helpers@3.4.3",
+  "_inBundle": false,
+  "_integrity": "sha512-XuIQsKp1HseeUW5wTusg+E1zz6Z8JRKYoIaaaOZ4p0LVc9gonv5YzRpD6WS5X3BQiph8BbLpiTysqisLdSC3oA==",
+  "_location": "/@metascraper/helpers",
+  "_phantomChildren": {
+    "ip-regex": "1.0.3",
+    "tlds": "1.199.0"
+  },
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "@metascraper/helpers@^3.4.3",
+    "name": "@metascraper/helpers",
+    "escapedName": "@metascraper%2fhelpers",
+    "scope": "@metascraper",
+    "rawSpec": "^3.4.3",
+    "saveSpec": null,
+    "fetchSpec": "^3.4.3"
+  },
+  "_requiredBy": [
+    "/metascraper",
+    "/metascraper-author",
+    "/metascraper-description",
+    "/metascraper-image",
+    "/metascraper-logo",
+    "/metascraper-title",
+    "/metascraper-url"
+  ],
+  "_resolved": "https://registry.npmjs.org/@metascraper/helpers/-/helpers-3.4.3.tgz",
+  "_shasum": "5c534b628803baf308d1fd390952a7b1fdc27ae5",
+  "_spec": "@metascraper/helpers@^3.4.3",
+  "_where": "C:\\Users\\310172618\\git\\yourpers\\node_modules\\metascraper",
+  "author": {
+    "name": "Ian Storm Taylor",
+    "email": "ian@ianstormtaylor.com"
+  },
+  "bugs": {
+    "url": "https://github.com/microlinkhq/metascraper/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "condense-whitespace": "~1.0.0",
+    "is-relative-url": "~2.0.0",
+    "normalize-url": "~2.0.0",
+    "smartquotes": "~2.3.1",
+    "to-title-case": "~1.0.0",
+    "url-regex": "~4.1.1"
+  },
+  "deprecated": false,
+  "description": "Collection of helper functions used by metascraper",
+  "devDependencies": {
+    "standard": "latest"
+  },
+  "engines": {
+    "node": ">= 8"
+  },
+  "files": [
+    "index.js"
+  ],
+  "homepage": "https://metascraper.js.org",
+  "license": "MIT",
+  "main": "src/index.js",
+  "name": "@metascraper/helpers",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/microlinkhq/metascraper/tree/master/packages/metascraper-helpers"
+  },
+  "scripts": {
+    "test": "exit 0"
+  },
+  "version": "3.4.3"
+}

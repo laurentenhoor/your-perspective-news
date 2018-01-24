@@ -1,0 +1,60 @@
+{
+  "_from": "metascraper-publisher@^3.4.0",
+  "_id": "metascraper-publisher@3.4.0",
+  "_inBundle": false,
+  "_integrity": "sha512-UUDqL8K86cWb6fDGwo5CeWsmWo+kHG+gqrK3iOocCf+4OAiSgiZSYxsU7ZojhiBpddR6BNLgjiLIlhBhD0OBFQ==",
+  "_location": "/metascraper-publisher",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "metascraper-publisher@^3.4.0",
+    "name": "metascraper-publisher",
+    "escapedName": "metascraper-publisher",
+    "rawSpec": "^3.4.0",
+    "saveSpec": null,
+    "fetchSpec": "^3.4.0"
+  },
+  "_requiredBy": [
+    "/metascraper"
+  ],
+  "_resolved": "https://registry.npmjs.org/metascraper-publisher/-/metascraper-publisher-3.4.0.tgz",
+  "_shasum": "b1ecbe6b2300eca97e860ad322f817925dbfffe4",
+  "_spec": "metascraper-publisher@^3.4.0",
+  "_where": "C:\\Users\\310172618\\git\\yourpers\\node_modules\\metascraper",
+  "author": {
+    "name": "Ian Storm Taylor",
+    "email": "ian@ianstormtaylor.com"
+  },
+  "bugs": {
+    "url": "https://github.com/microlinkhq/metascraper/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "condense-whitespace": "~1.0.0",
+    "lodash": "~4.17.4"
+  },
+  "deprecated": false,
+  "description": "Get publisher property from HTML markup",
+  "devDependencies": {
+    "standard": "latest"
+  },
+  "engines": {
+    "node": ">= 8"
+  },
+  "files": [
+    "index.js"
+  ],
+  "homepage": "https://metascraper.js.org",
+  "license": "MIT",
+  "main": "index.js",
+  "name": "metascraper-publisher",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/microlinkhq/metascraper/tree/master/packages/metascraper-publisher"
+  },
+  "scripts": {
+    "test": "exit 0"
+  },
+  "version": "3.4.0"
+}

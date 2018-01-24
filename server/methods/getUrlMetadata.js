@@ -5,7 +5,7 @@ import getLogo from 'website-logo';
 import suq from 'suq';
 import request from 'request';
 
-const metascraper = require('metascraper');
+import metascraper from '/imports/metascraper/metascraper';
 const got = require('got');
 
 Meteor.methods({
