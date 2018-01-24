@@ -6,7 +6,7 @@
             <label>Url</label>
             <input ng-model="$ctrl.url" ng-change="$ctrl.processUrl()">
         </md-input-container>
-        
+
 
         <div class="article-preview" ng-repeat="article in $ctrl.articles" style="background-image:url('{{ article.image }}')">
 
@@ -17,7 +17,11 @@
 
                 <div class="article-logo" style="background-image:url('{{ article.logo }}')"></div>
                 <div class="article-publisher">{{ article.publisher }}</div>
-                
+
+                <iframe class="video-player-iframe" ng-if="article.embed" src="{{ article.embed }}" allowfullscreen>
+                </iframe>
+
+
             </div>
         </div>
 
