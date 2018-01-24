@@ -1,6 +1,6 @@
 'use strict'
 
-const { getUrl, isUrl } = require('@metascraper/helpers')
+const { getUrl, isUrl } = require('../helpers')
 const { isString } = require('lodash')
 
 /**

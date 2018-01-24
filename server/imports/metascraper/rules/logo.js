@@ -1,7 +1,7 @@
 'use strict'
 
 const { flow, chain, first, concat, toNumber, split } = require('lodash')
-const { getUrl, isUrl } = require('@metascraper/helpers')
+const { getUrl, isUrl } = require('../helpers')
 
 const getSize = flow([str => split(str, 'x'), first, toNumber])
 

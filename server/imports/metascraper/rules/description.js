@@ -1,6 +1,6 @@
 'use strict'
 
-const { getValue, titleize } = require('@metascraper/helpers')
+const { getValue, titleize } = require('../helpers')
 const { isString } = require('lodash')
 
 const REGEX_LOCATION = /^[A-Z\s]+\s+[-—–]\s+/

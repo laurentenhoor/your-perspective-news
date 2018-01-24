@@ -1,6 +1,6 @@
 'use strict'
 
-const { getValue, isUrl, titleize } = require('@metascraper/helpers')
+const { getValue, isUrl, titleize } = require('../helpers')
 const { isString } = require('lodash')
 
 const REGEX_BY = /^[\s\n]*by|@[\s\n]*/im

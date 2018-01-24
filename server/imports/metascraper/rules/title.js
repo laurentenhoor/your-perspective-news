@@ -1,6 +1,6 @@
 'use strict'
 
-const { titleize } = require('@metascraper/helpers')
+const { titleize } = require('../helpers')
 const { isString } = require('lodash')
 
 const wrap = rule => ({ htmlDom }) => {
