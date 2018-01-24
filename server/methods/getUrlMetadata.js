@@ -6,20 +6,29 @@ import suq from 'suq';
 import request from 'request';
 
 import metascraper from '/imports/metascraper/metascraper';
-const got = require('got');
+
+import got from 'got';
+import cookie from 'cookie';
 
 Meteor.methods({
 
-	async betaScraper(url) {
+	async metaScraper(targetUrl) {
 
-		// do something
+		console.log(metascraper)
+		
 		try {
-			var response = await got(url);
-			console.log(response.body);
-			//=> '<!doctype html> ...'
+			const {body: html, url} = await got(targetUrl, {
+				headers: {
+					cookie: [
+						cookie.serialize('nl_cookiewall_version', '1'),
+						cookie.serialize('cookieconsent', 'true')
+					]
+				}
+			});
+			console.log(url)
+			return await metascraper({html, url});
 		} catch (error) {
-			console.log(error.response.body);
-			//=> 'Internal server error ...'
+			console.log(error);
 		}
 
 	},
@@ -52,6 +61,13 @@ Meteor.methods({
 });
 
 
+async function fetchMetaScraper(url) {
+	// do something
+	console.log(url)
+
+}
+
+
 function fetchSuq(url, callback) {
 
 	cookieJar = request.jar()
@@ -70,6 +86,7 @@ function fetchSuq(url, callback) {
 	}, { jar: cookieJar });
 
 }
+
 
 function validateClearbit(url, callback) {
 
@@ -110,6 +127,10 @@ function fetchMetaData(url, callback) {
 	});
 
 }
+
+
+
+
 
 function getBaseUrl(url) {
 
