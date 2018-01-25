@@ -16,7 +16,7 @@ function googlePromise(query) {
 
 module.exports = async (url) => {
 
-    var thisAIsBlendleUrl = false;
+    var thisIsABlendleUrl = false;
     var searchIndex = -1;
     var urlParts = url.split("/");
 
