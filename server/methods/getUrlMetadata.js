@@ -15,7 +15,6 @@ Meteor.methods({
 	async metaScraper(targetUrl) {
 
 		try {
-			
 			const {body: html, url} = await got(targetUrl, {
 				headers: {
 					cookie: [
