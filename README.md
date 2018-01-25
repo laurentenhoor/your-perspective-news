@@ -15,8 +15,9 @@ Wij verzetten ons tegen twittergeblaat en nepnieuws.
 ## version 1.3.6
 * New metadata scraper with major improved robustness
     * Including test suite for url imports
-    * Including fetching to bas64 images for 403 loading errors
+    * Including fetching to base64 images for 403 loading errors
     * Including cookie storage for cookiewalls
+    * Including url preprocessing to find the source of blendle articles
 * Improved article loading (paginated: 5 articles per view)
 * Refactored data structure prepared for hotness calculations
 
