@@ -14,17 +14,33 @@ const wrapYoutube = rule => ({ url, htmlDom }) => {
   return getVideo(url) && value;
 }
 
-function isDumpert(htmlDom) {
-  let applicationName = $('meta[name="application-name"]').attr('content');
-  console.log(applicationName)
-  console.log(applicationName == "Dumpert")
+function getDumpertEmbedUrl($) {
+  let url = $.url;
+  console.log(url)
+
+  var urlParts = url.split("/");
+  var mediabaseIndex = -1;
+  console.log(urlParts)
+  _.each(urlParts, (part, index) => {
+    if (part.indexOf('mediabase') > -1) {
+      mediabaseIndex = index;
+    }
+  })
+  return 'http://www.dumpert.nl/embed/'+urlParts[mediabaseIndex+1]+'/'+urlParts[mediabaseIndex+2]
   
-  return (applicationName == "Dumpert")
+}
+
+function isDumpertVideo($) {
+  let appName = $.htmlDom('meta[name="application-name"]').attr('content');
+  let mediaType = $.htmlDom('meta[property="og:type"]').attr('content');
+  return (appName == "Dumpert") && (mediaType == "video");
 }
 
 module.exports = {
   embed : [
     wrapYoutube($ => $('meta[name="twitter:player"]').attr('content')),
-    ($, url) => (isString(url) ? url : null)
+    ($) => {
+      return isDumpertVideo($) && getDumpertEmbedUrl($)
+    }
   ]
 }

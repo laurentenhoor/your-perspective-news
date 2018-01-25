@@ -38,8 +38,8 @@ class UrlDebuggerComponent {
         ]
 
         console.log('init UrlDebuggerComponent')
-        $ctrl.url = $ctrl.urls[0]; 
-        // $ctrl.urls =  [$ctrl.url]; 
+        $ctrl.url = $ctrl.urls[3]; 
+        $ctrl.urls =  [$ctrl.url]; 
         
         $ctrl.articles = [];
         
