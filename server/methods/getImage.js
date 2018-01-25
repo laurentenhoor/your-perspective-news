@@ -8,7 +8,7 @@ Meteor.methods({
 
         var data = "data:" + response.headers["content-type"] + ";base64," + new Buffer(response.content).toString('base64');
 
-        console.log('image data', response);
+        // console.log('image data', response);
 
         return data;
 

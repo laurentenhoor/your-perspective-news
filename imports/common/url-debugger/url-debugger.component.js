@@ -53,41 +53,24 @@ class UrlDebuggerComponent {
                 })
                 
             })
-        })
-        
+        })        
 
         $ctrl.setBackgroundImage = function(imagepath, article){
-
-            console.log('start loading image', imagepath)
-
             $imgPreloader.preloadImages([imagepath])
             .then(
-                function handleResolve( imageLocations ) {
-                    console.info( "Preload Successful" );
-                },
                 function handleReject( imageLocation ) {
-                    // Loading failed on at least one image.
-                    console.error( "Image Failed", imageLocation );
-                    console.info( "Preload Failure" );
                     Meteor.call('getImage', imageLocation, (error, imageBase64) => {
                         article.image = imageBase64;
                     })
-                },
-                function handleNotify( event ) {
-                    console.info( "Percent loaded:", event.percent );
                 }
             );
-            
-            
         }
-
 
         $ctrl.compileBackgroundStyle = function(imagepath){
             return {
                 'background-image':'url(' + imagepath + ')'
             }
         }
-
         
 
         $ctrl.processUrl = function () {
