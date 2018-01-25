@@ -4,7 +4,7 @@ import UrlDebuggerStyle from './url-debugger.styl';
 
 class UrlDebuggerComponent {
 
-    constructor($scope, $loader, $metadata, $http, $imgPreloader) {
+    constructor($scope, $loader, $metadata, $http, $imagePreloader) {
         'ngInject';
 
         $ctrl = this;
@@ -54,7 +54,7 @@ class UrlDebuggerComponent {
         $ctrl.articles = [];
         
         _.each($ctrl.urls, (url)=>{
-            Meteor.call('metaScraper', url, (error, article) => {
+            Meteor.call('metascraper', url, (error, article) => {
                 if (error){
                     console.error(error);
                 }
@@ -66,12 +66,11 @@ class UrlDebuggerComponent {
         });
 
         $ctrl.setBackgroundImage = function(imagepath, article){
-            console.log('setBackgroundImage', article)
-
-            $imgPreloader.preloadImages([imagepath])
+            // console.log('setBackgroundImage', article)
+            $imagePreloader.preloadImages([imagepath])
             .then(
                 function handleResolve( imageLocations ) {
-                    console.info( "Preload Successful" );
+                    // console.log( "Preload Successful" );
                 },
                 function handleReject( imageLocation ) {
                     console.log('rejected image', imageLocation)
@@ -79,11 +78,8 @@ class UrlDebuggerComponent {
                         if (error) {
                             console.error(error)
                         }
-                        article.image = imageBase64;
+                        article.imageUrl = imageBase64;
                     })
-                },
-                function handleNotify( event ) {
-                    console.info( "Percent loaded:", event.percent );
                 }
             );
         }
@@ -101,26 +97,9 @@ class UrlDebuggerComponent {
                 return;
             }
     
-            Meteor.call('metaScraper', $ctrl.url, (error, article) => {
+            Meteor.call('metascraper', $ctrl.url, (error, article) => {
                 $ctrl.output4 = article;
             })
-
-            Meteor.call('getTestMetadata', $ctrl.url, (error, result) => {
-
-                if (error) {
-                    self.$loader.stop();
-                    return console.error(error);
-                }
-                self.$loader.stop();
-                console.log(result)
-                $ctrl.output3 = result;
-
-            });
-
-            extractMeta($ctrl.url, function (err, res) {
-                console.log(res);
-                $ctrl.output2 = res;
-            });
 
             $http.get("https://opengraph.io/api/1.1/site/" +
                 $ctrl.url + "?app_id=5a54ba1ab3c5afd665690b3a&full_render=true")
@@ -130,7 +109,7 @@ class UrlDebuggerComponent {
 
         }
 
-        // $ctrl.processUrl();
+        $ctrl.processUrl();
 
     }
 

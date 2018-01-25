@@ -8,7 +8,10 @@
         </md-input-container>
 
 
-        <div class="article-preview" ng-init="$ctrl.setBackgroundImage(article.image, article)" ng-style="$ctrl.compileBackgroundStyle(article.image)" ng-repeat="article in $ctrl.articles">
+        <div class="article-preview" 
+            ng-init="$ctrl.setBackgroundImage(article.imageUrl, article)" 
+            ng-style="$ctrl.compileBackgroundStyle(article.imageUrl)" 
+            ng-repeat="article in $ctrl.articles">
 
             <div class="gradient-overlay">
                 <div class="article-title">{{ article.title }}</div>
@@ -17,7 +20,7 @@
                 <div class="article-logo" ng-style="$ctrl.compileBackgroundStyle(article.logo);"></div>
                 <div class="article-publisher">{{ article.publisher }}</div>
 
-                <iframe class="video-player-iframe" ng-if="article.embed" src="{{ article.embed }}" allowfullscreen>
+                <iframe class="video-player-iframe" ng-if="article.embed" src="{{ article.videoUrl }}" allowfullscreen>
                 </iframe>
 
             </div>
@@ -27,20 +30,6 @@
             Output Metascraper
             <pre>{{ $ctrl.output4 | json }}</pre>
         </div>
-        <div>
-            Output Metaget
-            <pre>{{ $ctrl.output | json }}</pre>
-        </div>
-
-        <div>
-            Output Suq
-            <pre>{{ $ctrl.output3 | json }}</pre>
-        </div>
-        <div>
-            Output acemtp:meta-extractor
-            <pre>{{ $ctrl.output2 | json }}</pre>
-        </div>
-
         <div>
             Output opengraph.io
             <pre>{{ $ctrl.output1 | json }}</pre>

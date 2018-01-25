@@ -17,7 +17,7 @@ export default class MetadataService {
 		self = this;
 		self.$loader.start();
 
-		Meteor.call('metaScraper', url, function (error, article) {
+		Meteor.call('metascraper', url, function (error, article) {
 
 			if (error) {
 				console.error(error);
