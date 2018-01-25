@@ -17,7 +17,7 @@
                 <div class="article-title">{{ article.title }}</div>
                 <div class="article-description">{{ article.description }}</div>
 
-                <div class="article-logo" ng-style="$ctrl.compileBackgroundStyle(article.logo);"></div>
+                <div class="article-logo" ng-style="$ctrl.compileBackgroundStyle(article.logoUrl);"></div>
                 <div class="article-publisher">{{ article.publisher }}</div>
 
                 <iframe class="video-player-iframe" ng-if="article.embed" src="{{ article.videoUrl }}" allowfullscreen>
@@ -28,11 +28,11 @@
 
         <div>
             Output Metascraper
-            <pre>{{ $ctrl.output4 | json }}</pre>
+            <pre>{{ $ctrl.output1 | json }}</pre>
         </div>
         <div>
             Output opengraph.io
-            <pre>{{ $ctrl.output1 | json }}</pre>
+            <pre>{{ $ctrl.output2 | json }}</pre>
         </div>
 
 

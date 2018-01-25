@@ -30,6 +30,7 @@ class UrlDebuggerComponent {
 
 
             // Passed the test!
+            'http://www.knack.be/nieuws/wereld/europese-lidstaten-gaan-ook-strafregisters-van-niet-europeanen-uitwisselen/article-normal-955931.html',
             'https://nos.nl/video/2203014-wie-is-grace-mugabe.html',
             'https://www.youtube.com/watch?v=4XDWtU1Zojw',
             'http://www.dumpert.nl/mediabase/7341269/bce179d5/code_rood.html',
@@ -101,13 +102,13 @@ class UrlDebuggerComponent {
             }
     
             Meteor.call('metascraper', $ctrl.url, (error, article) => {
-                $ctrl.output4 = article;
+                $ctrl.output1 = article;
             })
 
             $http.get("https://opengraph.io/api/1.1/site/" +
                 $ctrl.url + "?app_id=5a54ba1ab3c5afd665690b3a&full_render=true")
                 .then(function (response) {
-                    $ctrl.output1 = response;
+                    $ctrl.output2 = response;
                 });
 
         }
