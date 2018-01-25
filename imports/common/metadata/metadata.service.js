@@ -21,13 +21,9 @@ export default class MetadataService {
 
 			if (error) {
 				console.error(error);
-				$scope.$apply(function () {
-					$loader.stop();
-				});
+				self.$loader.stop();
 				return;
 			}
-
-			console.log('article', article)
 
 			self.$imagePreloader.preloadImages([article.imageUrl])
 				.then(
@@ -43,7 +39,7 @@ export default class MetadataService {
 							if (error) {
 								console.error(error)
 							}
-							article.image = imageBase64;
+							article.imageUrl = imageBase64;
 							self.$loader.stop();
 							return callback(false, article)
 						})

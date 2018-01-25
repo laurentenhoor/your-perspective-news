@@ -53,7 +53,8 @@ export default class ArticleActionsComponent {
 					console.error(error);
 					return;
 				}
-
+				console.log(article);
+				
 				$ctrl.article = article;
 				$ctrl.urlDataIsLoaded = true;				
 				
