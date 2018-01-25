@@ -66,6 +66,9 @@ class UrlDebuggerComponent {
                 function handleReject( imageLocation ) {
                     console.log('rejected image', imageLocation)
                     Meteor.call('getImage', imageLocation, (error, imageBase64) => {
+                        if (error) {
+                            console.error(error)
+                        }
                         article.image = imageBase64;
                     })
                 },
