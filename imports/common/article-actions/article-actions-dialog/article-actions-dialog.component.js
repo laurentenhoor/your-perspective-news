@@ -1,6 +1,6 @@
 export default class ArticleActionsComponent {
 
-	constructor($loader, $scope, $reactive, $document, $autoScroll, $dialog, $metadata, topicId, article, $articlesApi, $imgPreloader) {
+	constructor($loader, $scope, $reactive, $document, $autoScroll, $dialog, $metadata, topicId, article, $articlesApi) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -43,69 +43,21 @@ export default class ArticleActionsComponent {
 
 		}
 
-
 		$ctrl.urlChange = function () {
-
-			console.log('Url input changed to:');
-			console.log($ctrl.article.url)
-
-			if (!isValidUrl($ctrl.article.url)) {
-				return;
-			}
-			$loader.start();
-
-			$ctrl.call('metaScraper', $ctrl.article.url, function (error, article) {
+			
+			console.log('Url input changed to:', $ctrl.article.url);
+			
+			$metadata.getArticleFromUrl($ctrl.article.url, (error, article) => {
 
 				if (error) {
 					console.error(error);
-					$scope.$apply(function () {
-						$loader.stop();
-					});
 					return;
 				}
 
-				console.log('article', article)
-
-				function stopLoaderAndSaveArticle() {
-					$ctrl.article = article
-					$ctrl.urlDataIsLoaded = true;
-					$loader.stop();
-				}
-
-				$imgPreloader.preloadImages([article.imageUrl])
-					.then(
-						function handleResolve( imageLocations ) {
-							console.info( "Preload Successful" );
-							stopLoaderAndSaveArticle();
-						},
-						function handleReject( imageLocation ) {
-							console.log('rejected image', imageLocation)
-							Meteor.call('getImage', imageLocation, (error, imageBase64) => {
-								if (error) {
-									console.error(error)
-								}
-								article.image = imageBase64;
-								stopLoaderAndSaveArticle()
-							})
-						},
-						function handleNotify( event ) {
-							console.info( "Percent loaded:", event.percent );
-						}
-					);
-
+				$ctrl.article = article;
+				$ctrl.urlDataIsLoaded = true;				
 				
-
-			});
-		}
-
-		function isValidUrl(url) {
-
-			console.log('isValidUrl()');
-			console.log(url);
-
-			var urlregex = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
-			return urlregex.test(url);
-
+			})
 		}
 
 		$ctrl.ok = function () {

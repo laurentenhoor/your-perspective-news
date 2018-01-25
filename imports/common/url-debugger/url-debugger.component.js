@@ -100,19 +100,9 @@ class UrlDebuggerComponent {
             if (!$ctrl.url) {
                 return;
             }
-
-            
+    
             Meteor.call('metaScraper', $ctrl.url, (error, article) => {
                 $ctrl.output4 = article;
-            })
-
-
-            $metadata.getRawArticleFromUrl($ctrl.url, (error, article) => {
-                if (error) {
-                    return console.error(error);
-                }
-                console.log(article)
-                $ctrl.output = article;
             })
 
             Meteor.call('getTestMetadata', $ctrl.url, (error, result) => {

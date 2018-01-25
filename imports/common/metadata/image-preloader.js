@@ -3,7 +3,7 @@ import angular from 'angular';
 export default angular
     .module('core', [])
     .factory(
-    '$imgPreloader',
+    '$imagePreloader',
     function ($q, $rootScope) {
         'ngInject';
         // I manage the preloading of image objects. Accepts an array of image URLs.
@@ -79,8 +79,6 @@ export default angular
             handleImageError: function handleImageError(imageLocation) {
                 this.errorCount++;
                 // If the preload action has already failed, ignore further action.
-                console.log('failed', imageLocation)
-
                 if (this.isRejected()) {
                     return;
                 }
@@ -126,7 +124,6 @@ export default angular
                     .bind('load', function (event) {
                         // Since the load event is asynchronous, we have to
                         // tell AngularJS that something changed.
-                        console.warn('image successfully loading', event)
                         $rootScope.$apply(
                             function () {
                                 preloader.handleImageLoad(event.target.src);
@@ -139,8 +136,6 @@ export default angular
                     .bind('error', function (event) {
                         // Since the load event is asynchronous, we have to
                         // tell AngularJS that something changed.
-                        console.warn('image preloading error', event)
-
                         $rootScope.$apply(
                             function () {
                                 preloader.handleImageError(event.target.src);
@@ -150,9 +145,7 @@ export default angular
                             }
                         );
                     })
-                    .attr('src', imageLocation)
-                    ;
-                    console.log(image)
+                    .attr('src', imageLocation);
             }
         };
         // Return the factory instance.

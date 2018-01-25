@@ -2,54 +2,56 @@ import { Meteor } from 'meteor/meteor';
 
 export default class MetadataService {
 
-	constructor($loader) {
+	constructor($loader, $imagePreloader) {
 		'ngInject';
 		this.$loader = $loader;
+		this.$imagePreloader = $imagePreloader;
 	}
-
-	getRawArticleFromUrl = function(url, callback) {
-
-		self = this;
-		self.$loader.start();
-
-		Meteor.call('getUrlMetadata', url, (error, result) => {
-			
-			if (error) {
-				console.error(error);
-				self.$loader.stop();
-				return callback(error, null);
-			}
-			self.$loader.stop();
-			return callback(false, result);
-
-		});
-
-	} 
 	
 	getArticleFromUrl = function (url, callback) {
-
-		console.log('Url input: ' + url);
-
 		if (!this.isValidUrl(url)) {
+			console.warn('invalid url')
 			return;
 		}
 
 		self = this;
 		self.$loader.start();
 
-		Meteor.call('getUrlMetadata', url, (error, result) => {
-			
+		Meteor.call('metaScraper', url, function (error, article) {
+
 			if (error) {
 				console.error(error);
-				self.$loader.stop();
-				return callback(error, null);
+				$scope.$apply(function () {
+					$loader.stop();
+				});
+				return;
 			}
 
-			let article = self.createArticle(url, result);
-			self.$loader.stop();
-			return callback(false, article);
+			console.log('article', article)
+
+			self.$imagePreloader.preloadImages([article.imageUrl])
+				.then(
+					function handleResolve( imageLocations ) {
+						console.info( "Image loaded succesfully" );
+						
+						self.$loader.stop();
+						return callback(false, article)
+					},
+					function handleReject( imageLocation ) {
+						console.log('Image not loaded succesfully', imageLocation)
+						Meteor.call('getImage', imageLocation, (error, imageBase64) => {
+							if (error) {
+								console.error(error)
+							}
+							article.image = imageBase64;
+							self.$loader.stop();
+							return callback(false, article)
+						})
+					}
+				);
 
 		});
+
 	}
 
 	isValidUrl(url) {
@@ -62,43 +64,5 @@ export default class MetadataService {
 
 	}
 
-	createArticle(url, result) {
-		
-		var article = {};
-		
-		article.url = url;
-		article.logoUrl = result.logos.clearbit || result.logos.icon;
-		article.description = (result['twitter:description'] || result['og:description'] || result['Description'] || result['description'])// .replace(/<\/?[^>]+(>|$)/g,"");
-		article.title = (result['gwa_contentTitle'] || result['twitter:title'] || result['og:title'] || result['Title'])// .replace(/<\/?[^>]+(>|$)/g,"");
-		article.publisher = result['og:site_name'] || result['application-name'] || result['app-name'];
-		article.publishedAt = result['article:published'];		
-		article.videoUrl = result['twitter:player'];
-		article.imageUrl = result['og:image'] || result['twitter:image'] || result['twitter:image:src'];
-		
-		if (!article.imageUrl) {
-			article.imageUrl = 'http://www.workhappynow.com/wp-content/foggy-mountains-blue-595.jpeg';
-		}
-		if (!article.description) {
-			article.description = article.title;
-		}
-		if (!article.title) {
-			article.title = "Dit artikel kunnen wij helaas niet vinden."
-		}
-		console.log(article)
-		
-		if (result['twitter:player']) {
-			article.imageUrl = result['twitter:image'];
-			article.url = null;
-			article.videoUrl = article.videoUrl + '?&theme=dark&autohide=2&modestbranding=0&fs=1&showinfo=0&rel=0&playsinline=1';
-			if (article.publisher == 'YouTube') {
-				article.logoUrl = 'https://logo.clearbit.com/www.youtube.com';
-				
-			}
-		}
-		
-//		article.rawMetadata = result;
-		
-		return article;
-		
-	}
+	
 }
