@@ -70,20 +70,15 @@ export default class ArticleActionsComponent {
 				case 'add_source_to_topic':
 					console.log('add_source_to_topic')
 					$articlesApi.addToTopic($ctrl.topicId, $ctrl.article);
-					
-					// Meteor.call('addArticle', $ctrl.topicId, $ctrl.modifiedCategory, $ctrl.article, () => {
 					// 	$autoScroll.scrollToTop();
-					// });
 					break;
 				case 'new_topic':
-					// Meteor.call('addArticle', null, $ctrl.modifiedCategory, $ctrl.article);
+					console.log('new topic')
 					$articlesApi.addToNewTopic($ctrl.article)
 					break;
 				case 'edit_source':
-					console.log('edit');
+					console.log('edit')
 					$articlesApi.updateArticle($ctrl.article)
-					// Meteor.call('addArticleToCategory', $ctrl.topicId, $ctrl.modifiedCategory, $ctrl.article);
-					// Meteor.call('removeArticleFromCategory', $ctrl.topicId, $ctrl.category.category, $ctrl.article._id);
 					break;
 			}
 			$dialog.hide();
