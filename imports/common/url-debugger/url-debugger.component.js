@@ -11,10 +11,11 @@ class UrlDebuggerComponent {
         $loader.databaseInitialized();
         
         $ctrl.urls = [            
+            'https://www.google.nl/amp/s/nos.nl/googleamp/artikel/129340-de-financiele-crisis-in-retroperspectief.html',
             'https://www.youtube.com/watch?v=4XDWtU1Zojw',
             'http://www.dumpert.nl/mediabase/7341269/bce179d5/code_rood.html',
             'http://www.dumpert.nl/mediabase/7347615/0e8baec2/meiske_doet_schieten.html',
-
+            
             'https://fd.nl/economie-politiek/1210447/overheidsbalans-lagere-gasbaten-maken-nederland-in-een-klap-60-miljard-euro-armer',
             'https://www.nytimes.com/2018/01/09/sports/alabama-national-championship.html?hp&action=click&pgtype=Homepage&clickSource=story-heading&module=photo-spot-region&region=top-news&WT.nav=top-news',
             'https://www.google.nl/amp/s/www.volkskrant.nl/binnenland/uitspraak-college-politie-discrimineert-met-verbod-op-hoofddoek-in-niet-publieke-functie~a4540290/amp',
@@ -33,12 +34,12 @@ class UrlDebuggerComponent {
             'https://www.bnr.nl/podcast/bernard-hammelburg/10336697/opstand-in-iran',
             'https://nl.m.wikipedia.org/wiki/Iraanse_Revolutie',
             'https://fd.nl/beurs/1235376/aanpak-corruptie-is-het-grote-thema-in-latijns-amerika',
-            'https://www.google.nl/amp/s/nos.nl/googleamp/artikel/129340-de-financiele-crisis-in-retroperspectief.html',
+           
         ]
 
         console.log('init UrlDebuggerComponent')
-        $ctrl.url = $ctrl.urls[10]; 
-        // $ctrl.urls =  [$ctrl.url, $ctrl.urls[0]]; 
+        $ctrl.url = $ctrl.urls[0]; 
+        // $ctrl.urls =  [$ctrl.url]; 
         
         $ctrl.articles = [];
         
@@ -47,13 +48,12 @@ class UrlDebuggerComponent {
                 if (error){
                     console.error(error);
                 }
-                console.log(article);
                 $scope.$apply(() => {
                     $ctrl.articles.push(article)
                 })
                 
             })
-        })        
+        });
 
         $ctrl.setBackgroundImage = function(imagepath, article){
             $imgPreloader.preloadImages([imagepath])

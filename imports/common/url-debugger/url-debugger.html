@@ -8,7 +8,7 @@
         </md-input-container>
 
 
-        <div class="article-preview" ng-init="$ctrl.setBackgroundImage(article.image, article)" ng-style="$ctrl.compileBackgroundStyle(article.image);" ng-repeat="article in $ctrl.articles">
+        <div class="article-preview" ng-init="$ctrl.setBackgroundImage(article.image, article)" ng-style="$ctrl.compileBackgroundStyle(article.image)" ng-repeat="article in $ctrl.articles">
 
             <div class="gradient-overlay">
                 <div class="article-title">{{ article.title }}</div>

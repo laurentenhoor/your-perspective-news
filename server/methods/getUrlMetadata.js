@@ -15,13 +15,15 @@ Meteor.methods({
 	async metaScraper(targetUrl) {
 
 		try {
+			console.log(targetUrl)
 			const {body: html, url} = await got(targetUrl, {
 				headers: {
 					cookie: [
 						cookie.serialize('nl_cookiewall_version', '1'),
 						cookie.serialize('cookieconsent', 'true')
 					]
-				}
+				},
+				followRedirect : true
 			});
 			return await metascraper({html, url});
 		} catch (error) {
