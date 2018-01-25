@@ -19,7 +19,7 @@ const wrap = rule => ({ htmlDom, url }) => {
  */
 
 module.exports = {
-  image: [
+  imageUrl: [
     wrap($ => $('meta[property="og:image:secure_url"]').attr('content')),
     wrap($ => $('meta[property="og:image:url"]').attr('content')),
     wrap($ => $('meta[property="og:image"]').attr('content')),

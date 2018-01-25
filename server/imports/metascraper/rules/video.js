@@ -41,7 +41,7 @@ function isDumpertVideo($) {
 }
 
 module.exports = {
-  embed : [
+  videoUrl : [
     wrapYoutube($ => $('meta[name="twitter:player"]').attr('content')),
     ($) => {
       return isDumpertVideo($) && getDumpertEmbedUrl($.url)

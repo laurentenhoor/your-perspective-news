@@ -1,5 +1,5 @@
 const rules = [
-    require('./rules/embed'),
+    require('./rules/video'),
     require('./rules/author'),
     require('./rules/date'),
     require('./rules/description'),

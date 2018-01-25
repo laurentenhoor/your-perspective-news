@@ -1,6 +1,6 @@
 export default class ArticleActionsComponent {
 
-	constructor($loader, $scope, $reactive, $document, $autoScroll, $dialog, $metadata, topicId, article, $articlesApi) {
+	constructor($loader, $scope, $reactive, $document, $autoScroll, $dialog, $metadata, topicId, article, $articlesApi, $imgPreloader) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -54,7 +54,7 @@ export default class ArticleActionsComponent {
 			}
 			$loader.start();
 
-			$ctrl.call('getUrlMetadata', $ctrl.article.url, function (error, result) {
+			$ctrl.call('metaScraper', $ctrl.article.url, function (error, article) {
 
 				if (error) {
 					console.error(error);
@@ -64,12 +64,36 @@ export default class ArticleActionsComponent {
 					return;
 				}
 
-				$ctrl.article = $metadata.createArticle($ctrl.article.url, result);
-				$ctrl.urlDataIsLoaded = true;
+				console.log('article', article)
 
-				$scope.$apply(function () {
+				function stopLoaderAndSaveArticle() {
+					$ctrl.article = article
+					$ctrl.urlDataIsLoaded = true;
 					$loader.stop();
-				});
+				}
+
+				$imgPreloader.preloadImages([article.imageUrl])
+					.then(
+						function handleResolve( imageLocations ) {
+							console.info( "Preload Successful" );
+							stopLoaderAndSaveArticle();
+						},
+						function handleReject( imageLocation ) {
+							console.log('rejected image', imageLocation)
+							Meteor.call('getImage', imageLocation, (error, imageBase64) => {
+								if (error) {
+									console.error(error)
+								}
+								article.image = imageBase64;
+								stopLoaderAndSaveArticle()
+							})
+						},
+						function handleNotify( event ) {
+							console.info( "Percent loaded:", event.percent );
+						}
+					);
+
+				
 
 			});
 		}

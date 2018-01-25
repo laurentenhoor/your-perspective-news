@@ -10,12 +10,14 @@ import metascraper from '/server/imports/metascraper';
 import got from 'got';
 import cookie from 'cookie';
 
+import urlTools from 'url';
+
 Meteor.methods({
 
 	async metaScraper(targetUrl) {
 
 		try {
-			const {body: html, url} = await got(targetUrl, {
+			const {body: html, url} = await got(urlTools.parse(targetUrl), {
 				headers: {
 					cookie: [
 						cookie.serialize('nl_cookiewall_version', '1'),
@@ -25,8 +27,8 @@ Meteor.methods({
 				followRedirect : true
 			});
 			return await metascraper({html, url});
-		} catch (error) {
-			console.error(error);
+		} catch (e) {
+			console.log(e);
 		}
 
 	},
@@ -76,7 +78,7 @@ function fetchSuq(url, callback) {
 
 		if (err) {
 			console.log('scraped json is:', JSON.stringify(json, null, 2));
-			return callback(true, error);
+			return callback(true, err);
 		}
 
 		return callback(false, json)
