@@ -34,6 +34,10 @@ export default angular
         // ---
         // I reload the given images [Array] and return a promise. The promise
         // will be resolved with the array of image locations.
+        Preloader.preloadImage = function (imageLocation) {
+            var preloader = new Preloader([imageLocation]);
+            return (preloader.load());
+        };
         Preloader.preloadImages = function (imageLocations) {
             var preloader = new Preloader(imageLocations);
             return (preloader.load());

@@ -25,7 +25,7 @@ export default class MetadataService {
 				return;
 			}
 
-			self.$imagePreloader.preloadImages([article.imageUrl])
+			self.$imagePreloader.preloadImage(article.imageUrl)
 				.then(
 					function handleResolve( imageLocations ) {
 						console.info( "Image loaded succesfully" );
