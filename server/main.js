@@ -1,19 +1,10 @@
 import { Meteor } from 'meteor/meteor';
 import { HTTP } from 'meteor/http'
 
-import '/imports/api/votes.js';
-import '/imports/api/feedback.js';
-import '/imports/api/comments.js';
-import '/imports/api/opinions.js';
-
 import { Topics } from '/imports/api/topics'
 import { Articles } from '/imports/api/articles'
 
-var Jimp = require('jimp');
-var path = require('path');
-
 _ = lodash;
-
 
 Meteor.startup(() => {
 
