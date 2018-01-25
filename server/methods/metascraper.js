@@ -18,8 +18,8 @@ Meteor.methods({
 				followRedirect : true
 			});
 			return await metascraper({html, url});
-		} catch (e) {
-			console.log(e);
+		} catch (error) {
+			console.log(error);
 		}
 
 	}

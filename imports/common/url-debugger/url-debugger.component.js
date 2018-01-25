@@ -24,6 +24,11 @@ class UrlDebuggerComponent {
             // // Low resolution logo - LOW PRIORITY
             'https://www.vpro.nl/programmas/tegenlicht/kijk/afleveringen/2013-2014/de-noodzaak-van-een-utopie.html',
 
+            // Not always correct publisher name
+            'https://nl.wikipedia.org/wiki/Koninklijke_Philips',
+            'https://nl.m.wikipedia.org/wiki/Iraanse_Revolutie',
+
+
             // Passed the test!
             'https://nos.nl/video/2203014-wie-is-grace-mugabe.html',
             'https://www.youtube.com/watch?v=4XDWtU1Zojw',
@@ -36,13 +41,11 @@ class UrlDebuggerComponent {
             'https://dekanttekening.nl/samenleving/poolse-nederlanders-vinden-polen-niet-xenofobisch/',
             'http://www.economist.com/blogs/dailychart/2010/11/cartography?fsrc=scn/fb/te/pe/ed/truesizeafrica',
             'https://www.businessinsider.nl/tesla-heeft-een-nieuwe-versie-van-zijn-roadster-sportwagen-gepresenteerd-en-het-echt-een-game-changer/',
-            'https://nl.wikipedia.org/wiki/Koninklijke_Philips',
             'https://blendle.com/i/de-standaard/me-too-in-nederland/bnl-destandaard-20180108-eee62560_f250_11e7_bfa5_c2ed917c3dd8?sharer=eyJ2ZXJzaW9uIjoiMSIsInVpZCI6ImJhcnRkaW5namFuIiwiaXRlbV9pZCI6ImJubC1kZXN0YW5kYWFyZC0yMDE4MDEwOC1lZWU2MjU2MF9mMjUwXzExZTdfYmZhNV9jMmVkOTE3YzNkZDgifQ%3D%3D',
             'https://www.economist.com/blogs/graphicdetail/2017/05/daily-chart-22',
             'https://fd.nl/economie-politiek/1092391/alcohol-en-tabak-zijn-winstmachines-maar-hoe-lang-nog',
             'https://www.volkskrant.nl/opinie/hetzelfde-ritueel-zal-zich-na-elke-beving-herhalen-tot-het-gas-echt-op-is~a4555873/',
             'https://www.bnr.nl/podcast/bernard-hammelburg/10336697/opstand-in-iran',
-            'https://nl.m.wikipedia.org/wiki/Iraanse_Revolutie',
             'https://fd.nl/beurs/1235376/aanpak-corruptie-is-het-grote-thema-in-latijns-amerika'
            
         ]

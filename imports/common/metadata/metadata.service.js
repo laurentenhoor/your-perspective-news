@@ -25,6 +25,18 @@ export default class MetadataService {
 				return;
 			}
 
+			console.log(article)
+
+			if(!article) {
+				self.$loader.stop();
+				return callback(true, null)
+			}
+
+			if (!article.imageUrl) {
+				self.$loader.stop();
+				return callback(false, article)
+			}
+
 			self.$imagePreloader.preloadImage(article.imageUrl)
 				.then(
 					function handleResolve( imageLocations ) {
