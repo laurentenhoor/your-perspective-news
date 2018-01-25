@@ -56,12 +56,21 @@ class UrlDebuggerComponent {
         });
 
         $ctrl.setBackgroundImage = function(imagepath, article){
+            console.log('setBackgroundImage', article)
+
             $imgPreloader.preloadImages([imagepath])
             .then(
+                function handleResolve( imageLocations ) {
+                    console.info( "Preload Successful" );
+                },
                 function handleReject( imageLocation ) {
+                    console.log('rejected image', imageLocation)
                     Meteor.call('getImage', imageLocation, (error, imageBase64) => {
                         article.image = imageBase64;
                     })
+                },
+                function handleNotify( event ) {
+                    console.info( "Percent loaded:", event.percent );
                 }
             );
         }
