@@ -12,6 +12,14 @@ Wij verzetten ons tegen twittergeblaat en nepnieuws.
 * It is not possible to share and discuss multiple news items at once (cross-linking and comparison).
 
 # Application Changelog
+## version 1.3.6
+* New metadata scraper with major improved robustness
+    * Including test suite for url imports
+    * Including fetching to bas64 images for 403 loading errors
+    * Including cookie storage for cookiewalls
+* Improved article loading (paginated: 5 articles per view)
+* Refactored data structure prepared for hotness calculations
+
 ## version 1.3.5
 * Added opinion tile
 * Added share functionality
