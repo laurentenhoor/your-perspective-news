@@ -4,7 +4,7 @@ import UrlDebuggerStyle from './url-debugger.styl';
 
 class UrlDebuggerComponent {
 
-    constructor($scope, $loader, $metadata, $http) {
+    constructor($scope, $loader, $metadata, $http, $imgPreloader) {
         'ngInject';
 
         $ctrl = this;
@@ -35,8 +35,10 @@ class UrlDebuggerComponent {
             'https://fd.nl/beurs/1235376/aanpak-corruptie-is-het-grote-thema-in-latijns-amerika',
             'https://www.google.nl/amp/s/nos.nl/googleamp/artikel/129340-de-financiele-crisis-in-retroperspectief.html',
         ]
-        $ctrl.url = $ctrl.urls[0]; 
-        // $ctrl.urls =  [$ctrl.url]; 
+
+        console.log('init UrlDebuggerComponent')
+        $ctrl.url = $ctrl.urls[10]; 
+        // $ctrl.urls =  [$ctrl.url, $ctrl.urls[0]]; 
         
         $ctrl.articles = [];
         
@@ -52,6 +54,39 @@ class UrlDebuggerComponent {
                 
             })
         })
+        
+
+        $ctrl.setBackgroundImage = function(imagepath, article){
+
+            console.log('start loading image', imagepath)
+
+            $imgPreloader.preloadImages([imagepath])
+            .then(
+                function handleResolve( imageLocations ) {
+                    console.info( "Preload Successful" );
+                },
+                function handleReject( imageLocation ) {
+                    // Loading failed on at least one image.
+                    console.error( "Image Failed", imageLocation );
+                    console.info( "Preload Failure" );
+                    Meteor.call('getImage', imageLocation, (error, imageBase64) => {
+                        article.image = imageBase64;
+                    })
+                },
+                function handleNotify( event ) {
+                    console.info( "Percent loaded:", event.percent );
+                }
+            );
+            
+            
+        }
+
+
+        $ctrl.compileBackgroundStyle = function(imagepath){
+            return {
+                'background-image':'url(' + imagepath + ')'
+            }
+        }
 
         
 

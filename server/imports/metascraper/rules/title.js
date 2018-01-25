@@ -13,7 +13,6 @@ function isStringAndShort(value) {
 }
 
 function stringIsShort(string) {
-  console.log(string.length)
   if (string.length < 200) {
     return true;
   } else {

@@ -8,14 +8,13 @@
         </md-input-container>
 
 
-        <div class="article-preview" ng-repeat="article in $ctrl.articles" style="background-image:url('{{ article.image }}')">
+        <div class="article-preview" ng-init="$ctrl.setBackgroundImage(article.image, article)" ng-style="$ctrl.compileBackgroundStyle(article.image);" ng-repeat="article in $ctrl.articles">
 
             <div class="gradient-overlay">
                 <div class="article-title">{{ article.title }}</div>
                 <div class="article-description">{{ article.description }}</div>
 
-
-                <div class="article-logo" style="background-image:url('{{ article.logo }}')"></div>
+                <div class="article-logo" ng-style="$ctrl.compileBackgroundStyle(article.logo);"></div>
                 <div class="article-publisher">{{ article.publisher }}</div>
 
                 <iframe class="video-player-iframe" ng-if="article.embed" src="{{ article.embed }}" allowfullscreen>
