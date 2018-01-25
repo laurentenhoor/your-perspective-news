@@ -20,6 +20,7 @@
     "condense-whitespace": "^1.0.0",
     "cookie": "^0.3.1",
     "get-video-id": "^2.1.7",
+    "google": "^2.1.0",
     "got": "^8.0.3",
     "is-relative-url": "^2.0.0",
     "isostring": "0.0.1",
