@@ -32,7 +32,7 @@ export default class ArticlesApi {
     }
 
     updateArticle(article) {
-        Articles.update({_id: article._id}, article);
+        Articles.update({ _id: article._id }, article);
     }
 
     addToNewTopic(article) {
@@ -53,9 +53,50 @@ export default class ArticlesApi {
             }, {
                     $push: { articleIds: articleId }
                 });
-                
+
         });
 
     }
+
+    updateScore(articleId, scoreDifference) {
+        Articles.update(articleId, {$inc : {'stats.score': scoreDifference}});
+    }
+
+    countVisitExternal(articleId) {
+        Articles.update({ _id: articleId }, {
+            $inc:
+                { 'stats.externalVisits': 1 }
+        });
+    }
+
+    countShowDetails(articleId) {
+        Articles.update({ _id: articleId }, {
+            $inc:
+                { 'stats.detailsShown': 1 }
+        });
+    }
+
+    countTotalVotes(articleId) {
+        Articles.update({ _id: articleId }, {
+            $inc:
+                { 'stats.totalVotes': 1 }
+        });
+    }
+
+    countUpVote(articleId, value) {
+        Articles.update({ _id: articleId }, {
+            $inc:
+                { 'stats.upVotes': value }
+        });
+    }
+
+    countDownVote(articleId, value) {
+        Articles.update({ _id: articleId }, {
+            $inc:
+                { 'stats.downVotes': value }
+        });
+    }
+
+
 
 }

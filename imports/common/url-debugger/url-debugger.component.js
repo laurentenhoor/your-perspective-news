@@ -15,6 +15,9 @@ class UrlDebuggerComponent {
             // blendle links are not showing the full information
             'https://blendle.com/i/knack/de-onbesuisdheid-van-macron/bnl-knack-20180124-128f0b1a5ce?sharer=eyJ2ZXJzaW9uIjoiMSIsInVpZCI6ImJhcnRkaW5namFuIiwiaXRlbV9pZCI6ImJubC1rbmFjay0yMDE4MDEyNC0xMjhmMGIxYTVjZSJ9',
 
+            // // very long title - is a shorter url available?
+            // 'https://www.volkskrant.nl/media/volkskrant-ochtend-hoe-de-aivd-een-russisch-complot-tegen-vs-blootlegt-wat-doet-trump-in-davos~a4561936'
+
             // // Does load on local, but not in production
             // 'https://www.google.nl/amp/s/nos.nl/googleamp/artikel/129340-de-financiele-crisis-in-retroperspectief.html',
             

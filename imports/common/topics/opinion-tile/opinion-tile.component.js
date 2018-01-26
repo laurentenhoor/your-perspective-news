@@ -16,7 +16,7 @@ class OpinionTileComponent {
 
         $ctrl.helpers({
             opinions : () => {
-                return $opinionsApi.getAllByTopicId($ctrl.getReactively('topicId'));;
+                return $opinionsApi.getAllByTopicId($ctrl.getReactively('topicId'));
             },
             userOpinion : () => {
                 var userOpinion = $opinionsApi.getUserOpinion($ctrl.getReactively('topicId'))

@@ -1,3 +1,5 @@
+import { Users } from '/imports/api/users'
+
 import { Meteor } from 'meteor/meteor';
 
 export default class UsersApiService {
@@ -6,8 +8,6 @@ export default class UsersApiService {
         'ngInject';
 
         this.$filter = $filter;
-        Meteor.subscribe('allUsernames');
-
     }
 
     getUsername(userId) {
