@@ -19,11 +19,9 @@ class VoteComponent {
 
         $ctrl.helpers({
             myVoteValue: () => {
-                console.log('myVoteValue helper', $ctrl.getReactively('articleId'))
                 var vote = Votes.findOne({
                     articleId: $ctrl.getReactively('articleId')
                 });
-                console.log(vote)
                 return vote ? vote.value : 0;
             },
             itemTotalScore: () => {

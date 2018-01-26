@@ -16,12 +16,9 @@ export default class VotesApiService {
 		}
 		// robustness for adjusting the javascript value
         voteValue > 0 ? voteValue = 1 : voteValue = -1
-        
-        console.log('vote for user', Meteor.userId())
-
+    
 		// check if a vote already exists for this user and article
         var vote = Votes.findOne({articleId : id, ownerId: Meteor.userId()});
-        console.log(vote)
 		
 		if (!vote) {
 			
