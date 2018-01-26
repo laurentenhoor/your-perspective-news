@@ -5,6 +5,7 @@ export default class SmoothScrollServices {
 
         this.scrollToTop = function() {
             
+            console.log('$autoScroll.scrollToTop()')
             var scrollElement = document.getElementById('yourpers');
             scrollElement.scrollTop = 0;
 

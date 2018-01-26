@@ -4,30 +4,6 @@ import { Articles } from '/imports/api/articles'
 var Jimp = require('jimp');
 var path = require('path');
 
-_ = lodash;
-
-if (!Package.appcache)
-    WebApp.connectHandlers.use(function (req, res, next) {
-        var params = req.url.split('/');
-        var route = params[1];
-        var itemId = params[2];
-        
-        if (route != 'topic' || !itemId) {
-            return next();
-        }
-        var topic = Topics.findOne({ _id: itemId });
-        if (!topic) {
-            return next();
-        }
-        var articles = getAllArticlesFromTopic(topic);
-
-        if (Inject.appUrl(req.url)) {
-            Inject.rawHead('myData', getMetaTags(topic, articles[0]), res);
-        }
-        next();
-
-    });
-
 Router.route('/i/:topicId.jpg', function () {
 
     var request = this;
@@ -52,6 +28,7 @@ Router.route('/i/:topicId.jpg', function () {
 
 }, { where: 'server' });
 
+
 function getAllArticlesFromTopic(topic) {
 
     var articles = [];
@@ -60,6 +37,30 @@ function getAllArticlesFromTopic(topic) {
     })
     return articles;
 }
+
+function loadImages(urls, callback) {
+
+    var images = [];
+    var imageCounter = 0;
+
+    _.each(urls, (url, i) => {
+
+        Jimp.read(url, (error, image) => {
+            imageCounter++;
+            if (error) {
+                console.error(error);
+            }
+            if (image) {
+                // image.opacity(1)	
+                images.push(image)
+            }
+            if (imageCounter == urls.length) {
+                callback(images);
+            }
+        })
+    })
+}
+
 
 function render(images, callback) {
 
@@ -114,29 +115,6 @@ function render(images, callback) {
     })
 }
 
-function loadImages(urls, callback) {
-
-    var images = [];
-    var imageCounter = 0;
-
-    _.each(urls, (url, i) => {
-
-        Jimp.read(url, (error, image) => {
-            imageCounter++;
-            if (error) {
-                console.error(error);
-            }
-            if (image) {
-                // image.opacity(1)	
-                images.push(image)
-            }
-            if (imageCounter == urls.length) {
-                callback(images);
-            }
-        })
-    })
-}
-
 function sendBackImage(request, canvas) {
 
     canvas.getBuffer(Jimp.MIME_JPEG, (error, imageBuffer) => {
@@ -150,19 +128,4 @@ function sendBackImage(request, canvas) {
         request.response.end();
 
     });
-}
-
-
-function getMetaTags(topic, article) {
-    var tags = `
-		<meta property="og:title" content="`+ article.title + `">
-		<meta property="og:description" content="Zoek mee naar het volledige verhaal achter dit nieuws op Jouwpers.">
-		<meta property="og:image" content="`+ Meteor.absoluteUrl() + `i/` + topic._id + `.jpg">
-		<meta property="og:image:type" content="image/jpeg" />
-		<meta property="og:image:width" content="900">
-		<meta property="og:image:height" content="600">
-		<meta property="og:type" content="article">
-		<meta property="og:url" content="`+ Meteor.absoluteUrl() + `topic/` + topic._id + `/">
-		`
-    return tags;
 }

@@ -6,7 +6,7 @@ import { Random } from 'meteor/random'
 
 class TopicsComponent {
 
-	constructor($scope, $reactive, $loader, $articlesApi, $timeout, $state) {
+	constructor($scope, $reactive, $loader, $articlesApi, $timeout, $state, $autoScroll) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -36,15 +36,11 @@ class TopicsComponent {
 				$ctrl.getReactively('singleTopicId'),{
 					onReady: ()=>{
 						if (!$ctrl.topics){
-							$ctrl.displayMoreButton = false;
 							return;
 						}
 						let amountOfTopics = Topics.find({}).fetch().length;
 						if (amountOfTopics == $ctrl.topics.length  || amountOfTopics == 0) {
 							$loader.stop();
-							$ctrl.displayMoreButton = false;
-						} else {
-							$ctrl.displayMoreButton = true;
 						}
 					}
 				})
@@ -88,14 +84,14 @@ class TopicsComponent {
 		}
 
 		$ctrl.toggleYesterday = () => {
-			$ctrl.allTimeFavoritesMode = false;
+			$timeout(()=>$autoScroll.scrollToTop());
 			$ctrl.yesterday = !$ctrl.yesterday;
 			$ctrl.amountOfTopics = 5;
 			checkState();
 		}
 
 		$ctrl.loadAllTopics = () => {
-			$ctrl.allTimeFavoritesMode = true;
+			$timeout(()=>$autoScroll.scrollToTop());
 			$ctrl.amountOfTopics = 5;
 			$ctrl.yesterday = null;
 			checkState();
