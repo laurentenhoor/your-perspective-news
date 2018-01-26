@@ -5,7 +5,7 @@ import { Votes } from '/imports/api/votes.js';
 
 class VoteComponent {
 
-    constructor($reactive, $scope, $vote, $votableItemsApi) {
+    constructor($reactive, $scope, $votesApi, $votableItemsApi) {
         'ngInject';
 
         let $ctrl = this;
@@ -19,9 +19,11 @@ class VoteComponent {
 
         $ctrl.helpers({
             myVoteValue: () => {
+                console.log('myVoteValue helper', $ctrl.getReactively('articleId'))
                 var vote = Votes.findOne({
                     articleId: $ctrl.getReactively('articleId')
                 });
+                console.log(vote)
                 return vote ? vote.value : 0;
             },
             itemTotalScore: () => {
@@ -31,7 +33,7 @@ class VoteComponent {
 
         $ctrl.vote = function (voteUpOrDown) {
             console.log('vote ', voteUpOrDown)
-            $vote.voteById($ctrl.articleId, voteUpOrDown)
+            $votesApi.voteById($ctrl.articleId, voteUpOrDown)
         }
 
     }

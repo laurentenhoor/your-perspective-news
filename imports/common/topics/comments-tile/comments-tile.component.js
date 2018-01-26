@@ -11,7 +11,7 @@ import { Votes } from '/imports/api/votes.js';
 
 class CommentsTileComponent {
 
-	constructor($rootScope, $scope, $document, $reactive, $commentsTree, $auth, $vote, $dialog) {
+	constructor($rootScope, $scope, $document, $reactive, $commentsTree, $auth, $votesApi, $dialog) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -138,7 +138,7 @@ class CommentsTileComponent {
 		}
 
 		$ctrl.vote = function(commentId, voteUpOrDown) {
-			$vote.voteById(commentId, voteUpOrDown);
+			$votesApi.voteById(commentId, voteUpOrDown);
 		}
 
 
