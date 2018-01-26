@@ -24,22 +24,14 @@ export default [
         blendle: 'https://blendle.com/i/ad/wie-knabbelt-er-aan-mn-huisje/bnl-adn-20180126-9215172',
         target: 'blendle'
     }, {
-        blendle: '',
-        target: ''
+        blendle: 'https://blendle.com/i/de-volkskrant/volgt-na-hua-hua-en-zhong-zhong-de-mens/bnl-vkn-20180126-9217313',
+        target: '?'
     }, {
-        blendle: '',
-        target: ''
+        blendle: 'https://blendle.com/i/vrij-nederland/de-0-01-die-het-debat-bepaalt/bnl-vn-20180125-a8c23006902/r/sh-tw',
+        target: '',
+        whish: 'https://www.vn.nl/hoe-de-boze-twitteraar-het-debat-bepaalt/' // did found it manually on the vrij nederland website - not via google
     }, {
-        blendle: '',
-        target: ''
-    }, {
-        blendle: '',
-        target: ''
+        blendle: 'https://blendle.com/i/ad/die-muur-is-vooral-symbolisch/bnl-adn-20180125-9211788?sharer=eyJ2ZXJzaW9uIjoiMSIsInVpZCI6ImJhcnRkaW5namFuIiwiaXRlbV9pZCI6ImJubC1hZG4tMjAxODAxMjUtOTIxMTc4OCJ9',
+        target: 'blendle'
     }
-]
-
-var sourceUrls = [
-
-
-
 ]
