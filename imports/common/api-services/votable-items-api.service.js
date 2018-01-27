@@ -29,26 +29,7 @@ export default class VotableItemsApi {
 
         Comments.update(itemId, { $inc: { score: voteValue } });
         Opinions.update(itemId, { $inc: { score: voteValue } });
-
-        this.$articlesApi.countTotalVotes(itemId)
-        this.$articlesApi.updateScore(itemId, voteValue)
-        
-        switch (voteValue) {
-            case 1: // Regular upVote
-                this.$articlesApi.countUpVote(itemId, 1);
-                break;
-            case -1: // Regular downVote
-                this.$articlesApi.countDownVote(itemId, 1);
-                break;
-            case 2: // Correction from downVote to upVote
-                this.$articlesApi.countUpVote(itemId, 1);
-                this.$articlesApi.countDownVote(itemId, -1);
-                break;
-            case -2: // Correction from upVote to downVote
-                this.$articlesApi.countDownVote(itemId, 1);
-                this.$articlesApi.countUpVote(itemId, -1);
-                break;
-        }
+        this.$articlesApi.vote(itemId, voteValue);
 
     }
 }

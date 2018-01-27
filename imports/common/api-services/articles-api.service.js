@@ -59,32 +59,29 @@ export default class ArticlesApi {
         });
 
     }
+    
+    vote(articleId, voteValue) {
 
-    updateHotness(articleId) {
         let article = Articles.findOne({ _id: articleId });
 
-        if (!article || !article.stats || !article.stats.score || !article.createdAt) {
-            return console.error('Article has not the right fields for the hotness calculation')
+        let options = {
+            $inc: {
+                'stats.score': voteValue,
+                'stats.totalVotes' : 1,
+                'stats.upVotes' : voteValue > 0 ? 1 : voteValue == -2 ? -1 : 0,
+                'stats.downVotes' : voteValue < 0 ? 1 : voteValue == 2 ? -1 : 0,
+            },
+            $set : {
+                'stats.hotness': hotness(article.stats.score + voteValue, article.createdAt)
+            }
         }
 
-        Articles.update(articleId, {
-            $set: {'stats.hotness': hotness(article.stats.score, article.createdAt)}
-        }, (error) => {
+        Articles.update(articleId, options, (error) => {
             if (error) {
                 console.error(error)
             }
         })
-    }
-
-    updateScore(articleId, scoreDifference) {
-        Articles.update(articleId, { $inc: { 'stats.score': scoreDifference } },
-            (error) => {
-                if (error) {
-                    console.error(error);
-                    return
-                }
-                this.updateHotness(articleId)
-            })
+        
     }
 
     countVisitExternal(articleId) {
@@ -100,28 +97,5 @@ export default class ArticlesApi {
                 { 'stats.detailsShown': 1 }
         });
     }
-
-    countTotalVotes(articleId) {
-        Articles.update({ _id: articleId }, {
-            $inc:
-                { 'stats.totalVotes': 1 }
-        });
-    }
-
-    countUpVote(articleId, value) {
-        Articles.update({ _id: articleId }, {
-            $inc:
-                { 'stats.upVotes': value }
-        });
-    }
-
-    countDownVote(articleId, value) {
-        Articles.update({ _id: articleId }, {
-            $inc:
-                { 'stats.downVotes': value }
-        });
-    }
-
-
 
 }
