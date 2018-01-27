@@ -4,12 +4,12 @@ const hotness = (score, date) => {
     console.log('')
     console.log('==NEW HOTNESS CALC==');
 
-    let order = Math.log(Math.max(Math.abs(score), 1), 10)
+    let order = Math.log(Math.max(Math.abs(score), 1.5), 10)
     let sign = score > 0 ? 1 : score < 0 ? -1 : 0;
     console.log('score', score)
 
     console.log("Math.abs(score)", Math.abs(score));
-    console.log("Math.max(Math.abs(score),1)", Math.max(Math.abs(score), 1));
+    console.log("Math.max(Math.abs(score),1.5)", Math.max(Math.abs(score), 1.5));
     console.log("Math.log(Math.max(Math.abs(score), 1), 10)", Math.log(Math.max(Math.abs(score), 1), 10));
 
     console.log('order', order)

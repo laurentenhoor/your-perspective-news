@@ -64,6 +64,8 @@ export default class ArticlesApi {
 
         let article = Articles.findOne({ _id: articleId });
 
+        let newScore = (article.stats.score + voteValue) || 0;
+        
         let options = {
             $inc: {
                 'stats.score': voteValue,
@@ -72,7 +74,7 @@ export default class ArticlesApi {
                 'stats.downVotes' : voteValue < 0 ? 1 : voteValue == 2 ? -1 : 0,
             },
             $set : {
-                'stats.hotness': hotness(article.stats.score + voteValue, article.createdAt)
+                'stats.hotness': hotness(newScore, article.createdAt)
             }
         }
 
