@@ -35,12 +35,10 @@ export default class VotesApiService {
 			this.$votableItemsApi.voteItem(id, voteValue)
 			
 		} else {
-			
 			if (vote.value != voteValue) {
 				Votes.update(vote._id, {$set: {value: voteValue}});
 				this.$votableItemsApi.voteItem(id, 2*voteValue)
 			}
-			
 		}
 		
 	}

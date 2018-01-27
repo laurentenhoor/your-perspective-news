@@ -17,10 +17,10 @@ export default class VotableItemsApi {
 
     getVotableItemScore(itemId) {
         var item = this.getVotableItem(itemId)
-        if (item && item.score) {
-            return item.score;
-        } else if (item && item.stats && item.stats.score) {
+        if (item && item.stats && item.stats.score) {
             return item.stats.score;
+        } else if (item && item.score) {
+            return item.score;
         }
         return null;
     }

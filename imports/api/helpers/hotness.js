@@ -1,6 +1,6 @@
 const hotness = (score, date) => {
 
-    console.clear();
+    // console.clear();
     console.log('')
     console.log('==NEW HOTNESS CALC==');
 

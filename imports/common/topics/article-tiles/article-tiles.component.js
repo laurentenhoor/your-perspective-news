@@ -20,7 +20,7 @@ class ArticleTilesComponent {
                 let topic = $ctrl.getReactively('topic');
                 if (topic) {
                     return $articlesApi.getByTopic(topic)
-                } 
+                }
                 return null;
             }
         })
