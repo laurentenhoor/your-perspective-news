@@ -24,6 +24,13 @@ export default class TopicsApiService {
         }, {
                 $pull: { articleIds: articleId }
             });
+        
+        var topic = this.getById(topicId);
+        if (topic.articleIds.length == 0) {
+            console.log('topic removed because last article has been deleted', topicId)
+            Topics.remove(topicId)
+        }
+        
     }
 
     addArticle(topicId, articleId) {
