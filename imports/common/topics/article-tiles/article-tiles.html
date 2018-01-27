@@ -1,10 +1,12 @@
 <div class="content-container" 
-    ng-repeat="article in $ctrl.articles" 
+    ng-repeat="article in $ctrl.articles | orderBy:'-stats.hotness'" 
     ng-show="$ctrl.articles.length > 0"
     id="topic-{{ $ctrl.topic._id }}-article-{{ article._id }}">
 
-    <div class="tile-header">{{ article.category }}</div>
-
+    <div class="tile-header">{{ article.category }}
+        <div class="article-temperature">Temp: {{ article.stats.hotness | number: 2}}</div>
+    </div>
+    
     <div class="tile-container">
 
         <div class="image-container">
@@ -12,7 +14,6 @@
             <div class="vote-container">
                 <!-- <md-icon class="custom-svg-icon" md-svg-src="/icons/brain-idea.svg" aria-label="brain-power ">
                 </md-icon> -->
-
                 <vote article-id="article._id">
                 </vote>
             </div>

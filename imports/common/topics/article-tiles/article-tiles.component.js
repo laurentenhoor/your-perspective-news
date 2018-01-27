@@ -3,17 +3,27 @@ import ArticleTilesStyle from './article-tiles.styl';
 
 class ArticleTilesComponent {
 
-    constructor($timeout, $articlesApi) {
+    constructor($scope, $reactive, $timeout, $articlesApi) {
         'ngInject';
         
-        let $ctrl = this;
+        const $ctrl = this;
+		$reactive($ctrl).attach($scope);
 
         $ctrl.$onChanges = (changes) => {
             if (changes.topic) {
                 $ctrl.topic = angular.copy($ctrl.topic);
-                $ctrl.articles = $articlesApi.getByTopic($ctrl.topic);        
             }
         }
+        
+        $ctrl.helpers({
+            articles: () => {
+                let topic = $ctrl.getReactively('topic');
+                if (topic) {
+                    return $articlesApi.getByTopic(topic)
+                } 
+                return null;
+            }
+        })
 
         $ctrl.openExternalUrl = function (article) {
 
