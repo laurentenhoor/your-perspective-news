@@ -1,6 +1,7 @@
 import { Topics } from '/imports/api/topics'
 import { Articles } from '/imports/api/articles'
 
+// insert metadata before routing to /topic/:topicId
 if (!Package.appcache)
     WebApp.connectHandlers.use(function (req, res, next) {
         var params = req.url.split('/');
