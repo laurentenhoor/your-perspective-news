@@ -1,6 +1,8 @@
 import { Articles } from '/imports/api/articles';
 import { Topics } from '/imports/api/topics';
 
+import hotness from '/imports/api/helpers/hotness'
+
 export default class ArticlesApi {
 
     constructor() {
@@ -58,8 +60,31 @@ export default class ArticlesApi {
 
     }
 
+    updateHotness(articleId) {
+        let article = Articles.findOne({ _id: articleId });
+
+        if (!article || !article.stats || !article.stats.score || !article.createdAt) {
+            return console.error('Article has not the right fields for the hotness calculation')
+        }
+
+        Articles.update(articleId, {
+            $set: {'stats.hotness': hotness(article.stats.score, article.createdAt)}
+        }, (error) => {
+            if (error) {
+                console.error(error)
+            }
+        })
+    }
+
     updateScore(articleId, scoreDifference) {
-        Articles.update(articleId, {$inc : {'stats.score': scoreDifference}});
+        Articles.update(articleId, { $inc: { 'stats.score': scoreDifference } },
+            (error) => {
+                if (error) {
+                    console.error(error);
+                    return
+                }
+                this.updateHotness(articleId)
+            })
     }
 
     countVisitExternal(articleId) {
