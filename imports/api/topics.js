@@ -10,13 +10,13 @@ Topics.before.insert(function (userId, doc) {
 	if (Meteor.isServer) {
 		//Format the document
 		let currentDate = Date.now();
-		
+
 		doc.createdAt = currentDate;
 		doc.updatedAt = currentDate;
-		
+
 		doc.stats = {
 			createdAt: currentDate,
-			hotness : hotness(0, currentDate)
+			hotness: hotness(0, currentDate)
 		};
 
 	}
@@ -49,12 +49,17 @@ if (Meteor.isServer) {
 		if (singleTopicId) {
 			searchQuery._id = singleTopicId;
 		}
-		
-		return Topics.find(
-			searchQuery, {
-				sort: { updatedAt: - 1 },
-				limit: amountOfTopics
-			})
+
+		// return Topics.find(
+		// 	searchQuery, {
+		// 		sort: { updatedAt: - 1 },
+		// 		limit: amountOfTopics
+		// 	})
+
+		return Topics.find({}, {
+			sort: { 'stats.hotness': - 1 },
+			limit: amountOfTopics
+		})
 	});
 
 	Meteor.publish('articles', (topics) => {
@@ -65,5 +70,5 @@ if (Meteor.isServer) {
 		var articles = Articles.find({ _id: { $in: articleIds } });
 		return articles;
 	});
-	
+
 }
