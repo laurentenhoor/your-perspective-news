@@ -1,6 +1,8 @@
 <div class="content-container" ng-show="!$ctrl.detailsAreShown">
 
-    <div class="tile-header">&nbsp;</div>
+    <div class="tile-header">&nbsp;
+        <div class="summary-temperature">Temp: {{ $ctrl.topic.stats.hotness | number: 2}}</div>
+    </div>
 
     <div class="tile-container">
 

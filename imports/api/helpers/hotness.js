@@ -11,7 +11,6 @@ export default hotness = (score, date) => {
 
     let hotness = (sign * order + timeWindow)
 
-
     let precision = 10000000;
     let roundedHotness = Math.round(hotness * precision) / precision;
 

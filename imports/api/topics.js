@@ -1,15 +1,24 @@
 import { Mongo } from 'meteor/mongo';
-
-export const Topics = new Mongo.Collection('topics');
+import hotness from '/imports/api/helpers/hotness';
 
 import { Articles } from './articles.js';
+
+export const Topics = new Mongo.Collection('topics');
 
 Topics.before.insert(function (userId, doc) {
 
 	if (Meteor.isServer) {
 		//Format the document
-		doc.createdAt = Date.now();
-		doc.updatedAt = Date.now();
+		let currentDate = Date.now();
+		
+		doc.createdAt = currentDate;
+		doc.updatedAt = currentDate;
+		
+		doc.stats = {
+			createdAt: currentDate,
+			hotness : hotness(0, currentDate)
+		};
+
 	}
 });
 

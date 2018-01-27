@@ -3,6 +3,7 @@ import { Articles } from '../../imports/api/articles.js';
 import { Opinions } from '../../imports/api/opinions.js';
 
 import { Random } from 'meteor/random';
+import hotness from '/imports/api/helpers/hotness'
 
 if (Meteor.isServer) {
 	Migrations.add({
@@ -110,12 +111,21 @@ if (Meteor.isServer) {
 		}
 	});
 
+	Migrations.add({
+		version: 7,
+		name: 'Add default hotness to all topics and articles',
+		up: function () {
+			version7();
+		}
+	});
+
 	Meteor.startup(function () {
 		// code to run on server at startup
 		// Migrations.unlock();
 		Migrations.migrateTo('latest');
 	});
 }
+
 
 
 function version6() {
@@ -144,6 +154,32 @@ function version6() {
 
 		topic.articleIds = articleIds;
 		Topics.update({_id:topic._id}, topic);
+
+	})
+}
+
+function version7() {
+	_.forEach(Topics.find({}).fetch(), (topic) => {
+	
+		if (!('stats' in topic)) {
+			topic.stats = {
+				createdAt: topic.createdAt,
+				hotness: hotness(0, topic.createdAt)
+			}
+		}
+		Topics.update({_id:topic._id}, topic);
+
+	})
+
+	_.forEach(Articles.find({}).fetch(), (article) => {
+	
+		if (!('stats' in article)) {
+			article.stats = {
+				createdAt: article.createdAt,
+				hotness: hotness(0, article.createdAt)
+			}
+		}
+		Articles.update({_id:article._id}, article);
 
 	})
 }
