@@ -15,8 +15,9 @@ Meteor.methods({
 			const {body: html, url} = await got(targetUrl, {
 				headers: {
 					cookie: [
-						cookie.serialize('nl_cookiewall_version', '1'),
-						cookie.serialize('cookieconsent', 'true')
+						cookie.serialize('nl_cookiewall_version', '1'),  // Algemeen Dagblad
+						cookie.serialize('cookieconsent', 'true'), // Financieel Dagblad
+						cookie.serialize('cpc', '10'), // Geenstijl
 					]
 				},
 				followRedirect : true
