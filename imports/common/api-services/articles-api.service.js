@@ -1,16 +1,16 @@
 import { Articles } from '/imports/api/articles';
-import { Topics } from '/imports/api/topics';
 
 import hotness from '/imports/api/helpers/hotness'
 
 export default class ArticlesApi {
 
-    constructor() {
+    constructor($topicsApi) {
         'ngInject';
+        this.$topicsApi = $topicsApi;
     }
 
     getByTopicId(topicId) {
-        let topic = Topics.findOne({ _id: topicId });
+        let topic = this.$topicsApi.getById(topicId)
         return this.getByTopic(topic);
     }
 
@@ -25,37 +25,22 @@ export default class ArticlesApi {
         return Articles.find({ "_id": { "$in": idArray } }).fetch();
     }
 
-    removeFromTopic(topicId, articleId) {
-        Topics.update({
-            _id: topicId
-        }, {
-                $pull: { articleIds: articleId }
-            });
-    }
-
     updateArticle(article) {
         Articles.update({ _id: article._id }, article);
     }
 
     addToNewTopic(article) {
-        var topicId = Topics.insert({});
+        var topicId = this.$topicsApi.newTopic();
         this.addToTopic(topicId, article);
     }
 
     addToTopic(topicId, article) {
         Articles.insert(article, (error, articleId) => {
             console.log('article inserted ', articleId)
-
             if (error) {
                 console.error(error);
             }
-
-            Topics.update({
-                _id: topicId
-            }, {
-                    $push: { articleIds: articleId }
-                });
-
+            this.$topicsApi.addArticle(topicId, articleId)
         });
 
     }

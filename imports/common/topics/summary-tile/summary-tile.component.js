@@ -3,7 +3,7 @@ import SummaryTileStyle from './summary-tile.styl';
 
 class SummaryTileComponent {
 
-    constructor($reactive, $scope, $articlesApi, $opinionsApi, $commentsApi, $timeout, $autoScroll, $auth, $writeOpinionDialog, $dialog) {
+    constructor($reactive, $scope, $articlesApi, $topicsApi, $opinionsApi, $commentsApi, $timeout, $autoScroll, $auth, $writeOpinionDialog) {
         'ngInject';
         var $ctrl = this;
         $reactive($ctrl).attach($scope);
@@ -24,17 +24,6 @@ class SummaryTileComponent {
                 }
                 
                 $ctrl.helpers({
-                    bestOpinion: () => {
-                        var opinions = $opinionsApi.getAllByTopic($ctrl.topic);
-                        var bestOpinion = _.maxBy(opinions,'score');
-                        // console.log('bestOpinion', bestOpinion)
-                        return bestOpinion;
-                    },
-                    bestQuestion: () => {
-                        let bestQuestion = $commentsApi.getBestCommentByTopic($ctrl.topic);
-                        // console.log('bestQuestion', bestQuestion);
-                        return bestQuestion;
-                    },
                     amountOfQuestions : () => {
                         let questions = $commentsApi.getAllByTopic($ctrl.topic);
                         return questions.length;
@@ -81,6 +70,7 @@ class SummaryTileComponent {
         }
 
         function openTopic() {
+            $topicsApi.countOpen($ctrl.topic._id);
             $ctrl.detailsAreShown = true;
             $ctrl.onShowDetails({$event: {showDetails: $ctrl.detailsAreShown}});
         }

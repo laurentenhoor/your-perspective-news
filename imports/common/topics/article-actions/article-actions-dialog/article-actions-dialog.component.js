@@ -1,6 +1,6 @@
 export default class ArticleActionsComponent {
 
-	constructor($loader, $scope, $reactive, $document, $autoScroll, $dialog, $metadata, topicId, article, $articlesApi) {
+	constructor($loader, $scope, $reactive, $document, $autoScroll, $dialog, $metadata, topicId, article, $articlesApi, $topicsApi) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -123,7 +123,7 @@ export default class ArticleActionsComponent {
 
 			$dialog.show(confirm).then(function () {
 				console.log('dialog confirmed, will remove item')
-				$articlesApi.removeFromTopic($ctrl.topicId, $ctrl.article._id)
+				$topicsApi.removeArticle($ctrl.topicId, $ctrl.article._id)
 			}, function () {
 				// do nothing.
 				console.log('canceled article removal');
