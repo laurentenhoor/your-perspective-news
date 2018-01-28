@@ -29,20 +29,26 @@ export default class ArticlesApi {
         Articles.update({ _id: article._id }, article);
     }
 
-    addToNewTopic(article) {
-        var topicId = this.$topicsApi.createTopic();
-        this.addToTopic(topicId, article);
-    }
-
-    addToTopic(topicId, article) {
+    createArticle(article, callback) {
         Articles.insert(article, (error, articleId) => {
             console.log('article inserted ', articleId)
             if (error) {
                 console.error(error);
             }
-            this.$topicsApi.addArticle(topicId, articleId)
+            callback(articleId)
         });
+    }
 
+    addToNewTopic(article) {
+        this.createArticle(article, (articleId)=>{
+            this.$topicsApi.addArticleToNewTopic(articleId);
+        })
+    }
+
+    addToTopic(topicId, article) {
+        this.createArticle(article, (articleId)=>{
+            this.$topicsApi.addArticle(topicId, articleId)
+        })
     }
     
     vote(articleId, voteValue) {

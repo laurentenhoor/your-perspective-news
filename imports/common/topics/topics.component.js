@@ -5,7 +5,7 @@ import { Random } from 'meteor/random'
 
 class TopicsComponent {
 
-	constructor($scope, $reactive, $loader, $state, $topicsApi) {
+	constructor($scope, $reactive, $loader, $state, $articlesApi, $topicsApi, $timeout) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -20,21 +20,33 @@ class TopicsComponent {
 			}
 		}
 
-		let _currentUserTopics = new Tracker.Dependency;
+		$topicsApi.setCallbacks({
+			created : (topicId) => {
+				console.log('createdCallback', topicId)
+				subscribeToArticles();
+			},
+			removed: (topicId) => {
+				console.log('removedCallback', topicId)
+				subscribeToArticles();
+			}
+		})
 
-		function updateTopics() {
-			
-			console.warn('updateAllTopics')
-			$ctrl.topics = $topicsApi.getAll();
-		}
+		Tracker.autorun(() => {
 
-		var currentUserTopics;
+			$loader.start();
+
+			Meteor.subscribe('topics',
+				$ctrl.getReactively('amountOfTopics'),
+				$ctrl.getReactively('singleTopicId'), {
+					onReady: () => subscribeToArticles()
+				});
+
+		})
 
 		subscribeToArticles = () => {
-			currentUserTopics = $topicsApi.getOwnedByCurrentUser();
-			console.log('SUBSCRIBE TO ARTICLES', currentUserTopics)
 
 			let topics = $topicsApi.getAll();
+			console.log('subscribe to articles', topics)
 
 			Meteor.subscribe('articles', topics, {
 				onReady: () => {
@@ -51,32 +63,6 @@ class TopicsComponent {
 				}
 			})
 		}
-		
-		Tracker.autorun(() => {
-			console.log('TRACKER CURRENTUSERTOPICS', currentUserTopics)
-			var newUserTopics = $topicsApi.getOwnedByCurrentUser();
-
-			if (currentUserTopics && newUserTopics != currentUserTopics) {
-				console.log('TRACKER CURRENTUSERTOPICS passed condition!!!', currentUserTopics)
-				subscribeToArticles();
-				// unresponsiveSubscribeToArticles();
-			}	
-		})
-
-		Tracker.autorun(() => {
-			console.log('TRACKER TOPICS', currentUserTopics)
-			$loader.start();
-
-			Meteor.subscribe('topics',
-				$ctrl.getReactively('amountOfTopics'),
-				$ctrl.getReactively('singleTopicId'), {
-					onReady: () => subscribeToArticles()
-				});
-
-		})
-
-
-		
 
 		$ctrl.showDetails = function ($event) {
 			$ctrl.detailsAreShown = $event.showDetails;
