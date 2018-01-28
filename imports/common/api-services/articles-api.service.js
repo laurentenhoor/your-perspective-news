@@ -11,7 +11,10 @@ export default class ArticlesApi {
 
     getByTopicId(topicId) {
         let topic = this.$topicsApi.getById(topicId)
-        return this.getByTopic(topic);
+        if (topic) {
+            return this.getByTopic(topic);
+        }
+        return null;
     }
 
     getByTopic(topic) {
@@ -40,31 +43,31 @@ export default class ArticlesApi {
     }
 
     addToNewTopic(article) {
-        this.createArticle(article, (articleId)=>{
+        this.createArticle(article, (articleId) => {
             this.$topicsApi.addArticleToNewTopic(articleId);
         })
     }
 
     addToTopic(topicId, article) {
-        this.createArticle(article, (articleId)=>{
+        this.createArticle(article, (articleId) => {
             this.$topicsApi.addArticle(topicId, articleId)
         })
     }
-    
+
     vote(articleId, voteValue) {
 
         let article = Articles.findOne({ _id: articleId });
 
         let newScore = (article.stats.score + voteValue) || 0;
-        
+
         let options = {
             $inc: {
                 'stats.score': voteValue,
-                'stats.totalVotes' : 1,
-                'stats.upVotes' : voteValue > 0 ? 1 : voteValue == -2 ? -1 : 0,
-                'stats.downVotes' : voteValue < 0 ? 1 : voteValue == 2 ? -1 : 0,
+                'stats.totalVotes': 1,
+                'stats.upVotes': voteValue > 0 ? 1 : voteValue == -2 ? -1 : 0,
+                'stats.downVotes': voteValue < 0 ? 1 : voteValue == 2 ? -1 : 0,
             },
-            $set : {
+            $set: {
                 'stats.hotness': hotness(newScore, article.createdAt)
             }
         }
@@ -74,7 +77,7 @@ export default class ArticlesApi {
                 console.error(error)
             }
         })
-        
+
     }
 
     countVisitExternal(articleId) {

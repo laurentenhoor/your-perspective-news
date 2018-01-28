@@ -21,11 +21,11 @@ class TopicsComponent {
 		}
 
 		$topicsApi.setCallbacks({
-			created : (topicId) => {
+			createdTopic : (topicId) => {
 				console.log('createdCallback', topicId)
 				subscribeToArticles();
 			},
-			removed: (topicId) => {
+			removedTopic: (topicId) => {
 				console.log('removedCallback', topicId)
 				subscribeToArticles();
 			}

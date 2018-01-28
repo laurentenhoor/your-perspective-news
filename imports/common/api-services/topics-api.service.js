@@ -4,16 +4,35 @@ export default class TopicsApiService {
 
     constructor() {
         'ngInject';
-        this.createdCallback = null;
-        this.removedCallback = null;
+        this.callbacks = {
+            createdTopic: [],
+            removedTopic: [],
+            addedArticle: [],
+            removedArticle: []
+        }
+    }
+
+    fireCallbacks(arrayOfFunctions, returnValue) {
+        if (arrayOfFunctions) {
+            _.each(arrayOfFunctions, (callback) => callback(returnValue))
+        } else {
+            console.warn('no callbacks set', arrayOfFunctions)
+        }
+
     }
 
     setCallbacks(callbacks) {
-        if (callbacks.created) {
-            this.createdCallback = callbacks.created;
+        if (callbacks.createdTopic) {
+            this.callbacks.createdTopic.push(callbacks.createdTopic);
         }
-        if (callbacks.removed) {
-            this.removedCallback = callbacks.removed;
+        if (callbacks.removedTopic) {
+            this.callbacks.removedTopic.push(callbacks.removedTopic);
+        }
+        if (callbacks.addedArticle) {
+            this.callbacks.addedArticle.push(callbacks.addedArticle);
+        }
+        if (callbacks.removedArticle) {
+            this.callbacks.removedArticle.push(callbacks.removedArticle);
         }
     }
 
@@ -38,53 +57,54 @@ export default class TopicsApiService {
     }
 
     removeArticle(topicId, articleId) {
-        Topics.update({
-            _id: topicId
-        }, {
-                $pull: { articleIds: articleId }
-            });
 
-        var topic = this.getById(topicId);
-
-        if (topic.articleIds.length == 0) {
-
-            console.log('topic removed because last article has been deleted', topicId)
-            Topics.remove(topicId);
-
-            if (this.removedCallback) {
-                this.removedCallback(topicId)
-            }
-        }
-
-    }
-
-    addArticleToNewTopic(articleId) {
-        let topicId = this.createTopic();
-        this.addArticle(topicId, articleId, (topicId) => {
-
-            if (this.createdCallback) {
-                this.createdCallback(topicId);
-            }
-
-        })
-    }
-
-    addArticle(topicId, articleId, callback) {
-        Topics.update({
-            _id: topicId
-        }, {
-                $push:
-                    { articleIds: articleId },
-                $inc:
-                    { 'stats.articleCount': 1 }
-            },
+        Topics.update({ _id: topicId },
+            { $pull: { articleIds: articleId } },
             (error) => {
                 if (error) {
                     console.error(error);
                     return;
                 }
-                callback(topicId);
+                this.fireCallbacks(this.callbacks.removedArticle, articleId)
+
+                var topic = this.getById(topicId);
+                if (topic.articleIds.length == 0) {
+                    console.log('topic removed because last article has been deleted', topicId)
+                    Topics.remove(topicId, () => {
+                        this.fireCallbacks(this.callbacks.removedTopic, topicId)
+                    });
+                }
             });
+
+    }
+
+    addArticleToNewTopic(articleId) {
+
+        let topicId = this.createTopic();
+
+        this.addArticle(topicId, articleId, () => {
+
+            this.fireCallbacks(this.callbacks.createdTopic, topicId)
+
+        })
+    }
+
+    addArticle(topicId, articleId, callback) {
+        Topics.update({ _id: topicId }, {
+            $push: { articleIds: articleId },
+            $inc: { 'stats.articleCount': 1 }
+        }, (error) => {
+            if (error) {
+                console.error(error);
+                return;
+            }
+            this.fireCallbacks(this.callbacks.addedArticle, articleId)
+
+            if (callback) {
+                callback();
+            }
+
+        });
     }
 
     countOpen(topicId) {

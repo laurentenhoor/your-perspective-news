@@ -3,16 +3,30 @@ import ArticleTilesStyle from './article-tiles.styl';
 
 class ArticleTilesComponent {
 
-    constructor($scope, $reactive, $timeout, $articlesApi) {
+    constructor($scope, $reactive, $timeout, $topicsApi, $articlesApi) {
         'ngInject';
-        
+
         const $ctrl = this;
-		$reactive($ctrl).attach($scope);
+        $reactive($ctrl).attach($scope);
+
+        $topicsApi.setCallbacks({
+            addedArticle: () => {
+                $ctrl.topic = $topicsApi.getById($ctrl.topic._id);
+                Meteor.subscribe('articles', [$ctrl.topic], {
+                    onReady: () => {
+                        $ctrl.articles = $articlesApi.getByTopic($ctrl.topic)
+                    }
+                })
+            },
+            removedArticle: () => {
+                $ctrl.articles = $articlesApi.getByTopicId($ctrl.topic._id)
+            }
+        })
 
         $ctrl.$onChanges = (changes) => {
             if (changes.topic) {
                 $ctrl.topic = angular.copy($ctrl.topic);
-                $ctrl.articles = $articlesApi.getByTopic($ctrl.topic);
+                $ctrl.articles = $articlesApi.getByTopicId($ctrl.topic._id);
             }
         }
 
