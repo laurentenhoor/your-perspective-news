@@ -8,7 +8,7 @@ export default class VotesApiService {
 		this.$votableItemsApi = $votableItemsApi;
     }
 
-    voteById(id, voteValue) {
+    voteById(topicId, itemId, voteValue) {
 		
 		if (!this.$auth.isLoggedIn()) {
             throw new Meteor.Error('not-logged-in', "Please login first");
@@ -18,26 +18,26 @@ export default class VotesApiService {
         voteValue > 0 ? voteValue = 1 : voteValue = -1
     
 		// check if a vote already exists for this user and article
-        var vote = Votes.findOne({articleId : id, ownerId: Meteor.userId()});
+        var vote = Votes.findOne({articleId : itemId, ownerId: Meteor.userId()});
 		
 		if (!vote) {
 			
 			Votes.insert({
 				ownerId: Meteor.userId(),
 				value: voteValue,
-				articleId : id
+				articleId : itemId
 			},  (error, voteId)=> {
                 if (error) {
                     console.error(error);
                 }
                 console.log('voted!', voteId)
             });
-			this.$votableItemsApi.voteItem(id, voteValue)
+			this.$votableItemsApi.voteItem(topicId, itemId, voteValue)
 			
 		} else {
 			if (vote.value != voteValue) {
 				Votes.update(vote._id, {$set: {value: voteValue}});
-				this.$votableItemsApi.voteItem(id, 2*voteValue)
+				this.$votableItemsApi.voteItem(topicId, itemId, 2*voteValue)
 			}
 		}
 		

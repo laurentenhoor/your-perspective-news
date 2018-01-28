@@ -11,6 +11,7 @@ import CommentsTile from './comments-tile/comments-tile.module';
 import OpinionTile from './opinion-tile/opinion-tile.module';
 
 import Vote from './vote/vote.module';
+import HotnessIndicator from './hotness-indicator/hotness-indicator.module';
 import TopicsComponent from './topics.component';
 import AutoScrollService from './auto-scroll.service';
 import TimeFilters from './time.filter'
@@ -23,6 +24,7 @@ export default angular.module('topics', [
 	OpinionTile,
 	TopicControls,
 	Vote,
+	HotnessIndicator,
 	ngSocialShare,
 	'ArticleActionsButton',
 ])

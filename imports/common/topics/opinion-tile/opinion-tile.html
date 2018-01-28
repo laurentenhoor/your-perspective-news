@@ -16,7 +16,7 @@
 
                 <div class="opinion-header">
                     <h1>{{ opinion.title }}</h1>
-                    <vote article-id="opinion._id"></vote>
+                    <vote article-id="opinion._id" topic-id="$ctrl.topicId"></vote>
                 </div>
 
                 <div href="" class="edit-opinion-button" ng-show="$ctrl.userOpinion._id==opinion._id" ng-click="$ctrl.editOpinion($event)">

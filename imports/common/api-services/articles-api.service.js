@@ -28,6 +28,14 @@ export default class ArticlesApi {
         return Articles.find({ "_id": { "$in": idArray } }).fetch();
     }
 
+    getHotness(articleId) {
+        let article = Articles.findOne({_id:articleId});
+        if (article && article.stats && article.stats.hotness) {
+            return article.stats.hotness
+        }
+        return null;
+    }
+
     updateArticle(article) {
         Articles.update({ _id: article._id }, article);
     }
@@ -54,7 +62,7 @@ export default class ArticlesApi {
         })
     }
 
-    vote(articleId, voteValue) {
+    vote(topicId, articleId, voteValue) {
 
         let article = Articles.findOne({ _id: articleId });
 
@@ -76,6 +84,7 @@ export default class ArticlesApi {
             if (error) {
                 console.error(error)
             }
+            this.$topicsApi.vote(topicId, voteValue)
         })
 
     }

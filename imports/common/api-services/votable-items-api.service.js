@@ -25,11 +25,11 @@ export default class VotableItemsApi {
         return null;
     }
 
-    voteItem(itemId, voteValue) {
+    voteItem(topicId, itemId, voteValue) {
 
         Comments.update(itemId, { $inc: { score: voteValue } });
         Opinions.update(itemId, { $inc: { score: voteValue } });
-        this.$articlesApi.vote(itemId, voteValue);
+        this.$articlesApi.vote(topicId, itemId, voteValue);
 
     }
 }

@@ -138,9 +138,8 @@ class CommentsTileComponent {
 		}
 
 		$ctrl.vote = function(commentId, voteUpOrDown) {
-			$votesApi.voteById(commentId, voteUpOrDown);
+			$votesApi.voteById($ctrl.topicId, commentId, voteUpOrDown);
 		}
-
 
 		$ctrl.showRemovalConfirmation = function (ev, comment) {
 			// Appending dialog to document.body to cover sidenav in docs app

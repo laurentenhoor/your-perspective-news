@@ -1,5 +1,7 @@
 import { Topics } from '/imports/api/topics';
 
+import hotness from '/imports/api/helpers/hotness'
+
 export default class TopicsApiService {
 
     constructor() {
@@ -115,4 +117,28 @@ export default class TopicsApiService {
         })
     }
 
+    vote(topicId, voteValue) {
+
+        let topic = Topics.findOne({ _id: topicId });
+        let newScore = (topic.stats.score + voteValue) || 0;
+
+        Topics.update({ _id: topicId }, {
+            $inc: {
+                'stats.score' : voteValue,
+                'stats.upVotes': voteValue > 0 ? 1 : voteValue == -2 ? -1 : 0,
+                'stats.downVotes': voteValue < 0 ? 1 : voteValue == 2 ? -1 : 0,
+            },
+            $set : {
+                'stats.hotness': hotness(newScore, topic.stats.createdAt)
+            }
+        })
+    }
+
+    getHotness(topicId) {
+        let topic = Topics.findOne({_id:topicId});
+        if (topic && topic.stats && topic.stats.hotness) {
+            return topic.stats.hotness
+        }
+        return null;
+    }
 }

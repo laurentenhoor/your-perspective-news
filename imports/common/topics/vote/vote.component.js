@@ -15,6 +15,9 @@ class VoteComponent {
             if (changes.articleId) {
                 $ctrl.articleId = angular.copy($ctrl.articleId);              
             }
+            if (changes.topicId) {
+                $ctrl.topicId = angular.copy($ctrl.topicId); 
+            }
         }
 
         $ctrl.helpers({
@@ -29,9 +32,9 @@ class VoteComponent {
             }
         });
 
-        $ctrl.vote = function (voteUpOrDown) {
-            console.log('vote ', voteUpOrDown)
-            $votesApi.voteById($ctrl.articleId, voteUpOrDown)
+        $ctrl.vote = (voteUpOrDown) => {
+            console.log('Vote', $ctrl.topicId, $ctrl.articleId, voteUpOrDown)
+            $votesApi.voteById($ctrl.topicId, $ctrl.articleId, voteUpOrDown)
         }
 
     }
@@ -42,6 +45,7 @@ export default {
     templateUrl: VoteTemplate,
     controller: VoteComponent,
     bindings: {
-        articleId: '<'
+        articleId: '<',
+        topicId: '<'
     }
 }

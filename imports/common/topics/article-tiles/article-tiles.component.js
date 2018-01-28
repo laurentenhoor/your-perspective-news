@@ -10,8 +10,9 @@ class ArticleTilesComponent {
         $reactive($ctrl).attach($scope);
 
         $topicsApi.setCallbacks({
-            addedArticle: () => {
+            addedArticle: (articleId) => {
                 $ctrl.topic = $topicsApi.getById($ctrl.topic._id);
+                console.log("articleAdded", articleId)
                 Meteor.subscribe('articles', [$ctrl.topic], {
                     onReady: () => {
                         $ctrl.articles = $articlesApi.getByTopic($ctrl.topic)
