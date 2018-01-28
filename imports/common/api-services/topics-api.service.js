@@ -14,8 +14,16 @@ export default class TopicsApiService {
         return Topics.findOne({ _id: topicId });
     }
 
-    newTopic() {
-        return Topics.insert({});
+    getOwnedByCurrentUser() {
+        let topics = Topics.find({ownerId: Meteor.userId()}, { fields: { stats: 0 }, sort:{ createdAt: -1}}).fetch()
+        if (topics.length > 0) {
+            return topics[0]._id;
+        }
+        return null;
+    }
+
+    createTopic() {
+        return Topics.insert({ownerId: Meteor.userId()});
     }
 
     removeArticle(topicId, articleId) {

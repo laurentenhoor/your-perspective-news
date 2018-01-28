@@ -12,18 +12,9 @@ class ArticleTilesComponent {
         $ctrl.$onChanges = (changes) => {
             if (changes.topic) {
                 $ctrl.topic = angular.copy($ctrl.topic);
+                $ctrl.articles = $articlesApi.getByTopic($ctrl.topic);
             }
         }
-        
-        $ctrl.helpers({
-            articles: () => {
-                let topic = $ctrl.getReactively('topic');
-                if (topic) {
-                    return $articlesApi.getByTopic(topic)
-                }
-                return null;
-            }
-        })
 
         $ctrl.openExternalUrl = function (article) {
 

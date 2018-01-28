@@ -20,19 +20,20 @@ class TopicsComponent {
 			}
 		}
 
-		Tracker.autorun(() => {
+		let _currentUserTopics = new Tracker.Dependency;
 
-			$loader.start();
+		function updateTopics() {
+			
+			console.warn('updateAllTopics')
+			$ctrl.topics = $topicsApi.getAll();
+		}
 
-			Meteor.subscribe('topics',
-				$ctrl.getReactively('amountOfTopics'),
-				$ctrl.getReactively('singleTopicId'), {
-					onReady: () => subscribeToArticles()
-				});
-
-		})
+		var currentUserTopics;
 
 		subscribeToArticles = () => {
+			currentUserTopics = $topicsApi.getOwnedByCurrentUser();
+			console.log('SUBSCRIBE TO ARTICLES', currentUserTopics)
+
 			let topics = $topicsApi.getAll();
 
 			Meteor.subscribe('articles', topics, {
@@ -50,6 +51,32 @@ class TopicsComponent {
 				}
 			})
 		}
+		
+		Tracker.autorun(() => {
+			console.log('TRACKER CURRENTUSERTOPICS', currentUserTopics)
+			var newUserTopics = $topicsApi.getOwnedByCurrentUser();
+
+			if (currentUserTopics && newUserTopics != currentUserTopics) {
+				console.log('TRACKER CURRENTUSERTOPICS passed condition!!!', currentUserTopics)
+				subscribeToArticles();
+				// unresponsiveSubscribeToArticles();
+			}	
+		})
+
+		Tracker.autorun(() => {
+			console.log('TRACKER TOPICS', currentUserTopics)
+			$loader.start();
+
+			Meteor.subscribe('topics',
+				$ctrl.getReactively('amountOfTopics'),
+				$ctrl.getReactively('singleTopicId'), {
+					onReady: () => subscribeToArticles()
+				});
+
+		})
+
+
+		
 
 		$ctrl.showDetails = function ($event) {
 			$ctrl.detailsAreShown = $event.showDetails;

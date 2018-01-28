@@ -4,7 +4,7 @@ import DialogStyle from './article-actions-dialog.styl';
 
 export default class ArticleActionsDialogService {
 
-    constructor($dialog) {
+    constructor($dialog, $topicsApi) {
         'ngInject';
 
         this.$dialog = $dialog;

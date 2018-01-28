@@ -30,7 +30,7 @@ export default class ArticlesApi {
     }
 
     addToNewTopic(article) {
-        var topicId = this.$topicsApi.newTopic();
+        var topicId = this.$topicsApi.createTopic();
         this.addToTopic(topicId, article);
     }
 

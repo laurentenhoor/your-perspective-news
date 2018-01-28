@@ -4,7 +4,7 @@
     id="topic-{{ $ctrl.topic._id }}-article-{{ article._id }}">
 
     <div class="tile-header">{{ article.category }}
-        <div class="article-temperature">Temp: {{ article.stats.hotness | number: 2}}</div>
+        <div class="article-temperature">Temp: {{ $ctrl.hotness | number: 2}}</div>
     </div>
     
     <div class="tile-container">
