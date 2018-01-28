@@ -43,10 +43,9 @@ class TopicsComponent {
 
 		})
 
-		subscribeToArticles = () => {
+		let subscribeToArticles = () => {
 
 			let topics = $topicsApi.getAll();
-			console.log('subscribe to articles', topics)
 
 			Meteor.subscribe('articles', topics, {
 				onReady: () => {
@@ -73,7 +72,7 @@ class TopicsComponent {
 			checkState();
 		}
 
-		function checkState() {
+		let checkState = () => {
 			if ($state.current.name == 'singleTopic') {
 				$state.go('topics')
 			}
