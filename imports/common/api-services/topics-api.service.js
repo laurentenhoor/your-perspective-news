@@ -4,8 +4,10 @@ import hotness from '/imports/api/helpers/hotness'
 
 export default class TopicsApiService {
 
-    constructor() {
+    constructor($loader) {
         'ngInject';
+
+        this.$loader = $loader;
         this.callbacks = {
             createdTopic: [],
             removedTopic: [],
@@ -60,6 +62,8 @@ export default class TopicsApiService {
 
     removeArticle(topicId, articleId) {
 
+        this.$loader.start();
+
         Topics.update({ _id: topicId },
             { $pull: { articleIds: articleId } },
             (error) => {
@@ -68,6 +72,7 @@ export default class TopicsApiService {
                     return;
                 }
                 this.fireCallbacks(this.callbacks.removedArticle, articleId)
+                this.$loader.stop();
 
                 var topic = this.getById(topicId);
                 if (topic.articleIds.length == 0) {
@@ -82,6 +87,7 @@ export default class TopicsApiService {
 
     addArticleToNewTopic(articleId) {
 
+        
         let topicId = this.createTopic();
 
         this.addArticle(topicId, articleId, () => {
@@ -93,6 +99,7 @@ export default class TopicsApiService {
 
     addArticle(topicId, articleId, callback) {
 
+        this.$loader.start();
         let topic = Topics.findOne({ _id: topicId });
         let dateNow = Date.now();
 
@@ -112,6 +119,7 @@ export default class TopicsApiService {
                 return;
             }
             this.fireCallbacks(this.callbacks.addedArticle, articleId)
+            this.$loader.stop();
 
             if (callback) {
                 callback();

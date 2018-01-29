@@ -50,7 +50,7 @@
 
         </div>
 
-        <div class="description" ng-if="article.description" ng-click="toggle = !toggle" ng-class="{'auto-height' : toggle}">
+        <div class="description" ng-if="article.description" ng-click="toggle = !toggle; $ctrl.showDetails(toggle, article._id);" ng-class="{'auto-height' : toggle}">
             {{ article.description }}
         </div>
 

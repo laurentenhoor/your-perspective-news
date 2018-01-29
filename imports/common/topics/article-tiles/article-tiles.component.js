@@ -6,21 +6,26 @@ class ArticleTilesComponent {
     constructor($scope, $reactive, $timeout, $topicsApi, $articlesApi) {
         'ngInject';
 
-        const $ctrl = this;
+        let $ctrl = this;
         $reactive($ctrl).attach($scope);
 
         $topicsApi.setCallbacks({
             addedArticle: (articleId) => {
-                $ctrl.topic = $topicsApi.getById($ctrl.topic._id);
                 console.log("articleAdded", articleId)
-                Meteor.subscribe('articles', [$ctrl.topic], {
-                    onReady: () => {
-                        $ctrl.articles = $articlesApi.getByTopic($ctrl.topic)
-                    }
-                })
+                if ($ctrl.topic) {
+                    $ctrl.topic = $topicsApi.getById($ctrl.topic._id);
+                    Meteor.subscribe('articles', [$ctrl.topic], {
+                        onReady: () => {
+                            $ctrl.articles = $articlesApi.getByTopic($ctrl.topic)
+                        }
+                    })
+                }
             },
             removedArticle: () => {
-                $ctrl.articles = $articlesApi.getByTopicId($ctrl.topic._id)
+                console.log('REMOVED ARTICLE', $ctrl.topic)
+                if($ctrl.topic){
+                    $ctrl.articles = $articlesApi.getByTopicId($ctrl.topic._id)
+                }
             }
         })
 
@@ -31,10 +36,18 @@ class ArticleTilesComponent {
             }
         }
 
+        $ctrl.showDetails = (detailsAreVisible, articleId) => {
+            if (detailsAreVisible){
+                $articlesApi.countShowDetails(articleId);
+            }
+        }
+
         $ctrl.openExternalUrl = function (article) {
 
             $ctrl.visitedId = article._id; // trigger animation of click
             $timeout(() => $ctrl.visitedId = null, 700); // should be > animation time
+
+            $articlesApi.countVisitExternal(article._id)
 
             if (article.url && article.url != '') {
                 $timeout(() => window.location.href = article.url, 300);
