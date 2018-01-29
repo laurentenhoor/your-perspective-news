@@ -32,9 +32,14 @@ module.exports = async (url) => {
 
     if (thisIsABlendleUrl) {
         let publisher = urlParts[searchIndex + 2];
+        if (publisher == 'item') {
+            return url;
+        }
         let urlDescription = urlParts[searchIndex + 3];
+        if (!urlDescription) {
+            return url;
+        }
         let query = publisher + ' ' + urlParts[searchIndex + 3];
-
         let searchWords = urlDescription.split('-');
         console.log('searchWords', searchWords)
 
