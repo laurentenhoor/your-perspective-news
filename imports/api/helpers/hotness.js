@@ -38,5 +38,5 @@ export default hotness = (score, date) => {
     console.log('roundedHotness', roundedHotness)
 
     return roundedHotness;
+    
 };
-
