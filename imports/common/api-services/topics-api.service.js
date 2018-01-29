@@ -92,9 +92,20 @@ export default class TopicsApiService {
     }
 
     addArticle(topicId, articleId, callback) {
+
+        let topic = Topics.findOne({ _id: topicId });
+        let dateNow = Date.now();
+
+        let currentScore = topic && topic.stats && topic.stats.score ? topic.stats.score : 0;
+
         Topics.update({ _id: topicId }, {
             $push: { articleIds: articleId },
-            $inc: { 'stats.articleCount': 1 }
+            $inc: { 'stats.articleCount': 1 },
+            $set : {
+                'stats.createdAt': dateNow,
+                'stats.hotness': hotness(currentScore, dateNow)
+            }
+
         }, (error) => {
             if (error) {
                 console.error(error);
