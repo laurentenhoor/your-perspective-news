@@ -27,6 +27,7 @@ const wrapShort = rule => ({ htmlDom }) => {
 
 module.exports = {
   title: [
+    wrapShort($ => $('meta[property="dpg:title"]').attr('content')),
     wrapShort($ => $('meta[property="og:title"]').attr('content')),
     wrapShort($ => $('meta[name="twitter:title"]').attr('content')),
     wrapShort($ => $('meta[name="sailthru.title"]').attr('content')),
