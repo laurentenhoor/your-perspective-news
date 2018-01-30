@@ -1,8 +1,8 @@
-let gaInit = `
+let googleAnalyticsScript = `
 <script>Dummy Google Analytics: this will be replaced by the actual tags in production mode</script>
 `
 if (Meteor.isProduction) {
-    gaInit = `
+  googleAnalyticsScript = `
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112278933-1"></script>
     <script>
@@ -14,4 +14,4 @@ if (Meteor.isProduction) {
     </script>
     `;
 }
-Inject.rawHead('Inject the Google Analytics script at the beginning of the head', gaInit);
+Inject.rawHead('Inject the Google Analytics script at the beginning of the head', googleAnalyticsScript);
