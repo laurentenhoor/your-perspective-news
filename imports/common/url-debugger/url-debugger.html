@@ -1,26 +1,45 @@
-<div layout="column" ng-cloak class="md-inline-form">
+<div
+    layout="column"
+    ng-cloak
+    class="md-inline-form"
+>
 
-    <md-content layout-gt-sm="row" layout-padding>
+    <md-content
+        layout-gt-sm="row"
+        layout-padding
+    >
 
         <md-input-container style="width:100%;">
             <label>Url</label>
-            <input ng-model="$ctrl.url" ng-change="$ctrl.processUrl()">
+            <input
+                ng-model="$ctrl.url"
+                ng-change="$ctrl.processUrl()"
+            >
         </md-input-container>
 
-
-        <div class="article-preview" 
-            ng-init="$ctrl.setBackgroundImage(article.imageUrl, article)" 
-            ng-style="$ctrl.compileBackgroundStyle(article.imageUrl)" 
-            ng-repeat="article in $ctrl.articles">
+        <div
+            class="article-preview"
+            ng-init="$ctrl.setBackgroundImage(article.imageUrl, article)"
+            ng-style="$ctrl.compileBackgroundStyle(article.imageUrl)"
+            ng-repeat="article in $ctrl.articles"
+        >
 
             <div class="gradient-overlay">
                 <div class="article-title">{{ article.title }}</div>
                 <div class="article-description">{{ article.description }}</div>
 
-                <div class="article-logo" ng-style="$ctrl.compileBackgroundStyle(article.logoUrl);"></div>
+                <div
+                    class="article-logo"
+                    ng-style="$ctrl.compileBackgroundStyle(article.logoUrl);"
+                ></div>
                 <div class="article-publisher">{{ article.publisher }}</div>
 
-                <iframe class="video-player-iframe" ng-if="article.embed" src="{{ article.videoUrl }}" allowfullscreen>
+                <iframe
+                    class="video-player-iframe"
+                    ng-if="article.embed"
+                    src="{{ article.videoUrl }}"
+                    allowfullscreen
+                >
                 </iframe>
 
             </div>
@@ -34,7 +53,6 @@
             Output opengraph.io
             <pre>{{ $ctrl.output2 | json }}</pre>
         </div>
-
 
     </md-content>
 

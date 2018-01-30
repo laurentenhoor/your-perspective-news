@@ -2,7 +2,7 @@ import TopicTemplate from './topic.html';
 import TopicStyle from './topic.styl';
 
 class TopicComponent {
-    constructor(){
+    constructor() {
         'ngInject';
 
         $ctrl = this;
@@ -21,7 +21,7 @@ class TopicComponent {
 export default {
     templateUrl: TopicTemplate,
     controller: TopicComponent,
-    bindings : {
+    bindings: {
         topic: '<'
     }
 }
