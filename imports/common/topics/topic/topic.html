@@ -25,14 +25,14 @@
             articles="$ctrl.rootArticles"
         ></article-tiles>
 
-        <divider-bar ng-show="$ctrl.otherArticles.length>0">Verrijking</divider-bar>
+        <divider-bar ng-show="$ctrl.otherArticles.length>0"><span class="text">Verrijking</span></divider-bar>
 
         <article-tiles
             topic="$ctrl.topic"
             articles="$ctrl.otherArticles"
         ></article-tiles>
 
-        <divider-bar>Doe mee</divider-bar>
+        <divider-bar><span class="text">Doe mee</span></divider-bar>
 
         <comments-tile topic-id="$ctrl.topic._id"></comments-tile>
 
