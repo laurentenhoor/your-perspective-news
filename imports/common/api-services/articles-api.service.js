@@ -24,12 +24,32 @@ export default class ArticlesApi {
         return articles;
     }
 
+    getRootArticles(topic) {
+        var articles = Articles.find({
+            _id: { $in: topic.articleIds },
+            category: 'Algemene berichtgeving',
+        }, {
+            sort : {'stats.hotness': -1}
+        }).fetch();
+        return articles;
+    }
+
+    getOtherArticles(topic) {
+        var articles = Articles.find({
+            _id: { $in: topic.articleIds, },
+            category: { $ne: 'Algemene berichtgeving' }
+        }, {
+            sort : {'stats.hotness': -1}
+        }).fetch();
+        return articles;
+    }
+
     getByIds(idArray) {
         return Articles.find({ "_id": { "$in": idArray } }).fetch();
     }
 
     getHotness(articleId) {
-        let article = Articles.findOne({_id:articleId});
+        let article = Articles.findOne({ _id: articleId });
         if (article && article.stats && article.stats.hotness) {
             return article.stats.hotness
         }

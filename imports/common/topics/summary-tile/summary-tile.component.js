@@ -15,12 +15,16 @@ class SummaryTileComponent {
 
                 $ctrl.topic = angular.copy($ctrl.topic)
                 $ctrl.articles = $articlesApi.getByTopic($ctrl.topic);
+                
+                let rootArticles = $articlesApi.getRootArticles($ctrl.topic)
+                let otherArticles = $articlesApi.getOtherArticles($ctrl.topic)
 
-                if ($ctrl.articles.length > 0) {
-                    $ctrl.articles = _.orderBy($ctrl.articles, 'createdAt', 'asc');
-                    $ctrl.topicImageUrl = $ctrl.articles[0].imageUrl;
-                    $ctrl.mainArticle = $ctrl.articles[0];
-                    $ctrl.otherArticle = $ctrl.articles[1];
+                if (rootArticles.length > 0) {
+                    $ctrl.mainArticle = rootArticles[0];
+                    $ctrl.otherArticle = otherArticles[0];
+                } else {
+                    $ctrl.mainArticle = otherArticles[0];
+                    $ctrl.otherArticle = otherArticles[1];
                 }
                 
                 $ctrl.helpers({

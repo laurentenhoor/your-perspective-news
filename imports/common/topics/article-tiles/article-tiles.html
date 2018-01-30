@@ -1,5 +1,5 @@
 <div class="content-container" 
-    ng-repeat="article in $ctrl.articles | orderBy:'-stats.hotness'" 
+    ng-repeat="article in $ctrl.articles" 
     ng-show="$ctrl.articles.length > 0"
     id="topic-{{ $ctrl.topic._id }}-article-{{ article._id }}">
 

@@ -9,6 +9,25 @@ class ArticleTilesComponent {
         let $ctrl = this;
         $reactive($ctrl).attach($scope);
 
+        $ctrl.$onChanges = (changes) => {
+            if (changes.topic) {
+                $ctrl.topic = angular.copy($ctrl.topic);
+                // $ctrl.articles = $articlesApi.getByTopicId($ctrl.topic._id);
+                setArticles($ctrl.topic)
+            }
+        }
+
+        const setArticles = (topic) => {
+            $ctrl.rootArticles = $articlesApi.getRootArticles(topic)
+            $ctrl.otherArticles = $articlesApi.getOtherArticles(topic)
+
+            if ($ctrl.rootArticles.length > 0) {
+                $ctrl.articles = _.concat(_.slice($ctrl.rootArticles,0,2), $ctrl.otherArticles);
+            } else {
+                $ctrl.articles = $ctrl.otherArticles;
+            }
+        }
+
         $topicsApi.setCallbacks({
             addedArticle: (articleId) => {
                 console.log("articleAdded", articleId)
@@ -16,25 +35,20 @@ class ArticleTilesComponent {
                     $ctrl.topic = $topicsApi.getById($ctrl.topic._id);
                     Meteor.subscribe('articles', [$ctrl.topic], {
                         onReady: () => {
-                            $ctrl.articles = $articlesApi.getByTopic($ctrl.topic)
+                            setArticles($ctrl.topic)
                         }
                     })
                 }
             },
             removedArticle: () => {
                 console.log('REMOVED ARTICLE', $ctrl.topic)
+                $ctrl.topic = $topicsApi.getById($ctrl.topic._id);
                 if($ctrl.topic){
-                    $ctrl.articles = $articlesApi.getByTopicId($ctrl.topic._id)
+                    setArticles($ctrl.topic)
                 }
             }
         })
 
-        $ctrl.$onChanges = (changes) => {
-            if (changes.topic) {
-                $ctrl.topic = angular.copy($ctrl.topic);
-                $ctrl.articles = $articlesApi.getByTopicId($ctrl.topic._id);
-            }
-        }
 
         $ctrl.showDetails = (detailsAreVisible, articleId) => {
             if (detailsAreVisible){
