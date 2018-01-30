@@ -8,7 +8,7 @@ let googleAnalyticsScript = `
 
 if (Meteor.isProduction) {
   googleAnalyticsScript = `
-
+<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -18,7 +18,7 @@ if (Meteor.isProduction) {
 
     ga('create', 'UA-112278933-1', 'auto');
     ga('send', 'pageview');
-
+</script>
     `;
 }
 Inject.rawHead('Inject the Google Analytics script at the beginning of the head', googleAnalyticsScript);
