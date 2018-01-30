@@ -1,12 +1,15 @@
-<div class="content-container" 
-    ng-repeat="article in $ctrl.articles" 
+<div
+    class="content-container"
+    ng-repeat="article in $ctrl.articles"
     ng-show="$ctrl.articles.length > 0"
-    id="topic-{{ $ctrl.topic._id }}-article-{{ article._id }}">
+    id="topic-{{ $ctrl.topic._id }}-article-{{ article._id }}"
+>
 
-    <div class="tile-header">{{ article.category }}
+    <div class="tile-header">
+        {{ article.category }}
         <hotness-indicator item-id="article._id"></hotness-indicator>
     </div>
-    
+
     <div class="tile-container">
 
         <div class="image-container">
@@ -14,32 +17,44 @@
             <div class="vote-container">
                 <!-- <md-icon class="custom-svg-icon" md-svg-src="/icons/brain-idea.svg" aria-label="brain-power ">
                 </md-icon> -->
-                <vote article-id="article._id" topic-id="$ctrl.topic._id">
-                </vote>
+                <vote
+                    article-id="article._id"
+                    topic-id="$ctrl.topic._id"
+                ></vote>
             </div>
 
-            <div class="image" style="background-color:{{ article.videoUrl ? 'black' : 'rgb(187, 187, 187)' }}; background-image:url('{{ article.imageUrl }}');">
+            <div
+                class="image"
+                style="background-color:{{ article.videoUrl ? 'black' : 'rgb(187, 187, 187)' }}; 
+                        background-image:url('{{ article.imageUrl }}');"
+            >
             </div>
 
-            <iframe class="video-player-iframe" ng-if="article.videoUrl" src="{{ article.videoUrl }}"
-                allowfullscreen>
-            </iframe>
+            <iframe
+                class="video-player-iframe"
+                ng-if="article.videoUrl"
+                src="{{ article.videoUrl }}"
+                allowfullscreen
+            ></iframe>
 
-            <div class="solid-overlay">
-            </div>
+            <div class="solid-overlay"></div>
 
-            <div ng-click="$ctrl.openExternalUrl(article);" ng-class="article.videoUrl ? 'link-disabled' : ''"
-                ng-hide="article.videoUrl">
+            <div
+                ng-class="article.videoUrl ? 'link-disabled' : ''"
+                ng-click="$ctrl.openExternalUrl(article);"
+                ng-hide="article.videoUrl"
+            >
 
                 <div class="title-container">
 
-                    <div class="title" ng-class="{'visited' : (article._id == $ctrl.visitedId)}">
+                    <div
+                        class="title"
+                        ng-class="{'visited' : (article._id == $ctrl.visitedId)}"
+                    >
                         {{ article.title }}
                     </div>
 
-                    <div class="publisher">
-                        {{ article.publisher }}
-                    </div>
+                    <div class="publisher">{{ article.publisher }}</div>
 
                     <div class="time-elapsed">
                         {{ article.publishedAt || article.updatedAt | timeFromNow }}
@@ -50,16 +65,28 @@
 
         </div>
 
-        <div class="description" ng-if="article.description" ng-click="toggle = !toggle; $ctrl.showDetails(toggle, article._id);" ng-class="{'auto-height' : toggle}">
+        <div
+            class="description"
+            ng-if="article.description"
+            ng-click="toggle = !toggle; $ctrl.showDetails(toggle, article._id);"
+            ng-class="{'auto-height' : toggle}"
+        >
             {{ article.description }}
         </div>
 
         <div class="sources">
 
-            <article-actions-button topic-id="$ctrl.topic._id" article="article" class="edit-article-from-topics">
+            <article-actions-button
+                topic-id="$ctrl.topic._id"
+                article="article"
+                class="edit-article-from-topics"
+            >
             </article-actions-button>
 
-            <div class="source source-selected" ng-style="{'background-image':'url(\'' + (article.logoUrl) + '\')'}">
+            <div
+                class="source source-selected"
+                ng-style="{'background-image':'url(\'' + (article.logoUrl) + '\')'}"
+            >
             </div>
 
         </div>

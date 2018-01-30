@@ -31,7 +31,7 @@ export default class ArticlesApi {
     getRootArticles(topic) {
         var articles = Articles.find({
             _id: { $in: topic.articleIds },
-            category: 'Algemene berichtgeving',
+            category: 'Nieuws',
         }, {
             sort : {'stats.hotness': -1}
         }).fetch();
@@ -41,7 +41,7 @@ export default class ArticlesApi {
     getOtherArticles(topic) {
         var articles = Articles.find({
             _id: { $in: topic.articleIds, },
-            category: { $ne: 'Algemene berichtgeving' }
+            category: { $ne: 'Nieuws' }
         }, {
             sort : {'stats.hotness': -1}
         }).fetch();

@@ -119,6 +119,14 @@ if (Meteor.isServer) {
 		}
 	});
 
+	Migrations.add({
+		version: 8,
+		name: 'Replace "Algemene berichtgeving" by "Nieuws"',
+		up: function () {
+			version8();
+		}
+	});
+
 	Meteor.startup(function () {
 		// code to run on server at startup
 		// Migrations.unlock();
@@ -183,4 +191,15 @@ function version7() {
 
 	})
 }
+
+function version8() {
+	_.forEach(Articles.find({}).fetch(), (article) => {
+	
+		if (article && article.category && article.category == 'Algemene berichtgeving') {
+			article.category = 'Nieuws';
+		}
+		Articles.update({_id:article._id}, article);
+	})
+}
+
 

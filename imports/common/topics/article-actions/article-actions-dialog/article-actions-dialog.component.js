@@ -131,7 +131,7 @@ export default class ArticleActionsComponent {
 		};
 
 		$ctrl.loadAll = function () {
-			var map = ('Algemene berichtgeving, Andere kijk, Entertainment').split(/, +/g).map(function (state) {
+			var map = ('Nieuws, Andere kijk, Entertainment').split(/, +/g).map(function (state) {
 				return {
 					value: state.toLowerCase(),
 					display: state
