@@ -24,7 +24,7 @@ Meteor.methods({
 			});
 			return await metascraper({html, url});
 		} catch (error) {
-			console.log(error);
+			console.log('an error ocurred in the metascraper backend method');
 		}
 
 	}
