@@ -1,32 +1,25 @@
 import angular from 'angular';
-import angularMeteor from 'angular-meteor';
+
 import ngSocialShare from 'angular-socialshare';
 
-import ArticleTiles from './article-tiles/article-tiles.module';
 import ArticleActions from './article-actions/article-actions.module';
-
-import SummaryTile from './summary-tile/summary-tile.module';
-import TopicControls from './topic-controls/topic-controls.module';
-import CommentsTile from './comments-tile/comments-tile.module';
-import OpinionTile from './opinion-tile/opinion-tile.module';
-
 import Vote from './vote/vote.module';
 import HotnessIndicator from './hotness-indicator/hotness-indicator.module';
+
+import Topic from './topic/topic.module';
 import TopicsComponent from './topics.component';
+
 import AutoScrollService from './auto-scroll.service';
 import TimeFilters from './time.filter'
 
 export default angular.module('topics', [
-	SummaryTile,
-	ArticleTiles,
+	ngSocialShare,
+
 	ArticleActions,
-	CommentsTile,
-	OpinionTile,
-	TopicControls,
 	Vote,
 	HotnessIndicator,
-	ngSocialShare,
-	'ArticleActionsButton',
+	
+	Topic,
 ])
 	.component('topics', TopicsComponent)
 	.service('$autoScroll', AutoScrollService)

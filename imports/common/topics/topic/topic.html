@@ -1,0 +1,24 @@
+<div class="scroll-content">
+
+    <topic-controls topic-id="$ctrl.topic._id" show-details="($ctrl.activeTopic == $ctrl.topic._id)  ? topicIsOpen : false" on-show-details="topicIsOpen = $event.showDetails; $ctrl.activeTopic=$ctrl.topic._id">
+        <article-actions-button topic-id="$ctrl.topic._id">
+        </article-actions-button>
+    </topic-controls>
+
+    <summary-tile topic="$ctrl.topic" show-details="($ctrl.activeTopic == $ctrl.topic._id)  ? topicIsOpen : false" on-show-details="topicIsOpen = $event.showDetails; $ctrl.activeTopic=$ctrl.topic._id">
+    </summary-tile>
+
+    <div ng-show="($ctrl.activeTopic == $ctrl.topic._id)  ? topicIsOpen : false" style="display:flex;">
+
+        <article-tiles topic="$ctrl.topic">
+        </article-tiles>
+
+        <comments-tile topic-id="$ctrl.topic._id">
+        </comments-tile>
+
+        <opinion-tile topic-id="$ctrl.topic._id">
+        </opinion-tile>
+
+    </div>
+
+</div>
