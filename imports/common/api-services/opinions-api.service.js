@@ -7,18 +7,17 @@ export default class OpinionsApiService {
     }
 
     getAllByTopic(topic) {
-        return this.getAllByTopicId(topic._id);
+        if (topic) {
+            return this.getAllByTopicId(topic._id);
+        }
+        return null;
     }
 
     getAllByTopicId(topicId) {
-
-        let opinions = Opinions.find({
+        return Opinions.find({
             topicId: topicId,
             draft: false
-        }).fetch();
-
-        // console.log('Opinions', topicId, opinions);
-        return opinions;
+        }).fetch();;
     }
 
     getUserOpinion(topicId) {

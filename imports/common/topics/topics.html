@@ -1,18 +1,15 @@
-<div class="scroll-window" id="scroll-{{topic._id}}" scroll-disabler 
-	ng-repeat="topic in $ctrl.topics | orderBy:'-stats.hotness'" ng-cloack>
+<div class="scroll-window" id="scroll-{{topic._id}}" scroll-disabler ng-repeat="topic in $ctrl.topics | orderBy:'-stats.hotness'"
+ ng-cloack>
 
 	<div class="scroll-content">
 
-		<topic-controls topic-id="topic._id" show-details="($ctrl.activeTopic == topic._id)  ? topicIsOpen : false"
-			on-show-details="topicIsOpen = $event.showDetails; $ctrl.activeTopic=topic._id" >
-			<article-actions-button 
-				topic-id="topic._id" 
-				on-changes="topic.articleIds=$ctrl.refreshArticles(topic)">
-            </article-actions-button>
+		<topic-controls topic-id="topic._id" show-details="($ctrl.activeTopic == topic._id)  ? topicIsOpen : false" on-show-details="topicIsOpen = $event.showDetails; $ctrl.activeTopic=topic._id">
+			<article-actions-button topic-id="topic._id">
+			</article-actions-button>
 		</topic-controls>
 
-		<summary-tile topic="topic" refresh-article-ids="topic.articleIds" show-details="($ctrl.activeTopic == topic._id)  ? topicIsOpen : false" 
-			on-show-details="topicIsOpen = $event.showDetails; $ctrl.activeTopic=topic._id">
+		<summary-tile topic="topic" show-details="($ctrl.activeTopic == topic._id)  ? topicIsOpen : false"
+		 on-show-details="topicIsOpen = $event.showDetails; $ctrl.activeTopic=topic._id">
 		</summary-tile>
 
 		<div ng-show="($ctrl.activeTopic == topic._id)  ? topicIsOpen : false" style="display:flex;">
@@ -27,9 +24,9 @@
 			</opinion-tile>
 
 		</div>
-		
+
 	</div>
-	
+
 </div>
 
 

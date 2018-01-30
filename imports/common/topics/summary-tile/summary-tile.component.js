@@ -11,30 +11,53 @@ class SummaryTileComponent {
         $ctrl.showSummary = true;
 
         $ctrl.$onChanges = (changes) => {
-            if (changes.refreshArticleIds && $ctrl.topic) {
-                $ctrl.topic.articleIds = $ctrl.refreshArticleIds;
-                processArticles();
-            }
             if (changes.topic) {
                 $ctrl.topic = angular.copy($ctrl.topic)
-                processArticles();        
-                $ctrl.helpers({
-                    amountOfQuestions : () => {
-                        let questions = $commentsApi.getAllByTopic($ctrl.topic);
-                        return questions.length;
-                    },
-                    amountOfOpinions : () => {
-                        let opinions = $opinionsApi.getAllByTopic($ctrl.topic);
-                        return opinions.length;
-                    }
-                });       
+                divideArticles();       
             }
             if (changes.showDetails) {
                 $ctrl.detailsAreShown = angular.copy($ctrl.showDetails)
             }
         }
 
-        const processArticles = () => {
+        $topicsApi.setCallbacks({
+            addedArticle: (articleId) => {
+                if ($ctrl.topic) {
+                    $ctrl.topic = $topicsApi.getById($ctrl.topic._id);
+                    Meteor.subscribe('articles', [$ctrl.topic], {
+                        onReady: () => {
+                            divideArticles();
+                        }
+                    })
+                }
+            },
+            removedArticle: () => {
+                $ctrl.topic = $topicsApi.getById($ctrl.topic._id);
+                if($ctrl.topic){
+                    divideArticles();
+                }
+            }
+        })
+
+
+        $ctrl.helpers({
+            amountOfQuestions : () => {
+                let questions = $commentsApi.getAllByTopic($ctrl.getReactively('topic'));
+                if (questions) {
+                    return questions.length;
+                }
+                return null;
+            },
+            amountOfOpinions : () => {
+                let opinions = $opinionsApi.getAllByTopic($ctrl.getReactively('topic'));
+                if (opinions) {
+                    return opinions.length;
+                }
+                return null;
+            }
+        }); 
+
+        const divideArticles = () => {
             
             $ctrl.articles = $articlesApi.getByTopic($ctrl.topic);
             
@@ -94,7 +117,6 @@ export default {
     controller: SummaryTileComponent,
     bindings: {
         topic: '<',
-        refreshArticleIds: '<',
         showDetails: '<',
         onShowDetails: '&',
     }

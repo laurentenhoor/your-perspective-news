@@ -12,7 +12,10 @@ export default class CommentsApiService {
     }
 
     getAllByTopic(topic) {
-        return this.getAllByTopicId(topic._id);
+        if (topic) {
+            return this.getAllByTopicId(topic._id);
+        }
+        return null;
     }
 
     getAllByTopicId(topicId) {
