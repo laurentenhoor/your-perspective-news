@@ -24,7 +24,7 @@ class AuthComponent {
 			isLoggedIn() {
 				let userId = Meteor.userId();
 				ga('set', 'userId', userId);
-				ga('set', 'dimension1', userId);	
+				ga('set', 'dimension1', userId);
 				return !!userId
 			},
 			currentUser() {
