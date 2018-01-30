@@ -8,7 +8,7 @@ export default class ArticleActionsDialogService {
         'ngInject';
 
         this.$dialog = $dialog;
-
+        
     }
 
     show($event, topicId, article) {
@@ -22,13 +22,7 @@ export default class ArticleActionsDialogService {
                 article: article,
             }
         }
-
         return this.$dialog.show(dialogOptions)
-            .then(function (answer) {
-                console.log('You answered the dialog.')
-            }, function (answer) {
-                console.log('You cancelled the dialog.')
-            });
     }
 
     hide($event) {

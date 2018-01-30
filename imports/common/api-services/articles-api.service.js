@@ -24,6 +24,10 @@ export default class ArticlesApi {
         return articles;
     }
 
+    getByIds(idArray) {
+        return Articles.find({ "_id": { "$in": idArray } }).fetch();
+    }
+
     getRootArticles(topic) {
         var articles = Articles.find({
             _id: { $in: topic.articleIds },
@@ -44,9 +48,7 @@ export default class ArticlesApi {
         return articles;
     }
 
-    getByIds(idArray) {
-        return Articles.find({ "_id": { "$in": idArray } }).fetch();
-    }
+    
 
     getHotness(articleId) {
         let article = Articles.findOne({ _id: articleId });

@@ -11,22 +11,13 @@ class SummaryTileComponent {
         $ctrl.showSummary = true;
 
         $ctrl.$onChanges = (changes) => {
+            if (changes.refreshArticleIds && $ctrl.topic) {
+                $ctrl.topic.articleIds = $ctrl.refreshArticleIds;
+                processArticles();
+            }
             if (changes.topic) {
-
                 $ctrl.topic = angular.copy($ctrl.topic)
-                $ctrl.articles = $articlesApi.getByTopic($ctrl.topic);
-                
-                let rootArticles = $articlesApi.getRootArticles($ctrl.topic)
-                let otherArticles = $articlesApi.getOtherArticles($ctrl.topic)
-
-                if (rootArticles.length > 0) {
-                    $ctrl.mainArticle = rootArticles[0];
-                    $ctrl.otherArticle = otherArticles[0];
-                } else {
-                    $ctrl.mainArticle = otherArticles[0];
-                    $ctrl.otherArticle = otherArticles[1];
-                }
-                
+                processArticles();        
                 $ctrl.helpers({
                     amountOfQuestions : () => {
                         let questions = $commentsApi.getAllByTopic($ctrl.topic);
@@ -36,11 +27,26 @@ class SummaryTileComponent {
                         let opinions = $opinionsApi.getAllByTopic($ctrl.topic);
                         return opinions.length;
                     }
-                });
-
+                });       
             }
             if (changes.showDetails) {
                 $ctrl.detailsAreShown = angular.copy($ctrl.showDetails)
+            }
+        }
+
+        const processArticles = () => {
+            
+            $ctrl.articles = $articlesApi.getByTopic($ctrl.topic);
+            
+            let rootArticles = $articlesApi.getRootArticles($ctrl.topic)
+            let otherArticles = $articlesApi.getOtherArticles($ctrl.topic)
+
+            if (rootArticles.length > 0) {
+                $ctrl.mainArticle = rootArticles[0];
+                $ctrl.otherArticle = otherArticles[0];
+            } else {
+                $ctrl.mainArticle = otherArticles[0];
+                $ctrl.otherArticle = otherArticles[1];
             }
         }
 
@@ -88,6 +94,7 @@ export default {
     controller: SummaryTileComponent,
     bindings: {
         topic: '<',
+        refreshArticleIds: '<',
         showDetails: '<',
         onShowDetails: '&',
     }

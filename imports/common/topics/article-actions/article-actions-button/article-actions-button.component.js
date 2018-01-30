@@ -27,7 +27,14 @@ class ArticleActionsButtonComponent {
 				$event,
 				$ctrl.topicId,
 				$ctrl.article
-			)
+			).then(function (answer) {
+				
+				$ctrl.onChanges();
+
+				console.log('You answered the article-actions-dialog.')
+			}, function (answer) {
+				console.log('You cancelled the article-actions-dialog.');
+			})
 
 		};
 	}
@@ -39,5 +46,6 @@ export default {
 	bindings: {
 		topicId: '<',
 		article: '<',
+		onChanges: '&'
 	}
 }

@@ -52,4 +52,5 @@ export default {
     },
     controller: TopicControlsComponent,
     templateUrl: template,
+    transclude : true,
 }

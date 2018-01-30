@@ -63,6 +63,13 @@ class TopicsComponent {
 			})
 		}
 
+		$ctrl.refreshArticles = (topic) => {			
+			if (!topic) {
+				return;
+			}
+			return $topicsApi.getById(topic._id).articleIds;
+		}
+
 		$ctrl.showDetails = function ($event) {
 			$ctrl.detailsAreShown = $event.showDetails;
 		}

@@ -77,6 +77,6 @@ export default {
     templateUrl: ArticleTilesTemplate,
     controller: ArticleTilesComponent,
     bindings: {
-        topic: '<',
+        topic: '<'
     }
 }
