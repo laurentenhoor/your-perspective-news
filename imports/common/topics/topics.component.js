@@ -77,6 +77,12 @@ class TopicsComponent {
 		$ctrl.loadMoreTopics = () => {
 			$ctrl.amountOfTopics = $ctrl.amountOfTopics + 5;
 			checkState();
+			
+			ga('send', {
+				hitType: 'event',
+				eventCategory: 'Read',
+				eventAction : 'Load more topics'
+			})
 		}
 
 		let checkState = () => {

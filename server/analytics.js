@@ -1,6 +1,11 @@
 let googleAnalyticsScript = `
-<script>Dummy Google Analytics: this will be replaced by the actual tags in production mode</script>
-`
+<script>
+  ga = function(action, type, eventCategory, eventAction, eventLabel, eventValue, fieldsObject) {
+    console.warn('GoogleAnalytics debug:', action, type, eventCategory, eventAction, eventLabel, eventValue, fieldsObject)
+  }
+</script>
+`;
+
 if (Meteor.isProduction) {
   googleAnalyticsScript = `
     <!-- Global site tag (gtag.js) - Google Analytics -->

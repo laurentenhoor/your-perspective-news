@@ -16,6 +16,14 @@ export default class AuthService {
 		}
 
 		function logout() {
+
+			ga('send', {
+				hitType: 'event',
+				eventCategory: 'Account',
+				eventAction: 'logout',
+				eventLabel: '/user/'+Meteor.userId()
+			})
+			
 			$loader.startAndWait(() =>
 				Accounts.logout(() =>
 					$loader.stop()))

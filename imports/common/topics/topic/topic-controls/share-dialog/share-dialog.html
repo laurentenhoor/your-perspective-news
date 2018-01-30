@@ -13,7 +13,7 @@
             </md-button>
 
             <a socialshare socialshare-provider="whatsapp" socialshare-url="{{ $ctrl.getShareUrl() }}" socialshare-text="{{ $ctrl.getShareText() }}">
-                <md-button ng-click="$ctrl.hide()" class="md-raised share-button">
+                <md-button ng-click="$ctrl.shareWhatsapp();$ctrl.hide()" class="md-raised share-button">
                     <md-icon md-font-set="fa" md-font-icon="fa-whatsapp"></md-icon>
                     Whatsapp
                 </md-button>
@@ -32,7 +32,7 @@
 
             <md-button class="md-raised share-button" 
                 ngclipboard data-clipboard-text="{{ $ctrl.getShareUrl() }}" 
-                ng-click="$ctrl.hide()">
+                ng-click="$ctrl.shareCopyPaste();$ctrl.hide()">
                     <md-icon md-font-set="fa" md-font-icon="fa-copy"></md-icon>
                     Copy-Paste
             </md-button>

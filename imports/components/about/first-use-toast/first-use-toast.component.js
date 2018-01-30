@@ -16,8 +16,14 @@ export default class FirstUseToastComponent {
 
             this.closeToast();
 
-            if (!$firstUseDialog.isCurrentlyShown()) 
+            if (!$firstUseDialog.isCurrentlyShown()) {
                 $firstUseDialog.show($event);
+                ga('send', {
+                    hitType: 'event',
+                    eventCategory: 'About',
+                    eventAction: 'Open about'
+                })
+            }
 
         }
     }

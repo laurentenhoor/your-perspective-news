@@ -21,6 +21,12 @@ export default class ShareDialogComponent {
         }
                 
         $ctrl.shareLinkedIn = () => {
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'Share',
+                eventAction : 'LinkedIn',
+                eventLabel : '/topic/'+topicId
+            })
             Socialshare.share({
                 'provider': 'linkedin',
                 'attrs': {
@@ -30,6 +36,12 @@ export default class ShareDialogComponent {
         }
 
         $ctrl.shareTwitter = () => {
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'Share',
+                eventAction : 'Twitter',
+                eventLabel : '/topic/'+topicId
+            })
             Socialshare.share({
                 'provider': 'twitter',
                 'attrs': {
@@ -38,14 +50,38 @@ export default class ShareDialogComponent {
                 }
             });
         }
-        
+
         $ctrl.shareFacebook = () => {
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'Share',
+                eventAction : 'Facebook',
+                eventLabel : '/topic/'+topicId
+            })
             Socialshare.share({
                 'provider': 'facebook',
                 'attrs': {
                     'socialshareUrl': $ctrl.getShareUrl()
                 }
             });
+        }
+
+        $ctrl.shareCopyPaste = () => {
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'Share',
+                eventAction : 'Copy-Paste',
+                eventLabel : '/topic/'+topicId
+            })
+        }
+
+        $ctrl.shareWhatsapp = () => {
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'Share',
+                eventAction : 'Whatsapp',
+                eventLabel : '/topic/'+topicId
+            })
         }
         
     }

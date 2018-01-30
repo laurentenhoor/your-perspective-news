@@ -5,15 +5,27 @@ import template from './auth.html';
 import style from './auth.styl';
 
 class AuthComponent {
-	constructor($scope, $rootScope, $reactive, $loader, $accountMenu) {
+	constructor($scope, $rootScope, $reactive, $loader, $accountMenu, $timeout) {
 		'ngInject';
 
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
 
+		$timeout(()=>{
+			ga('send', {
+				hitType: 'event',
+				eventCategory: 'Pageview',
+				eventAction: Meteor.userId() ? 'Logged-in' : 'Anonymous',
+				eventLabel: Meteor.userId() ? '/user/' + Meteor.userId() : null
+			})
+		},2000)
+
 		$ctrl.helpers({
 			isLoggedIn() {
-				return !!Meteor.userId();
+				let userId = Meteor.userId();
+				ga('set', 'userId', userId);
+				ga('set', 'dimension1', userId);	
+				return !!userId
 			},
 			currentUser() {
 				return Meteor.user();
@@ -23,19 +35,21 @@ class AuthComponent {
 		$ctrl.login = function () {
 
 			$loader.start();
-			Meteor.loginWithLinkedIn(() => $loader.stop());
+
+			ga('send', {
+				hitType: 'event',
+				eventCategory: 'Account',
+				eventAction: 'Login'
+			})
+
+			Meteor.loginWithLinkedIn((error) => {
+				$loader.stop()
+			});
 
 		}
 
-		$ctrl.toggleAccountMenu = function() {
+		$ctrl.toggleAccountMenu = function () {
 			$accountMenu.toggle();
-		}
-
-		$ctrl.logout = function () {
-
-			$loader.startAndWait(() =>
-				Accounts.logout(() =>
-					$loader.stop()))
 		}
 	}
 

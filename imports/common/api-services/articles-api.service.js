@@ -109,6 +109,14 @@ export default class ArticlesApi {
             this.$topicsApi.vote(topicId, voteValue)
         })
 
+        ga('send', {
+            hitType: 'event',
+            eventCategory: 'Vote',
+            eventAction: 'Article',
+            eventLabel: '/article/'+articleId,
+            eventValue: voteValue
+        })
+
     }
 
     countVisitExternal(articleId) {
@@ -116,6 +124,12 @@ export default class ArticlesApi {
             $inc:
                 { 'stats.externalVisits': 1 }
         });
+        ga('send', {
+            hitType: 'event',
+            eventCategory: 'Read',
+            eventAction : 'External article',
+            eventLabel : '/article/'+articleId
+        })
     }
 
     countShowDetails(articleId) {

@@ -87,8 +87,15 @@ export default class TopicsApiService {
 
     addArticleToNewTopic(articleId) {
 
-        
+
         let topicId = this.createTopic();
+
+        ga('send', {
+            hitType: 'event',
+            eventCategory: 'Post',
+            eventAction: 'New topic',
+            eventLabel: '/topic/' + topicId
+        })
 
         this.addArticle(topicId, articleId, () => {
 
@@ -108,7 +115,7 @@ export default class TopicsApiService {
         Topics.update({ _id: topicId }, {
             $push: { articleIds: articleId },
             $inc: { 'stats.articleCount': 1 },
-            $set : {
+            $set: {
                 'stats.createdAt': dateNow,
                 'stats.hotness': hotness(currentScore, dateNow)
             }
@@ -118,6 +125,14 @@ export default class TopicsApiService {
                 console.error(error);
                 return;
             }
+
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'Post',
+                eventAction: 'New article',
+                eventLabel: '/article/' + articleId
+            })
+
             this.fireCallbacks(this.callbacks.addedArticle, articleId)
             this.$loader.stop();
 
@@ -134,6 +149,12 @@ export default class TopicsApiService {
             $inc:
                 { 'stats.openCount': 1 }
         })
+        ga('send', {
+            hitType: 'event',
+            eventCategory: 'Read',
+            eventAction: 'Open topic',
+            eventLabel: '/topic/' + topicId
+        })
     }
 
     vote(topicId, voteValue) {
@@ -141,20 +162,22 @@ export default class TopicsApiService {
         let topic = Topics.findOne({ _id: topicId });
         let newScore = (topic.stats.score + voteValue) || 0;
 
+
         Topics.update({ _id: topicId }, {
             $inc: {
-                'stats.score' : voteValue,
+                'stats.score': voteValue,
                 'stats.upVotes': voteValue > 0 ? 1 : voteValue == -2 ? -1 : 0,
                 'stats.downVotes': voteValue < 0 ? 1 : voteValue == 2 ? -1 : 0,
             },
-            $set : {
+            $set: {
                 'stats.hotness': hotness(newScore, topic.stats.createdAt)
             }
-        })
+        });
+
     }
 
     getHotness(topicId) {
-        let topic = Topics.findOne({_id:topicId});
+        let topic = Topics.findOne({ _id: topicId });
         if (topic && topic.stats && topic.stats.hotness) {
             return topic.stats.hotness
         }
