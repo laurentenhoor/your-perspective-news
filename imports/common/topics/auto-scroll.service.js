@@ -1,13 +1,13 @@
 export default class SmoothScrollServices {
 
-    constructor() {
+    constructor($timeout) {
         'ngInject';
 
         this.scrollToTop = function() {
             
             console.log('$autoScroll.scrollToTop()')
             var scrollElement = document.getElementById('yourpers');
-            scrollElement.scrollTop = 0;
+            $timeout(()=>scrollElement.scrollTop = 0);
 
         }
 

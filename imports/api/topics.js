@@ -26,6 +26,9 @@ if (Meteor.isServer) {
 
 	Meteor.publish('topics', (amountOfTopics, singleTopicId) => {
 
+		console.log('subscribe to topics')
+		console.log('limit', amountOfTopics)
+
 		let searchQuery = {};
 
 		if (singleTopicId) {

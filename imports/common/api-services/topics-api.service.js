@@ -44,6 +44,10 @@ export default class TopicsApiService {
         return Topics.find({}).fetch();
     }
 
+    getWithOffset(offset) {
+        return Topics.find({}, {skip:offset}).fetch();
+    }
+
     getById(topicId) {
         return Topics.findOne({ _id: topicId });
     }

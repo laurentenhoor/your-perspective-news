@@ -5,12 +5,13 @@ import { Random } from 'meteor/random'
 
 class TopicsComponent {
 
-	constructor($scope, $reactive, $loader, $state, $articlesApi, $topicsApi, $timeout) {
+	constructor($scope, $reactive, $loader, $state, $articlesApi, $topicsApi, $timeout, $autoScroll) {
 		'ngInject';
 
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
 
+		$ctrl.topicsOffset = 0;
 		$ctrl.amountOfTopics = 5;
 		$ctrl.firstInit = true;
 
@@ -53,7 +54,7 @@ class TopicsComponent {
 
 		let subscribeToArticles = () => {
 
-			let topics = $topicsApi.getAll();
+			let topics = $topicsApi.getWithOffset($ctrl.topicsOffset);
 
 			Meteor.subscribe('articles', topics, {
 				onReady: () => {
@@ -83,8 +84,10 @@ class TopicsComponent {
 		}
 
 		$ctrl.loadMoreTopics = () => {
+			$ctrl.topicsOffset = $ctrl.topicsOffset + 5;
 			$ctrl.amountOfTopics = $ctrl.amountOfTopics + 5;
 			checkState();
+			$autoScroll.scrollToTop();
 
 			ga('send', {
 				hitType: 'event',
