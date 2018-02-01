@@ -21,7 +21,8 @@ export default class FirstUseToastComponent {
                 ga('send', {
                     hitType: 'event',
                     eventCategory: 'About',
-                    eventAction: 'Open about'
+                    eventAction: 'Open about',
+                    eventLabel: 'Via Pop-up'
                 })
             }
 

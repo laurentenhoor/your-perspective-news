@@ -19,6 +19,12 @@ class HeaderMenuComponent {
             console.log('logo clicked')
             $firstUseToast.hide();
             $firstUseDialog.show($event);
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'About',
+                eventAction: 'Open about',
+                eventLabel: 'Via Logo Click'
+            })
         }
        
     }
