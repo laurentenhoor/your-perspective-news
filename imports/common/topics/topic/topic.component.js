@@ -12,10 +12,6 @@ class TopicComponent {
                 $ctrl.topic = angular.copy($ctrl.topic);
                 getArticles($ctrl.topic);
             }
-            if (changes.openTopicId) {
-                $ctrl.openTopicId = angular.copy($ctrl.openTopicId);
-                console.log($ctrl.openTopicId);
-            }
         }
 
         const getArticles = (topic) => {
