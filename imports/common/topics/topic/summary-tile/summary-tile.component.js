@@ -13,10 +13,7 @@ class SummaryTileComponent {
         $ctrl.$onChanges = (changes) => {
             if (changes.topic) {
                 $ctrl.topic = angular.copy($ctrl.topic)
-                divideArticles();       
-            }
-            if (changes.showDetails) {
-                $ctrl.detailsAreShown = angular.copy($ctrl.showDetails)
+                divideArticles();
             }
         }
 
@@ -73,6 +70,15 @@ class SummaryTileComponent {
             }
         }
 
+        $ctrl.thisTopicIsOpen = () => {
+            return ($ctrl.topic._id == $ctrl.openTopicId)
+        }
+
+        const openTopic = () => {
+            $topicsApi.countOpen($ctrl.topic._id);
+            $ctrl.onOpenTopic({$event:{openTopicId: $ctrl.topic._id}});
+        }
+
         $ctrl.writeOpinion = function ($event) {
             if ($auth.isLoggedIn()) {
                 $writeOpinionDialog.show($event, $ctrl.topic._id);
@@ -102,11 +108,6 @@ class SummaryTileComponent {
             },400)
         }
 
-        function openTopic() {
-            $topicsApi.countOpen($ctrl.topic._id);
-            $ctrl.detailsAreShown = true;
-            $ctrl.onShowDetails({$event: {showDetails: $ctrl.detailsAreShown}});
-        }
 
     }
 
@@ -117,7 +118,7 @@ export default {
     controller: SummaryTileComponent,
     bindings: {
         topic: '<',
-        showDetails: '<',
-        onShowDetails: '&',
+        onOpenTopic:'&',
+        openTopicId: '<',
     }
 }

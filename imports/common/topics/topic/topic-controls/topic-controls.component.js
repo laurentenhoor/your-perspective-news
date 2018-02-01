@@ -9,13 +9,16 @@ class TopicControlsComponent {
         var $ctrl = this;
         $reactive($ctrl).attach($scope);
 
-        $ctrl.$onChanges = function (changes) {
-            if (changes.topicId) {
-                $ctrl.topicId = angular.copy($ctrl.topicId);
-            }
-            if (changes.showDetails) {
-                $ctrl.detailsAreShown = angular.copy($ctrl.showDetails);
-            }
+        $ctrl.thisTopicIsOpen = () => {
+            return ($ctrl.topicId == $ctrl.openTopicId)
+        }
+
+        $ctrl.toggleTopicOpen = function () {
+            let thisTopicIdShouldOpenNext = $ctrl.topicId;
+            if ($ctrl.thisTopicIsOpen()) {
+                thisTopicIdShouldOpenNext = null;
+            } 
+            $ctrl.onOpenTopic({$event: {openTopicId: thisTopicIdShouldOpenNext}})
         }
 
         $ctrl.discuss = function (topicId) {
@@ -27,18 +30,11 @@ class TopicControlsComponent {
             if ($auth.isLoggedIn()) {
                 $writeOpinionDialog.show($event, $ctrl.topicId);
             }
-
-        }
-
-        $ctrl.toggleDetailsVisibility = function () {
-            $ctrl.detailsAreShown = !$ctrl.detailsAreShown;
-            $ctrl.onShowDetails({ $event: { showDetails: $ctrl.detailsAreShown } });
         }
 
         $ctrl.share = function($event, topicId) {
             $shareDialog.show($event, topicId);
         }
-
 
     }
 
@@ -47,8 +43,8 @@ class TopicControlsComponent {
 export default {
     bindings: {
         topicId: '<',
-        onShowDetails: '&',
-        showDetails: '<'
+        onOpenTopic:'&',
+        openTopicId: '<'
     },
     controller: TopicControlsComponent,
     templateUrl: template,

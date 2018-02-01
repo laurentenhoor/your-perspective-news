@@ -5,12 +5,16 @@ class TopicComponent {
     constructor($topicsApi, $articlesApi) {
         'ngInject';
 
-        $ctrl = this;
+        var $ctrl = this;
 
         $ctrl.$onChanges = (changes) => {
             if (changes.topic) {
                 $ctrl.topic = angular.copy($ctrl.topic);
                 getArticles($ctrl.topic);
+            }
+            if (changes.openTopicId) {
+                $ctrl.openTopicId = angular.copy($ctrl.openTopicId);
+                console.log($ctrl.openTopicId);
             }
         }
 
@@ -48,6 +52,8 @@ export default {
     templateUrl: TopicTemplate,
     controller: TopicComponent,
     bindings: {
-        topic: '<'
+        topic: '<',
+        openTopicId: '<',
+        onOpenTopic: '&'
     }
 }

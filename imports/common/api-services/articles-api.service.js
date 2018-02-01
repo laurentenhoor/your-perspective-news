@@ -48,8 +48,6 @@ export default class ArticlesApi {
         return articles;
     }
 
-    
-
     getHotness(articleId) {
         let article = Articles.findOne({ _id: articleId });
         if (article && article.stats && article.stats.hotness) {
@@ -60,6 +58,7 @@ export default class ArticlesApi {
 
     updateArticle(article) {
         Articles.update({ _id: article._id }, article);
+        this.$topicsApi.fireCallbacks(this.$topicsApi.callbacks.addedArticle)
     }
 
     createArticle(article, callback) {

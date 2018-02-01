@@ -8,8 +8,11 @@ import ArticleTiles from './article-tiles/article-tiles.module';
 import CommentsTile from './comments-tile/comments-tile.module';
 import OpinionTile from './opinion-tile/opinion-tile.module';
 
+import ShareDialog from './share-dialog/share-dialog.module'
+
 export default angular
     .module('Topic', [
+        ShareDialog,
         TopicControls,
         SummaryTile,
         ArticleTiles,

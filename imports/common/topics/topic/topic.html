@@ -2,21 +2,21 @@
 
     <topic-controls
         topic-id="$ctrl.topic._id"
-        show-details="($ctrl.activeTopic == $ctrl.topic._id)  ? topicIsOpen : false"
-        on-show-details="topicIsOpen = $event.showDetails; $ctrl.activeTopic=$ctrl.topic._id"
+        on-open-topic="$ctrl.onOpenTopic({$event});"
+        open-topic-id="$ctrl.openTopicId"
     >
         <article-actions-button topic-id="$ctrl.topic._id"></article-actions-button>
     </topic-controls>
 
     <summary-tile
         topic="$ctrl.topic"
-        show-details="($ctrl.activeTopic == $ctrl.topic._id)  ? topicIsOpen : false"
-        on-show-details="topicIsOpen = $event.showDetails; $ctrl.activeTopic=$ctrl.topic._id"
+        on-open-topic="$ctrl.onOpenTopic({$event});"
+        open-topic-id="$ctrl.openTopicId"
     >
     </summary-tile>
 
     <div
-        ng-show="($ctrl.activeTopic == $ctrl.topic._id)  ? topicIsOpen : false"
+        ng-show="($ctrl.openTopicId == $ctrl.topic._id)"
         style="display:flex;"
     >
 
