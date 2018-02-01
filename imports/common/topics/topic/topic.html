@@ -20,19 +20,70 @@
         style="display:flex;"
     >
 
+    <title-bar-news ng-show="$ctrl.rootArticles.length>0">
+            <div class="content-container">
+                <div class="tile-header">&nbsp;</div>
+                <div class="tile-container">
+
+                    <span class="text">Nieuws</span>
+                    <!-- <div class="vertical-text">Meer nieuws</div> -->
+
+                </div>
+            </div>
+        </title-bar-news>
+
         <article-tiles
             topic="$ctrl.topic"
             articles="$ctrl.rootArticles"
         ></article-tiles>
 
-        <divider-bar ng-show="$ctrl.otherArticles.length>0"><span class="text">Verrijking</span></divider-bar>
+        <load-more-bar ng-show="$ctrl.moreRootArticlesAvailable()" ng-click="$ctrl.showMoreRootArticles()">
+            <div class="content-container">
+                <div class="tile-header">&nbsp;</div>
+                <div class="tile-container">
+                    <!-- <div class="vertical-text">Meer nieuws</div> -->
+                    <md-icon>keyboard_arrow_right</md-icon>
+                </div>
+            </div>
+        </load-more-bar>
+
+        <divider-bar ng-show="$ctrl.rootArticles.length>0 && $ctrl.otherArticles.length>0" >
+            <!-- <span class="text">Verrijking</span> -->
+        </divider-bar>
+
+        <title-bar-news ng-show="$ctrl.otherArticles.length>0">
+            <div class="content-container">
+                <div class="tile-header">&nbsp;</div>
+                <div class="tile-container">
+
+                    <span class="text">Verrijking</span>
+                    <!-- <div class="vertical-text">Meer nieuws</div> -->
+
+                </div>
+            </div>
+        </title-bar-news>
 
         <article-tiles
             topic="$ctrl.topic"
             articles="$ctrl.otherArticles"
         ></article-tiles>
 
-        <divider-bar><span class="text">Doe mee</span></divider-bar>
+        
+        <load-more-bar ng-show="$ctrl.moreOtherArticlesAvailable()" ng-click="$ctrl.showMoreOtherArticles()">
+                <div class="content-container">
+                    <div class="tile-header">&nbsp;</div>
+                    <div class="tile-container">
+                        <!-- <div class="vertical-text">Meer nieuws</div> -->
+                        <md-icon>keyboard_arrow_right</md-icon>
+                    </div>
+                </div>
+
+                
+            </load-more-bar>
+
+        <divider-bar ng-show="$ctrl.otherArticles.length>0" >
+            <!-- <span class="text">Doe mee</span> -->
+        </divider-bar>
 
         <comments-tile topic-id="$ctrl.topic._id"></comments-tile>
 

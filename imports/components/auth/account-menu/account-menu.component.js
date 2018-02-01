@@ -22,7 +22,7 @@ class AccountMenuComponent {
         $ctrl.toggleAccountMenu = function() {
             $accountMenu.toggle();
         }
-
+        
         $ctrl.logout = function() {
             $ctrl.toggleAccountMenu();
             $auth.logout();

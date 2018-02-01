@@ -6,6 +6,8 @@ class TopicComponent {
         'ngInject';
 
         var $ctrl = this;
+        $ctrl.amountOfRootArticles = 2;
+        $ctrl.amountOfOtherArticles = 2;
 
         $ctrl.$onChanges = (changes) => {
             if (changes.topic) {
@@ -15,8 +17,11 @@ class TopicComponent {
         }
 
         const getArticles = (topic) => {
-            $ctrl.rootArticles = _.slice($articlesApi.getRootArticles(topic),0,2)
-            $ctrl.otherArticles = $articlesApi.getOtherArticles(topic)
+            $ctrl.allRootArticles = $articlesApi.getRootArticles(topic)
+            $ctrl.rootArticles = _.slice($ctrl.allRootArticles, 0, $ctrl.amountOfRootArticles)
+            
+            $ctrl.allOtherArticles = $articlesApi.getOtherArticles(topic)
+            $ctrl.otherArticles = _.slice($ctrl.allOtherArticles, 0, $ctrl.amountOfOtherArticles)
         }
 
         $topicsApi.setCallbacks({
@@ -34,11 +39,30 @@ class TopicComponent {
             removedArticle: () => {
                 console.log('REMOVED ARTICLE', $ctrl.topic)
                 $ctrl.topic = $topicsApi.getById($ctrl.topic._id);
-                if($ctrl.topic){
+                if ($ctrl.topic) {
                     getArticles($ctrl.topic)
                 }
             }
         })
+
+    
+        $ctrl.moreRootArticlesAvailable = () => {
+            return ($ctrl.allRootArticles.length != $ctrl.rootArticles.length)
+        }
+
+        $ctrl.showMoreRootArticles = () => {
+            $ctrl.amountOfRootArticles++;
+            $ctrl.rootArticles = _.slice($ctrl.allRootArticles, 0, $ctrl.amountOfRootArticles)
+        }
+
+        $ctrl.moreOtherArticlesAvailable = () => {
+            return ($ctrl.allOtherArticles.length != $ctrl.otherArticles.length)
+        }
+
+        $ctrl.showMoreOtherArticles = () => {
+            $ctrl.amountOfOtherArticles++;
+            $ctrl.otherArticles = _.slice($ctrl.allOtherArticles, 0, $ctrl.amountOfOtherArticles)
+        }
 
     }
 

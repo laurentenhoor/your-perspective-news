@@ -18,7 +18,7 @@ export default class SmoothScrollServices {
             var scrollElement = document.getElementById(scrollScopeId);
             var targetElement = document.getElementById(targetId);
             
-            var scrollPadding = 20;
+            var scrollPadding = 55;
             var startX = scrollElement.scrollLeft;
             var stopX = targetElement.offsetLeft - scrollPadding;
             var distance = stopX > startX ? stopX - startX : startX - stopX;
