@@ -41,43 +41,15 @@
 
         <div class="community">
             <div class="opinion">
-                <div ng-click="$ctrl.scrollToOpinion($ctrl.topic._id)" class="small-content-container-white">
-                    <div class="title">{{$ctrl.amountOfOpinions}} {{$ctrl.amountOfOpinions == 1 ? 'opinie' : 'opinies'}}</div>
-                    <!-- <div class="content">
-                        "{{ $ctrl.bestOpinion.title}}"
-                    </div> -->
+                <div ng-click="$ctrl.scrollToQuestions($ctrl.topic._id)" class="small-content-container-white">
+                    <div class="title">{{$ctrl.amountOfQuestions}} {{$ctrl.amountOfQuestions == 1 ? 'vraag' : 'vragen'}}</div>
                 </div>
-
-
-                <!-- <div ng-if="!$ctrl.bestOpinion.title" >
-                    <div class="title">Top perspectief</div>
-                    <div style="margin:auto;text-align:center;">
-                        <md-button class="md-button md-small" ng-click="$ctrl.writeOpinion($event)" aria-label="Schrijf een mini opinie.">
-                            <md-icon>edit</md-icon>
-                            <div>Vraag</div>
-                        </md-button>
-                    </div>
-                </div> -->
-
             </div>
 
             <div class="discussion">
-                <div ng-click="$ctrl.scrollToQuestions($ctrl.topic._id)" class="small-content-container-grey">
-                    <div class="title">{{$ctrl.amountOfQuestions}} {{$ctrl.amountOfQuestions == 1 ? 'vraag' : 'vragen'}}</div>
-                    <!-- <div class="content">
-                        "{{$ctrl.bestQuestion.comment}}"
-                    </div> -->
+                <div ng-click="$ctrl.scrollToOpinion($ctrl.topic._id)" class="small-content-container-grey">
+                    <div class="title">{{$ctrl.amountOfOpinions}} {{$ctrl.amountOfOpinions == 1 ? 'opinie' : 'opinies'}}</div>
                 </div>
-
-                <!-- <div ng-if="!$ctrl.bestQuestion.comment">
-                    <div class="title">Top vraag</div>
-                    <div style="margin:auto;text-align:center;">
-                        <md-button class="md-button md-small" ng-click="$ctrl.scrollToQuestions($ctrl.topic._id)" aria-label="Stel een vraag.">
-                            <md-icon>question_answer</md-icon>
-                            <div>Vraag</div>
-                        </md-button>
-                    </div>
-                </div> -->
 
             </div>
         </div>
