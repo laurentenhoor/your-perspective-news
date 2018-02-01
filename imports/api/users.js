@@ -14,7 +14,7 @@ if (Meteor.isServer) {
 
         let newUser = Object.assign({}, user, options);
 
-        if (newUser && newUser.profile && newUser.profile.firstName) {
+        if (Meteor.isProduction && newUser && newUser.profile && newUser.profile.firstName) {
             let firstName = newUser.profile.firstName;
             let lastName = newUser.profile.lastName;
             let email = newUser.profile.emailAddress;
@@ -22,7 +22,7 @@ if (Meteor.isServer) {
 
             Slack.send({
                 username: firstName + ' ' + lastName,
-                text: 'Ik heb me zojuist geregistreerd op jouwpers! Jullie hebben nu ' + amountOfUsers + ' leden.',
+                text: 'Ik heb me zojuist geregistreerd! Jullie hebben nu ' + amountOfUsers + ' leden.',
                 icon_url: profileImage
             });
         }

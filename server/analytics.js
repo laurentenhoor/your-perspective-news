@@ -12,7 +12,7 @@ if (Meteor.isProduction) {
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics_debug.js','ga');
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-112278933-1', 'auto');
     ga('send', 'pageview');
@@ -23,6 +23,7 @@ if (Meteor.isProduction) {
 Inject.rawHead('Inject the Google Analytics script at the beginning of the head', googleAnalyticsScript);
 
 
+// let googleTagScript = `
 // <!-- Global site tag (gtag.js) - Google Analytics -->
 // <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112278933-1"></script>
 // <script>
@@ -32,3 +33,4 @@ Inject.rawHead('Inject the Google Analytics script at the beginning of the head'
 
 //   gtag('config', 'UA-112278933-1');
 // </script>
+// `
