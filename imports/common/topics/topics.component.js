@@ -17,11 +17,19 @@ class TopicsComponent {
 		$ctrl.$onChanges = (changes) => {
 			if (changes.singleTopicId) {
 				$ctrl.singleTopicId = angular.copy($ctrl.singleTopicId);
+				if ($state.current.name == 'singleTopic') {
+					ga('send', {
+						hitType: 'event',
+						eventCategory: 'Share',
+						eventAction: 'Conversion',
+						eventLabel: '/topic/' + $ctrl.singleTopicId
+					})
+				}
 			}
 		}
 
 		$topicsApi.setCallbacks({
-			createdTopic : (topicId) => {
+			createdTopic: (topicId) => {
 				console.log('createdCallback', topicId)
 				subscribeToArticles();
 			},
@@ -63,7 +71,7 @@ class TopicsComponent {
 			})
 		}
 
-		$ctrl.refreshArticles = (topic) => {			
+		$ctrl.refreshArticles = (topic) => {
 			if (!topic) {
 				return;
 			}
@@ -77,11 +85,11 @@ class TopicsComponent {
 		$ctrl.loadMoreTopics = () => {
 			$ctrl.amountOfTopics = $ctrl.amountOfTopics + 5;
 			checkState();
-			
+
 			ga('send', {
 				hitType: 'event',
 				eventCategory: 'Read',
-				eventAction : 'Load more topics'
+				eventAction: 'Load more topics'
 			})
 		}
 
