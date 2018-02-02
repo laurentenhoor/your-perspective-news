@@ -2,7 +2,7 @@ import TopicTemplate from './topic.html';
 import TopicStyle from './topic.styl';
 
 class TopicComponent {
-    constructor($topicsApi, $articlesApi) {
+    constructor($topicsApi, $articlesApi, $timeout, $articleActionsDialog) {
         'ngInject';
 
         var $ctrl = this;
@@ -15,6 +15,8 @@ class TopicComponent {
                 getArticles($ctrl.topic);
             }
         }
+
+        
 
         const getArticles = (topic) => {
             $ctrl.allRootArticles = $articlesApi.getRootArticles(topic)
@@ -31,7 +33,9 @@ class TopicComponent {
                     $ctrl.topic = $topicsApi.getById($ctrl.topic._id);
                     Meteor.subscribe('articles', [$ctrl.topic], {
                         onReady: () => {
-                            getArticles($ctrl.topic)
+                            $timeout(() => {
+                                getArticles($ctrl.topic)
+                            })   
                         }
                     })
                 }
@@ -45,7 +49,7 @@ class TopicComponent {
             }
         })
 
-    
+        
         $ctrl.moreRootArticlesAvailable = () => {
             return ($ctrl.allRootArticles.length != $ctrl.rootArticles.length)
         }
@@ -62,6 +66,13 @@ class TopicComponent {
         $ctrl.showMoreOtherArticles = () => {
             $ctrl.amountOfOtherArticles++;
             $ctrl.otherArticles = _.slice($ctrl.allOtherArticles, 0, $ctrl.amountOfOtherArticles)
+        }
+
+        $ctrl.addArticle = ($event) => {
+            $articleActionsDialog.show(
+				$event,
+				$ctrl.topic._id
+			)
         }
 
     }

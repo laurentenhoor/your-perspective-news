@@ -27,7 +27,7 @@
 
                     <span class="text">Nieuws</span>
                     <!-- <div class="vertical-text">Meer nieuws</div> -->
-
+                    <md-icon ng-click="$ctrl.addArticle()" class="add-article">add</md-icon>
                 </div>
             </div>
         </title-bar-news>
@@ -42,7 +42,10 @@
                 <div class="tile-header">&nbsp;</div>
                 <div class="tile-container">
                     <!-- <div class="vertical-text">Meer nieuws</div> -->
-                    <md-icon>keyboard_arrow_right</md-icon>
+                    <div class="load-more-icon">
+                            <div class="load-more-icon-text">MEER</div>
+                            <md-icon>keyboard_arrow_right</md-icon>
+                        </div>
                 </div>
             </div>
         </load-more-bar>
@@ -58,7 +61,7 @@
 
                     <span class="text">Verrijking</span>
                     <!-- <div class="vertical-text">Meer nieuws</div> -->
-
+                    <md-icon ng-click="$ctrl.addArticle()" class="add-article">add</md-icon>
                 </div>
             </div>
         </title-bar-news>
@@ -74,14 +77,19 @@
                     <div class="tile-header">&nbsp;</div>
                     <div class="tile-container">
                         <!-- <div class="vertical-text">Meer nieuws</div> -->
-                        <md-icon>keyboard_arrow_right</md-icon>
+                        
+                        <div class="load-more-icon">
+                            <div class="load-more-icon-text">MEER</div>
+                            <md-icon>keyboard_arrow_right</md-icon>
+                        </div>
+                        
                     </div>
                 </div>
 
                 
             </load-more-bar>
 
-        <divider-bar ng-show="$ctrl.otherArticles.length>0" >
+        <divider-bar ng-show="$ctrl.otherArticles.length>0 || ($ctrl.otherArticles.length==0 && $ctrl.rootArticles.length>0)" >
             <!-- <span class="text">Doe mee</span> -->
         </divider-bar>
 

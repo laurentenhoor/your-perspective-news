@@ -14,9 +14,8 @@ divider-bar {
     opacity: 0.5;
     font-weight: 300;
     padding: 0;
-    width: 10vw;
+    width: 8vw;
 }
-
 
 title-bar-news {
     .text {
@@ -25,63 +24,50 @@ title-bar-news {
         min-width: 27vw;
         margin-top: 14vw;
         margin-left: -8.6vw;
-        font-size:4.5vw;
-        font-weight:300;
-        opacity:0.9;
-        text-align:left;
+        font-size: 4.5vw;
+        font-weight: 300;
+        opacity: 0.9;
+        text-align: left;
     }
-    
-    
+
     text-align: center;
     padding: 0;
 
     .tile-container {
-        background-image: linear-gradient(to bottom, rgba(0,92,151,0.95), rgba(54,55,149,0.95));
+        background-image: linear-gradient(to bottom, rgba(0, 92, 151, 0.95), rgba(54, 55, 149, 0.95));
         width: 9vw !important;
         color: white;
         // opacity: 0.6;
         // box-shadow: 0.1vw 0.2vw 1vw rgba(4, 4, 4, 0.42) !important;
     }
-}
 
-
-
-title-bar {
-    .text {
-        transform: rotate(90deg);
-        display: inline-block;
-        min-width: 27vw;
-        margin-top: 15vw;
-        margin-left: -9vw;
-        font-size:4.5vw;
-        font-weight:300;
-        opacity:0.9;
-    }
-    
-    
-    text-align: center;
-    padding: 0;
-
-    .tile-container {
-        background-image: linear-gradient(to bottom, #d04040, #a52a2a) !important;
-        width: 8vw !important;
-        color: white;
-        // opacity: 0.6;
-        // box-shadow: 0.1vw 0.2vw 1vw rgba(4, 4, 4, 0.42) !important;
+    .add-article {
+            bottom: 0;
+    position: absolute;
+    color: white;
+    margin: 1.5vw;
     }
 }
-
 
 
 load-more-bar {
-
     text-align: center;
     padding: 0;
 
     .tile-container {
-        width: 8vw !important;
+        width: 10vw !important;
         background-color: white;
         opacity: 0.6;
         box-shadow: 0.1vw 0.2vw 1vw rgba(4, 4, 4, 0.42) !important;
+    }
+
+    .load-more-icon {
+        margin: auto;
+    }
+
+    .load-more-icon-text {
+        transform: rotate(90deg);
+        margin: 3vw 0vw;
+        font-size: 2.6vw;
     }
 }
