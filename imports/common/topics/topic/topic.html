@@ -27,7 +27,7 @@
 
                     <span class="text">Nieuws</span>
                     <!-- <div class="vertical-text">Meer nieuws</div> -->
-                    <md-icon ng-click="$ctrl.addArticle()" class="add-article">add</md-icon>
+                    <md-icon ng-click="$ctrl.addArticle()" class="add-article-via-bar">add</md-icon>
                 </div>
             </div>
         </title-bar-news>
@@ -50,7 +50,7 @@
             </div>
         </load-more-bar>
 
-        <divider-bar ng-show="$ctrl.rootArticles.length>0 && $ctrl.otherArticles.length>0" >
+        <divider-bar ng-show="$ctrl.rootArticles.length>1 && $ctrl.otherArticles.length>0" >
             <!-- <span class="text">Verrijking</span> -->
         </divider-bar>
 
@@ -61,7 +61,7 @@
 
                     <span class="text">Verrijking</span>
                     <!-- <div class="vertical-text">Meer nieuws</div> -->
-                    <md-icon ng-click="$ctrl.addArticle()" class="add-article">add</md-icon>
+                    <md-icon ng-click="$ctrl.addArticle()" class="add-article-via-bar">add</md-icon>
                 </div>
             </div>
         </title-bar-news>
@@ -89,7 +89,7 @@
                 
             </load-more-bar>
 
-        <divider-bar ng-show="$ctrl.otherArticles.length>0 || ($ctrl.otherArticles.length==0 && $ctrl.rootArticles.length>0)" >
+        <divider-bar ng-show="$ctrl.otherArticles.length>0 || ($ctrl.otherArticles.length==0 && $ctrl.rootArticles.length>1)" >
             <!-- <span class="text">Doe mee</span> -->
         </divider-bar>
 

@@ -2,7 +2,7 @@ import TopicTemplate from './topic.html';
 import TopicStyle from './topic.styl';
 
 class TopicComponent {
-    constructor($topicsApi, $articlesApi, $timeout, $articleActionsDialog) {
+    constructor($topicsApi, $articlesApi, $timeout, $articleActionsDialog, $auth) {
         'ngInject';
 
         var $ctrl = this;
@@ -16,8 +16,7 @@ class TopicComponent {
             }
         }
 
-        
-
+    
         const getArticles = (topic) => {
             $ctrl.allRootArticles = $articlesApi.getRootArticles(topic)
             $ctrl.rootArticles = _.slice($ctrl.allRootArticles, 0, $ctrl.amountOfRootArticles)
@@ -69,6 +68,9 @@ class TopicComponent {
         }
 
         $ctrl.addArticle = ($event) => {
+            if (!$auth.isLoggedIn()) {
+				return;
+			}
             $articleActionsDialog.show(
 				$event,
 				$ctrl.topic._id
