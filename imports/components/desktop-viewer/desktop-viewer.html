@@ -1,17 +1,16 @@
 <div ng-if="!$ctrl.showMobile" ng-cloak>
 
 	<div class="desktop-title">
-		<img class="logo-desktop" src="/logos/newnews_bw_simplified.png" /> Bezoek
-		<span class="red">jouw<b>pers</b></span> via een smartphone.
+			<div>Bezoek <span class="red">jouw<b>pers</b></span> via een smartphone.</div>
+		<!-- <img class="logo-desktop" src="/logos/jouwpers-icon-no-bg.png" /> -->
 	</div>
 
 	<div class="maincontentdiv">
-		<iframe src="{{ $ctrl.absUrl }}" sandbox="allow-same-origin allow-forms allow-scripts" seamless width="414" height="736">
+		<iframe src="{{ $ctrl.absUrl }}" sandbox="allow-same-origin allow-forms allow-scripts allow-popups allow-popups-to-escape-sandbox" seamless width="414" height="736">
 			<ng-transclude>
 			</ng-transclude>
 		</iframe>
 	</div>
-
 </div>
 
 <ng-transclude ng-if="$ctrl.showMobile">

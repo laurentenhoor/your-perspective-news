@@ -100,7 +100,7 @@ function render(images, callback) {
 
         }
 
-        var logoPath = path.join(__meteor_bootstrap__.serverDir, "../web.browser/app", '/logos/newnews_bw_simplified_circle2.png');
+        var logoPath = path.join(__meteor_bootstrap__.serverDir, "../web.browser/app", '/logos/jouwpers-logo-circle-gradient-bg.png');
 
         Jimp.read(logoPath, (error, logo) => {
             if (logo) {
