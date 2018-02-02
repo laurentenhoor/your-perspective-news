@@ -50,9 +50,9 @@
             </div>
         </load-more-bar>
 
-        <divider-bar ng-show="$ctrl.rootArticles.length>1 && $ctrl.otherArticles.length>0" >
-            <!-- <span class="text">Verrijking</span> -->
-        </divider-bar>
+        <!-- <divider-bar ng-show="$ctrl.rootArticles.length>1 && $ctrl.otherArticles.length>0" >
+            
+        </divider-bar> -->
 
         <title-bar-news ng-show="$ctrl.otherArticles.length>0">
             <div class="content-container">
@@ -79,7 +79,7 @@
                         <!-- <div class="vertical-text">Meer nieuws</div> -->
                         
                         <div class="load-more-icon">
-                            <div class="load-more-icon-text">MEER</div>
+                            <div class="load-more-icon-text">OPEN MEER</div>
                             <md-icon>keyboard_arrow_right</md-icon>
                         </div>
                         
@@ -89,9 +89,8 @@
                 
             </load-more-bar>
 
-        <divider-bar ng-show="$ctrl.otherArticles.length>0 || ($ctrl.otherArticles.length==0 && $ctrl.rootArticles.length>1)" >
-            <!-- <span class="text">Doe mee</span> -->
-        </divider-bar>
+        <!-- <divider-bar ng-show="$ctrl.otherArticles.length>0 || ($ctrl.otherArticles.length==0 && $ctrl.rootArticles.length>1)" >
+        </divider-bar> -->
 
         <comments-tile topic-id="$ctrl.topic._id"></comments-tile>
 
