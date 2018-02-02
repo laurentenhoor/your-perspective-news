@@ -12,6 +12,15 @@ Wij verzetten ons tegen twittergeblaat en nepnieuws.
 * It is not possible to share and discuss multiple news items at once (cross-linking and comparison).
 
 # Application Changelog
+## version 1.3.7
+* Added hotness calculation & sorting
+* Implemented analytics (Google's analytics.js)
+* Improved UI/UX, amongst others:
+    * Reduced amount of categories ('Nieuws' & 'Verrijking')
+    * Divider bars between categories
+    * Refresh articles locally at adding/removing of articles
+    * Paginated article loading
+
 ## version 1.3.6
 * New metadata scraper with major improved robustness
     * Including test suite for url imports
