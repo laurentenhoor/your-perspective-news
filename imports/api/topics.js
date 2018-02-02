@@ -44,15 +44,18 @@ if (Meteor.isServer) {
 
 	Meteor.publish('articles', (topics) => {
 
-		var articleIds = []
+		var articleIds = [];
 		
 		_.each(topics, (topic) => {
 			articleIds = articleIds.concat(topic.articleIds);
 		});
-		
-		return Articles.find({
-			_id: { $in: articleIds }
-		});
+
+		if (articleIds.length > 0) {
+			return Articles.find({
+				_id: { $in: articleIds }
+			});
+		}
+		return null;
 		
 	});
 
