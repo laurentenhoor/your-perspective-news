@@ -3,7 +3,7 @@
 	
 	<md-icon ng-if="!$ctrl.topicId">add</md-icon>
 	<md-icon ng-if="$ctrl.topicId">add_box</md-icon>
-		<div>{{ $ctrl.topicId ? 'Bron' : 'Item' }}</div>
+		<div>{{ $ctrl.topicId ? 'Bron' : 'Topic' }}</div>
 </md-button>
 
 <div ng-if="$ctrl.article" ng-click="$ctrl.open($event)">
