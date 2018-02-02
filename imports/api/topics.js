@@ -45,6 +45,10 @@ if (Meteor.isServer) {
 	Meteor.publish('articles', (topics) => {
 
 		var articleIds = [];
+
+		if (!topics) {
+			return;
+		}
 		
 		_.each(topics, (topic) => {
 			articleIds = articleIds.concat(topic.articleIds);
@@ -55,7 +59,7 @@ if (Meteor.isServer) {
 				_id: { $in: articleIds }
 			});
 		}
-		return null;
+		return;
 		
 	});
 

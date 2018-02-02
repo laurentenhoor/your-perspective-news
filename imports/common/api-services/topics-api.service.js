@@ -78,7 +78,9 @@ export default class TopicsApiService {
                 this.fireCallbacks(this.callbacks.removedArticle, articleId)
                 this.$loader.stop();
 
+                console.log('topicId to delete', topicId)
                 var topic = this.getById(topicId);
+                console.log('topic which will be deleted', topic)
                 if (topic.articleIds.length == 0) {
                     console.log('topic removed because last article has been deleted', topicId)
                     Topics.remove(topicId, () => {

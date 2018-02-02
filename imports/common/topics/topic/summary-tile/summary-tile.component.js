@@ -11,7 +11,7 @@ class SummaryTileComponent {
         $ctrl.showSummary = true;
 
         $ctrl.$onChanges = (changes) => {
-            if (changes.topic) {
+            if (changes.topic && $ctrl.topic) {
                 $ctrl.topic = angular.copy($ctrl.topic)
                 divideArticles();
             }
@@ -29,35 +29,36 @@ class SummaryTileComponent {
                 }
             },
             removedArticle: () => {
-                $ctrl.topic = $topicsApi.getById($ctrl.topic._id);
-                if($ctrl.topic){
+                if ($ctrl.topic) {
+                    $ctrl.topic = $topicsApi.getById($ctrl.topic._id);
                     divideArticles();
                 }
+
             }
         })
 
 
         $ctrl.helpers({
-            amountOfQuestions : () => {
+            amountOfQuestions: () => {
                 let questions = $commentsApi.getAllByTopic($ctrl.getReactively('topic'));
                 if (questions) {
                     return questions.length;
                 }
                 return null;
             },
-            amountOfOpinions : () => {
+            amountOfOpinions: () => {
                 let opinions = $opinionsApi.getAllByTopic($ctrl.getReactively('topic'));
                 if (opinions) {
                     return opinions.length;
                 }
                 return null;
             }
-        }); 
+        });
 
         const divideArticles = () => {
-            
+
             $ctrl.articles = $articlesApi.getByTopic($ctrl.topic);
-            
+
             let rootArticles = $articlesApi.getRootArticles($ctrl.topic)
             let otherArticles = $articlesApi.getOtherArticles($ctrl.topic)
 
@@ -71,12 +72,12 @@ class SummaryTileComponent {
         }
 
         $ctrl.thisTopicIsOpen = () => {
-            return ($ctrl.topic._id == $ctrl.openTopicId)
+            return ($ctrl.topic && $ctrl.topic._id == $ctrl.openTopicId)
         }
 
         const openTopic = () => {
             $topicsApi.countOpen($ctrl.topic._id);
-            $ctrl.onOpenTopic({$event:{openTopicId: $ctrl.topic._id}});
+            $ctrl.onOpenTopic({ $event: { openTopicId: $ctrl.topic._id } });
         }
 
         $ctrl.writeOpinion = function ($event) {
@@ -85,27 +86,27 @@ class SummaryTileComponent {
             }
         }
 
-        $ctrl.scrollToOpinion = function(topicId) {
+        $ctrl.scrollToOpinion = function (topicId) {
             openTopic();
-            $timeout(()=>{
+            $timeout(() => {
                 $autoScroll.horizontalScroll('opinion-' + topicId, 'scroll-' + topicId);
-            },400)
+            }, 400)
         }
 
 
         $ctrl.scrollToArticle = function (articleId, topicId, $event) {
-            openTopic();            
-            $timeout(()=>{
-                $autoScroll.horizontalScroll('topic-' +topicId + '-article-' + articleId, 'scroll-' + topicId);
-            },400)
-            
+            openTopic();
+            $timeout(() => {
+                $autoScroll.horizontalScroll('topic-' + topicId + '-article-' + articleId, 'scroll-' + topicId);
+            }, 400)
+
         }
 
         $ctrl.scrollToQuestions = function (topicId) {
             openTopic();
-            $timeout(()=>{
+            $timeout(() => {
                 $autoScroll.horizontalScroll('discuss-' + topicId, 'scroll-' + topicId);
-            },400)
+            }, 400)
         }
 
 
@@ -118,7 +119,7 @@ export default {
     controller: SummaryTileComponent,
     bindings: {
         topic: '<',
-        onOpenTopic:'&',
+        onOpenTopic: '&',
         openTopicId: '<',
     }
 }

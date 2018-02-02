@@ -41,8 +41,8 @@ class TopicComponent {
             },
             removedArticle: () => {
                 console.log('REMOVED ARTICLE', $ctrl.topic)
-                $ctrl.topic = $topicsApi.getById($ctrl.topic._id);
                 if ($ctrl.topic) {
+                    $ctrl.topic = $topicsApi.getById($ctrl.topic._id);
                     getArticles($ctrl.topic)
                 }
             }
