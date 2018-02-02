@@ -20,6 +20,7 @@ Wij verzetten ons tegen twittergeblaat en nepnieuws.
     * Divider bars between categories
     * Refresh articles locally at adding/removing of articles
     * Paginated article loading
+    * High-resolution logos
 
 ## version 1.3.6
 * New metadata scraper with major improved robustness
