@@ -55,28 +55,23 @@ class TopicsComponent {
 		let subscribeToArticles = () => {
 
 			let topics = $topicsApi.getWithOffset($ctrl.topicsOffset);
-
 			console.log('subscribeToArticles');
-
+			
 			Meteor.subscribe('articles', topics, {
-				onReady: () => {
-
-					if ($ctrl.firstInit) {
-						$loader.databaseInitialized();
-						$ctrl.firstInit = false;
-					} else {
-						$loader.stop();
-					}
-
-					$ctrl.topics = topics;
-
-				},
-				onError: () => { 
-					// No data available - e.g. empty database
-					$ctrl.firstInit = false;
-					$loader.databaseInitialized();
-				}
+				onReady: () => afterSubscription({ success: true }),
+				onError: () => afterSubscription({ success: false })
 			})
+			const afterSubscription = (subscription) => {
+				if ($ctrl.firstInit) {
+					$loader.databaseInitialized();
+					$ctrl.firstInit = false;
+				} else {
+					$loader.stop();
+				}
+				if (subscription.success) {
+					$ctrl.topics = topics;
+				}
+			}
 		}
 
 		$ctrl.refreshArticles = (topic) => {
