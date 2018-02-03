@@ -47,9 +47,9 @@ if (Meteor.isServer) {
 		var articleIds = [];
 
 		if (!topics) {
-			return;
+			return true;
 		}
-		
+
 		_.each(topics, (topic) => {
 			articleIds = articleIds.concat(topic.articleIds);
 		});
@@ -59,7 +59,7 @@ if (Meteor.isServer) {
 				_id: { $in: articleIds }
 			});
 		}
-		return;
+		return true;
 		
 	});
 

@@ -56,6 +56,8 @@ class TopicsComponent {
 
 			let topics = $topicsApi.getWithOffset($ctrl.topicsOffset);
 
+			console.log('subscribeToArticles');
+
 			Meteor.subscribe('articles', topics, {
 				onReady: () => {
 
@@ -68,6 +70,11 @@ class TopicsComponent {
 
 					$ctrl.topics = topics;
 
+				},
+				onError: () => { 
+					// No data available - e.g. empty database
+					$ctrl.firstInit = false;
+					$loader.databaseInitialized();
 				}
 			})
 		}
