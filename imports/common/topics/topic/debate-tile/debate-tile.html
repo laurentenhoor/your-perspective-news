@@ -41,7 +41,7 @@
                         <div class="question-controls">
 
                             <div
-                                ng-if="showAnswerInput"
+                                ng-show="showAnswerInput"
                                 style="padding:0 2.1vw;"
                             >
                                 <div class="new-question-title">Antwoord</div>
@@ -122,7 +122,7 @@
         <div class="new-question">
 
             <div
-                ng-if="showQuestionInput || $ctrl.questions.length==0"
+                ng-show="showQuestionInput || $ctrl.questions.length==0"
                 style="padding:0 2.1vw;"
             >
                 <div class="new-question-title">
