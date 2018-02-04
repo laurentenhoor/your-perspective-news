@@ -1,5 +1,5 @@
 <div class="scroll-content">
-
+            
     <topic-controls
         topic-id="$ctrl.topic._id"
         on-open-topic="$ctrl.onOpenTopic({$event});"
@@ -92,12 +92,13 @@
         <!-- <divider-bar ng-show="$ctrl.otherArticles.length>0 || ($ctrl.otherArticles.length==0 && $ctrl.rootArticles.length>1)" >
         </divider-bar> -->
 
+
         <title-bar-news ng-show="$ctrl.otherArticles.length>0">
                 <div class="content-container">
                     <div class="tile-header">&nbsp;</div>
                     <div class="tile-container">
     
-                        <span class="text">Debat</span>
+                        <span class="text">Doe mee</span>
                         <!-- <div class="vertical-text">Meer nieuws</div> -->
                         <md-icon ng-click="$ctrl.addArticle()" class="add-article-via-bar">add</md-icon>
                     </div>
@@ -105,10 +106,11 @@
             </title-bar-news>
 
             <debate-tile topic="$ctrl.topic"></debate-tile>
+       
 
         <!-- <comments-tile topic-id="$ctrl.topic._id"></comments-tile> -->
 
-        <opinion-tile topic-id="$ctrl.topic._id"></opinion-tile>
+        <!-- <opinion-tile topic-id="$ctrl.topic._id"></opinion-tile> -->
 
     </div>
 

@@ -5,10 +5,17 @@
         <!-- <div class="summary-temperature">Temp: {{ $ctrl.topic.stats.hotness | number: 2}}</div> -->
     </div>
 
-    <div class="tile-container" ng-style="">
+    <div
+        class="tile-container"
+        ng-style="{'background-image': $ctrl.questions.length === 0 ? '' : 'linear-gradient(to top, rgba(236,233,230,0.36), #fff)' }"
+    >
+        <div class="tile-overlay"></div>
 
-        <div class="first-use-text" ng-show="$ctrl.questions.length==0">
-            Stel de eerste vraag!
+        <div
+            class="first-use-text"
+            ng-show="$ctrl.questions.length==0"
+        >
+            Stel een vraag en zoek een expert!
         </div>
         <questions>
             <question
@@ -19,51 +26,59 @@
                 <content>
 
                     <div>
-                            <div ng-show="$ctrl.userId==question.ownerId" ng-click="$ctrl.deleteById(question._id)" class="remove"><md-icon>delete</md-icon></div>                           
+                        <div
+                            ng-show="$ctrl.userId==question.ownerId"
+                            ng-click="$ctrl.deleteById(question._id)"
+                            class="remove"
+                        >
+                            <md-icon>delete</md-icon>
+                        </div>
                         <div class="question">{{question.question}}</div>
 
-                        <div class="question-timestamp">{{ question.createdAt | timeFromNow }} gevraagd door {{ $ctrl.user(question.ownerId) | usernameFilter }}</div>
+                        <div class="question-timestamp">
+                            {{ question.createdAt | timeFromNow }} gevraagd door {{ $ctrl.user(question.ownerId) | usernameFilter }}
+                        </div>
                         <div class="question-controls">
 
-                                <div
-                                    ng-if="showAnswerInput"
-                                    style="padding:0 2.1vw;"
+                            <div
+                                ng-if="showAnswerInput"
+                                style="padding:0 2.1vw;"
+                            >
+                                <div class="new-question-title">Antwoord</div>
+                                <md-input-container
+                                    class="md-block"
+                                    md-no-float
+                                    style="margin:0;"
                                 >
-                                    <div class="new-question-title">Antwoord</div>
-                                    <md-input-container
-                                        class="md-block"
-                                        md-no-float
-                                        style="margin:0;"
-                                    >
-                                        <textarea
-                                            ng-model="question.answer"
-                                            rows="auto"
-                                            md-select-on-focus
-                                            placeholder="Geef jouw antwoord."
-                                        ></textarea>
-            
-                                    </md-input-container>
-                                </div>
-                                <md-button
-                                    ng-show="showAnswerInput"
-                                    ng-click="$ctrl.saveAnswer(question, question.answer, showAnswerInput);showAnswerInput=!showAnswerInput;showAmountOfAnswers=Infinity;"
-                                >
-                                    Stuur antwoord
-                                </md-button>
-                                <md-button
-                                    ng-show="showAnswerInput"
-                                    ng-click="showAnswerInput=!showAnswerInput"
-                                >
-                                    Annuleren
-                                </md-button>
-                                <md-button
-                                    ng-show="!showAnswerInput"
-                                    ng-click="showAnswerInput=!showAnswerInput"
-                                >
-                                    Beantwoord
-                                </md-button>
-                                <md-button ng-show="!showAnswerInput">Expert aandragen</md-button>
+                                    <textarea
+                                        ng-model="question.answer"
+                                        rows="auto"
+                                        md-select-on-focus
+                                        placeholder="Geef jouw antwoord."
+                                    ></textarea>
+
+                                </md-input-container>
                             </div>
+                            <md-button
+                                ng-show="showAnswerInput"
+                                ng-click="$ctrl.saveAnswer(question, question.answer, showAnswerInput);showAnswerInput=!showAnswerInput;showAmountOfAnswers=Infinity;"
+                            >
+                                Stuur antwoord
+                            </md-button>
+                            <md-button
+                                ng-show="showAnswerInput"
+                                ng-click="showAnswerInput=!showAnswerInput"
+                            >
+                                Annuleren
+                            </md-button>
+                            <md-button
+                                ng-show="!showAnswerInput"
+                                ng-click="showAnswerInput=!showAnswerInput"
+                            >
+                                Beantwoord
+                            </md-button>
+                            <md-button ng-show="!showAnswerInput">Expert aandragen</md-button>
+                        </div>
                     </div>
 
                     <div
@@ -71,8 +86,14 @@
                         ng-init="user = $ctrl.user(answer.ownerId)"
                         class="answer-container"
                     >
-                    <div ng-show="$ctrl.userId==answer.ownerId" ng-click="$ctrl.deleteById(answer._id)" class="remove"><md-icon>delete</md-icon></div>
-                            
+                        <div
+                            ng-show="$ctrl.userId==answer.ownerId"
+                            ng-click="$ctrl.deleteById(answer._id)"
+                            class="remove"
+                        >
+                            <md-icon>delete</md-icon>
+                        </div>
+
                         <contact-info>
                             <div class="avatar">
                                 <img
@@ -81,7 +102,7 @@
                                     alt="{{item.who}}"
                                 >
                             </div>
-                            
+
                             <contact-details>
                                 <div class="name">{{ user |  usernameFilter }}</div>
                                 <div class="headline">{{ user |  headlineFilter }}</div>
@@ -95,7 +116,7 @@
 
                     </div>
                 </content>
-                
+
             </question>
         </questions>
         <div class="new-question">
@@ -105,7 +126,7 @@
                 style="padding:0 2.1vw;"
             >
                 <div class="new-question-title">
-                    Een goede vraag stelt ieder antwoord in zijn schaduw.
+                        Open vragen beginnen met 'wie', 'wat', 'wanneer', 'hoe', 'waar' of 'waarom'...
                 </div>
                 <md-input-container
                     class="md-block"
@@ -117,7 +138,7 @@
                         md-maxlength="200"
                         rows="auto"
                         md-select-on-focus
-                        placeholder="Open vragen beginnen met 'wie', 'wat', 'wanneer', 'hoe', 'waar' of 'waarom'..."
+                        placeholder="Stel jouw vraag"
                     ></textarea>
                 </md-input-container>
             </div>
@@ -142,6 +163,6 @@
                 Annuleren
             </md-button>
         </div>
-    </div>
 
+    </div>
 </div>

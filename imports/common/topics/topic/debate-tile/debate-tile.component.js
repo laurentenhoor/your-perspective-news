@@ -38,6 +38,10 @@ class DebateTileComponent {
         }
 
         $ctrl.saveQuestion = () => {
+            if (!$ctrl.newQuestion || $ctrl.newQuestion == "") {
+                console.warn('No question input')
+                return;
+            }
             $questionsApi.saveQuestion($ctrl.topic, $ctrl.newQuestion, (error) => {
                 if (!error) {
                     $ctrl.newQuestion = '';
@@ -50,6 +54,10 @@ class DebateTileComponent {
         }
 
         $ctrl.saveAnswer = (question, answer) => {
+            if (!answer || answer == '') {
+                console.warn('No answer input')
+                return;
+            }
             console.log('save answer', question, answer)
             $questionsApi.saveAnswer(question, answer, (error) => {
                 $timeout(()=> {

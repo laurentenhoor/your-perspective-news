@@ -40,6 +40,9 @@ export default class QuestionsApiService {
     }
 
     deleteById(questionId) {
+        if (!this.$auth.isLoggedIn()) {
+            return;
+        }
         Questions.remove({_id:questionId}, (error) => {
             if (error) {
                 console.error(error)
@@ -49,6 +52,9 @@ export default class QuestionsApiService {
     }
 
     saveAnswer(question, answerContent, callback) {
+        if (!this.$auth.isLoggedIn()) {
+            return;
+        }
         var answerDoc = {
             questionId : question._id,
             parentId : question._id,
