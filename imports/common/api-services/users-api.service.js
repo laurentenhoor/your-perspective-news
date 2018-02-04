@@ -15,4 +15,8 @@ export default class UsersApiService {
         return this.$filter('usernameFilter')(user);;
     }
 
+    getUser(userId) {
+        return Meteor.users.findOne({_id:userId});
+    }
+
 }

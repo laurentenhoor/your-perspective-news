@@ -19,6 +19,17 @@ export default {
 
 	},
 
+	headline : () => {
+		return (user) => {
+			if (!user) {
+				return null;
+			}
+			else if (user.profile && user.profile.headline) {
+				return user.profile.headline;
+			}
+		}
+	},
+
 	profileImage: function () {
 		return (user) => {
 

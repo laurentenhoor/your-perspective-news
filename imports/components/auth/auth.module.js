@@ -14,4 +14,5 @@ export default
         .service('$auth', AuthService)
         .filter('usernameFilter', AuthFilters.username)
         .filter('profileImageFilter', AuthFilters.profileImage)
+        .filter('headlineFilter', AuthFilters.headline)
         .name

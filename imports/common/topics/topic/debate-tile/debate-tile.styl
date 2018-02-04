@@ -1,10 +1,49 @@
 debate-tile {
+
+    $margin-left = 2vw;
+
     .md-button {
         font-size: 2.4vw !important;
     }
 
+    .remove {
+        float:right;
+        margin-right:$margin-left;
+        margin-top:3vw;
+
+        .material-icons {
+            font-size:4vw !important;
+        }
+    }
+
     .tile-container {
         position: relative;
+    }
+
+    .answer-container {
+        padding: $margin-left 0;
+        // border-bottom:1px solid lightgrey;
+    }
+
+    .question {
+        font-size: 4vw;
+        font-weight: 600;
+        padding: $margin-left;
+    }
+
+    .question-timestamp {
+        font-size: 2vw;
+        color: grey;
+        font-style: italic;
+        padding: 0 $margin-left;
+    }
+
+    .answer {
+        padding-left: $margin-left;
+        margin-top: $margin-left;
+        font-size: 2.8vw;
+        font-weight: 500;
+
     }
 
     question {
@@ -12,14 +51,20 @@ debate-tile {
         border-top: 1px solid lightgrey;
     }
 
+    questions {
+        overflow-y: scroll;
+        padding-bottom: 15vw;
+    }
+
     contact-info {
         display: flex;
         flex-direction: row;
         font-size: 2.2vw;
-        padding: 2vw 0vw;
+        padding-left:$margin-left;
     }
 
     .question-controls {
+        margin-top:3vw;
         background: #f5f5f5;
     }
 
@@ -55,7 +100,9 @@ debate-tile {
     content {
         display: flex;
         flex-direction: column;
-        padding: 2vw;
+        // padding: 2vw;
+        border-top: 1px solid lightgrey;
+        padding-bottom: 3vw;
 
         .avatar-img {
             width: 8vw;
@@ -69,14 +116,5 @@ debate-tile {
             padding: 1vw;
         }
 
-        .question {
-            font-size: 3.5vw;
-            font-weight: 600;
-        }
-
-        .answer {
-            font-size: 2.8vw;
-            font-weight: 300;
-        }
     }
 }

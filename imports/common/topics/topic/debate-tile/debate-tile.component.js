@@ -2,20 +2,68 @@ import DebateTileTemplate from './debate-tile.html';
 import DebateTileStyle from './debate-tile.styl';
 
 class DebateTileComponent {
-    constructor($scope, $reactive) {
+    constructor($scope, $reactive, $questionsApi, $usersApi, $auth) {
         'ngInject';
 
         var $ctrl = this;
         $reactive($ctrl).attach($scope);
 
-
-        $ctrl.newQuestion = "";
-        
         $ctrl.$onChanges = (changes) => {
             if (changes.topic && $ctrl.topic) {
                 console.log('debate tile for topic:', $ctrl.topic);
             }
+           
         }
+
+        $ctrl.helpers({
+            questions: () => {
+                console.log('questions helper fired')
+                let topic = $ctrl.getReactively('topic')
+                if (!topic) {
+                    return;
+                }
+                if ($questionsApi.getAnswers(topic._id)) {
+                    return $questionsApi.getAllByTopic($ctrl.getReactively('topic'));
+                }
+                
+            },
+            userId: () => {
+                return Meteor.userId()
+            }
+        })
+
+        $ctrl.deleteById = (questionId) => {
+            $questionsApi.deleteById(questionId);
+            $ctrl.questions = $questionsApi.getAllByTopic($ctrl.topic);
+        }
+
+        $ctrl.saveQuestion = () => {
+            $questionsApi.saveQuestion($ctrl.topic, $ctrl.newQuestion, (error) => {
+                if (!error) {
+                    $ctrl.newQuestion = '';
+                }
+            });
+        }
+
+        $ctrl.user = (userId) => {
+            return $usersApi.getUser(userId);
+        }
+
+        $ctrl.saveAnswer = (question, answer) => {
+            console.log('save answer', question, answer)
+            $questionsApi.saveAnswer(question, answer, (error) => {
+                $ctrl.questions = $questionsApi.getAllByTopic($ctrl.topic);
+            });
+        }
+
+        $ctrl.answers = (questionId) => {
+            console.log('get answers for question', questionId)
+            let answers = $questionsApi.getAnswers(questionId);
+            console.log('answers found', answers)
+            return answers;
+        }
+
+       
 
     }
 }

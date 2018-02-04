@@ -7,44 +7,94 @@
 
     <div class="tile-container">
 
-        <question>
-            <content>
-                <div>
-                    <div class="question">
-                        Hoe laat is dit eigenlijk gebeurd? En wanneer en op welke dag?
+        <questions>
+            <question
+                ng-repeat="question in $ctrl.questions"
+                ng-init="answers = $ctrl.answers(question._id);
+                    showAmountOfAnswers = Infinite;"
+            >
+                <content>
+
+                    <div>
+                            <div ng-show="$ctrl.userId==question.ownerId" ng-click="$ctrl.deleteById(question._id)" class="remove"><md-icon>delete</md-icon></div>                           
+                        <div class="question">{{question.question}}</div>
+
+                        <div class="question-timestamp">{{ question.createdAt | timeFromNow }} gevraagd door {{ $ctrl.user(question.ownerId) | usernameFilter }}</div>
+                        <div class="question-controls">
+
+                                <div
+                                    ng-if="showAnswerInput"
+                                    style="padding:0 2.1vw;"
+                                >
+                                    <div class="new-question-title">Antwoord</div>
+                                    <md-input-container
+                                        class="md-block"
+                                        md-no-float
+                                        style="margin:0;"
+                                    >
+                                        <textarea
+                                            ng-model="question.answer"
+                                            rows="auto"
+                                            md-select-on-focus
+                                            placeholder="Geef jouw antwoord."
+                                        ></textarea>
+            
+                                    </md-input-container>
+                                </div>
+                                <md-button
+                                    ng-show="showAnswerInput"
+                                    ng-click="$ctrl.saveAnswer(question, question.answer, showAnswerInput);showAnswerInput=!showAnswerInput;showAmountOfAnswers=Infinity;"
+                                >
+                                    Stuur antwoord
+                                </md-button>
+                                <md-button
+                                    ng-show="showAnswerInput"
+                                    ng-click="showAnswerInput=!showAnswerInput"
+                                >
+                                    Annuleren
+                                </md-button>
+                                <md-button
+                                    ng-show="!showAnswerInput"
+                                    ng-click="showAnswerInput=!showAnswerInput"
+                                >
+                                    Beantwoord
+                                </md-button>
+                                <md-button ng-show="!showAnswerInput">Expert aandragen</md-button>
+                            </div>
                     </div>
 
-                </div>
+                    <div
+                        ng-repeat="answer in answers | limitTo: showAmountOfAnswers"
+                        ng-init="user = $ctrl.user(answer.ownerId)"
+                        class="answer-container"
+                    >
+                    <div ng-show="$ctrl.userId==answer.ownerId" ng-click="$ctrl.deleteById(answer._id)" class="remove"><md-icon>delete</md-icon></div>
+                            
+                        <contact-info>
+                            <div class="avatar">
+                                <img
+                                    ng-src="https://media.licdn.com/mpr/mprx/0_mK4hvDqgUK1olFIumNm8gejy0L6nc5F2C3uh1JogRi7cczbDC38aYJ-g4KsIqFz2INuaRJlj-N5BN3QrkijpgJpABN59N3iuCijin4dpyvKsYc4ratwS9uFDc3x6j3NgI8M2A6LsD0E"
+                                    class="avatar-img"
+                                    alt="{{item.who}}"
+                                >
+                            </div>
+                            
+                            <contact-details>
+                                <div class="name">{{ user |  usernameFilter }}</div>
+                                <div class="headline">{{ user |  headlineFilter }}</div>
+                                <div class="timestamp">
+                                    {{ answer.createdAt | timeFromNow }} beantwoord
+                                </div>
+                            </contact-details>
+                        </contact-info>
 
-                <contact-info>
-                    <div class="avatar">
-                        <img
-                            ng-src="https://media.licdn.com/mpr/mprx/0_mK4hvDqgUK1olFIumNm8gejy0L6nc5F2C3uh1JogRi7cczbDC38aYJ-g4KsIqFz2INuaRJlj-N5BN3QrkijpgJpABN59N3iuCijin4dpyvKsYc4ratwS9uFDc3x6j3NgI8M2A6LsD0E"
-                            class="avatar-img"
-                            alt="{{item.who}}"
-                        >
+                        <div class="answer">{{ answer.answer }}</div>
+
                     </div>
-
-                    <contact-details>
-                        <div class="name">Lauren ten Hoor</div>
-                        <div class="headline">Integral Project Lead at Philips</div>
-                        <div class="timestamp">30 minuten geleden beantwoord</div>
-                    </contact-details>
-                </contact-info>
-
-                <div class="answer">
-                    De eerte dag waarop dit in elk geval mogelijk had kunnen zijn is de eerste van de maand
-                        vanwege een en andere vreemde kronkel in het tijdsbeeld.
-                </div>
-                <a>LEES MEER</a>
+                </content>
                 
-            </content>
-            <div class="question-controls">
-                <md-button>Beantwoord</md-button>
-                <md-button>Expert aandragen</md-button>
-            </div>
-        </question>
-
+            </question>
+        </questions>
         <div class="new-question">
 
             <div
@@ -77,7 +127,7 @@
             </md-button>
             <md-button
                 ng-show="showQuestionInput"
-                ng-click="showQuestionInput=!showQuestionInput"
+                ng-click="$ctrl.saveQuestion();showQuestionInput=!showQuestionInput"
             >
                 Vraag Insturen
             </md-button>
