@@ -1,0 +1,93 @@
+<div class="content-container">
+
+    <div class="tile-header">&nbsp;
+        <hotness-indicator item-id="$ctrl.topic._id"></hotness-indicator>
+        <!-- <div class="summary-temperature">Temp: {{ $ctrl.topic.stats.hotness | number: 2}}</div> -->
+    </div>
+
+    <div class="tile-container">
+
+        <question>
+            <content>
+                <div>
+                    <div class="question">
+                        Hoe laat is dit eigenlijk gebeurd? En wanneer en op welke dag?
+                    </div>
+
+                </div>
+
+                <contact-info>
+                    <div class="avatar">
+                        <img
+                            ng-src="https://media.licdn.com/mpr/mprx/0_mK4hvDqgUK1olFIumNm8gejy0L6nc5F2C3uh1JogRi7cczbDC38aYJ-g4KsIqFz2INuaRJlj-N5BN3QrkijpgJpABN59N3iuCijin4dpyvKsYc4ratwS9uFDc3x6j3NgI8M2A6LsD0E"
+                            class="avatar-img"
+                            alt="{{item.who}}"
+                        >
+                    </div>
+
+                    <contact-details>
+                        <div class="name">Lauren ten Hoor</div>
+                        <div class="headline">Integral Project Lead at Philips</div>
+                        <div class="timestamp">30 minuten geleden beantwoord</div>
+                    </contact-details>
+                </contact-info>
+
+                <div class="answer">
+                    De eerte dag waarop dit in elk geval mogelijk had kunnen zijn is de eerste van de maand
+                        vanwege een en andere vreemde kronkel in het tijdsbeeld.
+                </div>
+                <a>LEES MEER</a>
+                
+            </content>
+            <div class="question-controls">
+                <md-button>Beantwoord</md-button>
+                <md-button>Expert aandragen</md-button>
+            </div>
+        </question>
+
+        <div class="new-question">
+
+            <div
+                ng-if="showQuestionInput"
+                style="padding:0 2.1vw;"
+            >
+                <div class="new-question-title">
+                    Een goede vraag stelt ieder antwoord in zijn schaduw.
+                </div>
+                <md-input-container
+                    class="md-block"
+                    md-no-float
+                    style="margin:0;"
+                >
+                    <textarea
+                        ng-model="$ctrl.newQuestion"
+                        md-maxlength="200"
+                        rows="auto"
+                        md-select-on-focus
+                        placeholder="Open vragen beginnen met 'wie', 'wat', 'wanneer', 'hoe', 'waar' of 'waarom'..."
+                    ></textarea>
+                </md-input-container>
+            </div>
+
+            <md-button
+                ng-show="!showQuestionInput"
+                ng-click="showQuestionInput=!showQuestionInput"
+            >
+                Stel een nieuwe open vraag
+            </md-button>
+            <md-button
+                ng-show="showQuestionInput"
+                ng-click="showQuestionInput=!showQuestionInput"
+            >
+                Vraag Insturen
+            </md-button>
+            <md-button
+                ng-show="showQuestionInput"
+                ng-click="showQuestionInput=!showQuestionInput"
+            >
+                Annuleren
+            </md-button>
+        </div>
+    </div>
+
+</div>
