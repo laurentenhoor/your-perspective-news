@@ -1,18 +1,4 @@
 <div class="scroll-content">
-    
-        <title-bar-news ng-show="$ctrl.otherArticles.length>0">
-                <div class="content-container">
-                    <div class="tile-header">&nbsp;</div>
-                    <div class="tile-container">
-    
-                        <span class="text">Debat</span>
-                        <!-- <div class="vertical-text">Meer nieuws</div> -->
-                        <md-icon ng-click="$ctrl.addArticle()" class="add-article-via-bar">add</md-icon>
-                    </div>
-                </div>
-            </title-bar-news>
-
-            <debate-tile topic="$ctrl.topic"></debate-tile>
 
     <topic-controls
         topic-id="$ctrl.topic._id"
@@ -106,7 +92,21 @@
         <!-- <divider-bar ng-show="$ctrl.otherArticles.length>0 || ($ctrl.otherArticles.length==0 && $ctrl.rootArticles.length>1)" >
         </divider-bar> -->
 
-        <comments-tile topic-id="$ctrl.topic._id"></comments-tile>
+        <title-bar-news ng-show="$ctrl.otherArticles.length>0">
+                <div class="content-container">
+                    <div class="tile-header">&nbsp;</div>
+                    <div class="tile-container">
+    
+                        <span class="text">Debat</span>
+                        <!-- <div class="vertical-text">Meer nieuws</div> -->
+                        <md-icon ng-click="$ctrl.addArticle()" class="add-article-via-bar">add</md-icon>
+                    </div>
+                </div>
+            </title-bar-news>
+
+            <debate-tile topic="$ctrl.topic"></debate-tile>
+
+        <!-- <comments-tile topic-id="$ctrl.topic._id"></comments-tile> -->
 
         <opinion-tile topic-id="$ctrl.topic._id"></opinion-tile>
 

@@ -2,7 +2,7 @@ import DebateTileTemplate from './debate-tile.html';
 import DebateTileStyle from './debate-tile.styl';
 
 class DebateTileComponent {
-    constructor($scope, $reactive, $questionsApi, $usersApi, $auth) {
+    constructor($scope, $reactive, $questionsApi, $usersApi, $auth, $timeout) {
         'ngInject';
 
         var $ctrl = this;
@@ -52,7 +52,10 @@ class DebateTileComponent {
         $ctrl.saveAnswer = (question, answer) => {
             console.log('save answer', question, answer)
             $questionsApi.saveAnswer(question, answer, (error) => {
-                $ctrl.questions = $questionsApi.getAllByTopic($ctrl.topic);
+                $timeout(()=> {
+                    $ctrl.questions = $questionsApi.getAllByTopic($ctrl.topic);
+                })
+                
             });
         }
 

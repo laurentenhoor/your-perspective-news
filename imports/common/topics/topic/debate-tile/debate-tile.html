@@ -5,8 +5,11 @@
         <!-- <div class="summary-temperature">Temp: {{ $ctrl.topic.stats.hotness | number: 2}}</div> -->
     </div>
 
-    <div class="tile-container">
+    <div class="tile-container" ng-style="">
 
+        <div class="first-use-text" ng-show="$ctrl.questions.length==0">
+            Stel de eerste vraag!
+        </div>
         <questions>
             <question
                 ng-repeat="question in $ctrl.questions"
@@ -98,7 +101,7 @@
         <div class="new-question">
 
             <div
-                ng-if="showQuestionInput"
+                ng-if="showQuestionInput || $ctrl.questions.length==0"
                 style="padding:0 2.1vw;"
             >
                 <div class="new-question-title">
@@ -121,19 +124,20 @@
 
             <md-button
                 ng-show="!showQuestionInput"
-                ng-click="showQuestionInput=!showQuestionInput"
+                ng-hide="$ctrl.questions.length==0"
+                ng-click="showQuestionInput=true"
             >
                 Stel een nieuwe open vraag
             </md-button>
             <md-button
-                ng-show="showQuestionInput"
-                ng-click="$ctrl.saveQuestion();showQuestionInput=!showQuestionInput"
+                ng-show="showQuestionInput || $ctrl.questions.length==0"
+                ng-click="$ctrl.saveQuestion();showQuestionInput=false"
             >
                 Vraag Insturen
             </md-button>
             <md-button
-                ng-show="showQuestionInput"
-                ng-click="showQuestionInput=!showQuestionInput"
+                ng-show="showQuestionInput && !$ctrl.questions.length==0"
+                ng-click="showQuestionInput=false"
             >
                 Annuleren
             </md-button>
