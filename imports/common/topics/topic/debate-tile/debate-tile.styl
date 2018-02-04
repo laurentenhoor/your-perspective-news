@@ -40,7 +40,6 @@ debate-tile {
         font-weight: 600;
         padding: $margin-left;
         padding-top: 3.5vw;
-        
     }
 
     .question-timestamp {
@@ -54,7 +53,8 @@ debate-tile {
         padding-left: $margin-left;
         margin-top: $margin-left;
         font-size: 2.8vw;
-        font-weight: 500;
+        white-space: pre-wrap;
+        font-family: courier;
     }
 
     question {
@@ -64,6 +64,7 @@ debate-tile {
 
     questions {
         overflow-y: scroll;
+        overflow-x: hidden;
         padding-bottom: 15vw;
     }
 
@@ -83,17 +84,16 @@ debate-tile {
         font-size: 2.2vw;
         font-weight: 600;
         padding: 4vw 0.8vw 2vw 0.8vw;
+        
     }
 
     .new-question {
-        position: absolute;
+        position: static;
         bottom: 0;
         width: 100%;
-        // height:50%;
-        left: 0;
+        height:fit-content;
         background: white;
-        z-index:1;
-        // min-height: 30vw;
+        z-index: 999;
         border-top: 1px solid lightgrey;
     }
 
