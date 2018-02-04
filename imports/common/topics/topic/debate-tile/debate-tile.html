@@ -119,7 +119,7 @@
 
             </question>
         </questions>
-        <div class="new-question">
+        <div class="new-question" ng-style="{'min-height': $ctrl.questions.length==0 ? '30vw' : ''}">
 
             <div
                 ng-show="showQuestionInput || $ctrl.questions.length==0"
@@ -151,7 +151,9 @@
                 Stel een nieuwe open vraag
             </md-button>
             <md-button
-                ng-show="showQuestionInput || $ctrl.questions.length==0"
+                ng-hide="$ctrl.newQuestion == ''"    
+                ng-show="showQuestionInput"
+                
                 ng-click="$ctrl.saveQuestion();showQuestionInput=false"
             >
                 Vraag Insturen

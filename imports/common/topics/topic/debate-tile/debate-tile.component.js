@@ -7,6 +7,8 @@ class DebateTileComponent {
 
         var $ctrl = this;
         $reactive($ctrl).attach($scope);
+        
+        $ctrl.newQuestion = '';
 
         $ctrl.$onChanges = (changes) => {
             if (changes.topic && $ctrl.topic) {
