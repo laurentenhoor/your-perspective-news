@@ -3,7 +3,7 @@ import SummaryTileStyle from './summary-tile.styl';
 
 class SummaryTileComponent {
 
-    constructor($reactive, $scope, $articlesApi, $topicsApi, $opinionsApi, $commentsApi, $timeout, $autoScroll, $auth, $writeOpinionDialog) {
+    constructor($reactive, $scope, $articlesApi, $topicsApi, $opinionsApi, $commentsApi, $questionsApi, $timeout, $autoScroll, $auth, $writeOpinionDialog) {
         'ngInject';
         var $ctrl = this;
         $reactive($ctrl).attach($scope);
@@ -40,7 +40,8 @@ class SummaryTileComponent {
 
         $ctrl.helpers({
             amountOfQuestions: () => {
-                let questions = $commentsApi.getAllByTopic($ctrl.getReactively('topic'));
+                // let questions = $commentsApi.getAllByTopic($ctrl.getReactively('topic'));
+                let questions = $questionsApi.getAllByTopic($ctrl.getReactively('topic'));
                 if (questions) {
                     return questions.length;
                 }
@@ -105,7 +106,8 @@ class SummaryTileComponent {
         $ctrl.scrollToQuestions = function (topicId) {
             openTopic();
             $timeout(() => {
-                $autoScroll.horizontalScroll('discuss-' + topicId, 'scroll-' + topicId);
+                // $autoScroll.horizontalScroll('discuss-' + topicId, 'scroll-' + topicId);
+                $autoScroll.horizontalScroll('debate-' + topicId, 'scroll-' + topicId);
             }, 400)
         }
 

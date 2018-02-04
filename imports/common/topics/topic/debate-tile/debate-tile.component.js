@@ -2,7 +2,7 @@ import DebateTileTemplate from './debate-tile.html';
 import DebateTileStyle from './debate-tile.styl';
 
 class DebateTileComponent {
-    constructor($scope, $reactive, $questionsApi, $usersApi, $auth, $timeout) {
+    constructor($scope, $reactive, $questionsApi, $usersApi, $auth, $timeout, $shareDialog) {
         'ngInject';
 
         var $ctrl = this;
@@ -65,6 +65,10 @@ class DebateTileComponent {
                 })
                 
             });
+        }
+
+        $ctrl.findExpert = () => {
+            $shareDialog.show();
         }
 
         $ctrl.answers = (questionId) => {

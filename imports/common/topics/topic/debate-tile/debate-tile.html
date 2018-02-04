@@ -1,4 +1,4 @@
-<div class="content-container">
+<div class="content-container" id="debate-{{$ctrl.topic._id}}">
 
     <div class="tile-header">&nbsp;
         <hotness-indicator item-id="$ctrl.topic._id"></hotness-indicator>
@@ -77,7 +77,7 @@
                             >
                                 Beantwoord
                             </md-button>
-                            <md-button ng-show="!showAnswerInput">Expert aandragen</md-button>
+                            <md-button ng-show="!showAnswerInput" ng-click="$ctrl.findExpert()">Expert aandragen</md-button>
                         </div>
                     </div>
 
