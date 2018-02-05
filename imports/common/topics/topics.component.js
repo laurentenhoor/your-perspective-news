@@ -15,6 +15,8 @@ class TopicsComponent {
 		$ctrl.amountOfTopics = 5;
 		$ctrl.firstInit = true;
 
+		let temporaryHighestHotness = 9999;
+
 		$ctrl.$onChanges = (changes) => {
 			if (changes.singleTopicId) {
 				$ctrl.singleTopicId = angular.copy($ctrl.singleTopicId);
@@ -32,11 +34,15 @@ class TopicsComponent {
 		$topicsApi.setCallbacks({
 			createdTopic: (topicId) => {
 				console.log('createdCallback', topicId)
-				subscribeToArticles();
+				let newTopic = $topicsApi.getById(topicId);
+				newTopic.stats.hotness = temporaryHighestHotness++;		
+				let newTopics = [].concat($ctrl.topics)
+				newTopics.push(newTopic);
+				subscribeToArticles(newTopics);
 			},
 			removedTopic: (topicId) => {
 				console.log('removedCallback', topicId)
-				subscribeToArticles();
+				subscribeToArticles($topicsApi.getWithOffset($ctrl.topicsOffset));
 			}
 		})
 
@@ -47,14 +53,13 @@ class TopicsComponent {
 			Meteor.subscribe('topics',
 				$ctrl.getReactively('amountOfTopics'),
 				$ctrl.getReactively('singleTopicId'), {
-					onReady: () => subscribeToArticles()
+					onReady: () => subscribeToArticles($topicsApi.getWithOffset($ctrl.topicsOffset))
 				});
 
 		})
 
-		let subscribeToArticles = () => {
+		let subscribeToArticles = (topics) => {
 
-			let topics = $topicsApi.getWithOffset($ctrl.topicsOffset);
 			console.log('subscribeToArticles');
 			
 			Meteor.subscribe('articles', topics, {
@@ -70,6 +75,7 @@ class TopicsComponent {
 				}
 				if (subscription.success) {
 					$ctrl.topics = topics;
+					console.log('newTopics', $ctrl.topics)
 				}
 			}
 		}
