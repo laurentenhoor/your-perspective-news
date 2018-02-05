@@ -9,20 +9,22 @@
         class="tile-container"
         ng-style="{'background-image': $ctrl.questions.length === 0 ? '' : 'linear-gradient(to top, rgba(236,233,230,0.36), #fff)' }"
     >
-        <div class="spacing" ng-show="$ctrl.questions.length==0"></div>
-
+        
+    <div class="spacing" ng-show="$ctrl.questions.length==0"></div>
         <div
             class="first-use-text"
             ng-show="$ctrl.questions.length==0"
         >
             Stel een vraag en zoek een expert!
         </div>
+        
         <questions ng-show="$ctrl.questions.length>0">
             <question
                 ng-repeat="question in $ctrl.questions"
                 ng-init="answers = $ctrl.answers(question._id);
-                    showAmountOfAnswers = Infinite;"
+                    question.showAmountOfAnswers = 1"
             >
+            
                 <content>
 
                     <div>
@@ -35,14 +37,15 @@
                         </div>
                         <div class="question">{{question.question}}</div>
 
-                        <div class="question-timestamp">
+                        <div class="question-timestamp" ng-show="answers.length==0">
                             {{ question.createdAt | timeFromNow }} gevraagd door {{ $ctrl.user(question.ownerId) | usernameFilter }}
                         </div>
                         <div class="question-controls">
 
+                            
                             <div
                                 ng-show="showAnswerInput"
-                                style="padding:0 2.1vw;"
+                                style="padding:0 3vw;"
                             >
                                 <div class="new-question-title">Antwoord</div>
                                 <md-input-container
@@ -61,7 +64,7 @@
                             </div>
                             <md-button
                                 ng-show="showAnswerInput"
-                                ng-click="$ctrl.saveAnswer(question, question.answer, showAnswerInput);showAnswerInput=!showAnswerInput;showAmountOfAnswers=Infinity;"
+                                ng-click="$ctrl.saveAnswer(question, question.answer, showAnswerInput);showAnswerInput=!showAnswerInput;question.showAmountOfAnswers=Infinity;"
                             >
                                 Stuur antwoord
                             </md-button>
@@ -82,7 +85,7 @@
                     </div>
 
                     <div
-                        ng-repeat="answer in answers | limitTo: showAmountOfAnswers"
+                        ng-repeat="answer in answers | limitTo: question.showAmountOfAnswers"
                         ng-init="user = $ctrl.user(answer.ownerId)"
                         class="answer-container"
                     >
@@ -112,18 +115,19 @@
                             </contact-details>
                         </contact-info>
 
-                        <div class="answer">{{ answer.answer }}</div>
+                        <div class="answer" ng-style="{'max-height':  12.5 +'vw'}">{{ answer.answer }}</div>
+                        <div class="answer-show-more-button" ng-if="!answer.showMore && (answer.answer.length>100)" ng-click="answer.showMore=true;question.showAmountOfAnswers=question.showAmountOfAnswers+1;"><md-icon >keyboard_arrow_down</md-icon>lees door</div>
 
                     </div>
                 </content>
 
             </question>
         </questions>
-        <div class="new-question" ng-style="{'min-height': $ctrl.questions.length==0 ? '30vw' : ''}">
+        <div class="new-question" ng-style="{'min-height': $ctrl.questions.length==0 ? '30vw' : '', 'border-top' : $ctrl.questions.length==0 ? '' : '1px solid #d3d3d3'}">
 
             <div
                 ng-show="showQuestionInput || $ctrl.questions.length==0"
-                style="padding:0 2.1vw;"
+                style="padding:0 3vw;"
             >
                 <div class="new-question-title">
                         Open vragen beginnen met 'wie', 'wat', 'wanneer', 'hoe', 'waar' of 'waarom'...

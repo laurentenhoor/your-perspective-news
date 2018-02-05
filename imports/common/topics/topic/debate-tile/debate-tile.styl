@@ -1,18 +1,26 @@
 debate-tile {
-    $margin-left = 2vw;
+    $margin-left = 4vw;
 
     .md-button {
         font-size: 2.4vw !important;
+        margin:0 8px;
+        min-height:30px;
+        line-height:20px;
     }
+
+    .md-input {
+        line-height:1.6;}
 
     .spacing {
         margin: auto;
     }
     .first-use-text {
-        padding: 3vw;
+        padding: 4vw;
+        padding-bottom:6vw;
         font-size: 4.7vw;
         font-weight: 700;
-        background-image: linear-gradient(to top, rgba(0,0,0,0.7) 40%, transparent);
+        background-image: linear-gradient(to top, rgba(0,0,0,0.65) 40%, transparent); //bottom side
+            // background-image: linear-gradient(to bottom, rgba(0,0,0,0.5) 60%, transparent); //top side
         // padding-bottom: 20vw;
         color: #fff;
         // height: 16%;
@@ -31,17 +39,18 @@ debate-tile {
     .tile-container {
         position: relative;
         background-image: url('http://www.kattensite.be/index.php?app=core&module=attach&section=attach&attach_rel_module=post&attach_id=85539');
+        // background:white;
     }
 
     .answer-container {
-        padding: $margin-left 0;
+        padding: 2vw 0;
         // border-bottom:1px solid lightgrey;
     }
 
     .question {
-        font-size: 4vw;
+        font-size: 3.7vw;
         font-weight: 600;
-        padding: $margin-left;
+            padding: 0 4vw;
         padding-top: 3.5vw;
     }
 
@@ -55,10 +64,16 @@ debate-tile {
     .answer {
         // padding-left: $margin-left;
         // margin-top: $margin-left;
-        padding: 3vw 4vw;
+        padding: 2vw 4vw;
         font-size: 2.8vw;
         white-space: pre-wrap;
+        overflow:hidden;
         // font-family: courier;
+    }
+
+    .answer-show-more-button {
+        margin:auto;
+        text-align:center;    
     }
 
 
@@ -105,19 +120,27 @@ debate-tile {
         font-weight: 500;
     }
 
+    .headline {
+        font-size:1.8vw;
+        }
+    
+
     .timestamp {
         font-style: italic;
+        font-size:1.8vw;
     }
 
     contact-details {
         flex-direction: column;
         padding: 1vw;
+        margin: auto 0;
     }
 
     content {
         display: flex;
         flex-direction: column;
         border-top: 1px solid lightgrey;
+        background: linear-gradient(to top, rgb(245, 245, 245) 0%, white);
 
         .avatar-img {
             width: 8vw;

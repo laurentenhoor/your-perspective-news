@@ -29,6 +29,9 @@ export default class ArticlesApi {
     }
 
     getRootArticles(topic) {
+        if (!topic) {
+            return;
+        }
         var articles = Articles.find({
             _id: { $in: topic.articleIds },
             category: 'Nieuws',
