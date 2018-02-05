@@ -35,7 +35,8 @@ if (Meteor.isServer) {
         return Meteor.users.find({}, {
             fields: {
                 'profile.firstName': 1,
-                'profile.lastName': 1
+                'profile.lastName': 1,
+                'profile.headline' : 1,
             }
         });
     });

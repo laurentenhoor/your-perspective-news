@@ -7,27 +7,22 @@ class DebateTileComponent {
 
         var $ctrl = this;
         $reactive($ctrl).attach($scope);
-        
+
         $ctrl.newQuestion = '';
 
         $ctrl.$onChanges = (changes) => {
             if (changes.topic && $ctrl.topic) {
                 console.log('debate tile for topic:', $ctrl.topic);
             }
-           
         }
 
         $ctrl.helpers({
             questions: () => {
-                console.log('questions helper fired')
                 let topic = $ctrl.getReactively('topic')
                 if (!topic) {
                     return;
                 }
-                if ($questionsApi.getAnswers(topic._id)) {
-                    return $questionsApi.getAllByTopic($ctrl.getReactively('topic'));
-                }
-                
+                return $questionsApi.getAllByTopic($ctrl.getReactively('topic'));
             },
             userId: () => {
                 return Meteor.userId()
@@ -60,12 +55,15 @@ class DebateTileComponent {
                 console.warn('No answer input')
                 return;
             }
-            console.log('save answer', question, answer)
             $questionsApi.saveAnswer(question, answer, (error) => {
-                $timeout(()=> {
+                $timeout(() => {
+                    if (error) {
+                        console.error(error);
+                        return;
+                    }
                     $ctrl.questions = $questionsApi.getAllByTopic($ctrl.topic);
                 })
-                
+
             });
         }
 
@@ -79,9 +77,6 @@ class DebateTileComponent {
             console.log('answers found', answers)
             return answers;
         }
-
-       
-
     }
 }
 
