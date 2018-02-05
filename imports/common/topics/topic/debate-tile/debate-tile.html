@@ -9,7 +9,7 @@
         class="tile-container"
         ng-style="{'background-image': $ctrl.questions.length === 0 ? '' : 'linear-gradient(to top, rgba(236,233,230,0.36), #fff)' }"
     >
-        <div class="tile-overlay"></div>
+        <div class="spacing" ng-show="$ctrl.questions.length==0"></div>
 
         <div
             class="first-use-text"
@@ -17,7 +17,7 @@
         >
             Stel een vraag en zoek een expert!
         </div>
-        <questions>
+        <questions ng-show="$ctrl.questions.length>0">
             <question
                 ng-repeat="question in $ctrl.questions"
                 ng-init="answers = $ctrl.answers(question._id);
