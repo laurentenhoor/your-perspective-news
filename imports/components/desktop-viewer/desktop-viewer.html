@@ -1,20 +1,26 @@
 <div ng-if="!$ctrl.showMobile" ng-cloak>
 
-	<div class="desktop-background">
+	<div class="desktop-background"></div>
+	<div class="gradient-overlay"></div>
+	<div class="company-strategy">
+		<div class="title">
+			De toekomst<br>van het nieuws
+		</div>
+	</div>
 
-		<!-- <div class="desktop-title">
+	<!-- <div class="desktop-title">
 			<div>Bezoek <span class="red">jouw<b>pers</b></span> via een smartphone.</div>
 	</div> -->
 
-		<img class="screen-overlay" src="/iStock-840109436.png" />
+	<img class="screen-overlay" src="/iStock-840109436.png" />
 
-		<div class="maincontentdiv">
-			<iframe src="$ctrl.absUrl" sandbox="allow-same-origin allow-forms allow-scripts allow-popups allow-popups-to-escape-sandbox"
-			 seamless width="414" height="845">
-			</iframe>
-		</div>
-
+	<div class="maincontentdiv">
+		<iframe src="$ctrl.absUrl" sandbox="allow-same-origin allow-forms allow-scripts allow-popups allow-popups-to-escape-sandbox"
+		 seamless width="414" height="845">
+		</iframe>
 	</div>
+
+</div>
 </div>
 
 <ng-transclude ng-if="$ctrl.showMobile">
