@@ -100,9 +100,9 @@
                         <contact-info>
                             <div class="avatar">
                                 <img
-                                    ng-src="https://media.licdn.com/mpr/mprx/0_mK4hvDqgUK1olFIumNm8gejy0L6nc5F2C3uh1JogRi7cczbDC38aYJ-g4KsIqFz2INuaRJlj-N5BN3QrkijpgJpABN59N3iuCijin4dpyvKsYc4ratwS9uFDc3x6j3NgI8M2A6LsD0E"
+                                    ng-src="{{ user |  profileImageFilter }}"
                                     class="avatar-img"
-                                    alt="{{item.who}}"
+                                    alt="{{ user |  usernameFilter }}"
                                 >
                             </div>
 
