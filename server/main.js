@@ -21,7 +21,7 @@ Meteor.startup(() => {
 				"clientId": "78akbyufxh1mh8",
 				"secret": "OREAQ0srwvcxTZ6W",
 				'requestPermissions': ['r_basicprofile', 'r_emailaddress'],
-				'loginStyle': 'redirect',
+				'loginStyle': 'popup',
 			}
 		},
 		{ upsert: true }
