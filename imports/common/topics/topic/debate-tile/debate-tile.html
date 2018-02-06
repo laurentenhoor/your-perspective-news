@@ -18,7 +18,7 @@
             Stel een vraag en zoek een expert!
         </div>
         
-        <questions ng-show="$ctrl.questions.length>0">
+        <questions ng-show="$ctrl.questions.length>0" ng-style="{'opacity' : showQuestionInput ? '0.2' : '1.0'}">
             <question
                 ng-repeat="question in $ctrl.questions"
                 ng-init="answers = $ctrl.answers(question._id);

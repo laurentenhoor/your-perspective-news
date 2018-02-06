@@ -1,12 +1,12 @@
 @import 'nib';
 
 topics {
-
     .scroll-window {
         margin: 3vw 0 0 0;
         padding: 0 0 3vw 0;
         width: 100%;
         overflow-x: scroll;
+        overflow-y: hidden;
     }
 
     .scroll-content {
@@ -37,9 +37,7 @@ topics {
         box-shadow: 0.3vw 0.4vw 1.4vw rgba(4, 4, 4, 0.42);
         border-radius: 0.8vw;
         white-space: normal;
-        
-        overflow : hidden;
-        
+        overflow: hidden;
         background-size: cover;
         background-position: center;
     }
@@ -50,30 +48,26 @@ topics {
         font-weight: 400;
         font-size: 3vw;
         margin: 1vw 1vw;
-        display:inline-block;
-        width:100%;
+        display: inline-block;
+        width: 100%;
     }
 
     .more-topics-controls {
-
         text-align: center;
-        
-        margin-top: 5vw;    
-        margin-bottom: 20vw;  
-        opacity:0.5;
-        padding:0vw 4vw;
+        margin-top: 5vw;
+        margin-bottom: 20vw;
+        opacity: 0.5;
+        padding: 0vw 4vw;
 
         .wide-btn {
-            min-width:40vw;
-            font-weight:600 !important;
-            font-size:2.3vw !important;
+            min-width: 40vw;
+            font-weight: 600 !important;
+            font-size: 2.3vw !important;
         }
-        
+
         .narrow-btn {
-            min-width:25vw;
-            font-size:2vw !important;
-
+            min-width: 25vw;
+            font-size: 2vw !important;
         }
-
     }
 }
