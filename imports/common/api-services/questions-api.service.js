@@ -73,7 +73,6 @@ export default class QuestionsApiService {
 
     getAnswers(questionId) {
         let answers = Questions.find({parentId: questionId}).fetch();
-        console.log('getAnswers', answers)
         return answers;
     }
     

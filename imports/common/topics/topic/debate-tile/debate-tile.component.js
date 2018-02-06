@@ -72,9 +72,7 @@ class DebateTileComponent {
         }
 
         $ctrl.answers = (questionId) => {
-            console.log('get answers for question', questionId)
             let answers = $questionsApi.getAnswers(questionId);
-            console.log('answers found', answers)
             return answers;
         }
     }

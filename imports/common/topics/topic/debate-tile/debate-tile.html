@@ -116,7 +116,7 @@
                         </contact-info>
 
                         <div class="answer" ng-bind-html="answer.answer |  linky:'_self':{class: 'a-extern'}" ng-style="{'max-height': (answer.showMore ? null : 10) +'vw'}"></div>
-                        <div class="answer-show-more-button" ng-if="(!answer.showMore && $index < answers.length-1) || (!answer.showMore && answer.answer.length > 150)" ng-click="answer.showMore=true;question.showAmountOfAnswers=question.showAmountOfAnswers+1;"><md-icon >keyboard_arrow_down</md-icon>lees door</div>
+                        <div class="answer-show-more-button" ng-if="(!answer.showMore && $index < answers.length-1) || (!answer.showMore && answer.answer.length > 100)" ng-click="answer.showMore=true;question.showAmountOfAnswers=question.showAmountOfAnswers+1;"><md-icon >keyboard_arrow_down</md-icon>LEES MEER</div>
 
                     </div>
                 </content>
