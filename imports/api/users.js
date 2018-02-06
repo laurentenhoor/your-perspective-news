@@ -37,6 +37,7 @@ if (Meteor.isServer) {
                 'profile.firstName': 1,
                 'profile.lastName': 1,
                 'profile.headline' : 1,
+                'profile.pictureUrl' : 1,
             }
         });
     });
