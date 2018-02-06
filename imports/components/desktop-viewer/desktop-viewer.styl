@@ -1,49 +1,66 @@
-@import "{}/imports/style/variables";
+@import '{}/imports/style/variables';
 
 ::-webkit-scrollbar {
-    width: 0px;  /* remove scrollbar space */
-    background: transparent;  /* optional: just make scrollbar invisible */
+    width: 0px; /* remove scrollbar space */
+    background: transparent; /* optional: just make scrollbar invisible */
     display: none;
 }
 
 desktop-viewer {
-    
-    .desktop-title {
+
+    .desktop-background {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        display: block;
+        // background-image: url('https://www.stedencanvas.nl/wp-content/uploads/2016/02/Rotterdam-20.jpg');
+        background-image: url('http://static.panoramio.com/photos/original/24593955.jpg');
         
-        font-size:15px;
-        margin: 15px;
-        text-align:center;
-        
+        background-size: cover;
     }
+
+    .screen-overlay {
+        position: absolute;
+        z-index: 1;
+        right: -487px;
+        top: -136px;
+        width: 1647px;
+        pointer-events: none;
+    }
+
+    .desktop-title {
+        font-size: 15px;
+        margin: 15px;
+        text-align: center;
+    }
+
     .maincontentdiv {
-        position: relative;
-        height: 736px;
+        background:black;
+        position: absolute;
+        right: 200px;
+        top: 68px;
+        height: 845px;
         width: 414px;
         -moz-border-radius: 15px;
         border-radius: 15px;
         overflow: hidden;
         border: 1px solid #c1c1c1;
         box-shadow: 0.3vw 0.4vw 1.4vw rgba(4, 4, 4, 0.42);
-            
         margin-right: auto;
         margin-left: auto;
-            
+
         iframe {
-            border:none;
+            border: none;
         }
     }
 
     .logo-desktop {
-    //	width:4.5vw;
-        width:18px;
+        width: 18px;
         margin-top: -6px;
-        
-    }	
+    }
 
     .red {
         color: $brand-color;
-        //color: rgba(0, 0, 0, 0.7);
+        // color: rgba(0, 0, 0, 0.7);
     }
-
 }
-
