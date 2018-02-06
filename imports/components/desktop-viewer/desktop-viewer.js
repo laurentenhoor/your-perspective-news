@@ -13,6 +13,7 @@ class DesktopViewerCtrl {
 
 		$ctrl.showMobile = false;
 		$ctrl.absUrl = $location.absUrl();
+		console.log('absUrl', $ctrl.absUrl)
 		
 		angular.element($window).bind('resize', () => {
 			$scope.$apply(function() {
