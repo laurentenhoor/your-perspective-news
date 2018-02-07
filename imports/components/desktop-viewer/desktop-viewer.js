@@ -6,7 +6,7 @@ import style from './desktop-viewer.styl';
 
 class DesktopViewerCtrl {
 
-	constructor($window, $scope, $location) {
+	constructor($window, $scope, $location, $firstUseDialog) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -25,6 +25,15 @@ class DesktopViewerCtrl {
 		angular.element($window).bind("orientationchange", () => {
 			
 		})
+
+		$ctrl.clickMoreInfo = () => {
+			var result = document.getElementsByClassName("company-logo-container");
+			var wrappedResult = angular.element(result);
+			console.log(wrappedResult)
+
+			console.log('clickMoreInfo')
+			// $firstUseDialog.show();
+		}
 
 		
 		

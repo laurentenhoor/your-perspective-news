@@ -1,32 +1,108 @@
-<div ng-if="!$ctrl.showMobile" ng-cloak>
+<div
+    ng-if="!$ctrl.showMobile"
+    ng-cloak
+>
 
-	<div class="desktop-background"></div>
-	<div class="gradient-overlay"></div>
-	<div class="company-strategy">
+    <div class="desktop-background"></div>
+    <div class="gradient-overlay"></div>
+    <div class="company-strategy">
+        
 		
-			<div class="logo">
-					<img class="logo-img" src="/logos/jouwpers-logo-circle-white-bg.svg"/>
-				</div>
-		<div class="title">
-			Het nieuws<br>van de toekomst
+
+        <div class="title">
+            Het nieuws
+            <br>
+            van de toekomst
 		</div>
 		
-	</div>
+		<div class="logo">
+				<img
+					class="logo-img"
+					src="/logos/jouwpers-logo-no-bg.svg"
+				>
+				<div class="logo-title">
+					Jouw<b>pers</b>
+				</div>
+			</div>
 
-	<!-- <div class="desktop-title">
+        <div class="features">
+            <div class="feature-category">
+				<div class="feature-icon" style="margin-top:10px;">
+						<md-icon
+						class="svg-icon"
+						md-svg-src="/icons/lightning.svg"
+					>
+					</md-icon>
+				</div>
+				
+                <div class="feature-details-container">
+                    <div class="feature-title">Nieuws</div>
+                    <div class="feature-details">
+                        Verdiep je in het nieuws vanuit alle perspectieven.
+                    </div>
+                </div>
+
+            </div>
+            <div class="feature-category">
+					<div class="feature-icon" style="width:90px;">
+				<md-icon
+                    class="svg-icon"
+                    md-svg-src="/icons/eureka.svg"
+				>
+				
+				</md-icon>
+				</div>
+
+                <div class="feature-details-container">
+                    <div class="feature-title">Verrijking</div>
+                    <div class="feature-details">
+                        Laat je inspireren en ontdek jouw perspectief.
+                    </div>
+                </div>
+
+            </div>
+            <div class="feature-category">
+                <div class="feature-icon"  style="margin-top:15px;">
+					<md-icon
+                    class="svg-icon"
+                    md-svg-src="/icons/questions.svg"
+                >
+				</md-icon>
+                </div>
+                <div class="feature-details-container">
+                    <div class="feature-title">Meedoen</div>
+                    <div class="feature-details">
+                        Vind antwoorden op jouw vragen bij het nieuws.
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- <a ng-cdivck="$ctrl.cdivckMoreInfo()">lees meer</a> -->
+        </div>
+
+    </div>
+
+    <!-- <div class="desktop-title">
 			<div>Bezoek <span class="red">jouw<b>pers</b></span> via een smartphone.</div>
 	</div> -->
 
-	<img class="screen-overlay" src="/iStock-840109436.png" />
+    <img
+        class="screen-overlay"
+        src="/iStock-840109436.png"
+    >
 
-	<div class="maincontentdiv">
-		<iframe src="$ctrl.absUrl" sandbox="allow-same-origin allow-forms allow-scripts allow-popups allow-popups-to-escape-sandbox allow-presentation"
-		 seamless width="379" height="778">
-		</iframe>
-	</div>
+    <div class="maincontentdiv">
+        <iframe
+            src="$ctrl.absUrl"
+            sandbox="allow-same-origin allow-forms allow-scripts allow-popups allow-popups-to-escape-sandbox allow-presentation"
+            seamless
+            width="379"
+            height="778"
+        >
+        </iframe>
+    </div>
 
 </div>
-</div>
 
-<ng-transclude ng-if="$ctrl.showMobile">
-</ng-transclude>
+<ng-transclude ng-if="$ctrl.showMobile"></ng-transclude>
