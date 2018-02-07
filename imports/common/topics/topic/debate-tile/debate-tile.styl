@@ -12,7 +12,7 @@ debate-tile {
 
     .md-button {
         font-size: 2.4vw !important;
-        margin: 0 8px;
+        margin: 1vw 8px;
         min-height: 30px;
         line-height: 20px;
     }
@@ -52,11 +52,6 @@ debate-tile {
         // background:white;
     }
 
-    .answer-container {
-        padding: 2vw 0;
-        // border-bottom:1px solid lightgrey;
-    }
-
     .question {
         font-size: 3.4vw;
         font-weight: 600;
@@ -88,6 +83,8 @@ debate-tile {
         text-align: center;
         font-size: 2.3vw;
         font-weight: 600;
+        margin-top: 1vw;
+        margin-bottom: 1vw;
     }
 
     question {
@@ -108,6 +105,7 @@ debate-tile {
         flex-direction: row;
         font-size: 2.2vw;
         padding-left: $margin-left;
+        margin-top:2vw;
     }
 
     .question-controls {
@@ -126,6 +124,7 @@ debate-tile {
         height: fit-content;
         background: #fff;
         // border-top: 1px solid #d3d3d3;
+        
         margin-right: auto;
         margin-left: auto;
     }
@@ -135,36 +134,39 @@ debate-tile {
     }
 
     .headline {
-        font-size: 1.8vw;
+        font-size: 1.5vw;
+        margin-bottom: 0.6vw;
     }
 
     .timestamp {
         font-style: italic;
-        font-size: 1.8vw;
+        font-size: 1.5vw;
     }
 
     contact-details {
         flex-direction: column;
-        padding: 1vw;
         margin: auto 0;
+        margin-left: 1vw;
     }
 
     content {
         display: flex;
         flex-direction: column;
-        border-top: 1px solid lightgrey;
+        border-bottom: 1px dotted #727272;
+        // padding-bottom: 1vw;
         background: linear-gradient(to top, rgb(245, 245, 245) 0%, white);
 
         .avatar-img {
-            width: 8vw;
-            height: 8vw;
+            width: 100%;
+            height: 100%;
             margin: auto;
             border-radius: 50%;
         }
 
         .avatar {
-            max-width: 15vw;
+            max-width: 10vw;
             padding: 1vw;
+            max-height: 10vw;
         }
     }
 }
