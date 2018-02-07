@@ -27,12 +27,7 @@ class DesktopViewerCtrl {
 		})
 
 		$ctrl.clickMoreInfo = () => {
-			var result = document.getElementsByClassName("company-logo-container");
-			var wrappedResult = angular.element(result);
-			console.log(wrappedResult)
-
-			console.log('clickMoreInfo')
-			// $firstUseDialog.show();
+			$('#desktop-viewer-iframe').contents().find('.company-logo-container').trigger( "click" );
 		}
 
 		

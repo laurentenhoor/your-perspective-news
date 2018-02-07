@@ -9,7 +9,7 @@
         
 		
 
-        <div class="title">
+        <div class="title" ng-click="$ctrl.clickMoreInfo()">
             Het nieuws
             <br>
             van de toekomst
@@ -78,7 +78,7 @@
 
             </div>
 
-            <!-- <a ng-cdivck="$ctrl.cdivckMoreInfo()">lees meer</a> -->
+            <a ng-click="$ctrl.clickMoreInfo()">Lees meer over waarom wij bestaan...</a>
         </div>
 
     </div>
@@ -93,7 +93,7 @@
     >
 
     <div class="maincontentdiv">
-        <iframe
+        <iframe id="desktop-viewer-iframe"
             src="$ctrl.absUrl"
             sandbox="allow-same-origin allow-forms allow-scripts allow-popups allow-popups-to-escape-sandbox allow-presentation"
             seamless
