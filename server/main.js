@@ -10,9 +10,18 @@ import { Opinions } from '/imports/api/opinions'
 import { Users } from '/imports/api/users'
 import { Questions } from '/imports/api/questions'
 
+import SlackAPI from 'node-slack';
+
 _ = lodash;
 
 Meteor.startup(() => {
+
+	if (Meteor.isProduction) {
+		Slack = new SlackAPI('https://hooks.slack.com/services/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');
+		Slack.send({
+			text: 'De server is succesvol herstart.'
+		});
+	}
 
 	ServiceConfiguration.configurations.upsert(
 		{ "service": "linkedin" },
