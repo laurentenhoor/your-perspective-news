@@ -7,14 +7,22 @@
 
     <div class="tile-container">
 
+        
         <div class="summary-header" style="background-image:url('{{ $ctrl.mainArticle.imageUrl || $ctrl.defaultImageUrl }}')"
             ng-click="$ctrl.scrollToArticle($ctrl.mainArticle._id, $ctrl.topic._id, $event);" >
+            <div class="color-overlay"></div>
+            
 
             <div class="time-elapsed">
+                <div class="topic-title">
+                    {{ $ctrl.topic.title }}
+                </div>
                 <div style="padding: 1vw;width: fit-content;display: inline-block;">
                     {{ $ctrl.topic.latestUpdate | timeFromNow }}
                 </div>
-                <div style="float:right;" ng-click="">
+                
+                
+                <div style="float:right;font-weight:400;" ng-click="">
                     OPEN
                     <md-icon style="color:white">keyboard_arrow_right</md-icon>
                 </div>
@@ -24,7 +32,7 @@
             <div class="categories">
 
                 <div class="category main-category">
-                    <!-- <div class="category-title">{{ categoryBlock.category }}</div> -->
+                    <div class="category-title">{{ $ctrl.mainArticle.category }}</div>
                     <div class="article-title">{{ $ctrl.mainArticle.title }}</div>
                 </div>
 
