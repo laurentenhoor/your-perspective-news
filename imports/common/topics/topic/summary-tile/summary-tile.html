@@ -7,12 +7,10 @@
 
     <div class="tile-container">
 
-        
         <div class="summary-header" style="background-image:url('{{ $ctrl.mainArticle.imageUrl || $ctrl.defaultImageUrl }}')"
             ng-click="$ctrl.scrollToArticle($ctrl.mainArticle._id, $ctrl.topic._id, $event);" >
             <div class="color-overlay"></div>
             
-
             <div class="time-elapsed">
                 <div class="topic-title">
                     {{ $ctrl.topic.title }}
