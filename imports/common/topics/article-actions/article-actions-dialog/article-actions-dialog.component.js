@@ -9,6 +9,8 @@ export default class ArticleActionsComponent {
 		$ctrl.topicId = topicId;
 		$ctrl.article = article;
 
+		$ctrl.defaultImageUrl = '/logos/closeup-01.svg';
+
 		if ($ctrl.article) {
 
 			$ctrl.mode = 'edit_source';

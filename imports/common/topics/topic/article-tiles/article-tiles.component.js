@@ -8,6 +8,8 @@ class ArticleTilesComponent {
 
         let $ctrl = this;
         $reactive($ctrl).attach($scope);
+        
+        $ctrl.defaultImageUrl = '/logos/closeup-01.svg';
 
         $ctrl.showDetails = (detailsAreVisible, articleId) => {
             if (detailsAreVisible){

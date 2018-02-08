@@ -22,15 +22,10 @@
                     topic-id="$ctrl.topic._id"
                 ></vote>
             </div>
-
             <div
                 class="image"
-                style="background-image:url('/logos/closeup-01.svg');opacity:0.8;"
-            >
-            </div>
-            <div
-                class="image"
-                style="background-color:{{ article.videoUrl ? 'black' : 'rgba(187, 187, 187, 0)' }};background-image:url('{{ article.imageUrl }}');"
+                ng-style="{'background-color': {{ article.videoUrl ? 'black' : 'rgba(187, 187, 187, 0)' }},
+                       'background-image': 'url({{ article.imageUrl || $ctrl.defaultImageUrl }})'}"
             >
             </div>
 

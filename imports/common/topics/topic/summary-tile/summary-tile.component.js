@@ -9,6 +9,7 @@ class SummaryTileComponent {
         $reactive($ctrl).attach($scope);
 
         $ctrl.showSummary = true;
+        $ctrl.defaultImageUrl = '/logos/closeup-01.svg';
 
         $ctrl.$onChanges = (changes) => {
             if (changes.topic && $ctrl.topic) {
