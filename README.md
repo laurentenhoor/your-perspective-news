@@ -15,6 +15,7 @@ Wij verzetten ons tegen twittergeblaat en nepnieuws.
 ## version 1.3.8
 * Updated landing page for desktop view
     * High-level proposition summary
+* New question-answer tile
 
 ## version 1.3.7
 * Added hotness calculation & sorting
