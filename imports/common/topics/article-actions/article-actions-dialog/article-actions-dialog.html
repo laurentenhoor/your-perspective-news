@@ -80,15 +80,9 @@
         >
 
             <div class="image-container">
-
                 <div
                     class="image"
-                    ng-style="{'background-image' : 'url({{ $ctrl.defaultImageUrl }})'}"
-                >
-                </div>
-                <div
-                    class="image"
-                    ng-style="{'background-image':'url({{ $ctrl.article.imageUrl }})'}"
+                    ng-style="{'background-image':'url(\'{{ $ctrl.article.imageUrl || $ctrl.defaultImageUrl }}\')'}"
                 >
                 </div>
 
