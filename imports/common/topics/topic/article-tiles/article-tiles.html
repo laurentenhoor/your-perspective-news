@@ -25,10 +25,9 @@
             <div
                 class="image"
                 ng-style="{'background-color': {{ article.videoUrl ? 'black' : 'rgba(187, 187, 187, 0)' }},
-                       'background-image': 'url({{ article.imageUrl || $ctrl.defaultImageUrl }})'}"
+                       'background-image': 'url(\'{{ article.imageUrl || $ctrl.defaultImageUrl }}\')'}"
             >
             </div>
-
             <iframe
                 class="video-player-iframe"
                 ng-if="article.videoUrl"
