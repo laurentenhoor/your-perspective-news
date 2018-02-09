@@ -1,10 +1,16 @@
-  .article-actions-dialog {
-    
-    // md-input-container {
-    //     padding: 0vw;
-    //     margin: 0;
-    //     margin-top: 3vw;
-    // }
+@import 'nib';
+
+.article-actions-dialog {
+    md-dialog-content {
+        transition: max-height 0.08s ease-out;
+        transition-delay: 0.2s;
+    }
+
+    md-input-container {
+        padding: 0 !important;
+        margin: 1vw 0 !important;
+        // margin-top: 3vw;
+    }
 
     .url-input {
         font-size: 3vw !important;
@@ -44,7 +50,7 @@
         margin-bottom: 2.5vw;
     }
 
-        .image-container {
+    .image-container {
         display: flex;
         flex-direction: column;
         position: relative;
@@ -52,6 +58,7 @@
         min-width: 0;
         min-height: 0;
         overflow: hidden;
+        position: relative;
     }
 
     .image:before {
@@ -70,12 +77,15 @@
     .image {
         background-size: cover;
         background-position: center;
-        background-color: white;
+        // background-color: white;
         display: flex;
         flex: 1;
         min-width: 0;
         min-height: 0;
         overflow: hidden;
+        position: absolute;
+        width: 100%;
+        height: 100%;
     }
 
     .title-container {

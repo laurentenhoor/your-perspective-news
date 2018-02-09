@@ -45,7 +45,7 @@ export default class TopicsApiService {
     }
 
     getWithOffset(offset) {
-        return Topics.find({}, {skip:offset}).fetch();
+        return Topics.find({}, { skip: offset }).fetch();
     }
 
     getById(topicId) {
@@ -60,8 +60,25 @@ export default class TopicsApiService {
         return null;
     }
 
-    createTopic() {
-        return Topics.insert({ ownerId: Meteor.userId() });
+    saveTitle(topicId, title) {
+        Topics.update({ _id: topicId }, {
+            $set: {
+                title: title
+            }
+        }, (error) => {
+            if (error) {
+                console.error(error);
+            }
+            this.fireCallbacks(this.callbacks.addedArticle, topicId)
+            console.log('Successfully stored title', title)
+        });
+    }
+
+    createTopic(topicTitle) {
+        return Topics.insert({
+            ownerId: Meteor.userId(),
+            title: topicTitle
+        });
     }
 
     removeArticle(topicId, articleId) {
@@ -91,10 +108,10 @@ export default class TopicsApiService {
 
     }
 
-    addArticleToNewTopic(articleId) {
+    addArticleToNewTopic(topicTitle, articleId) {
 
 
-        let topicId = this.createTopic();
+        let topicId = this.createTopic(topicTitle);
 
         ga('send', {
             hitType: 'event',

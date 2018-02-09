@@ -5,8 +5,8 @@
     id="topic-{{ $ctrl.topic._id }}-article-{{ article._id }}"
 >
 
-    <div class="tile-header">
-        <!-- {{ article.category }} -->&nbsp;
+    <div class="tile-header">&nbsp;
+        <!-- {{ article.category }} --> 
         <hotness-indicator item-id="article._id"></hotness-indicator>
     </div>
 
@@ -22,11 +22,10 @@
                     topic-id="$ctrl.topic._id"
                 ></vote>
             </div>
-
             <div
                 class="image"
-                style="background-color:{{ article.videoUrl ? 'black' : 'rgb(187, 187, 187)' }}; 
-                        background-image:url('{{ article.imageUrl }}');"
+                ng-style="{'background-color': {{ article.videoUrl ? 'black' : 'rgba(187, 187, 187, 0)' }},
+                       'background-image': 'url({{ article.imageUrl || $ctrl.defaultImageUrl }})'}"
             >
             </div>
 

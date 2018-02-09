@@ -1,46 +1,47 @@
-<md-dialog aria-label="Share" class="share-dialog">
+<md-dialog aria-label="Share" class="share-dialog" style="width:80%">
     <form ng-cloak>
         
         <md-toolbar>
             <md-toolbar-header>Deel dit topic!</md-toolbar-header>
         </md-toolbar>
 
-        <md-dialog-content>
-
-            <md-button ng-click="$ctrl.shareLinkedIn();$ctrl.hide();" class="md-raised share-button" style="margin:2vw;">
-                <md-icon md-font-set="fa" md-font-icon="fa-linkedin"></md-icon>
-                LinkedIn
-            </md-button>
-
-            <a socialshare socialshare-provider="whatsapp" socialshare-url="{{ $ctrl.getShareUrl() }}" socialshare-text="{{ $ctrl.getShareText() }}">
-                <md-button ng-click="$ctrl.shareWhatsapp();$ctrl.hide()" class="md-raised share-button">
-                    <md-icon md-font-set="fa" md-font-icon="fa-whatsapp"></md-icon>
-                    Whatsapp
+        <md-dialog-content ng-style="{'max-height' : $ctrl.loaded ? '250px' : '0px'}">
+            <div class="hideBeforeAnimation" ng-if="$ctrl.loaded" style="padding:2vw;">
+                <md-button ng-disabled="false" ng-click="$ctrl.shareLinkedIn();$ctrl.hide();" class="md-raised share-button" style="margin:2vw;">
+                    <md-icon md-font-set="fa" md-font-icon="fa-linkedin"></md-icon>
+                    LinkedIn
                 </md-button>
-            </a>
 
-            <md-button ng-click="$ctrl.shareFacebook();$ctrl.hide();" class="md-raised share-button">
-                <md-icon md-font-set="fa" md-font-icon="fa-facebook"></md-icon>
-                Facebook
-            </md-button>
+                <a  ng-disabled="false" socialshare socialshare-provider="whatsapp" socialshare-url="{{ $ctrl.getShareUrl() }}" socialshare-text="{{ $ctrl.getShareText() }}">
+                    <md-button ng-click="$ctrl.shareWhatsapp();$ctrl.hide()" class="md-raised share-button">
+                        <md-icon md-font-set="fa" md-font-icon="fa-whatsapp"></md-icon>
+                        Whatsapp
+                    </md-button>
+                </a>
 
-            <md-button ng-click="$ctrl.shareTwitter();$ctrl.hide();" class="md-raised share-button">
-                <md-icon md-font-set="fa" md-font-icon="fa-twitter"></md-icon>
-                Twitter
-            </md-button>
+                <md-button  ng-disabled="false" ng-click="$ctrl.shareFacebook();$ctrl.hide();" class="md-raised share-button">
+                    <md-icon md-font-set="fa" md-font-icon="fa-facebook"></md-icon>
+                    Facebook
+                </md-button>
+
+                <md-button  ng-disabled="false" ng-click="$ctrl.shareTwitter();$ctrl.hide();" class="md-raised share-button">
+                    <md-icon md-font-set="fa" md-font-icon="fa-twitter"></md-icon>
+                    Twitter
+                </md-button>
 
 
-            <md-button class="md-raised share-button" 
-                ngclipboard data-clipboard-text="{{ $ctrl.getShareUrl() }}" 
-                ng-click="$ctrl.shareCopyPaste();$ctrl.hide()">
-                    <md-icon md-font-set="fa" md-font-icon="fa-copy"></md-icon>
-                    Copy-Paste
-            </md-button>
+                <md-button ng-disabled="false"  class="md-raised share-button" 
+                    ngclipboard data-clipboard-text="{{ $ctrl.getShareUrl() }}" 
+                    ng-click="$ctrl.shareCopyPaste();$ctrl.hide()">
+                        <md-icon md-font-set="fa" md-font-icon="fa-copy"></md-icon>
+                        Copy-Paste
+                </md-button>
+            </div>
 
         </md-dialog-content>
 
         <md-dialog-actions layout="row">
-            <md-button ng-click="$ctrl.hide()">
+            <md-button ng-click="$ctrl.hide()" ng-if="$ctrl.loaded" md-autofocus>
                 Sluiten
             </md-button>
         </md-dialog-actions>

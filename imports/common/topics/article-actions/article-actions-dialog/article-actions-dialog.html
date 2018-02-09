@@ -1,77 +1,154 @@
-<md-dialog class="article-actions-dialog" aria-label="{{$ctrl.headerText}}">
-	<form ng-cloak>
-		<md-toolbar>
-			<md-toolbar-header>{{$ctrl.headerText}}</md-toolbar-header>
-			<md-toolbar-subtitle>{{$ctrl.headerSubText}}</md-toolbar-subtitle>
-		</md-toolbar>
+<md-dialog
+    class="article-actions-dialog"
+    aria-label="{{$ctrl.headerText}}"
+    style="width:80%"
+>
+    <form ng-cloak>
+        <md-toolbar>
+            <md-toolbar-header>{{$ctrl.headerText}}</md-toolbar-header>
+            <md-toolbar-subtitle>{{$ctrl.headerSubText}}</md-toolbar-subtitle>
+        </md-toolbar>
+        <md-dialog-content ng-style="{'max-height': $ctrl.loaded ? '250px' : '0px'}">
 
-		<md-dialog-content>
-			<div class="md-dialog-content md-inline-form" layout="column">
-
-				<md-input-container class="md-block" ng-show="!$ctrl.urlDataIsLoaded">
-
-					<label ng-cloak>Plak een url naar een artikel</label>
-
-					<input class="url-input" ng-model="$ctrl.article.url" ng-change="$ctrl.urlChange()" http-prefix>
-					</input>
-
-				</md-input-container>
-
-				<md-autocomplete md-selected-item="$ctrl.selectedCategory" md-search-text-change="$ctrl.searchTextChange($ctrl.searchText)"
-				 md-search-text="$ctrl.searchText" md-selected-item-change="$ctrl.selectedItemChange(item)" md-items="item in $ctrl.querySearch($ctrl.searchText)"
-				 md-item-text="item.display" md-min-length="0" md-floating-label="Selecteer een categorie" placeholder="Categorie" ng-focus="$ctrl.clearFieldAtFirstFocusOnly()">
-
-					<md-item-template>
-						<span md-highlight-text="$ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
-					</md-item-template>
-
-				</md-autocomplete>
+            <div
+                class="md-dialog-content md-inline-form"
+                layout="column"
+                ng-if="$ctrl.loaded"
+            >
 
 
-			</div>
-		</md-dialog-content>
+                <md-input-container
+                    class="md-block"
+                    ng-show="!$ctrl.urlDataIsLoaded"
+                >
 
-		<div class="image-and-details-container" ng-if="$ctrl.urlDataIsLoaded">
+                    <label ng-cloak>Plak een url naar een artikel</label>
 
-			<div class="image-container">
+                    <input
+                        class="url-input"
+                        ng-model="$ctrl.article.url"
+                        ng-change="$ctrl.urlChange()"
+                        http-prefix
+                    >
 
-				<div class="image" ng-style="{'background-image':'url(\'' + $ctrl.article.imageUrl + '\')'}">
-				</div>
+                </md-input-container>
 
-				<iframe ng-if="$ctrl.article.videoUrl" src="{{$ctrl.article.videoUrl}}" width="100%" height="60%" frameborder="0" allowfullscreen
-				 style="position: absolute; bottom:0; top:0; height:100%; z-index:1;"></iframe>
+                    <md-autocomplete
+                        md-selected-item="$ctrl.selectedCategory"
+                        md-search-text-change="$ctrl.searchTextChange($ctrl.searchText)"
+                        md-search-text="$ctrl.searchText"
+                        md-selected-item-change="$ctrl.selectedItemChange(item)"
+                        md-items="item in $ctrl.querySearch($ctrl.searchText)"
+                        md-item-text="item.display"
+                        md-min-length="0"
+                        md-floating-label="Selecteer een categorie"
+                        placeholder="Categorie"
+                        ng-focus="$ctrl.clearFieldAtFirstFocusOnly()"
+                    >
 
-				<div ng-if="!$ctrl.article.videoUrl" class="gradient-overlay"></div>
+                        <md-item-template>
+                            <span
+                                md-highlight-text="$ctrl.searchText"
+                                md-highlight-flags="^i"
+                            >
+                                {{item.display}}
+                            </span>
+                        </md-item-template>
 
-				<div class="title-container" ng-if="!$ctrl.article.videoUrl">
+					</md-autocomplete>
+					
 
-					<div class="publisher">
-						{{$ctrl.article.publisher}}</div>
-					<div class="title">
-						{{$ctrl.article.title}}</div>
+					<md-input-container class="md-block">
 
-				</div>
+							<label ng-cloak>Onderwerp</label>
+		
+							<input
+								class="url-input"
+								ng-model="$ctrl.topicTitle"
+								ng-change="$ctrl.topicTitleChanged=true"
+							>
+		
+						</md-input-container>
 
-			</div>
-			<!-- <div class="description" ng-if="$ctrl.article.description">
+
+            </div>
+        </md-dialog-content>
+
+        <div
+            class="image-and-details-container"
+            ng-if="$ctrl.urlDataIsLoaded"
+        >
+
+            <div class="image-container">
+
+                <div
+                    class="image"
+                    ng-style="{'background-image' : 'url({{ $ctrl.defaultImageUrl }})'}"
+                >
+                </div>
+                <div
+                    class="image"
+                    ng-style="{'background-image':'url({{ $ctrl.article.imageUrl }})'}"
+                >
+                </div>
+
+                <iframe
+                    ng-if="$ctrl.article.videoUrl"
+                    src="{{ $ctrl.article.videoUrl }}"
+                    width="100%"
+                    height="60%"
+                    frameborder="0"
+                    allowfullscreen
+                    style="position: absolute; bottom:0; top:0; height:100%; z-index:1;"
+                ></iframe>
+
+                <div
+                    ng-if="!$ctrl.article.videoUrl"
+                    class="gradient-overlay"
+                ></div>
+
+                <div
+                    class="title-container"
+                    ng-if="!$ctrl.article.videoUrl"
+                >
+
+                    <div class="publisher">{{$ctrl.article.publisher}}</div>
+                    <div class="title">{{$ctrl.article.title}}</div>
+
+                </div>
+
+            </div>
+            <!-- <div class="description" ng-if="$ctrl.article.description">
 				{{$ctrl.article.description}}
 			</div> -->
-		</div>
+        </div>
 
+        <md-dialog-actions layout="row">
 
-		<md-dialog-actions layout="row">
+            <div
+                class="remove-icon"
+                ng-if="$ctrl.urlDataIsLoaded"
+                ng-click="$ctrl.showRemovalConfirmation($event)"
+            >
+                <i class="material-icons">delete</i>
+            </div>
 
-			<div class="remove-icon" ng-if="$ctrl.urlDataIsLoaded" ng-click="$ctrl.showRemovalConfirmation($event)">
-				<i class="material-icons">delete</i>
-			</div>
-
-			<span flex></span>
-			<md-button class="md-raised" ng-click="$ctrl.cancel()" tabindex="1" md-autofocus>
-				Annuleren
-			</md-button>
-			<md-button ng-disabled="!($ctrl.urlDataIsLoaded && $ctrl.modifiedCategory)" class="md-raised  md-primary" ng-click="$ctrl.ok()">
-				Opslaan
-			</md-button>
-		</md-dialog-actions>
-	</form>
+            <span flex></span>
+            <md-button
+                class="md-raised"
+                ng-click="$ctrl.cancel()"
+                tabindex="1"
+                md-autofocus
+            >
+                Annuleren
+            </md-button>
+            <md-button
+                ng-disabled="!($ctrl.urlDataIsLoaded && $ctrl.selectedCategory && $ctrl.topicTitle && ($ctrl.modifiedCategory || $ctrl.topicTitleChanged))"
+                class="md-raised  md-primary"
+                ng-click="$ctrl.ok()"
+            >
+                Opslaan
+            </md-button>
+        </md-dialog-actions>
+    </form>
 </md-dialog>

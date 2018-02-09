@@ -74,9 +74,9 @@ export default class ArticlesApi {
         });
     }
 
-    addToNewTopic(article) {
+    addToNewTopic(topicTitle, article) {
         this.createArticle(article, (articleId) => {
-            this.$topicsApi.addArticleToNewTopic(articleId);
+            this.$topicsApi.addArticleToNewTopic(topicTitle, articleId);
         })
     }
 

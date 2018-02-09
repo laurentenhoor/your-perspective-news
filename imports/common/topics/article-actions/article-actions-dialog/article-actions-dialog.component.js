@@ -1,6 +1,6 @@
 export default class ArticleActionsComponent {
 
-	constructor($loader, $scope, $reactive, $document, $autoScroll, $dialog, $metadata, topicId, article, $articlesApi, $topicsApi) {
+	constructor($loader, $scope, $timeout, $reactive, $document, $autoScroll, $dialog, $metadata, topicId, article, $articlesApi, $topicsApi) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -8,6 +8,19 @@ export default class ArticleActionsComponent {
 
 		$ctrl.topicId = topicId;
 		$ctrl.article = article;
+
+		$timeout(()=>$ctrl.loaded=true, 300)
+		
+		console.log('opend article for dialog', article)
+		if (article && article.category) {
+			$ctrl.selectedCategory = $ctrl.article.category;
+		}
+		$ctrl.topic = $topicsApi.getById($ctrl.topicId);
+		if ($ctrl.topic) {
+			$ctrl.topicTitle = $ctrl.topic.title;
+		}
+		
+		$ctrl.defaultImageUrl = '/logos/closeup-01.svg';
 
 		if ($ctrl.article) {
 
@@ -17,6 +30,7 @@ export default class ArticleActionsComponent {
 			$ctrl.headerSubText = 'Verander de categorie of verwijder deze bron.';
 			$ctrl.urlDataIsLoaded = true;
 
+			
 			$ctrl.initialCategory = angular.copy($ctrl.article.category);
 
 
@@ -64,22 +78,32 @@ export default class ArticleActionsComponent {
 		$ctrl.ok = function () {
 
 			console.log($ctrl.article)
-			$ctrl.article.category = $ctrl.modifiedCategory;
+			
+			if ($ctrl.modifiedCategory) {
+				$ctrl.article.category = $ctrl.modifiedCategory;
+			}
+			
 			
 			switch ($ctrl.mode) {
 				case 'add_source_to_topic':
 					console.log('add_source_to_topic')
-					$articlesApi.addToTopic($ctrl.topicId, $ctrl.article);
-					// 	$autoScroll.scrollToTop();
+					$articlesApi.addToTopic($ctrl.topicId, $ctrl.article);					
+					if ($ctrl.topicTitleChanged) {
+						$topicsApi.saveTitle($ctrl.topicId, $ctrl.topicTitle);
+					}
 					break;
 				case 'new_topic':
 					console.log('new topic')
-					$articlesApi.addToNewTopic($ctrl.article)
+					$articlesApi.addToNewTopic($ctrl.topicTitle, $ctrl.article)
 					break;
 				case 'edit_source':
 					console.log('edit')
 					$articlesApi.updateArticle($ctrl.article)
+					if ($ctrl.topicTitleChanged) {
+						$topicsApi.saveTitle($ctrl.topicId, $ctrl.topicTitle);
+					}
 					break;
+				default:
 			}
 			$dialog.hide();
 
