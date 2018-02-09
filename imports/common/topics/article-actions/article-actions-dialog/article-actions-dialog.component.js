@@ -1,6 +1,6 @@
 export default class ArticleActionsComponent {
 
-	constructor($loader, $scope, $reactive, $document, $autoScroll, $dialog, $metadata, topicId, article, $articlesApi, $topicsApi) {
+	constructor($loader, $scope, $timeout, $reactive, $document, $autoScroll, $dialog, $metadata, topicId, article, $articlesApi, $topicsApi) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -8,6 +8,8 @@ export default class ArticleActionsComponent {
 
 		$ctrl.topicId = topicId;
 		$ctrl.article = article;
+
+		$timeout(()=>$ctrl.loaded=true, 300)
 		
 		console.log('opend article for dialog', article)
 		if (article && article.category) {

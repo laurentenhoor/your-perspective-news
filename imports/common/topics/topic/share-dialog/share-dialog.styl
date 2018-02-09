@@ -1,6 +1,12 @@
 
 .share-dialog {
     
+    md-dialog-content {
+        transition: max-height 0.08s ease-out;
+        transition-delay: 0.2s;
+        padding:0;
+    }
+
     .md-toolbar-tools {
         height: fit-content;
     }
@@ -9,9 +15,5 @@
         width: 33vw;
         padding: 1vw;
         margin: 2vw;
-    }
-
-    md-dialog-content {
-        padding: 2vw;
     }
 }

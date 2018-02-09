@@ -2,10 +2,12 @@ import { Meteor } from 'meteor/meteor';
 
 export default class ShareDialogComponent {
 
-    constructor(Socialshare, $shareDialog, topicId) {
+    constructor(Socialshare, $shareDialog, topicId, $timeout) {
         'ngInject';
 
         $ctrl = this;
+
+        $timeout(()=>$ctrl.loaded=true, 300);
     
 
         $ctrl.hide = () => {

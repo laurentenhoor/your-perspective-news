@@ -1,17 +1,19 @@
 <md-dialog
     class="article-actions-dialog"
     aria-label="{{$ctrl.headerText}}"
+    style="width:80%"
 >
     <form ng-cloak>
         <md-toolbar>
             <md-toolbar-header>{{$ctrl.headerText}}</md-toolbar-header>
             <md-toolbar-subtitle>{{$ctrl.headerSubText}}</md-toolbar-subtitle>
         </md-toolbar>
+        <md-dialog-content ng-style="{'max-height': $ctrl.loaded ? '250px' : '0px'}">
 
-        <md-dialog-content>
             <div
                 class="md-dialog-content md-inline-form"
                 layout="column"
+                ng-if="$ctrl.loaded"
             >
 
 

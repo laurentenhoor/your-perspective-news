@@ -1,5 +1,11 @@
-  .article-actions-dialog {
-    
+@import 'nib';
+
+.article-actions-dialog {
+    md-dialog-content {
+        transition: max-height 0.08s ease-out;
+        transition-delay: 0.2s;
+    }
+
     md-input-container {
         padding: 0 !important;
         margin: 1vw 0 !important;
@@ -44,7 +50,7 @@
         margin-bottom: 2.5vw;
     }
 
-        .image-container {
+    .image-container {
         display: flex;
         flex-direction: column;
         position: relative;
@@ -52,7 +58,7 @@
         min-width: 0;
         min-height: 0;
         overflow: hidden;
-        position:relative;
+        position: relative;
     }
 
     .image:before {
@@ -77,8 +83,8 @@
         min-width: 0;
         min-height: 0;
         overflow: hidden;
-        position:absolute;
-        width:100%;
+        position: absolute;
+        width: 100%;
         height: 100%;
     }
 
