@@ -40,6 +40,11 @@
                         <div class="question-timestamp" ng-show="answers.length==0">
                             {{ question.createdAt | timeFromNow }} gevraagd door {{ $ctrl.user(question.ownerId) | usernameFilter }}
                         </div>
+                        <div class="question-votes">
+
+                            <vote topic-id="$ctrl.topic._id" article-id="question._id"></vote>
+
+                        </div>
                         <div class="question-controls">
 
                             
