@@ -3,6 +3,13 @@
 debate-tile {
     $margin-left = 4vw;
 
+    vote {
+        right: 0;
+        background-color: #ececec;
+        top: 0;
+        padding: 1vw;
+    }
+
     .a-extern {
         word-break: break-all;
         font-size: 2vw;
@@ -105,7 +112,7 @@ debate-tile {
         flex-direction: row;
         font-size: 2.2vw;
         padding-left: $margin-left;
-        margin-top:2vw;
+        margin-top: 2vw;
     }
 
     .question-controls {
@@ -124,7 +131,6 @@ debate-tile {
         height: fit-content;
         background: #fff;
         // border-top: 1px solid #d3d3d3;
-        
         margin-right: auto;
         margin-left: auto;
     }
@@ -150,6 +156,7 @@ debate-tile {
     }
 
     content {
+        position: relative;
         display: flex;
         flex-direction: column;
         border-bottom: 1px dotted #727272;
