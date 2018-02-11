@@ -1,19 +1,5 @@
 <div class="scroll-content">
 
-    <title-bar-news>
-        <div class="content-container">
-            <div class="tile-header">&nbsp;</div>
-            <div class="tile-container">
-
-                <span class="text">Doe mee</span>
-                <!-- <div class="vertical-text">Meer nieuws</div> -->
-                <!-- <md-icon ng-click="$ctrl.addArticle()" class="add-article-via-bar">add</md-icon> -->
-            </div>
-        </div>
-    </title-bar-news>
-
-    <debate-tile topic="$ctrl.topic"></debate-tile>
-
     <topic-controls
         topic-id="$ctrl.topic._id"
         on-open-topic="$ctrl.onOpenTopic({$event});"
@@ -107,7 +93,19 @@
         </divider-bar> -->
 
 
-        
+        <title-bar-news>
+            <div class="content-container">
+                <div class="tile-header">&nbsp;</div>
+                <div class="tile-container">
+    
+                    <span class="text">Doe mee</span>
+                    <!-- <div class="vertical-text">Meer nieuws</div> -->
+                    <!-- <md-icon ng-click="$ctrl.addArticle()" class="add-article-via-bar">add</md-icon> -->
+                </div>
+            </div>
+        </title-bar-news>
+    
+        <debate-tile topic="$ctrl.topic"></debate-tile>
        
 
         <!-- <comments-tile topic-id="$ctrl.topic._id"></comments-tile> -->
