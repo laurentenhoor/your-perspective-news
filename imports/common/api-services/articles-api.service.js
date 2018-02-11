@@ -90,6 +90,10 @@ export default class ArticlesApi {
 
         let article = Articles.findOne({ _id: articleId });
 
+        if (!article) {
+            return;
+        }
+
         let newScore = (article.stats.score + voteValue) || 0;
 
         let options = {
