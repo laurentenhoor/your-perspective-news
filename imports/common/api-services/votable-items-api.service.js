@@ -24,7 +24,7 @@ export default class VotableItemsApi {
         } else if (item && item.score) {
             return item.score;
         }
-        return null;
+        return 0;
     }
 
     voteItem(topicId, itemId, voteValue) {
