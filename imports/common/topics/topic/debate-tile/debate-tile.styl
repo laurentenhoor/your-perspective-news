@@ -3,11 +3,85 @@
 debate-tile {
     $margin-left = 4vw;
 
+    .question-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .question-content-container {
+        width: 100%;
+    }
+
+    .question-vote-container {
+        background: #ececec;
+        display: flex;
+    }
+
+    .answer-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .answer-content-container {
+        width: 100%;
+    }
+
     vote {
-        right: 0;
-        background-color: #ececec;
-        top: 0;
-        padding: 1vw;
+        position: relative;
+        padding: 0;
+        top: auto;
+        right: auto;
+        padding:1vw;
+    }
+
+    .answer-vote-container {
+        display: flex;
+
+        vote {
+            margin: auto;
+
+            .arrow-up {
+                border-bottom-color: #eaeaea;
+            }
+
+            .arrow-down {
+                border-top-color: #eaeaea;
+            }
+
+            .arrow-up.upvoted {
+                border-bottom-color: #a9a9a9;
+            }
+
+            .arrow-down.downvoted {
+                border-top-color: #a9a9a9;
+            }
+
+            .vote-score {
+                color: #bdbbbb;
+            }
+        }
+    }
+
+    .question-vote-container {
+        vote {
+            margin-top: 1vw;
+
+            .arrow-up {
+                border-bottom-color: #cacaca;
+            }
+
+            .arrow-down {
+                border-top-color: #cacaca;
+            }
+
+            .arrow-up.upvoted {
+                border-bottom-color: #a9a9a9;
+            }
+
+            .arrow-down.downvoted {
+                border-top-color: #a9a9a9;
+            }
+        }
     }
 
     .a-extern {
@@ -108,12 +182,12 @@ debate-tile {
     }
 
     contact-info {
-        position:relative;
+        position: relative;
         display: flex;
         flex-direction: row;
         font-size: 2.2vw;
         padding-left: $margin-left;
-        margin-top: 2vw;
+        padding-top: 2vw;
     }
 
     .question-controls {

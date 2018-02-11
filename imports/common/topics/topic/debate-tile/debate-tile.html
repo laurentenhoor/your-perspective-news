@@ -1,6 +1,9 @@
-<div class="content-container" id="debate-{{$ctrl.topic._id}}">
+<div
+    class="content-container"
+    id="debate-{{$ctrl.topic._id}}"
+>
 
-    <div class="tile-header">&nbsp;
+    <div class="tile-header"> 
         <hotness-indicator item-id="$ctrl.topic._id"></hotness-indicator>
         <!-- <div class="summary-temperature">Temp: {{ $ctrl.topic.stats.hotness | number: 2}}</div> -->
     </div>
@@ -9,83 +12,102 @@
         class="tile-container"
         ng-style="{'background-image': $ctrl.questions.length === 0 ? '' : 'linear-gradient(to top, rgba(236,233,230,0.36), #fff)' }"
     >
-        
-    <div class="spacing" ng-show="$ctrl.questions.length==0"></div>
+
+        <div
+            class="spacing"
+            ng-show="$ctrl.questions.length==0"
+        ></div>
         <div
             class="first-use-text"
             ng-show="$ctrl.questions.length==0"
         >
             Stel een vraag en zoek een expert!
         </div>
-        
-        <questions ng-show="$ctrl.questions.length>0" ng-style="{'opacity' : showQuestionInput ? '0.2' : '1.0'}">
+
+        <questions
+            ng-show="$ctrl.questions.length>0"
+            ng-style="{'opacity' : showQuestionInput ? '0.2' : '1.0'}"
+        >
             <question
                 ng-repeat="question in $ctrl.questions"
                 ng-init="answers = $ctrl.answers(question._id);
                     question.showAmountOfAnswers = 1"
             >
-            
+
                 <content>
 
-                    <div>
-                        <div
-                            ng-show="$ctrl.userId==question.ownerId"
-                            ng-click="$ctrl.deleteById(question._id)"
-                            class="remove"
-                        >
-                            <md-icon>delete</md-icon>
-                        </div>
-                        <div class="question">{{question.question}}</div>
-
-                        <div class="question-timestamp" ng-show="answers.length==0">
-                            {{ question.createdAt | timeFromNow }} gevraagd door {{ $ctrl.user(question.ownerId) | usernameFilter }}
-                        </div>
-                        <div class="question-votes">
-
-                            <vote topic-id="$ctrl.topic._id" article-id="question._id"></vote>
-
-                        </div>
-                        <div class="question-controls">
-
-                            
+                    <div class="question-container">
+                        <div class="question-content-container">
                             <div
-                                ng-show="showAnswerInput"
-                                style="padding:0 3vw;"
+                                ng-show="$ctrl.userId==question.ownerId"
+                                ng-click="$ctrl.deleteById(question._id)"
+                                class="remove"
                             >
-                                <div class="new-question-title">Antwoord</div>
-                                <md-input-container
-                                    class="md-block"
-                                    md-no-float
-                                    style="margin:0;"
-                                >
-                                    <textarea
-                                        ng-model="question.answer"
-                                        rows="auto"
-                                        md-select-on-focus
-                                        placeholder="Geef jouw antwoord."
-                                    ></textarea>
-
-                                </md-input-container>
+                                <md-icon>delete</md-icon>
                             </div>
-                            <md-button
-                                ng-show="showAnswerInput"
-                                ng-click="$ctrl.saveAnswer(question, question.answer, showAnswerInput);showAnswerInput=!showAnswerInput;question.showAmountOfAnswers=Infinity;"
+                            <div class="question">{{question.question}}</div>
+
+                            <div
+                                class="question-timestamp"
+                                ng-show="answers.length==0"
                             >
-                                Stuur antwoord
-                            </md-button>
-                            <md-button
-                                ng-show="showAnswerInput"
-                                ng-click="showAnswerInput=!showAnswerInput"
-                            >
-                                Annuleren
-                            </md-button>
-                            <md-button
-                                ng-show="!showAnswerInput"
-                                ng-click="showAnswerInput=!showAnswerInput"
-                            >
-                                Beantwoord
-                            </md-button>
-                            <md-button ng-show="!showAnswerInput" ng-click="$ctrl.findExpert()">Expert aandragen</md-button>
+                                {{ question.createdAt | timeFromNow }} gevraagd door {{ $ctrl.user(question.ownerId) | usernameFilter }}
+                            </div>
+
+                            <div class="question-controls">
+
+                                <div
+                                    ng-show="showAnswerInput"
+                                    style="padding:0 3vw;"
+                                >
+                                    <div class="new-question-title">Antwoord</div>
+                                    <md-input-container
+                                        class="md-block"
+                                        md-no-float
+                                        style="margin:0;"
+                                    >
+                                        <textarea
+                                            ng-model="question.answer"
+                                            rows="auto"
+                                            md-select-on-focus
+                                            placeholder="Geef jouw antwoord."
+                                        ></textarea>
+
+                                    </md-input-container>
+                                </div>
+                                <md-button
+                                    ng-show="showAnswerInput"
+                                    ng-click="$ctrl.saveAnswer(question, question.answer, showAnswerInput);showAnswerInput=!showAnswerInput;question.showAmountOfAnswers=Infinity;"
+                                >
+                                    Stuur antwoord
+                                </md-button>
+                                <md-button
+                                    ng-show="showAnswerInput"
+                                    ng-click="showAnswerInput=!showAnswerInput"
+                                >
+                                    Annuleren
+                                </md-button>
+                                <md-button
+                                    ng-show="!showAnswerInput"
+                                    ng-click="showAnswerInput=!showAnswerInput"
+                                >
+                                    Beantwoord
+                                </md-button>
+                                <md-button
+                                    ng-show="!showAnswerInput"
+                                    ng-click="$ctrl.findExpert()"
+                                >
+                                    Expert aandragen
+                                </md-button>
+                            </div>
+                        </div>
+                        <div class="question-vote-container">
+
+                            <vote
+                                topic-id="$ctrl.topic._id"
+                                article-id="question._id"
+                            ></vote>
+
                         </div>
                     </div>
 
@@ -94,51 +116,73 @@
                         ng-init="user = $ctrl.user(answer.ownerId)"
                         class="answer-container"
                     >
-                        <div
+
+                        <div class="answer-content-container">
+                            <!-- <div
                             ng-show="$ctrl.userId==answer.ownerId"
                             ng-click="$ctrl.deleteById(answer._id)"
                             class="remove"
                         >
                             <md-icon>delete</md-icon>
-                        </div>
+                        </div> -->
 
-                        <contact-info>
-                            <div class="avatar">
-                                <img
-                                    ng-src="{{ user |  profileImageFilter }}"
-                                    class="avatar-img"
-                                    alt="{{ user |  usernameFilter }}"
-                                >
+                            <contact-info>
+                                <div class="avatar">
+                                    <img
+                                        ng-src="{{ user |  profileImageFilter }}"
+                                        class="avatar-img"
+                                        alt="{{ user |  usernameFilter }}"
+                                    >
+                                </div>
+
+                                <contact-details>
+                                    <div class="name">{{ user |  usernameFilter }}</div>
+                                    <div class="headline">{{ user |  headlineFilter }}</div>
+                                    <div class="timestamp">
+                                        {{ answer.createdAt | timeFromNow }} beantwoord
+                                    </div>
+                                </contact-details>
+
+                            </contact-info>
+
+                            <div
+                                class="answer"
+                                ng-bind-html="answer.answer |  linky:'_self':{class: 'a-extern'}"
+                                ng-style="{'max-height': (answer.showMore ? null : 9.5) +'vw'}"
+                            ></div>
+                            <div
+                                class="answer-show-more-button"
+                                ng-if="(!answer.showMore && $index < answers.length-1) || (!answer.showMore && answer.answer.length > 100)"
+                                ng-click="answer.showMore=true;question.showAmountOfAnswers=question.showAmountOfAnswers+1;"
+                            >
+                                <md-icon>keyboard_arrow_down</md-icon>
+                                LEES MEER
                             </div>
 
-                            <contact-details>
-                                <div class="name">{{ user |  usernameFilter }}</div>
-                                <div class="headline">{{ user |  headlineFilter }}</div>
-                                <div class="timestamp">
-                                    {{ answer.createdAt | timeFromNow }} beantwoord
-                                </div>
-                            </contact-details>
-                            <vote topic-id="$ctrl.topic._id" article-id="answer._id"></vote>
-                        </contact-info>
+                        </div>
+                        <div class="answer-vote-container">
+                            <vote
+                                topic-id="$ctrl.topic._id"
+                                article-id="answer._id"
+                            ></vote>
 
-                       
-
-                        <div class="answer" ng-bind-html="answer.answer |  linky:'_self':{class: 'a-extern'}" ng-style="{'max-height': (answer.showMore ? null : 9.5) +'vw'}"></div>
-                        <div class="answer-show-more-button" ng-if="(!answer.showMore && $index < answers.length-1) || (!answer.showMore && answer.answer.length > 100)" ng-click="answer.showMore=true;question.showAmountOfAnswers=question.showAmountOfAnswers+1;"><md-icon >keyboard_arrow_down</md-icon>LEES MEER</div>
-
+                        </div>
                     </div>
                 </content>
 
             </question>
         </questions>
-        <div class="new-question" ng-style="{'min-height': $ctrl.questions.length==0 ? '30vw' : '', 'border-top' : $ctrl.questions.length==0 ? '' : '1px solid rgba(0, 0, 0, 0.4)'}">
+        <div
+            class="new-question"
+            ng-style="{'min-height': $ctrl.questions.length==0 ? '30vw' : '', 'border-top' : $ctrl.questions.length==0 ? '' : '1px solid rgba(0, 0, 0, 0.4)'}"
+        >
 
             <div
                 ng-show="showQuestionInput || $ctrl.questions.length==0"
                 style="padding:0 3vw;"
             >
                 <div class="new-question-title">
-                        Open vragen beginnen met 'wie', 'wat', 'wanneer', 'hoe', 'waar' of 'waarom'...
+                    Open vragen beginnen met 'wie', 'wat', 'wanneer', 'hoe', 'waar' of 'waarom'...
                 </div>
                 <md-input-container
                     class="md-block"
@@ -164,9 +208,8 @@
                 Stel een nieuwe open vraag
             </md-button>
             <md-button
-                ng-hide="$ctrl.newQuestion == ''"    
+                ng-hide="$ctrl.newQuestion == ''"
                 ng-show="showQuestionInput"
-                
                 ng-click="$ctrl.saveQuestion();showQuestionInput=false;"
             >
                 Vraag Insturen
