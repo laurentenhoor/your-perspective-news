@@ -30,7 +30,7 @@ export default class VotableItemsApi {
     voteItem(topicId, itemId, voteValue) {
         Comments.update(itemId, { $inc: { score: voteValue } });
         Opinions.update(itemId, { $inc: { score: voteValue } });
-        Questions.update(itemId, { $inc: { score: voteValue } });
+        Questions.update(itemId, { $inc: { 'stats.score' : voteValue } });
         this.$articlesApi.vote(topicId, itemId, voteValue);
     }
 }

@@ -29,11 +29,10 @@
             ng-style="{'opacity' : showQuestionInput ? '0.2' : '1.0'}"
         >
             <question
-                ng-repeat="question in $ctrl.questions"
+                ng-repeat="question in $ctrl.questions | orderBy:'stats.score'"
                 ng-init="answers = $ctrl.answers(question._id);
                     question.showAmountOfAnswers = 1"
             >
-
                 <content>
 
                     <div class="question-container">
@@ -112,7 +111,7 @@
                     </div>
 
                     <div
-                        ng-repeat="answer in answers | limitTo: question.showAmountOfAnswers"
+                        ng-repeat="answer in answers | limitTo: question.showAmountOfAnswers | orderBy:'stats.score'"
                         ng-init="user = $ctrl.user(answer.ownerId)"
                         class="answer-container"
                     >
