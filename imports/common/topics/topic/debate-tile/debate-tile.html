@@ -39,14 +39,6 @@
                         <div class="question-content-container">
 
                             <div class="question">{{question.question}}</div>
-                            <!-- <div
-                                ng-show="$ctrl.userId==question.ownerId"
-                                ng-click="$ctrl.deleteById(question._id)"
-                                class="remove"
-                            >
-                                <md-icon>delete</md-icon>
-                            </div> -->
-
 
                             <div
                                 class="question-timestamp"
@@ -110,7 +102,7 @@
                                     Annuleren
                                 </md-button>
                                 <md-button
-                                    ng-show="question.showEdit"
+                                    ng-show="question.showEdit && ((answers.length==0 && question.editItem.question) || question.editItem.answer)"
                                     ng-click="$ctrl.deleteById(question.editItem._id);question.showEdit=false"
                                 >
                                     <md-icon class="small-icon">delete</md-icon>
@@ -165,10 +157,10 @@
                     >
 
                         <div class="answer-content-container">
-                            <md-button style="float:right;">
+                            <md-button style="float:right;"
+                                ng-hide="showAnswerInput || question.showEdit">
                                 <md-icon
-                                    ng-click="question.editField=answer.answer;question.editItem=answer;question.showEdit=true;"
-                                    ng-hide="showAnswerInput || question.showEdit"
+                                    ng-click="question.editField=answer.answer;question.editItem=answer;question.showEdit=true;"   
                                     class="small-icon"
                                 >
                                     edit

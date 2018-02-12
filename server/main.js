@@ -3,7 +3,7 @@ import { HTTP } from 'meteor/http'
 
 import { Topics } from '/imports/api/topics'
 import { Articles } from '/imports/api/articles'
-// import { Votes } from '/imports/api/votes'
+import { Votes } from '/imports/api/votes'
 import { Comments } from '/imports/api/comments'
 import { Feedback } from '/imports/api/feedback'
 import { Opinions } from '/imports/api/opinions'
