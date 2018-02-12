@@ -122,8 +122,7 @@ export default class ArticleActionsComponent {
 		}
 
 		$ctrl.clearFieldAtFirstFocusOnly = function () {
-
-			if ($ctrl.initialCategory == $ctrl.searchText) {
+			if (_.includes(_.map($ctrl.categories, 'value'), $ctrl.searchText.toLowerCase())) {
 				$ctrl.searchText = '';
 			}
 
