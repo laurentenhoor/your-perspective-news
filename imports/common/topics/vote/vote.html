@@ -1,13 +1,23 @@
-<div class="arrow-up" 
-    ng-click="$ctrl.vote(1)" 
-    ng-class="{true: 'upvoted', false: ''}[$ctrl.myVoteValue==1]">
+<div
+    class="clickable-area"
+    ng-click="$ctrl.vote(1)"
+>
+    <div
+        class="arrow-up"
+        ng-class="{true: 'upvoted', false: ''}[$ctrl.myVoteValue==1]"
+    >
+    </div>
 </div>
 
-<div class="vote-score">
-    {{$ctrl.itemTotalScore || 0}}
-</div>
+<div class="vote-score">{{$ctrl.itemTotalScore || 0}}</div>
 
-<div class="arrow-down"
-    ng-click="$ctrl.vote(-1)" 
-    ng-class="{true: 'downvoted', false: ''}[$ctrl.myVoteValue==-1]">
+<div
+    class="clickable-area"
+    ng-click="$ctrl.vote(-1)"
+>
+    <div
+        class="arrow-down"
+        ng-class="{true: 'downvoted', false: ''}[$ctrl.myVoteValue==-1]"
+    >
+    </div>
 </div>
