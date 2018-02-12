@@ -18,8 +18,14 @@ export default class QuestionsApiService {
         return Questions.find({parentId:topicId}).fetch();
     }
 
-    update(updatedItem) {
-        Questions.update(updatedItem._id, updatedItem, (error)=> {
+    updateItem(updatedItem) {
+        console.log(updatedItem)
+        return Questions.update(updatedItem._id, {
+            $set : {
+                answer: updatedItem.answer,
+                question: updatedItem.question,
+            }
+        }, (error)=> {
             if (error) {
                 console.error(error);
             }

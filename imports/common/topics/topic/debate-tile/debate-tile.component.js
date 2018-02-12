@@ -34,7 +34,7 @@ class DebateTileComponent {
             } else if (editItem.answer) {
                 editItem.answer = editField;
             }
-            $questionsApi.update(editItem)
+            $questionsApi.updateItem(editItem)
         }
 
         $ctrl.deleteById = (questionId) => {
