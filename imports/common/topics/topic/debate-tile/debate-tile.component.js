@@ -10,26 +10,25 @@ class DebateTileComponent {
 
         $ctrl.newQuestion = '';
 
+        $ctrl.topicId = null;
+
         $ctrl.$onChanges = (changes) => {
             if (changes.topic && $ctrl.topic) {
                 console.log('debate tile for topic:', $ctrl.topic);
+                $ctrl.questions = $questionsApi.getAllByTopic($ctrl.topic);
             }
         }
 
         $ctrl.helpers({
-            questions: () => {
-                let topic = $ctrl.getReactively('topic')
-                if (!topic) {
-                    return;
-                }
-                return $questionsApi.getAllByTopic($ctrl.getReactively('topic'));
-            },
             userId: () => {
                 return Meteor.userId()
             }
         })
 
         $ctrl.saveEditedItem = (editItem, editField) => {
+            if (!editField || editField == '') {
+                return;
+            }
             if (editItem.question) {
                 editItem.question = editField;
             } else if (editItem.answer) {
@@ -52,6 +51,7 @@ class DebateTileComponent {
                 if (!error) {
                     $ctrl.newQuestion = '';
                 }
+                $ctrl.questions = $questionsApi.getAllByTopic($ctrl.topic);
             });
         }
 
@@ -65,12 +65,13 @@ class DebateTileComponent {
                 return;
             }
             $questionsApi.saveAnswer(question, answer, (error) => {
+                $ctrl.questions = $questionsApi.getAllByTopic($ctrl.topic);
                 $timeout(() => {
                     if (error) {
                         console.error(error);
                         return;
                     }
-                    $ctrl.questions = $questionsApi.getAllByTopic($ctrl.topic);
+                    
                 })
 
             });
