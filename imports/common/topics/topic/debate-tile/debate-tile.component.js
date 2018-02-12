@@ -29,6 +29,15 @@ class DebateTileComponent {
             }
         })
 
+        $ctrl.saveEditedItem = (editItem, editField) => {
+            if (editItem.question) {
+                editItem.question = editField;
+            } else if (editItem.answer) {
+                editItem.answer = editField;
+            }
+            $questionsApi.update(editItem)
+        }
+
         $ctrl.deleteById = (questionId) => {
             $questionsApi.deleteById(questionId);
             $ctrl.questions = $questionsApi.getAllByTopic($ctrl.topic);
