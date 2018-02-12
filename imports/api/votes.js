@@ -13,7 +13,7 @@ Votes.before.insert(function (userId, doc) {
 
 if(Meteor.isServer) {
     Meteor.publish('votes', function(){
-        return Votes.find({ownerId: Meteor.userId()});
+        return Votes.find({});
     });
 }
 
