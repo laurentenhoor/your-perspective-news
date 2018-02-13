@@ -18,7 +18,7 @@
     'use strict';
 
     var module = angular.module('smoothScroll', []);
-    
+
 	/**
 	 * Smooth scrolls the window/div to the provided element.
 	 *
@@ -27,6 +27,10 @@
 	 */
     var smoothScroll = function (element, options) {
         options = options || {};
+
+        if (typeof element === 'string') {
+            element = document.getElementById(element);
+        };
 
         // Options
         var duration = options.duration || 800,

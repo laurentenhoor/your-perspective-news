@@ -3,7 +3,7 @@ import SummaryTileStyle from './summary-tile.styl';
 
 class SummaryTileComponent {
 
-    constructor($reactive, $scope, $articlesApi, $topicsApi, $opinionsApi, $commentsApi, $questionsApi, $timeout, $autoScroll, $auth, $writeOpinionDialog) {
+    constructor($reactive, $scope, $articlesApi, $topicsApi, $opinionsApi, $commentsApi, $questionsApi, $timeout, $auth, $writeOpinionDialog, smoothScroll) {
         'ngInject';
         var $ctrl = this;
         $reactive($ctrl).attach($scope);
@@ -41,7 +41,6 @@ class SummaryTileComponent {
 
         $ctrl.helpers({
             amountOfQuestions: () => {
-                // let questions = $commentsApi.getAllByTopic($ctrl.getReactively('topic'));
                 let questions = $questionsApi.getAllByTopic($ctrl.getReactively('topic'));
                 if (questions) {
                     return questions.length;
@@ -90,26 +89,27 @@ class SummaryTileComponent {
 
         $ctrl.scrollToOpinion = function (topicId) {
             openTopic();
-            $timeout(() => {
-                $autoScroll.horizontalScroll('opinion-' + topicId, 'scroll-' + topicId);
-            }, 400)
+            smoothScroll(targetId='opinion-' + topicId, {
+                containerId :  'scroll-' + topicId,
+                direction : 'horizontal',
+            });
         }
 
 
         $ctrl.scrollToArticle = function (articleId, topicId, $event) {
             openTopic();
-            $timeout(() => {
-                $autoScroll.horizontalScroll('topic-' + topicId + '-article-' + articleId, 'scroll-' + topicId);
-            }, 400)
-
+            smoothScroll(targetId='topic-' + topicId + '-article-' + articleId, {
+                containerId :  'scroll-' + topicId,
+                direction : 'horizontal',
+            });
         }
 
         $ctrl.scrollToQuestions = function (topicId) {
             openTopic();
-            $timeout(() => {
-                // $autoScroll.horizontalScroll('discuss-' + topicId, 'scroll-' + topicId);
-                $autoScroll.horizontalScroll('debate-' + topicId, 'scroll-' + topicId);
-            }, 400)
+            smoothScroll(targetId='debate-' + topicId, {
+                containerId :  'scroll-' + topicId,
+                direction : 'horizontal',
+            });
         }
 
 

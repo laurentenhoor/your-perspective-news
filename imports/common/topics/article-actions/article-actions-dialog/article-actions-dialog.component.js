@@ -1,6 +1,6 @@
 export default class ArticleActionsComponent {
 
-	constructor($loader, $scope, $timeout, $reactive, $document, $autoScroll, $dialog, $metadata, topicId, article, $articlesApi, $topicsApi) {
+	constructor($loader, $scope, $timeout, $reactive, $document, $dialog, $metadata, topicId, article, $articlesApi, $topicsApi) {
 		'ngInject';
 
 		var $ctrl = this;

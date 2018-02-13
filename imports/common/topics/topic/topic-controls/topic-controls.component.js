@@ -3,7 +3,7 @@ import style from './topic-controls.styl';
 
 class TopicControlsComponent {
 
-    constructor($reactive, $scope, $dialog, $autoScroll, $writeOpinionDialog, $auth, $timeout, $shareDialog) {
+    constructor($reactive, $scope, $dialog, $writeOpinionDialog, $auth, $timeout, $shareDialog) {
         'ngInject';
 
         var $ctrl = this;
@@ -23,7 +23,6 @@ class TopicControlsComponent {
 
         $ctrl.discuss = function (topicId) {
             console.log('clickChat');
-            $autoScroll.horizontalScroll('discuss-' + topicId, 'scroll-' + topicId);
         }
 
         $ctrl.writeOpinion = function ($event) {
