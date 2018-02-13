@@ -40,7 +40,7 @@
             callbackAfter = options.callbackAfter || function () { },
             container = document.getElementById(options.containerId) || null,
             containerPresent = (container != undefined && container != null),
-            direction = options.direction ? options.direction : 'vertical';
+            direction = options.direction || 'vertical';
 
 		/**
 		 * Retrieve current location
@@ -52,7 +52,7 @@
                 } else if (direction == 'horizontal') {
                     return container.scrollLeft;
                 } else {
-                    console.error('Direction is not defined as "horizontal" or "vertical".');
+                    console.error('Invalid direction.');
                 }
             } else {
                 if (direction == 'vertical') {
@@ -68,7 +68,7 @@
                         return document.documentElement.scrollLeft;
                     }
                 } else {
-                    console.error('Direction is not defined as "horizontal" or "vertical".');
+                    console.error('Invalid direction.');
                 }
             }
         };
@@ -109,8 +109,6 @@
                         location += element.offsetTop;
                     } else if (direction == 'horizontal') {
                         location += element.offsetLeft;
-                    } else {
-                        console.error('Invalid direction');
                     }
                     element = element.offsetParent;
                 } while (element);
@@ -143,8 +141,6 @@
                     } else if (direction == 'horizontal') {
                         scrollDepth = container.scrollWidth;
                         internalDepth = container.clientWidth + currentLocation;
-                    } else {
-                        console.error('Invalid direction');
                     }
                 } else {
                     if (direction == 'vertical') {
@@ -153,8 +149,6 @@
                     } else if (direction == 'horizontal') {
                         scrollDepth = document.body.scrollWidth;
                         internalDepth = window.innerWidth + currentLocation;
-                    } else {
-                        console.error('Invalid direction');
                     }
                 }
 
