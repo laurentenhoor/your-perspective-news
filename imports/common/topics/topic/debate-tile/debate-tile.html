@@ -132,7 +132,7 @@
                                     Delen
                                 </md-button>
                                 <md-button
-                                    ng-hide="showAnswerInput || question.showEdit"
+                                    ng-hide="showAnswerInput || question.showEdit || (question.ownerId != $ctrl.userId)"
                                     ng-click="question.editField=question.question;question.editItem=question;question.showEdit=true;"
                                 >
                                     <md-icon class="small-icon">edit</md-icon>
@@ -158,7 +158,7 @@
 
                         <div class="answer-content-container">
                             <md-button style="float:right;"
-                                ng-hide="showAnswerInput || question.showEdit">
+                                ng-hide="showAnswerInput || question.showEdit || (answer.ownerId != $ctrl.userId)">
                                 <md-icon
                                     ng-click="question.editField=answer.answer;question.editItem=answer;question.showEdit=true;"   
                                     class="small-icon"
