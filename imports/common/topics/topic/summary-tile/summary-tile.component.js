@@ -86,30 +86,51 @@ class SummaryTileComponent {
                 $writeOpinionDialog.show($event, $ctrl.topic._id);
             }
         }
+        
+        const waitUntilSummaryHidden = (action) => {
+            let summaryElement = document.getElementById('summary-' + $ctrl.topic._id);
+            if (!(summaryElement.offsetWidth == 0)) {
+                $timeout(() => {
+                    waitUntilSummaryHidden(action)
+                }, 20)
+            } else {
+                action();
+            }
+        }
 
         $ctrl.scrollToOpinion = function (topicId) {
             openTopic();
-            smoothScroll(targetId='opinion-' + topicId, {
-                containerId :  'scroll-' + topicId,
-                direction : 'horizontal',
-            });
+            waitUntilSummaryHidden(() => {
+                smoothScroll(targetId = 'opinion-' + topicId, {
+                    containerId: 'scroll-' + topicId,
+                    direction: 'horizontal',
+                    offset: 60
+                });
+            })
         }
-
 
         $ctrl.scrollToArticle = function (articleId, topicId, $event) {
             openTopic();
-            smoothScroll(targetId='topic-' + topicId + '-article-' + articleId, {
-                containerId :  'scroll-' + topicId,
-                direction : 'horizontal',
-            });
+            waitUntilSummaryHidden(() => {
+                smoothScroll(targetId = 'topic-' + topicId + '-article-' + articleId, {
+                    containerId: 'scroll-' + topicId,
+                    direction: 'horizontal',
+                    offset: 60
+                });
+            })
+
         }
 
         $ctrl.scrollToQuestions = function (topicId) {
             openTopic();
-            smoothScroll(targetId='debate-' + topicId, {
-                containerId :  'scroll-' + topicId,
-                direction : 'horizontal',
-            });
+            waitUntilSummaryHidden(() => {
+                smoothScroll(targetId = 'debate-' + topicId, {
+                    containerId: 'scroll-' + topicId,
+                    direction: 'horizontal',
+                    offset: 60
+                });
+            })
+
         }
 
 
