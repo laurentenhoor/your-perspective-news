@@ -18,6 +18,20 @@ export default class QuestionsApiService {
         return Questions.find({parentId:topicId}).fetch();
     }
 
+    updateItem(updatedItem) {
+        console.log(updatedItem)
+        return Questions.update(updatedItem._id, {
+            $set : {
+                answer: updatedItem.answer,
+                question: updatedItem.question,
+            }
+        }, (error)=> {
+            if (error) {
+                console.error(error);
+            }
+        })
+    }
+
     saveQuestion(topic, questionContent, callback){
         if (!this.$auth.isLoggedIn()) {
             return;
@@ -72,7 +86,7 @@ export default class QuestionsApiService {
     }
 
     getAnswers(questionId) {
-        let answers = Questions.find({parentId: questionId}).fetch();
+        let answers = Questions.find({parentId: questionId}, { sort: { 'stats.score':  -1 } }).fetch();
         return answers;
     }
     
