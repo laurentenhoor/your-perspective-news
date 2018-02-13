@@ -1,6 +1,6 @@
 export default class ArticleActionsComponent {
 
-	constructor($loader, $scope, $timeout, $reactive, $document, $autoScroll, $dialog, $metadata, topicId, article, $articlesApi, $topicsApi) {
+	constructor($loader, $scope, $timeout, $reactive, $document, $dialog, $metadata, topicId, article, $articlesApi, $topicsApi) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -122,8 +122,7 @@ export default class ArticleActionsComponent {
 		}
 
 		$ctrl.clearFieldAtFirstFocusOnly = function () {
-
-			if ($ctrl.initialCategory == $ctrl.searchText) {
+			if (_.includes(_.map($ctrl.categories, 'value'), $ctrl.searchText.toLowerCase())) {
 				$ctrl.searchText = '';
 			}
 

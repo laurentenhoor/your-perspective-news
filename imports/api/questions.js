@@ -14,7 +14,8 @@ Questions.before.insert(function (userId, doc) {
 
 		doc.stats = {
 			createdAt: currentDate,
-			hotness: hotness(0, currentDate)
+			hotness: hotness(0, currentDate),
+			score : 0,
 		};
 
 	}

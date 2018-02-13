@@ -3,7 +3,7 @@ import SummaryTileStyle from './summary-tile.styl';
 
 class SummaryTileComponent {
 
-    constructor($reactive, $scope, $articlesApi, $topicsApi, $opinionsApi, $commentsApi, $questionsApi, $timeout, $autoScroll, $auth, $writeOpinionDialog) {
+    constructor($reactive, $scope, $articlesApi, $topicsApi, $opinionsApi, $commentsApi, $questionsApi, $timeout, $auth, $writeOpinionDialog, smoothScroll) {
         'ngInject';
         var $ctrl = this;
         $reactive($ctrl).attach($scope);
@@ -41,7 +41,6 @@ class SummaryTileComponent {
 
         $ctrl.helpers({
             amountOfQuestions: () => {
-                // let questions = $commentsApi.getAllByTopic($ctrl.getReactively('topic'));
                 let questions = $questionsApi.getAllByTopic($ctrl.getReactively('topic'));
                 if (questions) {
                     return questions.length;
@@ -87,29 +86,51 @@ class SummaryTileComponent {
                 $writeOpinionDialog.show($event, $ctrl.topic._id);
             }
         }
+        
+        const waitUntilSummaryHidden = (action) => {
+            let summaryElement = document.getElementById('summary-' + $ctrl.topic._id);
+            if (!(summaryElement.offsetWidth == 0)) {
+                $timeout(() => {
+                    waitUntilSummaryHidden(action)
+                }, 20)
+            } else {
+                action();
+            }
+        }
 
         $ctrl.scrollToOpinion = function (topicId) {
             openTopic();
-            $timeout(() => {
-                $autoScroll.horizontalScroll('opinion-' + topicId, 'scroll-' + topicId);
-            }, 400)
+            waitUntilSummaryHidden(() => {
+                smoothScroll(targetId = 'opinion-' + topicId, {
+                    containerId: 'scroll-' + topicId,
+                    direction: 'horizontal',
+                    offset: 60
+                });
+            })
         }
-
 
         $ctrl.scrollToArticle = function (articleId, topicId, $event) {
             openTopic();
-            $timeout(() => {
-                $autoScroll.horizontalScroll('topic-' + topicId + '-article-' + articleId, 'scroll-' + topicId);
-            }, 400)
+            waitUntilSummaryHidden(() => {
+                smoothScroll(targetId = 'topic-' + topicId + '-article-' + articleId, {
+                    containerId: 'scroll-' + topicId,
+                    direction: 'horizontal',
+                    offset: 60
+                });
+            })
 
         }
 
         $ctrl.scrollToQuestions = function (topicId) {
             openTopic();
-            $timeout(() => {
-                // $autoScroll.horizontalScroll('discuss-' + topicId, 'scroll-' + topicId);
-                $autoScroll.horizontalScroll('debate-' + topicId, 'scroll-' + topicId);
-            }, 400)
+            waitUntilSummaryHidden(() => {
+                smoothScroll(targetId = 'debate-' + topicId, {
+                    containerId: 'scroll-' + topicId,
+                    direction: 'horizontal',
+                    offset: 60
+                });
+            })
+
         }
 
 

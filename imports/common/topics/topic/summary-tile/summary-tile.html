@@ -1,4 +1,4 @@
-<div class="content-container" ng-show="!$ctrl.thisTopicIsOpen()">
+<div class="content-container" id="summary-{{$ctrl.topic._id}}" ng-show="!$ctrl.thisTopicIsOpen()">
 
     <div class="tile-header">&nbsp;
         <hotness-indicator item-id="$ctrl.topic._id"></hotness-indicator>

@@ -9,6 +9,8 @@ import CommentsTile from './comments-tile/comments-tile.module';
 import OpinionTile from './opinion-tile/opinion-tile.module';
 import DebateTile from './debate-tile/debate-tile.module';
 
+import SmoothScroll from '/imports/directives/smooth-scroll';
+
 import ShareDialog from './share-dialog/share-dialog.module'
 
 export default angular
@@ -20,6 +22,7 @@ export default angular
         CommentsTile,
         OpinionTile,
         DebateTile,
+        'smoothScroll'
     ])
     .component('topic', TopicComponent)
     .name;

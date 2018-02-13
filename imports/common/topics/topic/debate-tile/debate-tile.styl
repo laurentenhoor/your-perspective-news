@@ -3,6 +3,89 @@
 debate-tile {
     $margin-left = 4vw;
 
+    .question-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .question-content-container {
+        width: 100%;
+    }
+
+    .question-vote-container {
+        background: #ececec;
+        display: flex;
+    }
+
+    .answer-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .answer-content-container {
+        width: 100%;
+    }
+
+    vote {
+        position: relative;
+        padding: 0;
+        top: auto;
+        right: auto;
+        padding:1vw;
+    }
+
+    .answer-vote-container {
+        display: flex;
+
+        vote {
+
+            .arrow-up {
+                border-bottom-color: #eaeaea;
+            }
+
+            .arrow-down {
+                border-top-color: #eaeaea;
+            }
+
+            .arrow-up.upvoted {
+                border-bottom-color: #a9a9a9;
+            }
+
+            .arrow-down.downvoted {
+                border-top-color: #a9a9a9;
+            }
+
+            .vote-score {
+                color: #d4d4d4;
+            }
+        }
+    }
+
+    .question-vote-container {
+        vote {
+
+            .arrow-up {
+                border-bottom-color: #d2d2d2;
+            }
+
+            .arrow-down {
+                border-top-color: #d2d2d2;
+            }
+
+            .arrow-up.upvoted {
+                border-bottom-color: #a9a9a9;
+            }
+
+            .arrow-down.downvoted {
+                border-top-color: #a9a9a9;
+            }
+
+            .vote-score {
+                color: #d4d4d4;
+            }
+        }
+    }
+
     .a-extern {
         word-break: break-all;
         font-size: 2vw;
@@ -11,7 +94,7 @@ debate-tile {
     }
 
     .md-button {
-        font-size: 2.4vw !important;
+        font-size: 2.2vw !important;
         margin: 1vw 8px;
         min-height: 30px;
         line-height: 20px;
@@ -38,8 +121,10 @@ debate-tile {
 
     .remove {
         float: right;
-        margin-right: $margin-left;
-        margin-top: 4vw;
+
+        padding: 4vw;
+        padding-right: 2vw;
+        padding-top: 2vw;
 
         .material-icons {
             font-size: 4vw !important;
@@ -101,11 +186,12 @@ debate-tile {
     }
 
     contact-info {
+        position: relative;
         display: flex;
         flex-direction: row;
         font-size: 2.2vw;
         padding-left: $margin-left;
-        margin-top:2vw;
+        padding-top: 2vw;
     }
 
     .question-controls {
@@ -124,7 +210,6 @@ debate-tile {
         height: fit-content;
         background: #fff;
         // border-top: 1px solid #d3d3d3;
-        
         margin-right: auto;
         margin-left: auto;
     }
@@ -150,6 +235,7 @@ debate-tile {
     }
 
     content {
+        position: relative;
         display: flex;
         flex-direction: column;
         border-bottom: 1px dotted #727272;

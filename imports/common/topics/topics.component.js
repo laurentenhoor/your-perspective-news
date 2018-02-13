@@ -5,7 +5,7 @@ import { Random } from 'meteor/random'
 
 class TopicsComponent {
 
-	constructor($scope, $reactive, $loader, $state, $articlesApi, $topicsApi, $timeout, $autoScroll) {
+	constructor($scope, $reactive, $loader, $state, $articlesApi, $topicsApi, $timeout, smoothScroll) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -95,7 +95,9 @@ class TopicsComponent {
 			$ctrl.topicsOffset = $ctrl.topicsOffset + 5;
 			$ctrl.amountOfTopics = $ctrl.amountOfTopics + 5;
 			checkState();
-			$autoScroll.scrollToTop();
+
+			var scrollElement = document.getElementById('yourpers');
+			$timeout(()=>scrollElement.scrollTop = 0);
 
 			ga('send', {
 				hitType: 'event',

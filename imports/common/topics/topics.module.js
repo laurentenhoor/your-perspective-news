@@ -9,7 +9,6 @@ import HotnessIndicator from './hotness-indicator/hotness-indicator.module';
 import Topic from './topic/topic.module';
 import TopicsComponent from './topics.component';
 
-import AutoScrollService from './auto-scroll.service';
 import TimeFilters from './time.filter'
 
 export default angular.module('topics', [
@@ -22,7 +21,6 @@ export default angular.module('topics', [
 	Topic,
 ])
 	.component('topics', TopicsComponent)
-	.service('$autoScroll', AutoScrollService)
 	.filter('timeFromNow', TimeFilters.timeFromNow)
 	.filter('today', TimeFilters.today)
 	.config(($stateProvider) => {
