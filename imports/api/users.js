@@ -31,6 +31,21 @@ if (Meteor.isServer) {
 
     })
 
+    Accounts.onLogin((data) => {
+        if (data && data.user && data.user.services && data.user.services.linkedin) {
+            latestProfile = data.user.services.linkedin;
+            Meteor.users.update(data.user._id, {
+                $set : {
+                    'profile.headline' : latestProfile.headline,
+                    'profile.pictureUrl' : latestProfile.pictureUrl,
+                    'profile.firstName' : latestProfile.firstName,
+                    'profile.lastName' : latestProfile.lastName,
+                }
+            })
+        }
+
+    })
+
     Meteor.publish('allUsernames', function () {
         return Meteor.users.find({}, {
             fields: {
