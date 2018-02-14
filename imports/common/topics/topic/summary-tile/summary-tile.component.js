@@ -92,7 +92,7 @@ class SummaryTileComponent {
             if (!(summaryElement.offsetWidth == 0)) {
                 $timeout(() => {
                     waitUntilSummaryHidden(action)
-                }, 20)
+                }, 50)
             } else {
                 action();
             }
@@ -104,7 +104,8 @@ class SummaryTileComponent {
                 smoothScroll(targetId = 'opinion-' + topicId, {
                     containerId: 'scroll-' + topicId,
                     direction: 'horizontal',
-                    offset: 53
+                    offset: 53,
+                    easing: 'easeOutQuart'
                 });
             })
         }
@@ -115,7 +116,8 @@ class SummaryTileComponent {
                 smoothScroll(targetId = 'topic-' + topicId + '-article-' + articleId, {
                     containerId: 'scroll-' + topicId,
                     direction: 'horizontal',
-                    offset: 53
+                    offset: 53,
+                    easing: 'easeOutQuart'
                 });
             })
 
@@ -127,7 +129,8 @@ class SummaryTileComponent {
                 smoothScroll(targetId = 'debate-' + topicId, {
                     containerId: 'scroll-' + topicId,
                     direction: 'horizontal',
-                    offset: 53
+                    offset: 53,
+                    easing: 'easeOutQuart'
                 });
             })
 
