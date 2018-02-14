@@ -14,8 +14,17 @@ class DebateTileComponent {
 
         $ctrl.$onChanges = (changes) => {
             if (changes.topic && $ctrl.topic) {
-                console.log('debate tile for topic:', $ctrl.topic);
-                $ctrl.questions = $questionsApi.getAllByTopic($ctrl.topic);
+                
+                let questions = $questionsApi.getAllByTopic($ctrl.topic);
+
+                _.each(questions, (question, i) => {
+                    let answers = $ctrl.answers(question._id);
+                    questions[i].answers = answers;
+                    questions[i].calculatedScoreSum = _.sum(_.map(answers, 'stats.score'));
+                });
+                
+                $ctrl.questions = questions;
+
             }
         }
 
