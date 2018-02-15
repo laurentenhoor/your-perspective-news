@@ -67,8 +67,10 @@ class DebateTileComponent {
                 if (error) {
                     console.error(error);
                 }
-                initQuestions();
-                $ctrl.newQuestion = '';
+                $scope.$apply(() => {
+                    initQuestions();
+                    $ctrl.newQuestion = '';
+                })
             });
         }
 
@@ -82,17 +84,16 @@ class DebateTileComponent {
                 return;
             }
             $questionsApi.saveAnswer(question, answer, (error) => {
-                $timeout(() => {
-                    if (error) {
-                        console.error(error);
-                        return;
-                    }
+                if (error) {
+                    console.error(error);
+                    return;
+                }
+                $scope.$apply(() => {
                     addAnswersToQuestion(question);
                     question.editField = '';
                     question.answer = '';
                     question.showAllAnswers = true;
-                })
-
+                });
             });
         }
 
