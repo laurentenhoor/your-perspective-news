@@ -11,14 +11,14 @@ class DebateTileComponent {
         $ctrl.newQuestion = '';
 
         $ctrl.topicId = null;
-        
+
         const initQuestions = () => {
             let questions = $questionsApi.getAllByTopic($ctrl.topic);
 
             _.each(questions, (question, i) => {
                 addAnswersToQuestion(questions[i])
             });
-            
+
             $ctrl.questions = questions;
             console.log('initQuestions', $ctrl.questions)
         }
@@ -31,7 +31,7 @@ class DebateTileComponent {
 
         $ctrl.$onChanges = (changes) => {
             if (changes.topic && $ctrl.topic) {
-               initQuestions();
+                initQuestions();
             }
         }
 
@@ -64,10 +64,11 @@ class DebateTileComponent {
                 return;
             }
             $questionsApi.saveQuestion($ctrl.topic, $ctrl.newQuestion, (error) => {
-                if (!error) {
-                    initQuestions();
-                    $ctrl.newQuestion = '';
+                if (error) {
+                    console.error(error);
                 }
+                initQuestions();
+                $ctrl.newQuestion = '';
             });
         }
 
@@ -81,14 +82,15 @@ class DebateTileComponent {
                 return;
             }
             $questionsApi.saveAnswer(question, answer, (error) => {
-                addAnswersToQuestion(question);
-                question.showAllAnswers = true;
                 $timeout(() => {
                     if (error) {
                         console.error(error);
                         return;
                     }
-                    
+                    addAnswersToQuestion(question);
+                    question.editField = '';
+                    question.answer = '';
+                    question.showAllAnswers = true;
                 })
 
             });
