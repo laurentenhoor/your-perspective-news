@@ -11,20 +11,27 @@ class DebateTileComponent {
         $ctrl.newQuestion = '';
 
         $ctrl.topicId = null;
+        
+        const initQuestions = () => {
+            let questions = $questionsApi.getAllByTopic($ctrl.topic);
+
+            _.each(questions, (question, i) => {
+                addAnswersToQuestion(questions[i])
+            });
+            
+            $ctrl.questions = questions;
+            console.log('initQuestions', $ctrl.questions)
+        }
+
+        const addAnswersToQuestion = (question) => {
+            let answers = $ctrl.answers(question._id);
+            question.answers = answers;
+            question.calculatedScoreSum = _.sum(_.map(answers, 'stats.score'));
+        }
 
         $ctrl.$onChanges = (changes) => {
             if (changes.topic && $ctrl.topic) {
-                
-                let questions = $questionsApi.getAllByTopic($ctrl.topic);
-
-                _.each(questions, (question, i) => {
-                    let answers = $ctrl.answers(question._id);
-                    questions[i].answers = answers;
-                    questions[i].calculatedScoreSum = _.sum(_.map(answers, 'stats.score'));
-                });
-                
-                $ctrl.questions = questions;
-
+               initQuestions();
             }
         }
 
@@ -60,7 +67,7 @@ class DebateTileComponent {
                 if (!error) {
                     $ctrl.newQuestion = '';
                 }
-                $ctrl.questions = $questionsApi.getAllByTopic($ctrl.topic);
+                initQuestions();
             });
         }
 
@@ -74,7 +81,8 @@ class DebateTileComponent {
                 return;
             }
             $questionsApi.saveAnswer(question, answer, (error) => {
-                $ctrl.questions = $questionsApi.getAllByTopic($ctrl.topic);
+                addAnswersToQuestion(question);
+                question.showAllAnswers = true;
                 $timeout(() => {
                     if (error) {
                         console.error(error);

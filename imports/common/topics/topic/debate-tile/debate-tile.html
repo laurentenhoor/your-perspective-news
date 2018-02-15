@@ -41,7 +41,7 @@
                         </div>
                     </div>
 
-                    <div ng-repeat="answer in question.answers | limitTo: question.showAmountOfAnswers" ng-init="user = $ctrl.user(answer.ownerId)" class="answer-container">
+                    <div ng-repeat="answer in question.answers | limitTo: (question.showAllAnswers ? '' : question.showAmountOfAnswers)" ng-init="user = $ctrl.user(answer.ownerId)" class="answer-container">
 
                         <div class="answer-content-container">
 
@@ -69,7 +69,7 @@
                             </contact-info>
 
                             <div class="answer" ng-bind-html="answer.answer |  linky:'_self':{class: 'a-extern'}" ng-style="{'max-height': (answer.showMore ? null : 9.5) +'vw'}"></div>
-                            <div class="answer-show-more-button" ng-if="(!answer.showMore && $index < question.answers.length-1) || (!answer.showMore && answer.answer.length > 100)"
+                            <div class="answer-show-more-button" ng-if="(question.showAllAnswers!=true) && (!answer.showMore && $index < question.answers.length-1) || (!answer.showMore && answer.answer.length > 100)"
                                 ng-click="answer.showMore=true;question.showAmountOfAnswers=question.showAmountOfAnswers+1;">
                                 <md-icon>keyboard_arrow_down</md-icon>
                                 LEES MEER
