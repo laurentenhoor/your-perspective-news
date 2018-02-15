@@ -41,7 +41,7 @@
                         </div>
                     </div>
 
-                    <div ng-repeat="answer in question.answers | limitTo: (question.showAllAnswers ? '' : question.showAmountOfAnswers)" ng-init="user = $ctrl.user(answer.ownerId)" class="answer-container">
+                    <div ng-repeat="answer in question.answers | limitTo: (question.showAllAnswers ? Infinity : question.showAmountOfAnswers)" ng-init="user = $ctrl.user(answer.ownerId)" class="answer-container">
 
                         <div class="answer-content-container">
 

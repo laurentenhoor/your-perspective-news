@@ -55,7 +55,7 @@ class DebateTileComponent {
 
         $ctrl.deleteById = (questionId) => {
             $questionsApi.deleteById(questionId);
-            $ctrl.questions = $questionsApi.getAllByTopic($ctrl.topic);
+            initQuestions();
         }
 
         $ctrl.saveQuestion = () => {
@@ -65,9 +65,9 @@ class DebateTileComponent {
             }
             $questionsApi.saveQuestion($ctrl.topic, $ctrl.newQuestion, (error) => {
                 if (!error) {
+                    initQuestions();
                     $ctrl.newQuestion = '';
                 }
-                initQuestions();
             });
         }
 
