@@ -67,7 +67,7 @@ class DebateTileComponent {
                 if (error) {
                     console.error(error);
                 }
-                $scope.$apply(() => {
+                $timeout(() => {
                     initQuestions();
                     $ctrl.newQuestion = '';
                 })
@@ -88,7 +88,7 @@ class DebateTileComponent {
                     console.error(error);
                     return;
                 }
-                $scope.$apply(() => {
+                $timeout(() => {
                     addAnswersToQuestion(question);
                     question.editField = '';
                     question.answer = '';
