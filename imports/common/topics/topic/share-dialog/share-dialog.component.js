@@ -40,8 +40,7 @@ export default class ShareDialogComponent {
             Socialshare.share({
                 'provider': 'linkedin',
                 'attrs': {
-                    'socialshareUrl': $ctrl.getShareUrl(),
-                    'socialshareText': $ctrl.getShareText()
+                    'socialshareUrl': $ctrl.getShareUrl()
                 }
             });
         }
@@ -58,8 +57,7 @@ export default class ShareDialogComponent {
                 'attrs': {
                     'socialshareUrl': $ctrl.getShareUrl(),
                     'socialshareText': $ctrl.getShareText(),
-                    'socialshareVia' : 'Jouwpers',
-                    'socialshareHashtags' : '#jouwpers'
+                    'socialshareVia' : 'Jouwpers'
                 }
             });
         }
