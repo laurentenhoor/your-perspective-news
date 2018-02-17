@@ -5,7 +5,7 @@ import { Random } from 'meteor/random'
 
 class TopicsComponent {
 
-	constructor($scope, $reactive, $loader, $state, $articlesApi, $topicsApi, $timeout, smoothScroll) {
+	constructor($scope, $reactive, $loader, $state, $articlesApi, $topicsApi, $questionsApi, $timeout, smoothScroll) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -18,8 +18,7 @@ class TopicsComponent {
 		let temporaryHighestHotness = 9999;
 
 		$ctrl.$onChanges = (changes) => {
-			if (changes.singleTopicId) {
-				$ctrl.singleTopicId = angular.copy($ctrl.singleTopicId);
+			if (changes.singleTopicId && $ctrl.singleTopicId) {
 				if ($state.current.name == 'singleTopic') {
 					ga('send', {
 						hitType: 'event',
@@ -29,13 +28,26 @@ class TopicsComponent {
 					})
 				}
 			}
+			if (changes.questionId && changes.topicId) {
+				let question = $questionsApi.getById($ctrl.questionId);
+				$ctrl.singleTopicId = $ctrl.topicId;
+
+				if ($state.current.name == 'question') {
+					ga('send', {
+						hitType: 'event',
+						eventCategory: 'Share',
+						eventAction: 'Question',
+						eventLabel: '/question/' + $ctrl.questionId
+					})
+				}
+			}
 		}
 
 		$topicsApi.setCallbacks({
 			createdTopic: (topicId) => {
 				console.log('createdCallback', topicId)
 				let newTopic = $topicsApi.getById(topicId);
-				newTopic.stats.hotness = temporaryHighestHotness++;		
+				newTopic.stats.hotness = temporaryHighestHotness++;
 				let newTopics = [].concat($ctrl.topics)
 				newTopics.push(newTopic);
 				subscribeToArticles(newTopics);
@@ -61,7 +73,7 @@ class TopicsComponent {
 		let subscribeToArticles = (topics) => {
 
 			console.log('subscribeToArticles');
-			
+
 			Meteor.subscribe('articles', topics, {
 				onReady: () => afterSubscription({ success: true }),
 				onError: () => afterSubscription({ success: false })
@@ -97,7 +109,7 @@ class TopicsComponent {
 			checkState();
 
 			var scrollElement = document.getElementById('yourpers');
-			$timeout(()=>scrollElement.scrollTop = 0);
+			$timeout(() => scrollElement.scrollTop = 0);
 
 			ga('send', {
 				hitType: 'event',
@@ -120,6 +132,8 @@ export default {
 	controller: TopicsComponent,
 	templateUrl: TopicsTemplate,
 	bindings: {
-		singleTopicId: '<'
+		singleTopicId: '<',
+		questionId: '<',
+		topicId: '<'
 	}
 }

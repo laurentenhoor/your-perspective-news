@@ -3,7 +3,7 @@ import SummaryTileStyle from './summary-tile.styl';
 
 class SummaryTileComponent {
 
-    constructor($reactive, $scope, $articlesApi, $topicsApi, $opinionsApi, $commentsApi, $questionsApi, $timeout, $auth, $writeOpinionDialog, smoothScroll) {
+    constructor($reactive, $scope, $state, $articlesApi, $topicsApi, $opinionsApi, $commentsApi, $questionsApi, $timeout, $auth, $writeOpinionDialog, smoothScroll) {
         'ngInject';
         var $ctrl = this;
         $reactive($ctrl).attach($scope);
@@ -16,6 +16,12 @@ class SummaryTileComponent {
                 $ctrl.topic = angular.copy($ctrl.topic)
                 divideArticles();
             }
+        }
+
+        if ($state.current.name == 'question') {
+            $timeout(()=>{
+                $ctrl.scrollToQuestions($ctrl.topic._id)
+            },500)
         }
 
         $topicsApi.setCallbacks({

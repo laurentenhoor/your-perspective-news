@@ -7,6 +7,10 @@ export default class QuestionsApiService {
         this.$auth = $auth;
     }
 
+    getById(questionId) {
+        return Questions.findOne({_id: questionId});
+    }
+
     getAllByTopic(topic) {
         if (topic) {
             return this.getAllByTopicId(topic._id);

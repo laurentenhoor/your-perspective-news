@@ -17,7 +17,7 @@ export default angular.module('topics', [
 	ArticleActions,
 	Vote,
 	HotnessIndicator,
-	
+
 	Topic,
 ])
 	.component('topics', TopicsComponent)
@@ -36,10 +36,21 @@ export default angular.module('topics', [
 				component: 'topics',
 				resolve: {
 					singleTopicId: ($transition$) => {
-					  return $transition$.params().singleTopicId
-				  }
+						return $transition$.params().singleTopicId
+					}
+				}
+			})
+			.state('question', {
+				url: "/vraag/:questionId/:topicId",
+				component: 'topics',
+				resolve: {
+					questionId: ($transition$) => {
+						return $transition$.params().questionId
+					},
+					topicId: ($transition$) => {
+						return $transition$.params().topicId
+					}
 				}
 			});
-
 	})
 	.name;

@@ -11,14 +11,17 @@ export default class ShareDialogService {
 
     }
 
-    show($event, topicId) {
+    show($event, topicId, questionId) {
+
+        console.log('show with questionId', questionId)
         
         let dialogOptions = {
             controller: ShareDialogComponent,
             templateUrl: ShareDialogTemplate,
             targetEvent: $event,
             locals: {
-                topicId: topicId
+                topicId: topicId,
+                questionId: questionId
             }
         }
 

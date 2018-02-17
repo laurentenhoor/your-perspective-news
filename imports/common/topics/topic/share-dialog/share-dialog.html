@@ -2,7 +2,7 @@
     <form ng-cloak>
         
         <md-toolbar>
-            <md-toolbar-header>Deel dit topic!</md-toolbar-header>
+            <md-toolbar-header>{{ $ctrl.questionId ? 'Deel deze vraag!' : 'Deel dit topic!'}}</md-toolbar-header>
         </md-toolbar>
 
         <md-dialog-content ng-style="{'max-height' : $ctrl.loaded ? '250px' : '0px'}">

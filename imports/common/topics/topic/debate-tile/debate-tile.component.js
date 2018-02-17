@@ -97,8 +97,8 @@ class DebateTileComponent {
             });
         }
 
-        $ctrl.findExpert = ($event) => {
-            $shareDialog.show($event, $ctrl.topic._id);
+        $ctrl.findExpert = ($event, questionId) => {
+            $shareDialog.show($event, $ctrl.topic._id, questionId);
         }
 
         $ctrl.answers = (questionId) => {

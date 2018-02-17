@@ -2,32 +2,38 @@ import { Meteor } from 'meteor/meteor';
 
 export default class ShareDialogComponent {
 
-    constructor(Socialshare, $shareDialog, topicId, $timeout) {
+    constructor(Socialshare, $shareDialog, topicId, questionId, $timeout) {
         'ngInject';
 
         $ctrl = this;
+        $ctrl.questionId = questionId;
 
-        $timeout(()=>$ctrl.loaded=true, 300);
-    
+        $timeout(() => $ctrl.loaded = true, 300);
 
         $ctrl.hide = () => {
             $shareDialog.hide();
         }
-        
+
         $ctrl.getShareUrl = () => {
+            if (questionId) {
+                return Meteor.absoluteUrl() + 'vraag/' + questionId + '/' + topicId;
+            }
             return Meteor.absoluteUrl() + 'topic/' + topicId;
         }
 
         $ctrl.getShareText = () => {
+            if (questionId) {
+                return 'Kun jij ons helpen bij deze vraag?'
+            }
             return 'Zoek mee naar het volledige verhaal achter dit nieuws op jouwpers.';
         }
-                
+
         $ctrl.shareLinkedIn = () => {
             ga('send', {
                 hitType: 'event',
                 eventCategory: 'Share',
-                eventAction : 'LinkedIn',
-                eventLabel : '/topic/'+topicId
+                eventAction: 'LinkedIn',
+                eventLabel: (questionId ? '/question/' + questionId : '/topic/' + topicId)
             })
             Socialshare.share({
                 'provider': 'linkedin',
@@ -41,14 +47,14 @@ export default class ShareDialogComponent {
             ga('send', {
                 hitType: 'event',
                 eventCategory: 'Share',
-                eventAction : 'Twitter',
-                eventLabel : '/topic/'+topicId
+                eventAction: 'Twitter',
+                eventLabel: (questionId ? '/question/' + questionId : '/topic/' + topicId)
             })
             Socialshare.share({
                 'provider': 'twitter',
                 'attrs': {
                     'socialshareUrl': $ctrl.getShareUrl(),
-                    'socialShareText' : $ctrl.getShareText()
+                    'socialShareText': $ctrl.getShareText()
                 }
             });
         }
@@ -57,8 +63,8 @@ export default class ShareDialogComponent {
             ga('send', {
                 hitType: 'event',
                 eventCategory: 'Share',
-                eventAction : 'Facebook',
-                eventLabel : '/topic/'+topicId
+                eventAction: 'Facebook',
+                eventLabel: (questionId ? '/question/' + questionId : '/topic/' + topicId)
             })
             Socialshare.share({
                 'provider': 'facebook',
@@ -72,8 +78,8 @@ export default class ShareDialogComponent {
             ga('send', {
                 hitType: 'event',
                 eventCategory: 'Share',
-                eventAction : 'Copy-Paste',
-                eventLabel : '/topic/'+topicId
+                eventAction: 'Copy-Paste',
+                eventLabel: (questionId ? '/question/' + questionId : '/topic/' + topicId)
             })
         }
 
@@ -81,10 +87,10 @@ export default class ShareDialogComponent {
             ga('send', {
                 hitType: 'event',
                 eventCategory: 'Share',
-                eventAction : 'Whatsapp',
-                eventLabel : '/topic/'+topicId
+                eventAction: 'Whatsapp',
+                eventLabel: (questionId ? '/question/' + questionId : '/topic/' + topicId)
             })
         }
-        
+
     }
 }

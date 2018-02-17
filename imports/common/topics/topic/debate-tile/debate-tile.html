@@ -119,7 +119,7 @@
                         <md-button ng-show="!showAnswerInput&&!question.showEdit" ng-click="showAnswerInput=!showAnswerInput">
                             Beantwoord
                         </md-button>
-                        <md-button ng-show="!showAnswerInput&&!question.showEdit" ng-click="$ctrl.findExpert($event)">
+                        <md-button ng-show="!showAnswerInput&&!question.showEdit" ng-click="$ctrl.findExpert($event, question._id)">
                             Delen
                         </md-button>
 
