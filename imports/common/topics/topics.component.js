@@ -22,7 +22,7 @@ class TopicsComponent {
 				if ($state.current.name == 'singleTopic') {
 					ga('send', {
 						hitType: 'event',
-						eventCategory: 'Share',
+						eventCategory: 'Share Topic',
 						eventAction: 'Conversion',
 						eventLabel: '/topic/' + $ctrl.singleTopicId
 					})
@@ -35,8 +35,8 @@ class TopicsComponent {
 				if ($state.current.name == 'question') {
 					ga('send', {
 						hitType: 'event',
-						eventCategory: 'Share',
-						eventAction: 'Question',
+						eventCategory: 'Share Question',
+						eventAction: 'Conversion',
 						eventLabel: '/question/' + $ctrl.questionId
 					})
 				}

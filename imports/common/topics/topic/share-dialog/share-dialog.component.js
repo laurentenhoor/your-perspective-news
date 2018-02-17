@@ -33,7 +33,7 @@ export default class ShareDialogComponent {
         $ctrl.shareLinkedIn = () => {
             ga('send', {
                 hitType: 'event',
-                eventCategory: 'Share',
+                eventCategory: ($ctrl.questionId ? 'Share Question' : 'Share Topic'),
                 eventAction: 'LinkedIn',
                 eventLabel: ($ctrl.questionId ? '/question/' + $ctrl.questionId : '/topic/' + $ctrl.topicId)
             })
@@ -48,7 +48,7 @@ export default class ShareDialogComponent {
         $ctrl.shareTwitter = () => {
             ga('send', {
                 hitType: 'event',
-                eventCategory: 'Share',
+                eventCategory: ($ctrl.questionId ? 'Share Question' : 'Share Topic'),
                 eventAction: 'Twitter',
                 eventLabel: ($ctrl.questionId ? '/question/' + $ctrl.questionId : '/topic/' + $ctrl.topicId)
             })
@@ -65,7 +65,7 @@ export default class ShareDialogComponent {
         $ctrl.shareFacebook = () => {
             ga('send', {
                 hitType: 'event',
-                eventCategory: 'Share',
+                eventCategory: ($ctrl.questionId ? 'Share Question' : 'Share Topic'),
                 eventAction: 'Facebook',
                 eventLabel: ($ctrl.questionId ? '/question/' + $ctrl.questionId : '/topic/' + $ctrl.topicId)
             })
@@ -83,7 +83,7 @@ export default class ShareDialogComponent {
         $ctrl.shareCopyPaste = () => {
             ga('send', {
                 hitType: 'event',
-                eventCategory: 'Share',
+                eventCategory: ($ctrl.questionId ? 'Share Question' : 'Share Topic'),
                 eventAction: 'Copy-Paste',
                 eventLabel: ($ctrl.questionId ? '/question/' + $ctrl.questionId : '/topic/' + $ctrl.topicId)
             })
@@ -92,7 +92,7 @@ export default class ShareDialogComponent {
         $ctrl.shareWhatsapp = () => {
             ga('send', {
                 hitType: 'event',
-                eventCategory: 'Share',
+                eventCategory: ($ctrl.questionId ? 'Share Question' : 'Share Topic'),
                 eventAction: 'Whatsapp',
                 eventLabel: ($ctrl.questionId ? '/question/' + $ctrl.questionId : '/topic/' + $ctrl.topicId)
             })
