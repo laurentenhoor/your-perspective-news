@@ -10,7 +10,7 @@ export default class ShareDialogComponent {
         
         $ctrl.topicId = topicId;
 
-        $timeout(() => $ctrl.loaded = true, 300);
+        $timeout(() => $ctrl.loaded = true, 1000);
 
         $ctrl.hide = () => {
             $shareDialog.hide();
