@@ -22,6 +22,17 @@ export default class QuestionsApiService {
         return Questions.find({parentId:topicId}).fetch();
     }
 
+    vote(topicId, itemId, voteValue) {
+        Questions.update(itemId, { $inc: { 'stats.score' : voteValue } });
+        ga('send', {
+            hitType: 'event',
+            eventCategory: 'Vote',
+            eventAction: 'Answer',
+            eventLabel: '/answer/'+itemId,
+            eventValue: voteValue
+        })
+    }
+
     updateItem(updatedItem) {
         console.log(updatedItem)
         return Questions.update(updatedItem._id, {
@@ -33,6 +44,12 @@ export default class QuestionsApiService {
             if (error) {
                 console.error(error);
             }
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'Question',
+                eventAction: (updatedItem.answer ? 'Edit Answer' : 'Edit Question'),
+                eventLabel: (updatedItem.answer ? '/answer/' + updatedItem.answer._id :  '/question/' + updatedItem.question._id)
+            })
         })
     }
 
@@ -53,6 +70,12 @@ export default class QuestionsApiService {
             if (error) {
                 console.error(error)
             }
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'Question',
+                eventAction: 'New Question',
+                eventLabel: '/question/' + id
+            })
             console.log('Successfully inserted question', questionDoc, 'the id is', id)
         })
     }
@@ -61,10 +84,17 @@ export default class QuestionsApiService {
         if (!this.$auth.isLoggedIn()) {
             return;
         }
+        
         Questions.remove({_id:questionId}, (error) => {
             if (error) {
                 console.error(error)
             }
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'Question',
+                eventAction: 'Delete Question of Answer',
+                eventLabel: questionId
+            })
             console.log('Successfully removed question', questionId)
         })
     }
@@ -85,6 +115,12 @@ export default class QuestionsApiService {
             if (error) {
                 console.error(error)
             }
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'Question',
+                eventAction: 'New Answer',
+                eventLabel: '/answer/' + id
+            })
             console.log('Successfully inserted an answer', answerDoc, 'the id is', id)
         });
     }

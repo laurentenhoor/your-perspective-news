@@ -1,19 +1,16 @@
-import { Comments } from '/imports/api/comments';
 import { Articles } from '/imports/api/articles';
-import { Opinions } from '/imports/api/opinions';
 import { Questions } from '/imports/api/questions';
 
 export default class VotableItemsApi {
 
-    constructor($articlesApi) {
+    constructor($articlesApi, $questionsApi) {
         'ngInject';
         this.$articlesApi = $articlesApi;
+        this.$questionsApi = $questionsApi;
     }
 
     getVotableItem(itemId) {
-        return Opinions.findOne({ _id: itemId }) ||
-            Comments.findOne({ _id: itemId }) ||
-            Articles.findOne({ _id: itemId }) ||
+        return Articles.findOne({ _id: itemId }) ||
             Questions.findOne({ _id: itemId })
     }
 
@@ -28,9 +25,7 @@ export default class VotableItemsApi {
     }
 
     voteItem(topicId, itemId, voteValue) {
-        Comments.update(itemId, { $inc: { score: voteValue } });
-        Opinions.update(itemId, { $inc: { score: voteValue } });
-        Questions.update(itemId, { $inc: { 'stats.score' : voteValue } });
+        this.$questionsApi.vote(topicId, itemId, voteValue);
         this.$articlesApi.vote(topicId, itemId, voteValue);
     }
 }
