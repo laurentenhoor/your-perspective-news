@@ -7,23 +7,34 @@ import { Accounts } from 'meteor/accounts-base'
 
 export default class AuthService {
 
-	constructor($dialog, $loader, $rootScope) {
+	constructor($dialog, $loader, $rootScope, $desktopViewer) {
 		'ngInject';
 
-		console.log('init AuthService')
-
-		let self = this;
-		self.loginStyle = 'popup';
-
-		function getLoginStyle() {
-			return self.loginStyle;
-		}
-		function setLoginStyle(style) {
-			self.loginStyle = style
-			$rootScope.$broadcast("updates");
-		}
-
 		return {
+			login: (callback) => {
+				
+				Meteor.loginWithLinkedIn({
+					loginStyle: ($desktopViewer.isDesktop() ? 'popup' : 'redirect')
+				}, (error) => {
+					if (error) { console.error(error); }
+					callback()
+				});
+
+			},
+			logout: () => {
+
+				ga('send', {
+					hitType: 'event',
+					eventCategory: 'Account',
+					eventAction: 'logout',
+					eventLabel: '/user/' + Meteor.userId()
+				})
+
+				$loader.startAndWait(() =>
+					Accounts.logout(() =>
+						$loader.stop()))
+
+			},
 			isLoggedIn: () => {
 
 				if (!Meteor.user()) {
@@ -46,37 +57,11 @@ export default class AuthService {
 				} else {
 					return true;
 				}
-			},
-			logout: () => {
-				ga('send', {
-					hitType: 'event',
-					eventCategory: 'Account',
-					eventAction: 'logout',
-					eventLabel: '/user/' + Meteor.userId()
-				})
+			}
 
-				$loader.startAndWait(() =>
-					Accounts.logout(() =>
-						$loader.stop()))
-			},
-			login: () => {
-				console.log('login with style:', getLoginStyle())
-				Meteor.loginWithLinkedIn({
-					loginStyle: getLoginStyle()
-				}, (error) => {
-					if (error) { console.error(error); }
-					callback()
-				});
-			},
-			setLoginStyle: (style) => {
-				console.log('current loginStyle', getLoginStyle())
-				console.log('set loginStyle to', style)
-				setLoginStyle(style);
-				console.log('current loginStyle after change', getLoginStyle())
-			},
-			getLoginStyle: getLoginStyle
 		}
 
 	}
+
 
 }

@@ -9,9 +9,12 @@ export default class DesktopViewerService {
 		'ngInject';
 
         return {
-            
+            isDesktop: () => {
+				if (window.frameElement && window.frameElement.id && window.frameElement.id == "desktop-viewer-iframe") {
+					return true
+				}
+				return false;
+ 			}
         }
-
 	}
-
 }
