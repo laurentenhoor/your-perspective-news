@@ -44,10 +44,19 @@ class SummaryTileComponent {
             }
         })
 
+        calcAmountOfAnswers = (questions) => {
+            let amountOfAnswers = 0;
+            _.each(questions, (question) => {
+                let answers = $questionsApi.getAnswers(question._id)
+                amountOfAnswers = amountOfAnswers + answers.length;
+            })
+            return amountOfAnswers;
+        }
 
         $ctrl.helpers({
             amountOfQuestions: () => {
                 let questions = $questionsApi.getAllByTopic($ctrl.getReactively('topic'));
+                $ctrl.amountOfAnswers = calcAmountOfAnswers(questions)
                 if (questions) {
                     return questions.length;
                 }
