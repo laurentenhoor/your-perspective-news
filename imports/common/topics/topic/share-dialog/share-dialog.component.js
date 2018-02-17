@@ -7,6 +7,7 @@ export default class ShareDialogComponent {
 
         $ctrl = this;
         $ctrl.questionId = questionId;
+        $ctrl.topicId = topicId;
 
         $timeout(() => $ctrl.loaded = true, 300);
 
@@ -15,14 +16,14 @@ export default class ShareDialogComponent {
         }
 
         $ctrl.getShareUrl = () => {
-            if (questionId) {
-                return Meteor.absoluteUrl() + 'vraag/' + questionId + '/' + topicId;
+            if ($ctrl.questionId) {
+                return Meteor.absoluteUrl() + 'vraag/' + $ctrl.questionId + '/' + $ctrl.topicId;
             }
-            return Meteor.absoluteUrl() + 'topic/' + topicId;
+            return Meteor.absoluteUrl() + 'topic/' + $ctrl.topicId;
         }
 
         $ctrl.getShareText = () => {
-            if (questionId) {
+            if ($ctrl.questionId) {
                 return 'Kun jij ons helpen bij deze vraag?'
             }
             return 'Zoek mee naar het volledige verhaal achter dit nieuws op jouwpers.';
@@ -33,7 +34,7 @@ export default class ShareDialogComponent {
                 hitType: 'event',
                 eventCategory: 'Share',
                 eventAction: 'LinkedIn',
-                eventLabel: (questionId ? '/question/' + questionId : '/topic/' + topicId)
+                eventLabel: ($ctrl.questionId ? '/question/' + $ctrl.questionId : '/topic/' + $ctrl.topicId)
             })
             Socialshare.share({
                 'provider': 'linkedin',
@@ -48,7 +49,7 @@ export default class ShareDialogComponent {
                 hitType: 'event',
                 eventCategory: 'Share',
                 eventAction: 'Twitter',
-                eventLabel: (questionId ? '/question/' + questionId : '/topic/' + topicId)
+                eventLabel: ($ctrl.questionId ? '/question/' + $ctrl.questionId : '/topic/' + $ctrl.topicId)
             })
             Socialshare.share({
                 'provider': 'twitter',
@@ -64,7 +65,7 @@ export default class ShareDialogComponent {
                 hitType: 'event',
                 eventCategory: 'Share',
                 eventAction: 'Facebook',
-                eventLabel: (questionId ? '/question/' + questionId : '/topic/' + topicId)
+                eventLabel: ($ctrl.questionId ? '/question/' + $ctrl.questionId : '/topic/' + $ctrl.topicId)
             })
             Socialshare.share({
                 'provider': 'facebook',
@@ -79,7 +80,7 @@ export default class ShareDialogComponent {
                 hitType: 'event',
                 eventCategory: 'Share',
                 eventAction: 'Copy-Paste',
-                eventLabel: (questionId ? '/question/' + questionId : '/topic/' + topicId)
+                eventLabel: ($ctrl.questionId ? '/question/' + $ctrl.questionId : '/topic/' + $ctrl.topicId)
             })
         }
 
@@ -88,7 +89,7 @@ export default class ShareDialogComponent {
                 hitType: 'event',
                 eventCategory: 'Share',
                 eventAction: 'Whatsapp',
-                eventLabel: (questionId ? '/question/' + questionId : '/topic/' + topicId)
+                eventLabel: ($ctrl.questionId ? '/question/' + $ctrl.questionId : '/topic/' + $ctrl.topicId)
             })
         }
 
