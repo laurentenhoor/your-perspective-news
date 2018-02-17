@@ -7,6 +7,7 @@ export default class ShareDialogComponent {
 
         $ctrl = this;
         $ctrl.questionId = questionId;
+        
         $ctrl.topicId = topicId;
 
         $timeout(() => $ctrl.loaded = true, 300);
@@ -24,7 +25,7 @@ export default class ShareDialogComponent {
 
         $ctrl.getShareText = () => {
             if ($ctrl.questionId) {
-                return 'Kun jij ons helpen bij deze vraag?'
+                return 'Kun jij ons helpen bij deze vraag?';
             }
             return 'Zoek mee naar het volledige verhaal achter dit nieuws op jouwpers.';
         }
@@ -39,7 +40,8 @@ export default class ShareDialogComponent {
             Socialshare.share({
                 'provider': 'linkedin',
                 'attrs': {
-                    'socialshareUrl': $ctrl.getShareUrl()
+                    'socialshareUrl': $ctrl.getShareUrl(),
+                    'socialShareText': $ctrl.getShareText()
                 }
             });
         }
@@ -55,7 +57,9 @@ export default class ShareDialogComponent {
                 'provider': 'twitter',
                 'attrs': {
                     'socialshareUrl': $ctrl.getShareUrl(),
-                    'socialShareText': $ctrl.getShareText()
+                    'socialShareText': $ctrl.getShareText(),
+                    'socialShareVia' : 'Jouwpers',
+                    'socialShareHashtags' : '#jouwpers'
                 }
             });
         }
@@ -70,7 +74,9 @@ export default class ShareDialogComponent {
             Socialshare.share({
                 'provider': 'facebook',
                 'attrs': {
-                    'socialshareUrl': $ctrl.getShareUrl()
+                    'socialshareUrl': $ctrl.getShareUrl(),
+                    'socialShareHashtags': '#jouwpers',
+                    'socialShareVia' : '2032895950321536'
                 }
             });
         }
