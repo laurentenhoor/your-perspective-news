@@ -1,109 +1,73 @@
 <div class="scroll-content">
 
-    <topic-controls
-        topic-id="$ctrl.topic._id"
-        on-open-topic="$ctrl.onOpenTopic({$event});"
-        open-topic-id="$ctrl.openTopicId"
-    >
+    <topic-controls topic-id="$ctrl.topic._id" on-open-topic="$ctrl.onOpenTopic({$event});" open-topic-id="$ctrl.openTopicId">
         <article-actions-button topic-id="$ctrl.topic._id"></article-actions-button>
     </topic-controls>
 
-    <summary-tile
-        topic="$ctrl.topic"
-        on-open-topic="$ctrl.onOpenTopic({$event});"
-        open-topic-id="$ctrl.openTopicId"
-    >
+    <summary-tile topic="$ctrl.topic" on-open-topic="$ctrl.onOpenTopic({$event});" open-topic-id="$ctrl.openTopicId">
     </summary-tile>
 
-    <div
-        ng-show="($ctrl.openTopicId == $ctrl.topic._id)"
-        style="display:flex;"
-    >
+    <div ng-show="($ctrl.openTopicId == $ctrl.topic._id)" style="display:flex;">
 
-    <title-bar-news ng-show="$ctrl.rootArticles.length>0">
+        <title-bar-news ng-show="$ctrl.rootArticles.length>0">
             <div class="content-container">
                 <div class="tile-header">&nbsp;</div>
                 <div class="tile-container">
-
                     <span class="text">Nieuws</span>
-                    <!-- <div class="vertical-text">Meer nieuws</div> -->
                     <md-icon ng-click="$ctrl.addArticle()" class="add-article-via-bar">add</md-icon>
                 </div>
             </div>
         </title-bar-news>
 
-        <article-tiles
-            topic="$ctrl.topic"
-            articles="$ctrl.rootArticles"
-        ></article-tiles>
+        <article-tiles topic="$ctrl.topic" articles="$ctrl.rootArticles"></article-tiles>
 
         <load-more-bar ng-show="$ctrl.moreRootArticlesAvailable()" ng-click="$ctrl.showMoreRootArticles()">
             <div class="content-container">
                 <div class="tile-header">&nbsp;</div>
                 <div class="tile-container">
-                    <!-- <div class="vertical-text">Meer nieuws</div> -->
                     <div class="load-more-icon">
-                            <div class="load-more-icon-text">OPEN<br>MEER</div>
-                            <md-icon>subdirectory_arrow_left</md-icon>
-                        </div>
+                        <div class="load-more-icon-text">OPEN
+                            <br>MEER</div>
+                        <md-icon>subdirectory_arrow_left</md-icon>
+                    </div>
                 </div>
             </div>
         </load-more-bar>
-
-        <!-- <divider-bar ng-show="$ctrl.rootArticles.length>1 && $ctrl.otherArticles.length>0" >
-            
-        </divider-bar> -->
 
         <title-bar-news ng-show="$ctrl.otherArticles.length>0">
             <div class="content-container">
                 <div class="tile-header">&nbsp;</div>
                 <div class="tile-container">
-
                     <span class="text">Verrijking</span>
-                    <!-- <div class="vertical-text">Meer nieuws</div> -->
                     <md-icon ng-click="$ctrl.addArticle()" class="add-article-via-bar">add</md-icon>
                 </div>
             </div>
         </title-bar-news>
 
-        <article-tiles
-            topic="$ctrl.topic"
-            articles="$ctrl.otherArticles"
-        ></article-tiles>
+        <article-tiles topic="$ctrl.topic" articles="$ctrl.otherArticles"></article-tiles>
 
-        
         <load-more-bar ng-show="$ctrl.moreOtherArticlesAvailable()" ng-click="$ctrl.showMoreOtherArticles()">
-                <div class="content-container">
-                    <div class="tile-header">&nbsp;</div>
-                    <div class="tile-container">
-                        <!-- <div class="vertical-text">Meer nieuws</div> -->
-                        
-                        <div class="load-more-icon">
-                            <div class="load-more-icon-text">OPEN<br>MEER</div>
-                            <md-icon>subdirectory_arrow_left</md-icon>
-                        </div>
-                        
+            <div class="content-container">
+                <div class="tile-header">&nbsp;</div>
+                <div class="tile-container">
+                    <div class="load-more-icon">
+                        <div class="load-more-icon-text">OPEN
+                            <br>MEER</div>
+                        <md-icon>subdirectory_arrow_left</md-icon>
                     </div>
                 </div>
-
-                
-            </load-more-bar>
-
-        <!-- <divider-bar ng-show="$ctrl.otherArticles.length>0 || ($ctrl.otherArticles.length==0 && $ctrl.rootArticles.length>1)" >
-        </divider-bar> -->
+            </div>
+        </load-more-bar>
 
         <title-bar-news>
             <div class="content-container">
                 <div class="tile-header">&nbsp;</div>
                 <div class="tile-container">
-    
                     <span class="text">Doe mee</span>
-                    <!-- <div class="vertical-text">Meer nieuws</div> -->
-                    <!-- <md-icon ng-click="$ctrl.addArticle()" class="add-article-via-bar">add</md-icon> -->
                 </div>
             </div>
         </title-bar-news>
-    
+
         <debate-tile topic="$ctrl.topic"></debate-tile>
 
         <!-- <comments-tile topic-id="$ctrl.topic._id"></comments-tile> -->

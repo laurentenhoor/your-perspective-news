@@ -1,23 +1,12 @@
-<div
-    class="scroll-window"
-    id="scroll-{{topic._id}}"
-    scroll-disabler
-    ng-repeat="topic in $ctrl.topics | orderBy:'-stats.hotness'"
-    ng-cloack
->
+<div class="scroll-window" id="scroll-{{topic._id}}" scroll-disabler ng-repeat="topic in $ctrl.topics | orderBy:'-stats.hotness'"
+    ng-cloack>
 
     <topic topic="topic" on-open-topic="$ctrl.openTopicId=$event.openTopicId" open-topic-id="$ctrl.openTopicId"></topic>
 
 </div>
 
 <div class="more-topics-controls">
-    <md-button
-        class="md-raised wide-btn"
-        ng-click="$ctrl.loadMoreTopics();"
-    >
+    <md-button class="md-raised wide-btn" ng-click="$ctrl.loadMoreTopics();">
         Laad meer topics
     </md-button>
-    <!-- <br> -->
-    <!-- <md-button class="md-raised narrow-btn" ng-click="$ctrl.toggleYesterday();">{{ $ctrl.yesterday ? 'Top 5 vandaag' : 'Top 5 gisteren' }}</md-button>
-	<md-button class="md-raised narrow-btn" ng-click="$ctrl.loadAllTopics();">Top 5 allertijden</md-button> -->
 </div>
