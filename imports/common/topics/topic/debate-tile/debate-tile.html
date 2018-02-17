@@ -1,8 +1,6 @@
 <div class="content-container" id="debate-{{$ctrl.topic._id}}">
 
     <div class="tile-header">&nbsp;
-        <!-- <hotness-indicator item-id="$ctrl.topic._id"></hotness-indicator> -->
-        <!-- <div class="summary-temperature">Temp: {{ $ctrl.topic.stats.hotness | number: 2}}</div> -->
     </div>
 
     <div class="tile-container" ng-style="{'background-image': $ctrl.questions.length === 0 ? '' : 'linear-gradient(to top, rgba(236,233,230,0.36), #fff)' }">
@@ -32,11 +30,6 @@
                             <md-button ng-hide="showAnswerInput || question.showEdit || (question.ownerId != $ctrl.userId) || question.answers.length>0" ng-click="question.editField=question.question;question.editItem=question;question.showEdit=true;">
                                 <md-icon class="small-icon">edit</md-icon>
                             </md-button>
-
-                            <!-- <vote
-                                topic-id="$ctrl.topic._id"
-                                article-id="question._id"
-                            ></vote> -->
 
                         </div>
                     </div>
@@ -78,7 +71,6 @@
                         </div>
                         <div class="answer-vote-container">
                             <vote topic-id="$ctrl.topic._id" article-id="answer._id"></vote>
-
                         </div>
                     </div>
                     <div class="question-controls">

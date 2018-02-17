@@ -113,18 +113,6 @@ class SummaryTileComponent {
             }
         }
 
-        $ctrl.scrollToOpinion = function (topicId) {
-            openTopic();
-            waitUntilSummaryHidden(() => {
-                smoothScroll(targetId = 'opinion-' + topicId, {
-                    containerId: 'scroll-' + topicId,
-                    direction: 'horizontal',
-                    offset: 53,
-                    easing: 'easeOutQuart'
-                });
-            })
-        }
-
         $ctrl.scrollToArticle = function (articleId, topicId, $event) {
             openTopic();
             waitUntilSummaryHidden(() => {
@@ -132,7 +120,8 @@ class SummaryTileComponent {
                     containerId: 'scroll-' + topicId,
                     direction: 'horizontal',
                     offset: 53,
-                    easing: 'easeOutQuart'
+                    easing: 'easeOutQuart',
+                    duration: 400
                 });
             })
 
@@ -145,7 +134,8 @@ class SummaryTileComponent {
                     containerId: 'scroll-' + topicId,
                     direction: 'horizontal',
                     offset: 53,
-                    easing: 'easeOutQuart'
+                    easing: 'easeOutQuart',
+                    duration: 600
                 });
             })
 
