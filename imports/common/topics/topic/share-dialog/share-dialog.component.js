@@ -41,7 +41,7 @@ export default class ShareDialogComponent {
                 'provider': 'linkedin',
                 'attrs': {
                     'socialshareUrl': $ctrl.getShareUrl(),
-                    'socialShareText': $ctrl.getShareText()
+                    'socialshareText': $ctrl.getShareText()
                 }
             });
         }
@@ -57,9 +57,9 @@ export default class ShareDialogComponent {
                 'provider': 'twitter',
                 'attrs': {
                     'socialshareUrl': $ctrl.getShareUrl(),
-                    'socialShareText': $ctrl.getShareText(),
-                    'socialShareVia' : 'Jouwpers',
-                    'socialShareHashtags' : '#jouwpers'
+                    'socialshareText': $ctrl.getShareText(),
+                    'socialshareVia' : 'Jouwpers',
+                    'socialshareHashtags' : '#jouwpers'
                 }
             });
         }
@@ -75,8 +75,9 @@ export default class ShareDialogComponent {
                 'provider': 'facebook',
                 'attrs': {
                     'socialshareUrl': $ctrl.getShareUrl(),
-                    'socialShareHashtags': '#jouwpers',
-                    'socialShareVia' : '2032895950321536'
+                    'socialshareQuote' : $ctrl.getShareText(),
+                    'socialshareHashtags': '#jouwpers',
+                    'socialshareVia' : '2032895950321536'
                 }
             });
         }
