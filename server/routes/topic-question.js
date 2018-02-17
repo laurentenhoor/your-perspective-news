@@ -64,7 +64,7 @@ function getQuestionMetaTags(topic, question) {
     <meta property="og:image:width" content="900">
     <meta property="og:image:height" content="600">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="`+ Meteor.absoluteUrl() + `topic/` + topic._id + `/">
+    <meta property="og:url" content="`+ Meteor.absoluteUrl() + `vraag/` + question._id + `/` + topic._id +`">
     `
 }
 
