@@ -104,18 +104,19 @@ class TopicsComponent {
 		}
 
 		$ctrl.loadMoreTopics = () => {
-			var scrollElement = document.getElementById('yourpers');
-			scrollElement.scrollTop = 0;
+			
+			$ctrl.topics = null;
 			
 			$ctrl.topicsOffset = $ctrl.topicsOffset + 5;
 			$ctrl.amountOfTopics = $ctrl.amountOfTopics + 5;
 			checkState();
-			
+
 			ga('send', {
 				hitType: 'event',
 				eventCategory: 'Read',
 				eventAction: 'Load more topics'
 			})
+			
 		}
 
 		let checkState = () => {
