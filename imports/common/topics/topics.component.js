@@ -119,7 +119,7 @@ class TopicsComponent {
 		}
 
 		let checkState = () => {
-			if ($state.current.name == 'singleTopic') {
+			if ($state.current.name != 'topics') {
 				$state.go('topics')
 			}
 		}
