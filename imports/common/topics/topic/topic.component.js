@@ -56,6 +56,12 @@ class TopicComponent {
         $ctrl.showMoreRootArticles = () => {
             $ctrl.amountOfRootArticles++;
             $ctrl.rootArticles = _.slice($ctrl.allRootArticles, 0, $ctrl.amountOfRootArticles)
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'Read',
+                eventAction: "Load More 'Nieuws'",
+                eventLabel: '/topic/'+ $ctrl.topic._id
+            })
         }
 
         $ctrl.moreOtherArticlesAvailable = () => {
@@ -65,6 +71,12 @@ class TopicComponent {
         $ctrl.showMoreOtherArticles = () => {
             $ctrl.amountOfOtherArticles++;
             $ctrl.otherArticles = _.slice($ctrl.allOtherArticles, 0, $ctrl.amountOfOtherArticles)
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'Read',
+                eventAction: "Load More 'Verrijking'",
+                eventLabel: '/topic/'+ $ctrl.topic._id
+            })
         }
 
         $ctrl.addArticle = ($event) => {
