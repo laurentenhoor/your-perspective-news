@@ -5,7 +5,7 @@ import template from './auth.html';
 import style from './auth.styl';
 
 class AuthComponent {
-	constructor($scope, $rootScope, $reactive, $loader, $accountMenu, $timeout) {
+	constructor($scope, $rootScope, $reactive, $loader, $accountMenu, $timeout, $auth) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -42,10 +42,9 @@ class AuthComponent {
 				eventAction: 'Login'
 			})
 
-			Meteor.loginWithLinkedIn((error) => {
+			$auth.login(() => {
 				$loader.stop()
-			});
-
+			})
 		}
 
 		$ctrl.toggleAccountMenu = function () {
