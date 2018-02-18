@@ -9,7 +9,7 @@ class DesktopViewerCtrl {
 		var $ctrl = this;
 
 		$ctrl.showMobile = null;
-		$ctrl.absUrl = $location.absUrl();
+		$ctrl.absUrl = $location.absUrl() + '?iframe';
 		
 		angular.element($window).bind('resize', () => {
 			$scope.$apply(function() {
