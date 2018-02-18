@@ -25,7 +25,7 @@ export default class ShareDialogComponent {
 
         $ctrl.getShareText = () => {
             if ($ctrl.questionId) {
-                return 'Kun jij ons helpen bij deze vraag?';
+                return 'Kun jij ons helpen met deze vraag?';
             }
             return 'Zoek mee naar het volledige verhaal achter dit nieuws op jouwpers.';
         }
