@@ -58,6 +58,18 @@ class DebateTileComponent {
             initQuestions();
         }
 
+        var loadMoreDepth = 0;
+        
+        $ctrl.countLoadMore = (answer) => {
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'Read',
+                eventAction: "Load more answers",
+                eventLabel: '/answer/'+ answer._id,
+                eventValue: ++loadMoreDepth
+            })
+        }
+
         $ctrl.saveQuestion = () => {
             if (!$ctrl.newQuestion || $ctrl.newQuestion == "") {
                 console.warn('No question input')

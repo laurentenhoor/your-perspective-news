@@ -108,6 +108,8 @@ class TopicsComponent {
 			$ctrl.detailsAreShown = $event.showDetails;
 		}
 
+		var loadMoreDepth = 0;
+
 		$ctrl.loadMoreTopics = () => {
 			
 			$ctrl.topics = null;
@@ -115,11 +117,12 @@ class TopicsComponent {
 			$ctrl.topicsOffset = $ctrl.topicsOffset + 5;
 			$ctrl.amountOfTopics = $ctrl.amountOfTopics + 5;
 			checkState();
-
+			
 			ga('send', {
 				hitType: 'event',
 				eventCategory: 'Read',
-				eventAction: 'Load more topics'
+				eventAction: 'Load more topics',
+				eventValue: ++loadMoreDepth
 			})
 			
 		}

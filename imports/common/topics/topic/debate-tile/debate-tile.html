@@ -63,7 +63,7 @@
 
                             <div class="answer" ng-bind-html="answer.answer |  linky:'_self':{class: 'a-extern'}" ng-style="{'max-height': (answer.showMore ? null : 9.5) +'vw'}"></div>
                             <div class="answer-show-more-button" ng-if="(question.showAllAnswers!=true) && (!answer.showMore && $index < question.answers.length-1) || (!answer.showMore && answer.answer.length > 100)"
-                                ng-click="answer.showMore=true;question.showAmountOfAnswers=question.showAmountOfAnswers+1;">
+                                ng-click="answer.showMore=true;question.showAmountOfAnswers=question.showAmountOfAnswers+1;$ctrl.countLoadMore(question);">
                                 <md-icon>keyboard_arrow_down</md-icon>
                                 LEES MEER
                             </div>
