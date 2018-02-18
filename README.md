@@ -12,6 +12,18 @@ Wij verzetten ons tegen twittergeblaat en nepnieuws.
 * It is not possible to share and discuss multiple news items at once (cross-linking and comparison).
 
 # Application Changelog
+## version 1.3.9
+* Voting for questions including sorting
+* UI bug fixes and performance improvements
+    * Smooth scrolling
+    * Clickable regions improved
+* Improved desktop view
+    * QR code
+    * Horizontal scrolling for non-trackpads
+    * Cross-browser compatibility
+* Analytics tag plan fully implemented
+
+
 ## version 1.3.8
 * Updated landing page for desktop view
     * High-level proposition summary
