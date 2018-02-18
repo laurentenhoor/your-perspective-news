@@ -23,7 +23,6 @@ Wij verzetten ons tegen twittergeblaat en nepnieuws.
     * Cross-browser compatibility
 * Analytics tag plan fully implemented
 
-
 ## version 1.3.8
 * Updated landing page for desktop view
     * High-level proposition summary
