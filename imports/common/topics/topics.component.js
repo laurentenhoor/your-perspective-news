@@ -5,11 +5,16 @@ import { Random } from 'meteor/random'
 
 class TopicsComponent {
 
-	constructor($scope, $reactive, $loader, $state, $articlesApi, $topicsApi, $questionsApi, $timeout, smoothScroll) {
+	constructor($scope, $reactive, $loader, $state, $articlesApi, $topicsApi, $questionsApi, $timeout, smoothScroll, $desktopViewer) {
 		'ngInject';
 
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
+
+		$ctrl.isDesktop = $desktopViewer.isDesktop;
+
+		console.log($ctrl.isDesktop)
+		console.log($ctrl.isDesktop())
 
 		$ctrl.topicsOffset = 0;
 		$ctrl.amountOfTopics = 5;
