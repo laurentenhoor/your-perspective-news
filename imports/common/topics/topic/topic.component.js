@@ -53,14 +53,19 @@ class TopicComponent {
             return ($ctrl.allRootArticles.length != $ctrl.rootArticles.length)
         }
 
+        var loadMoreDepthRoot = 0;
+        var loadMoreDepthOther = 0;
+
         $ctrl.showMoreRootArticles = () => {
             $ctrl.amountOfRootArticles++;
+            loadMoreDepthRoot++;
             $ctrl.rootArticles = _.slice($ctrl.allRootArticles, 0, $ctrl.amountOfRootArticles)
             ga('send', {
                 hitType: 'event',
                 eventCategory: 'Read',
-                eventAction: "Load More 'Nieuws'",
-                eventLabel: '/topic/'+ $ctrl.topic._id
+                eventAction: "Load more 'Nieuws'",
+                eventLabel: '/topic/'+ $ctrl.topic._id,
+                eventValue: loadMoreDepthRoot
             })
         }
 
@@ -70,12 +75,14 @@ class TopicComponent {
 
         $ctrl.showMoreOtherArticles = () => {
             $ctrl.amountOfOtherArticles++;
+            loadMoreDepthOther++;
             $ctrl.otherArticles = _.slice($ctrl.allOtherArticles, 0, $ctrl.amountOfOtherArticles)
             ga('send', {
                 hitType: 'event',
                 eventCategory: 'Read',
-                eventAction: "Load More 'Verrijking'",
-                eventLabel: '/topic/'+ $ctrl.topic._id
+                eventAction: "Load more 'Verrijking'",
+                eventLabel: '/topic/'+ $ctrl.topic._id,
+                eventValue: loadMoreDepthOther
             })
         }
 

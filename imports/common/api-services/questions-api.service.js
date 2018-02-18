@@ -46,7 +46,7 @@ export default class QuestionsApiService {
             }
             ga('send', {
                 hitType: 'event',
-                eventCategory: 'Question',
+                eventCategory: 'Edit',
                 eventAction: (updatedItem.answer ? 'Edit Answer' : 'Edit Question'),
                 eventLabel: (updatedItem.answer ? '/answer/' + updatedItem.answer._id :  '/question/' + updatedItem.question._id)
             })
@@ -72,8 +72,8 @@ export default class QuestionsApiService {
             }
             ga('send', {
                 hitType: 'event',
-                eventCategory: 'Question',
-                eventAction: 'New Question',
+                eventCategory: 'Post',
+                eventAction: 'New question',
                 eventLabel: '/question/' + id
             })
             console.log('Successfully inserted question', questionDoc, 'the id is', id)
@@ -91,8 +91,8 @@ export default class QuestionsApiService {
             }
             ga('send', {
                 hitType: 'event',
-                eventCategory: 'Question',
-                eventAction: 'Delete Question of Answer',
+                eventCategory: 'Edit',
+                eventAction: 'Delete question or answer',
                 eventLabel: questionId
             })
             console.log('Successfully removed question', questionId)
@@ -117,8 +117,8 @@ export default class QuestionsApiService {
             }
             ga('send', {
                 hitType: 'event',
-                eventCategory: 'Question',
-                eventAction: 'New Answer',
+                eventCategory: 'Post',
+                eventAction: 'New answer',
                 eventLabel: '/answer/' + id
             })
             console.log('Successfully inserted an answer', answerDoc, 'the id is', id)
