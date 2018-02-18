@@ -23,7 +23,8 @@ class TopicsComponent {
 		let temporaryHighestHotness = 9999;
 
 		$ctrl.$onChanges = (changes) => {
-			if (changes.singleTopicId && $ctrl.singleTopicId) {
+			if (changes.singleTopicId && $ctrl.topicId) {
+				$ctrl.singleTopicId = $ctrl.topicId
 				if ($state.current.name == 'singleTopic') {
 					ga('send', {
 						hitType: 'event',
