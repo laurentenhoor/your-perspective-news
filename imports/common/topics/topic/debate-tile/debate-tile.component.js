@@ -20,7 +20,6 @@ class DebateTileComponent {
             });
 
             $ctrl.questions = questions;
-            console.log('initQuestions', $ctrl.questions)
         }
 
         const addAnswersToQuestion = (question) => {

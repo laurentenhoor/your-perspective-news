@@ -21,18 +21,18 @@ class LoaderComponent {
 function setupEventListeners($rootScope, window, $loader) {
 	
 	$rootScope.$on("$routeChangeStart", function (event, next, current) {
-		console.log('$routeChangeStart');
+		// console.log('$routeChangeStart');
 		$loader.start();
 	});
 
 	$rootScope.$on("$routeChangeSuccess", function (event, next, current) {
-		console.log('$routeChangeSuccess');
+		// console.log('$routeChangeSuccess');
 		$loader.stop();
 	});
 
 	window.addEventListener('visibilitychange', () => {
-		console.log('visibilitychange');
-		console.log(document.visibilityState);
+		// console.log('visibilitychange');
+		// console.log(document.visibilityState);
 		
 		if (document.visibilityState == 'visible') {
 			$loader.stop();

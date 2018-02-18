@@ -9,8 +9,6 @@ class AppComponent {
 	constructor($timeout, $loader, $firstUseToast, $firstUseDialog, $shareDialog) {
 		'ngInject';
 		
-		console.log('init AppCtrl');
-
 		$loader.executeAfterDatabaseInit(() => {
 			$timeout(() => {
 				if (!$firstUseDialog.isCurrentlyShown())

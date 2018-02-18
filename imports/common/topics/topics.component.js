@@ -13,9 +13,6 @@ class TopicsComponent {
 
 		$ctrl.isDesktop = $desktopViewer.isDesktop;
 
-		console.log($ctrl.isDesktop)
-		console.log($ctrl.isDesktop())
-
 		$ctrl.topicsOffset = 0;
 		$ctrl.amountOfTopics = 5;
 		$ctrl.firstInit = true;
@@ -78,8 +75,6 @@ class TopicsComponent {
 
 		let subscribeToArticles = (topics) => {
 
-			console.log('subscribeToArticles');
-
 			Meteor.subscribe('articles', topics, {
 				onReady: () => afterSubscription({ success: true }),
 				onError: () => afterSubscription({ success: false })
@@ -93,7 +88,6 @@ class TopicsComponent {
 				}
 				if (subscription.success) {
 					$ctrl.topics = topics;
-					console.log('newTopics', $ctrl.topics)
 				}
 			}
 		}

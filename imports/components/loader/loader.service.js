@@ -18,7 +18,7 @@ export default class LoaderService {
         }
 
         this.databaseInitialized = function () {
-            console.log('loaderService.databaseInitialized()')
+            // console.log('loaderService.databaseInitialized()')
             databaseInitialized = true;
 
             angular.forEach(functionsToExecute, (functionToExecute) => {
@@ -29,7 +29,7 @@ export default class LoaderService {
         }
 
         this.start = function() {
-            console.log('loaderService.start()');
+            // console.log('loaderService.start()');
             show();            
         }
 
@@ -50,7 +50,7 @@ export default class LoaderService {
         }
 
         this.stop = function () {
-            console.log('loaderService.stop()');
+            // console.log('loaderService.stop()');
             if (databaseInitialized)
                 hide();
         }

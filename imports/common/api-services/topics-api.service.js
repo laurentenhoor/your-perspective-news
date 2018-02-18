@@ -167,7 +167,6 @@ export default class TopicsApiService {
     }
 
     countOpen(topicId) {
-        console.log('count open of topic', topicId)
         Topics.update({ _id: topicId }, {
             $inc:
                 { 'stats.openCount': 1 }
