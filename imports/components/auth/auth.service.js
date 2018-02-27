@@ -45,7 +45,7 @@ export default class AuthService {
 
 				var confirmModal = $dialog.confirm()
 					.title('Log in met LinkedIn')
-					.textContent(`Doe mee! Wij waarderen jouw privacy en delen niets zonder jouw toestemming.`)
+					.textContent(`Doe mee! Wij respecteren jouw privacy en delen niets zonder jouw toestemming.`)
 					.ariaLabel('Log in met LinkedIn')
 					.ok('Login')
 					.cancel('Annuleren')
