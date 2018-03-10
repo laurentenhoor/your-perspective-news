@@ -1,27 +1,41 @@
-<div class="company-logo-container" ng-click="clickLogo($event)">
+<div class="company-logo-container" ng-click="$ctrl.clickLogo($event)">
 	<img class="company-logo" src="/logos/jouwpers-logo-no-bg.svg" />
 	<div class="company-text">
-		<span class="company-logo-title">Jouw<b>pers</b>
-		</span>
-		<span class="beta-tag">BETA</span>
+		<span class="company-logo-title">Jouw<b>pers</b></span><span class="beta-tag">BETA</span>
 	</div>
 </div>
 
 <article-actions-button ng-if="$ctrl.isAdmin" class="add-article-top-menu"></article-actions-button>
 
 <ul class="menu" ng-cloak>
-	
+
 	<!-- <li ng-hide="$ctrl.isActive('/')">
 		<a href="/">&#8612; terug</a>
 	</li> -->
 
 	<li ng-show="$ctrl.isActive('/')">
-		<a class="date-banner" href="">{{ $ctrl.now | today }}<!-- <i class="material-icons hot-icon">whatshot</i><div class="five">top 5</div> --></a>
+		<a class="date-banner" href="">{{ $ctrl.now | today }}
+			<!-- <i class="material-icons hot-icon">whatshot</i><div class="five">top 5</div> -->
+		</a>
 	</li>
 
-	
+	<!-- <auth style="float:right;padding-right:4vw;"></auth> -->
 
 </ul>
 
 
-<!-- <auth style="float:right;padding-right:4vw;"></auth> -->
+<div style="text-align:center;">
+
+	<md-button class="md-accent md-hue-3 md-raised" style="font-size:2.3vw!important;font-weight:600;">
+		Verrijkingsverzoek
+	</md-button>
+
+	<md-button class="" style="font-size:2.3vw!important;opacity:0.7;font-weight:600;">
+		Word een verrijker
+	</md-button>
+
+	<md-button class="" style="font-size:2.3vw!important;opacity:0.7;font-weight:600;" ng-click="$ctrl.login()">
+		Login
+	</md-button>
+
+</div>
