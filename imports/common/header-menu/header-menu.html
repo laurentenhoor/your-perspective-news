@@ -1,7 +1,9 @@
 <div class="company-logo-container" ng-click="$ctrl.clickLogo($event)">
 	<img class="company-logo" src="/logos/jouwpers-logo-no-bg.svg" />
 	<div class="company-text">
-		<span class="company-logo-title">Jouw<b>pers</b></span><span class="beta-tag">BETA</span>
+		<span class="company-logo-title">Jouw<b>pers</b>
+		</span>
+		<span class="beta-tag">BETA</span>
 	</div>
 </div>
 
@@ -12,12 +14,18 @@
 	<!-- <li ng-hide="$ctrl.isActive('/')">
 		<a href="/">&#8612; terug</a>
 	</li> -->
-
+	<md-button class="" aria-label="gisteren">
+		<md-icon>chevron_left</md-icon>
+	</md-button>
 	<li ng-show="$ctrl.isActive('/')">
 		<a class="date-banner" href="">{{ $ctrl.now | today }}
 			<!-- <i class="material-icons hot-icon">whatshot</i><div class="five">top 5</div> -->
 		</a>
 	</li>
+
+	<md-button class="" aria-label="gisteren">
+		<md-icon>chevron_right</md-icon>
+	</md-button>
 
 	<!-- <auth style="float:right;padding-right:4vw;"></auth> -->
 
