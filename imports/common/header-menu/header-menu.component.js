@@ -9,8 +9,6 @@ class HeaderMenuComponent {
 
         var $ctrl = this;
         $reactive($ctrl).attach($scope);
-        
-        $ctrl.now = new Date();
 
         $ctrl.helpers({
             isAdmin : () => {

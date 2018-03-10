@@ -9,24 +9,7 @@
 
 <article-actions-button ng-if="$ctrl.isAdmin" class="add-article-top-menu"></article-actions-button>
 
-<ul class="menu" ng-cloak>
-
-	<md-button class="" aria-label="gisteren">
-		<md-icon>chevron_left</md-icon>
-	</md-button>
-	<li ng-show="$ctrl.isActive('/')">
-		<a class="date-banner" href="">{{ $ctrl.now | today }}
-		</a>
-	</li>
-
-	<md-button class="" aria-label="gisteren">
-		<md-icon>chevron_right</md-icon>
-	</md-button>
-
-	<!-- <auth style="float:right;padding-right:4vw;"></auth> -->
-
-</ul>
-
+<day-selector></day-selector>
 
 <div style="text-align:center;">
 

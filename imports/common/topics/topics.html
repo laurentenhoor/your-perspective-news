@@ -1,4 +1,4 @@
-<div class="scroll-window" ng-class="{'show-scrollbar' : $ctrl.isDesktop()}" id="scroll-{{topic._id}}" scroll-disabler ng-repeat="topic in $ctrl.topics | orderBy:'-stats.hotness'"
+<div class="scroll-window" ng-repeat="topic in $ctrl.topics | orderBy:'-stats.hotness'" ng-class="{'show-scrollbar' : $ctrl.isDesktop()}" id="scroll-{{topic._id}}" scroll-disabler 
     ng-cloack>
 
     <topic topic="topic" ng-class="{'show-scrollbar' : $ctrl.isDesktop()}" on-open-topic="$ctrl.openTopicId=$event.openTopicId"
