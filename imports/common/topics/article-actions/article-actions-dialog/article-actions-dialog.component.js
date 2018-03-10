@@ -9,23 +9,23 @@ export default class ArticleActionsComponent {
 		$ctrl.topicId = topicId;
 		$ctrl.article = article;
 
-		$timeout(()=>$ctrl.loaded=true, 300)
-		
+		$timeout(() => $ctrl.loaded = true, 300)
+
 		console.log('opend article for dialog', article)
 		if (article && article.category) {
 			$ctrl.selectedCategory = $ctrl.article.category;
 		}
 		$ctrl.topic = $topicsApi.getById($ctrl.topicId);
+
+		$ctrl.publishDate = new Date();
+		$ctrl.publishDateChanged = true;
+
 		if ($ctrl.topic) {
 			$ctrl.topicTitle = $ctrl.topic.title;
-			if (!$ctrl.topic.publishAt) {
-				$ctrl.publishDate = new Date();
-				$ctrl.publishDateChanged = true;
-			} else {
-				$ctrl.publishDate = new Date($ctrl.topic.publishAt);
-			}	
-		}
-		
+			$ctrl.publishDate = new Date($ctrl.topic.publishAt);
+			$ctrl.publishDateChanged = false;
+		} 
+
 		$ctrl.defaultImageUrl = '/logos/closeup-01.svg';
 
 		if ($ctrl.article) {
@@ -36,7 +36,7 @@ export default class ArticleActionsComponent {
 			$ctrl.headerSubText = 'Verander de categorie of verwijder deze bron.';
 			$ctrl.urlDataIsLoaded = true;
 
-			
+
 			$ctrl.initialCategory = angular.copy($ctrl.article.category);
 
 
@@ -64,9 +64,9 @@ export default class ArticleActionsComponent {
 		}
 
 		$ctrl.urlChange = function () {
-			
+
 			console.log('Url input changed to:', $ctrl.article.url);
-			
+
 			$metadata.getArticleFromUrl($ctrl.article.url, (error, article) => {
 
 				if (error) {
@@ -74,30 +74,30 @@ export default class ArticleActionsComponent {
 					return;
 				}
 				console.log(article);
-				
+
 				$ctrl.article = article;
-				$ctrl.urlDataIsLoaded = true;				
-				
+				$ctrl.urlDataIsLoaded = true;
+
 			})
 		}
 
 		$ctrl.dateChanged = () => {
 			console.log('date changed')
-			$ctrl.publishDateChanged=true;
+			$ctrl.publishDateChanged = true;
 		}
 
 		$ctrl.ok = function () {
 
 			console.log($ctrl.article)
-			
+
 			if ($ctrl.modifiedCategory) {
 				$ctrl.article.category = $ctrl.modifiedCategory;
 			}
-			
+
 			switch ($ctrl.mode) {
 				case 'add_source_to_topic':
 					console.log('add_source_to_topic')
-					$articlesApi.addToTopic($ctrl.topicId, $ctrl.article);					
+					$articlesApi.addToTopic($ctrl.topicId, $ctrl.article);
 					if ($ctrl.topicTitleChanged) {
 						$topicsApi.saveTitle($ctrl.topicId, $ctrl.topicTitle);
 					}
@@ -127,7 +127,7 @@ export default class ArticleActionsComponent {
 
 		$ctrl.searchTextChange = function (text) {
 			console.log('Text changed to ' + text);
-			$ctrl.modifiedCategory = text;			
+			$ctrl.modifiedCategory = text;
 		}
 
 		$ctrl.selectedItemChange = function (item) {
