@@ -19,8 +19,10 @@ export default class ArticleActionsComponent {
 		if ($ctrl.topic) {
 			$ctrl.topicTitle = $ctrl.topic.title;
 			if (!$ctrl.topic.publishAt) {
-				console.log('no publication date available, adding today');
-				// $ctrl.topic.publishAt = new Date();
+				$ctrl.publishDate = new Date();
+				$ctrl.publishDateChanged = true;
+			} else {
+				$ctrl.publishDate = new Date($ctrl.topic.publishAt);
 			}	
 		}
 		
@@ -79,6 +81,11 @@ export default class ArticleActionsComponent {
 			})
 		}
 
+		$ctrl.dateChanged = () => {
+			console.log('date changed')
+			$ctrl.publishDateChanged=true;
+		}
+
 		$ctrl.ok = function () {
 
 			console.log($ctrl.article)
@@ -87,7 +94,6 @@ export default class ArticleActionsComponent {
 				$ctrl.article.category = $ctrl.modifiedCategory;
 			}
 			
-			
 			switch ($ctrl.mode) {
 				case 'add_source_to_topic':
 					console.log('add_source_to_topic')
@@ -95,16 +101,22 @@ export default class ArticleActionsComponent {
 					if ($ctrl.topicTitleChanged) {
 						$topicsApi.saveTitle($ctrl.topicId, $ctrl.topicTitle);
 					}
+					if ($ctrl.publishDateChanged) {
+						$topicsApi.savePublishDate($ctrl.topicId, $ctrl.publishDate.getTime());
+					}
 					break;
 				case 'new_topic':
 					console.log('new topic')
-					$articlesApi.addToNewTopic($ctrl.topicTitle, $ctrl.article)
+					$articlesApi.addToNewTopic($ctrl.topicTitle, $ctrl.publishDate.getTime(), $ctrl.article)
 					break;
 				case 'edit_source':
 					console.log('edit')
 					$articlesApi.updateArticle($ctrl.article)
 					if ($ctrl.topicTitleChanged) {
 						$topicsApi.saveTitle($ctrl.topicId, $ctrl.topicTitle);
+					}
+					if ($ctrl.publishDateChanged) {
+						$topicsApi.savePublishDate($ctrl.topicId, $ctrl.publishDate.getTime());
 					}
 					break;
 				default:

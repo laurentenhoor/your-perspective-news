@@ -44,7 +44,7 @@
 
                         <label ng-cloak>Publicatie</label>
     
-                        <md-datepicker ng-model="$ctrl.topic.publishAt" md-placeholder="Kies datum" ng-change="$ctrl.publishDateChanged=true"></md-datepicker>
+                        <md-datepicker ng-model="$ctrl.publishDate" md-placeholder="Kies datum" ng-change="$ctrl.dateChanged()"></md-datepicker>
     
                     </md-input-container>
 
@@ -86,7 +86,7 @@
             <md-button class="md-raised" ng-click="$ctrl.cancel()" tabindex="1" md-autofocus>
                 Annuleren
             </md-button>
-            <md-button ng-disabled="!($ctrl.urlDataIsLoaded && $ctrl.selectedCategory && $ctrl.topicTitle && ($ctrl.modifiedCategory || $ctrl.topicTitleChanged || $ctrl.publishDateChanged))"
+            <md-button ng-disabled="!($ctrl.urlDataIsLoaded && $ctrl.selectedCategory && $ctrl.topicTitle && $ctrl.publishDate && ($ctrl.modifiedCategory || $ctrl.topicTitleChanged || $ctrl.publishDateChanged))"
                 class="md-raised  md-primary" ng-click="$ctrl.ok()">
                 Opslaan
             </md-button>

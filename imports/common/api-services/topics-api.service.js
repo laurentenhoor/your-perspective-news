@@ -74,10 +74,25 @@ export default class TopicsApiService {
         });
     }
 
-    createTopic(topicTitle) {
+    savePublishDate(topicId, publishDate) {
+        Topics.update({ _id: topicId }, {
+            $set: {
+                publishAt: publishDate
+            }
+        }, (error) => {
+            if (error) {
+                console.error(error);
+            }
+            this.fireCallbacks(this.callbacks.addedArticle, topicId)
+            console.log('Successfully stored new publish date', publishDate)
+        });
+    }
+
+    createTopic(topicTitle, publishDate) {
         return Topics.insert({
             ownerId: Meteor.userId(),
-            title: topicTitle
+            title: topicTitle,
+            publishAt: publishDate
         });
     }
 
@@ -108,10 +123,9 @@ export default class TopicsApiService {
 
     }
 
-    addArticleToNewTopic(topicTitle, articleId) {
+    addArticleToNewTopic(topicTitle, publishDate, articleId) {
 
-
-        let topicId = this.createTopic(topicTitle);
+        let topicId = this.createTopic(topicTitle, publishDate);
 
         ga('send', {
             hitType: 'event',
