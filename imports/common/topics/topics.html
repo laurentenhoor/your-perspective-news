@@ -1,21 +1,25 @@
-
 <div>
-    <md-button class="md-raised">
-        Verrijkingsverzoek
-    </md-button>
-    <md-button class="md-raised">
-        Wordt een verrijker
-    </md-button>
+    <md-content>
+        
+        <md-button class="md-raised">
+            Verrijkingsverzoek
+        </md-button>
+
+        <md-button class="md-raised">
+            Word een verrijker
+        </md-button>
+    </md-content>
 </div>
 
 <div class="scroll-window" ng-class="{'show-scrollbar' : $ctrl.isDesktop()}" id="scroll-{{topic._id}}" scroll-disabler ng-repeat="topic in $ctrl.topics | orderBy:'-stats.hotness'"
     ng-cloack>
 
-    <topic topic="topic" ng-class="{'show-scrollbar' : $ctrl.isDesktop()}" on-open-topic="$ctrl.openTopicId=$event.openTopicId" open-topic-id="$ctrl.openTopicId"></topic>
+    <topic topic="topic" ng-class="{'show-scrollbar' : $ctrl.isDesktop()}" on-open-topic="$ctrl.openTopicId=$event.openTopicId"
+        open-topic-id="$ctrl.openTopicId"></topic>
 
 </div>
 
-<div class="more-topics-controls" >
+<div class="more-topics-controls">
     <md-button class="md-raised wide-btn" ng-click="$ctrl.loadMoreTopics();" ng-hide="!$ctrl.topics || $ctrl.topics.length == 0">
         Laad meer topics
     </md-button>

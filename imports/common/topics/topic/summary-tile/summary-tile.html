@@ -5,12 +5,11 @@
         <!-- <div class="summary-temperature">Temp: {{ $ctrl.topic.stats.hotness | number: 2}}</div> -->
     </div>
 
-    <div class="tile-container">
+    <div class="tile-container" style="width:96vw;height:35vw;">
 
-        <div class="summary-header" style="background-image:url('{{ $ctrl.mainArticle.imageUrl || $ctrl.defaultImageUrl }}')"
-            ng-click="$ctrl.scrollToArticle($ctrl.mainArticle._id, $ctrl.topic._id, $event);" >
+        <div class="summary-header" style="background-image:url('{{ $ctrl.mainArticle.imageUrl || $ctrl.defaultImageUrl }}')" ng-click="$ctrl.scrollToArticle($ctrl.mainArticle._id, $ctrl.topic._id, $event);">
             <div class="color-overlay"></div>
-            
+
             <div class="time-elapsed">
                 <div class="topic-title">
                     {{ $ctrl.topic.title }}
@@ -18,33 +17,37 @@
                 <div style="padding: 1vw;width: fit-content;display: inline-block;">
                     <!-- {{ $ctrl.topic.createdAt | timeFromNow }} -->
                 </div>
-                
+
                 <div style="float:right;font-weight:400; margin-top:1vw;" ng-click="">
                     OPEN
                     <md-icon style="color:white">keyboard_arrow_right</md-icon>
                 </div>
 
+                <!-- <md-button class="md-button" ng-click="$ctrl.share($event, $ctrl.topicId)" aria-label="Delen.">
+                    <md-icon>share</md-icon>
+                    <div>Deel</div>
+                </md-button> -->
+
             </div>
 
-            <div class="categories">
+            <!-- <div class="categories">
 
                 <div class="category main-category">
                     <div class="category-title">{{ $ctrl.mainArticle.category }}</div>
                     <div class="article-title">{{ $ctrl.mainArticle.title }}</div>
                 </div>
 
-            </div>
+            </div> -->
         </div>
-        <div class="teaser">
+        <!-- <div class="teaser">
 
-            <div class="category sub-category" ng-click="$ctrl.scrollToArticle($ctrl.otherArticle._id, $ctrl.topic._id, $event);"
-            ng-if="$ctrl.otherArticle">
+            <div class="category sub-category" ng-click="$ctrl.scrollToArticle($ctrl.otherArticle._id, $ctrl.topic._id, $event);" ng-if="$ctrl.otherArticle">
                 <div class="category-title">{{ $ctrl.otherArticle.category }}</div>
                 <div class="article-title">{{ $ctrl.otherArticle.title }}</div>
             </div>
-        </div>
+        </div> -->
 
-        <div class="community">
+        <!-- <div class="community">
             <div class="opinion">
                 <div ng-click="$ctrl.scrollToQuestions($ctrl.topic._id)" class="small-content-container-white">
                     <div class="title">{{$ctrl.amountOfQuestions}} {{$ctrl.amountOfQuestions == 1 ? 'vraag' : 'vragen'}}</div>
@@ -57,7 +60,7 @@
                 </div>
 
             </div>
-        </div>
+        </div> -->
 
     </div>
 </div>

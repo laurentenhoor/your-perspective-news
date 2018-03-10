@@ -1,13 +1,13 @@
 <div class="scroll-content">
 
-    <topic-controls topic-id="$ctrl.topic._id" on-open-topic="$ctrl.onOpenTopic({$event});" open-topic-id="$ctrl.openTopicId">
-        <article-actions-button topic-id="$ctrl.topic._id"></article-actions-button>
-    </topic-controls>
-
     <summary-tile topic="$ctrl.topic" on-open-topic="$ctrl.onOpenTopic({$event});" open-topic-id="$ctrl.openTopicId">
     </summary-tile>
 
     <div ng-show="($ctrl.openTopicId == $ctrl.topic._id)" style="display:flex;">
+
+    <topic-controls topic-id="$ctrl.topic._id" on-open-topic="$ctrl.onOpenTopic({$event});" open-topic-id="$ctrl.openTopicId">
+        <article-actions-button topic-id="$ctrl.topic._id"></article-actions-button>
+    </topic-controls>
 
         <title-bar-news ng-show="$ctrl.rootArticles.length>0">
             <div class="content-container">
