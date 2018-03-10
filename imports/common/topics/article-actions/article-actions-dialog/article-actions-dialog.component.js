@@ -20,7 +20,7 @@ export default class ArticleActionsComponent {
 			$ctrl.topicTitle = $ctrl.topic.title;
 			if (!$ctrl.topic.publishAt) {
 				console.log('no publication date available, adding today');
-				$ctrl.topic.publishAt = new Date();
+				// $ctrl.topic.publishAt = new Date();
 			}	
 		}
 		
