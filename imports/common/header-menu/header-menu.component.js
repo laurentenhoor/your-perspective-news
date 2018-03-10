@@ -15,7 +15,10 @@ class HeaderMenuComponent {
         $ctrl.helpers({
             isAdmin : () => {
                 return $auth.isAdmin();
-            }            
+            }, 
+            user : () => {
+                return Meteor.userId();
+            }
         }) 
 
         $ctrl.isActive = function (viewLocation) {
@@ -23,6 +26,14 @@ class HeaderMenuComponent {
         };
 
         $ctrl.window = $window;
+
+        $ctrl.login = () => {
+            if (Meteor.user()) {
+                $auth.logout();
+            } else {
+                $auth.login();
+            }
+        }
 
         $ctrl.clickLogo = function ($event) {
             console.log('logo clicked')
