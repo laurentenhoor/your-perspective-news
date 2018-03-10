@@ -25,7 +25,7 @@ angular.module('yourpers', [
 
 .component('yourpersApp', appComponent)
 
-.config(($locationProvider, $sceDelegateProvider, $urlRouterProvider, $qProvider) => {
+.config(($locationProvider, $sceDelegateProvider, $urlRouterProvider, $qProvider, $mdThemingProvider) => {
 	'ngInject';
 
 	$locationProvider.html5Mode({ enabled: true, requireBase: false, rewriteLinks: false });
@@ -33,6 +33,9 @@ angular.module('yourpers', [
 	$urlRouterProvider.otherwise('/');
 	$qProvider.errorOnUnhandledRejections(false);
 
+	$mdThemingProvider.theme('default')
+    .primaryPalette('indigo')
+    .accentPalette('red');
 })
 
 _ = lodash;
