@@ -127,6 +127,14 @@ if (Meteor.isServer) {
 		}
 	});
 
+	Migrations.add({
+		version: 9,
+		name: 'Create a publishAt field in all topics',
+		up: function () {
+			version9();
+		}
+	});
+
 	Meteor.startup(function () {
 		// code to run on server at startup
 		// Migrations.unlock();
@@ -201,5 +209,13 @@ function version8() {
 		Articles.update({_id:article._id}, article);
 	})
 }
-
+function version9() {
+	_.forEach(Topics.find({}).fetch(), (topic) => {
+	
+		if (topic && topic.createdAt) {
+			topic.publishAt = topic.createdAt;
+		}
+		Topics.update({_id:topic._id}, topic);
+	})
+}
 
