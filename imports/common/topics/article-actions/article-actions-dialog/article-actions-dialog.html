@@ -1,8 +1,4 @@
-<md-dialog
-    class="article-actions-dialog"
-    aria-label="{{$ctrl.headerText}}"
-    style="width:80%"
->
+<md-dialog class="article-actions-dialog" aria-label="{{$ctrl.headerText}}" style="width:80%">
     <form ng-cloak>
         <md-toolbar>
             <md-toolbar-header>{{$ctrl.headerText}}</md-toolbar-header>
@@ -10,101 +6,64 @@
         </md-toolbar>
         <md-dialog-content ng-style="{'max-height': $ctrl.loaded ? '250px' : '0px'}">
 
-            <div
-                class="md-dialog-content md-inline-form"
-                layout="column"
-                ng-if="$ctrl.loaded"
-            >
+            <div class="md-dialog-content md-inline-form" layout="column" ng-if="$ctrl.loaded">
 
 
-                <md-input-container
-                    class="md-block"
-                    ng-show="!$ctrl.urlDataIsLoaded"
-                >
+                <md-input-container class="md-block" ng-show="!$ctrl.urlDataIsLoaded">
 
                     <label ng-cloak>Plak een url naar een artikel</label>
 
-                    <input
-                        class="url-input"
-                        ng-model="$ctrl.article.url"
-                        ng-change="$ctrl.urlChange()"
-                        http-prefix
-                    >
+                    <input class="url-input" ng-model="$ctrl.article.url" ng-change="$ctrl.urlChange()" http-prefix>
 
                 </md-input-container>
 
-                    <md-autocomplete
-                        md-selected-item="$ctrl.selectedCategory"
-                        md-search-text-change="$ctrl.searchTextChange($ctrl.searchText)"
-                        md-search-text="$ctrl.searchText"
-                        md-selected-item-change="$ctrl.selectedItemChange(item)"
-                        md-items="item in $ctrl.querySearch($ctrl.searchText)"
-                        md-item-text="item.display"
-                        md-min-length="0"
-                        md-floating-label="Selecteer een categorie"
-                        placeholder="Categorie"
-                        ng-focus="$ctrl.clearFieldAtFirstFocusOnly()"
-                    >
+                <md-autocomplete md-selected-item="$ctrl.selectedCategory" md-search-text-change="$ctrl.searchTextChange($ctrl.searchText)"
+                    md-search-text="$ctrl.searchText" md-selected-item-change="$ctrl.selectedItemChange(item)" md-items="item in $ctrl.querySearch($ctrl.searchText)"
+                    md-item-text="item.display" md-min-length="0" md-floating-label="Selecteer een categorie" placeholder="Categorie"
+                    ng-focus="$ctrl.clearFieldAtFirstFocusOnly()">
 
-                        <md-item-template>
-                            <span
-                                md-highlight-text="$ctrl.searchText"
-                                md-highlight-flags="^i"
-                            >
-                                {{item.display}}
-                            </span>
-                        </md-item-template>
+                    <md-item-template>
+                        <span md-highlight-text="$ctrl.searchText" md-highlight-flags="^i">
+                            {{item.display}}
+                        </span>
+                    </md-item-template>
 
-					</md-autocomplete>
-					
+                </md-autocomplete>
 
-					<md-input-container class="md-block">
 
-							<label ng-cloak>Onderwerp</label>
-		
-							<input
-								class="url-input"
-								ng-model="$ctrl.topicTitle"
-								ng-change="$ctrl.topicTitleChanged=true"
-							>
-		
-						</md-input-container>
+                <md-input-container class="md-block">
+
+                    <label ng-cloak>Onderwerp</label>
+
+                    <input class="url-input" ng-model="$ctrl.topicTitle" ng-change="$ctrl.topicTitleChanged=true">
+
+                </md-input-container>
+
+
+                <md-input-container class="md-block">
+
+                        <label ng-cloak>Publicatie</label>
+    
+                        <md-datepicker ng-model="$ctrl.topic.publishAt" md-placeholder="Kies datum" ng-change="$ctrl.publishDateChanged=true"></md-datepicker>
+    
+                    </md-input-container>
 
 
             </div>
         </md-dialog-content>
 
-        <div
-            class="image-and-details-container"
-            ng-if="$ctrl.urlDataIsLoaded"
-        >
+        <div class="image-and-details-container" ng-if="$ctrl.urlDataIsLoaded">
 
             <div class="image-container">
-                <div
-                    class="image"
-                    ng-style="{'background-image':'url(\'{{ $ctrl.article.imageUrl || $ctrl.defaultImageUrl }}\')'}"
-                >
+                <div class="image" ng-style="{'background-image':'url(\'{{ $ctrl.article.imageUrl || $ctrl.defaultImageUrl }}\')'}">
                 </div>
 
-                <iframe
-                    ng-if="$ctrl.article.videoUrl"
-                    src="{{ $ctrl.article.videoUrl }}"
-                    width="100%"
-                    height="60%"
-                    frameborder="0"
-                    allowfullscreen
-                    style="position: absolute; bottom:0; top:0; height:100%; z-index:1;"
-                ></iframe>
+                <iframe ng-if="$ctrl.article.videoUrl" src="{{ $ctrl.article.videoUrl }}" width="100%" height="60%" frameborder="0" allowfullscreen
+                    style="position: absolute; bottom:0; top:0; height:100%; z-index:1;"></iframe>
 
-                <div
-                    ng-if="!$ctrl.article.videoUrl"
-                    class="gradient-overlay"
-                ></div>
+                <div ng-if="!$ctrl.article.videoUrl" class="gradient-overlay"></div>
 
-                <div
-                    class="title-container"
-                    ng-if="!$ctrl.article.videoUrl"
-                >
+                <div class="title-container" ng-if="!$ctrl.article.videoUrl">
 
                     <div class="publisher">{{$ctrl.article.publisher}}</div>
                     <div class="title">{{$ctrl.article.title}}</div>
@@ -119,28 +78,16 @@
 
         <md-dialog-actions layout="row">
 
-            <div
-                class="remove-icon"
-                ng-if="$ctrl.urlDataIsLoaded"
-                ng-click="$ctrl.showRemovalConfirmation($event)"
-            >
+            <div class="remove-icon" ng-if="$ctrl.urlDataIsLoaded" ng-click="$ctrl.showRemovalConfirmation($event)">
                 <i class="material-icons">delete</i>
             </div>
 
             <span flex></span>
-            <md-button
-                class="md-raised"
-                ng-click="$ctrl.cancel()"
-                tabindex="1"
-                md-autofocus
-            >
+            <md-button class="md-raised" ng-click="$ctrl.cancel()" tabindex="1" md-autofocus>
                 Annuleren
             </md-button>
-            <md-button
-                ng-disabled="!($ctrl.urlDataIsLoaded && $ctrl.selectedCategory && $ctrl.topicTitle && ($ctrl.modifiedCategory || $ctrl.topicTitleChanged))"
-                class="md-raised  md-primary"
-                ng-click="$ctrl.ok()"
-            >
+            <md-button ng-disabled="!($ctrl.urlDataIsLoaded && $ctrl.selectedCategory && $ctrl.topicTitle && ($ctrl.modifiedCategory || $ctrl.topicTitleChanged || $ctrl.publishDateChanged))"
+                class="md-raised  md-primary" ng-click="$ctrl.ok()">
                 Opslaan
             </md-button>
         </md-dialog-actions>

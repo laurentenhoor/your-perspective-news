@@ -1,4 +1,6 @@
 import angular from 'angular';
+import moment from 'moment';
+import 'moment/locale/nl';
 
 import ArticleActionsDialogService from './article-actions-dialog.service';
 
@@ -8,4 +10,10 @@ export default angular.module('ArticleActionsDialog', [
     httpPrefixDirective,
 ])
     .service('$articleActionsDialog', ArticleActionsDialogService)
+    .config(function($mdDateLocaleProvider) {
+        'ngInject';
+        $mdDateLocaleProvider.formatDate = function(date) {
+           return moment(date).format('DD MMMM');
+        };
+    })
     .name;

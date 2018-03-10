@@ -1,3 +1,6 @@
+import moment from 'moment';
+import 'moment/locale/nl';
+
 export default class DaySelectorService {
 
     constructor() {
@@ -11,6 +14,10 @@ export default class DaySelectorService {
 
     yesterday() {
         this.selectedDate.setDate(this.selectedDate.getDate()-1)
+    }
+
+    publishRange() {
+        
     }
 
 }
