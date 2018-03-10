@@ -60,6 +60,7 @@ class TopicsComponent {
 			},
 			removedTopic: (topicId) => {
 				console.log('removedCallback', topicId)
+				$ctrl.openTopicId = null;
 				$ctrl.topics = $topicsApi.getAll();
 				subscribeToArticles($ctrl.topics);
 			}
