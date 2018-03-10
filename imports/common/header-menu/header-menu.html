@@ -7,18 +7,21 @@
 	</div>
 </div>
 
-<article-actions-button class="add-article-top-menu"></article-actions-button>
+<article-actions-button ng-if="$ctrl.isAdmin" class="add-article-top-menu"></article-actions-button>
 
 <ul class="menu" ng-cloak>
 	
-	<li ng-hide="isActive('/')">
+	<!-- <li ng-hide="$ctrl.isActive('/')">
 		<a href="/">&#8612; terug</a>
+	</li> -->
+
+	<li ng-show="$ctrl.isActive('/')">
+		<a class="date-banner" href="">{{ $ctrl.now | today }}<!-- <i class="material-icons hot-icon">whatshot</i><div class="five">top 5</div> --></a>
 	</li>
 
-	<li ng-show="isActive('/')">
-		<a class="date-banner" href="">{{ now | today }}<i class="material-icons hot-icon">whatshot</i><div class="five">top 5</div></a>
-	</li>
-
-	<auth style="float:right;padding-right:4vw;"></auth>
+	
 
 </ul>
+
+
+<!-- <auth style="float:right;padding-right:4vw;"></auth> -->

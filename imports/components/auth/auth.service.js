@@ -13,7 +13,8 @@ export default class AuthService {
 		return {
 			login: login,
 			logout: logout,
-			isLoggedIn: isLoggedIn
+			isLoggedIn: isLoggedIn,
+			isAdmin: isAdmin
 		}
 
 		function login(callback) {
@@ -38,6 +39,17 @@ export default class AuthService {
 				Accounts.logout(() =>
 					$loader.stop()))
 
+		}
+
+		function isAdmin() {
+			console.log('isAdmin in $auth')
+			if (Meteor.user()) {
+				console.log('user', Meteor.user())
+				console.log('is role admin?', Roles.userIsInRole( Meteor.userId(), 'admin' ) )
+				return Roles.userIsInRole( Meteor.userId(), 'admin' ); 
+			} else {
+				return false;
+			}
 		}
 
 		function isLoggedIn() {

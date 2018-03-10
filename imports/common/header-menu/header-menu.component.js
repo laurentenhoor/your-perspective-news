@@ -4,18 +4,27 @@ import HeaderMenuStyle from './header-menu.styl';
 
 class HeaderMenuComponent {
 
-    constructor($scope, $rootScope, $location, $window, $firstUseDialog, $firstUseToast, $filter) {
+    constructor($scope, $reactive, $auth, $rootScope, $location, $window, $firstUseDialog, $firstUseToast, $filter) {
         'ngInject'
 
-        $scope.now = new Date();
+        var $ctrl = this;
+        $reactive($ctrl).attach($scope);
+        
+        $ctrl.now = new Date();
 
-        $scope.isActive = function (viewLocation) {
+        $ctrl.helpers({
+            isAdmin : () => {
+                return $auth.isAdmin();
+            }            
+        }) 
+
+        $ctrl.isActive = function (viewLocation) {
             return viewLocation === $location.path();
         };
 
-        $scope.window = $window;
+        $ctrl.window = $window;
 
-        $scope.clickLogo = function ($event) {
+        $ctrl.clickLogo = function ($event) {
             console.log('logo clicked')
             $firstUseToast.hide();
             $firstUseDialog.show($event);

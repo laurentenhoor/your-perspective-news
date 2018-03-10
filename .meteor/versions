@@ -1,6 +1,7 @@
 accounts-base@1.4.1
 accounts-oauth@1.1.15
 accounts-password@1.5.0
+alanning:roles@1.2.16
 aldeed:simple-schema@1.5.3
 allow-deny@1.1.0
 angular-templates@1.0.9
