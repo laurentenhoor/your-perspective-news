@@ -13,7 +13,7 @@ export default angular.module('ArticleActionsDialog', [
     .config(function($mdDateLocaleProvider) {
         'ngInject';
         $mdDateLocaleProvider.formatDate = function(date) {
-           return moment(date).format('DD MMMM');
+           return moment(date).format('dddd DD MMMM');
         };
     })
     .name;
