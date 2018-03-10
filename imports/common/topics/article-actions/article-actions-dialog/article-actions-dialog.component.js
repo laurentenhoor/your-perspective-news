@@ -22,8 +22,10 @@ export default class ArticleActionsComponent {
 
 		if ($ctrl.topic) {
 			$ctrl.topicTitle = $ctrl.topic.title;
-			$ctrl.publishDate = new Date($ctrl.topic.publishAt);
-			$ctrl.publishDateChanged = false;
+			if ($ctrl.topic.publishAt) {
+				$ctrl.publishDate = new Date($ctrl.topic.publishAt);
+				$ctrl.publishDateChanged = false;
+			}
 		} 
 
 		$ctrl.defaultImageUrl = '/logos/closeup-01.svg';
