@@ -83,7 +83,7 @@ export default class TopicsApiService {
             if (error) {
                 console.error(error);
             }
-            this.fireCallbacks(this.callbacks.addedArticle, topicId)
+            this.fireCallbacks(this.callbacks.removedTopic, topicId)
             console.log('Successfully stored new publish date', publishDate)
         });
     }

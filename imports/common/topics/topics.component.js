@@ -18,6 +18,10 @@ class TopicsComponent {
 
 		let temporaryHighestHotness = 9999;
 
+		$ctrl.filterPublishDate = function(val) {
+			return (val.publishAt > $daySelector.minDate && val.publishAt < $daySelector.maxDate);
+		  };
+
 		$ctrl.$onChanges = (changes) => {
 			if (changes.singleTopicId && $ctrl.topicId) {
 				$ctrl.singleTopicId = $ctrl.topicId
@@ -56,19 +60,20 @@ class TopicsComponent {
 			},
 			removedTopic: (topicId) => {
 				console.log('removedCallback', topicId)
-				subscribeToArticles($topicsApi.getWithOffset($ctrl.topicsOffset));
+				$ctrl.topics = $topicsApi.getAll();
+				subscribeToArticles($ctrl.topics);
 			}
 		})
 
 		Tracker.autorun(() => {
-
+			
 			$loader.start();
 
 			Meteor.subscribe('topicsByTime',
 				$ctrl.getReactively('daySelector.minDate'),
 				$ctrl.getReactively('daySelector.maxDate'),
 				$ctrl.getReactively('singleTopicId'), {
-					onReady: () => subscribeToArticles($topicsApi.getWithOffset($ctrl.topicsOffset))
+					onReady: () => subscribeToArticles($topicsApi.getAll())
 				});
 
 		})
@@ -103,24 +108,6 @@ class TopicsComponent {
 			$ctrl.detailsAreShown = $event.showDetails;
 		}
 
-		var loadMoreDepth = 0;
-
-		$ctrl.loadMoreTopics = () => {
-
-			$ctrl.topics = null;
-
-			$ctrl.topicsOffset = $ctrl.topicsOffset + 5;
-			$ctrl.amountOfTopics = $ctrl.amountOfTopics + 5;
-			checkState();
-
-			ga('send', {
-				hitType: 'event',
-				eventCategory: 'Read',
-				eventAction: 'Load more topics',
-				eventValue: ++loadMoreDepth
-			})
-
-		}
 
 		let checkState = () => {
 			if ($state.current.name != 'topics') {

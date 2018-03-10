@@ -1,7 +1,4 @@
-
-{{ $ctrl.daySelector.minDate }} {{ $ctrl.daySelector.selectedDate }}
-
-<div class="scroll-window" ng-repeat="topic in $ctrl.topics | orderBy:'-stats.hotness'" ng-class="{'show-scrollbar' : $ctrl.isDesktop()}" id="scroll-{{topic._id}}" scroll-disabler 
+<div class="scroll-window" ng-repeat="topic in $ctrl.topics | orderBy:'-stats.hotness' | filter:$ctrl.filterPublishDate" ng-class="{'show-scrollbar' : $ctrl.isDesktop()}" id="scroll-{{topic._id}}" scroll-disabler 
     ng-cloack>
 
     <topic topic="topic" ng-class="{'show-scrollbar' : $ctrl.isDesktop()}" on-open-topic="$ctrl.openTopicId=$event.openTopicId"
@@ -10,5 +7,3 @@
 </div>
 
 <day-selector style="display:block;margin:6vw 0;"></day-selector>
-
-<md-button ng-click="$ctrl.magicYesterday();">Magic yesterday</md-button>
