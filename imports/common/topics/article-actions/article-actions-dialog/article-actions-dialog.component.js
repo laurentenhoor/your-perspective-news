@@ -94,6 +94,8 @@ export default class ArticleActionsComponent {
 				$ctrl.article.category = $ctrl.modifiedCategory;
 			}
 
+			$ctrl.publishDate.setUTCHours(12);
+
 			switch ($ctrl.mode) {
 				case 'add_source_to_topic':
 					console.log('add_source_to_topic')

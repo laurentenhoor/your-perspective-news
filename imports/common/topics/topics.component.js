@@ -5,7 +5,7 @@ import { Random } from 'meteor/random'
 
 class TopicsComponent {
 
-	constructor($scope, $reactive, $loader, $state, $articlesApi, $topicsApi, $questionsApi, $timeout, smoothScroll, $desktopViewer) {
+	constructor($scope, $reactive, $loader, $daySelector, $state, $articlesApi, $topicsApi, $questionsApi, $timeout, smoothScroll, $desktopViewer) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -13,8 +13,7 @@ class TopicsComponent {
 
 		$ctrl.isDesktop = $desktopViewer.isDesktop;
 
-		$ctrl.topicsOffset = 0;
-		$ctrl.amountOfTopics = 5;
+		$ctrl.daySelector = $daySelector;
 		$ctrl.firstInit = true;
 
 		let temporaryHighestHotness = 9999;
@@ -65,8 +64,9 @@ class TopicsComponent {
 
 			$loader.start();
 
-			Meteor.subscribe('topics',
-				$ctrl.getReactively('amountOfTopics'),
+			Meteor.subscribe('topicsByTime',
+				$ctrl.getReactively('daySelector.minDate'),
+				$ctrl.getReactively('daySelector.maxDate'),
 				$ctrl.getReactively('singleTopicId'), {
 					onReady: () => subscribeToArticles($topicsApi.getWithOffset($ctrl.topicsOffset))
 				});
@@ -106,20 +106,20 @@ class TopicsComponent {
 		var loadMoreDepth = 0;
 
 		$ctrl.loadMoreTopics = () => {
-			
+
 			$ctrl.topics = null;
-			
+
 			$ctrl.topicsOffset = $ctrl.topicsOffset + 5;
 			$ctrl.amountOfTopics = $ctrl.amountOfTopics + 5;
 			checkState();
-			
+
 			ga('send', {
 				hitType: 'event',
 				eventCategory: 'Read',
 				eventAction: 'Load more topics',
 				eventValue: ++loadMoreDepth
 			})
-			
+
 		}
 
 		let checkState = () => {

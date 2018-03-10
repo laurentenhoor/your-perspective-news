@@ -1,3 +1,6 @@
+
+{{ $ctrl.daySelector.minDate }} {{ $ctrl.daySelector.selectedDate }}
+
 <div class="scroll-window" ng-repeat="topic in $ctrl.topics | orderBy:'-stats.hotness'" ng-class="{'show-scrollbar' : $ctrl.isDesktop()}" id="scroll-{{topic._id}}" scroll-disabler 
     ng-cloack>
 
@@ -7,3 +10,5 @@
 </div>
 
 <day-selector style="display:block;margin:6vw 0;"></day-selector>
+
+<md-button ng-click="$ctrl.magicYesterday();">Magic yesterday</md-button>

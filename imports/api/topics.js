@@ -39,6 +39,25 @@ if (Meteor.isServer) {
 
 	});
 
+	Meteor.publish('topicsByTime', (minDate, maxDate, singleTopicId) => {
+
+		console.log('publish topicsByTime', minDate, maxDate, singleTopicId)
+
+		let searchQuery = {};
+
+		if (singleTopicId) {
+			searchQuery._id = singleTopicId;
+		}
+		searchQuery.publishAt = {$gte : minDate, $lt: maxDate }
+
+		console.log(searchQuery)
+
+		return Topics.find(searchQuery, {
+			sort: { 'stats.hotness': - 1 }
+		});
+
+	});
+
 	Meteor.publish('articles', (topics) => {
 
 		var articleIds = [];
