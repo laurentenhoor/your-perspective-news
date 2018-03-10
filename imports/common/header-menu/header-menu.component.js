@@ -4,7 +4,7 @@ import HeaderMenuStyle from './header-menu.styl';
 
 class HeaderMenuComponent {
 
-    constructor($scope, $reactive, $auth, $rootScope, $location, $window, $firstUseDialog, $firstUseToast, $filter) {
+    constructor($scope, $reactive, $auth, $location, $firstUseDialog, $firstUseToast) {
         'ngInject'
 
         var $ctrl = this;
@@ -24,8 +24,6 @@ class HeaderMenuComponent {
         $ctrl.isActive = function (viewLocation) {
             return viewLocation === $location.path();
         };
-
-        $ctrl.window = $window;
 
         $ctrl.login = () => {
             if (Meteor.user()) {
