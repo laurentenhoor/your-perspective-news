@@ -113,13 +113,15 @@ class SummaryTileComponent {
             }
         }
 
+        let offset = 13*window.innerWidth/100;
+
         $ctrl.scrollToArticle = function (articleId, topicId, $event) {
             openTopic();
             waitUntilSummaryHidden(() => {
                 smoothScroll(targetId = 'topic-' + topicId + '-article-' + articleId, {
                     containerId: 'scroll-' + topicId,
                     direction: 'horizontal',
-                    offset: 50,
+                    offset: offset,
                     easing: 'easeOutQuart',
                     duration: 400
                 });
@@ -133,7 +135,7 @@ class SummaryTileComponent {
                 smoothScroll(targetId = 'debate-' + topicId, {
                     containerId: 'scroll-' + topicId,
                     direction: 'horizontal',
-                    offset: 50,
+                    offset: offset,
                     easing: 'easeOutQuart',
                     duration: 600
                 });
