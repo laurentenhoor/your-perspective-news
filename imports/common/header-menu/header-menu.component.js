@@ -14,8 +14,11 @@ class HeaderMenuComponent {
             isAdmin : () => {
                 return $auth.isAdmin();
             }, 
-            user : () => {
-                return Meteor.userId();
+            isAnonymous : () => {
+                if (Meteor.user()) {
+                    return Meteor.user().anonymous;
+                }
+                return true;
             }
         }) 
 
@@ -24,10 +27,10 @@ class HeaderMenuComponent {
         };
 
         $ctrl.login = () => {
-            if (Meteor.user()) {
-                $auth.logout();
-            } else {
+            if ($ctrl.isAnonymous) {
                 $auth.login();
+            } else {
+                $auth.logout();
             }
         }
 

@@ -35,3 +35,4 @@ meteorhacks:inject-initial
 iron:router
 ostrio:meteor-root
 alanning:roles
+brettle:accounts-anonymous-auto

@@ -18,6 +18,14 @@ class TopicsComponent {
 
 		let temporaryHighestHotness = 9999;
 
+		console.log(Meteor.default_connection._lastSessionId)
+		
+		$ctrl.helpers({
+			sessionId: () => {
+				return Meteor.default_connection._lastSessionId;
+			}
+		});
+
 		$ctrl.filterPublishDate = function(val) {
 			return (val.publishAt > $daySelector.minDate && val.publishAt < $daySelector.maxDate);
 		  };

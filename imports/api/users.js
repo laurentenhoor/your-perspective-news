@@ -53,6 +53,7 @@ if (Meteor.isServer) {
                 'profile.lastName': 1,
                 'profile.headline' : 1,
                 'profile.pictureUrl' : 1,
+                'anonymous' : 1,
             }
         });
     });
