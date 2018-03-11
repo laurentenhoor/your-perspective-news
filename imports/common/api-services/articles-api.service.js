@@ -36,7 +36,7 @@ export default class ArticlesApi {
             _id: { $in: topic.articleIds },
             category: 'Nieuws',
         }, {
-            sort : {'stats.createdAt': -1}
+            sort : {'dateUnix': -1}
         }).fetch();
         return articles;
     }
