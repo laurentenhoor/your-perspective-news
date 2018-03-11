@@ -9,12 +9,13 @@ export default class AuthService {
 
 	constructor($dialog, $loader, $rootScope, $desktopViewer) {
 		'ngInject';
-
+	
 		return {
 			login: login,
 			logout: logout,
 			isLoggedIn: isLoggedIn,
-			isAdmin: isAdmin
+			isAdmin: isAdmin,
+			isAnonymous: isAnonymous,
 		}
 
 		function login(callback) {
@@ -39,6 +40,13 @@ export default class AuthService {
 				Accounts.logout(() =>
 					$loader.stop()))
 
+		}
+
+		function isAnonymous() {
+			if (Meteor.user()) {
+				return Meteor.user().anonymous;
+			}
+			return true;
 		}
 
 		function isAdmin() {

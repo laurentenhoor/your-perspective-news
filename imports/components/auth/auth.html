@@ -1,12 +1,3 @@
-<div class="auth-menu" layout="row">
-  <u>
-    <div id="login-sign-in-link" ng-if="!$ctrl.isLoggedIn" ng-click="$ctrl.login()">
-      Log in met LinkedIn
-    </div>
-  </u>
-  <u>
-    <div ng-if="$ctrl.isLoggedIn" ng-click="$ctrl.toggleAccountMenu()">
-      {{ $ctrl.currentUser | usernameFilter }} 
-    </div>
-  </u>
-</div>
+<md-button class="" style="font-size:2.3vw!important;opacity:0.7;font-weight:600;" ng-click="$ctrl.login()">
+  {{ $ctrl.isAnonymous ? 'Log in' : 'Log uit' }}
+</md-button>

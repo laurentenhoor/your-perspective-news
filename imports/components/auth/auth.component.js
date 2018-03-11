@@ -11,16 +11,13 @@ class AuthComponent {
 		var $ctrl = this;
 		$reactive($ctrl).attach($scope);
 
-		$timeout(()=>{
-			ga('send', {
-				hitType: 'event',
-				eventCategory: 'Pageview',
-				eventAction: Meteor.userId() ? 'Logged-in' : 'Anonymous',
-				eventLabel: Meteor.userId() ? '/user/' + Meteor.userId() : null
-			})
-		},2000)
-
 		$ctrl.helpers({
+			isAdmin : () => {
+                return $auth.isAdmin();
+            }, 
+            isAnonymous : () => {
+                return $auth.isAnonymous();
+            },
 			isLoggedIn() {
 				let userId = Meteor.userId();
 				ga('set', 'userId', userId);
@@ -32,7 +29,21 @@ class AuthComponent {
 			}
 		});
 
+		$timeout(()=>{
+			ga('send', {
+				hitType: 'event',
+				eventCategory: 'Pageview',
+				eventAction: $ctrl.isAnonymous ? 'Anonymous' : 'Logged-in',
+				eventLabel: Meteor.userId() ? '/user/' + Meteor.userId() : null
+			})
+		},2000)
+
 		$ctrl.login = function () {
+
+			if (!$ctrl.isAnonymous) {
+				$auth.logout();
+				return;
+			}
 
 			$loader.start();
 
