@@ -7,8 +7,8 @@ export default class DaySelectorService {
 
         this.selectedDate = new Date();
         
-        if (new Date().getHours() < 16) {
-            console.log('Het is nog geen 16:00, dus nog geen nieuwe onderwerpen!');
+        if (new Date().getHours() < 15) {
+            console.log('Het is nog geen 15:00, dus nog geen nieuwe onderwerpen voor vandaag!');
             this.yesterday();
         }
         this.today = new Date(this.selectedDate);
