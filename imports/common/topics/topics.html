@@ -1,9 +1,8 @@
-<div class="scroll-window" ng-repeat="topic in $ctrl.topics | orderBy:'-stats.hotness' | filter:$ctrl.filterPublishDate" ng-class="{'show-scrollbar' : $ctrl.isDesktop()}" id="scroll-{{topic._id}}" scroll-disabler 
-    ng-cloack>
-
+<div class="scroll-window" ng-repeat="topic in filteredTopics = ($ctrl.topics | orderBy:'-stats.hotness' | filter:$ctrl.filterPublishDate)" 
+    ng-class="{'show-scrollbar' : $ctrl.isDesktop()}" id="scroll-{{topic._id}}" scroll-disabler ng-cloack>
+    
     <topic topic="topic" ng-class="{'show-scrollbar' : $ctrl.isDesktop()}" on-open-topic="$ctrl.openTopicId=$event.openTopicId"
         open-topic-id="$ctrl.openTopicId"></topic>
-
 </div>
 
-<day-selector ng-if="$ctrl.amountOfArticlesInSelectedDay>0" style="display:block;margin:6vw 0;"></day-selector>
+<day-selector style="display:block;margin:6vw 0;"></day-selector>
