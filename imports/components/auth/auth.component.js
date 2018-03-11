@@ -12,9 +12,6 @@ class AuthComponent {
 		$reactive($ctrl).attach($scope);
 
 		$ctrl.helpers({
-			isAdmin : () => {
-                return $auth.isAdmin();
-            }, 
             isAnonymous : () => {
                 return $auth.isAnonymous();
             },

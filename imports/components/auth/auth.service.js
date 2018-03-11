@@ -50,10 +50,7 @@ export default class AuthService {
 		}
 
 		function isAdmin() {
-			console.log('isAdmin in $auth')
-			if (Meteor.user()) {
-				console.log('user', Meteor.user())
-				console.log('is role admin?', Roles.userIsInRole( Meteor.userId(), 'admin' ) )
+			if (Meteor.userId()) {
 				return Roles.userIsInRole( Meteor.userId(), 'admin' ); 
 			} else {
 				return false;

@@ -14,7 +14,7 @@
                 <div class="tile-header">&nbsp;</div>
                 <div class="tile-container">
                     <span class="text">Nieuws</span>
-                    <md-icon ng-click="$ctrl.addArticle()" class="add-article-via-bar">add</md-icon>
+                    <md-icon  ng-if="$ctrl.isAdmin" ng-click="$ctrl.addArticle()" class="add-article-via-bar">add</md-icon>
                 </div>
             </div>
         </title-bar-news>
@@ -39,7 +39,7 @@
                 <div class="tile-header">&nbsp;</div>
                 <div class="tile-container">
                     <span class="text">Verrijking</span>
-                    <md-icon ng-click="$ctrl.addArticle()" class="add-article-via-bar">add</md-icon>
+                    <md-icon  ng-if="$ctrl.isAdmin" ng-click="$ctrl.addArticle()" class="add-article-via-bar">add</md-icon>
                 </div>
             </div>
         </title-bar-news>

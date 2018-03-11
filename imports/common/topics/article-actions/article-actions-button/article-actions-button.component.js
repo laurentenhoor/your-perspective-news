@@ -3,10 +3,11 @@ import ArticleActionsButtonStyle from './article-actions-button.styl';
 
 class ArticleActionsButtonComponent {
 
-	constructor($rootScope, $scope, $document, $timeout, $reactive, $auth, $articleActionsDialog) {
+	constructor($reactive, $scope, $document, $timeout, $reactive, $auth, $articleActionsDialog) {
 		'ngInject';
 
 		var $ctrl = this;
+		$reactive($ctrl).attach($scope)
 
 		$ctrl.$onChanges = function (changes) {
 			if (changes.topicId) {
@@ -16,6 +17,12 @@ class ArticleActionsButtonComponent {
 				$ctrl.article = angular.copy($ctrl.article);
 			}
 		}
+
+		$ctrl.helpers({
+			isAdmin:()=>{
+				return $auth.isAdmin();
+			}
+		})
 
 		$ctrl.open = function ($event) {
 

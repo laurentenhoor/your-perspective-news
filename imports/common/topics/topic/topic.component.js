@@ -2,12 +2,20 @@ import TopicTemplate from './topic.html';
 import TopicStyle from './topic.styl';
 
 class TopicComponent {
-    constructor($topicsApi, $articlesApi, $timeout, $articleActionsDialog, $auth) {
+    constructor($reactive, $scope, $topicsApi, $articlesApi, $timeout, $articleActionsDialog, $auth) {
         'ngInject';
 
         var $ctrl = this;
+        $reactive($ctrl).attach($scope);
+
         $ctrl.amountOfRootArticles = 2;
         $ctrl.amountOfOtherArticles = 2;
+
+        $ctrl.helpers({
+            isAdmin:()=>{
+                return $auth.isAdmin();
+            }
+        })
 
         $ctrl.$onChanges = (changes) => {
             if (changes.topic) {
