@@ -3,6 +3,8 @@
     
     <topic topic="topic" ng-class="{'show-scrollbar' : $ctrl.isDesktop()}" on-open-topic="$ctrl.openTopicId=$event.openTopicId"
         open-topic-id="$ctrl.openTopicId"></topic>
+
+        
 </div>
 
-<day-selector style="display:block;margin:6vw 0;"></day-selector>
+<day-selector ng-if="filteredTopics.length" style="display:block;margin:6vw 0;"></day-selector>

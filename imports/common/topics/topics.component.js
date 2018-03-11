@@ -19,6 +19,7 @@ class TopicsComponent {
 		let temporaryHighestHotness = 9999;
 
 		$ctrl.filterPublishDate = function(val) {
+			$ctrl.amountOfFilteredTopics = 0;
 			return (val.publishAt > $daySelector.minDate && val.publishAt < $daySelector.maxDate);
 		  };
 
