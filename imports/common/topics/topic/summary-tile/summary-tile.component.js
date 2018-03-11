@@ -119,7 +119,7 @@ class SummaryTileComponent {
                 smoothScroll(targetId = 'topic-' + topicId + '-article-' + articleId, {
                     containerId: 'scroll-' + topicId,
                     direction: 'horizontal',
-                    offset: 53,
+                    offset: 50,
                     easing: 'easeOutQuart',
                     duration: 400
                 });
@@ -133,7 +133,7 @@ class SummaryTileComponent {
                 smoothScroll(targetId = 'debate-' + topicId, {
                     containerId: 'scroll-' + topicId,
                     direction: 'horizontal',
-                    offset: 53,
+                    offset: 50,
                     easing: 'easeOutQuart',
                     duration: 600
                 });
