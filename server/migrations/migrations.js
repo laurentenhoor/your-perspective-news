@@ -213,7 +213,7 @@ function version9() {
 	_.forEach(Topics.find({}).fetch(), (topic) => {
 	
 		if (topic && topic.createdAt) {
-			topic.publishAt = topic.createdAt;
+			topic.publishAt = topic.stats.createdAt || topic.createdAt;
 		}
 		Topics.update({_id:topic._id}, topic);
 	})
