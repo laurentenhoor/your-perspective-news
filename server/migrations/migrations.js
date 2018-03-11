@@ -135,6 +135,14 @@ if (Meteor.isServer) {
 		}
 	});
 
+	Migrations.add({
+		version: 10,
+		name: 'Add unix timestamp for all dates',
+		up: function () {
+			version10();
+		}
+	});
+
 	Meteor.startup(function () {
 		// code to run on server at startup
 		Migrations.unlock();
@@ -173,6 +181,7 @@ function version6() {
 
 	})
 }
+
 
 function version7() {
 	_.forEach(Topics.find({}).fetch(), (topic) => {
@@ -217,5 +226,17 @@ function version9() {
 		}
 		Topics.update({_id:topic._id}, topic);
 	})
+}
+
+function version10() {
+	_.forEach(Articles.find({}).fetch(), (article) => {
+	
+		if (article && article.date) {
+			article.dateUnix = new Date(article.date).getTime();
+			delete article.publishedAt;
+		}
+		Articles.update({_id:article._id}, article);
+	})
+	
 }
 

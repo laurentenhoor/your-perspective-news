@@ -36,6 +36,10 @@ export default class MetadataService {
 				self.$loader.stop();
 				return callback(false, article)
 			}
+			
+			if (article.date) {
+				article.dateUnix = new Date(article.date).getTime()
+			}
 
 			self.$imagePreloader.preloadImage(article.imageUrl)
 				.then(
