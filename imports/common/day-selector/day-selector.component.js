@@ -9,6 +9,7 @@ class DaySelectorComponent {
         var $ctrl = this;
 
         $ctrl.selectedDate = $daySelector.selectedDate;
+        $ctrl.daySelector = $daySelector;
 
         $ctrl.tomorrow = () => {
             $daySelector.tomorrow();
