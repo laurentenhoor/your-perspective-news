@@ -1,84 +1,70 @@
-<div
-    ng-if="!$ctrl.showMobile"
-    ng-cloak
->
+<div ng-if="!$ctrl.showMobile" ng-cloak>
 
-    
+
     <div class="desktop-background"></div>
     <div class="gradient-overlay"></div>
     <div class="company-strategy">
-        
-		
+
+
 
         <div class="title">
             Stap uit je
-            <br>
-            filterbubbel.
-            <div class="sub-title">Lees de artikelen die je<br> zelf niet kunt vinden</div>
+            <br> filterbubbel.
+            <div class="sub-title">Lees de artikelen die je
+                <br> zelf niet kunt vinden</div>
         </div>
-        
-		
-		<div class="logo">
-				<img
-					class="logo-img"
-					src="/logos/jouwpers-logo-no-bg.svg"
-				>
-				<div class="logo-title">
-					Jouw<b>pers</b>
-				</div>
-			</div>
+
+
+        <div class="logo">
+            <img class="logo-img" src="/logos/jouwpers-logo-no-bg.svg">
+            <div class="logo-title">
+                Jouw
+                <b>pers</b>
+            </div>
+        </div>
 
         <div class="features">
             <div class="feature-category">
-				<div class="feature-icon" style="margin-top:10px;">
-						<md-icon
-                        class="svg-icon"
-                        aria-label="Nieuws"
-						md-svg-src="/icons/lightning.svg"
-					>
-					</md-icon>
-				</div>
-				
+                <div class="feature-icon" style="margin-top:10px;">
+                    <md-icon class="svg-icon" aria-label="Nieuws" md-svg-src="/icons/lightning.svg">
+                    </md-icon>
+                </div>
+
                 <div class="feature-details-container">
-                    <div class="feature-title">Nieuws</div>
+                    <div class="feature-title">Beter op de hoogte
+                        <br>in minder tijd.</div>
                     <div class="feature-details">
-                        Verdiep je in het nieuws vanuit alle perspectieven.
+                        Meer nieuws is niet altijd beter. Wij zorgen voor een slimme selectie.
                     </div>
                 </div>
 
             </div>
             <div class="feature-category">
-					<div class="feature-icon" style="width:90px;">
-				<md-icon
-                    class="svg-icon"
-                    aria-label="Verrijking"
-                    md-svg-src="/icons/eureka.svg"
-				>
-				
-				</md-icon>
-				</div>
+                <div class="feature-icon" style="width:90px;margin-right:11px;">
+                    <md-icon class="svg-icon" aria-label="Verrijking" md-svg-src="/icons/eureka.svg">
+
+                    </md-icon>
+                </div>
 
                 <div class="feature-details-container">
-                    <div class="feature-title">Verrijking</div>
+                    <div class="feature-title">Alle perspectieven
+                        <br>vanuit één site.</div>
                     <div class="feature-details">
-                        Laat je inspireren en ontdek jouw perspectief.
+                        Meer invalshoeken wel. Wij zorgen voor scherpe diversiteit.
                     </div>
                 </div>
 
             </div>
             <div class="feature-category">
-                <div class="feature-icon"  style="margin-top:15px;">
-					<md-icon
-                    class="svg-icon"
-                    aria-label="Meedoen"
-                    md-svg-src="/icons/questions.svg"
-                >
-				</md-icon>
+                <div class="feature-icon" style="margin-top:15px;">
+                    <md-icon class="svg-icon" aria-label="Meedoen" md-svg-src="/icons/questions.svg">
+                    </md-icon>
                 </div>
                 <div class="feature-details-container">
-                    <div class="feature-title">Meedoen</div>
+                    <div class="feature-title">De meest onafhankelijke
+                        <br>redactie van Nederland.</div>
                     <div class="feature-details">
-                        Vind antwoorden op jouw vragen bij het nieuws.
+                        Word ook verrijker! Zoek met ons mee naar de toekomst van het nieuws.
                     </div>
                 </div>
 
@@ -91,20 +77,24 @@
             <div class="call-to-action-container">
                 <div class="call-to-action-bundle">
 
-                        <div class="call-to-action">
-                                Ga naar <span class="underline">jouwpers.nl</span><br>op je smartphone.<br><span class="heavy">Geen app nodig.</span>
-                        </div>
-                        
-                        <img class="qr-code-img" src="/icons/Unitag_QRCode_1518094638702.png" />    
-                    
+                    <div class="call-to-action">
+                        Ga naar
+                        <span class="underline">jouwpers.nl</span>
+                        <br>op je smartphone.
+                        <br>
+                        <span class="heavy">Geen app nodig.</span>
+                    </div>
+
+                    <img class="qr-code-img" src="/icons/Unitag_QRCode_1518094638702.png" />
+
                 </div>
-            
+
             </div>
 
             <div style="width:245px;text-align:center;">
                 <a href='mailto:iedereen@jouwpers.nl'>Stuur ons een email</a>
             </div>
-        
+
         </div>
 
     </div>
@@ -115,27 +105,18 @@
 
 
     <div class="phone-simulator">
-            <div class="phone-simulator-container">
-        <img
-        class="screen-overlay"
-        src="/iStock-840109436.png"
-    >
+        <div class="phone-simulator-container">
+            <img class="screen-overlay" src="/iStock-840109436.png">
 
-    <div class="maincontentdiv">
-        <iframe id="desktop-viewer-iframe"
-            src="{{$ctrl.absUrl}}"
-            sandbox="allow-same-origin allow-forms allow-scripts allow-popups allow-popups-to-escape-sandbox allow-presentation"
-            seamless
-            width="379"
-            height="778"
-        >
-        </iframe>
+            <div class="maincontentdiv">
+                <iframe id="desktop-viewer-iframe" src="{{$ctrl.absUrl}}" sandbox="allow-same-origin allow-forms allow-scripts allow-popups allow-popups-to-escape-sandbox allow-presentation"
+                    seamless width="379" height="778">
+                </iframe>
+            </div>
+        </div>
     </div>
-    </div>
-</div>
-   
+
 
 </div>
 
 <ng-transclude ng-if="$ctrl.showMobile"></ng-transclude>
-
