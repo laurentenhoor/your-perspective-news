@@ -17,10 +17,6 @@ class DesktopViewerCtrl {
 			});
 		});
 
-		angular.element($window).bind("orientationchange", () => {
-			
-		})
-
 		$ctrl.clickMoreInfo = () => {
 			$('#desktop-viewer-iframe').contents().find('.company-logo-container').trigger( "click" );
 		}
