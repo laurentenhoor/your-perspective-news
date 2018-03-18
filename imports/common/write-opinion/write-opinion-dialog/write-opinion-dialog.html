@@ -3,7 +3,7 @@
         <md-toolbar class="md-toolbar-tools">
 
             <div flex>Het nieuws van morgen.</div>
-            <md-button class="md-icon-button" aria-label="Sluiten" ng-click="$ctrl.saveDocument()" >
+            <md-button class="md-icon-button" aria-label="Sluiten" ng-click="$ctrl.saveDocument()">
                 <md-icon>close</md-icon>
             </md-button>
 
@@ -11,27 +11,33 @@
 
         <md-dialog-content class="md-dialog-content">
 
-            <md-input-container class="md-block title-block">
-                <label>Wat heeft verrijking nodig?</label>
-                <input ng-model="$ctrl.document.title" type="text">
+            <div class="first-use-content-block" ng-hide="$ctrl.document.title || $ctrl.article.url">
+                <h4>Wat goed dat je wilt helpen om ons nieuwsoverzicht compleet te maken! </h4>
+                <p>Laat hier een artikel, mening of iets helemaal anders achter.</p>
+                <p>Als het maar iets is dat jij graag in verrijkte vorm op Jouwpers wilt zien.</p>
+            </div>
+
+            <md-input-container class="md-block title-block" style="margin-top:8vw!important;">
+                <label>Wat heeft dringend verrijking nodig?</label>
+                <input ng-model="$ctrl.document.title" ng-change="" type="text">
             </md-input-container>
 
-            <md-input-container ng-hide="$ctrl.document.articles.length>0" class="md-block new-url-container">
+            <md-input-container ng-hide="($ctrl.document.articles.length>0)" class="md-block new-url-container">
                 <label ng-cloak>Plak hier eventueel een url naar een artikel...</label>
                 <input class="modal-item-url-input" ng-model="$ctrl.article.url" ng-change="$ctrl.urlChange()" http-prefix>
                 </input>
             </md-input-container>
 
-            <md-input-container class="md-block editor-block">
+            <md-input-container class="md-block editor-block" ng-show="$ctrl.document.title || $ctrl.article.url">
                 <rich-text-editor flex init-content="$ctrl.initContent" add-article="$ctrl.addArticle" on-input="$ctrl.receiveHtml($event)"></rich-text-editor>
             </md-input-container>
-            
-            <md-input-container ng-show="$ctrl.document.articles.length>0" class="md-block">
+
+            <md-input-container ng-show="($ctrl.document.articles.length>0)" class="md-block">
                 <div class="ref-label">Klik om te refereren</div>
                 <select-source articles="$ctrl.document.articles" on-article-ref-click="$ctrl.addArticleRef($event)"></select-source>
             </md-input-container>
 
-            <md-input-container ng-show="$ctrl.document.articles.length>0" class="md-block new-url-container">
+            <md-input-container ng-show="($ctrl.document.articles.length>0)" class="md-block new-url-container">
                 <label ng-cloak>Plak eventueel meer bronnen...</label>
                 <input class="modal-item-url-input" ng-model="$ctrl.article.url" ng-change="$ctrl.urlChange()" http-prefix>
                 </input>
@@ -39,7 +45,7 @@
 
         </md-dialog-content>
 
-        <md-dialog-actions layout="row" align="center">
+        <md-dialog-actions layout="row" align="center" style="margin-top:5vw !important;">
             <span flex></span>
             <md-button class="md-raised" ng-click="$ctrl.saveDocumentAsDraft()" md-autofocus>
                 <md-icon>watch_later</md-icon> Opslaan voor later
