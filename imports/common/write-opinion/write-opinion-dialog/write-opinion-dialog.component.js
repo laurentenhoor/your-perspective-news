@@ -3,13 +3,17 @@ import { Opinions } from '/imports/api/opinions.js';
 
 import angular from 'angular';
 
+import SlackAPI from 'node-slack';
+
 export default class WriteOpinionDialogComponent {
 
-    constructor(topicId, $writeOpinionDialog, $metadata, $articlesApi, $element) {
+    constructor(topicId, $writeOpinionDialog, $metadata, $articlesApi, $element, $auth) {
         'ngInject';
 
         console.log('init WriteOpinionDialog')
         var $ctrl = this;
+
+        var Slack = new SlackAPI('https://hooks.slack.com/services/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');
 
         // $ctrl.topicId = topicId;
         // $ctrl.articles = $articlesApi.getByTopicId($ctrl.topicId);
@@ -28,6 +32,7 @@ export default class WriteOpinionDialogComponent {
                 title: '',
                 content: '',
                 imageUrl: '',
+                email: $auth.getEmail(),
                 articles: [],
                 score: 0,
                 ownerId: Meteor.userId(),
@@ -56,6 +61,7 @@ export default class WriteOpinionDialogComponent {
             console.log('document for save', $ctrl.document)
 
             let document = angular.copy($ctrl.document);
+        
             angular.forEach(document.articles, (article, i) =>{
                 delete article.$$hashKey;
                 document.articles[i] = article;
@@ -64,6 +70,14 @@ export default class WriteOpinionDialogComponent {
                 if (error)
                     return console.error(error);
                 console.log(result);
+
+                if (document.title) {
+                    Slack.send({
+                        username: document.title +' [' +  (document.draft ? 'DRAFT' : 'FINAL' ) + ']',
+                        text: document.content.replace(/<\/?[^>]+(>|$)/g, "") + ' '+ (document.articles[0] ? document.articles[0].url:'') + (document.articles[1] ? ' Er zijn meer bronnen toegevoegd maar hier niet weergeven...':'') + ' Email: ' + ($auth.getEmail() ? $auth.getEmail() : document.email)
+                    });
+                }
+                
             });
             $ctrl.hideDialog();
         }

@@ -43,6 +43,11 @@
                 </input>
             </md-input-container>
 
+            <md-input-container ng-show="$ctrl.document.title" class="md-block title-block" style="margin-top:8vw!important;">
+                <label>Waar kunnen wij jou bereiken als we dit gaan plaatsen?</label>
+                <input ng-model="$ctrl.document.email" ng-change="" type="text">
+            </md-input-container>
+
         </md-dialog-content>
 
         <md-dialog-actions layout="row" align="center" style="margin-top:5vw !important;">

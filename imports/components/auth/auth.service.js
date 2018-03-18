@@ -9,13 +9,14 @@ export default class AuthService {
 
 	constructor($dialog, $loader, $rootScope, $desktopViewer) {
 		'ngInject';
-	
+
 		return {
 			login: login,
 			logout: logout,
 			isLoggedIn: isLoggedIn,
 			isAdmin: isAdmin,
 			isAnonymous: isAnonymous,
+			getEmail: getEmail
 		}
 
 		function login(callback) {
@@ -42,6 +43,14 @@ export default class AuthService {
 
 		}
 
+		function getEmail() {
+			let user = Meteor.user()
+			if (user.profile && user.profile.emailAddress) {
+				return user.profile.emailAddress;
+			}
+			return null;
+		}
+
 		function isAnonymous() {
 			if (Meteor.user()) {
 				return Meteor.user().anonymous;
@@ -51,7 +60,7 @@ export default class AuthService {
 
 		function isAdmin() {
 			if (Meteor.userId()) {
-				return Roles.userIsInRole( Meteor.userId(), 'admin' ); 
+				return Roles.userIsInRole(Meteor.userId(), 'admin');
 			} else {
 				return false;
 			}
