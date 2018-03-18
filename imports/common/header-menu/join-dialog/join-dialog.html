@@ -22,11 +22,11 @@
 
                 <div class="first-use-content-block">
                     <h2>Join the club!</h2>
-                    <md-input-container class="md-block" flex-gt-sm style="margin: 5vw -0.6vw;">
+                    <md-input-container class="md-block" style="margin: 5vw -0.6vw;">
                         <label>Email</label>
                         <input name="email" ng-model="$ctrl.email" required minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
                         <div class="hint">Hoe kunnen we jou bereiken?</div>
-                        <md-button class="md-raised md-warn" style="margin: 5vw 0 0 0;">Inschrijven</md-button>
+                        <md-button ng-click="$ctrl.clickJoin($ctrl.email)" class="md-raised md-warn" style="margin: 5vw 0 0 0;">Inschrijven</md-button>
                     </md-input-container>
                     <!-- <section layout="row" layout-sm="column" layout-align="left left" layout-wrap>
                     </section> -->

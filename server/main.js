@@ -9,6 +9,7 @@ import { Feedback } from '/imports/api/feedback'
 import { Opinions } from '/imports/api/opinions'
 import { Users } from '/imports/api/users'
 import { Questions } from '/imports/api/questions'
+import { Emails } from '/imports/api/emails'
 
 import SlackAPI from 'node-slack';
 

@@ -16,13 +16,11 @@ export default class FeedbackDialogService {
     }
 
     show($event, topic) {
-
         this.$dialog.show({
             controller: DialogComponent,
             templateUrl: DialogTemplate,
             targetEvent: $event,
             locals: {
-
             }
         });
 
