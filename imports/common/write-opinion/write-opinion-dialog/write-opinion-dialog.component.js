@@ -1,6 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Opinions } from '/imports/api/opinions.js';
 
+import angular from 'angular';
+
 export default class WriteOpinionDialogComponent {
 
     constructor(topicId, $writeOpinionDialog, $metadata, $articlesApi, $element) {
@@ -9,11 +11,12 @@ export default class WriteOpinionDialogComponent {
         console.log('init WriteOpinionDialog')
         var $ctrl = this;
 
-        $ctrl.topicId = topicId;
-        $ctrl.articles = $articlesApi.getByTopicId($ctrl.topicId);
-        console.log($ctrl.articles)
+        // $ctrl.topicId = topicId;
+        // $ctrl.articles = $articlesApi.getByTopicId($ctrl.topicId);
+        // console.log($ctrl.articles)
 
-        var opinion = Opinions.findOne({ ownerId: Meteor.userId(), topicId: $ctrl.topicId }, {});
+        var opinion = Opinions.find({ ownerId: Meteor.userId(), draft : true }, { sort: { updatedAt: -1 }, limit: 1 }).fetch()[0];
+        console.log('loaded Opinion', opinion)
 
         if (opinion) {
             $ctrl.document = opinion;
@@ -25,9 +28,8 @@ export default class WriteOpinionDialogComponent {
                 title: '',
                 content: '',
                 imageUrl: '',
-                refs: [],
-                score : 0,
-                topicId: topicId,
+                articles: [],
+                score: 0,
                 ownerId: Meteor.userId(),
                 draft: true,
                 new: true,
@@ -37,7 +39,7 @@ export default class WriteOpinionDialogComponent {
         }
         $ctrl.initContent = angular.copy($ctrl.document.content);
 
-        $ctrl.receiveHtml = function($event) {
+        $ctrl.receiveHtml = function ($event) {
             $ctrl.document.content = $event.htmlContent;
         }
 
@@ -50,8 +52,15 @@ export default class WriteOpinionDialogComponent {
         }
 
         $ctrl.saveDocument = function () {
-            console.log($ctrl.document)
-            Opinions.upsert({ _id: $ctrl.document._id }, $ctrl.document, (error, result) => {
+            // $ctrl.document = angular.toJSON($ctrl.document)
+            console.log('document for save', $ctrl.document)
+
+            let document = angular.copy($ctrl.document);
+            angular.forEach(document.articles, (article, i) =>{
+                delete article.$$hashKey;
+                document.articles[i] = article;
+            })
+            Opinions.upsert({ _id: $ctrl.document._id }, document, (error, result) => {
                 if (error)
                     return console.error(error);
                 console.log(result);
@@ -59,7 +68,7 @@ export default class WriteOpinionDialogComponent {
             $ctrl.hideDialog();
         }
 
-        $ctrl.saveDocumentAsDraft = function() {
+        $ctrl.saveDocumentAsDraft = function () {
             $ctrl.document.draft = true
             $ctrl.saveDocument();
         }
@@ -71,14 +80,19 @@ export default class WriteOpinionDialogComponent {
 
         $ctrl.urlChange = function () {
             $metadata.getArticleFromUrl($ctrl.article.url, (error, article) => {
-                if (error)
+                if (error) {
                     return console.error(error);
-                $ctrl.articles.unshift(article)
+                }
+                if (!$ctrl.document.articles) {
+                    $ctrl.document.articles = []
+                }
+                $ctrl.article.url = null;
+                $ctrl.document.articles.push(article);
             });
-           
+
         }
 
-        $ctrl.addArticleRef = function($event) {
+        $ctrl.addArticleRef = function ($event) {
             $ctrl.addArticle = angular.copy($event.article);
         }
 
