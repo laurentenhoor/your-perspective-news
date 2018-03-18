@@ -52,7 +52,11 @@ export default class WriteOpinionDialogComponent {
             // Unfortunately blurring here is the only (indirect) solution for having the 
             // blur event directly linked to the touch event (required for iOS)
             // normally this should have been done in the rich-text-editor.component $onDestroy
-            $element.find('text-editor')[0].blur();
+            
+            if( $element.find('text-editor')[0]) {
+                $element.find('text-editor')[0].blur();
+            }
+            
             $writeOpinionDialog.hide();
         }
 
@@ -71,9 +75,9 @@ export default class WriteOpinionDialogComponent {
                     return console.error(error);
                 console.log(result);
 
-                if (document.title) {
+                if (!document.draft) {
                     Slack.send({
-                        username: document.title +' [' +  (document.draft ? 'DRAFT' : 'FINAL' ) + ']',
+                        username: document.title,
                         text: document.content.replace(/<\/?[^>]+(>|$)/g, "") + ' '+ (document.articles && document.articles[0] ? document.articles[0].url:'') + (document.articles && document.articles[1] ? ' Er zijn meer bronnen toegevoegd maar hier niet weergeven...':'') + ' Contactgegevens: ' + ($auth.getEmail() ? $auth.getEmail() : document.email)
                     });
                 }
