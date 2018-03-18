@@ -31,9 +31,10 @@
             </md-input-container>
 
             <md-input-container ng-show="($ctrl.document.articles.length>0)" class="md-block new-url-container">
-                <label ng-cloak>Plak eventueel meer bronnen...</label>
+                <label ng-cloak>Plak eventueel meer bronnen.</label>
                 <input class="modal-item-url-input" ng-model="$ctrl.article.url" ng-change="$ctrl.urlChange()" http-prefix>
                 </input>
+                
             </md-input-container>
 
 
@@ -48,7 +49,7 @@
 
 
             <md-input-container class="md-block new-url-container">
-                <label>Krijg eventueel een alert via email</label>
+                <label>Ontvang een email bij plaatsing.</label>
                 <input ng-model="$ctrl.document.email" ng-change="" type="text">
             </md-input-container>
 
