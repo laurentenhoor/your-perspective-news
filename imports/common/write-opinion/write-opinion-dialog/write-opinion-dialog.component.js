@@ -74,7 +74,7 @@ export default class WriteOpinionDialogComponent {
                 if (document.title) {
                     Slack.send({
                         username: document.title +' [' +  (document.draft ? 'DRAFT' : 'FINAL' ) + ']',
-                        text: document.content.replace(/<\/?[^>]+(>|$)/g, "") + ' '+ (document.articles && document.articles[0] ? document.articles[0].url:'') + (document.articles[1] ? ' Er zijn meer bronnen toegevoegd maar hier niet weergeven...':'') + ' Contactgegevens: ' + ($auth.getEmail() ? $auth.getEmail() : document.email)
+                        text: document.content.replace(/<\/?[^>]+(>|$)/g, "") + ' '+ (document.articles && document.articles[0] ? document.articles[0].url:'') + (document.articles && document.articles[1] ? ' Er zijn meer bronnen toegevoegd maar hier niet weergeven...':'') + ' Contactgegevens: ' + ($auth.getEmail() ? $auth.getEmail() : document.email)
                     });
                 }
                 
