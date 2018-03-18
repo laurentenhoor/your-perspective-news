@@ -16,6 +16,10 @@ export default class JoinDialogComponent {
         }
 
         $ctrl.clickJoin = (email) => {
+            if (!email || email.length < 4) {
+                console.warn('no valid email')
+                return;
+            }
             console.log('new subscription with email:', email);
             Emails.insert({email:email, type:'verrijker'}, (error, result) => {
                 if (error) {

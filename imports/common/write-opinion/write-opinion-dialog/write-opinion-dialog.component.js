@@ -7,7 +7,7 @@ import SlackAPI from 'node-slack';
 
 export default class WriteOpinionDialogComponent {
 
-    constructor(topicId, $writeOpinionDialog, $metadata, $articlesApi, $element, $auth) {
+    constructor(topicId, $writeOpinionDialog, $metadata, $articlesApi, $element, $auth, $dialog) {
         'ngInject';
 
         console.log('init WriteOpinionDialog')
@@ -76,6 +76,13 @@ export default class WriteOpinionDialogComponent {
                 console.log(result);
 
                 if (!document.draft) {
+                    $dialog.show(
+                        $dialog.alert()
+                            .title('Bedankt voor je tip.')
+                            .textContent('Wij gaan direct op zoek naar interessante verrijkingen!')
+                            .ariaLabel('Tip')
+                            .ok('Sluiten')
+                    );
                     Slack.send({
                         username: document.title,
                         text: document.content.replace(/<\/?[^>]+(>|$)/g, "") + ' '+ (document.articles && document.articles[0] ? document.articles[0].url:'') + (document.articles && document.articles[1] ? ' Er zijn meer bronnen toegevoegd maar hier niet weergeven...':'') + ' Contactgegevens: ' + ($auth.getEmail() ? $auth.getEmail() : document.email)
