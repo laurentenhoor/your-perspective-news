@@ -11,7 +11,7 @@
 
         <md-dialog-content class="md-dialog-content">
 
-            <div class="first-use-content-block" ng-hide="$ctrl.document.title || $ctrl.article.url">
+            <div class="first-use-content-block" ng-hide="$ctrl.document.title || $ctrl.article.url || $ctrl.document.articles.length>0">
                 <h4>Wat goed dat je wilt helpen om ons nieuwsoverzicht compleet te maken! </h4>
                 <p>Laat hier een artikel, mening of iets helemaal anders achter.</p>
                 <p>Als het maar iets is dat jij graag in verrijkte vorm op Jouwpers wilt zien.</p>
@@ -28,6 +28,12 @@
                 </input>
             </md-input-container>
 
+            <md-input-container ng-show="$ctrl.document.title" class="md-block title-block" style="margin-top:8vw!important;">
+                <label>Waar kunnen wij jou bereiken als we dit gaan plaatsen?</label>
+                <input ng-model="$ctrl.document.email" ng-change="" type="text">
+            </md-input-container>
+
+
             <md-input-container class="md-block editor-block" ng-show="$ctrl.document.title || $ctrl.article.url">
                 <rich-text-editor flex init-content="$ctrl.initContent" add-article="$ctrl.addArticle" on-input="$ctrl.receiveHtml($event)"></rich-text-editor>
             </md-input-container>
@@ -43,10 +49,6 @@
                 </input>
             </md-input-container>
 
-            <md-input-container ng-show="$ctrl.document.title" class="md-block title-block" style="margin-top:8vw!important;">
-                <label>Waar kunnen wij jou bereiken als we dit gaan plaatsen?</label>
-                <input ng-model="$ctrl.document.email" ng-change="" type="text">
-            </md-input-container>
 
         </md-dialog-content>
 
