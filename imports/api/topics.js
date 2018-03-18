@@ -50,8 +50,6 @@ if (Meteor.isServer) {
 		}
 		searchQuery.publishAt = {$gte : minDate, $lt: maxDate }
 
-		console.log(searchQuery)
-
 		return Topics.find(searchQuery, {
 			sort: { 'stats.hotness': - 1 }
 		});
@@ -60,10 +58,12 @@ if (Meteor.isServer) {
 
 	Meteor.publish('articles', (topics) => {
 
+		console.log('publish articles', topics);
+		
 		var articleIds = [];
 
 		if (!topics) {
-			return true;
+			return;
 		}
 
 		_.each(topics, (topic) => {
@@ -75,7 +75,7 @@ if (Meteor.isServer) {
 				_id: { $in: articleIds }
 			});
 		}
-		return true;
+		return;
 		
 	});
 
