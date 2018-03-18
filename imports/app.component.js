@@ -9,12 +9,12 @@ class AppComponent {
 	constructor($timeout, $loader, $firstUseToast, $firstUseDialog, $shareDialog) {
 		'ngInject';
 		
-		// $loader.executeAfterDatabaseInit(() => {
-		// 	$timeout(() => {
-		// 		if (!$firstUseDialog.isCurrentlyShown())
-		// 			$firstUseToast.show();
-		// 	}, 6000)
-		// });
+		$loader.executeAfterDatabaseInit(() => {
+			$timeout(() => {
+				if (!$firstUseDialog.isCurrentlyShown())
+					$firstUseToast.show();
+			}, 6000)
+		});
 
 	}
 }
