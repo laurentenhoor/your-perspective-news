@@ -25,7 +25,8 @@ class HeaderMenuComponent {
             $joinDialog.show($event);
         }
 
-        $ctrl.clickJoin();
+        // $ctrl.clickJoin();
+
         $ctrl.clickTips = ($event) => {
             $writeOpinionDialog.show($event)
         }
