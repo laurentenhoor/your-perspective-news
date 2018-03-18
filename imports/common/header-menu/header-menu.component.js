@@ -29,6 +29,12 @@ class HeaderMenuComponent {
 
         $ctrl.clickTips = ($event) => {
             $writeOpinionDialog.show($event)
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'Tip',
+                eventAction: 'Open Tip',
+                eventLabel: ''
+            })
         }
        
     }
