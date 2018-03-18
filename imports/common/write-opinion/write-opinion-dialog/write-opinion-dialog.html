@@ -2,7 +2,7 @@
     <form ng-cloak>
         <md-toolbar class="md-toolbar-tools">
 
-            <div flex>Schrijf hierover</div>
+            <div flex>Het nieuws van morgen.</div>
             <md-button class="md-icon-button" aria-label="Sluiten" ng-click="$ctrl.saveDocument()" >
                 <md-icon>close</md-icon>
             </md-button>
@@ -12,23 +12,23 @@
         <md-dialog-content class="md-dialog-content">
 
             <md-input-container class="md-block title-block">
-                <label>Titel</label>
+                <label>Wat heeft verrijking nodig?</label>
                 <input ng-model="$ctrl.document.title" type="text">
+            </md-input-container>
+
+            <md-input-container class="md-block new-url-container">
+                <label ng-cloak>Plak hier eventueel een url naar een artikel...</label>
+                <input class="modal-item-url-input" ng-model="$ctrl.article.url" ng-change="$ctrl.urlChange()" http-prefix>
+                </input>
             </md-input-container>
 
             <md-input-container class="md-block editor-block">
                 <rich-text-editor flex init-content="$ctrl.initContent" add-article="$ctrl.addArticle" on-input="$ctrl.receiveHtml($event)"></rich-text-editor>
             </md-input-container>
             
-            <md-input-container class="md-block">
+            <md-input-container ng-show="$ctrl.topicId || $ctrl.articles.length > 0" class="md-block">
                 <div class="ref-label">Klik om te refereren</div>
                 <select-source topic-id="$ctrl.topicId" articles="$ctrl.articles" on-article-ref-click="$ctrl.addArticleRef($event)"></select-source>
-            </md-input-container>
-
-            <md-input-container class="md-block new-url-container">
-                <label ng-cloak>Of plak hier een url naar een nieuw artikel</label>
-                <input class="modal-item-url-input" ng-model="$ctrl.article.url" ng-change="$ctrl.urlChange()" http-prefix>
-                </input>
             </md-input-container>
 
         </md-dialog-content>
@@ -39,7 +39,7 @@
                 <md-icon>watch_later</md-icon> Opslaan voor later
             </md-button>
             <md-button class="md-raised md-primary" ng-click="$ctrl.publishDocument()" tabindex="-1">
-                <md-icon>send</md-icon> Plaatsen
+                <md-icon>send</md-icon> Verstuur
             </md-button>
         </md-dialog-actions>
 

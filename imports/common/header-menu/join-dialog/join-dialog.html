@@ -1,0 +1,113 @@
+<md-dialog aria-label="">
+    <form ng-cloak>
+        <md-toolbar class="md-toolbar-tools">
+
+            <div flex>
+                <span style="font-size:4.5vw"></span>Over Jouwpers.</div>
+            <md-button class="md-icon-button" aria-label="Sluiten" ng-click="$ctrl.close()">
+                <md-icon>close</md-icon>
+            </md-button>
+        </md-toolbar>
+
+        <md-dialog-content class="first-use-content">
+            <div class="md-dialog-content">
+
+                <div class="first-use-content-block">
+                    <h1>Stap uit je filterbubbel.
+                        <br>
+                    </h1>
+                    <h3 id="mogen-wij-jou-helpen-bij-het-zoeken-naar-het-volledige-verhaal-achter-het-nieuws-">Lees de artikelen die je zelf niet kunt vinden.</h3>
+
+                </div>
+
+                <div class="first-use-content-block">
+                    <h2 id="wat-kun-je-van-ons-verwachten-">Wat biedt Jouwpers?</h2>
+                    <h4 id="nieuws">Beter op de hoogte in minder tijd.</h4>
+                    <p>Meer nieuws is niet altijd beter. Wij zorgen voor een slimme selectie.</p>
+                    <h4 id="mini-opinie">Alle perspectieven vanuit één site.</h4>
+                    <p>Meer invalshoeken wel. Wij zorgen voor scherpe diversiteit.
+                    </p>
+                    <h4 id="discussie-of-beter-gezegd-q-a">De meest onafhankelijke redactie van Nederland.</h4>
+                    <p>Word ook verrijker! Zoek met ons mee naar de toekomst van het nieuws.</p>
+                </div>
+
+
+
+                <div class="first-use-content-block">
+                    <h2 id="waar-staan-wij-voor-">Hoe werkt het?</h2>
+                    <h4 id="nieuws">Dagelijks vanaf 15:00 een verrijkt nieuwsoverzicht.</h4>
+                    <p>
+                        Iedere middag komen de belangrijkste onderwerpen van de dag online. Deze onderwerpen zijn verrijkt met bijvoorbeeld achtergrond,
+                        controversiële meningen of grappige filmpjes.
+                    </p>
+                    <h4 id="nieuws">Laat ons weten wat jij waardeert.</h4>
+                    <p>
+                        Als je een toevoeging waardeert, klik je op het pijltje omhoog. Zo niet, dan op het pijltje omlaag. Op basis van jouw feedback
+                        worden onze leden beloond voor de verrijkingen met de meeste impact.
+                    </p>
+                    <h4 id="nieuws">Doe suggesties voor morgen.</h4>
+                    <p>Iedereen kan suggesties doen voor nieuwsberichten die het verrijken waard zijn, graag zelfs! Op deze
+                        manier weten we zeker dat we de belangrijkste onderwerpen hebben.
+                    </p>
+                    <br>
+                </div>
+
+                <div class="first-use-content-block">
+
+                    <h2 id="wat-is-jouwpers-">Wat doen wij?</h2>
+                    <p>Jouwpers schept orde in de chaos van het nieuws. Wij doen dit door de belangrijkste onderwerpen van de
+                        dag te verrijken met relevante en inspirerende content.
+                    </p>
+                    <p>Zo ben jij beter op de hoogte in minder tijd. Niet door vluchtig en eenzijdig nieuws, maar door het volledige
+                        verhaal vanuit verschillende perspectieven.</p>
+                    <!-- <h4 id="zoek-jij-met-ons-mee-naar-de-toekomst-van-de-journalistiek-">Zoek jij mee naar de toekomst van het nieuws?</h4> -->
+                </div>
+
+                <div class="first-use-content-block">
+                    <h2 id="hoe-waarborgen-wij-onze-kwaliteit-">Wie zijn wij?</h2>
+
+                    <p>Wij zijn een actieve online community van nieuwsgierige mensen. We verrijken het nieuws door bronnen
+                        toe te voegen die niet zomaar vanzelf op je pad komen.
+                    </p>
+
+                    <p>
+                        Samen zoeken wij naar het volledige verhaal achter het nieuws. En het leuke is: jij kunt zelf de onderwerpen aandragen voor
+                        verrijking. Ofwel: u vraagt, wij draaien.
+
+                    </p>
+                    <p>Ben jij iemand die prima zelf de verbreding weet te vinden? Twijfel niet en sluit je zo snel mogelijk
+                        bij ons aan, steun de publieke opinie en ontdek welke beloning er voor jou inzit.</p>
+
+                </div>
+
+                <div class="first-use-content-block">
+                    <h2 id="hoe-waarborgen-wij-onze-kwaliteit-">Waarom is Jouwpers opgericht?
+                    </h2>
+
+                    <p>Hoe vaak lees je in het Nederlandse nieuws een positief artikel over Trump?</p>
+
+                    <p>
+                        En hoe vaak heb je gelezen over het aantal doden in een oorlog, maar weet je nét te weinig over het conflict dat gaande is?
+                    </p>
+                    <p>Wij vinden te vaak. We zien in 'het nieuws' te veel hetzelfde perspectief, te weinig verdieping en te weinig discussie. </p>
+                    <p>Daarom zijn we begonnen met een zoektocht naar hoe het beter kan. Met als uitgangspunt dat een community van nieuwsgierige mensen het alledaagse nieuws kan verrijken. </p>
+
+                    <p>En dat het als lezer interessant is om het volledige verhaal achter het nieuws te leren kennen, maar het wel behapbaar moet blijven. Daarom worden elke dag slechts de nieuwsberichten verrijkt die het waard zijn.</p>
+
+                </div>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row" align="center" ng-class="'first-use-dialog-actions'">
+            <span flex></span>
+            <md-button class="md-raised" ng-click="$ctrl.dislike()">
+                <md-icon>thumb_down</md-icon>
+            </md-button>
+            <md-button class="md-raised md-primary" ng-click="$ctrl.like()">
+                <md-icon>thumb_up</md-icon>
+                Interessant
+            </md-button>
+        </md-dialog-actions>
+
+    </form>
+</md-dialog>
