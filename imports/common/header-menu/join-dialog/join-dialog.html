@@ -3,7 +3,7 @@
         <md-toolbar class="md-toolbar-tools">
 
             <div flex>
-                <span style="font-size:4.5vw"></span>Doe met ons mee!</div>
+                <span style="font-size:4.5vw"></span>Word een verrijker.</div>
             <md-button class="md-icon-button" aria-label="Sluiten" ng-click="$ctrl.close($event)">
                 <md-icon>close</md-icon>
             </md-button>
@@ -11,6 +11,44 @@
 
         <md-dialog-content class="first-use-content">
             <div class="md-dialog-content">
+
+                <div class="first-use-content-block">
+                    <p>Wat leuk dat je geïnteresseerd bent om zelf actief bij te dragen aan het verrijken van het nieuws.</p>
+                    <p>Wij doen dit door bijvoorbeeld controversiële meningen of verdiepende filmpjes toe te voegen aan nieuwsberichten.</p>
+                    <p>Op die manier kunnen wij elkaar artikelen voorschotelen die we zelf lastig kunnen vinden.</p>
+                    <h4>Zodat we Nederland bevrijden uit z’n filter bubbel.</h4>
+
+                </div>
+
+                <div class="first-use-content-block">
+                    <h2>Join the club!</h2>
+                    <md-input-container class="md-block" flex-gt-sm style="margin: 5vw -0.6vw;">
+                        <label>Email</label>
+                        <input name="email" ng-model="$ctrl.email" required minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                        <div class="hint">Hoe kunnen we jou bereiken?</div>
+                    </md-input-container>
+                    <md-button class="md-raised md-warn md-hue-2" style="margin: 0 0 5vw 0;">Inschrijven</md-button>
+                    <!-- <section layout="row" layout-sm="column" layout-align="left left" layout-wrap>
+                        
+                    </section> -->
+                </div>
+                <div class="first-use-content-block">
+                    <h2 id="wat-kun-je-van-ons-verwachten-">What's in it for me?</h2>
+                    <h4 id="nieuws">It’s fun</h4>
+                    <p>Je zult zien dat het actief op zoek zijn naar verdieping en verbreding van het nieuws een feestje is.
+                        En leerzaam. En dat ook nog eens voor het goede doel: Nederland uit z’n filterbubbel bevrijden. Bovendien
+                        is het geweldig om aan de ‘votes’ te zien of jouw toevoegingen gewaardeerd worden of niet.</p>
+                    <h4 id="mini-opinie">Meer rechten in onze hechte community.</h4>
+                    <p>Je krijgt steeds meer rechten naarmate het vertrouwen van de rest van de community in jou stijgt. Zo
+                        krijg je - als je voldoende bijdragen hebt geleverd die gewaardeerd worden - bijvoorbeeld het recht
+                        om onderwerpen aan te passen of toevoegingen van anderen aan te passen.
+                    </p>
+                    <h4 id="discussie-of-beter-gezegd-q-a">Een-cent-ives</h4>
+                    <p>Last but not least: er ligt een kleine vergoeding in het verschiet. Als je meer upvotes dan downvotes
+                        op jouw bijdragen krijgt, ontvang je 1 eurocent voor elke upvote die je meer hebt downvotes. Omdat
+                        wij geloven dat je dat verdient als je inspirerende toevoegingen post die gewaardeerd worden.
+                    </p>
+                </div>
 
 
             </div>
