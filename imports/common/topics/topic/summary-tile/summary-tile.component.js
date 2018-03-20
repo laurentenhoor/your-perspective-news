@@ -102,44 +102,44 @@ class SummaryTileComponent {
             }
         }
         
-        const waitUntilSummaryHidden = (action) => {
-            let summaryElement = document.getElementById('summary-' + $ctrl.topic._id);
-            if (!(summaryElement.offsetWidth == 0)) {
-                $timeout(() => {
-                    waitUntilSummaryHidden(action)
-                }, 50)
-            } else {
-                action();
-            }
-        }
+        // const waitUntilSummaryHidden = (action) => {
+        //     let summaryElement = document.getElementById('summary-' + $ctrl.topic._id);
+        //     if (!(summaryElement.offsetWidth == 0)) {
+        //         $timeout(() => {
+        //             waitUntilSummaryHidden(action)
+        //         }, 50)
+        //     } else {
+        //         action();
+        //     }
+        // }
 
         let offset = 13*window.innerWidth/100;
 
         $ctrl.scrollToArticle = function (articleId, topicId, $event) {
             openTopic();
-            waitUntilSummaryHidden(() => {
-                smoothScroll(targetId = 'topic-' + topicId + '-article-' + articleId, {
-                    containerId: 'scroll-' + topicId,
-                    direction: 'horizontal',
-                    offset: offset,
-                    easing: 'easeOutQuart',
-                    duration: 400
-                });
-            })
+            // waitUntilSummaryHidden(() => {
+            //     smoothScroll(targetId = 'topic-' + topicId + '-article-' + articleId, {
+            //         containerId: 'scroll-' + topicId,
+            //         direction: 'horizontal',
+            //         offset: offset,
+            //         easing: 'easeOutQuart',
+            //         duration: 400
+            //     });
+            // })
 
         }
 
         $ctrl.scrollToQuestions = function (topicId) {
             openTopic();
-            waitUntilSummaryHidden(() => {
-                smoothScroll(targetId = 'debate-' + topicId, {
-                    containerId: 'scroll-' + topicId,
-                    direction: 'horizontal',
-                    offset: offset,
-                    easing: 'easeOutQuart',
-                    duration: 600
-                });
-            })
+            // waitUntilSummaryHidden(() => {
+            //     smoothScroll(targetId = 'debate-' + topicId, {
+            //         containerId: 'scroll-' + topicId,
+            //         direction: 'horizontal',
+            //         offset: offset,
+            //         easing: 'easeOutQuart',
+            //         duration: 600
+            //     });
+            // })
 
         }
 

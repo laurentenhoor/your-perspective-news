@@ -6,7 +6,7 @@ import appStyle from './app.styl';
 
 class AppComponent {
 	
-	constructor($timeout, $loader, $firstUseToast, $firstUseDialog, $shareDialog) {
+	constructor($timeout, $loader, $firstUseToast, $firstUseDialog) {
 		'ngInject';
 		
 		$loader.executeAfterDatabaseInit(() => {

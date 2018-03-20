@@ -8,14 +8,13 @@ import ArticleTiles from './article-tiles/article-tiles.module';
 import CommentsTile from './comments-tile/comments-tile.module';
 import OpinionTile from './opinion-tile/opinion-tile.module';
 import DebateTile from './debate-tile/debate-tile.module';
+import Share from './share/share.module'
 
 import SmoothScroll from '/imports/directives/smooth-scroll';
 
-import ShareDialog from './share-dialog/share-dialog.module'
-
 export default angular
     .module('Topic', [
-        ShareDialog,
+        Share,
         TopicControls,
         SummaryTile,
         ArticleTiles,
