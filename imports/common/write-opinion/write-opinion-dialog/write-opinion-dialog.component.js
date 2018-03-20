@@ -22,12 +22,7 @@ export default class WriteOpinionDialogComponent {
         var opinion = Opinions.find({ ownerId: Meteor.userId(), draft : true }, { sort: { updatedAt: -1 }, limit: 1 }).fetch()[0];
         console.log('loaded Opinion', opinion)
 
-        if (opinion) {
-            $ctrl.document = opinion;
-            $ctrl.document.new = false;
-            $ctrl.document.updatedAt = Date.now();
-            $ctrl.document.ownerId = Meteor.userId();
-        } else {
+        $ctrl.newDocument = () => {
             $ctrl.document = {
                 title: '',
                 content: '',
@@ -42,6 +37,16 @@ export default class WriteOpinionDialogComponent {
                 updatedAt: Date.now(),
             }
         }
+
+        if (opinion) {
+            $ctrl.document = opinion;
+            $ctrl.document.new = false;
+            $ctrl.document.updatedAt = Date.now();
+            $ctrl.document.ownerId = Meteor.userId();
+        } else {
+            $ctrl.newDocument()
+        }
+
         $ctrl.initContent = angular.copy($ctrl.document.content);
 
         $ctrl.receiveHtml = function ($event) {
@@ -83,9 +88,18 @@ export default class WriteOpinionDialogComponent {
                             .ariaLabel('Tip')
                             .ok('Sluiten')
                     );
+
+                    function getArticlesString(articles) {
+                        let articlesString = '';
+                        angular.forEach(articles, (article) => {
+                            articlesString = articlesString + article.url + ' '
+                        })
+                        return articlesString;
+                    }
                     Slack.send({
-                        username: document.title,
-                        text: document.content.replace(/<\/?[^>]+(>|$)/g, "") + ' '+ (document.articles && document.articles[0] ? document.articles[0].url:'') + (document.articles && document.articles[1] ? ' Er zijn meer bronnen toegevoegd maar hier niet weergeven...':'') + ' Contactgegevens: ' + ($auth.getEmail() ? $auth.getEmail() : document.email)
+                        username: ($auth.getEmail() ? $auth.getEmail() : document.email),
+                        text:  '*' + document.title +'*' +
+                        ' ' + getArticlesString(document.articles)
                     });
                 }
                 

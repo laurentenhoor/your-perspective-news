@@ -57,8 +57,11 @@
             <!-- <md-button class="md-raised" ng-click="$ctrl.saveDocumentAsDraft()" md-autofocus>
                 <md-icon>watch_later</md-icon> Opslaan voor later
             </md-button> -->
-            <md-button class="md-raised md-primary" ng-click="$ctrl.publishDocument()" tabindex="-1" style="margin: 0;">
+            <md-button class="md-raised md-primary" ng-click="$ctrl.publishDocument()" tabindex="-1" style="margin-left:0">
                 <md-icon>send</md-icon> Verstuur
+            </md-button>
+            <md-button class="md-raised" ng-if="$ctrl.document.articles.length>0" ng-click="$ctrl.newDocument()" tabindex="-1" style="">
+                <md-icon>delete</md-icon> Wissen
             </md-button>
         </div>
 
