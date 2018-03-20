@@ -101,6 +101,12 @@ export default class WriteOpinionDialogComponent {
                         text:  '*' + document.title +'*' +
                         ' ' + getArticlesString(document.articles)
                     });
+                    ga('send', {
+                        hitType: 'event',
+                        eventCategory: 'Suggestion',
+                        eventAction: 'New suggestion',
+                    })
+
                 }
                 
             });

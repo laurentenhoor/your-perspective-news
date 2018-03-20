@@ -37,6 +37,13 @@ export default class JoinDialogComponent {
             Slack.send({
                 text: 'Ik wil graag verrijker worden! Email me op ' + email,
             });
+
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'Account',
+                eventAction: 'New member request',
+                eventLabel : email
+            })
         }
 
     }
