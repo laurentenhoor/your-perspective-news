@@ -6,6 +6,7 @@
     <a class="date-banner" href="">{{ $ctrl.selectedDate | today }}</a>
 
     <md-button ng-disabled="$ctrl.daySelector.nextDayButtonHidden()" ng-click="$ctrl.tomorrow()" class="" aria-label="gisteren">
-        <md-icon>chevron_right</md-icon>
+        <md-icon ng-if="!$ctrl.daySelector.nextDayButtonHidden()">chevron_right</md-icon>
+        <md-icon ng-click="$ctrl.alertTomorrow()" ng-if="$ctrl.daySelector.nextDayButtonHidden()">lock</md-icon>
     </md-button>
 </div>
