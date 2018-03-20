@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="time-elapsed">
-                        {{ selectedArticle[categoryName].publishedAt || selectedArticle[categoryName].updatedAt | timeFromNow }}
+                        {{ selectedArticle[categoryName].dateUnix || selectedArticle[categoryName].updatedAt | timeFromNow }}
                     </div>
 
                 </div>

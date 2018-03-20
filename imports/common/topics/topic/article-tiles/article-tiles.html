@@ -54,7 +54,7 @@
                     <div class="publisher">{{ article.publisher }}</div>
 
                     <div class="time-elapsed">
-                        {{ article.publishedAt || article.updatedAt | timeFromNow }}
+                        {{ article.dateUnix || article.updatedAt | timeFromNow }}
                     </div>
 
                 </div>
