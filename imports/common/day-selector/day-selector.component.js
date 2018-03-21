@@ -21,6 +21,9 @@ class DaySelectorComponent {
         }
 
         $ctrl.alertTomorrow = () => {
+            if (!$daySelector.isBeforePublishTime()) {
+                return;
+            }
             $dialog.show(
                 $dialog.alert()
                     .title('Vanaf 15:00 het verrijkte nieuws van de dag.')

@@ -23,6 +23,11 @@ export default class DaySelectorService {
         this.calculateRange();
     }
 
+    isBeforePublishTime() {
+        return (new Date().getHours() < 15)
+    }
+    
+
     nextDayButtonHidden() {
         if (this.$auth.isAdmin()) {
             return false;
