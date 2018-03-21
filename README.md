@@ -12,6 +12,19 @@ Wij verzetten ons tegen twittergeblaat en nepnieuws.
 * It is not possible to share and discuss multiple news items at once (cross-linking and comparison).
 
 # Application Changelog
+## version 1.4.0 - Used in Beta Test 2
+* New UI & value proposition
+    * Day-by-day navigation
+    * Smaller summary times
+    * Popup to request topics for anonymous users
+    * Sign-up for joining the editors
+    * Set a publish date to control the day where a topic will land
+* Anonymous user accounts
+    * Every user can vote and edit questions
+* User roles
+    * Regular users can only view news up until today 15:00
+    * Admins can add articles and see upcoming days
+
 ## version 1.3.9 - Used in Beta Test 1
 * Voting for questions including sorting
 * UI bug fixes and performance improvements
