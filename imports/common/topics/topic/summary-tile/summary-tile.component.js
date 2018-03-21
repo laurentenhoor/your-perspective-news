@@ -114,9 +114,11 @@ class SummaryTileComponent {
         }
 
         let offset = 13*window.innerWidth/100;
+        let offsetVertical = 3*window.innerWidth/100;
 
         $ctrl.scrollToArticle = function (articleId, topicId, $event) {
             openTopic();
+            
             // waitUntilSummaryHidden(() => {
             //     smoothScroll(targetId = 'topic-' + topicId + '-article-' + articleId, {
             //         containerId: 'scroll-' + topicId,
@@ -126,6 +128,17 @@ class SummaryTileComponent {
             //         duration: 400
             //     });
             // })
+
+            waitUntilSummaryHidden(() => {
+                smoothScroll(targetId = 'topic-' + topicId + '-article-' + articleId, {
+                    containerId: 'yourpers',
+                    direction: 'vertical',
+                    offset: offsetVertical,
+                    easing: 'easeOutQuart',
+                    duration: 400
+                });
+            })
+
 
         }
 
