@@ -1,5 +1,11 @@
 <md-toast class="first-use-toast">
-  <md-button class="" ng-click="$ctrl.openFirstUseDialog($event)">
+  <md-button class="" ng-click="$ctrl.openFirstUseDialog($event)" style="margin:0;">
     <u class="shimmer">Lees hier wat Jouwpers jou kan bieden.</u>
   </md-button>
+  <md-button ng-click="$ctrl.closeToast($event)" class="" style="">
+      <md-icon style="width:10px;height:10px;color:white;opacity:0.7">
+        close
+      </md-icon>
+  </md-button>
+
 </md-toast>

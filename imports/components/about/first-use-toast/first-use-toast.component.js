@@ -5,16 +5,16 @@ export default class FirstUseToastComponent {
     constructor($scope, $mdToast, $firstUseDialog) {
         'ngInject';
 
-        this.closeToast = function () {
+        this.closeToast = function ($event) {
             
             if (!$firstUseDialog.isCurrentlyShown()) 
-                $mdToast.hide();
+                $mdToast.hide($event);
 
         };
 
         this.openFirstUseDialog = function ($event) {
 
-            this.closeToast();
+            this.closeToast($event);
 
             if (!$firstUseDialog.isCurrentlyShown()) {
                 $firstUseDialog.show($event);
