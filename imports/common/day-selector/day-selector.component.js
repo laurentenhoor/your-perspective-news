@@ -13,6 +13,11 @@ class DaySelectorComponent {
 
         $ctrl.tomorrow = () => {
             $daySelector.tomorrow();
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'Read',
+                eventAction: 'Load tomorrow (undo yesterday)',
+            })
         }
 
         $ctrl.alertTomorrow = () => {
@@ -23,10 +28,20 @@ class DaySelectorComponent {
                     .ariaLabel('Verse berichten')
                     .ok('Sluiten')
             );
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'About',
+                eventAction: 'Open 15:00 alert',
+            })
         }
 
         $ctrl.yesterday = () => {
             $daySelector.yesterday();
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'Read',
+                eventAction: 'Load yesterday',
+            })
         }
 
     }

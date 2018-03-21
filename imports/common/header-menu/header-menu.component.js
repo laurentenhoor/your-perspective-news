@@ -23,6 +23,11 @@ class HeaderMenuComponent {
 
         $ctrl.clickJoin = ($event) => {
             $joinDialog.show($event);
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'About',
+                eventAction: 'Open "Word verrijker"',
+            })
         }
 
         // $ctrl.clickJoin();
@@ -31,9 +36,8 @@ class HeaderMenuComponent {
             $writeOpinionDialog.show($event)
             ga('send', {
                 hitType: 'event',
-                eventCategory: 'Tip',
-                eventAction: 'Open Tip',
-                eventLabel: ''
+                eventCategory: 'About',
+                eventAction: 'Open "Verrijkingsverzoek"'
             })
         }
        
