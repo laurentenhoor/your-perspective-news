@@ -114,7 +114,7 @@ class SummaryTileComponent {
         }
 
         let offset = 13*window.innerWidth/100;
-        let offsetVertical = 3*window.innerWidth/100;
+        let offsetVertical = 30*window.innerWidth/100;
 
         $ctrl.scrollToArticle = function (articleId, topicId, $event) {
             openTopic();
@@ -135,7 +135,7 @@ class SummaryTileComponent {
                     direction: 'vertical',
                     offset: offsetVertical,
                     easing: 'easeOutQuart',
-                    duration: 400
+                    duration: 600
                 });
             })
 

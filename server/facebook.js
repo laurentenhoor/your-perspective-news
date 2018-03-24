@@ -1,4 +1,7 @@
-let facebookPixel = `Facebook Pixel will be added here`;
+let facebookPixel = `
+  <script>
+    // Facebook Pixel will be added here
+  </script>`;
 
 if (Meteor.isProduction) {
   facebookPixel = `
