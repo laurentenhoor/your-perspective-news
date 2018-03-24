@@ -129,15 +129,15 @@ class SummaryTileComponent {
             //     });
             // })
 
-            waitUntilSummaryHidden(() => {
-                smoothScroll(targetId = 'topic-' + topicId + '-article-' + articleId, {
-                    containerId: 'yourpers',
-                    direction: 'vertical',
-                    offset: offsetVertical,
-                    easing: 'easeOutQuart',
-                    duration: 600
-                });
-            })
+            // waitUntilSummaryHidden(() => {
+            //     smoothScroll(targetId = 'topic-' + topicId + '-article-' + articleId, {
+            //         containerId: 'yourpers',
+            //         direction: 'vertical',
+            //         offset: offsetVertical,
+            //         easing: 'easeOutQuart',
+            //         duration: 600
+            //     });
+            // })
 
 
         }
