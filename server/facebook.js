@@ -1,6 +1,8 @@
 let facebookPixel = `
   <script>
-    // Facebook Pixel will be added here
+    fbq = function(action, type, eventCategory, eventAction, eventLabel, eventValue, fieldsObject) {
+      console.warn('FaceBook Pixel debug:', action, type, eventCategory, eventAction, eventLabel, eventValue, fieldsObject)
+    }
   </script>`;
 
 if (Meteor.isProduction) {

@@ -93,6 +93,7 @@ class SummaryTileComponent {
 
         const openTopic = () => {
             $topicsApi.countOpen($ctrl.topic._id);
+            fbq('track', 'ViewContent');
             $ctrl.onOpenTopic({ $event: { openTopicId: $ctrl.topic._id } });
         }
 

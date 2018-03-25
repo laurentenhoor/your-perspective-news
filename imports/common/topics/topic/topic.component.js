@@ -8,8 +8,8 @@ class TopicComponent {
         var $ctrl = this;
         $reactive($ctrl).attach($scope);
 
-        $ctrl.amountOfRootArticles = 2;
-        $ctrl.amountOfOtherArticles = 2;
+        $ctrl.amountOfRootArticles = 3;
+        $ctrl.amountOfOtherArticles = 3;
 
         $ctrl.helpers({
             isAdmin:()=>{
@@ -65,7 +65,7 @@ class TopicComponent {
         var loadMoreDepthOther = 0;
 
         $ctrl.showMoreRootArticles = () => {
-            $ctrl.amountOfRootArticles++;
+            $ctrl.amountOfRootArticles = $ctrl.amountOfRootArticles + 2;
             
             $ctrl.rootArticles = _.slice($ctrl.allRootArticles, 0, $ctrl.amountOfRootArticles)
             ga('send', {
@@ -82,7 +82,7 @@ class TopicComponent {
         }
 
         $ctrl.showMoreOtherArticles = () => {
-            $ctrl.amountOfOtherArticles++;
+            $ctrl.amountOfOtherArticles = $ctrl.amountOfOtherArticles+2;
 
             $ctrl.otherArticles = _.slice($ctrl.allOtherArticles, 0, $ctrl.amountOfOtherArticles)
             ga('send', {
