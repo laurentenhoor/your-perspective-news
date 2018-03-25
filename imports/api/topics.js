@@ -47,8 +47,9 @@ if (Meteor.isServer) {
 
 		if (singleTopicId) {
 			searchQuery._id = singleTopicId;
+		} else {
+			searchQuery.publishAt = {$gte : minDate, $lt: maxDate }
 		}
-		searchQuery.publishAt = {$gte : minDate, $lt: maxDate }
 
 		return Topics.find(searchQuery, {
 			sort: { 'stats.hotness': - 1 }

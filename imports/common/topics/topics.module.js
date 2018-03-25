@@ -30,6 +30,11 @@ export default angular.module('topics', [
 			.state('topics', {
 				url: "/",
 				component: 'topics',
+				resolve: {
+					topicId: ($transition$) => {
+						return false;
+					}
+				}
 			})
 			.state('singleTopic', {
 				url: "/topic/:topicId",

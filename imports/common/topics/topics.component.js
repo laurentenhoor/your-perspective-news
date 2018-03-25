@@ -18,21 +18,20 @@ class TopicsComponent {
 
 		let temporaryHighestHotness = 9999;
 
-		$ctrl.filterPublishDate = function(val) {
+		var filterPublishDate = function (val) {
 			$ctrl.amountOfFilteredTopics = 0;
 			return (val.publishAt > $daySelector.minDate && val.publishAt < $daySelector.maxDate);
-		  };
+		};
 
 		$ctrl.$onChanges = (changes) => {
 			if (changes.singleTopicId && $ctrl.topicId) {
-				$ctrl.singleTopicId = $ctrl.topicId
+
 				if ($state.current.name == 'singleTopic') {
-					console.log('initSingleTopicMode')
-					
-					
-						$daySelector.initSingleTopicMode();	
-					
-					
+
+					$ctrl.singleTopicId = $ctrl.topicId
+					$daySelector.initSingleTopicMode();
+					$ctrl.filterPublishDate = (val) => { return val }
+
 					ga('send', {
 						hitType: 'event',
 						eventCategory: 'Share Topic',
@@ -43,9 +42,13 @@ class TopicsComponent {
 			}
 			if (changes.questionId && changes.topicId) {
 				let question = $questionsApi.getById($ctrl.questionId);
-				$ctrl.singleTopicId = $ctrl.topicId;
 
 				if ($state.current.name == 'question') {
+					
+					$ctrl.singleTopicId = $ctrl.topicId;
+					$daySelector.initSingleTopicMode();
+					$ctrl.filterPublishDate = (val) => { return val }
+
 					ga('send', {
 						hitType: 'event',
 						eventCategory: 'Share Question',
@@ -53,6 +56,9 @@ class TopicsComponent {
 						eventLabel: '/question/' + $ctrl.questionId
 					})
 				}
+			}
+			if ($state.current.name == 'topics') {
+				$ctrl.filterPublishDate = filterPublishDate;
 			}
 		}
 
@@ -74,7 +80,7 @@ class TopicsComponent {
 		})
 
 		Tracker.autorun(() => {
-			
+
 			$loader.start();
 
 			Meteor.subscribe('topicsByTime',
@@ -87,6 +93,8 @@ class TopicsComponent {
 		})
 
 		let subscribeToArticles = (topics) => {
+
+			console.log('subscribe to articles from these topics', topics)
 
 			Meteor.subscribe('articles', topics, {
 				onReady: () => afterSubscription({ success: true }),
