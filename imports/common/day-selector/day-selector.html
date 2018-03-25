@@ -1,12 +1,24 @@
 <div class="container">
-    <md-button ng-click="$ctrl.yesterday()" class="" aria-label="gisteren">
-        <md-icon>chevron_left</md-icon>
-    </md-button>
 
-    <a class="date-banner" href="">{{ $ctrl.selectedDate | today }}</a>
+    <div ng-show="$ctrl.daySelector.singleTopicMode">
+        <md-button ng-click="$ctrl.daySelector.exitSingleTopicMode()" class="" style="font-size:2.5vw!important;" aria-label="ga naar vandaag">
+            Open alles van vandaag
+        </md-button>
+    </div>
 
-    <md-button ng-disabled="$ctrl.daySelector.nextDayButtonHidden()" ng-click="$ctrl.tomorrow()" class="" aria-label="gisteren">
-        <md-icon ng-if="!$ctrl.daySelector.nextDayButtonHidden()">chevron_right</md-icon>
-        <md-icon ng-click="$ctrl.alertTomorrow()" ng-if="$ctrl.daySelector.nextDayButtonHidden()">{{ $ctrl.daySelector.isBeforePublishTime() ? 'lock' : '' }}</md-icon>
-    </md-button>
+    <div ng-hide="$ctrl.daySelector.singleTopicMode">
+
+        <md-button ng-click="$ctrl.yesterday()" class="" aria-label="gisteren">
+            <md-icon>chevron_left</md-icon>
+        </md-button>
+
+
+        <a class="date-banner" href="">{{ $ctrl.daySelector.selectedDate | today }}</a>
+
+        <md-button ng-disabled="$ctrl.daySelector.nextDayButtonHidden()" ng-click="$ctrl.tomorrow()" class="" aria-label="gisteren">
+            <md-icon ng-if="!$ctrl.daySelector.nextDayButtonHidden()">chevron_right</md-icon>
+            <md-icon ng-click="$ctrl.alertTomorrow()" ng-if="$ctrl.daySelector.nextDayButtonHidden()">{{ $ctrl.daySelector.isBeforePublishTime() ? 'lock' : '' }}</md-icon>
+        </md-button>
+
+    </div>
 </div>

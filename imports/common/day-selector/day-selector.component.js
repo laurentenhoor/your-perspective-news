@@ -7,8 +7,8 @@ class DaySelectorComponent {
         'ngInject';
 
         var $ctrl = this;
+        $reactive($ctrl).attach($scope);
 
-        $ctrl.selectedDate = $daySelector.selectedDate;
         $ctrl.daySelector = $daySelector;
 
         $ctrl.tomorrow = () => {

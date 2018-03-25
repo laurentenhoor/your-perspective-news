@@ -27,6 +27,12 @@ class TopicsComponent {
 			if (changes.singleTopicId && $ctrl.topicId) {
 				$ctrl.singleTopicId = $ctrl.topicId
 				if ($state.current.name == 'singleTopic') {
+					console.log('initSingleTopicMode')
+					
+					
+						$daySelector.initSingleTopicMode();	
+					
+					
 					ga('send', {
 						hitType: 'event',
 						eventCategory: 'Share Topic',

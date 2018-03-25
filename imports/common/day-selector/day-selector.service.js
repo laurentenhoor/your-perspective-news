@@ -1,11 +1,13 @@
 export default class DaySelectorService {
 
-    constructor($auth) {
+    constructor($auth, $state) {
         'ngInject';
 
         this.$auth = $auth;
+        this.$state = $state;
 
         this.selectedDate = new Date();
+        this.singleTopicMode = false;
         
         if (new Date().getHours() < 15) {
             // console.log('Het is nog geen 15:00, dus nog geen nieuwe onderwerpen voor vandaag!');
@@ -26,7 +28,17 @@ export default class DaySelectorService {
     isBeforePublishTime() {
         return (new Date().getHours() < 15)
     }
-    
+
+    initSingleTopicMode() {
+        this.singleTopicMode = true;
+        console.log('this.singleTopicMode',  this.singleTopicMode)
+    }
+
+    exitSingleTopicMode() {
+        this.singleTopicMode = false;
+        this.$state.go('topics', {});
+        console.log('this.singleTopicMode',  this.singleTopicMode)
+    }
 
     nextDayButtonHidden() {
         if (this.$auth.isAdmin()) {
