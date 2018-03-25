@@ -20,7 +20,7 @@ if (!Package.appcache)
             if (!topic) {
                 return next();
             }
-            var articles = getAllArticlesFromTopic(topic);
+            var articles = getAllNewsArticlesFromTopic(topic);
             if (!articles) {
                 return next();
             }
@@ -83,10 +83,11 @@ function getTopicMetaTags(topic, article) {
     return tags;
 }
 
-function getAllArticlesFromTopic(topic) {
-    var articles = [];
-    _.each(topic.articleIds, (articleId) => {
-        articles.push(Articles.findOne({ _id: articleId }))
-    })
-    return articles;
+function getAllNewsArticlesFromTopic(topic) {
+    return Articles.find({
+        _id: { $in: topic.articleIds },
+        category: 'Nieuws',
+    }, {
+        sort : {'dateUnix': -1}
+    }).fetch();
 }
