@@ -16,7 +16,7 @@ export default class DaySelectorService {
         }
         this.today = new Date(this.selectedDate);
 
-        this.selectedDate.setUTCHours(0);
+        this.selectedDate.setUTCHours(12);
         this.selectedDate.setUTCMinutes(0);
         this.selectedDate.setUTCSeconds(0);
         this.selectedDate.setUTCMilliseconds(0);
@@ -59,8 +59,8 @@ export default class DaySelectorService {
     }
 
     calculateRange() {
-        this.minDate = this.selectedDate.getTime();
-        this.maxDate = new Date(this.selectedDate.getTime() + 24 * 60 * 60 * 1000).getTime();
+        this.minDate = new Date(this.selectedDate.getTime() - 12 * 60 * 60 * 1000).getTime();
+        this.maxDate = new Date(this.selectedDate.getTime() + 12 * 60 * 60 * 1000).getTime();
     }
 
 }
