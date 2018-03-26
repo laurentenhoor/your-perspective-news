@@ -21,8 +21,11 @@ if (!Package.appcache)
                 return next();
             }
             var articles = getAllNewsArticlesFromTopic(topic);
-            if (!articles) {
-                return next();
+            if (!articles || articles.length <= 0) {
+                articles = getAllVerrijkingArticlesFromTopic(topic);
+                if (!articles || articles.length <= 0) {
+                    return next();
+                }
             }
 
             if (Inject.appUrl(req.url)) {
@@ -64,7 +67,7 @@ function getQuestionMetaTags(topic, question) {
     <meta property="og:image:width" content="900">
     <meta property="og:image:height" content="600">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="`+ Meteor.absoluteUrl() + `vraag/` + question._id + `/` + topic._id +`">
+    <meta property="og:url" content="`+ Meteor.absoluteUrl() + `vraag/` + question._id + `/` + topic._id + `">
     `
 }
 
@@ -88,6 +91,15 @@ function getAllNewsArticlesFromTopic(topic) {
         _id: { $in: topic.articleIds },
         category: 'Nieuws',
     }, {
-        sort : {'dateUnix': -1}
-    }).fetch();
+            sort: { 'dateUnix': -1 }
+        }).fetch();
+}
+
+function getAllVerrijkingArticlesFromTopic(topic) {
+    return Articles.find({
+        _id: { $in: topic.articleIds },
+        category: 'Verrijking',
+    }, {
+            sort: { 'stats.hotness': -1 }
+        }).fetch();
 }
