@@ -21,6 +21,16 @@ class HeaderMenuComponent {
             })
         }
 
+        $ctrl.clickMission = ($event) => {
+            $firstUseDialog.show($event);
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'About',
+                eventAction: 'Open about',
+                eventLabel: 'Via Banner'
+            })
+        }
+
         $ctrl.clickJoin = ($event) => {
             $joinDialog.show($event);
             ga('send', {

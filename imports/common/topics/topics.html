@@ -1,10 +1,26 @@
-<div class="scroll-window" ng-repeat="topic in filteredTopics = ($ctrl.topics | orderBy:'-stats.hotness' | filter:$ctrl.filterPublishDate)" 
+<div class="scroll-window" ng-repeat="topic in filteredTopics = ($ctrl.topics | orderBy:'-stats.hotness' | filter:$ctrl.filterPublishDate)"
     ng-class="{'show-scrollbar' : $ctrl.isDesktop()}" id="scroll-{{topic._id}}" scroll-disabler ng-cloack>
-    
+
     <topic topic="topic" ng-class="{'show-scrollbar' : $ctrl.isDesktop()}" on-open-topic="$ctrl.openTopicId=$event.openTopicId"
         open-topic-id="$ctrl.openTopicId"></topic>
 
-        
+
 </div>
 
 <day-selector ng-if="filteredTopics.length" style="display:block;margin:6vw 0;"></day-selector>
+
+
+<div style="text-align:center;margin-top:3vw">
+
+    <md-button ng-click="$ctrl.clickTips($event)" class="" style="font-size:2.3vw!important;font-weight:600;opacity:0.7;">
+            <!-- md-accent md-hue-3 md-raised -->
+        Verrijkingsverzoek
+    </md-button>
+
+    <md-button ng-click="$ctrl.clickJoin($event)" style="font-size:2.3vw!important;opacity:0.7;font-weight:600;">
+        Word ook verrijker
+    </md-button>
+
+    <auth></auth>
+
+</div>
