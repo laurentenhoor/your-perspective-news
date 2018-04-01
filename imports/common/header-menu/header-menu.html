@@ -1,7 +1,8 @@
 <div class="company-logo-container" ng-click="$ctrl.clickLogo($event)">
 	<img class="company-logo" src="/logos/jouwpers-logo-no-bg.svg" />
 	<div class="company-text">
-		<span class="company-logo-title">Jouw<b>pers</b>
+		<span class="company-logo-title">Jouw
+			<b>pers</b>
 		</span>
 		<!-- <span class="beta-tag">BETA</span> -->
 	</div>
@@ -12,5 +13,28 @@
 <day-selector></day-selector>
 
 <div class="mission-header" ng-click="$ctrl.clickMission();">
-	Iedere dag vanaf 15:00 een nieuw verrassingspakket met frisse invalshoeken bij het nieuws.
+
+	<div class="mission-text">
+		<b>Iedere dag vanaf 15:00</b> een nieuw
+		<b>verrassingspakket</b> met frisse invalshoeken bij het nieuws.
+	</div>
+
+	<md-card-actions layout="row" layout-align="end center">
+
+		<md-button class="white-button" aria-label="Share">
+			<md-icon class="white-icon">share</md-icon>
+			Deel met vrienden
+		</md-button>
+
+		<md-button class="white-button" aria-label="Notification">
+			<md-icon class="white-icon">notifications_active</md-icon>
+			Krijg e-mail alerts
+		</md-button>
+
+		<md-button class="white-button" aria-label="Notification">
+			<md-icon class="white-icon">info</md-icon>
+
+		</md-button>
+
+	</md-card-actions>
 </div>
