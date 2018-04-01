@@ -11,26 +11,26 @@
 
 <day-selector></day-selector>
 
-<div class="mission-header" ng-click="$ctrl.clickMission();">
+<div class="mission-header">
 
-	<div class="mission-text">
+	<div class="mission-text" ng-click="$ctrl.clickMission();">
 		<b>Iedere dag om 15:00</b> een vers
 		<b>verrassingspakket</b> met frisse invalshoeken bij het nieuws.
 	</div>
 
 	<md-card-actions layout="row" layout-align="end center">
 
-		<md-button class="white-button" aria-label="Share">
+		<md-button class="white-button" aria-label="Share" ng-click="$ctrl.share();">
 			<md-icon class="white-icon">share</md-icon>
 			Deel met vrienden
 		</md-button>
 
-		<md-button class="white-button" aria-label="Notification">
+		<md-button class="white-button" aria-label="Notification"  ng-click="$ctrl.setupAlerts();">
 			<md-icon class="white-icon">notifications_active</md-icon>
 			Krijg e-mail alerts
 		</md-button>
 
-		<md-button class="white-button" aria-label="Help">
+		<md-button class="white-button" aria-label="Help" ng-click="$ctrl.clickMission();">
 			<md-icon class="white-icon">help</md-icon>
 		</md-button>
 

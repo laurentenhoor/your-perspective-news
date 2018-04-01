@@ -20,14 +20,26 @@ export default class ShareDialogComponent {
             if ($ctrl.questionId) {
                 return Meteor.absoluteUrl() + 'vraag/' + $ctrl.questionId + '/' + $ctrl.topicId;
             }
-            return Meteor.absoluteUrl() + 'topic/' + $ctrl.topicId;
+            else if ($ctrl.topicId) {
+                return Meteor.absoluteUrl() + 'topic/' + $ctrl.topicId;
+            }
+            else {
+                return Meteor.absoluteUrl()
+            }
+            
         }
 
         $ctrl.getShareText = () => {
             if ($ctrl.questionId) {
                 return 'Kun jij ons helpen met deze vraag?';
             }
-            return 'Zoek mee naar het volledige verhaal achter dit nieuws op jouwpers.';
+            else if ($ctrl.topicId) {
+                return 'Zoek mee naar het volledige verhaal achter dit nieuws op jouwpers.';
+            }
+            else {
+                return 'Stap uit je filterbubbel!'
+            }
+            
         }
 
         $ctrl.shareLinkedIn = () => {

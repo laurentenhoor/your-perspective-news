@@ -4,7 +4,7 @@ import HeaderMenuStyle from './header-menu.styl';
 
 class HeaderMenuComponent {
 
-    constructor($scope, $reactive, $firstUseDialog, $firstUseToast, $joinDialog, $writeOpinionDialog) {
+    constructor($scope, $reactive, $shareDialog, $firstUseDialog, $firstUseToast, $joinDialog, $writeOpinionDialog) {
         'ngInject'
 
         var $ctrl = this;
@@ -19,6 +19,15 @@ class HeaderMenuComponent {
                 eventAction: 'Open about',
                 eventLabel: 'Via Logo Click'
             })
+        }
+
+        $ctrl.share = ($event) => {
+            console.log('share')
+            $shareDialog.show($event);
+        }
+
+        $ctrl.setupAlerts = ($event) => {
+            console.log('setup alerts')
         }
 
         $ctrl.clickMission = ($event) => {
