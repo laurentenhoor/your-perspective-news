@@ -4,7 +4,7 @@ import HeaderMenuStyle from './header-menu.styl';
 
 class HeaderMenuComponent {
 
-    constructor($scope, $reactive, $shareDialog, $firstUseDialog, $firstUseToast, $joinDialog, $writeOpinionDialog) {
+    constructor($scope, $reactive, $shareDialog, $mdDialog, $firstUseDialog, $firstUseToast, $joinDialog, $writeOpinionDialog) {
         'ngInject'
 
         var $ctrl = this;
@@ -28,6 +28,23 @@ class HeaderMenuComponent {
 
         $ctrl.setupAlerts = ($event) => {
             console.log('setup alerts')
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.prompt()
+                .title('Blijf up-to-date!')
+                .textContent('Ontvang automatisch een email wanneer er een nieuw verrassingspakket beschikbaar is.')
+                .placeholder('E-mailadres')
+                .ariaLabel('E-mailadres')
+                .initialValue('')
+                .targetEvent($event)
+                .required(true)
+                .ok('Houd mij op de hoogte')
+                .cancel('Annuleren');
+
+            $mdDialog.show(confirm).then(function (result) {
+                $scope.status = 'You decided to name your dog ' + result + '.';
+            }, function () {
+                $scope.status = 'You didn\'t name your dog.';
+            });
         }
 
         $ctrl.clickMission = ($event) => {
@@ -59,7 +76,7 @@ class HeaderMenuComponent {
                 eventAction: 'Open "Verrijkingsverzoek"'
             })
         }
-       
+
     }
 
 }
@@ -67,5 +84,5 @@ class HeaderMenuComponent {
 export default {
     templateUrl: HeaderMenuTemplate,
     controller: HeaderMenuComponent,
-    bindings : {}
+    bindings: {}
 }
