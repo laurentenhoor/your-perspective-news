@@ -7,7 +7,7 @@ import SlackAPI from 'node-slack';
 
 class HeaderMenuComponent {
 
-    constructor($scope, $reactive, $shareDialog, $mdDialog, $firstUseDialog, $firstUseToast, $joinDialog, $writeOpinionDialog) {
+    constructor($scope, $reactive, $shareDialog, $mdDialog, $firstUseDialog, $firstUseToast) {
         'ngInject'
 
         var $ctrl = this;
@@ -70,23 +70,6 @@ class HeaderMenuComponent {
             })
         }
 
-        $ctrl.clickJoin = ($event) => {
-            $joinDialog.show($event);
-            ga('send', {
-                hitType: 'event',
-                eventCategory: 'About',
-                eventAction: 'Open "Word verrijker"',
-            })
-        }
-
-        $ctrl.clickTips = ($event) => {
-            $writeOpinionDialog.show($event)
-            ga('send', {
-                hitType: 'event',
-                eventCategory: 'About',
-                eventAction: 'Open "Verrijkingsverzoek"'
-            })
-        }
 
     }
 

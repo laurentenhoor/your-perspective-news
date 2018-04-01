@@ -5,7 +5,7 @@ import { Random } from 'meteor/random'
 
 class TopicsComponent {
 
-	constructor($scope, $reactive, $loader, $daySelector, $state, $articlesApi, $topicsApi, $questionsApi, $timeout, smoothScroll, $desktopViewer) {
+	constructor($scope, $reactive, $loader, $daySelector, $state, $articlesApi, $topicsApi, $questionsApi, $timeout, smoothScroll, $desktopViewer, $joinDialog, $writeOpinionDialog) {
 		'ngInject';
 
 		var $ctrl = this;
@@ -130,6 +130,25 @@ class TopicsComponent {
 				$state.go('topics')
 			}
 		}
+
+
+        $ctrl.clickJoin = ($event) => {
+            $joinDialog.show($event);
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'About',
+                eventAction: 'Open "Word verrijker"',
+            })
+        }
+
+        $ctrl.clickTips = ($event) => {
+            $writeOpinionDialog.show($event)
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'About',
+                eventAction: 'Open "Verrijkingsverzoek"'
+            })
+        }
 
 	}
 
