@@ -23,14 +23,18 @@ export default class QuestionsApiService {
     }
 
     vote(topicId, itemId, voteValue) {
-        Questions.update(itemId, { $inc: { 'stats.score' : voteValue } });
-        ga('send', {
-            hitType: 'event',
-            eventCategory: 'Vote',
-            eventAction: 'Answer',
-            eventLabel: '/answer/'+itemId,
-            eventValue: voteValue
-        })
+        Questions.update(itemId, { $inc: { 'stats.score' : voteValue } }, (error, docCount) => {
+            if (docCount > 0) {
+                ga('send', {
+                    hitType: 'event',
+                    eventCategory: 'Vote',
+                    eventAction: 'Answer',
+                    eventLabel: '/answer/'+itemId,
+                    eventValue: voteValue
+                })    
+            }
+        });
+        
     }
 
     updateItem(updatedItem) {

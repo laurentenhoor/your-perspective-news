@@ -45,9 +45,9 @@ export default class ShareDialogComponent {
         $ctrl.shareLinkedIn = () => {
             ga('send', {
                 hitType: 'event',
-                eventCategory: ($ctrl.questionId ? 'Share Question' : 'Share Topic'),
+                eventCategory: ($ctrl.questionId ? 'Share Question' : $ctrl.topicId ? 'Share Topic' : 'Share Jouwpers'),
                 eventAction: 'LinkedIn',
-                eventLabel: ($ctrl.questionId ? '/question/' + $ctrl.questionId : '/topic/' + $ctrl.topicId)
+                eventLabel: ($ctrl.questionId ? '/question/' + $ctrl.questionId : $ctrl.topicId ? '/topic/' + $ctrl.topicId : '')
             })
             Socialshare.share({
                 'provider': 'linkedin',
@@ -60,9 +60,9 @@ export default class ShareDialogComponent {
         $ctrl.shareTwitter = () => {
             ga('send', {
                 hitType: 'event',
-                eventCategory: ($ctrl.questionId ? 'Share Question' : 'Share Topic'),
+                eventCategory: ($ctrl.questionId ? 'Share Question' : $ctrl.topicId ? 'Share Topic' : 'Share Jouwpers'),
                 eventAction: 'Twitter',
-                eventLabel: ($ctrl.questionId ? '/question/' + $ctrl.questionId : '/topic/' + $ctrl.topicId)
+                eventLabel: ($ctrl.questionId ? '/question/' + $ctrl.questionId : $ctrl.topicId ? '/topic/' + $ctrl.topicId : '')
             })
             Socialshare.share({
                 'provider': 'twitter',
@@ -77,9 +77,9 @@ export default class ShareDialogComponent {
         $ctrl.shareFacebook = () => {
             ga('send', {
                 hitType: 'event',
-                eventCategory: ($ctrl.questionId ? 'Share Question' : 'Share Topic'),
+                eventCategory: ($ctrl.questionId ? 'Share Question' : $ctrl.topicId ? 'Share Topic' : 'Share Jouwpers'),
                 eventAction: 'Facebook',
-                eventLabel: ($ctrl.questionId ? '/question/' + $ctrl.questionId : '/topic/' + $ctrl.topicId)
+                eventLabel: ($ctrl.questionId ? '/question/' + $ctrl.questionId : $ctrl.topicId ? '/topic/' + $ctrl.topicId : '')
             })
             Socialshare.share({
                 'provider': 'facebook',
@@ -95,18 +95,18 @@ export default class ShareDialogComponent {
         $ctrl.shareCopyPaste = () => {
             ga('send', {
                 hitType: 'event',
-                eventCategory: ($ctrl.questionId ? 'Share Question' : 'Share Topic'),
+                eventCategory: ($ctrl.questionId ? 'Share Question' : $ctrl.topicId ? 'Share Topic' : 'Share Jouwpers'),
                 eventAction: 'Copy-Paste',
-                eventLabel: ($ctrl.questionId ? '/question/' + $ctrl.questionId : '/topic/' + $ctrl.topicId)
+                eventLabel: ($ctrl.questionId ? '/question/' + $ctrl.questionId : $ctrl.topicId ? '/topic/' + $ctrl.topicId : '')
             })
         }
 
         $ctrl.shareWhatsapp = () => {
             ga('send', {
                 hitType: 'event',
-                eventCategory: ($ctrl.questionId ? 'Share Question' : 'Share Topic'),
+                eventCategory: ($ctrl.questionId ? 'Share Question' : $ctrl.topicId ? 'Share Topic' : 'Share Jouwpers'),
                 eventAction: 'Whatsapp',
-                eventLabel: ($ctrl.questionId ? '/question/' + $ctrl.questionId : '/topic/' + $ctrl.topicId)
+                eventLabel: ($ctrl.questionId ? '/question/' + $ctrl.questionId : $ctrl.topicId ? '/topic/' + $ctrl.topicId : '')
             })
         }
 

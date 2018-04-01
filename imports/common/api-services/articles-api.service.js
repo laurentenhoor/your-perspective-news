@@ -36,8 +36,8 @@ export default class ArticlesApi {
             _id: { $in: topic.articleIds },
             category: 'Nieuws',
         }, {
-            sort : {'dateUnix': -1}
-        }).fetch();
+                sort: { 'dateUnix': -1 }
+            }).fetch();
         return articles;
     }
 
@@ -46,8 +46,8 @@ export default class ArticlesApi {
             _id: { $in: topic.articleIds, },
             category: { $ne: 'Nieuws' }
         }, {
-            sort : {'stats.hotness': -1}
-        }).fetch();
+                sort: { 'stats.hotness': -1 }
+            }).fetch();
         return articles;
     }
 
@@ -108,20 +108,22 @@ export default class ArticlesApi {
             }
         }
 
-        Articles.update(articleId, options, (error) => {
+        Articles.update(articleId, options, (error, docCount) => {
             if (error) {
                 console.error(error)
+            }
+            if (docCount > 0) {
+                ga('send', {
+                    hitType: 'event',
+                    eventCategory: 'Vote',
+                    eventAction: 'Article',
+                    eventLabel: '/article/' + articleId,
+                    eventValue: voteValue
+                })
             }
             this.$topicsApi.vote(topicId, voteValue)
         })
 
-        ga('send', {
-            hitType: 'event',
-            eventCategory: 'Vote',
-            eventAction: 'Article',
-            eventLabel: '/article/'+articleId,
-            eventValue: voteValue
-        })
 
     }
 
@@ -133,8 +135,8 @@ export default class ArticlesApi {
         ga('send', {
             hitType: 'event',
             eventCategory: 'Read',
-            eventAction : 'External article',
-            eventLabel : '/article/'+articleId
+            eventAction: 'External article',
+            eventLabel: '/article/' + articleId
         })
     }
 

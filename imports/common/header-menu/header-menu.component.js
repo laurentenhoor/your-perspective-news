@@ -2,12 +2,17 @@
 import HeaderMenuTemplate from './header-menu.html';
 import HeaderMenuStyle from './header-menu.styl';
 
+import SlackAPI from 'node-slack';
+
+
 class HeaderMenuComponent {
 
     constructor($scope, $reactive, $shareDialog, $mdDialog, $firstUseDialog, $firstUseToast, $joinDialog, $writeOpinionDialog) {
         'ngInject'
 
         var $ctrl = this;
+
+        var Slack = new SlackAPI('https://hooks.slack.com/services/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');
 
         $ctrl.clickLogo = function ($event) {
             console.log('logo clicked')
@@ -40,10 +45,18 @@ class HeaderMenuComponent {
                 .ok('Houd mij op de hoogte')
                 .cancel('Annuleren');
 
-            $mdDialog.show(confirm).then(function (result) {
-                $scope.status = 'You decided to name your dog ' + result + '.';
+            $mdDialog.show(confirm).then(function (email) {
+                Slack.send({
+                    text: 'Ik wil graag dagelijks op de hoogte gehouden worden! Email me op ' + email,
+                });
+                ga('send', {
+                    hitType: 'event',
+                    eventCategory: 'Account',
+                    eventAction: 'New follower',
+                    eventLabel: email
+                })
             }, function () {
-                $scope.status = 'You didn\'t name your dog.';
+                // dialog canceled
             });
         }
 
@@ -65,8 +78,6 @@ class HeaderMenuComponent {
                 eventAction: 'Open "Word verrijker"',
             })
         }
-
-        // $ctrl.clickJoin();
 
         $ctrl.clickTips = ($event) => {
             $writeOpinionDialog.show($event)
