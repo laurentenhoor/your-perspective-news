@@ -12,6 +12,11 @@ Wij verzetten ons tegen twittergeblaat en nepnieuws.
 * It is not possible to share and discuss multiple news items at once (cross-linking and comparison).
 
 # Application Changelog
+## version 1.4.1 - Used in Beta Test 3
+* Added a persistent header explaining the proposition
+* Fixed several bugs
+    * Analytics
+
 ## version 1.4.0 - Used in Beta Test 2
 * New UI & value proposition
     * Day-by-day navigation
