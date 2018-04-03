@@ -35,10 +35,10 @@ export default class VotesApiService {
 			this.$votableItemsApi.voteItem(topicId, itemId, voteValue)
 			
 		} else {
-			if (vote.value != voteValue) {
+			if (vote.value != voteValue || this.$auth.isAdmin()) {
 				Votes.update(vote._id, {$set: {value: voteValue}});
 				this.$votableItemsApi.voteItem(topicId, itemId, 2*voteValue)
-			}
+			} 
 		}
 		
 	}
