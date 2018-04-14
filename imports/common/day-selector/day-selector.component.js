@@ -20,6 +20,8 @@ class DaySelectorComponent {
             })
         }
 
+        $ctrl.today = new Date();
+
         $ctrl.alertTomorrow = () => {
             if (!$daySelector.isBeforePublishTime()) {
                 return;

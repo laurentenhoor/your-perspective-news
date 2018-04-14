@@ -13,7 +13,8 @@
         </md-button>
 
 
-        <a class="date-banner" href="">{{ $ctrl.daySelector.selectedDate | today }}</a>
+        <a class="date-banner" ng-if="!$ctrl.daySelector.nextDayButtonHidden()" href="">{{ $ctrl.daySelector.selectedDate | today }}</a>
+        <a class="date-banner" ng-if="$ctrl.daySelector.nextDayButtonHidden()" href="">{{ $ctrl.today | today }}</a>
 
         <md-button ng-disabled="$ctrl.daySelector.nextDayButtonHidden()" ng-click="$ctrl.tomorrow()" class="" aria-label="gisteren">
             <md-icon ng-if="!$ctrl.daySelector.nextDayButtonHidden()">chevron_right</md-icon>

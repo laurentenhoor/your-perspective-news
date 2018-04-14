@@ -7,10 +7,11 @@ export default class DaySelectorService {
         this.$state = $state;
         this.$timeout = $timeout;
 
-        this.selectedDate = new Date();
+        // this.selectedDate = new Date();
+        this.selectedDate = new Date("2018/04/13 18:00");
         this.singleTopicMode = false;
 
-        if (new Date().getHours() < 15) {
+        if (this.selectedDate.getHours() < 15) {
             // console.log('Het is nog geen 15:00, dus nog geen nieuwe onderwerpen voor vandaag!');
             this.yesterday();
         }
@@ -25,9 +26,9 @@ export default class DaySelectorService {
         this.maxDate = null;
         this.calculateRange();
     }
-
+    
     isBeforePublishTime() {
-        return (new Date().getHours() < 15)
+        return (this.selectedDate.getHours() < 15)
     }
 
     initSingleTopicMode() {
